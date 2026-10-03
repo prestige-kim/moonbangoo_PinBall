@@ -2,9 +2,9 @@
   'use strict';
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   class Camera {
-    constructor(canvas) {
+    constructor(canvas, options) {
       this.canvas = canvas; this.x = 500; this.y = 510; this.zoom = 1; this.follow = true; this.viewport = null; this.map = null; this.pointer = new Map(); this.drag = null; this.manualZoom = 1;
-      this.attach(canvas);
+      if (!options || options.interactive !== false) this.attach(canvas);
     }
     area() {
       if (this.viewport) return this.viewport;

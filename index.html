@@ -8,7 +8,7 @@
   <title>어른뭉방구 — 행운 구슬 뽑기</title>
   <link rel="stylesheet" href="./style.css">
 </head>
-<body data-theme="cosmic">
+<body class="intro-active" data-theme="cosmic">
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z" fill="currentColor" stroke="none"/></symbol>
     <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 6h3c4 0 8 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 4-3 6-6s4-6 6-6h3m-4-4 4 4-4 4"/></symbol>
@@ -31,11 +31,19 @@
     <symbol id="i-fish" viewBox="0 0 24 24"><path d="M3 12c4-7 12-7 16 0-4 7-12 7-16 0Zm16 0 3-4v8Z"/><circle cx="7.5" cy="10.5" r=".7" fill="currentColor" stroke="none"/></symbol>
   </defs></svg>
 
-  <canvas id="game-canvas" aria-label="구슬이 장애물을 지나 결승선으로 향하는 핀볼 게임 화면">브라우저가 Canvas를 지원하지 않습니다.</canvas>
+  <canvas id="game-canvas" aria-hidden="true" aria-label="구슬이 장애물을 지나 결승선으로 향하는 핀볼 게임 화면">브라우저가 Canvas를 지원하지 않습니다.</canvas>
   <div class="ambient-wash" aria-hidden="true"></div>
   <div class="screen-vignette" aria-hidden="true"></div>
 
-  <header class="masthead">
+  <section class="intro-screen" id="intro-screen" aria-labelledby="intro-caption" aria-hidden="false">
+    <div class="intro-content">
+      <img class="intro-logo" src="./assets/logo.svg" alt="어른뭉방구" width="255" height="223" draggable="false">
+      <p class="intro-caption" id="intro-caption">행운 구슬 뽑기</p>
+      <button class="intro-start-button" id="intro-start-button" type="button"><span>시작하기</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+    </div>
+  </section>
+
+  <header class="masthead" inert aria-hidden="true">
     <a class="brand" href="./index.html" aria-label="어른뭉방구 홈">
       <img class="orbit-mark brand-logo" src="./assets/logo.svg" alt="" width="64" height="56">
       <span class="brand-type">어른뭉방구<span class="brand-caption">행운 구슬 뽑기 · 작은 우연을 모으는 곳</span></span>
@@ -49,7 +57,7 @@
     </nav>
   </header>
 
-  <main>
+  <main inert aria-hidden="true">
     <aside class="setup-panel glass-panel" id="setup-panel" aria-label="추첨 설정">
       <div class="sheet-handle" aria-hidden="true"></div>
       <div class="panel-heading"><div><span class="eyebrow">어른을 위한 작은 문방구</span><h1>행운 구슬 뽑기<span class="title-dot">.</span></h1></div><button class="icon-button panel-close" id="panel-close" type="button" aria-label="설정 패널 닫기"><svg class="icon"><use href="#i-close"/></svg></button></div>
@@ -126,7 +134,7 @@
     <div class="toast-stack" id="toast-stack" role="status" aria-live="polite"></div>
   </main>
 
-  <footer class="system-footer"><span><span class="footer-orbit" aria-hidden="true"></span>작은 우연을 모으는 문방구</span><span class="footer-seed">SEED <b id="hud-seed">MUNGBANGGU-2026</b><i></i>고정 물리 120 Hz</span><span class="footer-edition">어른뭉방구 / 제1호</span></footer>
+  <footer class="system-footer" inert aria-hidden="true"><span><span class="footer-orbit" aria-hidden="true"></span>작은 우연을 모으는 문방구</span><span class="footer-seed">SEED <b id="hud-seed">MUNGBANGGU-2026</b><i></i>고정 물리 120 Hz</span><span class="footer-edition">어른뭉방구 / 제1호</span></footer>
 
   <dialog id="results-dialog" class="results-dialog" aria-labelledby="winner-heading">
     <div class="results-decoration" aria-hidden="true"><span></span><span></span><span></span></div>

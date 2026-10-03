@@ -65,6 +65,10 @@
   const renderer = new P.Renderer(canvas);
   const camera = new P.Camera(canvas);
   const effects = new P.Effects();
+  const demoCamera = new P.Camera(canvas, { interactive: false });
+  const demoEffects = new P.Effects();
+  let demoPhysics = null;
+  let demoAccumulator = 0;
   const audio = new P.AudioEngine();
   let settings = normalize(memorySettings);
   let runSettings = null;
@@ -137,7 +141,63 @@
     ui.updateHUD({ ranking: ranking, remaining: names.length, total: names.length, time: 0, fps: fps, leader: ranking[0], seed: settings.seed, map: P.MAPS[settings.map], quality: settings.quality });
     resize();
   }
+  function demoView() {
+    const map = P.MAPS.dynamic;
+    const width = window.innerWidth || 1000, height = window.innerHeight || 700;
+    demoCamera.viewport = { x: 0, y: 0, w: width, h: height };
+    demoCamera.x = map.width / 2; demoCamera.y = 1550;
+    demoCamera.zoom = Math.min(width / (map.width + 100), 1.1); demoCamera.follow = false;
+    const halfHeight = height / (2 * demoCamera.zoom);
+    return { top: Math.max(780, demoCamera.y - halfHeight - 100), bottom: Math.min(map.finish.y - 300, demoCamera.y + halfHeight + 100) };
+  }
+  function recycleDemoMarble(marble, y) {
+    marble.x = 50 + demoPhysics.random() * 900; marble.y = y;
+    marble.vx = (demoPhysics.random() - .5) * 120; marble.vy = 80;
+    marble.finished = false; marble.finishTime = null; marble.trail.length = 0;
+    marble._anchorY = y; marble._stuckAt = demoPhysics.time; marble._contacts = Object.create(null);
+  }
+  function beginIntro() {
+    renderer.setTheme('cosmic');
+    demoPhysics = makePhysics(Object.assign({}, defaults, { map: 'dynamic', seed: 'MUNGBANGGU-WELCOME' }), P.parseNames('행운*24,햇살*12'));
+    const view = demoView();
+    for (const marble of demoPhysics.marbles) recycleDemoMarble(marble, view.top + 40 + demoPhysics.random() * (view.bottom - view.top - 80));
+    for (let tick = 0; tick < 120; tick++) demoPhysics.step(STEP);
+    demoPhysics.drainEvents();
+    demoEffects.setQuality && demoEffects.setQuality(settings.quality);
+    demoEffects.reducedMotion = settings.reducedMotion;
+    status = 'intro'; ui.setIntroMode(true);
+  }
+  function renderIntro(dt) {
+    const view = demoView();
+    if (!settings.reducedMotion) {
+      demoAccumulator += dt * .7;
+      let ticks = 0;
+      while (demoAccumulator >= STEP && ticks < 24) {
+        for (const marble of demoPhysics.marbles) {
+          if (marble.y > view.bottom || marble.finished) recycleDemoMarble(marble, view.top);
+        }
+        demoPhysics.step(STEP); demoAccumulator -= STEP; ticks++;
+      }
+      for (const event of demoPhysics.drainEvents()) demoEffects.handle(event, P.THEMES.cosmic, demoPhysics.marbles.length);
+      demoEffects.update(dt);
+    }
+    renderer.render({ physics: demoPhysics, map: P.MAPS.dynamic, camera: demoCamera, effects: demoEffects,
+      time: settings.reducedMotion ? 0 : elapsedVisual, dt: dt, status: 'running', winner: null,
+      leader: demoPhysics.getRanking()[0] || null, photoFinish: false });
+  }
+  function enterGame() {
+    if (status !== 'intro') return;
+    ui.setIntroMode(false); demoPhysics = null; demoEffects.clear && demoEffects.clear();
+    demoAccumulator = 0; visualSettings(); preview();
+    const entry = document.getElementById('names');
+    if (entry && entry.focus && (window.innerWidth || 1000) > 850) entry.focus({ preventScroll: true });
+    else {
+      const toggle = document.getElementById('mobile-setup-button');
+      if (toggle && toggle.focus) toggle.focus({ preventScroll: true });
+    }
+  }
   function start(usePrevious) {
+    if (status === 'intro') return;
     if (status === 'running' || status === 'countdown') return;
     const next = usePrevious && runSettings ? Object.assign({}, runSettings, {
       theme: settings.theme, sound: settings.sound, volume: settings.volume,
@@ -227,6 +287,7 @@
     if (document.hidden) { lastFrame = 0; requestAnimationFrame(frame); return; }
     elapsedVisual += dt; hudElapsed += dt; fpsElapsed += dt; fpsFrames++; diagnostics.frames++;
     if (fpsElapsed >= 0.75) { fps = Math.round(fpsFrames / fpsElapsed); fpsElapsed = 0; fpsFrames = 0; }
+    if (status === 'intro') { renderIntro(dt); requestAnimationFrame(frame); return; }
     if (status === 'countdown') {
       countdown -= dt;
       const number = Math.max(1, Math.ceil(countdown));
@@ -267,6 +328,7 @@
     }
     requestAnimationFrame(frame);
   }
+  ui.on('enter', enterGame);
   ui.on('start', () => start(false));
   ui.on('restart', () => start(true));
   ui.on('replay', () => { settings = normalize(ui.readSettings()); preview(); });
@@ -292,7 +354,7 @@
   camera.attach(canvas);
   window.addEventListener('resize', resize);
   document.addEventListener('visibilitychange', () => { lastFrame = 0; });
-  visualSettings(); preview();
+  visualSettings(); preview(); beginIntro();
   P.app = { ui: ui, renderer: renderer, camera: camera, effects: effects, audio: audio,
     get physics() { return physics; }, get status() { return status; }, get settings() { return Object.assign({}, settings); },
     get runSettings() { return runSettings && Object.assign({}, runSettings); },

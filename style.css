@@ -34,3 +34,23 @@ body[data-theme=ice]{--bg:#E9E9E4;--panel:rgba(248,247,241,.95);--panel-solid:#F
   .theme-grid{gap:7px}.theme-tile{height:49px;padding:7px 9px;gap:8px;font-size:9px}.theme-tile small{font-size:7px;margin-top:4px}.theme-orb{width:23px;height:23px}.theme-orb .icon{inset:5px;width:13px;height:13px}
   .advanced-settings summary{padding-top:11px;font-size:10px}.panel-footer{padding:11px 21px 12px}.start-button{height:49px}.panel-bottom{margin-top:10px}
 }
+/* 처음엔 로고와 한 번의 초대만. 뒤의 구슬은 실제 놀이판에서 움직입니다. */
+.intro-screen{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:32px 24px calc(32px + env(safe-area-inset-bottom));background:radial-gradient(ellipse 54% 70% at 50% 48%,rgba(251,247,239,.58),rgba(244,237,224,.27) 80%),rgba(244,237,224,.4);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .6s var(--ease),visibility 0s linear .6s;color:#4A3A28;touch-action:manipulation}
+.intro-content{display:flex;flex-direction:column;align-items:center;text-align:center;transform:translateY(-10px);transition:transform .6s var(--ease),opacity .6s var(--ease);padding-bottom:8px}
+.intro-logo{display:block;width:255px;max-width:65vw;height:auto;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 1px 0 rgba(251,247,239,.7)) drop-shadow(0 4px 12px rgba(74,58,40,.06))}
+.intro-caption{font-family:var(--serif);font-size:15px;letter-spacing:.23em;font-weight:400;margin:26px 0 0;color:#7B6548;line-height:1.5;padding-left:.23em}
+.intro-start-button{position:relative;display:flex;justify-content:center;align-items:center;width:192px;height:47px;padding:0 30px;margin-top:39px;border:1px solid rgba(122,85,32,.32);border-radius:6px;background:linear-gradient(115deg,#DCC18D,#E8D2A4 38%,#D9B872 69%,#C29A55);color:#4A3A28;box-shadow:0 3px 15px rgba(74,58,40,.075),inset 0 1px 0 rgba(255,246,220,.75);font-family:var(--serif);font-size:15px;font-weight:700;letter-spacing:.1em;transition:transform .25s var(--ease),box-shadow .25s var(--ease),filter .25s var(--ease)}
+.intro-start-button>.icon{position:absolute;right:17px;width:13px;height:13px;color:#7A5520;stroke-width:1.5}
+.intro-start-button:hover{transform:translateY(-2px);box-shadow:0 7px 22px rgba(74,58,40,.11),inset 0 1px 0 rgba(255,246,220,.75);filter:brightness(1.025)}
+.intro-start-button:active{transform:translateY(0) scale(.985)}
+.intro-start-button:focus-visible{outline:2px solid #9B773F;outline-offset:5px}
+.intro-active .intro-screen{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .6s var(--ease),visibility 0s}
+.intro-active .intro-content{transform:translateY(0)}
+.masthead,main,.system-footer{transition:opacity .5s var(--ease)}
+.intro-active .masthead,.intro-active main,.intro-active .system-footer{opacity:0;visibility:hidden;pointer-events:none}
+.intro-active #game-canvas{pointer-events:none}
+.intro-active .screen-vignette{opacity:.35}
+@media(max-width:850px){.intro-screen{padding:24px 20px calc(24px + env(safe-area-inset-bottom));background:radial-gradient(ellipse 95% 65% at 50% 46%,rgba(251,247,239,.44),rgba(244,237,224,.18) 85%),rgba(244,237,224,.28);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}.intro-logo{width:205px;max-width:65vw}.intro-caption{font-size:13px;letter-spacing:.22em;margin-top:23px}.intro-start-button{width:178px;height:45px;font-size:14px;margin-top:33px}.intro-content{padding-bottom:26px}}
+@media(max-height:560px){.intro-logo{width:180px}.intro-caption{font-size:12px;margin-top:15px}.intro-start-button{height:42px;margin-top:23px}.intro-content{padding-bottom:0}}
+@media(prefers-reduced-motion:reduce){.intro-screen{transition:opacity .12s ease-out,visibility 0s linear .12s!important}.intro-active .intro-screen{transition:opacity .12s ease-out,visibility 0s!important}.intro-content{transition:none!important;transform:none!important}.intro-start-button{transition:background .12s!important;transform:none!important}}
+.reduced-motion .intro-screen{transition:opacity .12s ease-out,visibility 0s linear .12s!important}.reduced-motion .intro-active .intro-screen,.reduced-motion.intro-active .intro-screen{transition:opacity .12s ease-out,visibility 0s!important}.reduced-motion .intro-content{transition:none!important;transform:none!important}.reduced-motion .intro-start-button{transform:none!important}

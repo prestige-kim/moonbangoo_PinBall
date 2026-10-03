@@ -65,3 +65,17 @@
 - [금박 재질](previews/mungbanggu-gold.jpg)
 - [모바일 세부 설정](previews/mungbanggu-mobile-settings.jpg)
 - [은박 모바일 게임](previews/mungbanggu-mobile-game.jpg)
+
+## 대기 화면 추가 검수 — 2026-10-03
+
+실행: `node --test tests/camera.test.cjs tests/integration.test.cjs tests/offline.test.cjs`.
+관련 **15개 테스트 통과**. 물리 엔진과 코스 데이터는 이번 변경에서 수정하지 않았습니다.
+
+- 별도 목업을 75초 실행해도 실제 참가자·물리 시간·시드·저장 설정 유지, 효과음·결과표 없음.
+- 시작하기는 준비 화면으로 진입하고, 기존 구슬 굴리기에서 카운트다운 시작.
+- 저장된 게임 테마를 입장 후 복원. 모션 감소 시 목업 정지.
+- 1280×800 / 375×812에서 중앙 로고와 시작 버튼, 움직이는 구슬·회전 장애물 배경 확인.
+- 대기 화면은 반투명 크림색 배경과 데스크톱 5px / 모바일 3px 블러. 게임 UI는 inert·aria-hidden으로 입력과 보조기술 접근 차단.
+- 모바일에서 시작하기 → 설정 → 구슬 굴리기 → 카운트다운 직접 조작, 브라우저 오류·경고 없음. 데스크톱 Enter 키로 입장 후 이름 입력으로 포커스 이동, 새로고침 시 대기 화면 재등장 확인.
+
+[데스크톱 대기 화면](previews/mungbanggu-intro-desktop.jpg) · [모바일 대기 화면](previews/mungbanggu-intro-mobile.jpg)

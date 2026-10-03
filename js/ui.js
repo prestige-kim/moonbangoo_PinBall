@@ -37,6 +37,7 @@
     this.resultData = null;
     this.following = true;
     this.focusMode = false;
+    this.introMode = document.body.classList.contains('intro-active');
     this.panelOpen = global.innerWidth > 850;
     this.lastMobile = global.innerWidth <= 850;
     this.boundResize = this.onResize.bind(this);
@@ -46,6 +47,7 @@
     this.updateOutputs();
     this.updateParticipants();
     this.updatePanel();
+    this.setIntroMode(this.introMode);
     global.addEventListener('resize', this.boundResize);
   }
   UI.prototype.on = function (action, handler) {
@@ -57,6 +59,12 @@
   };
   UI.prototype.bind = function () {
     var self = this;
+    $('intro-start-button').addEventListener('click', function () {
+      if (self.introMode) self.emit('enter');
+    });
+    document.addEventListener('keydown', function (event) {
+      if (self.introMode && !event.ctrlKey && !event.metaKey && !event.altKey && event.key.toLowerCase() === 'f') { event.preventDefault(); event.stopImmediatePropagation(); }
+    }, true);
     $('settings-form').addEventListener('submit', function (event) { event.preventDefault(); self.emit('start'); });
     ['shuffle', 'reset', 'restart', 'replay'].forEach(function (action) {
       $(action + '-button').addEventListener('click', function () {
@@ -216,6 +224,27 @@
     this.emit('layout');
     var self = this;
     global.setTimeout(function () { self.emit('layout'); }, 430);
+  };
+  UI.prototype.setIntroMode = function (value) {
+    var active = !!value, wasActive = this.introMode;
+    this.introMode = active;
+    document.body.classList.toggle('intro-active', active);
+    $('intro-screen').setAttribute('aria-hidden', String(!active));
+    $('intro-screen').inert = !active;
+    document.querySelectorAll('.masthead, main, .system-footer').forEach(function (element) {
+      element.inert = active;
+      if (active) element.setAttribute('aria-hidden', 'true');
+      else element.removeAttribute('aria-hidden');
+    });
+    $('game-canvas').setAttribute('aria-hidden', String(active));
+    if (active) {
+      this.hideResults(); this.hideCountdown();
+      $('intro-start-button').focus({ preventScroll: true });
+    } else if (wasActive) {
+      // Entering the setup view does not start a draw. Move focus to its first useful control.
+      var next = this.panelOpen ? $('names') : (global.innerWidth <= 850 ? $('mobile-setup-button') : $('settings-toggle'));
+      next.focus({ preventScroll: true });
+    }
   };
   UI.prototype.setFocusMode = function (value) {
     this.focusMode = !!value;
