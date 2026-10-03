@@ -3,12 +3,6 @@
 </p>
 
 <h1 align="center">어른뭉방구 · 행운 구슬 뽑기</h1>
-
-<p align="center">
-  크림색 종이와 금박 감성으로 즐기는 핀볼 추첨 게임.<br>
-  참가자의 이름을 구슬에 담고, 작은 우연이 만드는 결과를 만나보세요.
-</p>
-
 <p align="center">
   <a href="https://prestige-kim.github.io/moonbangoo_PinBall/"><strong>게임 시작하기 →</strong></a>
 </p>
