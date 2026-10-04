@@ -43,6 +43,7 @@ function boot(storage, options = {}) {
   }
   class Cinematic {
     constructor() { this.endpoints = 0; }
+    commitShuffle(physics) { this.commits = (this.commits || 0) + 1; this.commitTime = physics.time; }
     render(scene) {
       this.scene = scene;
       if (scene.stage === 'flight' && scene.progress === 1) {
@@ -109,10 +110,12 @@ test('start connects shuffle, camera aim, exact landing and immediate race with 
   advance(2.3);
   assert.equal(P.app.status, 'flight');
   assert.equal(P.app.camera.prepared, true);
+  assert.equal(P.app.cinematic.commits, 1); assert.equal(P.app.cinematic.commitTime, 0);
   assert.equal(P.app.renderer.scene.hideMarbles, true, 'Stationary balls must not duplicate the flying balls');
   assert.equal(physics.time, 0);
   advance(3.2);
   assert.equal(P.app.cinematic.endpoints, 1, 'The exact p=1 landing frame is rendered once');
+  assert.equal(P.app.cinematic.commits, 1, 'Shuffle ownership is committed once before discharge');
   assert.equal(P.app.cinematic.landingTime, 0);
   assert.equal(P.app.cinematic.positions, position);
   assert.equal(P.app.status, 'running');

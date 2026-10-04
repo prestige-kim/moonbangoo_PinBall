@@ -128,3 +128,18 @@ for (const count of [2, 50, 200, 500]) {
 }
 assert.equal(P.CINEMA.descriptors(null).length, 36);
 console.log('PASS cinematic: ' + registrations + ' matched orbit frames, ' + assemblies + ' stable wheel assemblies, ' + discharges + ' continuous discharges, ' + frames + ' rendering frames, ' + handoffs + ' exact sprite handoffs; physical state and RNG unchanged.');
+
+// Reduced-motion mixing must keep the visible spheres still while using the same
+// deterministic hidden chamber outcome for the actual race.
+const reducedPhysics = new P.Physics({ map: P.MAPS.classic, names: P.parseNames('조용한 구슬*6'), seed: 'REDUCED-CHAMBER' });
+const reducedCanvas = canvas(), reducedCinema = new P.Cinematic(reducedCanvas, gameRenderer);
+const visible = progress => {
+  reducedCanvas.ctx.images.length = 0;
+  reducedCinema.render({stage:'mixing',progress,time:progress,physics:reducedPhysics,reducedMotion:true});
+  return JSON.stringify(reducedCanvas.ctx.images.filter(args => args[0].width === 144 && args[0].height === 144).map(args => args.slice(1)));
+};
+assert.equal(visible(0),visible(.9),'reduced motion does not speed up the visible physical shuffle');
+reducedCinema.commitShuffle(reducedPhysics);
+const normalPhysics = new P.Physics({ map: P.MAPS.classic, names: P.parseNames('조용한 구슬*6'), seed: 'REDUCED-CHAMBER' });
+const normalCinema = new P.Cinematic(canvas(), gameRenderer); normalCinema.commitShuffle(normalPhysics);
+assert.equal(JSON.stringify(reducedPhysics.marbles),JSON.stringify(normalPhysics.marbles),'visual accessibility never changes the real seeded outcome');

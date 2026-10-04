@@ -210,6 +210,7 @@
       const next = status === 'mixing' ? 'aiming' : 'flight';
       launchElapsed = 0; setScene(next); resize();
       if (next === 'flight') {
+        if (cinematic.commitShuffle) cinematic.commitShuffle(physics);
         camera.prepareLanding(P.MAPS[runSettings.map], physics);
       }
     }
@@ -217,9 +218,11 @@
   function renderCinema(dt) {
     const stage = status, map = P.MAPS[(runSettings || settings).map];
     const progress = ['intro', 'setup'].includes(stage) ? 0 : Math.min(1, launchElapsed / launchDuration(stage));
+    if (stage === 'aiming' || stage === 'flight') {
+      camera.viewport = ui.getViewport(); camera.prepareLanding(map, physics);
+    }
     if (stage === 'flight') {
       // The final visual flight frame and the first physical frame share one camera.
-      camera.viewport = ui.getViewport(); camera.prepareLanding(map, physics);
       renderer.render({ physics, map, camera, effects, time: elapsedVisual, dt, status: stage, hideMarbles: true });
     }
     const view = cinematic.render({ stage, progress, time: elapsedVisual, physics, camera, reducedMotion: settings.reducedMotion });

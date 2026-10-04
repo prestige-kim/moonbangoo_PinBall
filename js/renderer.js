@@ -152,6 +152,16 @@
       if(!this.reducedMotion&&effects&&effects.flash>.01){ctx.save();ctx.globalAlpha=effects.flash*.06;ctx.fillStyle='#fff6dc';ctx.fillRect(0,0,this.width,this.height);ctx.restore();}
       if (status === 'finished' && winner) this.drawWinner(winner, marbles.length, camera, dt, time); else { this.winProgress = 0; this.lastWinner = null; }
     }
+    cinemaBoard(physics, bottom) {
+      const map = physics.map, image = makeCanvas(map.width, Math.ceil(bottom)), ctx = image.getContext('2d'), original = this.ctx;
+      try {
+        this.ctx = ctx; const visible = { top: 0, bottom };
+        this.drawBoard(map, 0, visible);
+        for (const obstacle of map.obstacles || []) this.drawObstacle(obstacle, physics, null, 0, visible);
+        this.drawFinish(map, 0, visible);
+      } finally { this.ctx = original; }
+      return image;
+    }
     drawMinimap(canvas, physics, camera) {
       if (!canvas || !physics || !physics.map) return; const map = physics.map, ctx = canvas.getContext('2d'), w = canvas.width, h = canvas.height, pad = 8, sx = (w - pad * 2) / map.width, sy = (h - pad * 2) / map.height, t = this.theme;
       ctx.clearRect(0, 0, w, h); ctx.fillStyle = PAPER_HI; pill(ctx, 0, 0, w, h, 12); ctx.fill(); ctx.save(); ctx.translate(pad, pad); ctx.scale(sx, sy);

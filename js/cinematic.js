@@ -119,7 +119,7 @@
       flash: !reduced && active && after < .14 ? Math.exp(-after * 47) * interval(0, .004, after) : 0,
       shock: !reduced && active ? clamp(after / .17, 0, 1) : 0,
       shake: !reduced && active ? Math.exp(-after * 29) * (1 - interval(.15, .23, after)) : 0,
-      smoke: !reduced && active ? interval(0, .025, after) * (1 - interval(.15, .42, after)) : 0,
+      smoke: !reduced && active ? interval(0, .025, after) * (1 - interval(.10, .25, after)) : 0,
       after: Math.max(0, after)
     };
   }
@@ -153,6 +153,8 @@
   function flightPose(entry, progress, start, muzzle, target, startRadius, endRadius, screen) {
     if (progress >= 1) return { x: target.x, y: target.y, radius: endRadius, depth: 0, amount: 1, focus: 1 };
     const release = FIRE_MOMENT + (entry.delay || 0), gatherEnd = .073;
+    const arrival = screen.arrival || 1;
+    if (progress >= arrival) return { x: target.x, y: target.y, radius: endRadius, depth: 0, amount: 1, focus: 1, contained: false };
     const axisLength = Math.hypot(muzzle.x - start.x, muzzle.y - start.y) || 1;
     const ax = screen.axisX === undefined ? (muzzle.x - start.x) / axisLength : screen.axisX;
     const ay = screen.axisY === undefined ? (muzzle.y - start.y) / axisLength : screen.axisY;
@@ -160,7 +162,8 @@
     const fan = (entry.lane || 0) * .18, cos = Math.cos(fan), sin = Math.sin(fan);
     const dx = ax * cos - ay * sin, dy = ax * sin + ay * cos;
     const first = { x: origin.x + dx * screen.width * (.31 + entry.curve * .02), y: origin.y + dy * screen.width * (.31 + entry.curve * .02) };
-    const second = { x: target.x + screen.width * entry.curve * .24, y: target.y - screen.height * entry.height };
+    const second = { x: target.x - screen.width * .075 + screen.width * entry.curve * .075,
+      y: target.y - screen.height * (entry.height + .06) };
     const chamber = { x: origin.x - ax * screen.width * .07, y: origin.y - ay * screen.width * .07 };
     if (progress < gatherEnd) {
       const u = smooth(progress / gatherEnd);
@@ -169,7 +172,7 @@
     }
     if (progress < release) {
       const u = clamp((progress - gatherEnd) / (release - gatherEnd), 0, 1), v = 1 - u;
-      const velocityScale = (release - gatherEnd) * 2.4 / (1 - release);
+      const velocityScale = (release - gatherEnd) * 2.4 / (arrival - release);
       const beforeMuzzle = { x: origin.x - (first.x - origin.x) * velocityScale, y: origin.y - (first.y - origin.y) * velocityScale };
       return { x: v * v * v * chamber.x + 3 * v * v * u * chamber.x + 3 * v * u * u * beforeMuzzle.x + u * u * u * origin.x,
         y: v * v * v * chamber.y + 3 * v * v * u * chamber.y + 3 * v * u * u * beforeMuzzle.y + u * u * u * origin.y,
@@ -177,13 +180,120 @@
     }
     // Discharge begins with velocity at the muzzle, then decelerates as the camera
     // meets the board. Its first derivative matches the in-barrel acceleration.
-    const t = clamp((progress - release) / (1 - release), 0, 1), u = 1 - Math.pow(1 - t, 2.4), v = 1 - u;
+    const t = clamp((progress - release) / (arrival - release), 0, 1), u = 1 - Math.pow(1 - t, 2.4), v = 1 - u;
     return {
       x: v * v * v * origin.x + 3 * v * v * u * first.x + 3 * v * u * u * second.x + u * u * u * target.x,
       y: v * v * v * origin.y + 3 * v * v * u * first.y + 3 * v * u * u * second.y + u * u * u * target.y,
       radius: lerp(startRadius * (1 + Math.sin(u * Math.PI) * .27), endRadius, interval(.48, 1, u)),
       depth: Math.sin(u * Math.PI) * entry.curve, amount: t, focus: lerp(.78, 1, interval(.45, .96, u)), contained: false
     };
+  }
+  // A separate, fixed-step hard-sphere chamber. It never consumes race RNG.
+  class Chamber {
+    constructor(entries, seed) {
+      this.random = rng(String(seed) + '|hard-sphere-chamber');
+      this.ticks = 0; this.collisions = 0; this.wallHits = 0;
+      this.radius = Math.min(.32, Math.cbrt(1.5 / Math.max(1, entries.length)) * .55);
+      this.bodies = entries.map((entry, index) => {
+        let body, attempts = 0;
+        do {
+          const angle = this.random() * TAU, radial = Math.sqrt(this.random()) * (1 - this.radius);
+          body = { x: (this.random() * 2 - 1) * (3.2 - this.radius), y: Math.sin(angle) * radial, z: Math.cos(angle) * radial };
+        } while (this.bodiesNear(body, this._placed || [], this.radius * 2 + .006) && ++attempts < 2000);
+        Object.assign(body, { index, r: this.radius, vx: (this.random() * 2 - 1) * 3.6,
+          vy: (this.random() * 2 - 1) * 2, vz: (this.random() * 2 - 1) * 2,
+          phase: this.random() * TAU, spin: this.random() * TAU });
+        (this._placed || (this._placed = [])).push(body); return body;
+      });
+      delete this._placed;
+    }
+    bodiesNear(body, bodies, distance) { return bodies.some(b => Math.hypot(body.x - b.x, body.y - b.y, body.z - b.z) < distance); }
+    wall(body) {
+      const end = 3.2 - body.r;
+      if (Math.abs(body.x) > end) { body.x = Math.sign(body.x) * end; body.vx = -Math.sign(body.x) * Math.abs(body.vx) * .87; this.wallHits++; }
+      const radial = Math.hypot(body.y, body.z), wall = 1 - body.r;
+      if (radial > wall) {
+        const ny = body.y / radial, nz = body.z / radial, outward = body.vy * ny + body.vz * nz;
+        body.y = ny * wall; body.z = nz * wall;
+        if (outward > 0) { body.vy -= 1.87 * outward * ny; body.vz -= 1.87 * outward * nz; }
+        this.wallHits++;
+      }
+    }
+    step(run) {
+      const dt = 1 / 120, t = this.ticks / 120;
+      const power = run ? t < 1.8 ? 1 : .46 : .32;
+      for (const b of this.bodies) {
+        const ax = (Math.sin(t * 5.1 + b.phase) * 7 + Math.sin(t * 2.3 + b.z * 3) * 3) * power;
+        const ay = (.7 + Math.sin(t * 6.7 + b.phase * 1.3) * 5 - b.z * 4) * power;
+        const az = (Math.cos(t * 5.8 + b.phase * .8) * 5 + b.y * 4) * power;
+        const drag = Math.exp(-dt * (run ? .25 : .8));
+        b.vx = clamp((b.vx + ax * dt) * drag, -5.6, 5.6);
+        b.vy = clamp((b.vy + ay * dt) * drag, -5, 5); b.vz = clamp((b.vz + az * dt) * drag, -5, 5);
+        b.x += b.vx * dt; b.y += b.vy * dt; b.z += b.vz * dt; b.spin += (b.vx + b.vz) * dt;
+        this.wall(b);
+      }
+      const cell = this.radius * 2 + .01, grid = new Map();
+      for (const b of this.bodies) {
+        const gx = Math.floor(b.x / cell), gy = Math.floor(b.y / cell), gz = Math.floor(b.z / cell);
+        for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++) for (let dz = -1; dz <= 1; dz++) {
+          const neighbors = grid.get((gx + dx) + ':' + (gy + dy) + ':' + (gz + dz)); if (!neighbors) continue;
+          for (const a of neighbors) {
+            let nx = b.x - a.x, ny = b.y - a.y, nz = b.z - a.z, distance = Math.hypot(nx, ny, nz);
+            const diameter = a.r + b.r; if (distance >= diameter) continue;
+            if (distance < .00001) { nx = 1; ny = 0; nz = 0; distance = 0; }
+            else { nx /= distance; ny /= distance; nz /= distance; }
+            const separate = (diameter - distance) * .505;
+            a.x -= nx * separate; a.y -= ny * separate; a.z -= nz * separate;
+            b.x += nx * separate; b.y += ny * separate; b.z += nz * separate;
+            const approach = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny + (b.vz - a.vz) * nz;
+            if (approach < 0) {
+              const impulse = -approach * .92;
+              a.vx -= nx * impulse; a.vy -= ny * impulse; a.vz -= nz * impulse;
+              b.vx += nx * impulse; b.vy += ny * impulse; b.vz += nz * impulse; this.collisions++;
+            }
+          }
+        }
+        this.wall(b); const key = gx + ':' + gy + ':' + gz;
+        if (!grid.has(key)) grid.set(key, []); grid.get(key).push(b);
+      }
+      // Resolve wall corrections once more after the neighboring impulses.
+      for (const b of this.bodies) this.wall(b);
+      this.ticks++;
+    }
+    seek(seconds, run) {
+      const target = Math.max(this.ticks, Math.round(Math.max(0, seconds) * 120));
+      while (this.ticks < target) this.step(run);
+    }
+    pose(index) { const b = this.bodies[index]; return { x: b.x / 3.2, y: b.y, z: b.z, spin: b.spin, radius: b.r }; }
+  }
+  function mapPoint(m, x, y) { return { x: m.a * x + m.c * y + m.e, y: m.b * x + m.d * y + m.f }; }
+  function inverseMatrix(m) {
+    const determinant = m.a * m.d - m.b * m.c;
+    return { a: m.d / determinant, b: -m.b / determinant, c: -m.c / determinant, d: m.a / determinant,
+      e: (m.c * m.f - m.d * m.e) / determinant, f: (m.b * m.e - m.a * m.f) / determinant };
+  }
+  function multiplyMatrix(a, b) {
+    return { a: a.a * b.a + a.c * b.b, b: a.b * b.a + a.d * b.b,
+      c: a.a * b.c + a.c * b.d, d: a.b * b.c + a.d * b.d,
+      e: a.a * b.e + a.c * b.f + a.e, f: a.b * b.e + a.d * b.f + a.f };
+  }
+  function boardView(width, height, camera, progress, reduced) {
+    const small = width < 700, zoom = camera && camera.zoom || .7;
+    const bottom = Math.max(1700, (camera && camera.y || 380) + height / (2 * zoom) + 160);
+    const scale = Math.min(width * (small ? .40 : .24), height * .76 * 1000 / (bottom + 500)) / 1000;
+    const initial = { a: scale, b: -.012 * scale, c: .025 * scale, d: scale,
+      e: width - scale * 1060 - (small ? 12 : 25), f: height * (small ? .275 : .25) };
+    const origin = camera ? camera.worldToScreen(0, 0) : { x: 30, y: 100 };
+    const final = { a: zoom, b: 0, c: 0, d: zoom, e: origin.x, f: origin.y };
+    const focus = { x: camera && camera.x || 500, y: camera && camera.y || 380 };
+    const u = reduced ? progress >= .98 ? 1 : 0 : interval(.24, 1, progress || 0);
+    const anchor = mapPoint(initial, focus.x, focus.y), target = mapPoint(final, focus.x, focus.y);
+    const size = Math.exp(lerp(Math.log(scale), Math.log(zoom), u));
+    const current = { a: size, b: initial.b * (1 - u), c: initial.c * (1 - u), d: size, e: 0, f: 0 };
+    current.e = lerp(anchor.x, target.x, u) - current.a * focus.x - current.c * focus.y;
+    current.f = lerp(anchor.y, target.y, u) - current.b * focus.x - current.d * focus.y;
+    const scene = multiplyMatrix(current, inverseMatrix(initial));
+    return { initial, current, final, scene, bottom, amount: u, scale: Math.sqrt(Math.abs(scene.a * scene.d - scene.b * scene.c)) };
   }
   function pill(ctx, x, y, w, h, r) {
     ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
@@ -220,8 +330,26 @@
       const count = physics && physics.marbles && physics.marbles.length || 36;
       if (!this.cache || this.cache.physics !== physics || this.cache.count !== count) {
         this.cache = { physics, count, entries: descriptors(physics, 36) }; this.frozenTube = null;
+        this.chamber = new Chamber(this.cache.entries, physics && physics.seed || 'preview');
+        this.stillTube = this.cache.entries.map(entry => this.chamber.pose(entry.index));
+        this.chamberBirth = this.lastTime || 0; this.shuffleCommitted = false; this.boardCache = null;
       }
       return this.cache.entries;
+    }
+    commitShuffle(physics) {
+      const entries = this.entries(physics); if (this.shuffleCommitted) return;
+      this.chamber.seek(4, true);
+      const order = this.chamber.bodies.slice().sort((a, b) => b.x - a.x || a.index - b.index);
+      const slots = physics.marbles.map(m => ({ x: m.x, y: m.y, vx: m.vx, vy: m.vy, _anchorX: m._anchorX, _anchorY: m._anchorY }))
+        .sort((a, b) => a.y - b.y || a.x - b.x);
+      const lanes = this.chamber.bodies.slice().sort((a, b) => a.y - b.y || a.index - b.index);
+      lanes.forEach((body, rank) => { entries[body.index].lane = (rank + .5) / lanes.length * 2 - 1; });
+      order.forEach((body, rank) => {
+        Object.assign(physics.marbles[body.index], slots[rank]);
+        entries[body.index].delay = order.length < 2 ? 0 : rank / (order.length - 1) * .04;
+      });
+      this.frozenTube = entries.map(entry => this.chamber.pose(entry.index));
+      this.shuffleCommitted = true;
     }
     orbSprite(coat, blurred) {
       const key = coat + ':' + !!blurred; if (this.sprites.has(key)) return this.sprites.get(key);
@@ -238,7 +366,7 @@
       if (blurred && 'filter' in ctx) { const soft = makeCanvas(144, 144), s = soft.getContext('2d'); s.filter = 'blur(1.25px)'; s.drawImage(c, 0, 0); this.sprites.set(key, soft); return soft; }
       this.sprites.set(key, c); return c;
     }
-    drawPlate(shot, view, alpha) {
+    drawPlate(shot, view, alpha, extendPaper = true) {
       if (alpha <= .001) return;
       const asset = shot === 'angle' && this.plates.barrel ? 'barrel' : shot;
       const ctx = this.ctx, image = this.plates[asset]; ctx.save(); ctx.globalAlpha = alpha;
@@ -246,11 +374,12 @@
       else { ctx.translate(view.x, view.y); ctx.rotate(view.rotation); ctx.transform(view.scaleX, 0, view.shear, view.scaleY, 0, 0); }
       if (image) {
         const left = view.matrix ? 0 : -view.anchorX * view.w, top = view.matrix ? 0 : -view.anchorY * view.h;
-        const edges = this.edgesFor(asset, image), feather = this.featherFor(asset, image), extend = Math.max(this.width, this.height) * 3;
+        const edges = this.edgesFor(asset, image), feather = this.featherFor(asset, image, extendPaper ? 45 : 220), extend = Math.max(this.width, this.height) * 3;
         const insetX = view.w * feather.size / feather.width, insetY = view.h * feather.size / feather.height;
         // Extend the photographed paper itself: a contained cannon must not leave a rectangular seam.
         // Paper extends underneath the feather too, preventing the studio image's
         // outermost row from forming a thin rectangular line on portrait screens.
+        if (extendPaper) {
         ctx.drawImage(edges.top, left, top - extend, view.w, extend + insetY);
         ctx.drawImage(edges.bottom, left, top + view.h - insetY, view.w, extend + insetY);
         ctx.drawImage(edges.left, left - extend, top, extend + insetX, view.h);
@@ -259,6 +388,7 @@
         ctx.drawImage(edges.corners[1], left + view.w - insetX, top - extend, extend + insetX, extend + insetY);
         ctx.drawImage(edges.corners[2], left - extend, top + view.h - insetY, extend + insetX, extend + insetY);
         ctx.drawImage(edges.corners[3], left + view.w - insetX, top + view.h - insetY, extend + insetX, extend + insetY);
+        }
         ctx.drawImage(feather.image, left, top, view.w, view.h);
       }
       else {
@@ -282,8 +412,9 @@
       };
       this.paperEdges.set(shot, edges); return edges;
     }
-    featherFor(shot, image) {
-      if (this.featheredPlates.has(shot)) return this.featheredPlates.get(shot);
+    featherFor(shot, image, topFade = 45) {
+      const key = shot + ':' + topFade;
+      if (this.featheredPlates.has(key)) return this.featheredPlates.get(key);
       const w = image.naturalWidth || image.width, h = image.naturalHeight || image.height;
       const size = Math.min(45, w * .04, h * .06), c = makeCanvas(w, h), ctx = c.getContext('2d');
       ctx.drawImage(image, 0, 0, w, h); ctx.globalCompositeOperation = 'destination-in';
@@ -292,10 +423,10 @@
       horizontal.addColorStop(1 - size / w, '#fff'); horizontal.addColorStop(1, 'rgba(255,255,255,0)');
       ctx.fillStyle = horizontal; ctx.fillRect(0, 0, w, h);
       const vertical = ctx.createLinearGradient(0, 0, 0, h);
-      vertical.addColorStop(0, 'rgba(255,255,255,0)'); vertical.addColorStop(size / h, '#fff');
+      vertical.addColorStop(0, 'rgba(255,255,255,0)'); vertical.addColorStop(Math.min(topFade, h * .25) / h, '#fff');
       vertical.addColorStop(1 - size / h, '#fff'); vertical.addColorStop(1, 'rgba(255,255,255,0)');
       ctx.fillStyle = vertical; ctx.fillRect(0, 0, w, h); ctx.globalCompositeOperation = 'source-over';
-      const plate = { image: c, size, width: w, height: h }; this.featheredPlates.set(shot, plate); return plate;
+      const plate = { image: c, size, width: w, height: h }; this.featheredPlates.set(key, plate); return plate;
     }
     glassPath(front, angle, orbit) {
       if (front.frame) {
@@ -381,9 +512,9 @@
         const amount = this.quality === 'low' ? 5 : this.quality === 'medium' ? 9 : 15;
         for (let i = 0; i < amount; i++) {
           const d = this.dust[i], age = blast.after, spread = radius * (1 + age * 11);
-          const travel = width * age * (.23 + d.x * .2), side = (d.y - .5) * spread * 1.9;
+          const travel = width * age * (.16 + d.x * .13), side = (d.y - .5) * spread * 1.15;
           const x = origin.x + axisX * travel - axisY * side, y = origin.y + axisY * travel + axisX * side - height * age * age * .1;
-          const size = radius * (.43 + d.y * .31) * (1 + age * 6);
+          const size = radius * (.43 + d.y * .31) * (1 + age * 3);
           const smoke = ctx.createRadialGradient(x, y, 0, x, y, size);
           smoke.addColorStop(0, 'rgba(247,237,216,.36)'); smoke.addColorStop(.34, 'rgba(223,210,186,.31)');
           smoke.addColorStop(.63, 'rgba(157,141,111,.2)'); smoke.addColorStop(.82, 'rgba(188,169,137,.1)'); smoke.addColorStop(1, 'rgba(222,205,176,0)');
@@ -433,10 +564,49 @@
       }
       ctx.restore();
     }
+    targetBoard(view, physics, aiming, stage) {
+      if (!physics || !this.renderer || aiming <= .38) return;
+      const ctx = this.ctx, m = view.initial, bottom = view.bottom;
+      const key = physics.seed + ':' + this.renderer.theme.id + ':' + Math.ceil(bottom);
+      if (!this.boardCache || this.boardCache.key !== key) {
+        this.boardCache = { key, image: this.renderer.cinemaBoard ? this.renderer.cinemaBoard(physics, bottom) : null };
+      }
+      ctx.save(); ctx.transform(m.a, m.b, m.c, m.d, m.e, m.f);
+      const slide = stage === 'aiming' ? 1 - interval(.38, .93, aiming) : 0;
+      ctx.translate(slide * this.width * .7 / m.a, 0);
+      // The same map surface stays opaque while the camera travels toward it.
+      ctx.save(); ctx.globalAlpha = 1 - interval(.25, .82, view.amount);
+      ctx.save(); ctx.translate(580, bottom + 90); ctx.scale(1, .1);
+      const shadow = ctx.createRadialGradient(0, 0, 20, 0, 0, 800);
+      shadow.addColorStop(0, 'rgba(110,80,37,.23)'); shadow.addColorStop(1, 'rgba(110,80,37,0)');
+      ctx.fillStyle = shadow; ctx.fillRect(-800, -800, 1600, 1600); ctx.restore();
+      const arch = inset => {
+        ctx.beginPath(); ctx.moveTo(-45 + inset, bottom); ctx.lineTo(-45 + inset, 30);
+        ctx.bezierCurveTo(-45 + inset, -545 + inset, 1045 - inset, -545 + inset, 1045 - inset, 30);
+        ctx.lineTo(1045 - inset, bottom); ctx.closePath();
+      };
+      ctx.save(); ctx.translate(28, 10); arch(0); ctx.fillStyle = '#bba47a'; ctx.fill(); ctx.restore();
+      arch(0); const paper = ctx.createLinearGradient(-40, -420, 1050, bottom);
+      paper.addColorStop(0, '#f9f3e3'); paper.addColorStop(.5, '#f3e9d4'); paper.addColorStop(1, '#e9dabe');
+      ctx.fillStyle = paper; ctx.fill();
+      const gold = ctx.createLinearGradient(-45, -400, 1045, 80);
+      gold.addColorStop(0, '#9f7c40'); gold.addColorStop(.24, '#eee0b8'); gold.addColorStop(.55, '#c9ad70'); gold.addColorStop(.8, '#f3e7c8'); gold.addColorStop(1, '#a2844e');
+      ctx.strokeStyle = gold; ctx.lineWidth = 13; ctx.stroke(); arch(16); ctx.strokeStyle = 'rgba(166,132,72,.55)'; ctx.lineWidth = 3; ctx.stroke();
+      ctx.textAlign = 'center'; ctx.font = '500 47px Georgia,serif';
+      ctx.fillStyle = '#fff8e5'; ctx.fillText('행운 구슬 뽑기', 502, -222);
+      ctx.fillStyle = '#b19459'; ctx.fillText('행운 구슬 뽑기', 500, -224);
+      ctx.font = '400 24px system-ui,sans-serif'; ctx.fillStyle = '#a38855'; ctx.fillText(physics.map.name || '오늘의 놀이판', 500, -135);
+      ctx.restore();
+      if (this.boardCache.image) ctx.drawImage(this.boardCache.image, 0, 0, 1000, bottom);
+      ctx.restore();
+    }
     render(state) {
       state = state || {}; this.resize(); const ctx = this.ctx, w = this.width, h = this.height;
       const stage = state.stage || 'intro', p = clamp(Number(state.progress) || 0, 0, 1), time = Number(state.time) || 0, reduced = !!state.reducedMotion;
       const entries = this.entries(state.physics), count = entries.length, marbles = state.physics && state.physics.marbles || [];
+      const active = ['mixing', 'aiming', 'flight'].includes(stage);
+      if (active) this.chamber.seek(stage === 'mixing' ? p * 1.8 : stage === 'aiming' ? 1.8 + p * 2.2 : 4, true);
+      else if (!reduced) this.chamber.seek(Math.max(0, time - this.chamberBirth), false);
       ctx.clearRect(0, 0, w, h);
       if (stage === 'flight' && p === 1 && state.camera) {
         for (const entry of entries) { const m = marbles[entry.index]; if (!m) continue; const target = state.camera.worldToScreen(m.x, m.y); this.drawOrb(entry, { x: target.x, y: target.y, radius: m.r * state.camera.zoom, focus: 1 }, 1, m, count, reduced); }
@@ -444,84 +614,73 @@
       }
       const aiming = stage === 'aiming' ? reduced ? p < .5 ? 0 : 1 : p : stage === 'flight' ? 1 : 0, orbit = smooth(aiming);
       const flight = stage === 'flight' ? p : 0;
-      const views = matchedViews(w, h, aiming, reduced ? 0 : interval(.2, .98, flight) * .65), front = views.front, angle = views.angle, resting = matchedViews(w, h, 1, 0);
-      const dissolve = interval(.56, .69, aiming), reveal = stage === 'flight' ? interval(.47, .99, p) : 0;
+      const views = matchedViews(w, h, aiming, 0), front = views.front, angle = views.angle, resting = matchedViews(w, h, 1, 0);
+      const travel = boardView(w, h, state.camera, flight, reduced);
+      const dissolve = interval(.56, .69, aiming), reveal = stage === 'flight' ? interval(.72, 1, p) : 0;
       const frontWeight = reduced && stage === 'aiming' ? 1 - interval(0, .46, p) : 1 - dissolve;
       const angleWeight = reduced && stage === 'aiming' ? interval(.54, 1, p) : dissolve;
       const reducedFade = reduced && stage === 'aiming' ? frontWeight + angleWeight : 1;
-      const backgroundAlpha = stage === 'flight' ? 1 - interval(.5, .98, p) : 1, plateAlpha = stage === 'flight' ? 1 - interval(.35, .93, p) : 1;
       const blast = blastPose(flight, reduced), wheel = assemblyPose(aiming, angle, resting.angle, reduced);
+      const bg = ctx.createLinearGradient(0, 0, w, h); bg.addColorStop(0, '#faf6eb'); bg.addColorStop(.57, '#f2e9d6'); bg.addColorStop(1, '#e9dec7');
+      ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h);
+      if (stage === 'flight' && this.renderer && this.renderer.background) ctx.drawImage(this.renderer.background, 0, 0, w, h);
       ctx.save();
-      if (stage === 'flight' && blast.shake > .001) {
-        const strength = Math.min(8, w * .005) * blast.shake;
-        ctx.translate(Math.sin(blast.after * 183) * strength, Math.cos(blast.after * 141) * strength * .68);
+      if (stage === 'flight') {
+        if (blast.shake > .001) { const strength = Math.min(8, w * .005) * blast.shake; ctx.translate(Math.sin(blast.after * 183) * strength, Math.cos(blast.after * 141) * strength * .68); }
+        const c = travel.scene; ctx.transform(c.a, c.b, c.c, c.d, c.e, c.f);
       }
-      ctx.save(); ctx.globalAlpha = backgroundAlpha;
-      const bg = ctx.createLinearGradient(0, 0, w, h); bg.addColorStop(0, '#faf6eb'); bg.addColorStop(.57, '#f2e9d6'); bg.addColorStop(1, '#e9dec7'); ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h); ctx.restore();
-      this.drawCarriage(wheel, views.frame, plateAlpha);
+      this.drawCarriage(wheel, views.frame, 1);
       ctx.save();
       if (stage === 'flight' && !reduced) {
         const recoil = blast.recoil * Math.min(22, w * .017) + blast.compression * 2.5;
         ctx.translate(-views.frame.axisX * recoil, -views.frame.axisY * recoil);
       }
-      this.drawPlate('front', front, frontWeight * plateAlpha); this.drawPlate('angle', angle, angleWeight * plateAlpha);
+      this.drawPlate('front', front, frontWeight, stage !== 'flight'); this.drawPlate('angle', angle, angleWeight, stage !== 'flight');
       ctx.restore();
-      const swirl = stage === 'mixing' && !reduced ? smooth(p) * TAU * 3 : 0;
-      const baseRadius = clamp(Math.sqrt(front.w * front.h * .078 / Math.max(1, count)) * .44, w < 700 ? 2.4 : 3.5, front.w * .029);
-      if (stage === 'flight' && (this.lastStage !== 'flight' || !this.frozenTube)) this.frozenTube = entries.map(entry => tubePose(entry, reduced ? 0 : this.lastTime || time, 0));
+      this.targetBoard(travel, state.physics, aiming, stage);
+      if (stage === 'flight' && !this.frozenTube) this.frozenTube = entries.map(entry => this.chamber.pose(entry.index));
+      const baseRadius = views.frame.thickness * .42 * this.chamber.radius;
       const drawn = entries.map(entry => {
-        const local = stage === 'flight' ? this.frozenTube[entry.index] : tubePose(entry, reduced ? 0 : time, swirl);
-        const screen = project(local, front, angle, orbit), radius = baseRadius * screen.scale;
-        if (stage !== 'flight') return { entry, local, pose: { x: screen.x, y: screen.y, radius, depth: local.z, focus: local.z < -.35 ? .45 : 1, alpha: reducedFade }, blend: 0 };
-        const restingAngle = resting.angle, restingFront = resting.front, start = project(local, restingFront, restingAngle, 1);
-        const muzzle = pointInPlate(restingAngle, .359, .511), m = marbles[entry.index];
-        const target = m && state.camera ? state.camera.worldToScreen(m.x, m.y) : { x: w * .72, y: h * .23 };
-        const endRadius = m && state.camera ? m.r * state.camera.zoom : radius * .4;
-        const pose = flightPose(entry, p, start, muzzle, target, baseRadius * start.scale, endRadius, { width: w, height: h, axisX: resting.frame.axisX, axisY: resting.frame.axisY, muzzleRadius: resting.frame.thickness * .43 });
-        if (reduced) {
-          const beginning = p < .5; pose.x = beginning ? start.x : target.x; pose.y = beginning ? start.y : target.y;
-          pose.radius = beginning ? baseRadius * start.scale : endRadius;
-          pose.alpha = beginning ? 1 - interval(.04, .44, p) : interval(.55, .9, p);
-        }
-        return { entry, local, pose, blend: interval(.58, .98, p) };
+        const local = reduced ? this.stillTube[entry.index] : stage === 'flight' ? this.frozenTube[entry.index] : this.chamber.pose(entry.index);
+        const screen = project(local, front, angle, orbit), radius = baseRadius * (.88 + local.z * .14);
+        if (stage !== 'flight') return { entry, pose: { x: screen.x, y: screen.y, radius, depth: local.z, focus: local.z < -.35 ? .45 : 1, alpha: reducedFade }, blend: 0 };
+        const start = project(local, resting.front, resting.angle, 1), muzzle = pointInPlate(resting.angle, .359, .511), m = marbles[entry.index];
+        const target = m ? mapPoint(travel.initial, m.x, m.y) : { x: w * .82, y: h * .28 };
+        const endRadius = m ? m.r * travel.initial.a : radius * .4;
+        const parameters = { width: w, height: h, axisX: resting.frame.axisX, axisY: resting.frame.axisY, muzzleRadius: resting.frame.thickness * .43, arrival: .74 };
+        const startRadius = resting.frame.thickness * .42 * this.chamber.radius * (.88 + local.z * .14);
+        const at = progress => flightPose(entry, progress, start, muzzle, target, startRadius, endRadius, parameters);
+        const pose = at(p);
+        if (reduced) { const beginning = p < .65; pose.x = beginning ? start.x : target.x; pose.y = beginning ? start.y : target.y; pose.radius = beginning ? startRadius : endRadius; pose.alpha = beginning ? 1 - interval(.15, .55, p) : interval(.65, .8, p); }
+        return { entry, pose, at, blend: interval(.56, .74, p) };
       });
       drawn.sort((a, b) => a.pose.depth - b.pose.depth);
       if (stage !== 'flight') { ctx.save(); this.glassPath(front, angle, orbit); ctx.clip(); }
       for (const item of drawn) {
         const { entry, pose } = item, m = marbles[entry.index];
-        if (stage === 'flight' && !reduced && this.quality !== 'low' && p > FIRE_MOMENT + entry.delay && p < .94) {
-          const local = this.frozenTube[entry.index], start = project(local, resting.front, resting.angle, 1), muzzle = pointInPlate(resting.angle, .359, .511);
-          const target = m && state.camera ? state.camera.worldToScreen(m.x, m.y) : { x: w * .72, y: h * .23 };
-          const prior = flightPose(entry, Math.max(FIRE_MOMENT + entry.delay, p - .016), start, muzzle, target, baseRadius * start.scale, m && state.camera ? m.r * state.camera.zoom : pose.radius * .4, { width: w, height: h, axisX: resting.frame.axisX, axisY: resting.frame.axisY, muzzleRadius: resting.frame.thickness * .43 });
-          ctx.save(); ctx.globalAlpha = (1 - interval(.7, .94, p)) * (count > 160 ? .21 : .47); ctx.strokeStyle = COATS[entry.coat][1]; ctx.lineWidth = Math.max(.7, pose.radius * .39); ctx.lineCap = 'round'; ctx.beginPath(); ctx.moveTo(prior.x, prior.y); ctx.lineTo(pose.x, pose.y); ctx.stroke();
-          if (count <= 80) { ctx.globalAlpha *= .45; ctx.lineWidth = Math.max(1, pose.radius * 1.1); ctx.stroke(); } ctx.restore();
+        if (stage === 'flight' && !reduced && p > FIRE_MOMENT + entry.delay && p < .76 && (count <= 24 || entry.index % Math.ceil(count / 24) === 0)) {
+          ctx.save(); ctx.globalAlpha = (1 - interval(.55, .76, p)) * .7; ctx.strokeStyle = '#e5c47e'; ctx.lineWidth = Math.max(.8, pose.radius * .12); ctx.lineCap = 'round';
+          ctx.beginPath(); const from = Math.max(FIRE_MOMENT + entry.delay, p - .23);
+          for (let i = 0; i <= 22; i++) { const old = item.at(lerp(from, p, i / 22)); if (!i) ctx.moveTo(old.x, old.y); else ctx.lineTo(old.x, old.y); } ctx.stroke();
+          if (this.quality === 'high') { ctx.globalAlpha *= .25; ctx.lineWidth *= 3; ctx.stroke(); }
+          for (let i = 0; i < 8; i++) { const dust = this.dust[(entry.index * 7 + i) % this.dust.length], old = item.at(lerp(from, p, i / 8)); ctx.globalAlpha = Math.sin(i / 8 * Math.PI) * .8; ctx.fillStyle = i % 3 ? '#d5b36c' : '#fff9df'; sparkle(ctx, old.x + Math.sin(dust.phase + time * 3) * 5, old.y + Math.cos(dust.phase) * 5, dust.r * 1.4); }
+          ctx.restore();
         }
         this.drawOrb(entry, pose, item.blend, m, count, reduced);
-        if (count <= 16 && stage !== 'intro' && (stage !== 'mixing' || reduced)) this.drawLabel(entry, pose.x, pose.y, pose.radius, (stage === 'flight' ? interval(.5, .95, p) : .68) * (pose.alpha === undefined ? 1 : pose.alpha));
+        if (count <= 16 && ['aiming', 'setup'].includes(stage)) this.drawLabel(entry, pose.x, pose.y, pose.radius, .68);
       }
       if (stage !== 'flight') ctx.restore();
-      if (stage !== 'flight' || p < FIRE_MOMENT + .025) this.drawGlass(front, angle, orbit, reduced ? 0 : time, plateAlpha * reducedFade);
-      this.drawWheel(wheel, plateAlpha, stage === 'flight' ? blast.recoil * .018 : 0);
-      this.drawDust(front, angle, orbit, reduced ? 0 : time, plateAlpha * reducedFade, reduced);
-      if (stage === 'flight' && !reduced) {
-        this.drawDischarge(pointInPlate(resting.angle, .359, .511), resting.frame, blast, w, h);
-      }
-      if (stage === 'flight' && !reduced && p > FIRE_MOMENT && p < .91) {
-        const origin = pointInPlate(resting.angle, .359, .511), amount = this.quality === 'low' ? 20 : this.quality === 'medium' ? 45 : 82;
-        ctx.save();
-        for (let i = 0; i < amount; i++) {
-          const d = this.dust[i], t = clamp((p - FIRE_MOMENT - (i % 7) * .003) / .73, 0, 1); if (t <= 0 || t >= 1) continue;
-          const x = origin.x + w * (.15 + d.x * .45) * t, y = origin.y - Math.sin(t * Math.PI) * h * (.18 + d.y * .36);
-          ctx.globalAlpha = Math.sin(t * Math.PI) * .67; ctx.fillStyle = i % 3 ? '#e6c982' : '#fff9da';
-          if (i % 5 === 0) sparkle(ctx, x, y, d.r * 2); else { ctx.beginPath(); ctx.arc(x, y, d.r, 0, TAU); ctx.fill(); }
-        }
-        ctx.restore();
-      }
+      if (stage !== 'flight' || p < FIRE_MOMENT + .025) this.drawGlass(front, angle, orbit, reduced ? 0 : time, reducedFade);
+      this.drawWheel(wheel, 1, stage === 'flight' ? blast.recoil * .018 : 0);
+      this.drawDust(front, angle, orbit, reduced ? 0 : time, reducedFade, reduced);
+      if (stage === 'flight' && !reduced) this.drawDischarge(pointInPlate(resting.angle, .359, .511), resting.frame, blast, w, h);
       ctx.restore();
+      if (stage === 'flight' && this.renderer && this.renderer.vignette) ctx.drawImage(this.renderer.vignette, 0, 0, w, h);
+      if (stage === 'flight' && this.quality === 'high' && this.renderer && this.renderer.noise) { ctx.save(); ctx.globalAlpha = .26; ctx.fillStyle = ctx.createPattern(this.renderer.noise, 'repeat'); ctx.fillRect(0, 0, w, h); ctx.restore(); }
       this.lastStage = stage; this.lastTime = time;
-      return { reveal, fired: stage === 'flight' && blast.fired };
+      return { reveal, fired: stage === 'flight' && blast.fired, cameraAmount: travel.amount };
     }
   }
-  P.CINEMA = { smooth, interval, descriptors, tubePose, layout, matchedViews, pointInPlate, project, flightPose, dischargeOrigin, assemblyPose, blastPose, fireMoment: FIRE_MOMENT };
+  P.CINEMA = { smooth, interval, descriptors, tubePose, layout, matchedViews, pointInPlate, project, flightPose, dischargeOrigin, assemblyPose, blastPose, Chamber, boardView, mapPoint, fireMoment: FIRE_MOMENT };
   P.Cinematic = Cinematic;
 })(window.CosmicPinball = window.CosmicPinball || {});
