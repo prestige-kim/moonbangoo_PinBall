@@ -145,7 +145,7 @@
       this.drawBoard(map, time, visible); for (const o of map.obstacles || []) this.drawObstacle(o, physics, effects, time, visible); this.drawFinish(map, time, visible);
       this.drawEffects(effects, visible);
       if (leader && effects && effects.lead && !this.reducedMotion) { const remaining = effects.lead.life || effects.lead.time || 0; ctx.save(); ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = Math.min(.45, remaining * .4); ctx.drawImage(this.glow(this.theme.primary), leader.x - 110, leader.y - 110, 220, 220); ctx.restore(); }
-      for (const m of marbles) if (!(status === 'finished' && winner && m.id === winner.id)) this.drawMarble(m, marbles.length, leader, visible, time, dt, status === 'idle');
+      if (!state.hideMarbles) for (const m of marbles) if (!(status === 'finished' && winner && m.id === winner.id)) this.drawMarble(m, marbles.length, leader, visible, time, dt, status === 'idle');
       ctx.restore(); ctx.drawImage(this.vignette, 0, 0, this.width, this.height);
       if (this.quality === 'high') { ctx.save(); ctx.globalAlpha = .26; ctx.fillStyle = ctx.createPattern(this.noise, 'repeat'); ctx.fillRect(0, 0, this.width, this.height); ctx.restore(); }
       if(photoFinish){ctx.save();ctx.textAlign='center';ctx.font='600 10px system-ui,sans-serif';ctx.fillStyle='#8f6834';ctx.fillText('아주 가까운 승부  ·  마지막 순간을 천천히',area.x+area.w/2,area.y+35);ctx.restore();}

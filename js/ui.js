@@ -37,8 +37,10 @@
     this.resultData = null;
     this.following = true;
     this.focusMode = false;
-    this.introMode = document.body.classList.contains('intro-active');
-    this.panelOpen = global.innerWidth > 850;
+    this.scene = null;
+    this.sceneReveal = 0;
+    this.status = 'intro';
+    this.panelOpen = false;
     this.lastMobile = global.innerWidth <= 850;
     this.boundResize = this.onResize.bind(this);
     this.bind();
@@ -47,7 +49,7 @@
     this.updateOutputs();
     this.updateParticipants();
     this.updatePanel();
-    this.setIntroMode(this.introMode);
+    this.setScene(document.body.dataset.scene || 'intro');
     global.addEventListener('resize', this.boundResize);
   }
   UI.prototype.on = function (action, handler) {
@@ -60,12 +62,13 @@
   UI.prototype.bind = function () {
     var self = this;
     $('intro-start-button').addEventListener('click', function () {
-      if (self.introMode) self.emit('enter');
+      if (self.scene === 'intro') self.emit('enter');
     });
     document.addEventListener('keydown', function (event) {
-      if (self.introMode && !event.ctrlKey && !event.metaKey && !event.altKey && event.key.toLowerCase() === 'f') { event.preventDefault(); event.stopImmediatePropagation(); }
+      if (!self.isGameScene() && !event.ctrlKey && !event.metaKey && !event.altKey && event.key.toLowerCase() === 'f') { event.preventDefault(); event.stopImmediatePropagation(); }
     }, true);
-    $('settings-form').addEventListener('submit', function (event) { event.preventDefault(); self.emit('start'); });
+    this.bindSceneKeys();
+    $('settings-form').addEventListener('submit', function (event) { event.preventDefault(); if (!self.locked && (self.scene === 'setup' || self.isGameScene())) self.emit('start'); });
     ['shuffle', 'reset', 'restart', 'replay'].forEach(function (action) {
       $(action + '-button').addEventListener('click', function () {
         if (action === 'restart' || action === 'replay') self.hideResults();
@@ -107,7 +110,10 @@
       $('sound').checked = !$('sound').checked; self.syncSound(); self.emit('change', self.readSettings());
     });
     ['settings-toggle', 'mobile-setup-button', 'panel-close'].forEach(function (id) {
-      $(id).addEventListener('click', function () { self.panelOpen = id === 'panel-close' ? false : !self.panelOpen; self.updatePanel(); });
+      $(id).addEventListener('click', function () {
+        if (self.scene === 'setup') { if (id === 'panel-close') self.emit('setupcancel'); return; }
+        self.panelOpen = id === 'panel-close' ? false : !self.panelOpen; self.updatePanel();
+      });
     });
     $('follow-button').addEventListener('click', function () { self.setFollowing(!self.following); self.emit('follow'); });
     $('game-canvas').addEventListener('followchange', function (event) { self.setFollowing(!!event.detail); });
@@ -120,7 +126,7 @@
     });
     $('show-all-results').addEventListener('click', function () { self.renderResults(true); });
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && !$('results-dialog').open && self.panelOpen && global.innerWidth <= 850) { self.panelOpen = false; self.updatePanel(); }
+      if (self.isGameScene() && event.key === 'Escape' && !$('results-dialog').open && self.panelOpen && global.innerWidth <= 850) { self.panelOpen = false; self.updatePanel(); }
     });
   };
   UI.prototype.readSettings = function () {
@@ -189,19 +195,31 @@
     $('mobile-count').textContent = count === null ? '—' : count;
     $('ready-label').textContent = count === null ? '입력 내용을 확인해 주세요' : count + '개의 구슬이 준비됐어요';
   };
+  UI.prototype.updateStartCopy = function () {
+    var stages = {
+      mixing: ['구슬을 섞고 있어요', '유리 대포 속에서 새로운 자리를 찾는 중'],
+      aiming: ['출발선을 향하고 있어요', '오늘의 작은 행운을 보낼 준비를 합니다'],
+      flight: ['행운을 날리고 있어요', '구슬이 도착하면 놀이판이 펼쳐집니다'],
+      running: ['행운이 굴러가는 중', '마지막 구슬까지 천천히 지켜봐 주세요']
+    };
+    var copy = this.locked ? (stages[this.scene] || stages.mixing) : ['게임 시작', '구슬을 섞고, 오늘의 행운을 날려요'];
+    $('start-button').querySelector('span:nth-child(2)').firstChild.textContent = copy[0];
+    $('start-button').querySelector('small').textContent = copy[1];
+  };
   UI.prototype.setLocked = function (value) {
     this.locked = !!value;
     document.querySelectorAll('[data-physical], [data-rule], [data-map], #names, #rank-n, #shuffle-button').forEach(function (control) { control.disabled = !!value; });
     $('start-button').disabled = !!value;
-    $('start-button').querySelector('span:nth-child(2)').firstChild.textContent = value ? '행운이 굴러가는 중' : '구슬 굴리기';
-    $('start-button').querySelector('small').textContent = value ? '마지막 구슬까지 천천히 지켜봐 주세요' : '천천히 펼쳐지는 오늘의 행운';
-    if (value && global.innerWidth <= 850 && this.panelOpen) { this.panelOpen = false; this.updatePanel(); }
+    this.updateStartCopy();
+    if (value && this.isGameScene() && global.innerWidth <= 850 && this.panelOpen) { this.panelOpen = false; this.updatePanel(); }
   };
   UI.prototype.setStatus = function (status) {
-    var copy = { idle: '추첨을 준비하고 있어요', ready: '추첨을 준비하고 있어요', countdown: '곧 구슬을 굴립니다', running: '행운이 천천히 굴러오는 중', finished: '오늘의 행운이 도착했습니다' };
+    this.status = status;
+    var copy = { intro: '작은 행운을 기다리는 중', setup: '오늘의 놀이를 준비해 주세요', idle: '추첨을 준비하고 있어요', ready: '추첨을 준비하고 있어요', mixing: '구슬을 고르게 섞고 있어요', aiming: '대포를 출발선으로 돌리고 있어요', flight: '행운을 날리고 있어요', running: '행운이 천천히 굴러오는 중', finished: '오늘의 행운이 도착했습니다' };
     $('game-status').textContent = copy[status] || String(status).toUpperCase();
     document.body.dataset.status = status;
-    if (status === 'idle' || status === 'countdown') this.setFollowing(true);
+    this.updateStartCopy();
+    if (status === 'setup' || status === 'running') this.setFollowing(true);
   };
   UI.prototype.setFollowing = function (value) {
     this.following = !!value;
@@ -209,42 +227,96 @@
   };
   UI.prototype.onResize = function () {
     var mobile = global.innerWidth <= 850;
-    if (mobile !== this.lastMobile) { this.panelOpen = !mobile; this.lastMobile = mobile; this.updatePanel(); }
+    if (mobile !== this.lastMobile) { this.panelOpen = this.scene === 'setup' || (this.isGameScene() && !mobile && !this.focusMode); this.lastMobile = mobile; this.updatePanel(); }
   };
+  UI.prototype.isGameScene = function () { return this.scene === 'running' || this.scene === 'finished'; };
   UI.prototype.updatePanel = function () {
     var mobile = global.innerWidth <= 850;
-    $('setup-panel').classList.toggle('mobile-open', mobile && this.panelOpen);
-    $('setup-panel').classList.toggle('is-collapsed', !this.panelOpen);
-    $('setup-panel').setAttribute('aria-hidden', String(!this.panelOpen));
-    $('setup-panel').inert = !this.panelOpen;
-    document.body.classList.toggle('mobile-sheet-open', mobile && this.panelOpen);
-    document.body.classList.toggle('panel-collapsed', !mobile && !this.panelOpen);
-    $('settings-toggle').setAttribute('aria-expanded', String(this.panelOpen));
-    $('mobile-setup-button').setAttribute('aria-expanded', String(this.panelOpen));
+    var open = this.scene === 'setup' || (this.isGameScene() && this.panelOpen);
+    $('setup-panel').classList.toggle('mobile-open', mobile && open);
+    $('setup-panel').classList.toggle('is-collapsed', !open);
+    $('setup-panel').setAttribute('aria-hidden', String(!open));
+    $('setup-panel').inert = !open;
+    document.body.classList.toggle('mobile-sheet-open', mobile && open && this.isGameScene());
+    document.body.classList.toggle('panel-collapsed', !mobile && !open);
+    $('settings-toggle').setAttribute('aria-expanded', String(open));
+    $('mobile-setup-button').setAttribute('aria-expanded', String(open));
     this.emit('layout');
     var self = this;
     global.setTimeout(function () { self.emit('layout'); }, 430);
   };
-  UI.prototype.setIntroMode = function (value) {
-    var active = !!value, wasActive = this.introMode;
-    this.introMode = active;
-    document.body.classList.toggle('intro-active', active);
-    $('intro-screen').setAttribute('aria-hidden', String(!active));
-    $('intro-screen').inert = !active;
-    document.querySelectorAll('.masthead, main, .system-footer').forEach(function (element) {
-      element.inert = active;
-      if (active) element.setAttribute('aria-hidden', 'true');
-      else element.removeAttribute('aria-hidden');
+  UI.prototype.getSetupControls = function () {
+    return Array.from($('setup-panel').querySelectorAll('button,input,textarea,select,summary,[tabindex]')).filter(function (control) {
+      return !control.disabled && control.tabIndex >= 0 && control.getClientRects().length > 0;
     });
-    $('game-canvas').setAttribute('aria-hidden', String(active));
-    if (active) {
-      this.hideResults(); this.hideCountdown();
-      $('intro-start-button').focus({ preventScroll: true });
-    } else if (wasActive) {
-      // Entering the setup view does not start a draw. Move focus to its first useful control.
-      var next = this.panelOpen ? $('names') : (global.innerWidth <= 850 ? $('mobile-setup-button') : $('settings-toggle'));
-      next.focus({ preventScroll: true });
-    }
+  };
+  UI.prototype.bindSceneKeys = function () {
+    var self = this;
+    document.addEventListener('keydown', function (event) {
+      if (self.isGameScene()) return;
+      if (event.key === 'Escape' && self.scene === 'setup') {
+        event.preventDefault(); event.stopImmediatePropagation(); self.emit('setupcancel'); return;
+      }
+      if (event.key !== 'Tab') return;
+      var controls = self.scene === 'setup' ? self.getSetupControls() : (self.scene === 'intro' ? [$('intro-start-button')] : []);
+      if (!controls.length) { event.preventDefault(); $('scene-status').focus({ preventScroll: true }); return; }
+      var index = controls.indexOf(document.activeElement);
+      if (index < 0 || (event.shiftKey && index === 0) || (!event.shiftKey && index === controls.length - 1)) {
+        event.preventDefault(); controls[event.shiftKey ? controls.length - 1 : 0].focus({ preventScroll: true });
+      }
+    }, true);
+  };
+  UI.prototype.syncSceneAccess = function () {
+    var game = this.isGameScene(), setup = this.scene === 'setup';
+    var main = document.querySelector('main');
+    main.inert = false; main.removeAttribute('aria-hidden');
+    document.querySelectorAll('.masthead,.system-footer').forEach(function (element) {
+      element.inert = !game;
+      if (!game) element.setAttribute('aria-hidden', 'true'); else element.removeAttribute('aria-hidden');
+    });
+    Array.from(main.children).forEach(function (element) {
+      if (element.id === 'setup-panel') return;
+      element.inert = !game;
+      if (!game) element.setAttribute('aria-hidden', 'true'); else element.removeAttribute('aria-hidden');
+    });
+    var panel = $('setup-panel'), open = setup || (game && this.panelOpen);
+    panel.inert = !open; panel.setAttribute('aria-hidden', String(!open));
+    if (setup) { panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-modal', 'true'); panel.setAttribute('aria-labelledby', 'setup-title'); }
+    else { panel.removeAttribute('role'); panel.removeAttribute('aria-modal'); panel.removeAttribute('aria-labelledby'); }
+    $('scene-welcome').inert = this.scene !== 'intro';
+    $('scene-welcome').setAttribute('aria-hidden', String(this.scene !== 'intro'));
+    $('game-canvas').setAttribute('aria-hidden', String(!game));
+    $('scene-status').setAttribute('aria-hidden', String(['mixing','aiming','flight'].indexOf(this.scene) < 0));
+  };
+  UI.prototype.setScene = function (stage) {
+    var states = ['intro','setup','mixing','aiming','flight','running','finished'];
+    if (states.indexOf(stage) < 0) stage = 'intro';
+    var previous = this.scene, self = this;
+    this.scene = stage; document.body.dataset.scene = stage;
+    if (!this.isGameScene()) this.focusMode = stage !== 'intro' && stage !== 'setup';
+    else if (previous !== 'running' && previous !== 'finished') this.focusMode = true;
+    document.body.classList.toggle('focus-mode', this.focusMode);
+    states.forEach(function (name) { document.body.classList.toggle('scene-' + name, stage === name); });
+    document.body.classList.remove('intro-active','launch-active');
+    if (!this.isGameScene()) this.panelOpen = stage === 'setup';
+    else if (previous !== 'running' && previous !== 'finished') this.panelOpen = false;
+    this.updatePanel(); this.syncSceneAccess(); this.setStatus(stage);
+    this.setSceneProgress({ reveal: this.isGameScene() ? 1 : 0 });
+    var captions = { mixing: '유리 대포 속에서 구슬을 고르게 섞고 있어요.', aiming: '출발선을 향해 대포를 돌립니다.', flight: '오늘의 작은 행운이 날아갑니다.' };
+    $('scene-status').textContent = captions[stage] || '';
+    if (!this.isGameScene()) { this.hideResults(); this.hideCountdown(); }
+    if (stage === 'intro' && previous !== stage) $('intro-start-button').focus({ preventScroll: true });
+    else if (stage === 'setup' && previous !== stage) {
+      requestAnimationFrame(function () { if (self.scene !== 'setup') return; var next = !$('names').disabled ? $('names') : self.getSetupControls()[0]; if (next) next.focus({ preventScroll: true }); });
+    } else if (['mixing','aiming','flight'].indexOf(stage) >= 0 && previous !== stage) $('scene-status').focus({ preventScroll: true });
+    else if (stage === 'running' && previous !== 'running') $('game-canvas').focus({ preventScroll: true });
+  };
+  UI.prototype.setSceneProgress = function (payload) {
+    var reveal = payload && Number(payload.reveal);
+    if (!Number.isFinite(reveal)) return;
+    this.sceneReveal = Math.max(0, Math.min(1, reveal));
+    document.body.style.setProperty('--scene-reveal', String(this.sceneReveal));
+    document.body.style.setProperty('--hud-reveal', String(Math.max(0, (this.sceneReveal - .85) / .15)));
   };
   UI.prototype.setFocusMode = function (value) {
     this.focusMode = !!value;
@@ -264,11 +336,11 @@
     if (width <= 850) {
       var launch = $('mobile-setup-button').getBoundingClientRect();
       bottom = Math.min(bottom, launch.top - 18);
-      if (panel.top < bottom && panel.bottom > top) bottom = Math.max(top + 90, panel.top - 18);
+      if (this.isGameScene() && this.panelOpen && panel.top < bottom && panel.bottom > top) bottom = Math.max(top + 90, panel.top - 18);
       return { x: 14, y: top, w: Math.max(100, width - 28), h: Math.max(90, bottom - top) };
     }
     // Sliding panels contribute only their currently visible part, including during focus transitions.
-    var left = panel.right > 0 && panel.left < width ? Math.max(32, panel.right + 25) : 32;
+    var left = this.isGameScene() && this.panelOpen && panel.right > 0 && panel.left < width ? Math.max(32, panel.right + 25) : 32;
     var race = document.querySelector('.race-panel').getBoundingClientRect();
     var right = race.width > 0 ? race.left - 25 : width - 32;
     return { x: left, y: top, w: Math.max(160, right - left), h: Math.max(200, bottom - top) };
@@ -300,7 +372,7 @@
       var small = document.createElement('small'); small.textContent = '.' + String(Math.floor((Math.max(0, data.time) % 1) * 100)).padStart(2, '0'); $('elapsed').appendChild(small);
     }
     if (data.fps !== undefined) $('fps').textContent = Math.round(data.fps);
-    if (data.seed !== undefined) { $('hud-seed').textContent = data.seed || '자동'; $('hud-seed').title = data.seed || '자동 생성 시드'; }
+    if (data.seed !== undefined) { $('hud-seed').textContent = data.seed || '매번 새 출발'; $('hud-seed').title = data.seed || '발사할 때마다 새로운 시드로 출발합니다'; }
     if (Array.isArray(data.ranking)) this.renderRanking(data.ranking.slice(0, 5));
   };
   UI.prototype.writeRemaining = function (count) {

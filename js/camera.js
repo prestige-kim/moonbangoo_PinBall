@@ -21,6 +21,25 @@
         screenX: area.x + area.w / 2, screenY: area.y + area.h / 2 };
       this.map = map; this.follow = true; this.manualZoom = 1; this.pointer.clear(); this.drag = null;
     }
+    prepareLanding(map, physics) {
+      this.map = map; this.entrance = null; this.follow = true; this.manualZoom = 1;
+      this.pointer.clear(); this.drag = null; this.pinch = null;
+      const area = this.area();
+      const active = physics && physics.marbles ? physics.marbles.filter(m => !m.finished) : [];
+      const spawn = map.spawn || { y: 50, height: 680 };
+      let top = spawn.y, bottom = spawn.y + spawn.height;
+      if (active.length) {
+        top = Math.min(...active.map(m => m.y - (m.r || 12)));
+        bottom = Math.max(...active.map(m => m.y + (m.r || 12)));
+      }
+      // The flight ends in this exact race viewport. Keep room around the actual
+      // spawn bounds, including a tall 500-marble grid on a short desktop view.
+      this.x = map.width / 2;
+      this.zoom = Math.min(this.baseZoom() * 1.04, area.h / Math.max(1, bottom - top + 160));
+      const minY = Math.max(220, area.h / (2 * this.zoom) - 30);
+      const maxY = Math.max(minY, map.height - area.h / (2 * this.zoom) + 150);
+      this.y = clamp((top + bottom) / 2, minY, maxY);
+    }
     baseZoom() { const area = this.area(); return Math.min(area.w / ((this.map ? this.map.width : 1000) + 100), 1.15); }
     resumeFollow() { this.follow = true; this.manualZoom = 1; }
     worldToScreen(x, y) { const area = this.area(); return { x: area.x + area.w / 2 + (x - this.x) * this.zoom, y: area.y + area.h / 2 + (y - this.y) * this.zoom }; }

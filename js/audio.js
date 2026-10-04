@@ -19,6 +19,7 @@
       this.theme = 'cosmic';
       this.voices = 0;
       this.lastHit = -1;
+      this.noiseBuffer = null;
     }
     unlock() {
       if (!this.enabled) return;
@@ -70,13 +71,76 @@
       oscillator.start(start);
       oscillator.stop(start + duration + 0.02);
     }
+    blastBody(power) {
+      const ctx = this.context;
+      if (!this.enabled || !ctx || ctx.state !== 'running' || this.voices >= P.SOUND_CONFIG.voices) return;
+      const start = ctx.currentTime;
+      const oscillator = ctx.createOscillator();
+      const gain = ctx.createGain();
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(150 + power * 40, start);
+      oscillator.frequency.exponentialRampToValueAtTime(48, start + 0.12);
+      oscillator.frequency.exponentialRampToValueAtTime(34, start + 0.62);
+      gain.gain.setValueAtTime(0.0001, start);
+      gain.gain.exponentialRampToValueAtTime(0.2 + power * 0.14, start + 0.005);
+      gain.gain.exponentialRampToValueAtTime(0.035, start + 0.15);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.62);
+      oscillator.connect(gain);
+      gain.connect(this.master);
+      this.voices++;
+      oscillator.onended = () => {
+        this.voices--;
+        oscillator.disconnect(); gain.disconnect();
+      };
+      oscillator.start(start);
+      oscillator.stop(start + 0.65);
+    }
+    air(duration, strength, delay, lowStart, lowEnd, highpass) {
+      const ctx = this.context;
+      if (!this.enabled || !ctx || ctx.state !== 'running' || this.voices >= P.SOUND_CONFIG.voices) return;
+      if (!this.noiseBuffer) {
+        this.noiseBuffer = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * 0.9), ctx.sampleRate);
+        const samples = this.noiseBuffer.getChannelData(0);
+        for (let i = 0; i < samples.length; i++) samples[i] = Math.random() * 2 - 1;
+      }
+      const start = ctx.currentTime + (delay || 0);
+      const source = ctx.createBufferSource();
+      const high = ctx.createBiquadFilter();
+      const low = ctx.createBiquadFilter();
+      const gain = ctx.createGain();
+      source.buffer = this.noiseBuffer;
+      high.type = 'highpass'; high.frequency.value = highpass;
+      low.type = 'lowpass';
+      low.Q.value = 0.55;
+      low.frequency.setValueAtTime(lowStart, start);
+      low.frequency.exponentialRampToValueAtTime(lowEnd, start + duration);
+      gain.gain.setValueAtTime(0.0001, start);
+      gain.gain.exponentialRampToValueAtTime(strength, start + 0.003);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+      source.connect(high); high.connect(low); low.connect(gain); gain.connect(this.master);
+      this.voices++;
+      source.onended = () => {
+        this.voices--;
+        source.disconnect(); high.disconnect(); low.disconnect(); gain.disconnect();
+      };
+      source.start(start);
+      source.stop(start + duration + 0.02);
+    }
     play(type, intensity, variant) {
       if (!this.enabled || !this.context) return;
       const config = P.SOUND_CONFIG;
       const theme = config.themes[this.theme] || config.themes.cosmic;
       const root = theme.root;
       const power = Math.max(0.1, Math.min(1, Number(intensity) || 0.5));
-      if (type === 'hit') {
+      if (type === 'cannon') {
+        // Three restrained layers give the muzzle flash a sharp attack and a deep tail.
+        this.blastBody(power);
+        this.air(0.19, 0.06 + power * 0.05, 0, 4600, 1000, 180);
+        this.air(0.58, 0.04 + power * 0.045, 0.025, 2000, 300, 90);
+      } else if (type === 'charge') {
+        this.air(0.36, 0.022, 0, 700, 1500, 350);
+        this.tone(root * 3.2, 0.075, 0.035, 0.12, root * 1.2);
+      } else if (type === 'hit') {
         const now = this.context.currentTime;
         if (now - this.lastHit < config.hitInterval) return;
         this.lastHit = now;

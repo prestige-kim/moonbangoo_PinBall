@@ -7,7 +7,7 @@
   const defaults = {
     names: '수박*2,키위*2,귤*2', rule: 'first', rankN: 1, map: 'classic', theme: 'cosmic',
     radius: 12, gravity: 620, restitution: 0.72, speed: 1, sound: true, volume: 0.35,
-    quality: 'high', seed: 'MUNGBANGGU-2026', skills: false,
+    quality: 'high', seed: '', skills: false,
     reducedMotion: !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
   };
   function clamp(value, min, max, fallback) {
@@ -34,19 +34,24 @@
   function readSaved() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) return normalize(JSON.parse(saved));
+      if (saved) {
+        const values = JSON.parse(saved);
+        // Earlier builds persisted the built-in/generated seed, unintentionally replaying each round.
+        if (values.seedMode !== 'manual' && (values.seed === 'MUNGBANGGU-2026' || /^MUNGBANGGU-[0-9A-Z]{1,7}$/.test(values.seed || ''))) values.seed = '';
+        return normalize(values);
+      }
       const legacy = JSON.parse(localStorage.getItem('orbit-pinball-settings-v1') || 'null');
       if (!legacy) return normalize(defaults);
       // Keep participant choices; adopt the gentler pacing when upgrading the original game.
       legacy.gravity = defaults.gravity; legacy.speed = defaults.speed;
-      if (legacy.seed === 'ORBIT-2026') legacy.seed = defaults.seed;
+      if (legacy.seed === 'ORBIT-2026') legacy.seed = '';
       return normalize(legacy);
     }
     catch (_) { return normalize(defaults); }
   }
   let memorySettings = readSaved();
   function save(settings) {
-    memorySettings = Object.assign({}, settings);
+    memorySettings = Object.assign({}, settings, { seedMode: settings.seed ? 'manual' : 'auto' });
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(memorySettings)); } catch (_) {}
   }
   P.chooseWinners = function (ranking, settings) {
@@ -65,17 +70,17 @@
   const renderer = new P.Renderer(canvas);
   const camera = new P.Camera(canvas);
   const effects = new P.Effects();
-  const demoCamera = new P.Camera(canvas, { interactive: false });
-  const demoEffects = new P.Effects();
-  let demoPhysics = null;
-  let demoAccumulator = 0;
+  const cinematic = new P.Cinematic(document.getElementById('cinema-canvas'), renderer);
   const audio = new P.AudioEngine();
   let settings = normalize(memorySettings);
   let runSettings = null;
   let physics = null;
-  let status = 'idle';
-  let countdown = 3;
-  let countdownValue = null;
+  let status = 'intro';
+  let flightLanded = false;
+  let cannonSoundPlayed = false;
+  let chargeSoundPlayed = false;
+  let launchElapsed = 0;
+  let seedSerial = 0;
   let accumulator = 0;
   let lastFrame = 0;
   let elapsedVisual = 0;
@@ -98,6 +103,7 @@
     ui.setTheme(settings.theme);
     renderer.setTheme(settings.theme);
     renderer.setQuality(settings.quality);
+    if (cinematic.setQuality) cinematic.setQuality(settings.quality);
     if (effects.setQuality) effects.setQuality(settings.quality);
     renderer.setReducedMotion(settings.reducedMotion);
     effects.reducedMotion = settings.reducedMotion;
@@ -120,87 +126,44 @@
     effects.rings.length = 0;
     effects.shake = 0; effects.flash = 0;
   }
-  function preview() {
-    status = 'idle';
-    ui.setFocusMode(false); resize();
+  function setScene(scene) {
+    status = scene;
+    ui.setScene(scene);
+    ui.setStatus(scene);
+  }
+  function preview(scene = 'setup') {
+    launchElapsed = 0; flightLanded = false;
+    cannonSoundPlayed = false; chargeSoundPlayed = false;
     winner = null; photoFinish = false; runSettings = null;
     accumulator = 0; finalRanking = []; resultShown = false;
     resetEffects();
     let names;
     try { names = P.parseNames(settings.names); } catch (_) { names = P.parseNames(defaults.names); }
-    physics = makePhysics(settings, names);
-    // A frozen, physically simulated preview gives the course a living first scene.
-    for (let tick = 0; tick < 260; tick++) {
-      physics.step(STEP);
-    }
-    physics.drainEvents();
+    physics = makePhysics(Object.assign({}, settings, { seed: settings.seed || 'MUNGBANGGU-PREVIEW' }), names);
     camera.reset(P.MAPS[settings.map]);
+    ui.hideResults(); ui.hideCountdown(); ui.setLocked(false);
+    setScene(scene); resize();
     const ranking = physics.getRanking();
-    if (ranking[0]) camera.y = Math.max(460, ranking[0].y - 40);
-    ui.hideResults(); ui.hideCountdown(); ui.setStatus('idle'); ui.setLocked(false);
-    ui.updateHUD({ ranking: ranking, remaining: names.length, total: names.length, time: 0, fps: fps, leader: ranking[0], seed: settings.seed, map: P.MAPS[settings.map], quality: settings.quality });
-    resize();
-  }
-  function demoView() {
-    const map = P.MAPS.dynamic;
-    const width = window.innerWidth || 1000, height = window.innerHeight || 700;
-    demoCamera.viewport = { x: 0, y: 0, w: width, h: height };
-    demoCamera.x = map.width / 2; demoCamera.y = 1550;
-    demoCamera.zoom = Math.min(width / (map.width + 100), 1.1); demoCamera.follow = false;
-    const halfHeight = height / (2 * demoCamera.zoom);
-    return { top: Math.max(780, demoCamera.y - halfHeight - 100), bottom: Math.min(map.finish.y - 300, demoCamera.y + halfHeight + 100) };
-  }
-  function recycleDemoMarble(marble, y) {
-    marble.x = 50 + demoPhysics.random() * 900; marble.y = y;
-    marble.vx = (demoPhysics.random() - .5) * 120; marble.vy = 80;
-    marble.finished = false; marble.finishTime = null; marble.trail.length = 0;
-    marble._anchorY = y; marble._stuckAt = demoPhysics.time; marble._contacts = Object.create(null);
-  }
-  function beginIntro() {
-    renderer.setTheme('cosmic');
-    demoPhysics = makePhysics(Object.assign({}, defaults, { map: 'dynamic', seed: 'MUNGBANGGU-WELCOME' }), P.parseNames('행운*24,햇살*12'));
-    const view = demoView();
-    for (const marble of demoPhysics.marbles) recycleDemoMarble(marble, view.top + 40 + demoPhysics.random() * (view.bottom - view.top - 80));
-    for (let tick = 0; tick < 120; tick++) demoPhysics.step(STEP);
-    demoPhysics.drainEvents();
-    demoEffects.setQuality && demoEffects.setQuality(settings.quality);
-    demoEffects.reducedMotion = settings.reducedMotion;
-    status = 'intro'; ui.setIntroMode(true);
-  }
-  function renderIntro(dt) {
-    const view = demoView();
-    if (!settings.reducedMotion) {
-      demoAccumulator += dt * .7;
-      let ticks = 0;
-      while (demoAccumulator >= STEP && ticks < 24) {
-        for (const marble of demoPhysics.marbles) {
-          if (marble.y > view.bottom || marble.finished) recycleDemoMarble(marble, view.top);
-        }
-        demoPhysics.step(STEP); demoAccumulator -= STEP; ticks++;
-      }
-      for (const event of demoPhysics.drainEvents()) demoEffects.handle(event, P.THEMES.cosmic, demoPhysics.marbles.length);
-      demoEffects.update(dt);
-    }
-    renderer.render({ physics: demoPhysics, map: P.MAPS.dynamic, camera: demoCamera, effects: demoEffects,
-      time: settings.reducedMotion ? 0 : elapsedVisual, dt: dt, status: 'running', winner: null,
-      leader: demoPhysics.getRanking()[0] || null, photoFinish: false });
+    ui.updateHUD({ ranking, remaining: names.length, total: names.length, time: 0, fps,
+      leader: ranking[0], seed: settings.seed || '매번 새 출발', map: P.MAPS[settings.map], quality: settings.quality });
   }
   function enterGame() {
     if (status !== 'intro') return;
-    ui.setIntroMode(false); demoPhysics = null; demoEffects.clear && demoEffects.clear();
-    demoAccumulator = 0; visualSettings(); preview();
-    const entry = document.getElementById('names');
-    if (entry && entry.focus && (window.innerWidth || 1000) > 850) entry.focus({ preventScroll: true });
+    setScene('setup'); resize();
+  }
+  function newRoundSeed() {
+    const values = new Uint32Array(4);
+    if (window.crypto && window.crypto.getRandomValues) window.crypto.getRandomValues(values);
     else {
-      const toggle = document.getElementById('mobile-setup-button');
-      if (toggle && toggle.focus) toggle.focus({ preventScroll: true });
+      values[0] = Date.now() >>> 0;
+      for (let i = 1; i < values.length; i++) values[i] = Math.floor(Math.random() * 4294967296);
     }
+    return 'MB-' + Array.from(values, value => value.toString(36).toUpperCase()).join('-') + '-' + (++seedSerial).toString(36);
   }
   function start(usePrevious) {
-    if (status === 'intro') return;
-    if (status === 'running' || status === 'countdown') return;
+    if (!['setup', 'finished'].includes(status)) return;
     const next = usePrevious && runSettings ? Object.assign({}, runSettings, {
-      theme: settings.theme, sound: settings.sound, volume: settings.volume,
+      seed: settings.seed, theme: settings.theme, sound: settings.sound, volume: settings.volume,
       quality: settings.quality, reducedMotion: settings.reducedMotion, speed: settings.speed
     }) : normalize(ui.readSettings());
     let names;
@@ -210,37 +173,74 @@
         throw new Error('당첨 순위는 1부터 구슬 수(' + names.length + ')까지의 정수로 입력해 주세요.');
       }
     } catch (error) { ui.showError(error.message); return; }
-    if (!next.seed) {
-      const seedValues = new Uint32Array(1);
-      if (window.crypto && window.crypto.getRandomValues) window.crypto.getRandomValues(seedValues);
-      else seedValues[0] = Date.now() >>> 0;
-      next.seed = 'MUNGBANGGU-' + seedValues[0].toString(36).toUpperCase();
-    }
-    settings = next; runSettings = Object.assign({}, next);
+    settings = next; runSettings = Object.assign({}, next, { seed: next.seed || newRoundSeed() });
     ui.load(settings); save(settings); visualSettings();
     physics = makePhysics(runSettings, names);
-    resetEffects(); camera.enter(P.MAPS[runSettings.map], { reducedMotion: settings.reducedMotion });
-    ui.setFocusMode(true);
-    ui.clearError(); ui.hideResults(); ui.setStatus('countdown'); ui.setLocked(true);
-    winner = null; status = 'countdown'; countdown = 3; countdownValue = null;
+    resetEffects(); camera.reset(P.MAPS[runSettings.map]);
+    ui.clearError(); ui.hideResults(); ui.hideCountdown(); ui.setLocked(true);
+    winner = null; launchElapsed = 0; flightLanded = false;
+    cannonSoundPlayed = false; chargeSoundPlayed = false;
+    setScene('mixing');
     accumulator = 0; leaderId = null; leadCooldown = 0; photoFinish = false;
     finalRanking = []; resultDelay = 0; resultShown = false;
     diagnostics.leadChanges = 0; diagnostics.photoFinishes = 0; diagnostics.events = {};
     audio.unlock(); resize();
   }
+  function launchDuration(stage) {
+    if (settings.reducedMotion) return stage === 'mixing' ? .65 : .35;
+    return { mixing: 1.8, aiming: 2.2, flight: 3.2 }[stage];
+  }
+  function updateLaunch(dt) {
+    if (flightLanded) {
+      flightLanded = false; accumulator = 0;
+      setScene('running');
+      ui.toast('출발 · 행운의 구슬이 굴러갑니다');
+      return;
+    }
+    launchElapsed += dt;
+    const progress = launchElapsed / launchDuration(status);
+    if (status === 'aiming' && progress >= .82 && !chargeSoundPlayed) {
+      chargeSoundPlayed = true; audio.play('charge');
+    }
+    const fireMoment = P.CINEMA && P.CINEMA.fireMoment !== undefined ? P.CINEMA.fireMoment : .12;
+    if (status === 'flight' && progress >= fireMoment && !cannonSoundPlayed) {
+      cannonSoundPlayed = true; audio.play('cannon', 1);
+    }
+    if (status !== 'flight' && launchElapsed >= launchDuration(status)) {
+      const next = status === 'mixing' ? 'aiming' : 'flight';
+      launchElapsed = 0; setScene(next); resize();
+      if (next === 'flight') {
+        camera.prepareLanding(P.MAPS[runSettings.map], physics);
+      }
+    }
+  }
+  function renderCinema(dt) {
+    const stage = status, map = P.MAPS[(runSettings || settings).map];
+    const progress = ['intro', 'setup'].includes(stage) ? 0 : Math.min(1, launchElapsed / launchDuration(stage));
+    if (stage === 'flight') {
+      // The final visual flight frame and the first physical frame share one camera.
+      camera.viewport = ui.getViewport(); camera.prepareLanding(map, physics);
+      renderer.render({ physics, map, camera, effects, time: elapsedVisual, dt, status: stage, hideMarbles: true });
+    }
+    const view = cinematic.render({ stage, progress, time: elapsedVisual, physics, camera, reducedMotion: settings.reducedMotion });
+    ui.setSceneProgress(view || { reveal: 0 });
+    // Render the exact landing endpoint before the next frame starts simulation.
+    if (stage === 'flight' && progress === 1) flightLanded = true;
+  }
   function onChange() {
+    if (['mixing', 'aiming', 'flight'].includes(status)) return;
     const next = normalize(ui.readSettings());
-    const needsPreview = status === 'idle' && (next.names !== settings.names || next.map !== settings.map || next.radius !== settings.radius || next.gravity !== settings.gravity || next.restitution !== settings.restitution || next.seed !== settings.seed || next.skills !== settings.skills);
+    const needsPreview = ['intro', 'setup'].includes(status) && (next.names !== settings.names || next.map !== settings.map || next.radius !== settings.radius || next.gravity !== settings.gravity || next.restitution !== settings.restitution || next.seed !== settings.seed || next.skills !== settings.skills);
     settings = next; save(settings); visualSettings();
     if (settings.sound) audio.unlock();
-    if (needsPreview) preview();
+    if (needsPreview) preview(status);
     resize();
   }
   function finish() {
     status = 'finished'; photoFinish = false;
     finalRanking = physics.finished.slice();
     winner = P.chooseWinners(finalRanking, runSettings)[0];
-    ui.setStatus('finished'); ui.setLocked(false);
+    setScene('finished'); ui.setLocked(false);
     effects.celebrate(winner, P.THEMES[settings.theme]);
     audio.play('win'); resultDelay = 1.25;
   }
@@ -287,16 +287,11 @@
     if (document.hidden) { lastFrame = 0; requestAnimationFrame(frame); return; }
     elapsedVisual += dt; hudElapsed += dt; fpsElapsed += dt; fpsFrames++; diagnostics.frames++;
     if (fpsElapsed >= 0.75) { fps = Math.round(fpsFrames / fpsElapsed); fpsElapsed = 0; fpsFrames = 0; }
-    if (status === 'intro') { renderIntro(dt); requestAnimationFrame(frame); return; }
-    if (status === 'countdown') {
-      countdown -= dt;
-      const number = Math.max(1, Math.ceil(countdown));
-      if (number !== countdownValue && countdown > 0) {
-        countdownValue = number; ui.showCountdown(String(number)); audio.play('countdown');
-        effects.burst(physics.map ? physics.map.width / 2 : 500, camera.y, P.THEMES[settings.theme].primary, 'countdown', 1);
-      }
-      if (countdown <= 0) { status = 'running'; ui.setStatus('running'); ui.hideCountdown(); ui.toast('출발 · 행운의 구슬이 굴러갑니다'); audio.play('go'); }
-    } else if (status === 'running') updateRace(dt);
+    if (['mixing', 'aiming', 'flight'].includes(status)) updateLaunch(dt);
+    if (['intro', 'setup', 'mixing', 'aiming', 'flight'].includes(status)) {
+      renderCinema(dt); requestAnimationFrame(frame); return;
+    }
+    if (status === 'running') updateRace(dt);
     else if (status === 'finished' && !resultShown) {
       resultDelay -= dt;
       if (resultDelay <= 0) {
@@ -323,18 +318,19 @@
     renderer.render({ physics: physics, map: map, camera: camera, effects: effects, time: elapsedVisual, dt: dt, status: status, winner: winner, leader: ranking[0] || null, photoFinish: photoFinish });
     if (hudElapsed >= 0.1) {
       hudElapsed = 0;
-      ui.updateHUD({ ranking: ranking, remaining: physics.marbles.length - physics.finished.length, total: physics.marbles.length, time: status === 'idle' ? 0 : physics.time, fps: fps, leader: ranking[0], seed: (runSettings || settings).seed, map: map, quality: settings.quality });
+      ui.updateHUD({ ranking: ranking, remaining: physics.marbles.length - physics.finished.length, total: physics.marbles.length, time: physics.time, fps: fps, leader: ranking[0], seed: (runSettings || settings).seed || '매번 새 출발', map: map, quality: settings.quality });
       renderer.drawMinimap(mini, physics, camera);
     }
     requestAnimationFrame(frame);
   }
   ui.on('enter', enterGame);
   ui.on('start', () => start(false));
+  ui.on('setupcancel', () => { if (status === 'setup') { setScene('intro'); resize(); } });
   ui.on('restart', () => start(true));
   ui.on('replay', () => { settings = normalize(ui.readSettings()); preview(); });
   ui.on('reset', () => { settings = normalize(ui.readSettings()); preview(); });
   ui.on('shuffle', () => {
-    if (status === 'running' || status === 'countdown') return;
+    if (['intro', 'mixing', 'aiming', 'flight', 'running'].includes(status)) return;
     try {
       const input = ui.readSettings().names;
       P.parseNames(input);
@@ -350,12 +346,12 @@
   ui.on('change', onChange);
   ui.on('theme', onChange);
   ui.on('layout', resize);
-  ui.on('follow', () => { camera.follow = !camera.follow; camera.entrance = null; if (ui.setFollowing) ui.setFollowing(camera.follow); ui.toast(camera.follow ? '선두 추적을 켰습니다' : '자유롭게 코스를 둘러보세요'); });
+  ui.on('follow', () => { if (['mixing', 'aiming', 'flight'].includes(status)) return; camera.follow = !camera.follow; camera.entrance = null; if (ui.setFollowing) ui.setFollowing(camera.follow); ui.toast(camera.follow ? '선두 추적을 켰습니다' : '자유롭게 코스를 둘러보세요'); });
   camera.attach(canvas);
   window.addEventListener('resize', resize);
   document.addEventListener('visibilitychange', () => { lastFrame = 0; });
-  visualSettings(); preview(); beginIntro();
-  P.app = { ui: ui, renderer: renderer, camera: camera, effects: effects, audio: audio,
+  visualSettings(); preview('intro');
+  P.app = { ui: ui, renderer: renderer, cinematic: cinematic, camera: camera, effects: effects, audio: audio,
     get physics() { return physics; }, get status() { return status; }, get settings() { return Object.assign({}, settings); },
     get runSettings() { return runSettings && Object.assign({}, runSettings); },
     get diagnostics() { return Object.assign({}, diagnostics); }, start: start, reset: preview

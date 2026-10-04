@@ -6,9 +6,12 @@
   <meta name="theme-color" content="#F4EDE0">
   <meta name="description" content="어른뭉방구의 따뜻한 놀이판. 한 알씩 굴러가는 구슬로 오늘의 작은 행운을 골라 보세요.">
   <title>어른뭉방구 — 행운 구슬 뽑기</title>
+  <link rel="preload" as="image" href="./assets/cannon-front.png">
+  <link rel="preload" as="image" href="./assets/cannon-barrel.png">
+  <link rel="preload" as="image" href="./assets/cannon-wheel.png">
   <link rel="stylesheet" href="./style.css">
 </head>
-<body class="intro-active" data-theme="cosmic">
+<body class="scene-intro" data-scene="intro" data-theme="cosmic">
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z" fill="currentColor" stroke="none"/></symbol>
     <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M3 6h3c4 0 8 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 4-3 6-6s4-6 6-6h3m-4-4 4 4-4 4"/></symbol>
@@ -31,17 +34,20 @@
     <symbol id="i-fish" viewBox="0 0 24 24"><path d="M3 12c4-7 12-7 16 0-4 7-12 7-16 0Zm16 0 3-4v8Z"/><circle cx="7.5" cy="10.5" r=".7" fill="currentColor" stroke="none"/></symbol>
   </defs></svg>
 
-  <canvas id="game-canvas" aria-hidden="true" aria-label="구슬이 장애물을 지나 결승선으로 향하는 핀볼 게임 화면">브라우저가 Canvas를 지원하지 않습니다.</canvas>
+  <canvas id="game-canvas" tabindex="-1" aria-hidden="true" aria-label="구슬이 장애물을 지나 결승선으로 향하는 핀볼 게임 화면">브라우저가 Canvas를 지원하지 않습니다.</canvas>
   <div class="ambient-wash" aria-hidden="true"></div>
   <div class="screen-vignette" aria-hidden="true"></div>
 
-  <section class="intro-screen" id="intro-screen" aria-labelledby="intro-caption" aria-hidden="false">
-    <div class="intro-content">
-      <img class="intro-logo" src="./assets/logo.svg" alt="어른뭉방구" width="255" height="223" draggable="false">
-      <p class="intro-caption" id="intro-caption">행운 구슬 뽑기</p>
-      <button class="intro-start-button" id="intro-start-button" type="button"><span>시작하기</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+  <canvas id="cinema-canvas" aria-hidden="true"></canvas>
+  <section class="scene-welcome" id="scene-welcome" aria-labelledby="intro-caption">
+    <div class="scene-brand">
+      <img class="scene-logo" src="./assets/logo.svg" alt="어른뭉방구" width="170" height="148" draggable="false">
+      <p class="scene-caption" id="intro-caption">행운 구슬 뽑기</p>
     </div>
+    <button class="intro-start-button" id="intro-start-button" type="button"><span>시작하기</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
   </section>
+  <div class="setup-backdrop" id="setup-backdrop" aria-hidden="true"></div>
+  <p class="scene-status" id="scene-status" role="status" aria-live="polite" tabindex="-1"></p>
 
   <header class="masthead" inert aria-hidden="true">
     <a class="brand" href="./index.html" aria-label="어른뭉방구 홈">
@@ -57,10 +63,10 @@
     </nav>
   </header>
 
-  <main inert aria-hidden="true">
-    <aside class="setup-panel glass-panel" id="setup-panel" aria-label="추첨 설정">
+  <main>
+    <aside class="setup-panel glass-panel" id="setup-panel" aria-label="추첨 설정" aria-hidden="true" inert>
       <div class="sheet-handle" aria-hidden="true"></div>
-      <div class="panel-heading"><div><span class="eyebrow">어른을 위한 작은 문방구</span><h1>행운 구슬 뽑기<span class="title-dot">.</span></h1></div><button class="icon-button panel-close" id="panel-close" type="button" aria-label="설정 패널 닫기"><svg class="icon"><use href="#i-close"/></svg></button></div>
+      <div class="panel-heading"><div><span class="eyebrow">어른을 위한 작은 문방구</span><h1 id="setup-title">행운 구슬 뽑기<span class="title-dot">.</span></h1></div><button class="icon-button panel-close" id="panel-close" type="button" aria-label="설정 패널 닫기"><svg class="icon"><use href="#i-close"/></svg></button></div>
       <form id="settings-form" novalidate>
         <div class="panel-scroll">
           <section class="settings-section participants-section">
@@ -108,12 +114,12 @@
               <label class="switch-row" for="sound"><span>효과음</span><span class="switch"><input type="checkbox" id="sound" checked><span></span></span></label>
               <label class="switch-row" for="skills"><span>랜덤 스킬<small>가속 · 밀치기 · 크기 변화</small></span><span class="switch"><input type="checkbox" id="skills" data-physical><span></span></span></label>
               <label class="switch-row" for="reduced-motion"><span>화면 효과 줄이기<small>흔들림 · 깜빡임을 줄입니다</small></span><span class="switch"><input type="checkbox" id="reduced-motion"><span></span></span></label>
-              <label class="seed-label" for="seed">시드 <span>같은 설정, 같은 결과</span></label><input class="seed-input" id="seed" type="text" maxlength="80" value="MUNGBANGGU-2026" autocomplete="off" spellcheck="false" data-physical>
+              <label class="seed-label" for="seed">시드 <span>같은 결과를 재현할 때만 입력</span></label><input class="seed-input" id="seed" type="text" maxlength="80" value="" placeholder="비우면 매번 새 출발" autocomplete="off" spellcheck="false" data-physical>
             </div>
           </details>
         </div>
         <div class="panel-footer">
-          <button class="start-button" id="start-button" type="submit"><span class="start-icon"><svg class="icon"><use href="#i-play"/></svg></span><span>구슬 굴리기<small>천천히 펼쳐지는 오늘의 행운</small></span><svg class="icon start-arrow"><use href="#i-chevron"/></svg></button>
+          <button class="start-button" id="start-button" type="submit"><span class="start-icon"><svg class="icon"><use href="#i-play"/></svg></span><span>게임 시작<small>구슬을 섞고, 오늘의 행운을 날려요</small></span><svg class="icon start-arrow"><use href="#i-chevron"/></svg></button>
           <div class="panel-bottom"><span><span class="ready-dot"></span><span id="ready-label">6개의 구슬이 준비됐어요</span></span><button class="text-button" id="reset-button" type="button"><svg class="icon"><use href="#i-reset"/></svg>초기화</button></div>
         </div>
       </form>
@@ -134,7 +140,7 @@
     <div class="toast-stack" id="toast-stack" role="status" aria-live="polite"></div>
   </main>
 
-  <footer class="system-footer" inert aria-hidden="true"><span><span class="footer-orbit" aria-hidden="true"></span>작은 우연을 모으는 문방구</span><span class="footer-seed">SEED <b id="hud-seed">MUNGBANGGU-2026</b><i></i>고정 물리 120 Hz</span><span class="footer-edition">어른뭉방구 / 제1호</span></footer>
+  <footer class="system-footer" inert aria-hidden="true"><span><span class="footer-orbit" aria-hidden="true"></span>작은 우연을 모으는 문방구</span><span class="footer-seed">SEED <b id="hud-seed">매번 새 출발</b><i></i>고정 물리 120 Hz</span><span class="footer-edition">어른뭉방구 / 제1호</span></footer>
 
   <dialog id="results-dialog" class="results-dialog" aria-labelledby="winner-heading">
     <div class="results-decoration" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -144,10 +150,10 @@
     <div class="result-meta"><span>SEED <b id="result-seed"></b></span><span>TIME <b id="result-time"></b></span></div>
     <div class="result-ranking-heading"><span>최종 순위</span><span id="result-total"></span></div>
     <ol id="result-ranking" class="result-ranking"></ol><button type="button" id="show-all-results" class="text-button show-all-results" hidden>전체 순위 보기</button>
-    <div class="result-actions"><button type="button" id="restart-button" class="start-button"><svg class="icon"><use href="#i-play"/></svg>같은 멤버로 재시작</button><button type="button" id="replay-button" class="secondary-button"><svg class="icon"><use href="#i-reset"/></svg>다시 설정하기</button></div>
+    <div class="result-actions"><button type="button" id="restart-button" class="start-button"><svg class="icon"><use href="#i-play"/></svg>같은 멤버로 다시 섞기</button><button type="button" id="replay-button" class="secondary-button"><svg class="icon"><use href="#i-reset"/></svg>다시 설정하기</button></div>
     <p class="results-note">구슬의 출발부터 도착까지, 물리가 정하는 행운.</p>
   </dialog>
 
-  <script src="./js/themes.js"></script><script src="./js/maps.js"></script><script src="./js/physics.js"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/renderer.js"></script><script src="./js/ui.js"></script><script src="./js/main.js"></script>
+  <script src="./js/themes.js"></script><script src="./js/maps.js"></script><script src="./js/physics.js"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/renderer.js"></script><script src="./js/cinematic.js"></script><script src="./js/ui.js"></script><script src="./js/main.js"></script>
 </body>
 </html>

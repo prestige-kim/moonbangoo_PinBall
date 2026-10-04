@@ -71,33 +71,63 @@
     this.complete = false;
     this.marbles = [];
     var spawn = this.map.spawn;
-    // A staggered packing fits even 500 large marbles above the first obstacle.
+    // Build the full-width launch grid, then choose occupied slots and permute
+    // their owners with the seed. A small group must not always start centrally.
+    var spawnRandom = P.seedRandom(this.seed + '|launch');
     var spacing = this.radius * 2 + 1.5;
-    var columns = Math.floor((spawn.width - this.radius * 2 - spacing / 2) / spacing) + 1;
+    var jitter = 0.75;
+    var columns = Math.floor((spawn.width - this.radius * 2 - spacing / 2 - jitter * 2) / spacing) + 1;
+    var rows = Math.ceil(options.names.length / columns);
+    var slots = [];
     var positions = [];
-    var usedColumns = Math.min(columns, options.names.length);
-    for (var index = 0; index < options.names.length; index++) {
-      var column = index % usedColumns;
-      var row = Math.floor(index / usedColumns);
-      positions.push({
-        x: spawn.x + spawn.width / 2 + (column - (usedColumns - 1) / 2) * spacing + (row % 2 ? 1 : -1) * spacing / 4,
+    for (var index = 0; index < columns * rows; index++) {
+      var column = index % columns;
+      var row = Math.floor(index / columns);
+      slots.push({
+        x: spawn.x + spawn.width / 2 + (column - (columns - 1) / 2) * spacing + (row % 2 ? 1 : -1) * spacing / 4,
         y: spawn.y + this.radius + row * spacing * Math.sqrt(3) / 2
       });
     }
+    if (options.names.length === 1) {
+      positions.push(slots[Math.floor(spawnRandom() * columns)]);
+    } else if (options.names.length <= Math.floor(columns / 2)) {
+      // Separate horizontal strata include the outer lanes, even with two names.
+      var laneGap = (columns - 1) / (options.names.length - 1);
+      for (var lane = 0; lane < options.names.length; lane++) {
+        var anchor = lane * laneGap;
+        var first = Math.max(0, Math.ceil(anchor - laneGap * 0.24));
+        var last = Math.min(columns - 1, Math.floor(anchor + laneGap * 0.24));
+        if (first > last) first = last = Math.round(anchor);
+        positions.push(slots[first + Math.floor(spawnRandom() * (last - first + 1))]);
+      }
+    } else {
+      // Dense groups sample without replacement from all rows of the same grid.
+      for (var slotIndex = slots.length - 1; slotIndex > 0; slotIndex--) {
+        var picked = Math.floor(spawnRandom() * (slotIndex + 1));
+        var slot = slots[slotIndex]; slots[slotIndex] = slots[picked]; slots[picked] = slot;
+      }
+      positions = slots.slice(0, options.names.length);
+    }
     for (var shuffle = positions.length - 1; shuffle > 0; shuffle--) {
-      var other = Math.floor(this.random() * (shuffle + 1));
+      var other = Math.floor(spawnRandom() * (shuffle + 1));
       var temp = positions[shuffle]; positions[shuffle] = positions[other]; positions[other] = temp;
     }
+    var rowInset = spacing / 4;
+    var gridHalfWidth = (columns - 1) * spacing / 2 + rowInset;
+    var xSlack = spawn.width / 2 - gridHalfWidth - this.radius - jitter;
+    var offsetX = (spawnRandom() * 2 - 1) * Math.max(0, xSlack);
+    var ySlack = spawn.height - this.radius * 2 - (rows - 1) * spacing * Math.sqrt(3) / 2;
+    var offsetY = spawnRandom() * Math.max(0, ySlack);
     for (var n = 0; n < options.names.length; n++) {
       var entry = options.names[n];
       var position = positions[n];
       this.marbles.push({
         id: entry.id, name: entry.name, copy: entry.copy || 1, copies: entry.copies || 1,
-        x: position.x + (this.random() - 0.5) * 1.5, y: position.y,
+        x: position.x + offsetX + (spawnRandom() * 2 - 1) * jitter, y: position.y + offsetY,
         vx: (this.random() - 0.5) * 60, vy: 0, r: this.radius, baseRadius: this.radius,
         angle: this.random() * Math.PI * 2, finished: false, finishTime: null,
         colorIndex: n, trail: [], skill: null,
-        _anchorY: position.y, _stuckAt: 0, _nextSkill: 4 + this.random() * 8,
+        _anchorY: position.y + offsetY, _stuckAt: 0, _nextSkill: 4 + this.random() * 8,
         _contacts: Object.create(null), _portalAt: -2, _boostAt: -2
       });
     }
