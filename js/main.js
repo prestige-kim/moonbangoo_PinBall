@@ -18,7 +18,7 @@
     const s = Object.assign({}, defaults, input || {});
     s.names = typeof s.names === 'string' ? s.names : defaults.names;
     s.seed = typeof s.seed === 'string' ? s.seed.trim().slice(0, 128) : defaults.seed;
-    s.map = P.MAPS[s.map] ? s.map : defaults.map;
+    s.map = 'classic';
     s.theme = P.THEMES[s.theme] ? s.theme : defaults.theme;
     s.rule = ['first', 'last', 'nth', 'top'].includes(s.rule) ? s.rule : 'first';
     s.rankN = Number(s.rankN);

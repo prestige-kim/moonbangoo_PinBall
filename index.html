@@ -9,7 +9,7 @@
   <link rel="preload" as="image" href="./assets/cannon-front.png">
   <link rel="preload" as="image" href="./assets/cannon-barrel.png">
   <link rel="preload" as="image" href="./assets/cannon-wheel.png">
-  <link rel="stylesheet" href="./style.css?v=visual-20261006b">
+  <link rel="stylesheet" href="./style.css?v=classic-20261006">
 </head>
 <body class="scene-intro" data-scene="intro" data-theme="cosmic">
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
@@ -84,15 +84,6 @@
             <div id="rank-n-row" class="rank-n-row" hidden><label for="rank-n" id="rank-n-label">당첨 순위</label><input type="number" id="rank-n" min="1" max="500" value="1" inputmode="numeric"><span id="rank-n-unit">번째</span></div>
           </section>
 
-          <section class="settings-section">
-            <div class="section-label"><span id="map-label">코스를 골라 주세요</span><span class="tiny-label">세 가지 놀이판</span></div>
-            <div class="map-grid" role="group" aria-labelledby="map-label">
-              <button class="map-tile active" type="button" data-map="classic" aria-pressed="true"><span class="map-art map-art-classic" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span><span>클래식</span><small>PIN BOARD</small></button>
-              <button class="map-tile" type="button" data-map="dynamic" aria-pressed="false"><span class="map-art map-art-dynamic" aria-hidden="true"><i></i><i></i><i></i></span><span>다이내믹</span><small>SLOW SPIN</small></button>
-              <button class="map-tile" type="button" data-map="hybrid" aria-pressed="false"><span class="map-art map-art-hybrid" aria-hidden="true"><i></i><i></i><i></i></span><span>하이브리드</span><small>WINDING WAY</small></button>
-            </div>
-          </section>
-
           <section class="settings-section theme-section">
             <div class="section-label"><span id="theme-label">오늘의 분위기</span><span class="tiny-label">종이와 반짝임</span></div>
             <div class="theme-grid" role="group" aria-labelledby="theme-label">
@@ -135,7 +126,7 @@
     <aside class="race-panel" aria-label="실시간 경기 정보">
       <div class="race-stats glass-panel"><div><span class="eyebrow">굴러가는 구슬</span><strong id="remaining">6<span> / 6</span></strong><small>남은 구슬</small></div><div><span class="eyebrow">TIME</span><strong id="elapsed">00:00<small>.00</small></strong><small>경과 시간</small></div></div>
       <div class="ranking-panel glass-panel"><div class="ranking-heading"><span class="eyebrow">지금의 순위</span><svg class="icon"><use href="#i-crown"/></svg></div><ol id="live-ranking" aria-label="실시간 상위 순위"><li class="ranking-empty"><span class="empty-rank-orbit" aria-hidden="true"></span><span>누가 먼저 도착할까요?<small>출발하면 순위가 표시됩니다</small></span></li></ol><div class="ranking-foot"><span class="live-dot"></span>한 알 한 알, 모두의 작은 가능성</div></div>
-      <div class="minimap-panel glass-panel"><div class="minimap-heading"><span class="eyebrow">놀이판 한눈에</span><span class="tiny-label">LIVE</span></div><canvas id="minimap" width="160" height="208" aria-label="코스 전체, 선두 구슬, 카메라 위치와 포털 연결을 보여 주는 미니맵"></canvas><button id="follow-button" class="follow-button active" type="button" aria-pressed="true"><svg class="icon"><use href="#i-target"/></svg>선두 따라가기<span>F</span></button></div>
+      <div class="minimap-panel glass-panel"><div class="minimap-heading"><span class="eyebrow">놀이판 한눈에</span><span class="tiny-label">LIVE</span></div><canvas id="minimap" width="160" height="208" aria-label="놀이판 전체, 선두 구슬과 카메라 위치를 보여 주는 미니맵"></canvas><button id="follow-button" class="follow-button active" type="button" aria-pressed="true"><svg class="icon"><use href="#i-target"/></svg>선두 따라가기<span>F</span></button></div>
     </aside>
 
     <div class="camera-hints" aria-hidden="true"><span><svg class="icon"><use href="#i-mouse"/></svg>드래그로 이동</span><i></i><span>휠 · 핀치로 확대</span><i></i><span><kbd>F</kbd> 선두 추적</span></div>
@@ -159,6 +150,6 @@
     <p class="results-note">구슬의 출발부터 도착까지, 물리가 정하는 행운.</p>
   </dialog>
 
-  <script src="./js/themes.js"></script><script src="./js/maps.js"></script><script src="./js/physics.js"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/renderer.js?v=visual-20261006b"></script><script src="./js/cinematic.js?v=cine-20261006d"></script><script src="./js/ui.js?v=visual-20261006b"></script><script src="./js/main.js?v=cine-20261006d"></script>
+  <script src="./js/themes.js"></script><script src="./js/maps.js?v=classic-20261006"></script><script src="./js/physics.js"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/renderer.js?v=visual-20261006b"></script><script src="./js/cinematic.js?v=cine-20261006d"></script><script src="./js/ui.js?v=classic-20261006"></script><script src="./js/main.js?v=classic-20261006"></script>
 </body>
 </html>

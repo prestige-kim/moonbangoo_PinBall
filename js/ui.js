@@ -2,11 +2,7 @@
   'use strict';
   var P = global.CosmicPinball = global.CosmicPinball || {};
   var $ = function (id) { return document.getElementById(id); };
-  var mapLabels = {
-    classic: { number: '01', title: '자개 핀 보드', tag: '작은 장애물 사이로' },
-    dynamic: { number: '02', title: '금박 회전길', tag: '빙글빙글 천천히' },
-    hybrid: { number: '03', title: '행운 갈림길', tag: '같은 글자의 포털로 이동' }
-  };
+  var mapLabel = { number: '01', title: '자개 핀 보드', tag: '작은 장애물 사이로' };
   function icon(id) {
     var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('class', 'icon');
@@ -26,7 +22,6 @@
   function UI() {
     this.handlers = {};
     this.rule = 'first';
-    this.map = 'classic';
     this.theme = 'cosmic';
     this.locked = false;
     this.rankingNodes = new Map();
@@ -82,12 +77,6 @@
         self.rule = button.dataset.rule; self.syncSelections(); self.clearError(); self.emit('change', self.readSettings());
       });
     });
-    document.querySelectorAll('[data-map]').forEach(function (button) {
-      button.addEventListener('click', function () {
-        if (self.locked) return;
-        self.map = button.dataset.map; self.syncSelections(); self.emit('change', self.readSettings());
-      });
-    });
     document.querySelectorAll('[data-theme-choice]').forEach(function (button) {
       button.addEventListener('click', function () {
         self.setTheme(button.dataset.themeChoice); self.emit('theme', self.readSettings());
@@ -132,7 +121,7 @@
   UI.prototype.readSettings = function () {
     return {
       names: $('names').value, rule: this.rule, rankN: Number($('rank-n').value),
-      map: this.map, theme: this.theme, radius: Number($('radius').value),
+      map: 'classic', theme: this.theme, radius: Number($('radius').value),
       gravity: Number($('gravity').value), restitution: Number($('restitution').value),
       speed: Number($('speed').value), sound: $('sound').checked, volume: Number($('volume').value),
       quality: $('quality').value, seed: $('seed').value, skills: $('skills').checked,
@@ -148,7 +137,6 @@
     ['sound', 'skills'].forEach(function (id) { if (settings[id] !== undefined) $(id).checked = !!settings[id]; });
     if (settings.reducedMotion !== undefined) $('reduced-motion').checked = !!settings.reducedMotion;
     this.rule = settings.rule || this.rule;
-    this.map = settings.map || this.map;
     this.setTheme(settings.theme || this.theme);
     this.syncSelections(); this.syncSound(); this.updateOutputs(); this.updateParticipants();
   };
@@ -159,7 +147,7 @@
   };
   UI.prototype.syncSelections = function () {
     var self = this;
-    [['data-rule', this.rule], ['data-map', this.map], ['data-theme-choice', this.theme]].forEach(function (pair) {
+    [['data-rule', this.rule], ['data-theme-choice', this.theme]].forEach(function (pair) {
       document.querySelectorAll('[' + pair[0] + ']').forEach(function (button) {
         var active = button.getAttribute(pair[0]) === pair[1]; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active));
       });
@@ -168,7 +156,7 @@
     $('rank-n-row').hidden = !hasN;
     $('rank-n-label').textContent = this.rule === 'top' ? '당첨 인원' : '당첨 순위';
     $('rank-n-unit').textContent = this.rule === 'top' ? '명' : '번째';
-    var meta = mapLabels[self.map] || mapLabels.classic;
+    var meta = mapLabel;
     $('map-number').textContent = meta.number; $('map-title').textContent = meta.title; $('map-tag').textContent = meta.tag;
   };
   UI.prototype.syncSound = function () {
@@ -208,7 +196,7 @@
   };
   UI.prototype.setLocked = function (value) {
     this.locked = !!value;
-    document.querySelectorAll('[data-physical], [data-rule], [data-map], #names, #rank-n, #shuffle-button').forEach(function (control) { control.disabled = !!value; });
+    document.querySelectorAll('[data-physical], [data-rule], #names, #rank-n, #shuffle-button').forEach(function (control) { control.disabled = !!value; });
     $('start-button').disabled = !!value;
     this.updateStartCopy();
     if (value && this.isGameScene() && global.innerWidth <= 850 && this.panelOpen) { this.panelOpen = false; this.updatePanel(); }

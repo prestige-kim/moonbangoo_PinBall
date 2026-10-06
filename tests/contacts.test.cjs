@@ -108,8 +108,8 @@ test('stuck recovery is a distinct, repeatable event and lets a balanced ball fi
   assert.equal(run([1]), run([2, 4, 1, 7]));
 });
 
-test('AUDIT-D02: 500 balls leave no deep obstacle overlap after each physics tick', () => {
-  const p = new P.Physics({ map: P.MAPS.dynamic, names: names(500), seed: 'AUDIT-D02', radius: 8, gravity: 1500, restitution: .35 });
+test('classic: 500 balls leave no deep obstacle overlap after each physics tick', () => {
+  const p = new P.Physics({ map: P.MAPS.classic, names: names(500), seed: 'CLASSIC-CONTACT-500', radius: 8, gravity: 1500, restitution: .35 });
   Object.create(P.Cinematic.prototype).commitShuffle(p);
   let worst = 0, where;
   while (!p.complete && p.time < 60) {

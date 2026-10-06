@@ -319,3 +319,16 @@ test('the clear shuffle window lasts at least two seconds before the cannon turn
   assert.equal(P.app.physics.time, 0);
   advance(.5); assert.equal(P.app.status, 'aiming');
 });
+
+
+test('removed saved courses migrate to classic while preserving participants and physical settings', () => {
+  for (const map of ['dynamic','hybrid']) {
+    const values={map,names:'손님*50',seed:'CLASSIC-MIGRATION',gravity:800,restitution:.6,theme:'gold'};
+    const {P,callbacks}=boot({getItem:()=>JSON.stringify(values),setItem(){}});
+    assert.equal(P.app.settings.map,'classic');
+    assert.equal(P.app.physics.map,P.MAPS.classic);
+    assert.equal(P.app.physics.marbles.length,50);
+    assert.equal(P.app.settings.seed,values.seed);assert.equal(P.app.settings.gravity,800);assert.equal(P.app.settings.restitution,.6);assert.equal(P.app.settings.theme,'gold');
+    callbacks.start();assert.equal(P.app.runSettings.map,'classic');
+  }
+});

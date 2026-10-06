@@ -9,11 +9,11 @@ for (const file of ['maps.js', 'physics.js', 'cinematic.js']) {
   vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context);
 }
 const P = context.window.CosmicPinball;
-for (const map of ['classic', 'dynamic', 'hybrid']) {
+for (const map of ['classic']) {
   for (const mode of ['fast', 'crowded']) {
     const config = mode === 'fast' ? { radius: 8, gravity: 1500, restitution: .35, skills: false }
       : { radius: 16, gravity: 350, restitution: .92, skills: true };
-    const seed = map === 'dynamic' && mode === 'fast' ? 'AUDIT-D02' : 'stage1-' + map + '-' + mode;
+    const seed = 'stage1-' + map + '-' + mode;
     const p = new P.Physics({ map: P.MAPS[map], names: P.parseNames('참가자*500'), seed, ...config });
     Object.create(P.Cinematic.prototype).commitShuffle(p);
     const costs = []; let total = 0, rescues = 0;

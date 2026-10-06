@@ -48,10 +48,7 @@ test('finished display uses distinct recent slots without mutating rank, coordin
   }
 });
 
-test('both paired portals have a directed visible route', () => {
-  const renderer = Object.create(P.Renderer.prototype), routes = renderer.portalPairs(P.MAPS.hybrid);
-  assert.equal(routes.length, 6);
-  assert.deepEqual(Array.from(routes, route => route.pair.charAt(0)).sort(), ['a', 'a', 'a', 'b', 'b', 'b']);
-  assert.ok(routes.every(route => route.targetY > route.y));
+test('the classic board has no portal routes', () => {
+  const renderer = Object.create(P.Renderer.prototype);
   assert.equal(renderer.portalPairs(P.MAPS.classic).length, 0);
 });

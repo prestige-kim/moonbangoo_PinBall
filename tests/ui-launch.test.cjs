@@ -126,13 +126,13 @@ test('reveal waits until the final 15 percent for HUD and never fades the cinema
 });
 
 
-test('refreshing the same setup preserves slider and map focus instead of refocusing names', () => {
+test('refreshing the same setup preserves slider and theme focus instead of refocusing names', () => {
   const s = scene(); s.ui.setScene('setup');
   s.node('radius').hidden = false; s.node('radius').focus();
   s.ui.setScene('setup');
   assert.equal(s.document.activeElement.id, 'radius');
-  s.node('map-classic').focus(); s.ui.setScene('setup');
-  assert.equal(s.document.activeElement.id, 'map-classic');
+  s.node('theme-gold').focus(); s.ui.setScene('setup');
+  assert.equal(s.document.activeElement.id, 'theme-gold');
   assert.equal(s.node('setup-panel').inert, false);
 });
 
@@ -148,6 +148,6 @@ test('short mobile landscape excludes the race HUD while portrait preserves boar
   assert.equal(JSON.stringify(views[0]), JSON.stringify(views[1]), 'flight-to-game handoff has one viewport');
   assert.ok(views[1].x + views[1].w <= landscape.node('race-panel').getBoundingClientRect().left - 18,
     'leading marble can be tracked beside the HUD');
-  landscape.ui.map = 'hybrid'; landscape.ui.syncSelections();
-  assert.equal(landscape.node('map-tag').textContent, '같은 글자의 포털로 이동');
+  landscape.ui.syncSelections();
+  assert.equal(landscape.node('map-tag').textContent, '작은 장애물 사이로');
 });
