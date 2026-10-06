@@ -90,7 +90,20 @@
         this.segment(pose,color,false);if(type==='rotor')ctx.drawImage(this.pinSprite(t.secondary,'bumper'),o.x-30,o.y-30,60,60);
       }else if(type==='polygon'){ctx.save();ctx.beginPath();o.points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=this.foil(ctx,o.points[0].x,o.points[0].y,o.points[1].x,o.points[1].y);ctx.fill();ctx.strokeStyle='rgba(112,77,30,.28)';ctx.lineWidth=2;ctx.stroke();ctx.clip();ctx.strokeStyle='rgba(255,248,225,.3)';ctx.lineWidth=1;for(let i=0;i<4;i++)wave(ctx,0,1000,y-30+i*20,9,130,i*12);ctx.restore();}
       else if(type==='boost'){const shape=P.boostShape(o),w=shape.width,h=shape.height;ctx.save();ctx.translate(o.x,o.y);ctx.rotate(shape.angle);ctx.fillStyle='rgba(232,219,191,.48)';pill(ctx,-w/2,-h/2,w,h,shape.radius);ctx.fill();ctx.strokeStyle=this.foil(ctx,-w/2,0,w/2,h);ctx.lineWidth=1.5;ctx.stroke();for(let i=0;i<4;i++){const py=((i*h/3+(this.reducedMotion?0:time*40))%h)-h/2;ctx.globalAlpha=.35+(1-Math.abs(py)/(h/2))*.6;ctx.strokeStyle=t.primary;ctx.lineWidth=2;wave(ctx,-w*.35,w*.35,py,4,w*.6,0);}ctx.restore();}
-      else if(type==='portal'){const r=o.r||35;ctx.save();ctx.translate(o.x,o.y);ctx.rotate(this.reducedMotion?0:-time*.45);ctx.fillStyle=this.foil(ctx,-r,-r,r,r);ctx.beginPath();ctx.arc(0,0,r,0,TAU);ctx.fill();ctx.strokeStyle='rgba(108,78,39,.35)';ctx.lineWidth=1;ctx.stroke();ctx.fillStyle=PAPER_HI;ctx.beginPath();ctx.arc(0,0,r*.74,0,TAU);ctx.fill();ctx.strokeStyle=this.foil(ctx,-r,-r,r,r);ctx.lineWidth=1.3;shell(ctx,0,3,r*.55);for(let i=0;i<12;i++){const a=i/12*TAU;ctx.fillStyle=i%2?t.primary:'#b79e73';ctx.beginPath();ctx.arc(Math.cos(a)*r*1.25,Math.sin(a)*r*1.25,i%2?1.5:2.3,0,TAU);ctx.fill();}ctx.restore();}
+      else if(type==='portal'){const r=o.r||35;ctx.save();ctx.translate(o.x,o.y);ctx.rotate(this.reducedMotion?0:-time*.45);ctx.fillStyle=this.foil(ctx,-r,-r,r,r);ctx.beginPath();ctx.arc(0,0,r,0,TAU);ctx.fill();ctx.strokeStyle='rgba(108,78,39,.35)';ctx.lineWidth=1;ctx.stroke();ctx.fillStyle=PAPER_HI;ctx.beginPath();ctx.arc(0,0,r*.74,0,TAU);ctx.fill();ctx.strokeStyle=this.foil(ctx,-r,-r,r,r);ctx.lineWidth=1.3;shell(ctx,0,3,r*.55);for(let i=0;i<12;i++){const a=i/12*TAU;ctx.fillStyle=i%2?t.primary:'#b79e73';ctx.beginPath();ctx.arc(Math.cos(a)*r*1.25,Math.sin(a)*r*1.25,i%2?1.5:2.3,0,TAU);ctx.fill();}ctx.restore();ctx.save();ctx.textAlign='center';ctx.font='700 13px system-ui,sans-serif';ctx.fillStyle='#674B27';ctx.fillText((o.pair||'').charAt(0).toUpperCase()+(o.exit?' 도착':' 진입'),o.x,o.y-r-19);ctx.restore();}
+    }
+    portalPairs(map) {
+      return (map.obstacles || []).filter(o => o.type === 'portal' && !o.exit && Number.isFinite(o.targetX) && Number.isFinite(o.targetY))
+        .map(o => ({ x: o.x, y: o.y, targetX: o.targetX, targetY: o.targetY, pair: o.pair }));
+    }
+    drawPortalGuides(map, visible) {
+      const ctx = this.ctx;
+      for (const route of this.portalPairs(map)) {
+        if (route.y > visible.bottom + 60 || route.targetY < visible.top - 60) continue;
+        ctx.save(); ctx.strokeStyle='rgba(119,85,39,.42)';ctx.lineWidth=2.5;ctx.setLineDash([4,12]);ctx.beginPath();
+        ctx.moveTo(route.x,route.y);ctx.bezierCurveTo(route.x,route.y+230,route.targetX,route.targetY-230,route.targetX,route.targetY);ctx.stroke();ctx.setLineDash([]);
+        ctx.fillStyle='#795831';ctx.beginPath();ctx.moveTo(route.targetX,route.targetY-49);ctx.lineTo(route.targetX-8,route.targetY-63);ctx.lineTo(route.targetX+8,route.targetY-63);ctx.closePath();ctx.fill();ctx.restore();
+      }
     }
     drawFinish(map,time,visible){const y=map.finish&&map.finish.y||map.height-120;if(y<visible.top-180||y>visible.bottom+180)return;const ctx=this.ctx,x=80,w=map.width-160;ctx.save();ctx.fillStyle=PAPER_HI;pill(ctx,x,y-82,w,100,9);ctx.fill();ctx.strokeStyle=this.foil(ctx,x,y-90,x+w,y+25);ctx.lineWidth=3;ctx.stroke();ctx.strokeStyle='rgba(120,87,39,.28)';ctx.lineWidth=.8;pill(ctx,x+9,y-73,w-18,81,4);ctx.stroke();ctx.textAlign='center';ctx.fillStyle=INK;ctx.font='700 25px Georgia,serif';ctx.fillText('행운 도착',map.width/2,y-38);ctx.font='500 11px system-ui,sans-serif';ctx.fillStyle='#8a7760';ctx.fillText('어른뭉방구  ·  당첨을 확인하는 곳',map.width/2,y-12);ctx.strokeStyle=this.foil(ctx,x,y-75,x+w,y);ctx.fillStyle=this.theme.primary;ctx.lineWidth=1.3;shell(ctx,x+50,y-30,22);shell(ctx,x+w-50,y-30,22);ctx.strokeStyle='rgba(170,137,82,.55)';ctx.setLineDash([3,6]);ctx.beginPath();ctx.moveTo(x+24,y+32);ctx.lineTo(x+w-24,y+32);ctx.stroke();ctx.setLineDash([]);ctx.restore();}
     drawMarble(m, total, leader, visible, time, dt, idle) {
@@ -99,17 +112,19 @@
       const trail = sourceTrail.slice(-(this.quality === 'high' ? 14 : this.quality === 'medium' ? 7 : 3));
       if (m.y + r * 6 < visible.top || m.y - r * 6 > visible.bottom) return;
       const speed = Math.hypot(m.vx || 0, m.vy || 0);
-      if (!this.reducedMotion && speed > 60 && trail.length > 1 && this.quality !== 'low') {
-        ctx.save(); ctx.lineCap = 'round'; ctx.globalCompositeOperation = 'source-over';
-        for (let i = 1; i < trail.length; i++) { const a = i / trail.length; ctx.globalAlpha = a * .27 * Math.min(1, speed / 480); ctx.strokeStyle = color; ctx.lineWidth = r * 1.2 * a; ctx.beginPath(); ctx.moveTo(trail[i].x, trail[i].y); ctx.lineTo(trail[i - 1].x, trail[i - 1].y); ctx.stroke(); } ctx.restore();
+      if (!m.finished && !this.reducedMotion && speed > 80 && trail.length > 2 && this.quality !== 'low' && (total < 80 || leader && leader.id === m.id)) {
+        // One thin, rounded curve reads as motion without stacking square strokes over nearby collisions.
+        ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.globalAlpha = .17 * Math.min(1, speed / 480);
+        ctx.strokeStyle = color; ctx.lineWidth = r * .65; ctx.beginPath(); ctx.moveTo(trail[0].x, trail[0].y);
+        for (let i = 1; i < trail.length - 1; i++) ctx.quadraticCurveTo(trail[i].x, trail[i].y, (trail[i].x + trail[i + 1].x) / 2, (trail[i].y + trail[i + 1].y) / 2);
+        ctx.lineTo(m.x, m.y); ctx.stroke(); ctx.restore();
       }
       ctx.drawImage(this.marbleSprite(color), m.x - r * 2.56, m.y - r * 2.56, r * 5.12, r * 5.12);
       ctx.save(); ctx.translate(m.x, m.y); ctx.rotate((m.angle || 0) * .35); ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.beginPath(); ctx.ellipse(-r * .29, -r * .38, r * .3, r * .16, -.6, 0, TAU); ctx.fill(); ctx.fillStyle = 'rgba(255,255,255,.17)'; ctx.beginPath(); ctx.ellipse(r * .29, r * .35, r * .17, r * .06, -.5, 0, TAU); ctx.fill(); ctx.restore();
       const isLeader = leader && leader.id === m.id;
       if (isLeader) { ctx.strokeStyle = this.foil(ctx,m.x-r*2,m.y-r*2,m.x+r*2,m.y+r*2); ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(m.x, m.y, r * 1.7, 0, TAU); ctx.stroke(); }
-      if ((this.quality === 'high' || (this.quality === 'medium' && total < 80) || isLeader) && !m.finished) this.drawName(m, r, color, isLeader);
     }
-    drawName(m, r, color, leader) {
+    nameSprite(m, leader) {
       const ctx = this.ctx, font = leader ? 12 : 10;
       let name = m.name || 'PLAYER'; if (name.length > 14) name = name.slice(0, 13) + '…';
       const key = `${leader ? 'leader' : 'name'}:${name}`; let label = this.nameSprites.get(key);
@@ -121,8 +136,61 @@
         if (leader) { c.strokeStyle='#a87d37';c.lineWidth=1;sun(c,15,height/2,7,10); }
         label = { sprite, width: width + 2, height: height + 2 }; if (this.nameSprites.size >= 550) this.nameSprites.delete(this.nameSprites.keys().next().value); this.nameSprites.set(key, label);
       }
-      const zoom = Math.max(.16, this.currentZoom), width = label.width / zoom, height = label.height / zoom;
-      ctx.drawImage(label.sprite, m.x - width / 2, m.y - r - height - 7 / zoom, width, height);
+      return label;
+    }
+    planLabels(marbles, leader, camera, area) {
+      const active = marbles.filter(m => !m.finished);
+      const limit = marbles.length <= 12 ? 12 : marbles.length <= 50 ? 7 : marbles.length <= 200 ? 3 : 1;
+      const visible = active.map(m => ({ marble: m, point: camera.worldToScreen(m.x, m.y), radius: (m.r || 12) * camera.zoom }))
+        .filter(item => item.point.x >= area.x && item.point.x <= area.x + area.w && item.point.y >= area.y && item.point.y <= area.y + area.h);
+      const candidates = visible.slice().sort((a, b) => (b.marble.id === (leader && leader.id)) - (a.marble.id === (leader && leader.id)) || b.marble.y - a.marble.y).slice(0, limit);
+      const placements = [];
+      for (const item of candidates) {
+        const isLeader = !!leader && item.marble.id === leader.id, label = this.nameSprite(item.marble, isLeader);
+        const w = label.width, h = label.height, x = item.point.x, y = item.point.y, r = item.radius;
+        const positions = [
+          { x: x - w / 2, y: y - r - h - 6 }, { x: x + r + 6, y: y - h / 2 },
+          { x: x - r - w - 6, y: y - h / 2 }, { x: x - w / 2, y: y + r + 6 }
+        ];
+        let best = null, score = Infinity;
+        for (const box of positions) {
+          if (box.x < area.x + 3 || box.y < area.y + 3 || box.x + w > area.x + area.w - 3 || box.y + h > area.y + area.h - 3) continue;
+          let overlap = 0;
+          for (const other of visible) {
+            if (other === item) continue;
+            const px = clamp(other.point.x, box.x, box.x + w), py = clamp(other.point.y, box.y, box.y + h);
+            if (Math.hypot(other.point.x - px, other.point.y - py) < other.radius + 2) overlap++;
+          }
+          for (const placed of placements) if (box.x < placed.x + placed.label.width + 4 && box.x + w + 4 > placed.x && box.y < placed.y + placed.label.height + 4 && box.y + h + 4 > placed.y) overlap += 3;
+          if (overlap < score) { best = box; score = overlap; }
+          if (score === 0) break;
+        }
+        if (best && (score === 0 || isLeader)) placements.push({ marble: item.marble, label, x: best.x, y: best.y });
+      }
+      return placements;
+    }
+    drawLabels(marbles, leader, camera, area) {
+      const ctx = this.ctx, placements = this.planLabels(marbles, leader, camera, area);
+      ctx.save(); ctx.beginPath(); ctx.rect(area.x, area.y, area.w, area.h); ctx.clip();
+      for (const item of (this.quality === 'low' && marbles.length > 12 ? placements.slice(0, 1) : placements)) ctx.drawImage(item.label.sprite, item.x, item.y, item.label.width, item.label.height);
+      ctx.restore();
+    }
+    finishDisplay(finished, map) {
+      const recent = finished.slice(-12), start = finished.length - recent.length;
+      return recent.map((marble, index) => ({ marble, rank: start + index + 1,
+        x: 145 + ((start + index) % 6) * 142,
+        y: map.finish.y + 65 + (Math.floor(((start + index) % 12) / 6) * 72) }));
+    }
+    drawFinishers(physics, map, visible) {
+      const finished = physics.finished || [], y = map.finish.y;
+      if (!finished.length || y > visible.bottom + 20 || y + 190 < visible.top) return;
+      const ctx = this.ctx;
+      for (const entry of this.finishDisplay(finished, map)) {
+        const color = marbleColor(entry.marble.colorIndex, physics.marbles.length, this.theme), r = 10;
+        ctx.drawImage(this.marbleSprite(color), entry.x - r * 2.56, entry.y - r * 2.56, r * 5.12, r * 5.12);
+      }
+      ctx.save(); ctx.textAlign = 'center'; ctx.font = '600 12px system-ui,sans-serif'; ctx.fillStyle = '#765633';
+      ctx.fillText('완주 ' + finished.length + ' / ' + physics.marbles.length, map.width / 2, y + 185); ctx.restore();
     }
     drawEffects(effects,visible){if(!effects)return;const ctx=this.ctx;ctx.save();if(effects.lead&&Number.isFinite(effects.lead.x)&&!this.reducedMotion){const lead=effects.lead;ctx.globalAlpha=Math.min(.55,lead.life*.4);ctx.drawImage(this.glow(lead.color||this.theme.primary),lead.x-110,lead.y-110,220,220);}
       for(const ring of effects.rings){if(ring.y<visible.top-ring.radius||ring.y>visible.bottom+ring.radius)continue;ctx.strokeStyle=ring.color;ctx.globalAlpha=ring.life/ring.duration*.6;ctx.lineWidth=1+ring.life/ring.duration;ctx.beginPath();ctx.arc(ring.x,ring.y,ring.radius,0,TAU);ctx.stroke();}
@@ -142,14 +210,18 @@
       const shake = !this.reducedMotion && effects ? effects.shake : 0, sx = Math.sin(time * 93) * shake * 2, sy = Math.cos(time * 107) * shake * 1.4;
       ctx.save(); ctx.translate(area.x + area.w / 2 + sx, area.y + area.h / 2 + sy); ctx.scale(scale, scale); ctx.translate(-camera.x, -camera.y);
       const visible = { top: camera.y - this.height / (2 * scale) - 100, bottom: camera.y + this.height / (2 * scale) + 100 };
-      this.drawBoard(map, time, visible); for (const o of map.obstacles || []) this.drawObstacle(o, physics, effects, time, visible); this.drawFinish(map, time, visible);
+      this.drawBoard(map, time, visible); this.drawPortalGuides(map, visible); for (const o of map.obstacles || []) this.drawObstacle(o, physics, effects, time, visible); this.drawFinish(map, time, visible);
       this.drawEffects(effects, visible);
       if (leader && effects && effects.lead && !this.reducedMotion) { const remaining = effects.lead.life || effects.lead.time || 0; ctx.save(); ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = Math.min(.45, remaining * .4); ctx.drawImage(this.glow(this.theme.primary), leader.x - 110, leader.y - 110, 220, 220); ctx.restore(); }
-      if (!state.hideMarbles) for (const m of marbles) if (!(status === 'finished' && winner && m.id === winner.id)) this.drawMarble(m, marbles.length, leader, visible, time, dt, status === 'idle');
+      if (!state.hideMarbles) {
+        for (const m of marbles) if (!m.finished) this.drawMarble(m, marbles.length, leader, visible, time, dt, status === 'idle');
+        this.drawFinishers(physics, map, visible);
+      }
       ctx.restore(); ctx.drawImage(this.vignette, 0, 0, this.width, this.height);
       if (this.quality === 'high') { ctx.save(); ctx.globalAlpha = .26; ctx.fillStyle = ctx.createPattern(this.noise, 'repeat'); ctx.fillRect(0, 0, this.width, this.height); ctx.restore(); }
       if(photoFinish){ctx.save();ctx.textAlign='center';ctx.font='600 10px system-ui,sans-serif';ctx.fillStyle='#8f6834';ctx.fillText('아주 가까운 승부  ·  마지막 순간을 천천히',area.x+area.w/2,area.y+35);ctx.restore();}
       if(!this.reducedMotion&&effects&&effects.flash>.01){ctx.save();ctx.globalAlpha=effects.flash*.06;ctx.fillStyle='#fff6dc';ctx.fillRect(0,0,this.width,this.height);ctx.restore();}
+      if (!state.hideMarbles && status !== 'finished') this.drawLabels(marbles, leader, camera, area);
       if (status === 'finished' && winner) this.drawWinner(winner, marbles.length, camera, dt, time); else { this.winProgress = 0; this.lastWinner = null; }
     }
     cinemaBoard(physics, bottom) {
@@ -157,6 +229,7 @@
       try {
         this.ctx = ctx; const visible = { top: 0, bottom };
         this.drawBoard(map, 0, visible);
+        this.drawPortalGuides(map, visible);
         for (const obstacle of map.obstacles || []) this.drawObstacle(obstacle, physics, null, 0, visible);
         this.drawFinish(map, 0, visible);
       } finally { this.ctx = original; }
@@ -165,8 +238,11 @@
     drawMinimap(canvas, physics, camera) {
       if (!canvas || !physics || !physics.map) return; const map = physics.map, ctx = canvas.getContext('2d'), w = canvas.width, h = canvas.height, pad = 8, sx = (w - pad * 2) / map.width, sy = (h - pad * 2) / map.height, t = this.theme;
       ctx.clearRect(0, 0, w, h); ctx.fillStyle = PAPER_HI; pill(ctx, 0, 0, w, h, 12); ctx.fill(); ctx.save(); ctx.translate(pad, pad); ctx.scale(sx, sy);
+      for (const route of this.portalPairs(map)) { ctx.strokeStyle='rgba(124,86,37,.6)';ctx.lineWidth=14;ctx.setLineDash([16,30]);ctx.beginPath();ctx.moveTo(route.x,route.y);ctx.lineTo(route.targetX,route.targetY);ctx.stroke();ctx.setLineDash([]); }
       ctx.fillStyle = 'rgba(164,132,78,.4)'; for (const o of map.obstacles || []) { if (o.type === 'pin' || o.type === 'bumper') { ctx.beginPath(); ctx.arc(o.x, o.y, Math.max(o.r || 10, 15), 0, TAU); ctx.fill(); } else if (o.type === 'segment' || o.type === 'rotor' || o.type === 'moving') { const p = physics.getObstaclePose(o); ctx.strokeStyle = 'rgba(139,109,64,.45)'; ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(p.x1, p.y1); ctx.lineTo(p.x2, p.y2); ctx.stroke(); } }
-      ctx.fillStyle = '#75542f'; for (const m of physics.marbles || []) { ctx.beginPath(); ctx.arc(m.x, m.y, Math.max(m.r || 16, 22), 0, TAU); ctx.fill(); }
+      const active = (physics.marbles || []).filter(m => !m.finished), leader = active.reduce((best,m) => !best || m.y > best.y ? m : best, null);
+      ctx.fillStyle = 'rgba(103,75,43,.48)'; for (const m of active) { ctx.beginPath(); ctx.arc(m.x, m.y, Math.max(m.r || 16, 22), 0, TAU); ctx.fill(); }
+      if (leader) { ctx.fillStyle='#A65436';ctx.beginPath();ctx.arc(leader.x,leader.y,52,0,TAU);ctx.fill(); }
       ctx.strokeStyle = '#b98e49'; ctx.lineWidth = 12; const fy = map.finish && map.finish.y || map.height - 100; ctx.beginPath(); ctx.moveTo(60, fy); ctx.lineTo(map.width - 60, fy); ctx.stroke(); ctx.restore();
       const area = camera.viewport || { w: this.width, h: this.height }, vw = Math.min(w - 2 * pad, area.w / camera.zoom * sx), vh = Math.min(h - 2 * pad, area.h / camera.zoom * sy), x = clamp(pad + camera.x * sx - vw / 2, pad, w - pad - vw), y = clamp(pad + camera.y * sy - vh / 2, pad, h - pad - vh);
       ctx.fillStyle = 'rgba(182,140,71,.13)'; ctx.fillRect(x, y, vw, vh); ctx.strokeStyle = '#b68c47'; ctx.lineWidth = 1; ctx.strokeRect(x, y, vw, vh);
