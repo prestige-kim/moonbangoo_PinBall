@@ -192,7 +192,7 @@
   }
   function launchDuration(stage) {
     if (settings.reducedMotion) return stage === 'mixing' ? .65 : .35;
-    return { mixing: 1.8, aiming: 2.2, flight: 3.2 }[stage];
+    return (P.CINEMA && P.CINEMA.timing || { mixing: 3.4, aiming: 2.8, flight: 3.2 })[stage];
   }
   function updateLaunch(dt) {
     if (flightLanded) {

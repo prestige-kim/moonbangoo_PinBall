@@ -70,7 +70,7 @@ function boot(storage, options = {}) {
     const count = Math.ceil(seconds * frameRate);
     for (let i = 0; i < count; i++) { clock += 1000 / frameRate; frame(clock); }
   }
-  function launch() { advance(7.5); }
+  function launch() { advance(9.8); }
   return { P, callbacks, advance, launch };
 }
 
@@ -104,10 +104,10 @@ test('start connects shuffle, camera aim, exact landing and immediate race with 
   assert.equal(P.app.status, 'mixing');
   callbacks.start(); callbacks.setupcancel();
   assert.equal(P.app.runSettings.seed, seed);
-  advance(1.9);
+  advance(3.5);
   assert.equal(P.app.status, 'aiming');
   assert.equal(physics.time, 0);
-  advance(2.3);
+  advance(2.9);
   assert.equal(P.app.status, 'flight');
   assert.equal(P.app.camera.prepared, true);
   assert.equal(P.app.cinematic.commits, 1); assert.equal(P.app.cinematic.commitTime, 0);
@@ -299,7 +299,7 @@ test('stuck recovery is named in the UI, rate limited and reset for a new race',
 test('cannon sound fires once at discharge rather than when the flight scene first appears', () => {
   const { P, callbacks, advance } = boot();
   callbacks.start();
-  advance(4.03);
+  advance(6.23);
   assert.equal(P.app.status, 'flight');
   assert.equal(P.app.audio.types.filter(type => type === 'charge').length, 1);
   assert.equal(P.app.audio.types.filter(type => type === 'cannon').length, 0);
@@ -308,4 +308,14 @@ test('cannon sound fires once at discharge rather than when the flight scene fir
   advance(3);
   assert.equal(P.app.status, 'running');
   assert.equal(P.app.audio.types.filter(type => type === 'cannon').length, 1);
+});
+
+
+test('the clear shuffle window lasts at least two seconds before the cannon turns', () => {
+  const { P, callbacks, advance } = boot();
+  callbacks.start(); advance(.85);
+  assert.equal(P.app.status, 'mixing');
+  advance(2.2); assert.equal(P.app.status, 'mixing');
+  assert.equal(P.app.physics.time, 0);
+  advance(.5); assert.equal(P.app.status, 'aiming');
 });

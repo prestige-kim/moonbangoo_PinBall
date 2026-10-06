@@ -143,3 +143,22 @@ reducedCinema.commitShuffle(reducedPhysics);
 const normalPhysics = new P.Physics({ map: P.MAPS.classic, names: P.parseNames('조용한 구슬*6'), seed: 'REDUCED-CHAMBER' });
 const normalCinema = new P.Cinematic(canvas(), gameRenderer); normalCinema.commitShuffle(normalPhysics);
 assert.equal(JSON.stringify(reducedPhysics.marbles),JSON.stringify(normalPhysics.marbles),'visual accessibility never changes the real seeded outcome');
+
+// A slow reveal leaves a clear shuffle window, while the underlying seeded
+// chamber clock and handoff remain exactly the same as before this film change.
+assert(P.CINEMA.timing.mixing - P.CINEMA.timing.blurClear >= 2.5);
+assert.equal(P.CINEMA.timing.chamberMix + P.CINEMA.timing.chamberAim, 4);
+for (const [w, h] of [[1280,720],[390,844]]) {
+  const epsilon = 1e-4;
+  const begin = P.CINEMA.matchedViews(w,h,0).frame;
+  const nearBegin = P.CINEMA.matchedViews(w,h,epsilon).frame;
+  const end = P.CINEMA.matchedViews(w,h,1).frame;
+  const nearEnd = P.CINEMA.matchedViews(w,h,1-epsilon).frame;
+  for (const key of ['x','y','length','thickness','rotation']) {
+    assert(Math.abs(begin[key]-nearBegin[key])/epsilon < .01, 'orbit starts with zero camera velocity');
+    assert(Math.abs(end[key]-nearEnd[key])/epsilon < .01, 'orbit settles before the discharge');
+  }
+  const views=P.CINEMA.matchedViews(w,h,.4), completed=P.CINEMA.matchedViews(w,h,1);
+  const rolling=P.CINEMA.assemblyPose(.4,views.angle,completed.angle,false);
+  assert(rolling.alpha>.9 && rolling.rotation<-1, 'wheel rolls in instead of growing out of the chamber');
+}

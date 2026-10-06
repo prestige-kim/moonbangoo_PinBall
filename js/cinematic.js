@@ -2,10 +2,13 @@
   'use strict';
   const TAU = Math.PI * 2;
   const FIRE_MOMENT = .12;
+  // Visual pacing is independent of the four-second seeded chamber simulation.
+  const TIMING = Object.freeze({ mixing: 3.4, aiming: 2.8, flight: 3.2, blurClear: .8, chamberMix: 1.8, chamberAim: 2.2 });
   const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
   const lerp = (a, b, t) => a + (b - a) * t;
   const smooth = x => { x = clamp(x, 0, 1); return x * x * (3 - 2 * x); };
   const interval = (a, b, x) => smooth((x - a) / (b - a));
+  const easeCamera = x => { x = clamp(x, 0, 1); return x * x * x * (x * (x * 6 - 15) + 10); };
   const COATS = [
     ['#faf7e8', '#ded1b5', '#a99678'], ['#fff0ba', '#d6a340', '#927027'],
     ['#d8eedc', '#81ac8b', '#466853'], ['#fbf9ed', '#e7dfcd', '#b0a08a'],
@@ -70,7 +73,7 @@
     return { x: view.x + sx * c - sy * s, y: view.y + sx * s + sy * c };
   }
   function matchedViews(width, height, orbit, flight) {
-    const front = layout(width, height, 'front', 0, 0), angle = layout(width, height, 'angle', 1, flight || 0), t = smooth(orbit || 0);
+    const front = layout(width, height, 'front', 0, 0), angle = layout(width, height, 'angle', 1, flight || 0), t = easeCamera(orbit || 0);
     const f1 = pointInPlate(front, .31, .548), f2 = pointInPlate(front, .697, .548);
     const a1 = pointInPlate(angle, .193, .66), a2 = pointInPlate(angle, .317, .537);
     const fl = Math.hypot(f2.x - f1.x, f2.y - f1.y), al = Math.hypot(a2.x - a1.x, a2.y - a1.y);
@@ -124,7 +127,7 @@
     };
   }
   function assemblyPose(progress, view, finalView, reduced) {
-    const p = clamp(progress, 0, 1), amount = interval(.37, .79, p);
+    const p = clamp(progress, 0, 1), amount = interval(.34, .84, p);
     const finalCenter = pointInPlate(finalView, .244, .769), finalFrame = finalView.frame, frame = view.frame;
     const m = finalView.matrix;
     const axisX = { x: m.a * finalView.w * .083, y: m.b * finalView.w * .083 };
@@ -138,9 +141,9 @@
       y: frame.y + frame.axisY * along + frame.axisX * across };
     const settle = reduced ? 0 : Math.sin((p - .79) * 28) * Math.exp(-Math.max(0, p - .79) * 18) * interval(.79, .82, p) * (1 - interval(.95, 1, p));
     return {
-      x: center.x, y: center.y + (reduced ? 0 : (1 - amount) * radius * 1.65 + settle * radius * .055),
-      axisX, axisY, radius, alpha: interval(.38, .54, p),
-      scale: .94 + amount * .06, rotation: reduced || p === 1 ? 0 : (1 - amount) * -.65 + settle * .018,
+      x: center.x - (reduced ? 0 : (1 - amount) * radius * 1.75), y: center.y + (reduced ? 0 : (1 - amount) * radius * .12 + settle * radius * .035),
+      axisX, axisY, radius, alpha: interval(.29, .40, p),
+      scale: .94 + amount * .06, rotation: reduced || p === 1 ? 0 : (1 - amount) * -1.75 + settle * .012,
       support: amount, complete: p === 1
     };
   }
@@ -616,7 +619,7 @@
       const flight = stage === 'flight' ? p : 0;
       const views = matchedViews(w, h, aiming, 0), front = views.front, angle = views.angle, resting = matchedViews(w, h, 1, 0);
       const travel = boardView(w, h, state.camera, flight, reduced);
-      const dissolve = interval(.56, .69, aiming), reveal = stage === 'flight' ? interval(.72, 1, p) : 0;
+      const dissolve = interval(.27, .82, aiming), reveal = stage === 'flight' ? interval(.72, 1, p) : 0;
       const frontWeight = reduced && stage === 'aiming' ? 1 - interval(0, .46, p) : 1 - dissolve;
       const angleWeight = reduced && stage === 'aiming' ? interval(.54, 1, p) : dissolve;
       const reducedFade = reduced && stage === 'aiming' ? frontWeight + angleWeight : 1;
@@ -681,6 +684,6 @@
       return { reveal, fired: stage === 'flight' && blast.fired, cameraAmount: travel.amount };
     }
   }
-  P.CINEMA = { smooth, interval, descriptors, tubePose, layout, matchedViews, pointInPlate, project, flightPose, dischargeOrigin, assemblyPose, blastPose, Chamber, boardView, mapPoint, fireMoment: FIRE_MOMENT };
+  P.CINEMA = { smooth, interval, easeCamera, timing: TIMING, descriptors, tubePose, layout, matchedViews, pointInPlate, project, flightPose, dischargeOrigin, assemblyPose, blastPose, Chamber, boardView, mapPoint, fireMoment: FIRE_MOMENT };
   P.Cinematic = Cinematic;
 })(window.CosmicPinball = window.CosmicPinball || {});
