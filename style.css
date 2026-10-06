@@ -94,3 +94,7 @@ body[data-theme=gold] .race-panel .glass-panel{background:rgba(55,41,27,.97);bor
 body[data-theme=gold] .rank-name,body[data-theme=gold] .rank-number,body[data-theme=gold] .race-stats>div>small{color:#F0DEC0}
 body[data-theme=gold] .stage-heading h2,body[data-theme=gold] .stage-tag,body[data-theme=gold] .minimap-heading{color:#F6E7C8}
 body[data-theme=gold] .toast{background:#392819;color:#FFF0CE;border-color:#E2C58B}
+
+/* Pinball presentation: no launch captions or system footer. */
+.scene-status,.system-footer{display:none!important}
+.winner-medallion img{width:58px;height:51px;object-fit:contain}

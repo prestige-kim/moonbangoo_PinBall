@@ -177,7 +177,7 @@ test('original saved participants survive the brand upgrade with gentler default
   assert.equal(P.app.settings.names, '손님*50');
   assert.equal(P.app.settings.gravity, 620);
   assert.equal(P.app.settings.speed, 1);
-  assert.equal(P.app.settings.theme, 'gold');
+  assert.equal(P.app.settings.theme, 'cosmic');
   assert.equal(P.app.settings.rule, 'last');
   assert.equal(P.app.settings.sound, false);
   callbacks.start();
@@ -189,7 +189,7 @@ test('invalid rank cannot launch a race', () => {
   Object.assign(P.app.ui.values, { rule: 'nth', rankN: 7 });
   callbacks.start();
   assert.equal(P.app.status, 'setup');
-  assert.match(P.app.ui.errors[0], /구슬 수/);
+  assert.match(P.app.ui.errors[0], /핀볼 수/);
 });
 
 test('first, last, nth and top rules select physical arrival order', () => {
@@ -212,7 +212,7 @@ test('live visuals and speed leave the physical run configuration intact', () =>
   assert.equal(P.app.physics, originalPhysics);
   assert.equal(P.app.runSettings.gravity, 620);
   assert.equal(P.app.runSettings.seed, originalSeed);
-  assert.equal(P.app.renderer.theme, 'ice');
+  assert.equal(P.app.renderer.theme, 'cosmic');
   assert.equal(P.app.renderer.reduced, true);
 });
 
@@ -328,7 +328,7 @@ test('removed saved courses migrate to classic while preserving participants and
     assert.equal(P.app.settings.map,'classic');
     assert.equal(P.app.physics.map,P.MAPS.classic);
     assert.equal(P.app.physics.marbles.length,50);
-    assert.equal(P.app.settings.seed,values.seed);assert.equal(P.app.settings.gravity,800);assert.equal(P.app.settings.restitution,.6);assert.equal(P.app.settings.theme,'gold');
+    assert.equal(P.app.settings.seed,values.seed);assert.equal(P.app.settings.gravity,800);assert.equal(P.app.settings.restitution,.6);assert.equal(P.app.settings.theme,'cosmic');
     callbacks.start();assert.equal(P.app.runSettings.map,'classic');
   }
 });

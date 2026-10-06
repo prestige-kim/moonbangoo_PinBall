@@ -37,16 +37,16 @@
         name = value.slice(0, star).trim();
         var copies = value.slice(star + 1).trim();
         if (!/^[1-9]\d*$/.test(copies) || name.indexOf('*') >= 0) {
-          throw new Error('구슬 개수는 이름*2처럼 1 이상의 정수로 입력해 주세요.');
+          throw new Error('핀볼 개수는 이름*2처럼 1 이상의 정수로 입력해 주세요.');
         }
         count = Number(copies);
       }
-      if (!name) throw new Error('구슬 개수 앞에 참가자 이름을 입력해 주세요.');
+      if (!name) throw new Error('핀볼 개수 앞에 참가자 이름을 입력해 주세요.');
       if (name.length > 40) throw new Error('참가자 이름은 40자 이내로 입력해 주세요.');
       if (/[\u0000-\u001f\u007f<>]/.test(name)) throw new Error('이름에는 제어 문자나 꺾쇠 괄호를 사용할 수 없어요.');
       if (seen.has(name)) throw new Error('“' + name + '” 이름이 중복돼요. 같은 이름은 ' + name + '*2처럼 입력해 주세요.');
       seen.add(name);
-      if (!Number.isSafeInteger(count) || names.length + count > 500) throw new Error('구슬은 최대 500개까지 만들 수 있어요.');
+      if (!Number.isSafeInteger(count) || names.length + count > 500) throw new Error('핀볼은 최대 500개까지 만들 수 있어요.');
       for (var copy = 1; copy <= count; copy++) {
         names.push({ id: 'marble-' + (names.length + 1), name: name, copy: copy, copies: count });
       }
@@ -56,7 +56,7 @@
 
   function Physics(options) {
     options = options || {};
-    if (!options.names || !options.names.length || options.names.length > 500) throw new Error('참가자는 1~500개의 구슬로 설정해 주세요.');
+    if (!options.names || !options.names.length || options.names.length > 500) throw new Error('참가자는 1~500개의 핀볼로 설정해 주세요.');
     this.map = options.map || P.MAPS.classic;
     this.bounds = P.boardBounds(this.map);
     this.seed = String(options.seed == null ? 'cosmic' : options.seed);

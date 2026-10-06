@@ -77,11 +77,7 @@
         self.rule = button.dataset.rule; self.syncSelections(); self.clearError(); self.emit('change', self.readSettings());
       });
     });
-    document.querySelectorAll('[data-theme-choice]').forEach(function (button) {
-      button.addEventListener('click', function () {
-        self.setTheme(button.dataset.themeChoice); self.emit('theme', self.readSettings());
-      });
-    });
+
     $('settings-form').addEventListener('input', function (event) {
       self.updateOutputs();
       if (event.target.id === 'names') { self.updateParticipants(); self.clearError(); }
@@ -140,14 +136,14 @@
     this.setTheme(settings.theme || this.theme);
     this.syncSelections(); this.syncSound(); this.updateOutputs(); this.updateParticipants();
   };
-  UI.prototype.setTheme = function (id) {
-    this.theme = ['cosmic', 'candy', 'gold', 'ice'].indexOf(id) >= 0 ? id : 'cosmic';
+  UI.prototype.setTheme = function () {
+    this.theme = 'cosmic';
     document.body.dataset.theme = this.theme;
     this.syncSelections();
   };
   UI.prototype.syncSelections = function () {
     var self = this;
-    [['data-rule', this.rule], ['data-theme-choice', this.theme]].forEach(function (pair) {
+    [['data-rule', this.rule]].forEach(function (pair) {
       document.querySelectorAll('[' + pair[0] + ']').forEach(function (button) {
         var active = button.getAttribute(pair[0]) === pair[1]; button.classList.toggle('active', active); button.setAttribute('aria-pressed', String(active));
       });
@@ -181,16 +177,16 @@
     } catch (_) { count = null; }
     $('participant-count').textContent = count === null ? '—' : count;
     $('mobile-count').textContent = count === null ? '—' : count;
-    $('ready-label').textContent = count === null ? '입력 내용을 확인해 주세요' : count + '개의 구슬이 준비됐어요';
+    $('ready-label').textContent = count === null ? '입력 내용을 확인해 주세요' : count + '개의 핀볼이 준비됐어요';
   };
   UI.prototype.updateStartCopy = function () {
     var stages = {
-      mixing: ['구슬을 섞고 있어요', '유리 대포 속에서 새로운 자리를 찾는 중'],
+      mixing: ['핀볼을 섞고 있어요', '유리 대포 속에서 새로운 자리를 찾는 중'],
       aiming: ['출발선을 향하고 있어요', '오늘의 작은 행운을 보낼 준비를 합니다'],
-      flight: ['행운을 날리고 있어요', '구슬이 도착하면 놀이판이 펼쳐집니다'],
-      running: ['행운이 굴러가는 중', '마지막 구슬까지 천천히 지켜봐 주세요']
+      flight: ['행운을 날리고 있어요', '핀볼이 도착하면 놀이판이 펼쳐집니다'],
+      running: ['행운이 굴러가는 중', '마지막 핀볼까지 천천히 지켜봐 주세요']
     };
-    var copy = this.locked ? (stages[this.scene] || stages.mixing) : ['게임 시작', '구슬을 섞고, 오늘의 행운을 날려요'];
+    var copy = this.locked ? (stages[this.scene] || stages.mixing) : ['게임 시작', '핀볼을 섞고, 오늘의 행운을 날려요'];
     $('start-button').querySelector('span:nth-child(2)').firstChild.textContent = copy[0];
     $('start-button').querySelector('small').textContent = copy[1];
   };
@@ -203,7 +199,7 @@
   };
   UI.prototype.setStatus = function (status) {
     this.status = status;
-    var copy = { intro: '작은 행운을 기다리는 중', setup: '오늘의 놀이를 준비해 주세요', idle: '추첨을 준비하고 있어요', ready: '추첨을 준비하고 있어요', mixing: '구슬을 고르게 섞고 있어요', aiming: '대포를 출발선으로 돌리고 있어요', flight: '행운을 날리고 있어요', running: '행운이 천천히 굴러오는 중', finished: '오늘의 행운이 도착했습니다' };
+    var copy = { intro: '작은 행운을 기다리는 중', setup: '오늘의 놀이를 준비해 주세요', idle: '추첨을 준비하고 있어요', ready: '추첨을 준비하고 있어요', mixing: '핀볼을 고르게 섞고 있어요', aiming: '대포를 출발선으로 돌리고 있어요', flight: '행운을 날리고 있어요', running: '행운이 천천히 굴러오는 중', finished: '오늘의 행운이 도착했습니다' };
     $('game-status').textContent = copy[status] || String(status).toUpperCase();
     document.body.dataset.status = status;
     this.updateStartCopy();
@@ -247,7 +243,7 @@
       }
       if (event.key !== 'Tab') return;
       var controls = self.scene === 'setup' ? self.getSetupControls() : (self.scene === 'intro' ? [$('intro-start-button')] : []);
-      if (!controls.length) { event.preventDefault(); $('scene-status').focus({ preventScroll: true }); return; }
+      if (!controls.length) { event.preventDefault(); $('game-canvas').focus({ preventScroll: true }); return; }
       var index = controls.indexOf(document.activeElement);
       if (index < 0 || (event.shiftKey && index === 0) || (!event.shiftKey && index === controls.length - 1)) {
         event.preventDefault(); controls[event.shiftKey ? controls.length - 1 : 0].focus({ preventScroll: true });
@@ -290,13 +286,12 @@
     else if (previous !== 'running' && previous !== 'finished') this.panelOpen = false;
     this.updatePanel(); this.syncSceneAccess(); this.setStatus(stage);
     this.setSceneProgress({ reveal: this.isGameScene() ? 1 : 0 });
-    var captions = { mixing: '유리 대포 속에서 구슬을 고르게 섞고 있어요.', aiming: '출발선을 향해 대포를 돌립니다.', flight: '오늘의 작은 행운이 날아갑니다.' };
-    $('scene-status').textContent = captions[stage] || '';
+    $('scene-status').textContent = '';
     if (!this.isGameScene()) { this.hideResults(); this.hideCountdown(); }
     if (stage === 'intro' && previous !== stage) $('intro-start-button').focus({ preventScroll: true });
     else if (stage === 'setup' && previous !== stage) {
       requestAnimationFrame(function () { if (self.scene !== 'setup') return; var next = !$('names').disabled ? $('names') : self.getSetupControls()[0]; if (next) next.focus({ preventScroll: true }); });
-    } else if (['mixing','aiming','flight'].indexOf(stage) >= 0 && previous !== stage) $('scene-status').focus({ preventScroll: true });
+    } else if (['mixing','aiming','flight'].indexOf(stage) >= 0 && previous !== stage) $('game-canvas').focus({ preventScroll: true });
     else if (stage === 'running' && previous !== 'running') $('game-canvas').focus({ preventScroll: true });
   };
   UI.prototype.setSceneProgress = function (payload) {
@@ -372,7 +367,6 @@
       var small = document.createElement('small'); small.textContent = '.' + String(Math.floor((Math.max(0, data.time) % 1) * 100)).padStart(2, '0'); $('elapsed').appendChild(small);
     }
     if (data.fps !== undefined) $('fps').textContent = Math.round(data.fps);
-    if (data.seed !== undefined) { $('hud-seed').textContent = data.seed || '매번 새 출발'; $('hud-seed').title = data.seed || '발사할 때마다 새로운 시드로 출발합니다'; }
     if (Array.isArray(data.ranking)) this.renderRanking(data.ranking.slice(0, 5));
   };
   UI.prototype.writeRemaining = function (count) {
@@ -438,11 +432,10 @@
     var winners = Array.isArray(data.winners) ? data.winners : [];
     $('winner-heading').textContent = winners.length > 3 ? winners.length + '개의 행운' : (winners.length ? winners.map(function (winner) { return winner.name; }).join(' · ') : '행운의 주인공');
     $('winner-heading').classList.remove('winner-reveal'); void $('winner-heading').offsetWidth; $('winner-heading').classList.add('winner-reveal');
-    $('result-rule').textContent = (data.ruleLabel || '1등 당첨') + ' · 오늘의 행운이 도착했습니다';
-    $('winner-subtitle').textContent = winners.length > 1 ? winners.length + '개의 구슬에 오늘의 행운이 도착했습니다.' : '조개와 햇살 사이로, 오늘의 행운이 굴러왔습니다.';
+    $('result-rule').textContent = data.ruleLabel || '1등 당첨';
     $('result-seed').textContent = data.seed || '—'; $('result-seed').title = data.seed || '';
     $('result-time').textContent = formatTime(data.time, true);
-    $('result-total').textContent = (data.ranking || []).length + '개 구슬';
+    $('result-total').textContent = (data.ranking || []).length + '개 핀볼';
     this.renderResults(false);
     this.previousFocus = document.activeElement;
     if (!$('results-dialog').open) $('results-dialog').showModal();

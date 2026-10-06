@@ -19,7 +19,7 @@
     s.names = typeof s.names === 'string' ? s.names : defaults.names;
     s.seed = typeof s.seed === 'string' ? s.seed.trim().slice(0, 128) : defaults.seed;
     s.map = 'classic';
-    s.theme = P.THEMES[s.theme] ? s.theme : defaults.theme;
+    s.theme = defaults.theme;
     s.rule = ['first', 'last', 'nth', 'top'].includes(s.rule) ? s.rule : 'first';
     s.rankN = Number(s.rankN);
     s.radius = clamp(s.radius, 8, 16, defaults.radius);
@@ -174,7 +174,7 @@
     try {
       names = P.parseNames(next.names);
       if (['nth', 'top'].includes(next.rule) && (!Number.isInteger(next.rankN) || next.rankN < 1 || next.rankN > names.length)) {
-        throw new Error('당첨 순위는 1부터 구슬 수(' + names.length + ')까지의 정수로 입력해 주세요.');
+        throw new Error('당첨 순위는 1부터 핀볼 수(' + names.length + ')까지의 정수로 입력해 주세요.');
       }
     } catch (error) { ui.showError(error.message); return; }
     settings = next; runSettings = Object.assign({}, next, { seed: next.seed || newRoundSeed() });
@@ -198,7 +198,6 @@
     if (flightLanded) {
       flightLanded = false; accumulator = 0;
       setScene('running');
-      ui.toast('출발 · 행운의 구슬이 굴러갑니다');
       return;
     }
     launchElapsed += dt;
@@ -257,10 +256,10 @@
       effects.handle(event, P.THEMES[settings.theme], physics.marbles.length);
       audio.play(event.type, event.intensity, event.skill);
       if (event.type === 'rescue' && physics.time - lastRescueNotice >= 6) {
-        ui.toast('막힘 방지 · 정체된 구슬을 가볍게 밀었어요');
+        ui.toast('막힘 방지 · 정체된 핀볼을 가볍게 밀었어요');
         lastRescueNotice = physics.time;
       }
-      if (event.type === 'finish' && physics.finished.length === 1) ui.toast('첫 구슬이 결승에 도착했습니다');
+      if (event.type === 'finish' && physics.finished.length === 1) ui.toast('첫 핀볼이 결승에 도착했습니다');
     }
   }
   function updateRace(dt) {
@@ -363,7 +362,6 @@
     } catch (error) { ui.showError(error.message); }
   });
   ui.on('change', onChange);
-  ui.on('theme', onChange);
   ui.on('layout', resize);
   ui.on('follow', () => { if (['mixing', 'aiming', 'flight'].includes(status)) return; camera.follow = !camera.follow; camera.entrance = null; if (ui.setFollowing) ui.setFollowing(camera.follow); ui.toast(camera.follow ? '선두 추적을 켰습니다' : '자유롭게 코스를 둘러보세요'); });
   camera.attach(canvas);

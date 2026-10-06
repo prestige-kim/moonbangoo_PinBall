@@ -635,8 +635,8 @@
       gold.addColorStop(0, '#9f7c40'); gold.addColorStop(.24, '#eee0b8'); gold.addColorStop(.55, '#c9ad70'); gold.addColorStop(.8, '#f3e7c8'); gold.addColorStop(1, '#a2844e');
       ctx.strokeStyle = gold; ctx.lineWidth = 13; ctx.stroke(); arch(16); ctx.strokeStyle = 'rgba(166,132,72,.55)'; ctx.lineWidth = 3; ctx.stroke();
       ctx.textAlign = 'center'; ctx.font = '500 47px Georgia,serif';
-      ctx.fillStyle = '#fff8e5'; ctx.fillText('행운 구슬 뽑기', 502, -222);
-      ctx.fillStyle = '#b19459'; ctx.fillText('행운 구슬 뽑기', 500, -224);
+      ctx.fillStyle = '#fff8e5'; ctx.fillText('핀볼', 502, -222);
+      ctx.fillStyle = '#b19459'; ctx.fillText('핀볼', 500, -224);
       ctx.font = '400 24px system-ui,sans-serif'; ctx.fillStyle = '#a38855'; ctx.fillText(physics.map.name || '오늘의 놀이판', 500, -135);
       ctx.restore();
       if (this.boardCache.image) ctx.drawImage(this.boardCache.image, 0, 0, 1000, bottom);
