@@ -99,7 +99,8 @@
       m.e = frame.x - m.a * cx - m.c * cy; m.f = frame.y - m.b * cx - m.d * cy;
       view.matrix = m; view.frame = frame; return view;
     }
-    return { front: register(front, [.31, .548], [.697, .548], front.h * .264), angle: register(angle, [.193, .66], [.317, .537], angle.h * .156), frame };
+    const bridge = register(layout(width, height, 'front', 0, 0), [.32, .504], [.68, .504], front.h * .30);
+    return { bridge, front: register(front, [.31, .548], [.697, .548], front.h * .264), angle: register(angle, [.193, .66], [.317, .537], angle.h * .156), frame };
   }
   function project(local, front, angle, orbit) {
     if (front.frame) {
@@ -321,7 +322,7 @@
       this.lastStage = null; this.lastTime = 0; this.frozenTube = null;
       const random = rng('mungbanggu-gold-dust');
       this.dust = Array.from({ length: 100 }, (_, i) => ({ x: random(), y: random(), phase: random() * TAU, r: .4 + random() * 1.4, index: i }));
-      this.ready = Promise.all(['front', 'angle', 'barrel', 'wheel'].map(shot => this.loadPlate(shot, './assets/cannon-' + shot + '.png')));
+      this.ready = Promise.all(['front', 'angle', 'barrel', 'wheel', 'bridge'].map(shot => this.loadPlate(shot, './assets/cannon-' + shot + '.png')));
     }
     loadPlate(shot, path) {
       return new Promise(resolve => {
@@ -344,6 +345,7 @@
       if (!this.cache || this.cache.physics !== physics || this.cache.count !== count) {
         this.cache = { physics, count, entries: descriptors(physics, 36) }; this.frozenTube = null;
         this.chamber = new Chamber(this.cache.entries, physics && physics.seed || 'preview');
+        this.previewChamber = new Chamber(this.cache.entries, (physics && physics.seed || 'preview') + '|welcome');
         this.stillTube = this.cache.entries.map(entry => this.chamber.pose(entry.index));
         this.chamberBirth = this.lastTime || 0; this.shuffleCommitted = false; this.boardCache = null;
       }
@@ -399,9 +401,9 @@
     bodyFor(shot, image) {
       if (this.bodyPlates.has(shot)) return this.bodyPlates.get(shot);
       const w = image.naturalWidth || image.width, h = image.naturalHeight || image.height;
-      const front = shot === 'front', a = { x: w * (front ? .31 : .193), y: h * (front ? .548 : .66) };
-      const b = { x: w * (front ? .697 : .317), y: h * (front ? .548 : .537) };
-      const length = Math.hypot(b.x - a.x, b.y - a.y), thickness = h * (front ? .264 : .156);
+      const front = shot === 'front' || shot === 'bridge', bridge = shot === 'bridge', a = { x: w * (bridge ? .32 : front ? .31 : .193), y: h * (bridge ? .504 : front ? .548 : .66) };
+      const b = { x: w * (bridge ? .68 : front ? .697 : .317), y: h * (bridge ? .504 : front ? .548 : .537) };
+      const length = Math.hypot(b.x - a.x, b.y - a.y), thickness = h * (bridge ? .30 : front ? .264 : .156);
       const rear = length * (front ? .48 : .86), fore = length * (front ? .43 : .72);
       const c = makeCanvas(w, h), ctx = c.getContext('2d'), mask = makeCanvas(w, h), m = mask.getContext('2d');
       ctx.drawImage(image, 0, 0, w, h);
@@ -648,7 +650,7 @@
       const entries = this.entries(state.physics), count = entries.length, marbles = state.physics && state.physics.marbles || [];
       const active = ['mixing', 'aiming', 'flight'].includes(stage);
       if (active) this.chamber.seek(stage === 'mixing' ? p * TIMING.chamberMix : stage === 'aiming' ? TIMING.chamberMix + p * TIMING.chamberAim : TIMING.chamberMix + TIMING.chamberAim, true);
-      else if (!reduced) this.chamber.seek(Math.max(0, time - this.chamberBirth), false);
+      else if (!reduced) this.previewChamber.seek(Math.max(0, time - this.chamberBirth), true);
       ctx.clearRect(0, 0, w, h);
       if (stage === 'flight' && p === 1 && state.camera) {
         for (const entry of entries) { const m = marbles[entry.index]; if (!m) continue; const target = state.camera.worldToScreen(m.x, m.y); this.drawOrb(entry, { x: target.x, y: target.y, radius: m.r * state.camera.zoom, focus: 1 }, 1, m, count, reduced); }
@@ -677,13 +679,25 @@
       this.drawCarriage(wheel, movingFrame, 1);
       ctx.save();
       ctx.translate(barrelShift.x, barrelShift.y);
-      this.drawPlate('front', front, reduced ? frontWeight : 1, reduced ? null : dissolve); this.drawPlate('angle', angle, reduced ? angleWeight : 1, reduced ? null : dissolve);
+      if (this.plates.bridge && !reduced) {
+        // All three plates share the same glass axis; show an actual intermediate view.
+        if (dissolve < .5) {
+          this.drawPlate('front', front, 1);
+          this.drawPlate('bridge', views.bridge, smooth(dissolve * 2));
+        } else {
+          this.drawPlate('bridge', views.bridge, 1);
+          this.drawPlate('angle', angle, smooth((dissolve - .5) * 2));
+        }
+      } else {
+        this.drawPlate('front', front, reduced ? frontWeight : 1, reduced ? null : dissolve);
+        this.drawPlate('angle', angle, reduced ? angleWeight : 1, reduced ? null : dissolve);
+      }
       ctx.restore();
       this.targetBoard(travel, state.physics, aiming, stage);
       if (stage === 'flight' && !this.frozenTube) this.frozenTube = entries.map(entry => this.chamber.pose(entry.index));
       const baseRadius = views.frame.thickness * .42 * this.chamber.radius;
       const drawn = entries.map(entry => {
-        const local = reduced ? this.stillTube[entry.index] : stage === 'flight' ? this.frozenTube[entry.index] : this.chamber.pose(entry.index);
+        const local = reduced ? this.stillTube[entry.index] : stage === 'flight' ? this.frozenTube[entry.index] : (active ? this.chamber : this.previewChamber).pose(entry.index);
         const screen = project(local, front, angle, orbit), radius = baseRadius * (.88 + local.z * .14);
         if (stage !== 'flight') return { entry, local, pose: { x: screen.x, y: screen.y, radius, depth: local.z, focus: local.z < -.35 ? .45 : 1, alpha: reducedFade }, blend: 0 };
         const start = project(local, resting.front, resting.angle, 1), muzzle = pointInPlate(resting.angle, .359, .511), m = marbles[entry.index];

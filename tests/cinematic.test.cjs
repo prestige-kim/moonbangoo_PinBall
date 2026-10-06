@@ -200,3 +200,32 @@ for(const entry of shotEntries) {
   assert.equal(Math.hypot(end.x,end.y),0,'detaching never moves the assigned physical starting position');
   const quiet=P.CINEMA.flightOffset(entry,.13,rigFrame,1280,true);assert.equal(Math.hypot(quiet.x,quiet.y),0);
 }
+
+// The welcome chamber keeps trading axial positions without consuming the seeded launch.
+{
+  const physical = new P.Physics({map:P.MAPS.classic,names:P.parseNames('참가자*6'),seed:'WELCOME-SHUFFLE'});
+  const movie = new P.Cinematic(canvas());
+  const raceBefore = JSON.stringify(physical.marbles);
+  const orders = new Set();
+  for (const time of [0,1,2,4,8,12]) {
+    movie.render({stage:'intro',time,physics:physical});
+    orders.add(movie.previewChamber.bodies.slice().sort((a,b)=>a.x-b.x).map(b=>b.index).join(','));
+  }
+  assert(orders.size>=4,'welcome marbles must keep exchanging axial order, rather than settle into fixed wobbling slots');
+  assert(movie.previewChamber.collisions>0);
+  assert.equal(movie.chamber.ticks,0,'waiting must never advance the actual launch shuffle');
+  assert.equal(JSON.stringify(physical.marbles),raceBefore);
+  movie.render({stage:'mixing',progress:.5,time:13,physics:physical});
+  assert.equal(movie.chamber.ticks,Math.round(P.CINEMA.timing.chamberMix*.5*120));
+}
+// The intermediate photo is registered to exactly the same glass endpoints.
+for (const [w,h] of [[1280,720],[390,844],[844,390]]) {
+  for (const p of [0,.25,.5,.75,1]) {
+    const v=P.CINEMA.matchedViews(w,h,p,0);
+    for (const [u,bu] of [[.31,.32],[.697,.68]]) {
+      const a=P.CINEMA.pointInPlate(v.front,u,.548),b=P.CINEMA.pointInPlate(v.bridge,bu,.504);
+      assert(Math.hypot(a.x-b.x,a.y-b.y)<1e-8,'bridge photo must stay aligned with the moving glass and marbles');
+    }
+  }
+}
+console.log('PASS welcome shuffle: persistent position exchanges, independent launch clock; intermediate photo axes match desktop and mobile.');
