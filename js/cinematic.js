@@ -117,14 +117,24 @@
     const active = after >= 0;
     return {
       fired: active,
-      compression: active ? 0 : Math.sin(clamp(progress / FIRE_MOMENT, 0, 1) * Math.PI),
-      recoil: !reduced && active && after < .28 ? Math.sin(after * 64) * Math.exp(-after * 24) * (1 - interval(.21, .28, after)) : 0,
-      flash: !reduced && active && after < .14 ? Math.exp(-after * 47) * interval(0, .004, after) : 0,
+      compression: reduced ? 0 : active ? 1 - interval(0, .07, after) : interval(.015, FIRE_MOMENT, progress),
+      recoil: !reduced && active && after < .28 ? interval(0, .015, after) * Math.exp(-after * 18) * (1 - interval(.18, .28, after)) : 0,
+      flash: !reduced && active && after < .14 ? Math.exp(-after * 32) * interval(0, .004, after) : 0,
       shock: !reduced && active ? clamp(after / .17, 0, 1) : 0,
       shake: !reduced && active ? Math.exp(-after * 29) * (1 - interval(.15, .23, after)) : 0,
       smoke: !reduced && active ? interval(0, .025, after) * (1 - interval(.10, .25, after)) : 0,
       after: Math.max(0, after)
     };
+  }
+  function barrelOffset(progress, frame, width, reduced) {
+    const blast = blastPose(progress, reduced), distance = reduced ? 0 : blast.recoil * Math.min(22, width * .017) + blast.compression * 2.5;
+    return { x: -frame.axisX * distance, y: -frame.axisY * distance };
+  }
+  function flightOffset(entry, progress, frame, width, reduced) {
+    const offset = barrelOffset(progress, frame, width, reduced), release = FIRE_MOMENT + (entry.delay || 0);
+    // Follow the moving muzzle until release; detach smoothly without moving the landing.
+    const attachment = 1 - interval(release, release + .035, progress);
+    return { x: offset.x * attachment, y: offset.y * attachment };
   }
   function assemblyPose(progress, view, finalView, reduced) {
     const p = clamp(progress, 0, 1), amount = interval(.34, .84, p);
@@ -289,7 +299,7 @@
     const origin = camera ? camera.worldToScreen(0, 0) : { x: 30, y: 100 };
     const final = { a: zoom, b: 0, c: 0, d: zoom, e: origin.x, f: origin.y };
     const focus = { x: camera && camera.x || 500, y: camera && camera.y || 380 };
-    const u = reduced ? progress >= .98 ? 1 : 0 : interval(.24, 1, progress || 0);
+    const u = reduced ? progress >= .98 ? 1 : 0 : easeCamera(((progress || 0) - .18) / .82);
     const anchor = mapPoint(initial, focus.x, focus.y), target = mapPoint(final, focus.x, focus.y);
     const size = Math.exp(lerp(Math.log(scale), Math.log(zoom), u));
     const current = { a: size, b: initial.b * (1 - u), c: initial.c * (1 - u), d: size, e: 0, f: 0 };
@@ -307,7 +317,7 @@
   class Cinematic {
     constructor(canvas, renderer) {
       this.canvas = canvas; this.ctx = canvas.getContext('2d'); this.renderer = renderer;
-      this.quality = 'high'; this.sprites = new Map(); this.labels = new Map(); this.paperEdges = new Map(); this.featheredPlates = new Map(); this.plates = {}; this.cache = null;
+      this.quality = 'high'; this.sprites = new Map(); this.labels = new Map(); this.bodyPlates = new Map(); this.morphLayers = new Map(); this.wheelLight = null; this.plates = {}; this.cache = null;
       this.lastStage = null; this.lastTime = 0; this.frozenTube = null;
       const random = rng('mungbanggu-gold-dust');
       this.dust = Array.from({ length: 100 }, (_, i) => ({ x: random(), y: random(), phase: random() * TAU, r: .4 + random() * 1.4, index: i }));
@@ -369,30 +379,15 @@
       if (blurred && 'filter' in ctx) { const soft = makeCanvas(144, 144), s = soft.getContext('2d'); s.filter = 'blur(1.25px)'; s.drawImage(c, 0, 0); this.sprites.set(key, soft); return soft; }
       this.sprites.set(key, c); return c;
     }
-    drawPlate(shot, view, alpha, extendPaper = true) {
-      if (alpha <= .001) return;
+    drawPlate(shot, view, alpha, morph = null) {
+      if (alpha <= .001 || morph !== null && (shot === 'front' ? morph >= 1 : morph <= 0)) return;
       const asset = shot === 'angle' && this.plates.barrel ? 'barrel' : shot;
       const ctx = this.ctx, image = this.plates[asset]; ctx.save(); ctx.globalAlpha = alpha;
       if (view.matrix) { const m = view.matrix; ctx.transform(m.a, m.b, m.c, m.d, m.e, m.f); }
       else { ctx.translate(view.x, view.y); ctx.rotate(view.rotation); ctx.transform(view.scaleX, 0, view.shear, view.scaleY, 0, 0); }
       if (image) {
         const left = view.matrix ? 0 : -view.anchorX * view.w, top = view.matrix ? 0 : -view.anchorY * view.h;
-        const edges = this.edgesFor(asset, image), feather = this.featherFor(asset, image, extendPaper ? 45 : 220), extend = Math.max(this.width, this.height) * 3;
-        const insetX = view.w * feather.size / feather.width, insetY = view.h * feather.size / feather.height;
-        // Extend the photographed paper itself: a contained cannon must not leave a rectangular seam.
-        // Paper extends underneath the feather too, preventing the studio image's
-        // outermost row from forming a thin rectangular line on portrait screens.
-        if (extendPaper) {
-        ctx.drawImage(edges.top, left, top - extend, view.w, extend + insetY);
-        ctx.drawImage(edges.bottom, left, top + view.h - insetY, view.w, extend + insetY);
-        ctx.drawImage(edges.left, left - extend, top, extend + insetX, view.h);
-        ctx.drawImage(edges.right, left + view.w - insetX, top, extend + insetX, view.h);
-        ctx.drawImage(edges.corners[0], left - extend, top - extend, extend + insetX, extend + insetY);
-        ctx.drawImage(edges.corners[1], left + view.w - insetX, top - extend, extend + insetX, extend + insetY);
-        ctx.drawImage(edges.corners[2], left - extend, top + view.h - insetY, extend + insetX, extend + insetY);
-        ctx.drawImage(edges.corners[3], left + view.w - insetX, top + view.h - insetY, extend + insetX, extend + insetY);
-        }
-        ctx.drawImage(feather.image, left, top, view.w, view.h);
+        ctx.drawImage(morph === null ? this.bodyFor(asset, image) : this.morphFor(asset, image, morph), left, top, view.w, view.h);
       }
       else {
         const x = (.31 - view.anchorX) * view.w, y = (.4 - view.anchorY) * view.h, w = view.w * .4, h = view.h * .29;
@@ -401,41 +396,48 @@
       }
       ctx.restore();
     }
-    edgesFor(shot, image) {
-      if (this.paperEdges.has(shot)) return this.paperEdges.get(shot);
+    bodyFor(shot, image) {
+      if (this.bodyPlates.has(shot)) return this.bodyPlates.get(shot);
       const w = image.naturalWidth || image.width, h = image.naturalHeight || image.height;
-      const sample = (x, y, sw, sh, tw, th) => {
-        const c = makeCanvas(tw, th), ctx = c.getContext('2d'); ctx.filter = 'blur(3px)';
-        ctx.drawImage(image, x, y, sw, sh, -6, -6, tw + 12, th + 12); return c;
-      };
-      const edges = {
-        top: sample(0, 0, w, 24, 128, 8), bottom: sample(0, h - 24, w, 24, 128, 8),
-        left: sample(0, 0, 24, h, 8, 128), right: sample(w - 24, 0, 24, h, 8, 128),
-        corners: [sample(0, 0, 48, 48, 8, 8), sample(w - 48, 0, 48, 48, 8, 8), sample(0, h - 48, 48, 48, 8, 8), sample(w - 48, h - 48, 48, 48, 8, 8)]
-      };
-      this.paperEdges.set(shot, edges); return edges;
+      const front = shot === 'front', a = { x: w * (front ? .31 : .193), y: h * (front ? .548 : .66) };
+      const b = { x: w * (front ? .697 : .317), y: h * (front ? .548 : .537) };
+      const length = Math.hypot(b.x - a.x, b.y - a.y), thickness = h * (front ? .264 : .156);
+      const rear = length * (front ? .48 : .86), fore = length * (front ? .43 : .72);
+      const c = makeCanvas(w, h), ctx = c.getContext('2d'), mask = makeCanvas(w, h), m = mask.getContext('2d');
+      ctx.drawImage(image, 0, 0, w, h);
+      m.translate(a.x, a.y); m.rotate(Math.atan2(b.y - a.y, b.x - a.x));
+      m.filter = 'blur(10px)'; m.fillStyle = '#fff';
+      pill(m, -rear, -thickness * .90, length + rear + fore, thickness * 1.80, thickness * .62); m.fill();
+      ctx.globalCompositeOperation = 'destination-in'; ctx.drawImage(mask, 0, 0); ctx.globalCompositeOperation = 'source-over';
+      this.bodyPlates.set(shot, c); return c;
     }
-    featherFor(shot, image, topFade = 45) {
-      const key = shot + ':' + topFade;
-      if (this.featheredPlates.has(key)) return this.featheredPlates.get(key);
-      const w = image.naturalWidth || image.width, h = image.naturalHeight || image.height;
-      const size = Math.min(45, w * .04, h * .06), c = makeCanvas(w, h), ctx = c.getContext('2d');
-      ctx.drawImage(image, 0, 0, w, h); ctx.globalCompositeOperation = 'destination-in';
-      const horizontal = ctx.createLinearGradient(0, 0, w, 0);
-      horizontal.addColorStop(0, 'rgba(255,255,255,0)'); horizontal.addColorStop(size / w, '#fff');
-      horizontal.addColorStop(1 - size / w, '#fff'); horizontal.addColorStop(1, 'rgba(255,255,255,0)');
-      ctx.fillStyle = horizontal; ctx.fillRect(0, 0, w, h);
-      const vertical = ctx.createLinearGradient(0, 0, 0, h);
-      vertical.addColorStop(0, 'rgba(255,255,255,0)'); vertical.addColorStop(Math.min(topFade, h * .25) / h, '#fff');
-      vertical.addColorStop(1 - size / h, '#fff'); vertical.addColorStop(1, 'rgba(255,255,255,0)');
-      ctx.fillStyle = vertical; ctx.fillRect(0, 0, w, h); ctx.globalCompositeOperation = 'source-over';
-      const plate = { image: c, size, width: w, height: h }; this.featheredPlates.set(key, plate); return plate;
+    morphFor(shot, image, amount) {
+      const body = this.bodyFor(shot, image), w = body.width, h = body.height;
+      if (amount <= 0 || amount >= 1) return body;
+      let layer = this.morphLayers.get(shot);
+      if (!layer) { layer = makeCanvas(w, h); this.morphLayers.set(shot, layer); }
+      const ctx = layer.getContext('2d'), front = shot === 'front'; ctx.clearRect(0, 0, w, h); ctx.drawImage(body, 0, 0);
+      const a = { x: w * (front ? .31 : .193), y: h * (front ? .548 : .66) }, b = { x: w * (front ? .697 : .317), y: h * (front ? .548 : .537) };
+      const dx = b.x - a.x, dy = b.y - a.y, t = lerp(-1.65, 1.65, amount);
+      const x = (a.x + b.x) / 2 + dx * t, y = (a.y + b.y) / 2 + dy * t;
+      const mask = ctx.createLinearGradient(x - dx * .045, y - dy * .045, x + dx * .045, y + dy * .045);
+      mask.addColorStop(0, front ? 'rgba(255,255,255,0)' : '#fff'); mask.addColorStop(1, front ? '#fff' : 'rgba(255,255,255,0)');
+      ctx.globalCompositeOperation = 'destination-in'; ctx.fillStyle = mask; ctx.fillRect(0, 0, w, h); ctx.globalCompositeOperation = 'source-over';
+      return layer;
     }
-    glassPath(front, angle, orbit) {
+    drawStudioShadow(frame, wheel, orbit) {
+      const ctx = this.ctx, ground = lerp(frame.y + frame.thickness * .96, wheel.y + wheel.radius * .92, easeCamera(orbit));
+      ctx.save(); ctx.translate(frame.x + frame.thickness * .20, ground); ctx.scale(1, .14);
+      const radius = frame.length * .72 + frame.thickness * .65;
+      const shadow = ctx.createRadialGradient(0, 0, radius * .08, 0, 0, radius);
+      shadow.addColorStop(0, 'rgba(93,67,30,.23)'); shadow.addColorStop(.5, 'rgba(110,81,38,.12)'); shadow.addColorStop(1, 'rgba(110,81,38,0)');
+      ctx.fillStyle = shadow; ctx.beginPath(); ctx.arc(0, 0, radius, 0, TAU); ctx.fill(); ctx.restore();
+    }
+    glassPath(front, angle, orbit, inside = false) {
       if (front.frame) {
         const f = front.frame, radius = f.thickness / 2, ctx = this.ctx;
         ctx.save(); ctx.translate(f.x - f.axisX * f.length / 2, f.y - f.axisY * f.length / 2); ctx.rotate(f.rotation);
-        pill(ctx, -radius * .35, -radius, f.length + radius * .7, radius * 2, radius * .56); ctx.restore(); return;
+        pill(ctx, inside ? 0 : -radius * .35, -radius, inside ? f.length - radius * .32 : f.length + radius * .7, radius * 2, radius * .56); ctx.restore(); return;
       }
       const ctx = this.ctx, a = pointInPlate(front, .31, .548), b = pointInPlate(front, .697, .548);
       const c = pointInPlate(angle, .193, .66), d = pointInPlate(angle, .317, .537);
@@ -443,19 +445,42 @@
       const radius = lerp(front.h * .132 * front.scaleY, angle.h * .078 * angle.scaleY, orbit), distance = Math.hypot(x2 - x1, y2 - y1), rotation = Math.atan2(y2 - y1, x2 - x1);
       ctx.save(); ctx.translate(x1, y1); ctx.rotate(rotation); pill(ctx, -radius * .35, -radius, distance + radius * .7, radius * 2, radius * .56); ctx.restore();
     }
-    drawGlass(front, angle, orbit, time, alpha) {
-      const ctx = this.ctx; ctx.save(); this.glassPath(front, angle, orbit); ctx.clip();
-      const center = project({ x: 0, y: 0, z: 0 }, front, angle, orbit), span = front.w * .45;
-      const glint = ctx.createLinearGradient(center.x - span, center.y - 80, center.x + span, center.y + 80);
-      glint.addColorStop(0, 'rgba(255,255,240,0)'); glint.addColorStop(.38, 'rgba(255,255,245,.02)'); glint.addColorStop(.5, 'rgba(255,255,243,.18)'); glint.addColorStop(.65, 'rgba(255,255,243,.01)'); glint.addColorStop(1, 'rgba(255,255,240,0)');
-      ctx.globalAlpha = alpha; ctx.fillStyle = glint; ctx.fillRect(center.x - span, center.y - span / 2, span * 2, span);
-      if (this.quality !== 'low') { ctx.globalAlpha = alpha * .16; ctx.strokeStyle = '#fff9de'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(center.x - span / 2, center.y - front.h * .078 + Math.sin(time * .45) * 3); ctx.lineTo(center.x + span / 2, center.y - front.h * .076); ctx.stroke(); }
+    drawGlass(front, angle, orbit, time, alpha, pressure = 0) {
+      const ctx = this.ctx, f = front.frame; ctx.save(); this.glassPath(front, angle, orbit); ctx.clip();
+      // The studio key light stays above-left in screen space throughout the turn.
+      const span = f.length * .68 + f.thickness;
+      const light = ctx.createLinearGradient(f.x - f.thickness * .65, f.y - f.thickness * .76, f.x + f.thickness * .65, f.y + f.thickness * .76);
+      light.addColorStop(0, 'rgba(255,255,245,.22)'); light.addColorStop(.45, 'rgba(255,255,245,.025)'); light.addColorStop(1, 'rgba(120,89,43,.10)');
+      ctx.globalAlpha = alpha; ctx.fillStyle = light; ctx.fillRect(f.x - span, f.y - span, span * 2, span * 2);
+      if (this.quality !== 'low') {
+        const side = (-f.axisY * -.65 + f.axisX * -.76) < 0 ? -1 : 1;
+        ctx.save(); ctx.translate(f.x, f.y); ctx.rotate(f.rotation);
+        ctx.strokeStyle = 'rgba(255,253,237,.48)'; ctx.lineWidth = Math.max(.8, f.thickness * .016); ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(-f.length * .48, side * f.thickness * .32);
+        ctx.quadraticCurveTo(0, side * f.thickness * .37, f.length * .48, side * f.thickness * .32); ctx.stroke();
+        ctx.strokeStyle = 'rgba(125,100,64,.12)'; ctx.lineWidth = Math.max(.6, f.thickness * .010);
+        ctx.beginPath(); ctx.moveTo(-f.length * .48, -side * f.thickness * .44); ctx.lineTo(f.length * .48, -side * f.thickness * .44); ctx.stroke(); ctx.restore();
+      }
+      if (pressure > .001) {
+        const charge = ctx.createRadialGradient(f.x - f.axisX * f.length * .36, f.y - f.axisY * f.length * .36, 0, f.x, f.y, f.length * .8);
+        charge.addColorStop(0, 'rgba(255,225,143,.38)'); charge.addColorStop(.5, 'rgba(255,242,196,.17)'); charge.addColorStop(1, 'rgba(255,243,208,0)');
+        ctx.globalAlpha = pressure * alpha; ctx.fillStyle = charge; ctx.fillRect(f.x - span, f.y - span, span * 2, span * 2);
+      }
       ctx.restore();
+    }
+    drawChamberShadow(entry, local, radius, front, angle, orbit) {
+      if (this.quality === 'low') return;
+      const ctx = this.ctx, floor = project({ x: local.x, y: .81, z: 0 }, front, angle, orbit);
+      const distance = clamp(.81 - local.y, 0, 1.6), size = radius * (1.15 + distance * .35);
+      ctx.save(); ctx.translate(floor.x + radius * .18, floor.y); ctx.rotate(front.frame.rotation); ctx.scale(1, .24 + distance * .06);
+      const shadow = ctx.createRadialGradient(0, 0, 0, 0, 0, size);
+      shadow.addColorStop(0, 'rgba(87,68,38,' + (.18 / (1 + distance)) + ')'); shadow.addColorStop(1, 'rgba(87,68,38,0)');
+      ctx.fillStyle = shadow; ctx.beginPath(); ctx.arc(0, 0, size, 0, TAU); ctx.fill(); ctx.restore();
     }
     drawCarriage(pose, frame, alpha) {
       if (pose.alpha * alpha <= .001) return; const ctx = this.ctx, radius = pose.radius;
       ctx.save(); ctx.globalAlpha = pose.alpha * alpha * pose.support;
-      ctx.save(); ctx.translate(pose.x, pose.y + radius * .9); ctx.scale(1, .19);
+      ctx.save(); ctx.translate(pose.x + radius * .25, pose.y + radius * .92); ctx.scale(1, .19);
       const shadow = ctx.createRadialGradient(0, 0, radius * .05, 0, 0, radius * 1.8);
       shadow.addColorStop(0, 'rgba(97,69,27,.2)'); shadow.addColorStop(1, 'rgba(97,69,27,0)');
       ctx.fillStyle = shadow; ctx.beginPath(); ctx.arc(0, 0, radius * 1.8, 0, TAU); ctx.fill(); ctx.restore();
@@ -469,23 +494,37 @@
     }
     drawWheel(pose, alpha, rock) {
       const image = this.plates.wheel || this.plates.angle; if (!image || pose.alpha * alpha <= .001) return;
-      const ctx = this.ctx; ctx.save(); ctx.globalAlpha = pose.alpha * alpha;
-      ctx.translate(pose.x, pose.y); ctx.rotate(pose.rotation + (rock || 0));
+      const ctx = this.ctx, rotation = pose.rotation + (rock || 0);
+      ctx.save(); ctx.globalAlpha = pose.alpha * alpha; ctx.translate(pose.x, pose.y);
       ctx.transform(pose.axisX.x * pose.scale, pose.axisX.y * pose.scale, pose.axisY.x * pose.scale, pose.axisY.y * pose.scale, 0, 0);
-      if (this.plates.wheel) ctx.drawImage(image, -1 / .85, -1 / .85, 2 / .85, 2 / .85);
-      else {
-        ctx.beginPath(); ctx.arc(0, 0, 1, 0, TAU); ctx.clip();
+      if (this.plates.wheel) {
+        if (this.quality === 'low') { ctx.rotate(rotation); ctx.drawImage(image, -1 / .85, -1 / .85, 2 / .85, 2 / .85); }
+        else {
+          const size = this.quality === 'high' ? 512 : 256;
+          if (!this.wheelLight || this.wheelLight.width !== size) this.wheelLight = makeCanvas(size, size);
+          const light = this.wheelLight.getContext('2d'); light.clearRect(0, 0, size, size);
+          light.save(); light.translate(size / 2, size / 2); light.rotate(rotation); light.drawImage(image, -size / 2, -size / 2, size, size); light.restore();
+          // Rotate the spokes, then light their actual alpha silhouette from a
+          // fixed studio direction; never overlay a second, unrotated set of spokes.
+          light.globalCompositeOperation = 'source-atop';
+          const g = light.createLinearGradient(size * .125, size * .094, size * .90, size * .90);
+          g.addColorStop(0, 'rgba(255,250,221,.24)'); g.addColorStop(.45, 'rgba(255,245,205,.01)'); g.addColorStop(1, 'rgba(66,46,18,.19)');
+          light.fillStyle = g; light.fillRect(0, 0, size, size); light.globalCompositeOperation = 'source-over';
+          ctx.drawImage(this.wheelLight, -1 / .85, -1 / .85, 2 / .85, 2 / .85);
+        }
+      } else {
+        ctx.rotate(rotation); ctx.beginPath(); ctx.arc(0, 0, 1, 0, TAU); ctx.clip();
         const iw = image.naturalWidth || image.width, ih = image.naturalHeight || image.height;
         ctx.drawImage(image, iw * .161, ih * .632, iw * .166, ih * .274, -1, -1, 2, 2);
       }
       ctx.restore();
     }
-    drawDischarge(origin, frame, blast, width, height) {
+    drawDischarge(origin, frame, blast, width, height, barrelShift = { x: 0, y: 0 }) {
       if (!blast.fired || blast.after > .5) return;
       const ctx = this.ctx, axisX = frame.axisX, axisY = frame.axisY, radius = clamp(frame.thickness * .56, 12, 58);
-      ctx.save(); ctx.translate(origin.x, origin.y); ctx.rotate(frame.rotation);
+      ctx.save(); ctx.translate(origin.x + barrelShift.x, origin.y + barrelShift.y); ctx.rotate(frame.rotation);
       if (blast.flash > .01) {
-        ctx.save(); ctx.globalCompositeOperation = 'screen'; ctx.globalAlpha = blast.flash;
+        ctx.save(); ctx.globalCompositeOperation = 'source-over'; ctx.globalAlpha = blast.flash;
         const flare = ctx.createRadialGradient(radius * .2, 0, radius * .025, radius * .5, 0, radius * 2.7);
         flare.addColorStop(0, '#fffef2'); flare.addColorStop(.13, '#fff4b7'); flare.addColorStop(.36, 'rgba(248,199,96,.78)'); flare.addColorStop(1, 'rgba(235,160,53,0)');
         ctx.save(); ctx.scale(1.8, .72); ctx.fillStyle = flare; ctx.fillRect(-radius * 2.4, -radius * 3, radius * 6.2, radius * 6); ctx.restore();
@@ -608,7 +647,7 @@
       const stage = state.stage || 'intro', p = clamp(Number(state.progress) || 0, 0, 1), time = Number(state.time) || 0, reduced = !!state.reducedMotion;
       const entries = this.entries(state.physics), count = entries.length, marbles = state.physics && state.physics.marbles || [];
       const active = ['mixing', 'aiming', 'flight'].includes(stage);
-      if (active) this.chamber.seek(stage === 'mixing' ? p * 1.8 : stage === 'aiming' ? 1.8 + p * 2.2 : 4, true);
+      if (active) this.chamber.seek(stage === 'mixing' ? p * TIMING.chamberMix : stage === 'aiming' ? TIMING.chamberMix + p * TIMING.chamberAim : TIMING.chamberMix + TIMING.chamberAim, true);
       else if (!reduced) this.chamber.seek(Math.max(0, time - this.chamberBirth), false);
       ctx.clearRect(0, 0, w, h);
       if (stage === 'flight' && p === 1 && state.camera) {
@@ -624,6 +663,8 @@
       const angleWeight = reduced && stage === 'aiming' ? interval(.54, 1, p) : dissolve;
       const reducedFade = reduced && stage === 'aiming' ? frontWeight + angleWeight : 1;
       const blast = blastPose(flight, reduced), wheel = assemblyPose(aiming, angle, resting.angle, reduced);
+      const barrelShift = stage === 'flight' ? barrelOffset(p, views.frame, w, reduced) : { x: 0, y: 0 };
+      const movingFrame = Object.assign({}, views.frame, { x: views.frame.x + barrelShift.x, y: views.frame.y + barrelShift.y });
       const bg = ctx.createLinearGradient(0, 0, w, h); bg.addColorStop(0, '#faf6eb'); bg.addColorStop(.57, '#f2e9d6'); bg.addColorStop(1, '#e9dec7');
       ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h);
       if (stage === 'flight' && this.renderer && this.renderer.background) ctx.drawImage(this.renderer.background, 0, 0, w, h);
@@ -632,13 +673,11 @@
         if (blast.shake > .001) { const strength = Math.min(8, w * .005) * blast.shake; ctx.translate(Math.sin(blast.after * 183) * strength, Math.cos(blast.after * 141) * strength * .68); }
         const c = travel.scene; ctx.transform(c.a, c.b, c.c, c.d, c.e, c.f);
       }
-      this.drawCarriage(wheel, views.frame, 1);
+      this.drawStudioShadow(movingFrame, wheel, aiming);
+      this.drawCarriage(wheel, movingFrame, 1);
       ctx.save();
-      if (stage === 'flight' && !reduced) {
-        const recoil = blast.recoil * Math.min(22, w * .017) + blast.compression * 2.5;
-        ctx.translate(-views.frame.axisX * recoil, -views.frame.axisY * recoil);
-      }
-      this.drawPlate('front', front, frontWeight, stage !== 'flight'); this.drawPlate('angle', angle, angleWeight, stage !== 'flight');
+      ctx.translate(barrelShift.x, barrelShift.y);
+      this.drawPlate('front', front, reduced ? frontWeight : 1, reduced ? null : dissolve); this.drawPlate('angle', angle, reduced ? angleWeight : 1, reduced ? null : dissolve);
       ctx.restore();
       this.targetBoard(travel, state.physics, aiming, stage);
       if (stage === 'flight' && !this.frozenTube) this.frozenTube = entries.map(entry => this.chamber.pose(entry.index));
@@ -646,19 +685,24 @@
       const drawn = entries.map(entry => {
         const local = reduced ? this.stillTube[entry.index] : stage === 'flight' ? this.frozenTube[entry.index] : this.chamber.pose(entry.index);
         const screen = project(local, front, angle, orbit), radius = baseRadius * (.88 + local.z * .14);
-        if (stage !== 'flight') return { entry, pose: { x: screen.x, y: screen.y, radius, depth: local.z, focus: local.z < -.35 ? .45 : 1, alpha: reducedFade }, blend: 0 };
+        if (stage !== 'flight') return { entry, local, pose: { x: screen.x, y: screen.y, radius, depth: local.z, focus: local.z < -.35 ? .45 : 1, alpha: reducedFade }, blend: 0 };
         const start = project(local, resting.front, resting.angle, 1), muzzle = pointInPlate(resting.angle, .359, .511), m = marbles[entry.index];
         const target = m ? mapPoint(travel.initial, m.x, m.y) : { x: w * .82, y: h * .28 };
         const endRadius = m ? m.r * travel.initial.a : radius * .4;
         const parameters = { width: w, height: h, axisX: resting.frame.axisX, axisY: resting.frame.axisY, muzzleRadius: resting.frame.thickness * .43, arrival: .74 };
         const startRadius = resting.frame.thickness * .42 * this.chamber.radius * (.88 + local.z * .14);
-        const at = progress => flightPose(entry, progress, start, muzzle, target, startRadius, endRadius, parameters);
+        const at = progress => {
+          const pose = flightPose(entry, progress, start, muzzle, target, startRadius, endRadius, parameters);
+          const offset = flightOffset(entry, progress, resting.frame, w, reduced); pose.x += offset.x; pose.y += offset.y; return pose;
+        };
         const pose = at(p);
         if (reduced) { const beginning = p < .65; pose.x = beginning ? start.x : target.x; pose.y = beginning ? start.y : target.y; pose.radius = beginning ? startRadius : endRadius; pose.alpha = beginning ? 1 - interval(.15, .55, p) : interval(.65, .8, p); }
         return { entry, pose, at, blend: interval(.56, .74, p) };
       });
       drawn.sort((a, b) => a.pose.depth - b.pose.depth);
-      if (stage !== 'flight') { ctx.save(); this.glassPath(front, angle, orbit); ctx.clip(); }
+      if (stage !== 'flight') { ctx.save(); this.glassPath(front, angle, orbit); ctx.clip();
+        for (const item of drawn) if (count <= 50 || item.local.y > .25 && item.entry.index % Math.ceil(count / 48) === 0) this.drawChamberShadow(item.entry, item.local, item.pose.radius, front, angle, orbit);
+      }
       for (const item of drawn) {
         const { entry, pose } = item, m = marbles[entry.index];
         if (stage === 'flight' && !reduced && p > FIRE_MOMENT + entry.delay && p < .76 && (count <= 24 || entry.index % Math.ceil(count / 24) === 0)) {
@@ -669,14 +713,27 @@
           for (let i = 0; i < 8; i++) { const dust = this.dust[(entry.index * 7 + i) % this.dust.length], old = item.at(lerp(from, p, i / 8)); ctx.globalAlpha = Math.sin(i / 8 * Math.PI) * .8; ctx.fillStyle = i % 3 ? '#d5b36c' : '#fff9df'; sparkle(ctx, old.x + Math.sin(dust.phase + time * 3) * 5, old.y + Math.cos(dust.phase) * 5, dust.r * 1.4); }
           ctx.restore();
         }
+        if (stage === 'flight' && pose.contained) { ctx.save(); ctx.translate(barrelShift.x, barrelShift.y); this.glassPath(front, angle, orbit, true); ctx.clip(); ctx.translate(-barrelShift.x, -barrelShift.y); }
+        if (stage === 'flight' && !reduced && !pose.contained && p < FIRE_MOMENT + .14 && this.quality !== 'low' && (count <= 24 || entry.index % Math.ceil(count / 24) === 0)) {
+          const old = item.at(Math.max(FIRE_MOMENT + entry.delay, p - .012));
+          ctx.save(); ctx.lineCap = 'round'; ctx.lineWidth = pose.radius * 1.25;
+          const streak = ctx.createLinearGradient(old.x, old.y, pose.x, pose.y);
+          streak.addColorStop(0, 'rgba(248,224,157,0)'); streak.addColorStop(1, 'rgba(255,246,212,.55)'); ctx.strokeStyle = streak;
+          ctx.beginPath(); ctx.moveTo(old.x, old.y); ctx.lineTo(pose.x, pose.y); ctx.stroke(); ctx.restore();
+        }
         this.drawOrb(entry, pose, item.blend, m, count, reduced);
+        if (stage === 'flight' && pose.contained) ctx.restore();
         if (count <= 16 && ['aiming', 'setup'].includes(stage)) this.drawLabel(entry, pose.x, pose.y, pose.radius, .68);
       }
       if (stage !== 'flight') ctx.restore();
-      if (stage !== 'flight' || p < FIRE_MOMENT + .025) this.drawGlass(front, angle, orbit, reduced ? 0 : time, reducedFade);
+      if (stage !== 'flight' || p < FIRE_MOMENT + .025) {
+        ctx.save(); ctx.translate(barrelShift.x, barrelShift.y);
+        const pressure = reduced ? 0 : stage === 'aiming' ? interval(.82, 1, p) * .45 : stage === 'flight' ? blast.fired ? blast.flash : .45 + blast.compression * .55 : 0;
+        this.drawGlass(front, angle, orbit, reduced ? 0 : time, reducedFade, pressure); ctx.restore();
+      }
       this.drawWheel(wheel, 1, stage === 'flight' ? blast.recoil * .018 : 0);
       this.drawDust(front, angle, orbit, reduced ? 0 : time, reducedFade, reduced);
-      if (stage === 'flight' && !reduced) this.drawDischarge(pointInPlate(resting.angle, .359, .511), resting.frame, blast, w, h);
+      if (stage === 'flight' && !reduced) this.drawDischarge(pointInPlate(resting.angle, .359, .511), resting.frame, blast, w, h, barrelShift);
       ctx.restore();
       if (stage === 'flight' && this.renderer && this.renderer.vignette) ctx.drawImage(this.renderer.vignette, 0, 0, w, h);
       if (stage === 'flight' && this.quality === 'high' && this.renderer && this.renderer.noise) { ctx.save(); ctx.globalAlpha = .26; ctx.fillStyle = ctx.createPattern(this.renderer.noise, 'repeat'); ctx.fillRect(0, 0, w, h); ctx.restore(); }
@@ -684,6 +741,6 @@
       return { reveal, fired: stage === 'flight' && blast.fired, cameraAmount: travel.amount };
     }
   }
-  P.CINEMA = { smooth, interval, easeCamera, timing: TIMING, descriptors, tubePose, layout, matchedViews, pointInPlate, project, flightPose, dischargeOrigin, assemblyPose, blastPose, Chamber, boardView, mapPoint, fireMoment: FIRE_MOMENT };
+  P.CINEMA = { smooth, interval, easeCamera, timing: TIMING, descriptors, tubePose, layout, matchedViews, pointInPlate, project, flightPose, dischargeOrigin, assemblyPose, blastPose, barrelOffset, flightOffset, Chamber, boardView, mapPoint, fireMoment: FIRE_MOMENT };
   P.Cinematic = Cinematic;
 })(window.CosmicPinball = window.CosmicPinball || {});

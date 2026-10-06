@@ -162,3 +162,41 @@ for (const [w, h] of [[1280,720],[390,844]]) {
   const rolling=P.CINEMA.assemblyPose(.4,views.angle,completed.angle,false);
   assert(rolling.alpha>.9 && rolling.rotation<-1, 'wheel rolls in instead of growing out of the chamber');
 }
+
+// The camera has no acceleration step at the beginning/end of its flight path.
+for (const [w,h] of [[1280,720],[390,844],[844,390]]) {
+  const camera={x:500,y:540,zoom:.72,worldToScreen(x,y){return{x:w*.5+(x-500)*this.zoom,y:h*.5+(y-540)*this.zoom};}};
+  let previous=P.CINEMA.boardView(w,h,camera,0,false);
+  for(let i=1;i<=192;i++) {
+    const view=P.CINEMA.boardView(w,h,camera,i/192,false);
+    assert(view.amount>=previous.amount);
+    assert(view.scale/previous.scale<1.035,'zoom changes stay smooth within a normal 60 FPS shot');
+    previous=view;
+  }
+  for(const p of [.18,1]) {
+    const epsilon=1e-5, a=P.CINEMA.boardView(w,h,camera,p,false).current;
+    const b=P.CINEMA.boardView(w,h,camera,p===1?p-epsilon:p+epsilon,false).current;
+    for(const key of ['a','d','e','f']) assert(Math.abs(a[key]-b[key])/epsilon<.01);
+  }
+}
+let recoilPeak=0;
+for(let p=0;p<=.5;p+=.001) {
+  const shot=P.CINEMA.blastPose(p,false);
+  assert(shot.recoil>=0,'one discharge must not wag the barrel repeatedly through its rest position');
+  recoilPeak=Math.max(recoilPeak,shot.recoil);
+}
+assert(recoilPeak>.5,'discharge gives the barrel a visible impulse');
+assert(P.CINEMA.blastPose(.115,false).compression>.98,'pressure builds immediately before the same release clock');
+
+// The glass, pressure glow and unreleased balls stay on the recoiling barrel.
+const rigFrame={axisX:.85,axisY:-Math.sqrt(1-.85*.85)};
+for(const entry of shotEntries) {
+  const release=P.CINEMA.fireMoment+entry.delay;
+  const barrel=P.CINEMA.barrelOffset(release,rigFrame,1280,false), attached=P.CINEMA.flightOffset(entry,release,rigFrame,1280,false);
+  assert.equal(attached.x,barrel.x);assert.equal(attached.y,barrel.y);
+  const epsilon=1e-7, before=P.CINEMA.flightOffset(entry,release-epsilon,rigFrame,1280,false), after=P.CINEMA.flightOffset(entry,release+epsilon,rigFrame,1280,false);
+  assert(Math.hypot((attached.x-before.x)/epsilon-(after.x-attached.x)/epsilon,(attached.y-before.y)/epsilon-(after.y-attached.y)/epsilon)<.1);
+  const end=P.CINEMA.flightOffset(entry,1,rigFrame,1280,false);
+  assert.equal(Math.hypot(end.x,end.y),0,'detaching never moves the assigned physical starting position');
+  const quiet=P.CINEMA.flightOffset(entry,.13,rigFrame,1280,true);assert.equal(Math.hypot(quiet.x,quiet.y),0);
+}

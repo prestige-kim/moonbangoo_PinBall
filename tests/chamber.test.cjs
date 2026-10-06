@@ -115,3 +115,17 @@ test('shuffled physical races keep seeded results and allow different input owne
   while(!p.complete&&p.time<180){for(let i=0;i<7&&!p.complete;i++)p.step();p.drainEvents();}
   assert.equal(snapshot(p.finished.map(m=>[m.id,m.finishTime])),first);
 });
+
+test('longer visible choreography preserves the old four-second seeded shuffle ownership', () => {
+  for(const count of [6,50,200,500]) {
+    const a=game(count,'film-preservation-'+count),b=game(count,'film-preservation-'+count), scene=cinema(a),direct=cinema(b);
+    // Render schedules drive the old virtual clock, despite a longer wall-clock shot.
+    const timing=P.CINEMA.timing;
+    for(let t=0;t<=timing.mixing;t+=1/30) scene.chamber.seek(Math.min(1,t/timing.mixing)*timing.chamberMix,true);
+    for(let t=0;t<=timing.aiming;t+=1/60) scene.chamber.seek(timing.chamberMix+Math.min(1,t/timing.aiming)*timing.chamberAim,true);
+    scene.commitShuffle(a);direct.commitShuffle(b);
+    assert.equal(snapshot(scene.frozenTube),snapshot(direct.frozenTube));
+    assert.equal(snapshot(a.marbles),snapshot(b.marbles));
+    assert.equal(a.time,0);assert.equal(a.ticks,0);
+  }
+});

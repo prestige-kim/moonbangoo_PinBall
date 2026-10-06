@@ -30,3 +30,16 @@ Edit the supplied image for a cinematic game. Remove ONLY the large foreground g
 ### 바퀴 분리 최종 프롬프트
 
 Create a production game sprite extracted from the supplied cannon reference: ONLY the ornate gold spoked wheel in the foreground, no cannon or glass barrel or background. Match its aged golden-brass outer rim, elegant looped/petal-shaped thin spokes, central round axle hub, real metallic reflections, shallow bevels and nearly face-on perspective exactly. Wheel seen as in original image, slight perspective oval, all spokes and outer rim intact. Make a square transparent-background PNG. Isolated wheel centered, filling 85% of image width and height, no shadow extending beyond wheel, all empty spaces between spokes truly transparent, no ivory matte, no text, no extra objects. Preserve photorealism and softly lit warm gold. Intended for independent wheel rotation and attachment beneath the cannon.
+
+## 현재 에셋으로 구현한 범위와 남는 한계 (2026-10-06)
+
+기존 PNG를 그대로 사용합니다. 새 이미지·영상·3D 모델을 추가하지 않았습니다. 런타임 Canvas 합성으로 사진 주변의 종이·고정 그림자를 부드러운 영역 마스크로 줄이고, 정면/측면의 유리 관축을 맞춰 표면을 축 방향으로 순차 전환합니다. 바퀴는 별도 PNG를 회전하며 조립하고, 구슬·유리·바퀴에 위쪽 왼쪽의 따뜻한 보조 조명과 공통 바닥/접촉 그림자를 사용합니다. 압력 발광, 섬광, 감쇠 반동, 짧은 속도 잔상, 연기·충격파와 부드러운 카메라 이동을 실시간으로 합성합니다.
+
+| 항목 | 현재 가능 범위 | 추가 자산이 필요한 범위 |
+| --- | --- | --- |
+| 대포 변형 | 관축·크기·회전의 연속 이동, 넓은 사진 디졸브 대신 좁은 축 방향 표면 전환 | 동일한 대포를 촬영/렌더한 중간 각도와 정확한 투명 실루엣. 현재 두 사진은 금속 문양·끝단 형상이 달라 중간에 형상 변화와 종이색 가장자리가 남습니다. |
+| 조명·유리 | 화면의 동일한 방향에서 보조 하이라이트/접촉 그림자 합성 | 사진에 고정된 반사를 제거하거나 실제 시점에 따라 반사·굴절을 계산하려면 깊이·노멀·재질 정보 또는 3D 메시가 필요합니다. 현재 유리는 물리 기반 굴절이 아닙니다. |
+| 바퀴·조립 | 독립 바퀴의 회전, 축에 안착, 받침과 바닥 그림자 | 축·받침·반대쪽 바퀴까지 분리된 자산 또는 리깅된 3D 모델. 바퀴 PNG의 기존 금속 반사는 완전히 다시 조명할 수 없습니다. |
+| 카메라·발사 | 한 장면 안에서 놀이판을 향해 이동, 압력/발사/반동과 구슬 이동 연결 | 자유로운 3D 회전·후면 노출·정확한 시차에는 유리/금속/바퀴가 분리된 PBR 모델과 카메라/바퀴/반동 리그가 필요합니다. 연기는 2D 입자이며 볼륨 시뮬레이션이 아닙니다. |
+
+사진 기반 2.5D에서 가능한 개선입니다. 실제 3D 촬영이나 완전한 금속/유리 재질 변형으로 보장하지 않습니다. 500구슬은 모두 시뮬레이션·합성하지만 작은 화면에서 개별 구슬을 계속 식별하기는 어렵습니다. 그림자와 속도 잔상은 인원·품질에 따라 표본을 제한하고 실제 참가자와 출발 위치는 생략하지 않습니다.
