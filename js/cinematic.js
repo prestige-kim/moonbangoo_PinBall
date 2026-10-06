@@ -576,10 +576,10 @@
       if (!entry.name || alpha <= .01) return; const ctx = this.ctx, text = entry.name.length > 12 ? entry.name.slice(0, 11) + '…' : entry.name;
       let label = this.labels.get(text);
       if (!label) {
-        ctx.font = '500 10px system-ui,sans-serif'; const w = Math.ceil(ctx.measureText(text).width) + 16, h = 20;
+        ctx.font = '500 10px Pretendard Variable,sans-serif'; const w = Math.ceil(ctx.measureText(text).width) + 16, h = 20;
         const sprite = makeCanvas((w + 2) * 2, (h + 2) * 2), c = sprite.getContext('2d'); c.scale(2, 2); c.translate(1, 1);
         c.fillStyle = 'rgba(251,247,239,.9)'; pill(c, 0, 0, w, h, 10); c.fill(); c.strokeStyle = 'rgba(151,118,66,.3)'; c.lineWidth = .75; c.stroke();
-        c.fillStyle = '#4a3a28'; c.font = '500 10px system-ui,sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(text, w / 2, h / 2 + .5);
+        c.fillStyle = '#4a3a28'; c.font = '500 10px Pretendard Variable,sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(text, w / 2, h / 2 + .5);
         label = { sprite, w: w + 2, h: h + 2 }; this.labels.set(text, label);
       }
       ctx.save(); ctx.globalAlpha = alpha; ctx.drawImage(label.sprite, x - label.w / 2, y - radius - label.h - 7, label.w, label.h); ctx.restore();
@@ -634,10 +634,10 @@
       const gold = ctx.createLinearGradient(-45, -400, 1045, 80);
       gold.addColorStop(0, '#9f7c40'); gold.addColorStop(.24, '#eee0b8'); gold.addColorStop(.55, '#c9ad70'); gold.addColorStop(.8, '#f3e7c8'); gold.addColorStop(1, '#a2844e');
       ctx.strokeStyle = gold; ctx.lineWidth = 13; ctx.stroke(); arch(16); ctx.strokeStyle = 'rgba(166,132,72,.55)'; ctx.lineWidth = 3; ctx.stroke();
-      ctx.textAlign = 'center'; ctx.font = '500 47px Georgia,serif';
+      ctx.textAlign = 'center'; ctx.font = '500 47px Pretendard Variable,sans-serif';
       ctx.fillStyle = '#fff8e5'; ctx.fillText('핀볼', 502, -222);
       ctx.fillStyle = '#b19459'; ctx.fillText('핀볼', 500, -224);
-      ctx.font = '400 24px system-ui,sans-serif'; ctx.fillStyle = '#a38855'; ctx.fillText(physics.map.name || '오늘의 놀이판', 500, -135);
+      ctx.font = '400 24px Pretendard Variable,sans-serif'; ctx.fillStyle = '#a38855'; ctx.fillText(physics.map.name || '오늘의 놀이판', 500, -135);
       ctx.restore();
       if (this.boardCache.image) ctx.drawImage(this.boardCache.image, 0, 0, 1000, bottom);
       ctx.restore();

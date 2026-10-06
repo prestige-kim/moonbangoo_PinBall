@@ -174,7 +174,6 @@
     } catch (_) { count = null; }
     $('participant-count').textContent = count === null ? '—' : count;
     $('mobile-count').textContent = count === null ? '—' : count;
-    $('ready-label').textContent = count === null ? '입력 내용을 확인해 주세요' : count + '개의 핀볼이 준비됐어요';
   };
   UI.prototype.updateStartCopy = function () {
     var stages = {

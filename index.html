@@ -6,10 +6,11 @@
   <meta name="theme-color" content="#F4EDE0">
   <meta name="description" content="어른뭉방구의 따뜻한 놀이판. 한 알씩 굴러가는 핀볼로 오늘의 작은 행운을 골라 보세요.">
   <title>어른뭉방구 — 핀볼</title>
+  <link rel="preload" as="font" href="./assets/fonts/PretendardVariable.woff2" type="font/woff2" crossorigin>
   <link rel="preload" as="image" href="./assets/cannon-front.png">
   <link rel="preload" as="image" href="./assets/cannon-barrel.png">
   <link rel="preload" as="image" href="./assets/cannon-wheel.png">
-  <link rel="stylesheet" href="./style.css?v=pinball-minimal-20261006">
+  <link rel="stylesheet" href="./style.css?v=pinball-font-20261006">
 </head>
 <body class="scene-intro" data-scene="intro" data-theme="cosmic">
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
@@ -63,7 +64,7 @@
   <main>
     <aside class="setup-panel glass-panel" id="setup-panel" aria-label="추첨 설정" aria-hidden="true" inert>
       <div class="sheet-handle" aria-hidden="true"></div>
-      <div class="panel-heading"><div><span class="eyebrow">어른을 위한 작은 문방구</span><h1 id="setup-title">핀볼<span class="title-dot">.</span></h1></div><button class="icon-button panel-close" id="panel-close" type="button" aria-label="설정 패널 닫기"><svg class="icon"><use href="#i-close"/></svg></button></div>
+      <div class="panel-heading"><div><span class="eyebrow">어른뭉방구</span><h1 id="setup-title">핀볼</h1></div><button class="icon-button panel-close" id="panel-close" type="button" aria-label="설정 패널 닫기"><svg class="icon"><use href="#i-close"/></svg></button></div>
       <form id="settings-form" novalidate>
         <div class="panel-scroll">
           <section class="settings-section participants-section">
@@ -105,7 +106,7 @@
         </div>
         <div class="panel-footer">
           <button class="start-button" id="start-button" type="submit"><span class="start-icon"><svg class="icon"><use href="#i-play"/></svg></span><span>게임 시작<small>핀볼을 섞고, 오늘의 행운을 날려요</small></span><svg class="icon start-arrow"><use href="#i-chevron"/></svg></button>
-          <div class="panel-bottom"><span><span class="ready-dot"></span><span id="ready-label">6개의 핀볼이 준비됐어요</span></span><button class="text-button" id="reset-button" type="button"><svg class="icon"><use href="#i-reset"/></svg>초기화</button></div>
+          <div class="panel-bottom"><button class="text-button" id="reset-button" type="button"><svg class="icon"><use href="#i-reset"/></svg>초기화</button></div>
         </div>
       </form>
     </aside>
@@ -137,6 +138,6 @@
     <div class="result-actions"><button type="button" id="restart-button" class="start-button"><svg class="icon"><use href="#i-play"/></svg>같은 멤버로 다시 섞기</button><button type="button" id="replay-button" class="secondary-button"><svg class="icon"><use href="#i-reset"/></svg>다시 설정하기</button></div>
   </dialog>
 
-  <script src="./js/themes.js"></script><script src="./js/maps.js?v=classic-20261006"></script><script src="./js/physics.js?v=pinball-minimal-20261006"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/renderer.js?v=pinball-minimal-20261006"></script><script src="./js/cinematic.js?v=pinball-minimal-20261006"></script><script src="./js/ui.js?v=pinball-minimal-20261006"></script><script src="./js/main.js?v=pinball-minimal-20261006"></script>
+  <script src="./js/themes.js"></script><script src="./js/maps.js?v=classic-20261006"></script><script src="./js/physics.js?v=pinball-font-20261006"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/renderer.js?v=pinball-font-20261006"></script><script src="./js/cinematic.js?v=pinball-font-20261006"></script><script src="./js/ui.js?v=pinball-font-20261006"></script><script src="./js/main.js?v=pinball-font-20261006"></script>
 </body>
 </html>

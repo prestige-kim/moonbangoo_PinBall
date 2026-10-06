@@ -72,6 +72,10 @@
   const effects = new P.Effects();
   const cinematic = new P.Cinematic(document.getElementById('cinema-canvas'), renderer);
   const audio = new P.AudioEngine();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => {
+    renderer.nameSprites.clear();
+    cinematic.labels.clear();
+  });
   let settings = normalize(memorySettings);
   let runSettings = null;
   let physics = null;
