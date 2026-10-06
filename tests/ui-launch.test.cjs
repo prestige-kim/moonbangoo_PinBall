@@ -148,6 +148,4 @@ test('short mobile landscape excludes the race HUD while portrait preserves boar
   assert.equal(JSON.stringify(views[0]), JSON.stringify(views[1]), 'flight-to-game handoff has one viewport');
   assert.ok(views[1].x + views[1].w <= landscape.node('race-panel').getBoundingClientRect().left - 18,
     'leading marble can be tracked beside the HUD');
-  landscape.ui.syncSelections();
-  assert.equal(landscape.node('map-tag').textContent, '작은 장애물 사이로');
 });

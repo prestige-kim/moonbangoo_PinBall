@@ -2,7 +2,6 @@
   'use strict';
   var P = global.CosmicPinball = global.CosmicPinball || {};
   var $ = function (id) { return document.getElementById(id); };
-  var mapLabel = { number: '01', title: '자개 핀 보드', tag: '작은 장애물 사이로' };
   function icon(id) {
     var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('class', 'icon');
@@ -152,8 +151,6 @@
     $('rank-n-row').hidden = !hasN;
     $('rank-n-label').textContent = this.rule === 'top' ? '당첨 인원' : '당첨 순위';
     $('rank-n-unit').textContent = this.rule === 'top' ? '명' : '번째';
-    var meta = mapLabel;
-    $('map-number').textContent = meta.number; $('map-title').textContent = meta.title; $('map-tag').textContent = meta.tag;
   };
   UI.prototype.syncSound = function () {
     var enabled = $('sound').checked;
@@ -199,8 +196,6 @@
   };
   UI.prototype.setStatus = function (status) {
     this.status = status;
-    var copy = { intro: '작은 행운을 기다리는 중', setup: '오늘의 놀이를 준비해 주세요', idle: '추첨을 준비하고 있어요', ready: '추첨을 준비하고 있어요', mixing: '핀볼을 고르게 섞고 있어요', aiming: '대포를 출발선으로 돌리고 있어요', flight: '행운을 날리고 있어요', running: '행운이 천천히 굴러오는 중', finished: '오늘의 행운이 도착했습니다' };
-    $('game-status').textContent = copy[status] || String(status).toUpperCase();
     document.body.dataset.status = status;
     this.updateStartCopy();
     if (status === 'setup' || status === 'running') this.setFollowing(true);
@@ -310,11 +305,10 @@
   };
   UI.prototype.getViewport = function () {
     var width = global.innerWidth, height = global.innerHeight;
-    var heading = $('stage-heading').getBoundingClientRect();
     var panel = $('setup-panel').getBoundingClientRect();
     var hints = document.querySelector('.camera-hints').getBoundingClientRect();
     var footer = document.querySelector('.system-footer').getBoundingClientRect();
-    var top = Math.max(document.querySelector('.masthead').getBoundingClientRect().bottom + 20, heading.bottom + 16);
+    var top = document.querySelector('.masthead').getBoundingClientRect().bottom + 20;
     var bottom = Math.min(height - 35, hints.top > 0 ? hints.top - 18 : footer.top - 26);
     if (width <= 850) {
       var launch = $('mobile-setup-button').getBoundingClientRect();
@@ -433,7 +427,6 @@
     $('winner-heading').textContent = winners.length > 3 ? winners.length + '개의 행운' : (winners.length ? winners.map(function (winner) { return winner.name; }).join(' · ') : '행운의 주인공');
     $('winner-heading').classList.remove('winner-reveal'); void $('winner-heading').offsetWidth; $('winner-heading').classList.add('winner-reveal');
     $('result-rule').textContent = data.ruleLabel || '1등 당첨';
-    $('result-seed').textContent = data.seed || '—'; $('result-seed').title = data.seed || '';
     $('result-time').textContent = formatTime(data.time, true);
     $('result-total').textContent = (data.ranking || []).length + '개 핀볼';
     this.renderResults(false);

@@ -9,7 +9,7 @@
   <link rel="preload" as="image" href="./assets/cannon-front.png">
   <link rel="preload" as="image" href="./assets/cannon-barrel.png">
   <link rel="preload" as="image" href="./assets/cannon-wheel.png">
-  <link rel="stylesheet" href="./style.css?v=pinball-clean-20261006">
+  <link rel="stylesheet" href="./style.css?v=pinball-minimal-20261006">
 </head>
 <body class="scene-intro" data-scene="intro" data-theme="cosmic">
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
@@ -51,11 +51,9 @@
   <header class="masthead" inert aria-hidden="true">
     <a class="brand" href="./index.html" aria-label="어른뭉방구 홈">
       <img class="orbit-mark brand-logo" src="./assets/logo.svg" alt="" width="64" height="56">
-      <span class="brand-type">어른뭉방구<span class="brand-caption">핀볼 · 작은 우연을 모으는 곳</span></span>
+      <span class="brand-type">어른뭉방구</span>
     </a>
-    <div class="masthead-center"><span class="live-dot"></span><span id="game-status">추첨을 준비하고 있어요</span></div>
     <nav class="masthead-actions" aria-label="게임 설정">
-      <span class="offline-badge"><span class="offline-dot"></span>오프라인 놀이판</span>
       <span class="fps-badge"><b id="fps">60</b> FPS</span>
       <button class="icon-button" id="sound-toggle" type="button" aria-label="효과음 끄기" aria-pressed="true"><svg class="icon"><use href="#i-sound"/></svg></button>
       <button class="icon-button" id="settings-toggle" type="button" aria-label="설정 패널 열기 또는 닫기" aria-expanded="true" aria-controls="setup-panel"><svg class="icon"><use href="#i-settings"/></svg></button>
@@ -112,7 +110,6 @@
       </form>
     </aside>
 
-    <div class="stage-heading" id="stage-heading"><div class="stage-map-label"><span class="stage-number" id="map-number">01</span><span><span class="eyebrow">오늘의 놀이판</span><h2 id="map-title">자개 핀 보드</h2></span></div><span class="stage-tag" id="map-tag">작은 장애물 사이로</span></div>
 
     <aside class="race-panel" aria-label="실시간 경기 정보">
       <div class="race-stats glass-panel"><div><span class="eyebrow">굴러가는 핀볼</span><strong id="remaining">6<span> / 6</span></strong><small>남은 핀볼</small></div><div><span class="eyebrow">TIME</span><strong id="elapsed">00:00<small>.00</small></strong><small>경과 시간</small></div></div>
@@ -134,12 +131,12 @@
     <button class="icon-button results-close" id="results-close" type="button" aria-label="결과 화면 닫기"><svg class="icon"><use href="#i-close"/></svg></button>
     <div class="winner-medallion" aria-hidden="true"><img src="./assets/logo.svg" alt="" width="58" height="51"></div>
     <p class="eyebrow" id="result-rule">오늘의 행운이 도착했습니다</p><h2 id="winner-heading">행운의 주인공</h2>
-    <div class="result-meta"><span>SEED <b id="result-seed"></b></span><span>TIME <b id="result-time"></b></span></div>
+    <div class="result-meta"><span>TIME <b id="result-time"></b></span></div>
     <div class="result-ranking-heading"><span>최종 순위</span><span id="result-total"></span></div>
     <ol id="result-ranking" class="result-ranking"></ol><button type="button" id="show-all-results" class="text-button show-all-results" hidden>전체 순위 보기</button>
     <div class="result-actions"><button type="button" id="restart-button" class="start-button"><svg class="icon"><use href="#i-play"/></svg>같은 멤버로 다시 섞기</button><button type="button" id="replay-button" class="secondary-button"><svg class="icon"><use href="#i-reset"/></svg>다시 설정하기</button></div>
   </dialog>
 
-  <script src="./js/themes.js"></script><script src="./js/maps.js?v=classic-20261006"></script><script src="./js/physics.js?v=pinball-clean-20261006"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/renderer.js?v=pinball-clean-20261006"></script><script src="./js/cinematic.js?v=pinball-clean-20261006"></script><script src="./js/ui.js?v=pinball-clean-20261006"></script><script src="./js/main.js?v=pinball-clean-20261006"></script>
+  <script src="./js/themes.js"></script><script src="./js/maps.js?v=classic-20261006"></script><script src="./js/physics.js?v=pinball-minimal-20261006"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/renderer.js?v=pinball-minimal-20261006"></script><script src="./js/cinematic.js?v=pinball-minimal-20261006"></script><script src="./js/ui.js?v=pinball-minimal-20261006"></script><script src="./js/main.js?v=pinball-minimal-20261006"></script>
 </body>
 </html>
