@@ -178,11 +178,11 @@
   UI.prototype.updateStartCopy = function () {
     var stages = {
       mixing: ['핀볼을 섞고 있어요', '유리 대포 속에서 새로운 자리를 찾는 중'],
-      aiming: ['출발선을 향하고 있어요', '오늘의 작은 행운을 보낼 준비를 합니다'],
-      flight: ['행운을 날리고 있어요', '핀볼이 도착하면 놀이판이 펼쳐집니다'],
-      running: ['행운이 굴러가는 중', '마지막 핀볼까지 천천히 지켜봐 주세요']
+      aiming: ['출발선을 향하고 있어요', '핀볼을 발사할 준비를 합니다'],
+      flight: ['핀볼을 발사하고 있어요', '핀볼이 도착하면 놀이판이 펼쳐집니다'],
+      running: ['게임 진행 중', '마지막 핀볼까지 천천히 지켜봐 주세요']
     };
-    var copy = this.locked ? (stages[this.scene] || stages.mixing) : ['게임 시작', '핀볼을 섞고, 오늘의 행운을 날려요'];
+    var copy = this.locked ? (stages[this.scene] || stages.mixing) : ['게임 시작', '핀볼을 섞고 발사합니다'];
     $('start-button').querySelector('span:nth-child(2)').firstChild.textContent = copy[0];
     $('start-button').querySelector('small').textContent = copy[1];
   };
@@ -423,7 +423,7 @@
   UI.prototype.showResults = function (data) {
     this.resultData = data;
     var winners = Array.isArray(data.winners) ? data.winners : [];
-    $('winner-heading').textContent = winners.length > 3 ? winners.length + '개의 행운' : (winners.length ? winners.map(function (winner) { return winner.name; }).join(' · ') : '행운의 주인공');
+    $('winner-heading').textContent = winners.length > 3 ? winners.length + '명 당첨' : (winners.length ? winners.map(function (winner) { return winner.name; }).join(' · ') : '당첨 결과');
     $('winner-heading').classList.remove('winner-reveal'); void $('winner-heading').offsetWidth; $('winner-heading').classList.add('winner-reveal');
     $('result-rule').textContent = data.ruleLabel || '1등 당첨';
     $('result-time').textContent = formatTime(data.time, true);
