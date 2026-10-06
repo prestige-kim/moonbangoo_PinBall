@@ -337,7 +337,17 @@
       var launch = $('mobile-setup-button').getBoundingClientRect();
       bottom = Math.min(bottom, launch.top - 18);
       if (this.isGameScene() && this.panelOpen && panel.top < bottom && panel.bottom > top) bottom = Math.max(top + 90, panel.top - 18);
-      return { x: 14, y: top, w: Math.max(100, width - 28), h: Math.max(90, bottom - top) };
+      var raceMobile = document.querySelector('.race-panel').getBoundingClientRect();
+      // A narrow portrait screen has room beneath the HUD. Keep the tracked
+      // marble there even when it rolls to the right side of the board.
+      if (width <= 500 && raceMobile.width > 0 && bottom - raceMobile.bottom > 160) top = Math.max(top, raceMobile.bottom + 12);
+      // On short landscape screens the race HUD covers the central play band.
+      // Reserve its horizontal space during the flight too, so the landing pose
+      // and live camera use the same coordinates.
+      var focusY = top + (bottom - top) / 2;
+      var rightMobile = raceMobile.width > 0 && raceMobile.top < focusY + 30 && raceMobile.bottom > focusY - 30
+        ? Math.min(width - 14, raceMobile.left - 18) : width - 14;
+      return { x: 14, y: top, w: Math.max(100, rightMobile - 14), h: Math.max(90, bottom - top) };
     }
     // Sliding panels contribute only their currently visible part, including during focus transitions.
     var left = this.isGameScene() && this.panelOpen && panel.right > 0 && panel.left < width ? Math.max(32, panel.right + 25) : 32;

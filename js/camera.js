@@ -12,17 +12,17 @@
       return w > 1050 ? { x: 352, y: 0, w: Math.max(280, w - 632), h } : { x: 0, y: 0, w, h };
     }
     reset(map) {
-      this.entrance = null; this.map = map; const area = this.area(); this.x = map.width / 2; this.y = Math.min(540, area.h / (2 * Math.min(area.w / (map.width + 90), 1.15))); this.zoom = this.baseZoom() * .82; this.follow = true; this.manualZoom = 1; this.pointer.clear();
+      this.entrance = null; this.map = map; this.lastPhysicsTime = null; const area = this.area(); this.x = map.width / 2; this.y = Math.min(540, area.h / (2 * Math.min(area.w / (map.width + 90), 1.15))); this.zoom = this.baseZoom() * .82; this.follow = true; this.manualZoom = 1; this.pointer.clear();
     }
     enter(map, options) {
       const area = this.area();
       this.entrance = { elapsed: 0, duration: options && options.reducedMotion ? .18 : 1.05,
         x: this.x, y: this.y, zoom: this.zoom,
         screenX: area.x + area.w / 2, screenY: area.y + area.h / 2 };
-      this.map = map; this.follow = true; this.manualZoom = 1; this.pointer.clear(); this.drag = null;
+      this.map = map; this.lastPhysicsTime = null; this.follow = true; this.manualZoom = 1; this.pointer.clear(); this.drag = null;
     }
     prepareLanding(map, physics) {
-      this.map = map; this.entrance = null; this.follow = true; this.manualZoom = 1;
+      this.map = map; this.entrance = null; this.lastPhysicsTime = physics && physics.time; this.follow = true; this.manualZoom = 1;
       this.pointer.clear(); this.drag = null; this.pinch = null;
       const area = this.area();
       const active = physics && physics.marbles ? physics.marbles.filter(m => !m.finished) : [];
@@ -45,7 +45,14 @@
     worldToScreen(x, y) { const area = this.area(); return { x: area.x + area.w / 2 + (x - this.x) * this.zoom, y: area.y + area.h / 2 + (y - this.y) * this.zoom }; }
     screenToWorld(x, y) { const area = this.area(); return { x: this.x + (x - area.x - area.w / 2) / this.zoom, y: this.y + (y - area.y - area.h / 2) / this.zoom }; }
     update(dt, physics, map, options) {
-      this.map = map; options = options || {}; if (!this.follow || !physics || !physics.marbles.length) return;
+      this.map = map; options = options || {};
+      if (!physics || !physics.marbles.length) return;
+      // Follow real simulated progress. A 3x race may advance many physics ticks
+      // in one display frame, while photo finish and frame caps advance fewer.
+      const physicsRate = dt > 0 && Number.isFinite(physics.time) && Number.isFinite(this.lastPhysicsTime)
+        ? clamp((physics.time - this.lastPhysicsTime) / dt, 0, 3) : 0;
+      this.lastPhysicsTime = physics.time;
+      if (!this.follow) return;
       const area = this.area(), active = physics.marbles.filter(m => !m.finished);
       if (this.entrance) {
         const e = this.entrance; e.elapsed += dt;
@@ -71,11 +78,28 @@
         const finishY = map.finish && map.finish.y || map.height - 120;
         if (front.y > finishY - 260) targetZoom = base * 1.12 * this.manualZoom;
       }
-      const targetY = options.status === 'idle' ? Math.max(460, front.y - 35) : options.status === 'countdown' ? Math.max(220, front.y - 35) : front.y + 60;
-      const lerp = 1 - Math.exp(-dt * 3.1), zLerp = 1 - Math.exp(-dt * 2.4);
+      const inset = Math.min(20, area.h * .12), radius = front.r || 12;
+      const ahead = Math.min(60, Math.max(0, (area.h / 2 - inset - radius * targetZoom) / targetZoom) * .65);
+      const followRate = 3.1;
+      const fallingSpeed = clamp(front.vy || 0, -700, 700) * physicsRate;
+      const targetY = options.status === 'idle' ? Math.max(460, front.y - 35) : options.status === 'countdown' ? Math.max(220, front.y - 35) : front.y + ahead + fallingSpeed / followRate;
+      const lerp = 1 - Math.exp(-dt * followRate), zLerp = 1 - Math.exp(-dt * 2.4);
       this.x += (targetX - this.x) * lerp; this.zoom += (targetZoom - this.zoom) * zLerp;
       const minY = Math.max(220, area.h / (2 * this.zoom) - 30), maxY = Math.max(minY, map.height - area.h / (2 * this.zoom) + 150);
-      this.y += (clamp(targetY, minY, maxY) - this.y) * lerp;
+      // Finishing, a portal, or a new leader can put the next live marble far
+      // from the camera. Catch up sooner, but cap board travel in screen pixels.
+      const screenY = area.h / 2 + (front.y - this.y) * this.zoom;
+      const safeTop = inset + radius * this.zoom, safeBottom = area.h - inset - radius * this.zoom;
+      const outside = Math.max(safeTop - screenY, screenY - safeBottom, 0);
+      const catchupRate = followRate + Math.min(9, outside / Math.max(25, area.h * .2) * 3);
+      let followY = clamp(targetY, minY, maxY);
+      // Once an active marble is outside the view, its current position takes
+      // priority over velocity look-ahead until it re-enters the safe band.
+      if (screenY < safeTop) followY = Math.min(followY, front.y + (area.h / 2 - safeTop) / this.zoom);
+      else if (screenY > safeBottom) followY = Math.max(followY, front.y - (safeBottom - area.h / 2) / this.zoom);
+      const desiredStep = (followY - this.y) * (1 - Math.exp(-dt * catchupRate));
+      const maxStep = Math.max(20, physicsRate * 700 * this.zoom * dt + 8) / this.zoom;
+      this.y += clamp(desiredStep, -maxStep, maxStep);
     }
     attach(canvas) {
       if (this.attached) return; this.attached = true;

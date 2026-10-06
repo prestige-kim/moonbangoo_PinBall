@@ -63,3 +63,12 @@ body[data-theme=ice]{--bg:#E9E9E4;--panel:rgba(248,247,241,.95);--panel-solid:#F
 .reduced-motion #cinema-canvas,.reduced-motion .scene-welcome,.reduced-motion .setup-backdrop,.reduced-motion .setup-panel,.reduced-motion .scene-status,.reduced-motion #game-canvas{transition-duration:.12s!important}.reduced-motion .scene-setup .setup-panel{transform:translate(-50%,-50%)!important}
 
 .recovery-note{margin:0;color:var(--muted);font-size:11px;line-height:1.75;word-break:keep-all}
+
+/* Keep a usable play band beside the race HUD on short mobile landscape screens. */
+@media(max-width:850px) and (max-height:500px) and (orientation:landscape){
+  .scene-flight .masthead,.scene-running .masthead,.scene-finished .masthead{height:54px;padding-top:8px;padding-bottom:8px}
+  .scene-flight .stage-heading,.scene-running .stage-heading,.scene-finished .stage-heading{top:60px}
+  .scene-flight .race-panel,.scene-running .race-panel,.scene-finished .race-panel{top:105px}
+  .scene-flight .camera-hints,.scene-running .camera-hints,.scene-finished .camera-hints{bottom:58px}
+  .scene-flight .mobile-setup-button,.scene-running .mobile-setup-button,.scene-finished .mobile-setup-button{bottom:12px}
+}

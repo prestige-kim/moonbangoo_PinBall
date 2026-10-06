@@ -10,7 +10,7 @@ function event(type, properties = {}, target) {
   if (target) Object.defineProperty(value, 'target', { value: target, configurable: true });
   return value;
 }
-function scene(width = 400) {
+function scene(width = 400, height = 800) {
   let document;
   class Node extends EventTarget {
     constructor(id) {
@@ -24,10 +24,10 @@ function scene(width = 400) {
     getBoundingClientRect() {
       if (this.id === 'masthead') return { left: 0, right: width, top: 0, bottom: 80, width, height: 80 };
       if (this.id === 'stage-heading') return { left: 20, right: width - 20, top: 95, bottom: 127, width: width - 40, height: 32 };
-      if (this.id === 'race-panel') return { left: width - 170, right: width - 24, top: 150, bottom: 600, width: 146, height: 450 };
-      if (this.id === 'camera-hints') return { left: 20, right: width - 20, top: 714, bottom: 728, width: width - 40, height: 14 };
-      if (this.id === 'system-footer') return { left: 18, right: width - 18, top: 780, bottom: 800, width: width - 36, height: 20 };
-      if (this.id === 'mobile-setup-button') return { left: 100, right: 280, top: 733, bottom: 776, width: 180, height: 43 };
+      if (this.id === 'race-panel') return { left: width - 170, right: width - 24, top: 150, bottom: 346, width: 146, height: 196 };
+      if (this.id === 'camera-hints') return { left: 20, right: width - 20, top: height - 96, bottom: height - 82, width: width - 40, height: 14 };
+      if (this.id === 'system-footer') return { left: 18, right: width - 18, top: height - 21, bottom: height - 1, width: width - 36, height: 20 };
+      if (this.id === 'mobile-setup-button') return { left: 100, right: 280, top: height - 67, bottom: height - 24, width: 180, height: 43 };
       return { left: width / 2 - 174, right: width / 2 + 174, top: 50, bottom: 750, width: 348, height: 700 };
     }
     getClientRects() { return this.hidden ? [] : [this.getBoundingClientRect()]; }
@@ -44,7 +44,7 @@ function scene(width = 400) {
   document.getElementById = node;
   document.querySelector = selector => node(selector.replace(/^\./, ''));
   document.querySelectorAll = selector => selector === '.masthead,.system-footer' ? [node('masthead'), node('system-footer')] : [];
-  const window = { innerWidth: width, innerHeight: 800, CosmicPinball: {}, setTimeout: () => 0 };
+  const window = { innerWidth: width, innerHeight: height, CosmicPinball: {}, setTimeout: () => 0 };
   const context = vm.createContext({ window, document, console, requestAnimationFrame: handler => handler() });
   vm.runInContext(fs.readFileSync(path.join(__dirname, '../js/ui.js'), 'utf8'), context);
   const ui = Object.create(window.CosmicPinball.UI.prototype);
@@ -133,4 +133,17 @@ test('refreshing the same setup preserves slider and map focus instead of refocu
   s.node('map-classic').focus(); s.ui.setScene('setup');
   assert.equal(s.document.activeElement.id, 'map-classic');
   assert.equal(s.node('setup-panel').inert, false);
+});
+
+
+test('short mobile landscape excludes the race HUD while portrait preserves board width', () => {
+  const portrait = scene(375, 812); portrait.ui.setScene('running');
+  const portraitView = portrait.ui.getViewport();
+  assert.equal(portraitView.w, 375 - 28, 'portrait keeps full board width');
+  assert.ok(portraitView.y >= portrait.node('race-panel').getBoundingClientRect().bottom + 12, 'portrait leader stays below the HUD');
+  const landscape = scene(812, 375); const views = [];
+  for (const stage of ['flight', 'running']) { landscape.ui.setScene(stage); views.push(landscape.ui.getViewport()); }
+  assert.equal(JSON.stringify(views[0]), JSON.stringify(views[1]), 'flight-to-game handoff has one viewport');
+  assert.ok(views[1].x + views[1].w <= landscape.node('race-panel').getBoundingClientRect().left - 18,
+    'leading marble can be tracked beside the HUD');
 });
