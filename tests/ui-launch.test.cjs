@@ -25,6 +25,7 @@ function scene(width = 400, height = 800) {
       if (this.id === 'masthead') return { left: 0, right: width, top: 0, bottom: 80, width, height: 80 };
       if (this.id === 'stage-heading') return { left: 20, right: width - 20, top: 95, bottom: 127, width: width - 40, height: 32 };
       if (this.id === 'race-panel') return { left: width - 170, right: width - 24, top: 150, bottom: 346, width: 146, height: 196 };
+      if (this.id === 'minimap-panel') return { left: width - 129, right: width - 17, top: height - (width <= 500 ? 232 : 105), bottom: height - (width <= 500 ? 82 : 10), width: 112, height: width <= 500 ? 150 : 95 };
       if (this.id === 'camera-hints') return { left: 20, right: width - 20, top: height - 96, bottom: height - 82, width: width - 40, height: 14 };
       if (this.id === 'system-footer') return { left: 18, right: width - 18, top: height - 21, bottom: height - 1, width: width - 36, height: 20 };
       if (this.id === 'mobile-setup-button') return { left: 100, right: 280, top: height - 67, bottom: height - 24, width: 180, height: 43 };
@@ -141,9 +142,12 @@ test('short mobile landscape excludes the race HUD while portrait preserves boar
   const portraitView = portrait.ui.getViewport();
   assert.equal(portraitView.w, 375 - 28, 'portrait keeps full board width');
   assert.ok(portraitView.y >= portrait.node('race-panel').getBoundingClientRect().bottom + 12, 'portrait leader stays below the HUD');
+  assert.ok(portraitView.y + portraitView.h <= portrait.node('minimap-panel').getBoundingClientRect().top - 12, 'portrait minimap stays outside the tracked play band');
   const landscape = scene(812, 375); const views = [];
   for (const stage of ['flight', 'running']) { landscape.ui.setScene(stage); views.push(landscape.ui.getViewport()); }
   assert.equal(JSON.stringify(views[0]), JSON.stringify(views[1]), 'flight-to-game handoff has one viewport');
   assert.ok(views[1].x + views[1].w <= landscape.node('race-panel').getBoundingClientRect().left - 18,
     'leading marble can be tracked beside the HUD');
+  landscape.ui.map = 'hybrid'; landscape.ui.syncSelections();
+  assert.equal(landscape.node('map-tag').textContent, '같은 글자의 포털로 이동');
 });

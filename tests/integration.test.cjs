@@ -252,6 +252,20 @@ test('a natural six-marble race triggers lead changes and celebration', () => {
   assert.equal(P.app.effects.celebrated, true);
 });
 
+test('crowded races announce only settled leader changes and keep arrival results intact', () => {
+  const { P, callbacks, advance, launch } = boot();
+  Object.assign(P.app.ui.values, { names: '참가자*200', speed: 3, gravity: 1500, seed: 'VISUAL-HUD-200' });
+  callbacks.start(); launch();
+  const physics = P.app.physics, notices = [];
+  P.app.ui.toast = message => { if (message.startsWith('선두 교체')) notices.push({ message, time: physics.time }); };
+  advance(45);
+  assert.equal(P.app.status, 'finished');
+  assert.ok(notices.length <= 3, 'lead messages do not occupy the HUD repeatedly');
+  for (let i = 1; i < notices.length; i++) assert.ok(notices[i].time - notices[i - 1].time >= 6, 'lead alerts have breathing room');
+  assert.equal(physics.finished.length, 200);
+  assert.ok(physics.finished.every(m => Number.isFinite(m.finishTime)));
+});
+
 test('leaders arriving close together trigger the photo finish view', () => {
   const { P, callbacks, advance, launch } = boot();
   callbacks.start(); launch(); advance(3.2);

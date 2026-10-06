@@ -5,7 +5,7 @@
   var mapLabels = {
     classic: { number: '01', title: '자개 핀 보드', tag: '작은 장애물 사이로' },
     dynamic: { number: '02', title: '금박 회전길', tag: '빙글빙글 천천히' },
-    hybrid: { number: '03', title: '행운 갈림길', tag: '돌고 돌아 만나요' }
+    hybrid: { number: '03', title: '행운 갈림길', tag: '같은 글자의 포털로 이동' }
   };
   function icon(id) {
     var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -347,6 +347,8 @@
       var focusY = top + (bottom - top) / 2;
       var rightMobile = raceMobile.width > 0 && raceMobile.top < focusY + 30 && raceMobile.bottom > focusY - 30
         ? Math.min(width - 14, raceMobile.left - 18) : width - 14;
+      var mini = document.querySelector('.minimap-panel').getBoundingClientRect();
+      if (mini.width > 0 && mini.left < rightMobile && mini.right > 14 && mini.top < bottom && mini.bottom > top) bottom = Math.min(bottom, mini.top - 12);
       return { x: 14, y: top, w: Math.max(100, rightMobile - 14), h: Math.max(90, bottom - top) };
     }
     // Sliding panels contribute only their currently visible part, including during focus transitions.

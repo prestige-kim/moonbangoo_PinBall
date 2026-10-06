@@ -273,3 +273,20 @@ Node v24.14.0 / macOS arm64에서 기준 버전과 수정 버전을 순서대로
 - 동일 시드, 6구슬, 중력 1500, 반발력 0.35의 실제 물리 3배속 샘플에서 최장 연속 빈 화면은 수정 전 클래식 가로 146프레임(약 2.43초), 수정 후 16프레임(약 0.27초)입니다. 세 맵 × 세 화면 비율에서 수정 후 최장 16프레임이고 모두 완주했습니다. 넓게 떨어진 다음 선두나 포털 재배치 때 짧은 재구도는 남을 수 있습니다. 이 수치는 모든 시드에서 빈 화면 0프레임을 보장하지 않습니다.
 - 내장 브라우저에서 세 맵 × 0.5·1·3배속 × 데스크톱·모바일 세로·가로 **27개 조합**을 직접 실행했습니다. 대포 조립→발사→맵 진입→경기→결과 흐름, 경기 중 드래그·휠 확대의 추적 해제, 버튼과 F 키의 복귀도 확인했습니다. 브라우저 모바일 화면은 뷰포트 에뮬레이션이며 실제 iOS/Android 기기 검증은 아닙니다.
 - [가로 3배속](previews/mungbanggu-camera-landscape.png) · [세로 3배속](previews/mungbanggu-camera-portrait.png) · [데스크톱 3배속](previews/mungbanggu-camera-desktop.png). 푸시·배포하지 않았습니다.
+
+## 시각 정보 밀도와 모바일 지도 보정 (2026-10-06, 로컬)
+
+수정 전·후 비교는 클래식 맵, 금박 테마, `VISUAL-AUDIT-인원수` 시드, 중력 1500, 반발력 0.35, 3배속, 모션 감소를 사용했습니다. 시작 직후의 브라우저 캡처이며 정확히 같은 렌더 프레임을 고정한 비교는 아닙니다. 데스크톱 1408×792, 모바일 세로 405×844 뷰포트에서 각각 6·50·200·500구슬을 직접 시작해 확인했습니다. 모바일 가로 844×390에서 50구슬과 미니맵 배치도 확인했습니다.
+
+| 화면 | 6개 | 50개 | 200개 | 500개 |
+| --- | --- | --- | --- | --- |
+| 데스크톱 | [전](previews/visual-before-desktop-6.png) · [후](previews/visual-after-desktop-6.png) | [전](previews/visual-before-desktop-50.png) · [후](previews/visual-after-desktop-50.png) | [전](previews/visual-before-desktop-200.png) · [후](previews/visual-after-desktop-200.png) | [전](previews/visual-before-desktop-500.png) · [후](previews/visual-after-desktop-500.png) |
+| 모바일 세로 | [전](previews/visual-before-mobile-6.png) · [후](previews/visual-after-mobile-6.png) | [전](previews/visual-before-mobile-50.png) · [후](previews/visual-after-mobile-50.png) | [전](previews/visual-before-mobile-200.png) · [후](previews/visual-after-mobile-200.png) | [전](previews/visual-before-mobile-500.png) · [후](previews/visual-after-mobile-500.png) |
+
+- 이름표는 전체 6 / 50 / 200 / 500개일 때 각각 최대 6 / 7 / 3 / 1개만 배치하며, 다른 이름표와 구슬·HUD와 겹치지 않는 위치를 우선합니다. 선두만 좁은 공간에서도 표시합니다. 잔상은 두꺼운 조각 대신 얇은 곡선으로 그려 다인원에서는 선두에만 남깁니다.
+- 완주 구슬은 물리 좌표를 그대로 둔 채 결승 아래에 최근 12개를 두 줄 슬롯으로 표시하고 누적 완주 수를 적습니다. 이전 완주 구슬도 최종 순위표에 모두 남습니다. 순위와 도착 시간은 물리 엔진의 확정값을 그대로 사용합니다.
+- 선두 교체는 0.45초 유지된 경우에만 최대 세 번, 최소 7초 간격으로 알립니다. 200구슬 완주 회귀 검사에서 과밀 알림과 순위·도착 시간 보존을 확인했습니다.
+- 모바일 미니맵을 세로·가로 모두 표시합니다. 세로 화면에서는 카메라가 미니맵 위의 안전 영역을 사용하고, 짧은 가로 화면에서는 HUD 오른쪽 열 아래에 소형 지도를 배치합니다. 포털은 각 구간의 A/B 입구·도착 라벨과 점선 연결, 맵 안내 문구로 목적지를 보여 줍니다.
+- 금박 테마의 HUD 글자·테두리 밝기와 보드 종이색, 구슬 외곽선을 조정했습니다. [가로 화면](previews/visual-after-landscape-50.png) · [포털 화면](previews/visual-after-portal-desktop.png) · [완주 배치](previews/visual-after-finish-gallery-desktop-6.png).
+- 모바일 세로 뷰포트의 500구슬 게임에서 `0 / 500`, 최종 `00:19.11`, 결과표 500개를 확인했습니다. [결과 화면](previews/visual-after-mobile-500-results.png). 모션 감소 설정을 사용한 내장 브라우저의 뷰포트 검사이며 실제 iOS/Android 기기와 청감 검사는 포함하지 않았습니다. 최근 완주 12개만 결승 슬롯에 보이고 전체 완주자는 결과표에서 확인합니다.
+- 전체 자동 검증: `node --test tests/*.test.cjs` — **63개 통과, 실패 0개**. 변경 파일 밖의 물리 엔진·맵·카메라·대포 연출은 수정하지 않았습니다. 푸시·배포하지 않았습니다.

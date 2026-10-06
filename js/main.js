@@ -92,6 +92,9 @@
   let hudElapsed = 0;
   let leaderId = null;
   let leadCooldown = 0;
+  let leadCandidateId = null;
+  let leadCandidateAge = 0;
+  let leadNotices = 0;
   let lastRescueNotice = -Infinity;
   let photoFinish = false;
   let winner = null;
@@ -182,7 +185,7 @@
     winner = null; launchElapsed = 0; flightLanded = false;
     cannonSoundPlayed = false; chargeSoundPlayed = false;
     setScene('mixing');
-    accumulator = 0; leaderId = null; leadCooldown = 0; lastRescueNotice = -Infinity; photoFinish = false;
+    accumulator = 0; leaderId = null; leadCooldown = 0; leadCandidateId = null; leadCandidateAge = 0; leadNotices = 0; lastRescueNotice = -Infinity; photoFinish = false;
     finalRanking = []; resultDelay = 0; resultShown = false;
     diagnostics.leadChanges = 0; diagnostics.photoFinishes = 0; diagnostics.events = {};
     audio.unlock(); resize();
@@ -279,13 +282,21 @@
     const leader = physics.getRanking()[0];
     leadCooldown = Math.max(0, leadCooldown - dt);
     if (leader && leaderId !== leader.id) {
-      if (leaderId !== null && leadCooldown === 0 && !leader.finished) {
+      leadCandidateId = leaderId === null ? null : leader.id;
+      leadCandidateAge = 0;
+      leaderId = leader.id;
+    }
+    if (leader && leadCandidateId === leader.id && !leader.finished) {
+      leadCandidateAge += dt;
+      // A brief shuffle at the front is not an announcement. Give persistent
+      // changes room to breathe, especially when hundreds of marbles race.
+      if (leadCandidateAge >= .45 && leadCooldown <= 0 && leadNotices < 3) {
         diagnostics.leadChanges++;
         ui.toast('선두 교체 · ' + leader.name);
         effects.handle({ type: 'lead', x: leader.x, y: leader.y, marble: leader, intensity: 1 }, P.THEMES[settings.theme], physics.marbles.length);
-        audio.play('lead'); leadCooldown = 1.1;
+        audio.play('lead'); leadCooldown = 7; leadNotices++; leadCandidateId = null;
       }
-      leaderId = leader.id;
+      else if (leadCandidateAge > 2 && leadCooldown > 0) leadCandidateId = null;
     }
     if (physics.complete) finish();
   }

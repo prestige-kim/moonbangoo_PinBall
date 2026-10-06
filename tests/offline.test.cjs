@@ -12,7 +12,8 @@ test('offline entry uses only existing relative styles and classic scripts', () 
   assert.ok(resources.length >= 10);
   for (const resource of resources) {
     assert.match(resource, /^\.\//, 'file:// must resolve a relative resource: ' + resource);
-    assert.ok(fs.existsSync(path.join(root, resource)), 'Missing local resource: ' + resource);
+    const pathname = resource.split(/[?#]/, 1)[0];
+    assert.ok(fs.existsSync(path.join(root, pathname)), 'Missing local resource: ' + resource);
   }
   assert.doesNotMatch(html, /<(?:img|iframe|audio|video)[^>]*src\s*=\s*["'](?:https?:)?\/\//i);
   const css = fs.readFileSync(path.join(root, 'style.css'), 'utf8');

@@ -72,3 +72,25 @@ body[data-theme=ice]{--bg:#E9E9E4;--panel:rgba(248,247,241,.95);--panel-solid:#F
   .scene-flight .camera-hints,.scene-running .camera-hints,.scene-finished .camera-hints{bottom:58px}
   .scene-flight .mobile-setup-button,.scene-running .mobile-setup-button,.scene-finished .mobile-setup-button{bottom:12px}
 }
+
+/* Keep the live map available on phones without placing it over the tracked marble. */
+@media(max-width:850px){
+  .scene-flight .minimap-panel,.scene-running .minimap-panel,.scene-finished .minimap-panel{right:17px;bottom:82px;width:112px;padding:8px;border:1px solid var(--strong-border);border-radius:11px;background:var(--panel-solid);box-shadow:0 5px 20px #4a3a2820}
+  .scene-flight .minimap-heading,.scene-running .minimap-heading,.scene-finished .minimap-heading{display:flex;margin-bottom:5px}
+  .scene-flight .minimap-heading .eyebrow,.scene-running .minimap-heading .eyebrow,.scene-finished .minimap-heading .eyebrow{font-size:6px}
+  .scene-flight #minimap,.scene-running #minimap,.scene-finished #minimap{display:block;width:76px;height:99px;margin:0 auto;background:#fbf7ef}
+  .minimap-panel .follow-button{padding:7px 2px 0;border:0;background:transparent;font-size:7px;white-space:nowrap}
+}
+@media(max-width:850px) and (max-height:500px) and (orientation:landscape){
+  .scene-flight .minimap-panel,.scene-running .minimap-panel,.scene-finished .minimap-panel{bottom:10px;padding:4px 7px}
+  .scene-flight .minimap-heading,.scene-running .minimap-heading,.scene-finished .minimap-heading{display:none}
+  .scene-flight #minimap,.scene-running #minimap,.scene-finished #minimap{width:54px;height:70px}
+  .minimap-panel .follow-button{padding-top:3px;font-size:6px;justify-content:center}
+  #live-ranking{min-height:27px}.ranking-item:nth-child(n+2){display:none}
+}
+/* Gold keeps its dark paper, while race numbers and controls remain legible. */
+body[data-theme=gold]{--muted:#E3D2B4;--subtle:#C9B690;--border:rgba(235,205,147,.32);--strong-border:rgba(245,217,160,.58)}
+body[data-theme=gold] .race-panel .glass-panel{background:rgba(55,41,27,.97);border-color:var(--strong-border);box-shadow:0 6px 22px #100a0650}
+body[data-theme=gold] .rank-name,body[data-theme=gold] .rank-number,body[data-theme=gold] .race-stats>div>small{color:#F0DEC0}
+body[data-theme=gold] .stage-heading h2,body[data-theme=gold] .stage-tag,body[data-theme=gold] .minimap-heading{color:#F6E7C8}
+body[data-theme=gold] .toast{background:#392819;color:#FFF0CE;border-color:#E2C58B}
