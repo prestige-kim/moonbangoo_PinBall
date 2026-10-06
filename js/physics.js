@@ -5,7 +5,7 @@
   var clamp = function (value, low, high) { return Math.max(low, Math.min(high, value)); };
 
   P.PHYSICS_STEP = STEP;
-  P.PHYSICS_TUNING = { gravity: 620, fallSoftThreshold: 540, fallDrag: 5, fallMax: 700, velocityMax: 1050 };
+  P.PHYSICS_TUNING = { gravity: 620, fallSoftThreshold: 540, fallDrag: 5, fallMax: 700, velocityMax: 1050, rescueDelay: 3, rescueProgress: 24 };
   P.seedRandom = function (seed) {
     var hash = 2166136261;
     var input = String(seed);
@@ -58,6 +58,7 @@
     options = options || {};
     if (!options.names || !options.names.length || options.names.length > 500) throw new Error('참가자는 1~500개의 구슬로 설정해 주세요.');
     this.map = options.map || P.MAPS.classic;
+    this.bounds = P.boardBounds(this.map);
     this.seed = String(options.seed == null ? 'cosmic' : options.seed);
     this.random = P.seedRandom(this.seed);
     this.radius = clamp(Number(options.radius) || 12, 7, 18);
@@ -127,7 +128,8 @@
         vx: (this.random() - 0.5) * 60, vy: 0, r: this.radius, baseRadius: this.radius,
         angle: this.random() * Math.PI * 2, finished: false, finishTime: null,
         colorIndex: n, trail: [], skill: null,
-        _anchorY: position.y + offsetY, _stuckAt: 0, _nextSkill: 4 + this.random() * 8,
+        _anchorY: position.y + offsetY, _stuckAt: 0, _rescues: 0,
+        _rescueDirection: P.seedRandom(this.seed + '|rescue|' + entry.id)() < 0.5 ? -1 : 1, _nextSkill: 4 + this.random() * 8,
         _contacts: Object.create(null), _portalAt: -2, _boostAt: -2
       });
     }
@@ -136,6 +138,7 @@
     this._dynamicPoses = [];
     this._dynamicGrid = new Map();
     this._fields = [];
+    this._boostShapes = new Map();
     this._indexObstacles();
   }
 
@@ -151,7 +154,15 @@
     (this.map.obstacles || []).forEach(function (obstacle, index) {
       if (!obstacle.id) obstacle.id = 'obstacle-' + index;
       if (obstacle.type === 'rotor' || obstacle.type === 'moving') { self._dynamic.push(obstacle); return; }
-      if (obstacle.type === 'boost' || obstacle.type === 'portal') { self._fields.push(obstacle); return; }
+      if (obstacle.type === 'boost' || obstacle.type === 'portal') {
+        self._fields.push(obstacle);
+        if (obstacle.type === 'boost') {
+          var shape = P.boostShape(obstacle);
+          shape.cos = Math.cos(shape.angle); shape.sin = Math.sin(shape.angle);
+          self._boostShapes.set(obstacle, shape);
+        }
+        return;
+      }
       var bounds = self._bounds(obstacle);
       for (var gx = Math.floor(bounds.minX / 96); gx <= Math.floor(bounds.maxX / 96); gx++) {
         for (var gy = Math.floor(bounds.minY / 96); gy <= Math.floor(bounds.maxY / 96); gy++) {
@@ -197,9 +208,7 @@
     return { x: x, y: y, angle: angle, x1: x - dx, y1: y - dy, x2: x + dx, y2: y + dy, thickness: obstacle.thickness || 7, vx: vx, vy: vy };
   };
 
-  Physics.prototype._reflect = function (marble, nx, ny, penetration, obstacle, surfaceVx, surfaceVy) {
-    marble.x += nx * (penetration + 0.015);
-    marble.y += ny * (penetration + 0.015);
+  Physics.prototype._respond = function (marble, nx, ny, obstacle, surfaceVx, surfaceVy) {
     var rvx = marble.vx - (surfaceVx || 0);
     var rvy = marble.vy - (surfaceVy || 0);
     var normalVelocity = rvx * nx + rvy * ny;
@@ -215,83 +224,161 @@
     }
   };
 
-  Physics.prototype._circle = function (marble, obstacle) {
-    var dx = marble.x - obstacle.x, dy = marble.y - obstacle.y;
-    var sum = marble.r + obstacle.r;
-    var distanceSquared = dx * dx + dy * dy;
-    if (distanceSquared >= sum * sum) return;
-    var distance = Math.sqrt(distanceSquared);
-    if (distance < 0.00001) { dx = 0; dy = -1; distance = 1; }
-    this._reflect(marble, dx / distance, dy / distance, sum - distance, obstacle, 0, 0);
-  };
-
-  Physics.prototype._segment = function (marble, pose, obstacle) {
-    var sx = pose.x2 - pose.x1, sy = pose.y2 - pose.y1;
-    var lengthSquared = sx * sx + sy * sy;
-    var t = lengthSquared ? clamp(((marble.x - pose.x1) * sx + (marble.y - pose.y1) * sy) / lengthSquared, 0, 1) : 0;
-    var closestX = pose.x1 + sx * t, closestY = pose.y1 + sy * t;
-    var dx = marble.x - closestX, dy = marble.y - closestY;
-    var radius = marble.r + (pose.thickness || 6);
-    var distanceSquared = dx * dx + dy * dy;
-    if (distanceSquared >= radius * radius) return;
-    var distance = Math.sqrt(distanceSquared);
-    if (distance < 0.00001) {
-      distance = 1; dx = sy; dy = -sx;
-      var normalLength = Math.hypot(dx, dy) || 1;
-      dx /= normalLength; dy /= normalLength;
-    }
-    var surfaceVx = pose.vx || 0, surfaceVy = pose.vy || 0;
-    if (obstacle.type === 'rotor') {
-      surfaceVx = -(closestY - obstacle.y) * obstacle.speed;
-      surfaceVy = (closestX - obstacle.x) * obstacle.speed;
-    }
-    this._reflect(marble, dx / distance, dy / distance, radius - distance, obstacle, surfaceVx, surfaceVy);
-  };
-
-  Physics.prototype._polygon = function (marble, obstacle) {
-    var points = obstacle.points;
-    var inside = false;
-    var nearest = null;
-    for (var i = 0, j = points.length - 1; i < points.length; j = i++) {
-      var a = points[j], b = points[i];
-      if ((a.y > marble.y) !== (b.y > marble.y) && marble.x < (b.x - a.x) * (marble.y - a.y) / (b.y - a.y) + a.x) inside = !inside;
-      var sx = b.x - a.x, sy = b.y - a.y;
-      var t = clamp(((marble.x - a.x) * sx + (marble.y - a.y) * sy) / (sx * sx + sy * sy), 0, 1);
-      var x = a.x + sx * t, y = a.y + sy * t;
-      var d2 = (marble.x - x) * (marble.x - x) + (marble.y - y) * (marble.y - y);
-      if (!nearest || d2 < nearest.d2) nearest = { x: x, y: y, d2: d2, a: a, b: b };
-    }
-    if (inside) {
-      var distance = Math.sqrt(nearest.d2) || 0.0001;
-      var nx = (nearest.x - marble.x) / distance, ny = (nearest.y - marble.y) / distance;
-      this._reflect(marble, nx, ny, distance + marble.r + 0.5, obstacle, 0, 0);
+  // A contact describes a constraint at the current position. Do not move the ball
+  // while gathering contacts: a sweeping bar may share a contact with a static pin.
+  Physics.prototype._contact = function (marble, obstacle, pose, margin) {
+    margin = margin || 0;
+    var x, y, distance, nx, ny, depth, surfaceVx = 0, surfaceVy = 0;
+    if (obstacle.type === 'pin' || obstacle.type === 'bumper' || obstacle.type === 'circle') {
+      x = marble.x - obstacle.x; y = marble.y - obstacle.y;
+      var radius = marble.r + obstacle.r;
+      if (x * x + y * y >= (radius + margin) * (radius + margin)) return null;
+      distance = Math.hypot(x, y);
+      if (distance > 0.000001) { nx = x / distance; ny = y / distance; }
+      else { nx = 0; ny = -1; }
+      depth = radius - distance;
+    } else if (obstacle.type === 'polygon') {
+      var points = obstacle.points, inside = false, nearest = null, area = 0;
+      for (var i = 0, j = points.length - 1; i < points.length; j = i++) {
+        var a = points[j], b = points[i], ex = b.x - a.x, ey = b.y - a.y;
+        area += a.x * b.y - b.x * a.y;
+        if ((a.y > marble.y) !== (b.y > marble.y) && marble.x < ex * (marble.y - a.y) / ey + a.x) inside = !inside;
+        var t = clamp(((marble.x - a.x) * ex + (marble.y - a.y) * ey) / (ex * ex + ey * ey || 1), 0, 1);
+        var px = a.x + ex * t, py = a.y + ey * t, d2 = (marble.x - px) ** 2 + (marble.y - py) ** 2;
+        if (!nearest || d2 < nearest.d2) nearest = { x: px, y: py, d2: d2, ex: ex, ey: ey };
+      }
+      distance = Math.sqrt(nearest.d2);
+      if (!inside && distance >= marble.r + 1 + margin) return null;
+      if (distance > 0.000001) {
+        var side = inside ? -1 : 1;
+        nx = (marble.x - nearest.x) / distance * side; ny = (marble.y - nearest.y) / distance * side;
+      } else {
+        var length = Math.hypot(nearest.ex, nearest.ey) || 1, winding = area >= 0 ? 1 : -1;
+        nx = nearest.ey / length * winding; ny = -nearest.ex / length * winding;
+      }
+      depth = marble.r + 1 + (inside ? distance : -distance);
     } else {
-      for (var edge = 0; edge < points.length; edge++) {
-        var start = points[edge], end = points[(edge + 1) % points.length];
-        this._segment(marble, { x1: start.x, y1: start.y, x2: end.x, y2: end.y, thickness: 0.5 }, obstacle);
+      var sx = pose.x2 - pose.x1, sy = pose.y2 - pose.y1;
+      var along = clamp(((marble.x - pose.x1) * sx + (marble.y - pose.y1) * sy) / (sx * sx + sy * sy || 1), 0, 1);
+      var closestX = pose.x1 + sx * along, closestY = pose.y1 + sy * along;
+      x = marble.x - closestX; y = marble.y - closestY;
+      var reach = marble.r + (pose.thickness == null ? 6 : pose.thickness);
+      if (x * x + y * y >= (reach + margin) * (reach + margin)) return null;
+      distance = Math.hypot(x, y);
+      if (distance > 0.000001) { nx = x / distance; ny = y / distance; }
+      else {
+        var normalLength = Math.hypot(sx, sy) || 1;
+        nx = sy / normalLength; ny = -sx / normalLength;
+        if ((marble._previousX - closestX) * nx + (marble._previousY - closestY) * ny < 0) { nx = -nx; ny = -ny; }
+      }
+      depth = reach - distance; surfaceVx = pose.vx || 0; surfaceVy = pose.vy || 0;
+      if (obstacle.type === 'rotor') {
+        surfaceVx = -(closestY - obstacle.y) * obstacle.speed;
+        surfaceVy = (closestX - obstacle.x) * obstacle.speed;
+      }
+    }
+    return { nx: nx, ny: ny, depth: depth, obstacle: obstacle, vx: surfaceVx, vy: surfaceVy };
+  };
+
+  Physics.prototype._wallContacts = function (marble, contacts, margin) {
+    margin = margin || 0;
+    var b = this.bounds, r = marble.r;
+    var inset = Math.max(r + margin, b.radius);
+    if (marble.x >= b.left + inset && marble.x <= b.right - inset && marble.y >= b.top + inset && marble.y <= b.bottom - inset) return;
+    function add(nx, ny, depth) { if (depth > -margin) contacts.push({ nx: nx, ny: ny, depth: depth, obstacle: null, vx: 0, vy: 0 }); }
+    add(1, 0, b.left + r - marble.x); add(-1, 0, marble.x + r - b.right);
+    add(0, 1, b.top + r - marble.y); add(0, -1, marble.y + r - b.bottom);
+    var cx = marble.x < b.left + b.radius ? b.left + b.radius : marble.x > b.right - b.radius ? b.right - b.radius : null;
+    var cy = marble.y < b.top + b.radius ? b.top + b.radius : marble.y > b.bottom - b.radius ? b.bottom - b.radius : null;
+    if (cx !== null && cy !== null && r < b.radius) {
+      var dx = cx - marble.x, dy = cy - marble.y, d = Math.hypot(dx, dy);
+      if (d > 0) add(dx / d, dy / d, d + r - b.radius);
+    }
+  };
+
+  Physics.prototype._contactsAt = function (marble, margin) {
+    margin = margin || 0;
+    var contacts = [], seen = margin ? new Set() : null;
+    for (var gx = Math.floor((marble.x - margin) / 96); gx <= Math.floor((marble.x + margin) / 96); gx++) {
+      for (var gy = Math.floor((marble.y - margin) / 96); gy <= Math.floor((marble.y + margin) / 96); gy++) {
+        var key = gx + ':' + gy, candidates = this._staticGrid.get(key) || [];
+        for (var i = 0; i < candidates.length; i++) {
+          var obstacle = candidates[i];
+          if (seen) { if (seen.has(obstacle)) continue; seen.add(obstacle); }
+          var contact = this._contact(marble, obstacle, obstacle, margin);
+          if (contact) contacts.push(contact);
+        }
+        var dynamic = this._dynamicGrid.get(key) || [];
+        for (var j = 0; j < dynamic.length; j++) {
+          var entry = dynamic[j];
+          if (seen) { if (seen.has(entry.obstacle)) continue; seen.add(entry.obstacle); }
+          var moving = this._contact(marble, entry.obstacle, entry.pose, margin);
+          if (moving) contacts.push(moving);
+        }
+      }
+    }
+    this._wallContacts(marble, contacts, margin);
+    return contacts;
+  };
+
+  // Minimum translation satisfying all current contact planes. In 2D the optimum
+  // lies on one plane or at the intersection of two; no global iteration increase.
+  function contactCorrection(contacts) {
+    var best = null, bestLength = Infinity, slop = 0.015;
+    function consider(x, y) {
+      var length = x * x + y * y;
+      if (length >= bestLength) return;
+      for (var k = 0; k < contacts.length; k++) {
+        var c = contacts[k];
+        if (c.nx * x + c.ny * y < c.depth + slop - 0.000001) return;
+      }
+      best = { x: x, y: y }; bestLength = length;
+    }
+    for (var i = 0; i < contacts.length; i++) {
+      var a = contacts[i], da = a.depth + slop;
+      consider(a.nx * da, a.ny * da);
+      for (var j = 0; j < i; j++) {
+        var b = contacts[j], db = b.depth + slop, det = a.nx * b.ny - a.ny * b.nx;
+        if (Math.abs(det) > 0.000001) consider((da * b.ny - a.ny * db) / det, (a.nx * db - da * b.nx) / det);
+      }
+    }
+    return best;
+  }
+
+  Physics.prototype._obstacles = function (marble) {
+    // Re-query only this ball after a correction, including a changed grid cell.
+    // Curved surfaces need a new normal; most contacts finish on the first pass.
+    for (var attempt = 0; attempt < 6; attempt++) {
+      var contacts = this._contactsAt(marble);
+      if (!contacts.length) return;
+      // Nearby surfaces contribute signed separation constraints too, so pushing
+      // out of a pin cannot immediately move back into the neighbouring bar.
+      contacts = this._contactsAt(marble, marble.r * 2 + 0.015);
+      var correction = contactCorrection(contacts);
+      if (!correction) {
+        // Exactly opposed planes between a curved pin and bar have no linear
+        // solution. A bounded tangent move exposes the curved escape direction.
+        var c = contacts.reduce(function (a, b) { return a.depth > b.depth ? a : b; }), direction = marble._rescueDirection;
+        correction = { x: -c.ny * marble.r * direction, y: c.nx * marble.r * direction };
+      }
+      var length = Math.hypot(correction.x, correction.y), limit = marble.r * 2;
+      var scale = length > limit ? limit / length : 1;
+      marble.x += correction.x * scale; marble.y += correction.y * scale;
+      for (var n = 0; n < contacts.length; n++) {
+        var contact = contacts[n];
+        if (contact.depth > 0) this._respond(marble, contact.nx, contact.ny, contact.obstacle, contact.vx, contact.vy);
       }
     }
   };
 
-  Physics.prototype._obstacles = function (marble) {
-    var candidates = this._staticGrid.get(Math.floor(marble.x / 96) + ':' + Math.floor(marble.y / 96)) || [];
-    for (var i = 0; i < candidates.length; i++) {
-      var obstacle = candidates[i];
-      if (obstacle.type === 'pin' || obstacle.type === 'bumper' || obstacle.type === 'circle') this._circle(marble, obstacle);
-      else if (obstacle.type === 'segment') this._segment(marble, obstacle, obstacle);
-      else if (obstacle.type === 'polygon') this._polygon(marble, obstacle);
-    }
-    var dynamicCandidates = this._dynamicGrid.get(Math.floor(marble.x / 96) + ':' + Math.floor(marble.y / 96)) || [];
-    for (var dynamic = 0; dynamic < dynamicCandidates.length; dynamic++) {
-      var moving = dynamicCandidates[dynamic];
-      this._segment(marble, moving.pose, moving.obstacle);
-    }
-  };
-
   Physics.prototype._walls = function (marble) {
-    if (marble.x < marble.r) { marble.x = marble.r; marble.vx = Math.abs(marble.vx) * this.restitution; }
-    if (marble.x > this.map.width - marble.r) { marble.x = this.map.width - marble.r; marble.vx = -Math.abs(marble.vx) * this.restitution; }
-    if (marble.y < marble.r) { marble.y = marble.r; marble.vy = Math.abs(marble.vy) * this.restitution; }
+    var contacts = [];
+    this._wallContacts(marble, contacts);
+    if (!contacts.length) return;
+    var correction = contactCorrection(contacts);
+    if (!correction) return;
+    marble.x += correction.x; marble.y += correction.y;
+    for (var i = 0; i < contacts.length; i++) this._respond(marble, contacts[i].nx, contacts[i].ny, null, 0, 0);
   };
 
   Physics.prototype._pairs = function () {
@@ -318,6 +405,7 @@
             var correction = (radius - distance + 0.01) * 0.5;
             marble.x += nx * correction; marble.y += ny * correction;
             other.x -= nx * correction; other.y -= ny * correction;
+            marble._needsContactSolve = true; other._needsContactSolve = true;
             var rv = (marble.vx - other.vx) * nx + (marble.vy - other.vy) * ny;
             if (rv < 0) {
               var impulse = -(1 + this.restitution) * rv * 0.5;
@@ -337,7 +425,12 @@
     for (var i = 0; i < this._fields.length; i++) {
       var field = this._fields[i];
       if (field.type === 'boost') {
-        if (Math.abs(marble.x - field.x) > field.width / 2 || Math.abs(marble.y - field.y) > field.height / 2) continue;
+        var shape = this._boostShapes.get(field), dx = marble.x - field.x, dy = marble.y - field.y;
+        var localX = Math.abs(dx * shape.cos + dy * shape.sin), localY = Math.abs(-dx * shape.sin + dy * shape.cos);
+        if (localX > shape.width / 2 || localY > shape.height / 2) continue;
+        var cornerX = Math.max(0, localX - (shape.width / 2 - shape.radius));
+        var cornerY = Math.max(0, localY - (shape.height / 2 - shape.radius));
+        if (cornerX * cornerX + cornerY * cornerY > shape.radius * shape.radius) continue;
         marble.vx += (field.dx || 0) * field.power * STEP;
         marble.vy += (field.dy == null ? 1 : field.dy) * field.power * STEP;
         if (this.time - marble._boostAt > 0.45) {
@@ -412,7 +505,7 @@
     for (var i = 0; i < this.marbles.length; i++) {
       var marble = this.marbles[i];
       if (marble.finished) continue;
-      marble._previousY = marble.y;
+      marble._previousX = marble.x; marble._previousY = marble.y;
       this._skillsStep(marble);
       marble.vy += this.gravity * STEP;
       if (marble.vy > P.PHYSICS_TUNING.fallSoftThreshold) {
@@ -426,26 +519,29 @@
       marble.y += marble.vy * STEP;
       marble.angle += marble.vx / marble.r * STEP;
       this._fieldsStep(marble);
-      this._walls(marble);
       this._obstacles(marble);
     }
     for (var pass = 0; pass < 2; pass++) {
       this._pairs();
       for (var solve = 0; solve < this.marbles.length; solve++) {
         var item = this.marbles[solve];
-        if (!item.finished) { this._obstacles(item); this._walls(item); }
+        if (!item.finished && item._needsContactSolve) { this._obstacles(item); item._needsContactSolve = false; }
       }
     }
     for (var n = 0; n < this.marbles.length; n++) {
       var ball = this.marbles[n];
       if (ball.finished) continue;
-      if (ball.y > ball._anchorY + 24) { ball._anchorY = ball.y; ball._stuckAt = this.time; }
-      if (this.time - ball._stuckAt >= 2.65) {
-        ball.vx += (this.random() < 0.5 ? -1 : 1) * (210 + this.random() * 125);
-        ball.vy += 120 + this.random() * 70;
+      if (ball.y > ball._anchorY + P.PHYSICS_TUNING.rescueProgress) { ball._anchorY = ball.y; ball._stuckAt = this.time; ball._rescues = 0; }
+      if (this.time - ball._stuckAt >= P.PHYSICS_TUNING.rescueDelay) {
+        // A separate, disclosed stuck-recovery rule; never consume the skill RNG.
+        // Alternate sides on repeated attempts instead of repeatedly pushing into a wall.
+        var direction = ball._rescueDirection * (ball._rescues % 2 ? -1 : 1);
+        ball.vx += direction * (ball._rescues ? 300 : 240);
+        ball.vy += 150;
+        ball._rescues++;
         ball._stuckAt = this.time;
         ball._anchorY = ball.y;
-        this._event('boost', ball, null, 0.55, { rescue: true });
+        this._event('rescue', ball, null, 0.55);
       }
       if (ball.y >= this.map.finish.y) {
         var crossed = clamp((this.map.finish.y - ball._previousY) / (ball.y - ball._previousY || 1), 0, 1);
@@ -463,7 +559,7 @@
       winner.finished = true;
       winner.r = winner.baseRadius;
       winner.y = this.map.finish.y;
-      winner.x = clamp(winner.x, winner.r, this.map.width - winner.r);
+      winner.x = clamp(winner.x, this.bounds.left + winner.r, this.bounds.right - winner.r);
       winner.vx = 0; winner.vy = 0;
       this.finished.push(winner);
       this._event('finish', winner, null, 1, { rank: this.finished.length });

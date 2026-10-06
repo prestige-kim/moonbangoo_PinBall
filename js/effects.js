@@ -20,7 +20,7 @@
       theme = theme || P.THEMES.cosmic; const m = event.marble, color = m && P.marbleColor ? P.marbleColor(m.colorIndex === undefined ? m.id : m.colorIndex, total, theme) : theme.primary; const strength = Math.min(1.7, Math.max(.2, event.intensity || .6));
       if (event.type === 'hit' || event.type === 'bumper') { if (event.obstacle) this.hits.set(event.obstacle.id || event.obstacle, { life: .3 }); this.burst(event.x, event.y, event.type === 'bumper' ? theme.secondary : theme.primary, theme.particle, event.type === 'bumper' ? strength * 1.4 : strength * .6); if (event.type === 'bumper') { this.ring(event.x, event.y, theme.secondary, event.obstacle ? event.obstacle.r : 24, strength); if (!this.reducedMotion) this.shake = Math.max(this.shake, Math.min(.5, strength * .22)); } }
       else if (event.type === 'portal') { this.burst(event.x, event.y, theme.secondary, theme.particle, 2); this.ring(event.x, event.y, theme.primary, 12, 2); if (!this.reducedMotion) this.flash = .2; }
-      else if (event.type === 'boost') { this.burst(event.x, event.y, theme.accents[2], theme.particle, .7); }
+      else if (event.type === 'boost' || event.type === 'rescue') { this.burst(event.x, event.y, theme.accents[2], theme.particle, .7); }
       else if (event.type === 'skill') {
         if (event.skill === 'haste') { this.burst(event.x, event.y, theme.accents[2], 'spark', 2.3); this.burst(event.x, event.y - 35, color, 'spark', 1); }
         else if (event.skill === 'pulse') { this.ring(event.x, event.y, theme.accents[3], 12, 3); this.ring(event.x, event.y, theme.primary, 35, 2); this.burst(event.x, event.y, theme.accents[3], theme.particle, 1.8); }

@@ -92,6 +92,7 @@
   let hudElapsed = 0;
   let leaderId = null;
   let leadCooldown = 0;
+  let lastRescueNotice = -Infinity;
   let photoFinish = false;
   let winner = null;
   let finalRanking = [];
@@ -181,7 +182,7 @@
     winner = null; launchElapsed = 0; flightLanded = false;
     cannonSoundPlayed = false; chargeSoundPlayed = false;
     setScene('mixing');
-    accumulator = 0; leaderId = null; leadCooldown = 0; photoFinish = false;
+    accumulator = 0; leaderId = null; leadCooldown = 0; lastRescueNotice = -Infinity; photoFinish = false;
     finalRanking = []; resultDelay = 0; resultShown = false;
     diagnostics.leadChanges = 0; diagnostics.photoFinishes = 0; diagnostics.events = {};
     audio.unlock(); resize();
@@ -252,6 +253,10 @@
       diagnostics.events[event.type] = (diagnostics.events[event.type] || 0) + 1;
       effects.handle(event, P.THEMES[settings.theme], physics.marbles.length);
       audio.play(event.type, event.intensity, event.skill);
+      if (event.type === 'rescue' && physics.time - lastRescueNotice >= 6) {
+        ui.toast('막힘 방지 · 정체된 구슬을 가볍게 밀었어요');
+        lastRescueNotice = physics.time;
+      }
       if (event.type === 'finish' && physics.finished.length === 1) ui.toast('첫 구슬이 결승에 도착했습니다');
     }
   }

@@ -1,6 +1,15 @@
 (function (global) {
   'use strict';
   var P = global.CosmicPinball = global.CosmicPinball || {};
+  // The inner rail is the playable boundary, shared by drawing and collisions.
+  P.boardBounds = function (map) {
+    return { left: 36, right: map.width - 36, top: 14, bottom: map.height - 32, radius: 16 };
+  };
+  P.boostShape = function (field) {
+    var width = field.width || 90, height = field.height || 120;
+    return { width: width, height: height, radius: Math.min(14, width / 2, height / 2),
+      angle: Math.atan2(field.dy == null ? 1 : field.dy, field.dx || 0) - Math.PI / 2 };
+  };
   P.MAPS = {
     classic: {
       id: 'classic', name: '자개 핀 보드', subtitle: 'CLASSIC PEARL BOARD',
@@ -110,6 +119,11 @@
   // funnels and portals. Coordinates remain plain JSON-compatible map data.
   Object.keys(P.MAPS).forEach(function (id) {
     var map = P.MAPS[id];
+    var bounds = P.boardBounds(map);
+    map.spawn.x = bounds.left;
+    map.spawn.width = bounds.right - bounds.left;
+    // 500 of the largest marbles still fit above the first obstacle after insetting the walls.
+    map.spawn.height = 700;
     var firstSection = map.obstacles.slice();
     firstSection.forEach(function (obstacle) {
       if (obstacle.type === 'boost') obstacle.power *= 0.62;

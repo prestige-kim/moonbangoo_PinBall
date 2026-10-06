@@ -263,6 +263,24 @@ test('leaders arriving close together trigger the photo finish view', () => {
   assert.equal(P.app.renderer.scene.photoFinish, true);
 });
 
+test('stuck recovery is named in the UI, rate limited and reset for a new race', () => {
+  const { P, callbacks, advance, launch } = boot();
+  callbacks.start(); launch();
+  const p = P.app.physics, notices = [];
+  P.app.ui.toast = message => notices.push(message);
+  for (let i = 0; i < 8; i++) p._event('rescue', p.marbles[0]);
+  advance(1 / 60);
+  assert.equal(notices.filter(x => x.includes('막힘 방지')).length, 1);
+  p._event('rescue', p.marbles[1]); advance(1 / 60);
+  assert.equal(notices.filter(x => x.includes('막힘 방지')).length, 1, 'no repeated stack of rescue messages');
+  advance(120);
+  callbacks.restart(); launch();
+  const next = P.app.physics;
+  notices.length = 0;
+  next._event('rescue', next.marbles[0]); advance(1 / 60);
+  assert.equal(notices.filter(x => x.includes('막힘 방지')).length, 1, 'notice cooldown resets on replay');
+});
+
 
 test('cannon sound fires once at discharge rather than when the flight scene first appears', () => {
   const { P, callbacks, advance } = boot();
