@@ -1,0 +1,11 @@
+{
+  "hit": "HTML",
+  "pointerEvents": "none",
+  "rules": [
+    ".eyebrow, .scene-caption { letter-spacing: 0px; font-weight: 500; }",
+    ".panel-bottom { justify-content: flex-end; }"
+  ],
+  "scene": "mixing",
+  "stylesheet": "http://127.0.0.1:8778/style.css?v=pinball-result-20261006",
+  "touchAction": "auto"
+}

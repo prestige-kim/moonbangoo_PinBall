@@ -1,0 +1,32 @@
+✖ the shuffle stylesheet uses its content revision so old noninteractive CSS cannot stay cached (4.438417ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 45.828417
+
+✖ failing tests:
+
+test at tests/shuffle-styles.test.cjs:7:1
+✖ the shuffle stylesheet uses its content revision so old noninteractive CSS cannot stay cached (4.438417ms)
+  AssertionError [ERR_ASSERTION]: A changed stylesheet needs a new URL: the previous cached CSS leaves cinema-canvas pointer-events:none.
+  + actual - expected
+
+  + 'pinball-result-20261006'
+  - 'hand-e6756af51da9'
+
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/shuffle-styles.test.cjs:13:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'pinball-result-20261006',
+    expected: 'hand-e6756af51da9',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
