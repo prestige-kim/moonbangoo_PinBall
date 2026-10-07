@@ -1,0 +1,68 @@
+[
+  {
+    "label": "desktop",
+    "viewport": [
+      1280,
+      720
+    ],
+    "performance": {
+      "samples": 601,
+      "averageFPS": 60.00039933710038,
+      "p95FrameMs": 17.60000000000582,
+      "maxFrameMs": 17.70000000001164,
+      "meanShuffleCPUms": 2.1677204630339206,
+      "p95ShuffleCPUms": 4.5
+    },
+    "audit": {
+      "insideRoundedWall": true,
+      "wallHits": 97075,
+      "uniqueIDs": 500,
+      "worstRelativeOverlap": 0.0023563600026009946,
+      "allContained": true
+    }
+  },
+  {
+    "label": "portrait",
+    "viewport": [
+      390,
+      844
+    ],
+    "performance": {
+      "samples": 589,
+      "averageFPS": 58.80180099234288,
+      "p95FrameMs": 17.70000000001164,
+      "maxFrameMs": 50,
+      "meanShuffleCPUms": 5.605093377960153,
+      "p95ShuffleCPUms": 15.5
+    },
+    "audit": {
+      "insideRoundedWall": true,
+      "wallHits": 97286,
+      "uniqueIDs": 500,
+      "worstRelativeOverlap": 0.0009951783974411256,
+      "allContained": true
+    }
+  },
+  {
+    "label": "landscape",
+    "viewport": [
+      844,
+      390
+    ],
+    "performance": {
+      "samples": 601,
+      "averageFPS": 59.999800333443076,
+      "p95FrameMs": 17.599999999976717,
+      "maxFrameMs": 17.79999999998836,
+      "meanShuffleCPUms": 2.5402662228427193,
+      "p95ShuffleCPUms": 5.199999928474426
+    },
+    "audit": {
+      "insideRoundedWall": true,
+      "wallHits": 95974,
+      "uniqueIDs": 500,
+      "worstRelativeOverlap": 0.001550804052158355,
+      "allContained": true
+    }
+  }
+]

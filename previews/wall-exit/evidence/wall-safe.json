@@ -1,0 +1,122 @@
+[
+  {
+    "action": "touch-cancel",
+    "scene": "mixing",
+    "time": 0,
+    "cancel": [
+      {
+        "continuous": true,
+        "scene": "mixing",
+        "decision": {
+          "eligible": false,
+          "distance": 0,
+          "radius": 0,
+          "interacted": false,
+          "approach": 0,
+          "dx": 1,
+          "dy": 0,
+          "edgeX": 0.3600000392946603,
+          "edgeY": 0,
+          "inputSpeed": 0
+        }
+      }
+    ]
+  },
+  {
+    "action": "blur",
+    "scene": "mixing",
+    "time": 0,
+    "cancel": [
+      {
+        "continuous": true,
+        "scene": "mixing",
+        "decision": {
+          "eligible": false,
+          "distance": 0,
+          "radius": 0,
+          "interacted": false,
+          "approach": 0,
+          "dx": 1,
+          "dy": 0,
+          "edgeX": 0.3600000392946603,
+          "edgeY": 0,
+          "inputSpeed": 0
+        }
+      }
+    ]
+  },
+  {
+    "action": "multi",
+    "scene": "mixing",
+    "time": 0,
+    "cancel": [
+      {
+        "continuous": true,
+        "scene": "mixing",
+        "decision": {
+          "eligible": false,
+          "distance": 0,
+          "radius": 0,
+          "interacted": false,
+          "approach": 0,
+          "dx": 1,
+          "dy": 0,
+          "edgeX": 0.3600000392946603,
+          "edgeY": 0,
+          "inputSpeed": 0
+        }
+      }
+    ]
+  },
+  {
+    "action": "motion",
+    "scene": "mixing",
+    "time": 0,
+    "motion": {
+      "continuous": true,
+      "elapsedBefore": 3.850000000000002,
+      "elapsedAfter": 3.850000000000002,
+      "accumulatorBefore": 0.001000000000002027,
+      "accumulatorAfter": 0.001000000000002027
+    }
+  },
+  {
+    "action": "orientation",
+    "scene": "mixing",
+    "time": 0,
+    "cancel": [
+      {
+        "continuous": true,
+        "scene": "mixing",
+        "decision": {
+          "eligible": false,
+          "distance": 0,
+          "radius": 0,
+          "interacted": false,
+          "approach": 0,
+          "dx": 1,
+          "dy": 0,
+          "edgeX": 0.3600000392946603,
+          "edgeY": 0,
+          "inputSpeed": 0
+        }
+      },
+      {
+        "continuous": true,
+        "scene": "mixing",
+        "decision": {
+          "eligible": false,
+          "distance": 0,
+          "radius": 0,
+          "interacted": false,
+          "approach": 0,
+          "dx": 1,
+          "dy": 0,
+          "edgeX": 0.3600000392946603,
+          "edgeY": 0,
+          "inputSpeed": 0
+        }
+      }
+    ]
+  }
+]

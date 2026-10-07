@@ -1,0 +1,56 @@
+shuffle exchanges 6 straight collisions 1
+shuffle exchanges 6 reversal collisions 1
+shuffle exchanges 6 circle collisions 2
+shuffle exchanges 50 straight collisions 487
+shuffle exchanges 50 reversal collisions 141
+shuffle exchanges 50 circle collisions 355
+shuffle exchanges 200 straight collisions 7796
+shuffle exchanges 200 reversal collisions 785
+shuffle exchanges 200 circle collisions 2788
+shuffle exchanges 500 straight collisions 35336
+shuffle exchanges 500 reversal collisions 3369
+shuffle exchanges 500 circle collisions 16362
+shuffle benchmark 6 480 steps CPU ms 3 worst relative overlap 0
+shuffle benchmark 50 480 steps CPU ms 36 worst relative overlap 0.0022421802036091515
+shuffle benchmark 200 480 steps CPU ms 286 worst relative overlap 0.012230274256455792
+shuffle benchmark 500 480 steps CPU ms 1033 worst relative overlap 0.012220811847641155
+✔ pointer applies distance-weighted force to individual bodies (0.733ms)
+✔ stationary input leaves inertia briefly and then damps it (1.257959ms)
+✔ release cancels force without resetting position or velocity and returns softly (7.835042ms)
+✔ direct contact transfers momentum rather than carrying a rigid group (0.127084ms)
+✔ straight, reversal and circular input exchange order at every supported count (918.060458ms)
+✔ all supported counts stay finite, contained and free of deep overlaps during vigorous input (1399.216542ms)
+✔ visual random state is independent and snapshots do not mutate live bodies (30.524917ms)
+✔ a settled group exchanges actual order during representative straight, reversal and circular hand input (2660.574958ms)
+✔ the central set and hand reach leave substantially more room at every count (34.728333ms)
+✔ empty-space input only records interaction when movement transfers a real local impulse (0.153083ms)
+✔ virtual rounded walls reflect only outward momentum, dissipate tangential speed and contain circles (0.35875ms)
+✔ welcome uses configured participants without advancing physics or changing saved settings (5.16675ms)
+✔ start waits for a valid manual throw and connects exact flight landing to the race once (4.537625ms)
+✔ automatic seeds refresh each round and restart without becoming a saved fixed seed (47.422208ms)
+✔ reduced motion shortens flight with the same gesture decision, seed slots and exact landing (4.544792ms)
+✔ setup edits appear in glass without starting physics; blocked storage still works (4.128708ms)
+✔ original saved participants survive the brand upgrade with gentler default pacing (2.106542ms)
+✔ invalid rank cannot launch a race (1.083334ms)
+✔ first, last, nth and top rules select physical arrival order (0.995958ms)
+✔ live visuals and speed leave the physical run configuration intact (8.589166ms)
+✔ race finishes, shows seeded results and same-member restart reproduces order at another frame rate (32.05675ms)
+✔ sustained slow rendering lowers quality without resetting physics (339.528834ms)
+✔ a natural six-marble race triggers lead changes and celebration (42.817458ms)
+✔ crowded races announce only settled leader changes and keep arrival results intact (711.860375ms)
+✔ leaders arriving close together trigger the photo finish view (8.014667ms)
+✔ stuck recovery is named in the UI, rate limited and reset for a new race (43.215ms)
+✔ a valid release plays one launch sound, without automatic charge or cannon sounds (2.695542ms)
+✔ rejected and canceled gestures preserve race RNG, seed slots and visual state continuity (1.678875ms)
+✔ motion changes retain shuffle positions and flight progress without catching up paused time (1.582667ms)
+✔ waiting time, gesture direction and render frame grouping preserve seeded slots and full results (43.786125ms)
+✔ removed saved courses migrate to classic while preserving participants and physical settings (3.592083ms)
+✔ crossing the shuffle wall launches on movement before pointerup and ignores later samples (1.510583ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5083.599292

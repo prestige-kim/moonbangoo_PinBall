@@ -37,8 +37,11 @@
       if (this.elapsed < .8) return;
       this.accumulator = Math.min(.05, this.accumulator + dt);
       const area = this.area(), zoom = this.viewScale;
-      this.shuffle.bounds = { left: (-area.w / 2 + 16) / (area.s * zoom), right: (area.w / 2 - 16) / (area.s * zoom),
-        top: (-area.h / 2 + 24) / (area.s * zoom), bottom: (area.h / 2 - 24) / (area.s * zoom) };
+      const frame = P.EDGE_GEOMETRY.bounds(area), edge = P.THROW_THRESHOLDS.edgeBand;
+      const halfWidth = Math.max(.1, frame.halfWidth - edge), halfHeight = Math.max(.1, frame.halfHeight - edge);
+      this.shuffle.bounds = { left: -halfWidth / zoom, right: halfWidth / zoom,
+        top: -halfHeight / zoom, bottom: halfHeight / zoom,
+        cornerRadius: Math.min(P.THROW_THRESHOLDS.corner, halfWidth, halfHeight) / zoom };
       while (this.accumulator >= 1 / 120) { this.shuffle.step(1 / 120); this.accumulator -= 1 / 120; }
     }
     render(state) {
@@ -60,7 +63,7 @@
         ctx.fillStyle = 'rgba(158,126,76,.045)'; ctx.fill('evenodd');
         ctx.beginPath(); roundedPath(ctx, 16 + band, 24 + band, area.w - 32 - 2 * band, area.h - 48 - 2 * band, radius);
         ctx.strokeStyle = 'rgba(158,126,76,.20)'; ctx.lineWidth = 1.2; ctx.stroke();
-        const qualified = this.gate.active && feedback.interacted && feedback.distance >= thresholds.travel;
+        const qualified = this.gate.active && feedback.interacted && this.gate.insideSeen;
         const alpha = feedback.eligible ? 1 : Math.max(this.edgeGlow, feedback.approach * .65);
         if (qualified && alpha > .01) {
           const x = area.x + feedback.edgeX * area.s, y = area.y + feedback.edgeY * area.s;
@@ -97,7 +100,7 @@
       }
       if (t === 1) {
         ctx.fillStyle = '#8a7760'; ctx.font = '12px "Pretendard Variable", sans-serif'; ctx.textAlign = 'center';
-        ctx.fillText('공을 섞고 가장자리에서 놓아 주세요', area.x, area.y + .38 * area.s);
+        ctx.fillText('벽 안에서 섞고 밖으로 끌어 주세요', area.x, area.y + .38 * area.s);
       }
       if (c.canvas.dataset) c.canvas.dataset.handPhase = this.elapsed < .8 ? 'emerging' : this.shuffle.pointer ? 'dragging' : 'settling';
       c.lastStage = 'mixing';

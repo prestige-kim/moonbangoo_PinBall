@@ -1,0 +1,1284 @@
+{
+  "startIDs": [
+    "marble-1",
+    "marble-2",
+    "marble-3",
+    "marble-4",
+    "marble-5",
+    "marble-6",
+    "marble-7",
+    "marble-8",
+    "marble-9",
+    "marble-10",
+    "marble-11",
+    "marble-12",
+    "marble-13",
+    "marble-14",
+    "marble-15",
+    "marble-16",
+    "marble-17",
+    "marble-18",
+    "marble-19",
+    "marble-20",
+    "marble-21",
+    "marble-22",
+    "marble-23",
+    "marble-24",
+    "marble-25",
+    "marble-26",
+    "marble-27",
+    "marble-28",
+    "marble-29",
+    "marble-30",
+    "marble-31",
+    "marble-32",
+    "marble-33",
+    "marble-34",
+    "marble-35",
+    "marble-36",
+    "marble-37",
+    "marble-38",
+    "marble-39",
+    "marble-40",
+    "marble-41",
+    "marble-42",
+    "marble-43",
+    "marble-44",
+    "marble-45",
+    "marble-46",
+    "marble-47",
+    "marble-48",
+    "marble-49",
+    "marble-50"
+  ],
+  "scene": "running",
+  "physicsTime": 0.35833333333333334,
+  "finished": 0,
+  "count": 50,
+  "viewport": [
+    844,
+    390
+  ],
+  "reduced": false,
+  "quality": "medium",
+  "ready": "false",
+  "wallHits": 735,
+  "brandTextPresent": false,
+  "actions": [
+    {
+      "kind": "edgeclick",
+      "scene": "mixing",
+      "decision": {
+        "eligible": false,
+        "distance": 0,
+        "radius": 0.43,
+        "interacted": false,
+        "approach": 0,
+        "dx": 0,
+        "dy": -1,
+        "edgeX": 0,
+        "edgeY": -0.3600000618337874,
+        "inputSpeed": 0,
+        "fired": false
+      },
+      "positionExchange": true,
+      "collisions": 1,
+      "sawReady": false,
+      "sawGold": false,
+      "continuousRelease": true,
+      "audit": {
+        "insideRoundedWall": true,
+        "wallHits": 0,
+        "uniqueIDs": 50,
+        "worstRelativeOverlap": 0,
+        "allContained": true
+      }
+    },
+    {
+      "kind": "short",
+      "scene": "mixing",
+      "decision": {
+        "eligible": false,
+        "distance": 0.04999999999999999,
+        "radius": 0.43,
+        "interacted": true,
+        "approach": 0,
+        "dx": 0,
+        "dy": -1,
+        "edgeX": 0,
+        "edgeY": -0.3600000618337874,
+        "inputSpeed": 0.2904094825998932,
+        "fired": false
+      },
+      "positionExchange": false,
+      "collisions": 14,
+      "sawReady": false,
+      "sawGold": false,
+      "continuousRelease": true,
+      "audit": {
+        "insideRoundedWall": true,
+        "wallHits": 0,
+        "uniqueIDs": 50,
+        "worstRelativeOverlap": 0,
+        "allContained": true
+      }
+    },
+    {
+      "kind": "empty",
+      "scene": "mixing",
+      "decision": {
+        "eligible": false,
+        "distance": 0.53,
+        "radius": 1.225078596580088,
+        "interacted": false,
+        "approach": 0,
+        "dx": 0.9363762505738821,
+        "dy": -0.3509978879725611,
+        "edgeX": 0.9586248413420997,
+        "edgeY": -0.35933770689174466,
+        "inputSpeed": 0.5030938698361427,
+        "fired": false
+      },
+      "positionExchange": true,
+      "collisions": 1018,
+      "sawReady": false,
+      "sawGold": false,
+      "continuousRelease": true,
+      "audit": {
+        "insideRoundedWall": true,
+        "wallHits": 0,
+        "uniqueIDs": 50,
+        "worstRelativeOverlap": 0.00029202909654703173,
+        "allContained": true
+      }
+    },
+    {
+      "kind": "wall",
+      "scene": "mixing",
+      "decision": {
+        "eligible": false,
+        "distance": 0.45071364021317917,
+        "radius": 0.15000000000000002,
+        "interacted": true,
+        "approach": 0,
+        "dx": 1,
+        "dy": 2.2161176943784796e-15,
+        "edgeX": 1.047134515203347,
+        "edgeY": 2.3205733275365684e-15,
+        "inputSpeed": 1.8602978375770785,
+        "fired": false
+      },
+      "positionExchange": true,
+      "collisions": 3931,
+      "sawReady": false,
+      "sawGold": false,
+      "continuousRelease": true,
+      "audit": {
+        "insideRoundedWall": true,
+        "wallHits": 715,
+        "uniqueIDs": 50,
+        "worstRelativeOverlap": 0,
+        "allContained": true
+      }
+    }
+  ],
+  "performance": {
+    "samples": 642,
+    "averageFPS": 74.97284861790702,
+    "p95FrameMs": 14.299999999988358,
+    "maxFrameMs": 14.5,
+    "meanShuffleCPUms": 0.18755832003953854,
+    "p95ShuffleCPUms": 0.5
+  },
+  "gate": {
+    "eligible": false,
+    "distance": 0,
+    "radius": 0,
+    "interacted": false,
+    "approach": 0,
+    "dx": 1,
+    "dy": 0,
+    "edgeX": 0.3600000392946603,
+    "edgeY": 0,
+    "inputSpeed": 0
+  },
+  "nativeEvents": [
+    {
+      "type": "pointerdown",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 182957.5,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "gotpointercapture",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 182962.5,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 182962.5,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 182981.70000004768,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 182996.89999997616,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 183008,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 183021.80000007153,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 183033,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 183046.20000004768,
+      "hasCapture": false,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "lostpointercapture",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 183060.20000004768,
+      "hasCapture": false,
+      "target": "cinema-canvas"
+    }
+  ],
+  "nativeGesture": {
+    "samples": 8,
+    "start": {
+      "x": 0,
+      "y": 0,
+      "time": 182957.5
+    },
+    "before": "marble-7,marble-37,marble-10,marble-27,marble-11,marble-8,marble-12,marble-15,marble-47,marble-2,marble-4,marble-17,marble-14,marble-6,marble-31,marble-26,marble-39,marble-34,marble-3,marble-25,marble-20,marble-18,marble-13,marble-9,marble-44,marble-24,marble-28,marble-50,marble-33,marble-22,marble-38,marble-29,marble-30,marble-23,marble-48,marble-19,marble-43,marble-49,marble-40,marble-36,marble-32,marble-21,marble-42,marble-16,marble-1,marble-45,marble-46,marble-41,marble-5,marble-35",
+    "collisionsBefore": 7005
+  },
+  "cancelEvents": [
+    {
+      "continuous": true,
+      "scene": "flight",
+      "decision": {
+        "eligible": false,
+        "distance": 0,
+        "radius": 0,
+        "interacted": false,
+        "approach": 0,
+        "dx": 1,
+        "dy": 0,
+        "edgeX": 0.3600000392946603,
+        "edgeY": 0,
+        "inputSpeed": 0
+      }
+    }
+  ],
+  "autoExit": {
+    "event": "pointermove",
+    "pointerId": 1,
+    "decision": {
+      "eligible": true,
+      "distance": 0.37719298245614036,
+      "radius": 0.37719298245614036,
+      "interacted": true,
+      "approach": 1,
+      "dx": 0,
+      "dy": -1,
+      "edgeX": 0,
+      "edgeY": -0.3600000618337874,
+      "inputSpeed": 2.3574561403508776,
+      "fired": true
+    },
+    "physicsTime": 0,
+    "sourceContinuous": true,
+    "upEventsBefore": 0
+  },
+  "flightStartIDs": [
+    "marble-1",
+    "marble-2",
+    "marble-3",
+    "marble-4",
+    "marble-5",
+    "marble-6",
+    "marble-7",
+    "marble-8",
+    "marble-9",
+    "marble-10",
+    "marble-11",
+    "marble-12",
+    "marble-13",
+    "marble-14",
+    "marble-15",
+    "marble-16",
+    "marble-17",
+    "marble-18",
+    "marble-19",
+    "marble-20",
+    "marble-21",
+    "marble-22",
+    "marble-23",
+    "marble-24",
+    "marble-25",
+    "marble-26",
+    "marble-27",
+    "marble-28",
+    "marble-29",
+    "marble-30",
+    "marble-31",
+    "marble-32",
+    "marble-33",
+    "marble-34",
+    "marble-35",
+    "marble-36",
+    "marble-37",
+    "marble-38",
+    "marble-39",
+    "marble-40",
+    "marble-41",
+    "marble-42",
+    "marble-43",
+    "marble-44",
+    "marble-45",
+    "marble-46",
+    "marble-47",
+    "marble-48",
+    "marble-49",
+    "marble-50"
+  ],
+  "slots": [
+    [
+      "marble-1",
+      538.5262978341198,
+      712.6886317380786,
+      -4.698809031397104,
+      0
+    ],
+    [
+      "marble-2",
+      479.6834965880262,
+      733.0402287270128,
+      28.240820970386267,
+      0
+    ],
+    [
+      "marble-3",
+      562.5489142976003,
+      712.6886317380786,
+      15.398308709263802,
+      0
+    ],
+    [
+      "marble-4",
+      315.8363854609197,
+      733.0402287270128,
+      -20.539404661394656,
+      0
+    ],
+    [
+      "marble-5",
+      927.3795787590789,
+      733.0402287270128,
+      19.404318938031793,
+      0
+    ],
+    [
+      "marble-6",
+      950.1564234782709,
+      733.0402287270128,
+      -1.9742726627737284,
+      0
+    ],
+    [
+      "marble-7",
+      585.4164054337889,
+      712.6886317380786,
+      4.536827690899372,
+      0
+    ],
+    [
+      "marble-8",
+      598.096245035762,
+      733.0402287270128,
+      -7.524163308553398,
+      0
+    ],
+    [
+      "marble-9",
+      432.7228619985981,
+      733.0402287270128,
+      19.383334661833942,
+      0
+    ],
+    [
+      "marble-10",
+      503.53101328236517,
+      733.0402287270128,
+      21.1956751300022,
+      0
+    ],
+    [
+      "marble-11",
+      514.7942071859725,
+      712.6886317380786,
+      -24.711495065130293,
+      0
+    ],
+    [
+      "marble-12",
+      197.46119703899603,
+      733.0402287270128,
+      -6.378441480919719,
+      0
+    ],
+    [
+      "marble-13",
+      128.1575126418611,
+      733.0402287270128,
+      -1.3885791739448905,
+      0
+    ],
+    [
+      "marble-14",
+      245.09860146197025,
+      733.0402287270128,
+      29.454603055492043,
+      0
+    ],
+    [
+      "marble-15",
+      115.57020308531355,
+      712.6886317380786,
+      21.99275068938732,
+      0
+    ],
+    [
+      "marble-16",
+      891.7454861298902,
+      712.6886317380786,
+      -1.0954769421368837,
+      0
+    ],
+    [
+      "marble-17",
+      174.6451086399611,
+      733.0402287270128,
+      -0.5444633681327105,
+      0
+    ],
+    [
+      "marble-18",
+      632.3593501953874,
+      712.6886317380786,
+      -5.743402149528265,
+      0
+    ],
+    [
+      "marble-19",
+      762.2064562020823,
+      733.0402287270128,
+      20.33818194642663,
+      0
+    ],
+    [
+      "marble-20",
+      233.26695463224314,
+      712.6886317380786,
+      -8.265136862173676,
+      0
+    ],
+    [
+      "marble-21",
+      351.1862067821203,
+      712.6886317380786,
+      16.795640937052667,
+      0
+    ],
+    [
+      "marble-22",
+      550.8048406890593,
+      733.0402287270128,
+      7.254883451387286,
+      0
+    ],
+    [
+      "marble-23",
+      69.49579823890235,
+      712.6886317380786,
+      -1.46887534763664,
+      0
+    ],
+    [
+      "marble-24",
+      80.55280385992955,
+      733.0402287270128,
+      24.88047339487821,
+      0
+    ],
+    [
+      "marble-25",
+      668.8715502812993,
+      733.0402287270128,
+      3.445419534109533,
+      0
+    ],
+    [
+      "marble-26",
+      268.205462117563,
+      733.0402287270128,
+      -4.426600453443825,
+      0
+    ],
+    [
+      "marble-27",
+      209.43181671737693,
+      712.6886317380786,
+      -27.879655198194087,
+      0
+    ],
+    [
+      "marble-28",
+      937.9567954537924,
+      712.6886317380786,
+      28.61353778745979,
+      0
+    ],
+    [
+      "marble-29",
+      843.8625923983054,
+      712.6886317380786,
+      -26.770010548643768,
+      0
+    ],
+    [
+      "marble-30",
+      773.9044605137315,
+      712.6886317380786,
+      -16.110693379305303,
+      0
+    ],
+    [
+      "marble-31",
+      222.35491727176122,
+      733.0402287270128,
+      3.2426073169335723,
+      0
+    ],
+    [
+      "marble-32",
+      879.343282388174,
+      733.0402287270128,
+      -25.56022788863629,
+      0
+    ],
+    [
+      "marble-33",
+      104.4643301871838,
+      733.0402287270128,
+      28.66998491808772,
+      0
+    ],
+    [
+      "marble-34",
+      856.4024460117798,
+      733.0402287270128,
+      -29.714251128025353,
+      0
+    ],
+    [
+      "marble-35",
+      280.75237098603975,
+      712.6886317380786,
+      21.71198369935155,
+      0
+    ],
+    [
+      "marble-36",
+      738.3293601933401,
+      733.0402287270128,
+      16.03009602986276,
+      0
+    ],
+    [
+      "marble-37",
+      421.5606267534895,
+      712.6886317380786,
+      0.8938088547438383,
+      0
+    ],
+    [
+      "marble-38",
+      703.9367760549067,
+      712.6886317380786,
+      -19.339627283625305,
+      0
+    ],
+    [
+      "marble-39",
+      303.478167172987,
+      712.6886317380786,
+      4.40013803075999,
+      0
+    ],
+    [
+      "marble-40",
+      327.9019971829839,
+      712.6886317380786,
+      -25.091488603502512,
+      0
+    ],
+    [
+      "marble-41",
+      456.60628141846973,
+      733.0402287270128,
+      -7.735480726696551,
+      0
+    ],
+    [
+      "marble-42",
+      621.3345881678397,
+      733.0402287270128,
+      2.6555557223036885,
+      0
+    ],
+    [
+      "marble-43",
+      833.1695894126315,
+      733.0402287270128,
+      -1.9100396241992712,
+      0
+    ],
+    [
+      "marble-44",
+      679.6050438575912,
+      712.6886317380786,
+      26.047288924455643,
+      0
+    ],
+    [
+      "marble-45",
+      398.52323344745673,
+      712.6886317380786,
+      9.266743487678468,
+      0
+    ],
+    [
+      "marble-46",
+      140.0198231576942,
+      712.6886317380786,
+      -14.1788125410676,
+      0
+    ],
+    [
+      "marble-47",
+      385.8521709651686,
+      733.0402287270128,
+      21.992785781621933,
+      0
+    ],
+    [
+      "marble-48",
+      339.36191384796984,
+      733.0402287270128,
+      -11.276897192001343,
+      0
+    ],
+    [
+      "marble-49",
+      644.0423081271583,
+      733.0402287270128,
+      -29.48130606673658,
+      0
+    ],
+    [
+      "marble-50",
+      256.719272625749,
+      712.6886317380786,
+      -22.670292165130377,
+      0
+    ]
+  ],
+  "flightIDsMatch": true,
+  "shuffleScale": 0.84,
+  "flightVisibility": [
+    {
+      "progress": 0.25246428571428364,
+      "scale": 0.5738121718918677,
+      "allVisible": true
+    },
+    {
+      "progress": 0.25721428571428984,
+      "scale": 0.5721012722760335,
+      "allVisible": true
+    },
+    {
+      "progress": 0.26200000000000206,
+      "scale": 0.5706332574171441,
+      "allVisible": true
+    },
+    {
+      "progress": 0.2667499999999979,
+      "scale": 0.5694253117266265,
+      "allVisible": true
+    },
+    {
+      "progress": 0.27150000000000407,
+      "scale": 0.5684613154962698,
+      "allVisible": true
+    },
+    {
+      "progress": 0.27624999999999994,
+      "scale": 0.567737504676552,
+      "allVisible": true
+    },
+    {
+      "progress": 0.28107142857142847,
+      "scale": 0.56724502341827,
+      "allVisible": true
+    },
+    {
+      "progress": 0.2858214285714243,
+      "scale": 0.5669955277237981,
+      "allVisible": true
+    },
+    {
+      "progress": 0.29057142857143053,
+      "scale": 0.5669774609173639,
+      "allVisible": true
+    },
+    {
+      "progress": 0.29532142857142635,
+      "scale": 0.5671887314613581,
+      "allVisible": true
+    },
+    {
+      "progress": 0.2997499999999957,
+      "scale": 0.5675907813935612,
+      "allVisible": true
+    },
+    {
+      "progress": 0.30485714285714477,
+      "scale": 0.568298691218527,
+      "allVisible": true
+    },
+    {
+      "progress": 0.30960714285714064,
+      "scale": 0.5691909222530451,
+      "allVisible": true
+    },
+    {
+      "progress": 0.3143928571428528,
+      "scale": 0.570317133382615,
+      "allVisible": true
+    },
+    {
+      "progress": 0.31914285714285906,
+      "scale": 0.5716602699644411,
+      "allVisible": true
+    },
+    {
+      "progress": 0.3239285714285713,
+      "scale": 0.573240638716504,
+      "allVisible": true
+    },
+    {
+      "progress": 0.32871428571428346,
+      "scale": 0.5750494568023196,
+      "allVisible": true
+    },
+    {
+      "progress": 0.33342857142857335,
+      "scale": 0.5770554348903424,
+      "allVisible": true
+    },
+    {
+      "progress": 0.3382142857142856,
+      "scale": 0.5793205172665761,
+      "allVisible": true
+    },
+    {
+      "progress": 0.3429642857142814,
+      "scale": 0.5817980482333633,
+      "allVisible": true
+    },
+    {
+      "progress": 0.347750000000004,
+      "scale": 0.5845271479558591,
+      "allVisible": true
+    },
+    {
+      "progress": 0.3524999999999998,
+      "scale": 0.5874692787267687,
+      "allVisible": true
+    },
+    {
+      "progress": 0.3572499999999956,
+      "scale": 0.5906464704609652,
+      "allVisible": true
+    },
+    {
+      "progress": 0.3620357142857183,
+      "scale": 0.5940881954872504,
+      "allVisible": true
+    },
+    {
+      "progress": 0.36671428571428144,
+      "scale": 0.5976895369990635,
+      "allVisible": true
+    },
+    {
+      "progress": 0.37153571428571003,
+      "scale": 0.6016493331632795,
+      "allVisible": true
+    },
+    {
+      "progress": 0.3763214285714327,
+      "scale": 0.6058332974267922,
+      "allVisible": true
+    },
+    {
+      "progress": 0.38110714285714486,
+      "scale": 0.6102742954430946,
+      "allVisible": true
+    },
+    {
+      "progress": 0.3858214285714243,
+      "scale": 0.614905052734395,
+      "allVisible": true
+    },
+    {
+      "progress": 0.390607142857147,
+      "scale": 0.6198711093246448,
+      "allVisible": true
+    },
+    {
+      "progress": 0.39539285714285916,
+      "scale": 0.6251099719400283,
+      "allVisible": true
+    },
+    {
+      "progress": 0.40014285714285497,
+      "scale": 0.630585557441836,
+      "allVisible": true
+    },
+    {
+      "progress": 0.40489285714286116,
+      "scale": 0.6363423953862597,
+      "allVisible": true
+    },
+    {
+      "progress": 0.40967857142857333,
+      "scale": 0.6424339569225027,
+      "allVisible": true
+    },
+    {
+      "progress": 0.4144285714285692,
+      "scale": 0.648776758216176,
+      "allVisible": true
+    },
+    {
+      "progress": 0.4191785714285754,
+      "scale": 0.6554230528615227,
+      "allVisible": true
+    },
+    {
+      "progress": 0.4239285714285712,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.42874999999999985,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.43349999999999567,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.43825000000000186,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.44299999999999773,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.4477857142857099,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.4525357142857161,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.45732142857142827,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.4620714285714241,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.46685714285714675,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.47160714285714256,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.4763571428571384,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.4811071428571446,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.4858928571428568,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.4906428571428526,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.49542857142857527,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5001785714285711,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5045714285714241,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5097142857142896,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5144642857142854,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5192499999999975,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5240000000000038,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5287499999999996,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5335357142857118,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.538285714285718,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5430714285714302,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.547821428571426,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5522142857142894,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5573214285714281,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5621071428571403,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5668571428571465,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5716071428571423,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5763928571428545,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5811785714285667,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5858928571428565,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5906785714285687,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5951428571428544,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.5999999999999994,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6049999999999994,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6097142857142892,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6145000000000014,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6192499999999973,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6236785714285666,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6287857142857157,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6335714285714279,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6383214285714237,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6427500000000035,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6474642857142829,
+      "scale": 0.66,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6522499999999951,
+      "scale": 0.6600038040251274,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6573928571428606,
+      "scale": 0.6601319804246399,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6621428571428565,
+      "scale": 0.6605730115201351,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6668928571428523,
+      "scale": 0.6615118675250102,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6716785714285749,
+      "scale": 0.6631315840069227,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6764285714285707,
+      "scale": 0.6655642062738796,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6811785714285665,
+      "scale": 0.6689635582631517,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6859285714285728,
+      "scale": 0.6734653970072157,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6907500000000014,
+      "scale": 0.6792951280875767,
+      "allVisible": true
+    },
+    {
+      "progress": 0.6954999999999972,
+      "scale": 0.6864061271771389,
+      "allVisible": true
+    },
+    {
+      "progress": 0.7002500000000034,
+      "scale": 0.6949970902832937,
+      "allVisible": true
+    },
+    {
+      "progress": 0.7049999999999993,
+      "scale": 0.7051891826214405,
+      "allVisible": true
+    },
+    {
+      "progress": 0.7094285714285686,
+      "scale": 0.7162413637592372,
+      "allVisible": true
+    },
+    {
+      "progress": 0.7145357142857177,
+      "scale": 0.730978674729736,
+      "allVisible": true
+    },
+    {
+      "progress": 0.7193214285714299,
+      "scale": 0.7468603328138123,
+      "allVisible": true
+    },
+    {
+      "progress": 0.7237142857142829,
+      "scale": 0.7633226714041523,
+      "allVisible": true
+    },
+    {
+      "progress": 0.7288571428571378,
+      "scale": 0.785041045959764,
+      "allVisible": true
+    },
+    {
+      "progress": 0.733607142857144,
+      "scale": 0.8075980260830714,
+      "allVisible": true
+    },
+    {
+      "progress": 0.7383571428571399,
+      "scale": 0.8327140368404973,
+      "allVisible": true
+    },
+    {
+      "progress": 0.7431071428571462,
+      "scale": 0.8605544434939153,
+      "allVisible": true
+    },
+    {
+      "progress": 0.7478928571428584,
+      "scale": 0.8915365419922066,
+      "allVisible": true
+    }
+  ],
+  "flightCaptureProgress": 0.5001785714285711,
+  "mapEndpoint": {
+    "count": 50,
+    "uniqueIDs": 50,
+    "maxPixelError": 0
+  }
+}

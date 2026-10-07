@@ -1,0 +1,58 @@
+rounded wall QA 6 1280 800 hits 8 worst overlap 0
+rounded wall QA 6 390 844 hits 12 worst overlap 0
+rounded wall QA 6 844 390 hits 8 worst overlap 0
+rounded wall QA 50 1280 800 hits 65 worst overlap 0
+rounded wall QA 50 390 844 hits 76 worst overlap 0.000015400752656265212
+rounded wall QA 50 844 390 hits 64 worst overlap 0
+rounded wall QA 200 1280 800 hits 731 worst overlap 0.005060942811413067
+rounded wall QA 200 390 844 hits 948 worst overlap 0.006352154293154778
+rounded wall QA 200 844 390 hits 725 worst overlap 0.005060942811413067
+rounded wall QA 500 1280 800 hits 3792 worst overlap 0.008215387788120343
+rounded wall QA 500 390 844 hits 3992 worst overlap 0.004370129749946201
+rounded wall QA 500 844 390 hits 3776 worst overlap 0.008804663557904357
+✔ tube extraction starts at the real projected tube coordinates for all counts and screen sizes (288.957084ms)
+✔ fully extracted display circles match individual collision radii and preserve all IDs (289.119916ms)
+✔ wall-exit feedback shares the exact consumed direction and clears inside the wall (842.025292ms)
+✔ inside or untouched empty-space movement never shows exit gold (9.49775ms)
+✔ motion changes preserve bodies, RNG, ready feedback and the hand influence field (303.881334ms)
+✔ every current shuffle pose connects continuously to the first real flight frame (442.007458ms)
+✔ manual slot commit preserves the previous seeded ownership for every count and waiting duration (5600.761334ms)
+✔ visible rounded walls contain every collision circle during vigorous near-wall shuffle (5604.092375ms)
+✔ welcome uses configured participants without advancing physics or changing saved settings (4.943583ms)
+✔ start waits for a valid manual throw and connects exact flight landing to the race once (7.5925ms)
+✔ automatic seeds refresh each round and restart without becoming a saved fixed seed (54.883458ms)
+✔ reduced motion shortens flight with the same gesture decision, seed slots and exact landing (5.239542ms)
+✔ setup edits appear in glass without starting physics; blocked storage still works (4.369291ms)
+✔ original saved participants survive the brand upgrade with gentler default pacing (2.29125ms)
+✔ invalid rank cannot launch a race (1.141041ms)
+✔ first, last, nth and top rules select physical arrival order (1.032208ms)
+✔ live visuals and speed leave the physical run configuration intact (8.005958ms)
+✔ race finishes, shows seeded results and same-member restart reproduces order at another frame rate (35.050792ms)
+✔ sustained slow rendering lowers quality without resetting physics (344.596958ms)
+✔ a natural six-marble race triggers lead changes and celebration (41.2815ms)
+✔ crowded races announce only settled leader changes and keep arrival results intact (718.422333ms)
+✔ leaders arriving close together trigger the photo finish view (7.554166ms)
+✔ stuck recovery is named in the UI, rate limited and reset for a new race (44.270834ms)
+✔ a valid release plays one launch sound, without automatic charge or cannon sounds (2.764875ms)
+✔ rejected and canceled gestures preserve race RNG, seed slots and visual state continuity (1.843375ms)
+✔ motion changes retain shuffle positions and flight progress without catching up paused time (1.615666ms)
+✔ waiting time, gesture direction and render frame grouping preserve seeded slots and full results (44.68575ms)
+✔ removed saved courses migrate to classic while preserving participants and physical settings (3.875208ms)
+✔ crossing the shuffle wall launches on movement before pointerup and ignores later samples (1.744542ms)
+✔ wall exit thresholds use the visible rounded enclosure, without speed or travel gates (0.549708ms)
+✔ an actual inside-to-outside drag is consumed immediately and exactly once (0.766584ms)
+✔ a short contacting drag through the wall exits, while inside movement and touching the line do not (0.137625ms)
+✔ outside clicks and untouched empty-space movement cannot exit; entering the group then exiting works (0.208416ms)
+✔ inside circular and boundary-adjacent input never launches and cancellation preserves that policy (1.261584ms)
+✔ crossing directions are stable and render evaluations do not consume or alter exit state (2.798458ms)
+✔ cancel, backward and duplicate timestamps cannot manufacture exit or infinite speed (0.115417ms)
+✔ all screen shapes and rounded corners exit before reaching the browser border (0.29225ms)
+✔ actual per-body impulse enables the same exit event across all counts and frame groupings (209.604167ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13428.31875

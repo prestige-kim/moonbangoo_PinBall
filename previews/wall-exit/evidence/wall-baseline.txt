@@ -1,0 +1,97 @@
+shuffle exchanges 6 straight collisions 1
+shuffle exchanges 6 reversal collisions 1
+shuffle exchanges 6 circle collisions 2
+shuffle exchanges 50 straight collisions 487
+shuffle exchanges 50 reversal collisions 141
+shuffle exchanges 50 circle collisions 355
+shuffle exchanges 200 straight collisions 7796
+shuffle exchanges 200 reversal collisions 785
+shuffle exchanges 200 circle collisions 2788
+shuffle exchanges 500 straight collisions 35336
+shuffle exchanges 500 reversal collisions 3369
+shuffle exchanges 500 circle collisions 16362
+shuffle benchmark 6 480 steps CPU ms 4 worst relative overlap 0
+shuffle benchmark 50 480 steps CPU ms 38 worst relative overlap 0.0022421802036091515
+shuffle benchmark 200 480 steps CPU ms 255 worst relative overlap 0.012230274256455792
+shuffle benchmark 500 480 steps CPU ms 1017 worst relative overlap 0.012220811847641155
+✔ pointer applies distance-weighted force to individual bodies (1.617625ms)
+✔ stationary input leaves inertia briefly and then damps it (1.403416ms)
+✔ release cancels force without resetting position or velocity and returns softly (17.898709ms)
+✔ direct contact transfers momentum rather than carrying a rigid group (0.16475ms)
+✔ straight, reversal and circular input exchange order at every supported count (908.125208ms)
+✔ all supported counts stay finite, contained and free of deep overlaps during vigorous input (1352.824209ms)
+✔ visual random state is independent and snapshots do not mutate live bodies (31.49575ms)
+✔ a settled group exchanges actual order during representative straight, reversal and circular hand input (2609.012416ms)
+✔ the central set and hand reach leave substantially more room at every count (35.328ms)
+✔ empty-space input only records interaction when movement transfers a real local impulse (0.161667ms)
+✖ virtual rounded walls reflect only outward momentum, dissipate tangential speed and contain circles (0.327375ms)
+✔ welcome uses configured participants without advancing physics or changing saved settings (6.535084ms)
+✔ start waits for a valid manual throw and connects exact flight landing to the race once (7.066084ms)
+✔ automatic seeds refresh each round and restart without becoming a saved fixed seed (54.448292ms)
+✔ reduced motion shortens flight with the same gesture decision, seed slots and exact landing (4.94375ms)
+✔ setup edits appear in glass without starting physics; blocked storage still works (4.382292ms)
+✔ original saved participants survive the brand upgrade with gentler default pacing (3.148417ms)
+✔ invalid rank cannot launch a race (4.571375ms)
+✔ first, last, nth and top rules select physical arrival order (1.086458ms)
+✔ live visuals and speed leave the physical run configuration intact (8.0355ms)
+✔ race finishes, shows seeded results and same-member restart reproduces order at another frame rate (32.811792ms)
+✔ sustained slow rendering lowers quality without resetting physics (351.220834ms)
+✔ a natural six-marble race triggers lead changes and celebration (44.446625ms)
+✔ crowded races announce only settled leader changes and keep arrival results intact (734.447333ms)
+✔ leaders arriving close together trigger the photo finish view (7.92925ms)
+✔ stuck recovery is named in the UI, rate limited and reset for a new race (45.011042ms)
+✔ a valid release plays one launch sound, without automatic charge or cannon sounds (2.635833ms)
+✔ rejected and canceled gestures preserve race RNG, seed slots and visual state continuity (1.720833ms)
+✔ motion changes retain shuffle positions and flight progress without catching up paused time (1.734417ms)
+✔ waiting time, gesture direction and render frame grouping preserve seeded slots and full results (44.269416ms)
+✔ removed saved courses migrate to classic while preserving participants and physical settings (3.79175ms)
+✖ crossing the shuffle wall launches on movement before pointerup and ignores later samples (3.409834ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 30
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5004.444292
+
+✖ failing tests:
+
+test at tests/hand-shuffle.test.cjs:89:1
+✖ virtual rounded walls reflect only outward momentum, dissipate tangential speed and contain circles (0.327375ms)
+  AssertionError [ERR_ASSERTION]: circle clears the rounded corner
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-shuffle.test.cjs:94:2)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/integration.test.cjs:438:1
+✖ crossing the shuffle wall launches on movement before pointerup and ignores later samples (3.409834ms)
+  AssertionError [ERR_ASSERTION]: no pointerup needed
+  
+  'mixing' !== 'flight'
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/integration.test.cjs:442:9)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'mixing',
+    expected: 'flight',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

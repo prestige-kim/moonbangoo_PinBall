@@ -85,3 +85,16 @@ test('empty-space input only records interaction when movement transfers a real 
  c.move(.15,0,1600);assert.equal(JSON.stringify(c.snapshot()),moved,'stopping does not zero current momentum');
  c.release();c.begin(.45,-.4,1800);assert.equal(c.interacted,false,'contact never leaks into the next gesture');
 });
+
+test('virtual rounded walls reflect only outward momentum, dissipate tangential speed and contain circles',()=>{
+ const c=make(6);c.bounds={left:-.42,right:.42,top:-.42,bottom:.42,cornerRadius:.12};
+ const b=c.bodies[0],r=b.r,center=.30,limit=.12-r;
+ Object.assign(b,{x:.41,y:.41,vx:.8,vy:.4});c.wall(b);
+ const nx=(b.x-center)/limit,ny=(b.y-center)/limit;
+ assert(Math.hypot(b.x-center,b.y-center)<=limit+1e-9,'circle clears the rounded corner');
+ assert(b.vx*nx+b.vy*ny<0,'outward velocity reflects inward');
+ const before=[b.vx,b.vy];c.wall(b);assert.deepEqual([b.vx,b.vy],before,'resting contact never repeats a bounce');
+ Object.assign(b,{x:.43,y:0,vx:.8,vy:.3});c.wall(b);
+ assert(Math.abs(b.x-(.42-r))<1e-9);assert(Math.abs(b.vx+.8*.52)<1e-9);assert(Math.abs(b.vy-.3*.97)<1e-9);
+ Object.assign(b,{x:.41,y:.41,vx:-.8,vy:-.4});c.wall(b);assert.equal(b.vx,-.8);assert.equal(b.vy,-.4);
+});

@@ -62,6 +62,24 @@
     snapshot() {return this.bodies.map(b=>({...b}));}
     wall(b) {
       const limits=this.bounds,r=b.r;
+      if(limits.cornerRadius>r) {
+        // Offset the same rounded enclosure by this body's collision radius.
+        const corner=limits.cornerRadius-r;
+        const cx=clamp(b.x,limits.left+limits.cornerRadius,limits.right-limits.cornerRadius);
+        const cy=clamp(b.y,limits.top+limits.cornerRadius,limits.bottom-limits.cornerRadius);
+        const dx=b.x-cx,dy=b.y-cy,distance=Math.hypot(dx,dy);
+        if(distance>corner+1e-10) {
+          const nx=dx/distance,ny=dy/distance;
+          b.x=cx+nx*corner;b.y=cy+ny*corner;
+          const normal=b.vx*nx+b.vy*ny;
+          if(normal>0) {
+            const tx=b.vx-normal*nx,ty=b.vy-normal*ny;
+            b.vx=-normal*.52*nx+tx*.97;b.vy=-normal*.52*ny+ty*.97;
+          }
+          this.wallHits++;
+        }
+        return;
+      }
       if(b.x<limits.left+r){b.x=limits.left+r;if(b.vx<0)b.vx*=-.52;b.vy*=.97;this.wallHits++;}
       if(b.x>limits.right-r){b.x=limits.right-r;if(b.vx>0)b.vx*=-.52;b.vy*=.97;this.wallHits++;}
       if(b.y<limits.top+r){b.y=limits.top+r;if(b.vy<0)b.vy*=-.52;b.vx*=.97;this.wallHits++;}

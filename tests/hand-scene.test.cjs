@@ -99,7 +99,7 @@ test('fully extracted display circles match individual collision radii and prese
   }
 });
 
-test('edge gold and direction stay ready while stopped and clear only after an inward retreat', () => {
+test('wall-exit feedback shares the exact consumed direction and clears inside the wall', () => {
   for (const count of counts) for (const [width, height] of sizes) for (const direction of [[1,0],[-1,0],[0,1]]) {
     const s = setup(count, width, height), area = s.scene.area(); s.scene.update(.8);
     s.scene.gate.begin(0, 0, 0, area);
@@ -118,8 +118,8 @@ test('edge gold and direction stay ready while stopped and clear only after an i
   }
 });
 
-test('short or untouched empty-space movement never shows ready gold', () => {
-  for (const points of [[[0,0,0],[.42,0,50,false]],[[.35,0,0],[.42,0,50,true]],[[0,0,0],[.20,0,1000,true]]]) {
+test('inside or untouched empty-space movement never shows exit gold', () => {
+  for (const points of [[[0,0,0],[.42,0,50,false]],[[.35,0,0],[.42,0,50,false]],[[0,0,0],[.20,0,1000,true]]]) {
     const s = setup(50, 390, 844); s.scene.update(.8);
     s.scene.gate.begin(...points[0]); s.scene.gate.move(...points[1]); now = 2000;
     s.scene.render({ physics: s.physics, reducedMotion: false });
@@ -197,4 +197,20 @@ test('manual slot commit preserves the previous seeded ownership for every count
       else baseline = output.commitHandSlots;
     }
   }
+});
+
+test('visible rounded walls contain every collision circle during vigorous near-wall shuffle',()=>{
+ for(const count of counts)for(const [width,height] of sizes){
+  const s=setup(count,width,height);s.scene.update(.8);const area=s.scene.area(),frame=P.EDGE_GEOMETRY.bounds(area),zoom=s.scene.viewScale;
+  const c=s.scene.shuffle;let worst=0;c.begin(0,0,0);
+  for(let tick=1;tick<=360;tick++){
+   c.move(.345*Math.sin(tick*.11)/zoom,.345*Math.cos(tick*.09)/zoom,tick*1000/120);s.scene.update(1/120);
+   if(tick%12===0)for(let i=0;i<count;i++){
+    const b=c.bodies[i];assert(P.EDGE_GEOMETRY.signed(b.x*zoom,b.y*zoom,frame,P.THROW_THRESHOLDS.edgeBand)+b.r*zoom<1e-8,'circle stays inside the drawn wall');
+    for(let j=0;j<i;j++){const a=c.bodies[j];worst=Math.max(worst,(a.r+b.r-Math.hypot(a.x-b.x,a.y-b.y))/(a.r+b.r));}
+   }
+  }
+  assert(c.wallHits>0,'actual wall impacts');assert(c.collisions>0,'actual marble impacts');assert(worst<.05,'deep overlap '+count+' '+worst);
+  console.log('rounded wall QA',count,width,height,'hits',c.wallHits,'worst overlap',worst);
+ }
 });

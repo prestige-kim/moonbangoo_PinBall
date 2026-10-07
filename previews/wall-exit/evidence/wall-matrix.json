@@ -1,0 +1,84 @@
+[
+  {
+    "label": "desktop",
+    "n": 500,
+    "viewport": [
+      1280,
+      720
+    ],
+    "wall": {
+      "kind": "wall",
+      "scene": "mixing",
+      "decision": {
+        "eligible": false,
+        "distance": 0.4507136402131791,
+        "radius": 0.14999999999999994,
+        "interacted": true,
+        "approach": 0,
+        "dx": 1,
+        "dy": 2.2556912246352393e-15,
+        "edgeX": 0.7885715477870482,
+        "edgeY": 1.7787739203402728e-15,
+        "inputSpeed": 1.7362506782311122,
+        "fired": false
+      },
+      "positionExchange": true,
+      "collisions": 1315895,
+      "sawReady": false,
+      "sawGold": false,
+      "continuousRelease": true,
+      "audit": {
+        "insideRoundedWall": true,
+        "wallHits": 67900,
+        "uniqueIDs": 500,
+        "worstRelativeOverlap": 0.0000018370816853232247,
+        "allContained": true
+      }
+    },
+    "negatives": [
+      [
+        "edgeclick",
+        "mixing",
+        false
+      ],
+      [
+        "short",
+        "mixing",
+        false
+      ],
+      [
+        "empty",
+        "mixing",
+        false
+      ]
+    ],
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 0.37648809523809523,
+        "radius": 0.37648809523809523,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0,
+        "dy": -1,
+        "edgeX": 0,
+        "edgeY": -0.36000008637204495,
+        "inputSpeed": 2.3530505952380953,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 500,
+      "uniqueIDs": 500,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "brand": false,
+    "flightVisible": true
+  }
+]

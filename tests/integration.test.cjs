@@ -434,3 +434,14 @@ test('removed saved courses migrate to classic while preserving participants and
     callbacks.start();assert.equal(P.app.runSettings.map,'classic');
   }
 });
+
+test('crossing the shuffle wall launches on movement before pointerup and ignores later samples',()=>{
+ const {P,callbacks,advance}=boot();callbacks.start();advance(.85);
+ const input=P.app.shuffleInput.callbacks;input.begin({x:0,y:0,time:1000});input.move({x:.30,y:0,time:1100});
+ assert.equal(P.app.status,'mixing');input.move({x:.68,y:0,time:1200});
+ assert.equal(P.app.status,'flight','no pointerup needed');
+ const snapshot=JSON.stringify(P.app.handScene.shuffle.snapshot()),start=JSON.stringify(P.app.handFlight);
+ input.move({x:.9,y:.1,time:1210});input.release({x:.9,y:.1,time:1300});input.release({x:.9,y:.1,time:1400});
+ assert.equal(JSON.stringify(P.app.handScene.shuffle.snapshot()),snapshot);assert.equal(JSON.stringify(P.app.handFlight),start);
+ assert.equal(P.app.audio.types.filter(type=>type==='launch').length,1);assert.equal(P.app.physics.time,0);
+});

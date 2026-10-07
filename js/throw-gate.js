@@ -1,7 +1,7 @@
 (function (P) {
   'use strict';
-  // Distances use the usable screen's short side S. Speed affects flight, never readiness.
-  const THRESHOLDS = Object.freeze({ travel: .20, edgeBand: .14, releaseBand: .19, corner: .10, approach: .12, windowMs: 160 });
+  // Distances use the usable screen's short side S. Crossing the wall consumes a gesture immediately. Speed only affects flight.
+  const THRESHOLDS = Object.freeze({ edgeBand: .14, corner: .10, approach: .12, windowMs: 160 });
   const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
   const valid = (x, y, time) => Number.isFinite(x) && Number.isFinite(y) && Number.isFinite(time) && time >= 0;
   function bounds(area) {
@@ -30,6 +30,7 @@
       this.cancel();
       if (!valid(x, y, timeMs)) return false;
       this.bounds = bounds(area); this.active = true;
+      this.insideSeen = signed(x, y, this.bounds, THRESHOLDS.edgeBand) <= 0;
       this.start = { x, y, time: timeMs }; this.samples = [{ x, y, time: timeMs }];
       return true;
     }
@@ -44,9 +45,7 @@
       while (this.samples.length > 2 && this.samples[1].time < cutoff) this.samples.shift();
       this.interacted = this.interacted || interacted === true;
       this.distance = Math.max(this.distance, Math.hypot(x - this.start.x, y - this.start.y));
-      const qualified = this.interacted && this.distance >= THRESHOLDS.travel;
-      if (!qualified || signed(x, y, this.bounds, THRESHOLDS.releaseBand) < -1e-9) this.ready = false;
-      else if (signed(x, y, this.bounds, THRESHOLDS.edgeBand) >= -1e-9) this.ready = true;
+      if (signed(x, y, this.bounds, THRESHOLDS.edgeBand) <= 0) this.insideSeen = true;
       return true;
     }
     positionAt(timeMs) {
@@ -65,21 +64,26 @@
       const now = Math.max(last.time, Number.isFinite(timeMs) ? timeMs : last.time);
       const before = this.active ? this.positionAt(now - THRESHOLDS.windowMs) : last;
       const inputSpeed = Math.hypot(last.x - before.x, last.y - before.y) * 1000 / THRESHOLDS.windowMs;
-      const qualified = this.active && this.interacted && this.distance >= THRESHOLDS.travel;
+      const qualified = this.active && this.interacted && this.insideSeen;
       const proximity = signed(last.x, last.y, this.bounds, THRESHOLDS.edgeBand);
       const edge = edgePoint(dx, dy, this.bounds);
-      return { eligible: !!(qualified && this.ready), distance: this.distance, radius, interacted: this.interacted,
+      return { eligible: !!(qualified && proximity > 1e-9), distance: this.distance, radius, interacted: this.interacted,
         approach: qualified ? clamp(1 + proximity / THRESHOLDS.approach, 0, 1) : 0,
         dx, dy, edgeX: edge.x, edgeY: edge.y, inputSpeed };
+    }
+    takeExit(timeMs) {
+      const result = this.evaluate(timeMs);
+      if (result.eligible) { this.active = false; this.fired = true; }
+      return Object.assign(result, { fired: result.eligible });
     }
     release(x, y, timeMs, interacted = false) {
       if (!this.active) return Object.assign(this.evaluate(timeMs), { fired: false });
       if (!this.move(x, y, timeMs, interacted)) { this.cancel(); return Object.assign(this.evaluate(timeMs), { fired: false }); }
-      const result = this.evaluate(timeMs); this.active = false; this.fired = result.eligible;
-      return Object.assign(result, { fired: this.fired });
+      const result = this.takeExit(timeMs); this.active = false;
+      return result;
     }
     cancel() {
-      this.active = false; this.fired = false; this.ready = false; this.interacted = false;
+      this.active = false; this.fired = false; this.insideSeen = false; this.interacted = false;
       this.distance = 0; this.start = null; this.samples = []; this.bounds = bounds();
     }
   }
