@@ -43,8 +43,9 @@
       this.items = handScene.entries.map((entry, index) => {
         const body = bodies.get(entry.id), marble = marbles.get(entry.id);
         if (!body || !marble) throw new Error('비행 핀볼 ID가 셔플 또는 경기 출발 슬롯과 일치하지 않습니다.');
-        const source = { id: entry.id, index, entry, x: area.x + body.x * area.s, y: area.y + body.y * area.s,
-          vx: body.vx * area.s, vy: body.vy * area.s, radius: body.r * area.s, delay: 0 };
+        const displayScale = area.s * (handScene.viewScale || 1);
+        const source = { id: entry.id, index, entry, x: area.x + body.x * displayScale, y: area.y + body.y * displayScale,
+          vx: body.vx * displayScale, vy: body.vy * displayScale, radius: body.r * displayScale, delay: 0 };
         const target = point(this.initial, marble.x, marble.y);
         return Object.assign(source, { targetX: target.x, targetY: target.y, endRadius: marble.r * this.initial.a, marble });
       });
@@ -111,9 +112,22 @@
       const p = clamp(Number(progress) || 0), amount = this.reduced ? 0 : ease(p);
       let scene = { a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 };
       if (!this.reduced) {
-        const scale = Math.exp(Math.log(this.final.a / this.initial.a) * amount);
-        const focus = { x: lerp(this.releaseCenter.x, this.finalCenter.x, amount), y: lerp(this.releaseCenter.y, this.finalCenter.y, amount) };
-        const movingCenter = centroid(this.items.map((_, index) => this.pose(index, p * this.duration)));
+        const desired = Math.exp(Math.log(.66) * ease(p / .25)
+          + Math.log(this.final.a / this.initial.a / .66) * ease((p - .65) / .35));
+        const poses = this.items.map((_, index) => this.pose(index, p * this.duration));
+        const left = Math.min(...poses.map(item => item.x - item.radius)), right = Math.max(...poses.map(item => item.x + item.radius));
+        const top = Math.min(...poses.map(item => item.y - item.radius)), bottom = Math.max(...poses.map(item => item.y + item.radius));
+        const fit = Math.min(this.area.w * .82 / Math.max(1, right - left), this.area.h * .72 / Math.max(1, bottom - top));
+        const limit = Math.exp(Math.log(fit) * ease(p / .22));
+        const wide = Math.min(desired, limit);
+        const scale = Math.exp(lerp(Math.log(wide), Math.log(desired), ease((p - .8) / .2)));
+        const center = { x: (left + right) / 2, y: (top + bottom) / 2 };
+        const frame = { x: this.area.w / 2, y: this.area.h / 2 };
+        const enter = ease((p - .72) / .28);
+        const focus = { x: lerp(lerp(this.releaseCenter.x, frame.x, interval(0, .22, p)), this.finalCenter.x, enter),
+          y: lerp(lerp(this.releaseCenter.y, frame.y, interval(0, .22, p)), this.finalCenter.y, enter) };
+        const mean = centroid(poses);
+        const movingCenter = { x: lerp(center.x, mean.x, enter), y: lerp(center.y, mean.y, enter) };
         const pan = interval(0, .22, p);
         scene = { a: scale, b: 0, c: 0, d: scale,
           e: (focus.x - scale * movingCenter.x) * pan, f: (focus.y - scale * movingCenter.y) * pan };
@@ -154,11 +168,6 @@
       const seconds = p * this.duration;
       this.lastPoses = this.items.map((item, index) => {
         const pose = this.pose(index, seconds);
-        if (!reduced && p > .03 && p < .88 && index % Math.ceil(this.items.length / 20) === 0) {
-          const past = this.pose(index, Math.max(0, seconds - .065));
-          ctx.save(); ctx.strokeStyle = 'rgba(211,175,99,.32)'; ctx.lineCap = 'round'; ctx.lineWidth = Math.max(.8, pose.radius * .25);
-          ctx.beginPath(); ctx.moveTo(past.x, past.y); ctx.lineTo(pose.x, pose.y); ctx.stroke(); ctx.restore();
-        }
         c.drawOrb(item.entry, pose, interval(.55, 1, p), item.marble, this.items.length, reduced);
         const screen = point(view.scene, pose.x, pose.y);
         return { id: pose.id, index, x: screen.x, y: screen.y, radius: pose.radius * view.a, focus: 1 };

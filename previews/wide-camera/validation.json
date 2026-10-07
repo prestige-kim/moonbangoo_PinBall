@@ -1,0 +1,68 @@
+[
+  {
+    "shape": "desktop",
+    "n": 6,
+    "actualCSSViewport": [
+      1164,
+      655
+    ],
+    "allVisible": true,
+    "sampleCount": 105,
+    "endpointMaxError": 0
+  },
+  {
+    "shape": "desktop",
+    "n": 500,
+    "actualCSSViewport": [
+      1164,
+      655
+    ],
+    "allVisible": true,
+    "sampleCount": 105,
+    "endpointMaxError": 0
+  },
+  {
+    "shape": "portrait",
+    "n": 6,
+    "actualCSSViewport": [
+      355,
+      767
+    ],
+    "allVisible": true,
+    "sampleCount": 105,
+    "endpointMaxError": 0
+  },
+  {
+    "shape": "portrait",
+    "n": 500,
+    "actualCSSViewport": [
+      355,
+      767
+    ],
+    "allVisible": true,
+    "sampleCount": 105,
+    "endpointMaxError": 0
+  },
+  {
+    "shape": "landscape",
+    "n": 6,
+    "actualCSSViewport": [
+      767,
+      355
+    ],
+    "allVisible": true,
+    "sampleCount": 105,
+    "endpointMaxError": 0
+  },
+  {
+    "shape": "landscape",
+    "n": 500,
+    "actualCSSViewport": [
+      767,
+      355
+    ],
+    "allVisible": true,
+    "sampleCount": 105,
+    "endpointMaxError": 0
+  }
+]

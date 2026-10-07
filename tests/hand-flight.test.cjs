@@ -131,7 +131,7 @@ test('reduced motion keeps the same release state and own IDs with no camera swe
   }
   normal.flight.render({progress:.5,physics:normal.physics,camera:normal.camera});
   reduced.flight.render({progress:.5,physics:reduced.physics,camera:reduced.camera});
-  assert.ok(normal.counters.trails>0);assert.equal(reduced.counters.trails,0);
+  assert.equal(normal.counters.trails,0);assert.equal(reduced.counters.trails,0);
   near(reduced.flight.cameraAt(.5).a,1);near(reduced.flight.cameraAt(.5).e,0);
   assert.equal(snapshot(normal.physics.marbles),snapshot(reduced.physics.marbles));
 });
@@ -198,7 +198,7 @@ test('changing reduced motion midflight suppresses trails without resetting the 
   assert.equal(snapshot(s.flight.lastPoses),before);assert.equal(s.counters.trails,trailCount);
   assert.equal(snapshot(s.flight.items.map((_,i)=>s.flight.pose(i,1.4))),path);
   s.flight.render({progress,physics:s.physics,camera:s.camera,reducedMotion:false});
-  assert.equal(snapshot(s.flight.lastPoses),before);assert.ok(s.counters.trails>trailCount);
+  assert.equal(snapshot(s.flight.lastPoses),before);assert.equal(s.counters.trails,trailCount);
 });
 
 test('a stopped edge release still propels, while fast input changes flight without changing slots', () => {
@@ -216,4 +216,30 @@ test('a stopped edge release still propels, while fast input changes flight with
     assert.equal(snapshot(slow.physics.marbles),snapshot(fast.physics.marbles));
     for(let i=0;i<count;i++){near(slow.flight.pose(i,2.8).x,fast.flight.pose(i,2.8).x);near(slow.flight.pose(i,2.8).y,fast.flight.pose(i,2.8).y);}
   }
+});
+
+test('flight zooms out to frame the full group and draws no tails across viewport sizes', () => {
+  for (const count of [6,50,200,500]) for (const [w,h] of [[1280,720],[390,844],[844,390]]) {
+    const s=scene(count,w,h);
+    assert(s.flight.cameraAt(.25).a<1,'early flight pulls back');
+    for(const progress of [.25,.5,.75]) {
+      s.flight.render({progress,physics:s.physics,camera:s.camera});
+      for(const pose of s.flight.lastPoses) {
+        assert(pose.x-pose.radius>=0&&pose.x+pose.radius<=w,'whole group visible horizontally');
+        assert(pose.y-pose.radius>=0&&pose.y+pose.radius<=h,'whole group visible vertically');
+      }
+    }
+    assert.equal(s.counters.trails,0,'no artificial flight tails');
+  }
+});
+
+test('a widely scattered release starts without a camera snap before pulling back', () => {
+  const s=scene(6,390,844);
+  s.hand.shuffle.bodies.forEach((b,i)=>{b.x=i%2?.49:-.49;b.y=(i-2.5)*.32;});
+  s.flight.begin(s.physics,s.hand,{dx:1,dy:0},2.8,false);
+  const at=s.flight.cameraAt(0),next=s.flight.cameraAt(1e-6);
+  near(at.a,1);near(at.e,0);near(at.f,0);
+  near((next.a-at.a)/1e-6,0,.001);
+  s.flight.render({progress:0,physics:s.physics,camera:s.camera});
+  s.flight.lastPoses.forEach((p,i)=>{const b=s.hand.shuffle.bodies[i];near(p.x,s.area.x+b.x*s.area.s);near(p.y,s.area.y+b.y*s.area.s);});
 });

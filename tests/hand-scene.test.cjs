@@ -81,9 +81,9 @@ test('fully extracted display circles match individual collision radii and prese
     for (let i = 0; i < count; i++) {
       const body = s.scene.shuffle.bodies[i], pose = s.scene.lastPoses[i];
       assert.equal(pose.id, body.id); assert.equal(pose.id, s.physics.marbles[i].id);
-      close(pose.x, area.x + body.x * area.s, 'extracted x');
-      close(pose.y, area.y + body.y * area.s, 'extracted y');
-      close(pose.radius, body.r * area.s, 'display radius equals collision radius');
+      close(pose.x, area.x + body.x * area.s * s.scene.viewScale, 'extracted x');
+      close(pose.y, area.y + body.y * area.s * s.scene.viewScale, 'extracted y');
+      close(pose.radius, body.r * area.s * s.scene.viewScale, 'display radius equals collision radius');
       assert.ok(pose.x - pose.radius >= 16 - 1e-8 && pose.x + pose.radius <= width - 16 + 1e-8);
       assert.ok(pose.y - pose.radius >= 24 - 1e-8 && pose.y + pose.radius <= height - 24 + 1e-8);
     }
@@ -140,7 +140,7 @@ test('motion changes preserve bodies, RNG, ready feedback and the hand influence
       assert.equal(JSON.stringify(s.scene.shuffle.snapshot()), snapshot); assert.equal(s.scene.elapsed, elapsed);
       assert.equal(JSON.stringify(s.scene.lastPoses), poses); assert.equal(s.cinema.canvas.dataset.throwReady, 'true');
       assert.equal(s.strokes.find(stroke => stroke.style === '#c9a24f').shadowBlur, reducedMotion ? 0 : 8);
-      assert(s.strokes.some(stroke => stroke.arcs.some(arc => Math.abs(arc[2] - s.scene.shuffle.pointerRadius * area.s) < 1e-8)), 'visible hand field matches its actual force radius');
+      assert(s.strokes.some(stroke => stroke.arcs.some(arc => Math.abs(arc[2] - s.scene.shuffle.pointerRadius * area.s * s.scene.viewScale) < 1e-8)), 'visible hand field matches its actual force radius');
     }
     assert.equal(positions(s.physics), slots); assert.equal(s.physics.time, 0); assert.equal(s.randomDraws(), 0);
   }
@@ -165,8 +165,8 @@ test('every current shuffle pose connects continuously to the first real flight 
       const pose = flight.lastPoses[i], body = s.scene.shuffle.bodies[i];
       assert.equal(pose.id, source[i].id); close(pose.x, source[i].x, 'flight origin x'); close(pose.y, source[i].y, 'flight origin y');
       close(pose.radius, source[i].radius, 'flight origin radius');
-      close(flight.pose(i, 0).vx, body.vx * s.scene.area().s, 'flight inherits release vx');
-      close(flight.pose(i, 0).vy, body.vy * s.scene.area().s, 'flight inherits release vy');
+      close(flight.pose(i, 0).vx, body.vx * s.scene.area().s * s.scene.viewScale, 'flight inherits release vx');
+      close(flight.pose(i, 0).vy, body.vy * s.scene.area().s * s.scene.viewScale, 'flight inherits release vy');
     }
     assert.equal(s.physics.time, 0); assert.equal(s.physics.ticks, 0); assert.equal(s.randomDraws(), 0);
   }

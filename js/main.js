@@ -76,12 +76,13 @@
   const throwGate = new P.ThrowGate();
   handScene.gate = throwGate;
   const handFlight = new P.HandFlight(cinematic);
+  const shufflePoint = point => ({ x: point.x / (handScene.viewScale || 1), y: point.y / (handScene.viewScale || 1), time: point.time });
   const shuffleInput = new P.ShuffleInput(document.getElementById('cinema-canvas'), {
     enabled: () => status === 'mixing' && handScene.elapsed >= .8 && !handScene.launchDecision,
     area: () => handScene.area(),
-    begin: point => { handScene.lastDecision = null; throwGate.begin(point.x, point.y, point.time, handScene.area()); handScene.shuffle.begin(point.x, point.y, point.time); },
-    move: point => { const contacted = handScene.shuffle.move(point.x, point.y, point.time); throwGate.move(point.x, point.y, point.time, contacted); },
-    release: point => { const contacted = throwGate.active && handScene.shuffle.move(point.x, point.y, point.time); const decision = throwGate.release(point.x, point.y, point.time, contacted); handScene.lastDecision = decision; handScene.shuffle.release(); if (decision.fired) throwMarbles(decision); },
+    begin: point => { handScene.lastDecision = null; throwGate.begin(point.x, point.y, point.time, handScene.area()); const local = shufflePoint(point); handScene.shuffle.begin(local.x, local.y, local.time); },
+    move: point => { const local = shufflePoint(point); const contacted = handScene.shuffle.move(local.x, local.y, local.time); throwGate.move(point.x, point.y, point.time, contacted); },
+    release: point => { const local = shufflePoint(point); const contacted = throwGate.active && handScene.shuffle.move(local.x, local.y, local.time); const decision = throwGate.release(point.x, point.y, point.time, contacted); handScene.lastDecision = decision; handScene.shuffle.release(); if (decision.fired) throwMarbles(decision); },
     cancel: () => { throwGate.cancel(); if (handScene.shuffle) handScene.shuffle.release(); }
   });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => {

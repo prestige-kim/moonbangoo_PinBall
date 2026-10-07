@@ -108,17 +108,7 @@
     drawFinish(map,time,visible){const y=map.finish&&map.finish.y||map.height-120;if(y<visible.top-180||y>visible.bottom+180)return;const ctx=this.ctx,x=80,w=map.width-160;ctx.save();ctx.fillStyle=PAPER_HI;pill(ctx,x,y-82,w,100,9);ctx.fill();ctx.strokeStyle=this.foil(ctx,x,y-90,x+w,y+25);ctx.lineWidth=3;ctx.stroke();ctx.strokeStyle='rgba(120,87,39,.28)';ctx.lineWidth=.8;pill(ctx,x+9,y-73,w-18,81,4);ctx.stroke();ctx.textAlign='center';ctx.fillStyle=INK;ctx.font='700 25px Pretendard Variable,sans-serif';ctx.fillText('결승',map.width/2,y-38);ctx.font='500 11px Pretendard Variable,sans-serif';ctx.fillStyle='#8a7760';ctx.fillText('어른뭉방구  ·  당첨을 확인하는 곳',map.width/2,y-12);ctx.strokeStyle=this.foil(ctx,x,y-75,x+w,y);ctx.fillStyle=this.theme.primary;ctx.lineWidth=1.3;this.brandMark(ctx,x+50,y-30,22);this.brandMark(ctx,x+w-50,y-30,22);ctx.strokeStyle='rgba(170,137,82,.55)';ctx.setLineDash([3,6]);ctx.beginPath();ctx.moveTo(x+24,y+32);ctx.lineTo(x+w-24,y+32);ctx.stroke();ctx.setLineDash([]);ctx.restore();}
     drawMarble(m, total, leader, visible, time, dt, idle) {
       const ctx = this.ctx, color = marbleColor(m.colorIndex === undefined ? m.id : m.colorIndex, total, this.theme), r = m.r || 16;
-      const sourceTrail = m.trail || [];
-      const trail = sourceTrail.slice(-(this.quality === 'high' ? 14 : this.quality === 'medium' ? 7 : 3));
       if (m.y + r * 6 < visible.top || m.y - r * 6 > visible.bottom) return;
-      const speed = Math.hypot(m.vx || 0, m.vy || 0);
-      if (!m.finished && !this.reducedMotion && speed > 80 && trail.length > 2 && this.quality !== 'low' && (total < 80 || leader && leader.id === m.id)) {
-        // One thin, rounded curve reads as motion without stacking square strokes over nearby collisions.
-        ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.globalAlpha = .17 * Math.min(1, speed / 480);
-        ctx.strokeStyle = color; ctx.lineWidth = r * .65; ctx.beginPath(); ctx.moveTo(trail[0].x, trail[0].y);
-        for (let i = 1; i < trail.length - 1; i++) ctx.quadraticCurveTo(trail[i].x, trail[i].y, (trail[i].x + trail[i + 1].x) / 2, (trail[i].y + trail[i + 1].y) / 2);
-        ctx.lineTo(m.x, m.y); ctx.stroke(); ctx.restore();
-      }
       ctx.drawImage(this.marbleSprite(color), m.x - r * 2.56, m.y - r * 2.56, r * 5.12, r * 5.12);
       ctx.save(); ctx.translate(m.x, m.y); ctx.rotate((m.angle || 0) * .35); ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.beginPath(); ctx.ellipse(-r * .29, -r * .38, r * .3, r * .16, -.6, 0, TAU); ctx.fill(); ctx.fillStyle = 'rgba(255,255,255,.17)'; ctx.beginPath(); ctx.ellipse(r * .29, r * .35, r * .17, r * .06, -.5, 0, TAU); ctx.fill(); ctx.restore();
       const isLeader = leader && leader.id === m.id;

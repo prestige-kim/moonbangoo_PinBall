@@ -1,0 +1,46 @@
+✔ release starts at every actual position and velocity, with C1 propulsion onset (4.422291ms)
+✔ front pinballs receive propulsion first and delays depend on actual throw direction (1.461166ms)
+✔ gesture direction changes the visible path while endpoints retain their own seeded slots (1.744625ms)
+✔ all IDs reach exact map sprites on desktop, portrait and landscape for every count (157.262291ms)
+✔ camera starts with identity and zero velocity, follows the flight, and ends at the final map transform (4.393167ms)
+✔ reduced motion keeps the same release state and own IDs with no camera sweep or trails (10.044166ms)
+✔ snapshot positions stay fixed when the old shuffle continues or source arrays reorder (0.759834ms)
+✔ midflight resizing preserves current positions and radii while smoothly reaching the new camera (19.312ms)
+✔ changing reduced motion midflight suppresses trails without resetting the captured path (6.75275ms)
+✔ a stopped edge release still propels, while fast input changes flight without changing slots (18.3545ms)
+✔ flight zooms out to frame the full group and draws no tails across viewport sizes (27.864ms)
+✔ tube extraction starts at the real projected tube coordinates for all counts and screen sizes (285.730291ms)
+✔ fully extracted display circles match individual collision radii and preserve all IDs (277.71225ms)
+✔ edge gold and direction stay ready while stopped and clear only after an inward retreat (798.723458ms)
+✔ short or untouched empty-space movement never shows ready gold (8.733334ms)
+✔ motion changes preserve bodies, RNG, ready feedback and the hand influence field (277.396667ms)
+✔ every current shuffle pose connects continuously to the first real flight frame (342.389ms)
+✔ manual slot commit preserves the previous seeded ownership for every count and waiting duration (5580.053833ms)
+✔ welcome uses configured participants without advancing physics or changing saved settings (4.294709ms)
+✔ start waits for a valid manual throw and connects exact flight landing to the race once (5.078542ms)
+✔ automatic seeds refresh each round and restart without becoming a saved fixed seed (46.872875ms)
+✔ reduced motion shortens flight with the same gesture decision, seed slots and exact landing (5.190375ms)
+✔ setup edits appear in glass without starting physics; blocked storage still works (4.425917ms)
+✔ original saved participants survive the brand upgrade with gentler default pacing (2.479333ms)
+✔ invalid rank cannot launch a race (1.264042ms)
+✔ first, last, nth and top rules select physical arrival order (1.094417ms)
+✔ live visuals and speed leave the physical run configuration intact (9.62425ms)
+✔ race finishes, shows seeded results and same-member restart reproduces order at another frame rate (35.276333ms)
+✔ sustained slow rendering lowers quality without resetting physics (348.634333ms)
+✔ a natural six-marble race triggers lead changes and celebration (43.522667ms)
+✔ crowded races announce only settled leader changes and keep arrival results intact (719.101959ms)
+✔ leaders arriving close together trigger the photo finish view (7.600041ms)
+✔ stuck recovery is named in the UI, rate limited and reset for a new race (43.553625ms)
+✔ a valid release plays one launch sound, without automatic charge or cannon sounds (2.69275ms)
+✔ rejected and canceled gestures preserve race RNG, seed slots and visual state continuity (1.906542ms)
+✔ motion changes retain shuffle positions and flight progress without catching up paused time (1.706375ms)
+✔ waiting time, gesture direction and render frame grouping preserve seeded slots and full results (44.571209ms)
+✔ removed saved courses migrate to classic while preserving participants and physical settings (3.637541ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7611.825791

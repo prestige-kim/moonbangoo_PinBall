@@ -9,6 +9,9 @@
   }
   class HandScene {
     constructor(cinematic) { this.cinema = cinematic; this.shuffle = null; }
+    // A shared visual camera pulls back during extraction, then stays steady
+    // under the hand. Physics and edge readiness keep their original units.
+    get viewScale() { return 1 - .16 * P.CINEMA.easeCamera(this.elapsed / .8); }
     area() {
       this.cinema.resize();
       const w = this.cinema.width, h = this.cinema.height;
@@ -33,9 +36,9 @@
       this.edgeGlow += (target - this.edgeGlow) * Math.min(1, dt * 9);
       if (this.elapsed < .8) return;
       this.accumulator = Math.min(.05, this.accumulator + dt);
-      const area = this.area();
-      this.shuffle.bounds = { left: (-area.w / 2 + 16) / area.s, right: (area.w / 2 - 16) / area.s,
-        top: (-area.h / 2 + 24) / area.s, bottom: (area.h / 2 - 24) / area.s };
+      const area = this.area(), zoom = this.viewScale;
+      this.shuffle.bounds = { left: (-area.w / 2 + 16) / (area.s * zoom), right: (area.w / 2 - 16) / (area.s * zoom),
+        top: (-area.h / 2 + 24) / (area.s * zoom), bottom: (area.h / 2 - 24) / (area.s * zoom) };
       while (this.accumulator >= 1 / 120) { this.shuffle.step(1 / 120); this.accumulator -= 1 / 120; }
     }
     render(state) {
@@ -77,16 +80,16 @@
       }
       this.lastPoses = this.shuffle.bodies.map((body, i) => {
         const start = this.sources[i];
-        const pose = { id: body.id, x: area.x + (start.x * (1-t) + body.x * t) * area.s,
-          y: area.y + (start.y * (1-t) + body.y * t) * area.s,
-          radius: (start.r * (1-t) + body.r * t) * area.s, focus: 1 };
+        const pose = { id: body.id, x: area.x + (start.x * (1-t) + body.x * t * this.viewScale) * area.s,
+          y: area.y + (start.y * (1-t) + body.y * t * this.viewScale) * area.s,
+          radius: (start.r * (1-t) + body.r * t * this.viewScale) * area.s, focus: 1 };
         c.drawOrb(this.entries[i], pose, 0, state.physics.marbles[i], this.entries.length, state.reducedMotion);
         if (this.entries.length <= 16 && t === 1) c.drawLabel(this.entries[i], pose.x, pose.y, pose.radius, .68);
         return pose;
       });
       if (t === 1 && this.shuffle.pointer) {
-        const pointer = this.shuffle.pointer, x = area.x + pointer.x * area.s, y = area.y + pointer.y * area.s;
-        const radius = this.shuffle.pointerRadius * area.s;
+        const pointer = this.shuffle.pointer, x = area.x + pointer.x * area.s * this.viewScale, y = area.y + pointer.y * area.s * this.viewScale;
+        const radius = this.shuffle.pointerRadius * area.s * this.viewScale;
         const field = ctx.createRadialGradient(x, y, 0, x, y, radius);
         field.addColorStop(0, 'rgba(174,145,91,.09)'); field.addColorStop(1, 'rgba(174,145,91,0)');
         ctx.save(); ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2);
