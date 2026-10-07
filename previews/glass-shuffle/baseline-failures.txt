@@ -1,0 +1,101 @@
+✖ isolated pinballs receive the same gravity and pressure, not individual phase forces (2.685791ms)
+✖ without air pressure gravity settles pinballs onto the visible floor (14.125458ms)
+✖ contact centers and visible radii agree in the front glass (0.900834ms)
+✖ same participants retain chamber position and velocity when a seeded run replaces setup (5.986875ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 63.81525
+
+✖ failing tests:
+
+test at tests/chamber-regression.test.cjs:6:1
+✖ isolated pinballs receive the same gravity and pressure, not individual phase forces (2.685791ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 0.060678458726661395
+  - 0.01813631916698224
+       ^
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/chamber-regression.test.cjs:10:34)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.060678458726661395,
+    expected: 0.01813631916698224,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/chamber-regression.test.cjs:12:1
+✖ without air pressure gravity settles pinballs onto the visible floor (14.125458ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(c.bodies.reduce((a,b)=>a+b.y,0)/6>.45)
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/chamber-regression.test.cjs:14:2)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/chamber-regression.test.cjs:16:1
+✖ contact centers and visible radii agree in the front glass (0.900834ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(Math.abs(Math.hypot(a.x-b.x,a.y-b.y)-2*displayedRadius)<1e-8)
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/chamber-regression.test.cjs:21:2)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/chamber-regression.test.cjs:23:1
+✖ same participants retain chamber position and velocity when a seeded run replaces setup (5.986875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '[{"x":-0.39002499505877497,"y":0.09697016808788586,"z":0.4909186225544237,"index":0,"r":0.32,"vx":-3.09470449090004,"vy":-0.5529103418812156,"vz":-1.1334356684237719,"phase":0.7986495708689022,"spin":5.781063039908826},{"x":0.6773934437334538,"y":-0.35807472834177406,"z":0.5199953070187616,"index":1,"r":0.32,"vx":2.94308600127697,"vy":1.8170336047187448,"vz":-1.7668822230771184,"phase":3.6946079463593455,"spin":4.520956833850253},{"x":2.0596518257260326,"y":-0.6296543336912347,"z":0.13746524730307788,"index":2,"r":0.32,"vx":1.009194946847856,"vy":0.10322890803217888,"vz":-0.2960712229833007,"phase":2.5754302579449204,"spin":4.564692920319521},{"x":2.330845402032137,"y":0.438886022991259,"z":0.38769656814919684,"index":3,"r":0.32,"vx":2.1455826608464124,"vy":-0.9510645205155015,"vz":0.28260977379977703,"phase":3.921204703880977,"spin":3.86957974828293},{"x":1.92609331458807,"y":0.2779751365535855,"z":-0.5923320837550963,"index":4,"r":0.32,"vx":2.314186225645244,"vy":-0.8811478950083256,"vz":-0.6950176656246185,"phase":0.159473325949851,"spin":0.7429199158365051},{"x":1.7043661393225196,"y":0.12513090163953583,"z":0.6156770928953627,"index":5,"r":0.32,"vx":1.3625969460234046,"vy":0.32436201348900795,"vz":0.35867911484092474,"phase":1.9500560233635713,"spin":5.705665337829037}]'
+  - '[{"x":-0.9331074484722933,"y":0.3541837262753079,"z":0.5654923025703743,"index":0,"r":0.32,"vx":-1.2687082115871269,"vy":-4.60119584537707,"vz":2.3681314770713504,"phase":2.386392198790976,"spin":4.69905768784737},{"x":0.19525401797652148,"y":-0.42379384459996133,"z":0.5200168500559385,"index":1,"r":0.32,"vx":-0.4474298803319271,"vy":-3.5517978403184354,"vz":-3.2292430155549896,"phase":2.0479000558059735,"spin":1.9560976013065228},{"x":0.20423108384068256,"y":-0.6076534230923917,"z":-0.12374251091643346,"index":2,"r":0.32,"vx":0.711789857447859,"vy":0.19556546472965733,"vz":-4.526080081596265,"phase":3.102353872805644,"spin":8.14271631731793},{"x":2.225862988655112,"y":-0.6431196868446882,"z":-0.14554253391046987,"index":3,"r":0.32,"vx":2.2540665532356994,"vy":0.7770819358947352,"vz":-2.999304655934528,"phase":1.2675804578711616,"spin":9.939012590986758},{"x":-2.296673653904975,"y":0.41434775909031274,"z":-0.5190780005001459,"index":4,"r":0.32,"vx":-1.5186533610952606,"vy":3.629063559259766,"vz":3.6959891392037654,"phase":0.5724526961525659,"spin":-1.7918600134622698},{"x":-2.830721615974584,"y":-0.047079005551478065,"z":-0.6767533485991848,"index":5,"r":0.32,"vx":1.5119081736751299,"vy":4.3095409783413885,"vz":-0.8799132272208093,"phase":4.774899051517205,"spin":1.1914716564431327}]'
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/chamber-regression.test.cjs:26:9)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '[{"x":-0.39002499505877497,"y":0.09697016808788586,"z":0.4909186225544237,"index":0,"r":0.32,"vx":-3.09470449090004,"vy":-0.5529103418812156,"vz":-1.1334356684237719,"phase":0.7986495708689022,"spin":5.781063039908826},{"x":0.6773934437334538,"y":-0.35807472834177406,"z":0.5199953070187616,"index":1,"r":0.32,"vx":2.94308600127697,"vy":1.8170336047187448,"vz":-1.7668822230771184,"phase":3.6946079463593455,"spin":4.520956833850253},{"x":2.0596518257260326,"y":-0.6296543336912347,"z":0.13746524730307788,"index":2,"r":0.32,"vx":1.009194946847856,"vy":0.10322890803217888,"vz":-0.2960712229833007,"phase":2.5754302579449204,"spin":4.564692920319521},{"x":2.330845402032137,"y":0.438886022991259,"z":0.38769656814919684,"index":3,"r":0.32,"vx":2.1455826608464124,"vy":-0.9510645205155015,"vz":0.28260977379977703,"phase":3.921204703880977,"spin":3.86957974828293},{"x":1.92609331458807,"y":0.2779751365535855,"z":-0.5923320837550963,"index":4,"r":0.32,"vx":2.314186225645244,"vy":-0.8811478950083256,"vz":-0.6950176656246185,"phase":0.159473325949851,"spin":0.7429199158365051},{"x":1.7043661393225196,"y":0.12513090163953583,"z":0.6156770928953627,"index":5,"r":0.32,"vx":1.3625969460234046,"vy":0.32436201348900795,"vz":0.35867911484092474,"phase":1.9500560233635713,"spin":5.705665337829037}]',
+    expected: '[{"x":-0.9331074484722933,"y":0.3541837262753079,"z":0.5654923025703743,"index":0,"r":0.32,"vx":-1.2687082115871269,"vy":-4.60119584537707,"vz":2.3681314770713504,"phase":2.386392198790976,"spin":4.69905768784737},{"x":0.19525401797652148,"y":-0.42379384459996133,"z":0.5200168500559385,"index":1,"r":0.32,"vx":-0.4474298803319271,"vy":-3.5517978403184354,"vz":-3.2292430155549896,"phase":2.0479000558059735,"spin":1.9560976013065228},{"x":0.20423108384068256,"y":-0.6076534230923917,"z":-0.12374251091643346,"index":2,"r":0.32,"vx":0.711789857447859,"vy":0.19556546472965733,"vz":-4.526080081596265,"phase":3.102353872805644,"spin":8.14271631731793},{"x":2.225862988655112,"y":-0.6431196868446882,"z":-0.14554253391046987,"index":3,"r":0.32,"vx":2.2540665532356994,"vy":0.7770819358947352,"vz":-2.999304655934528,"phase":1.2675804578711616,"spin":9.939012590986758},{"x":-2.296673653904975,"y":0.41434775909031274,"z":-0.5190780005001459,"index":4,"r":0.32,"vx":-1.5186533610952606,"vy":3.629063559259766,"vz":3.6959891392037654,"phase":0.5724526961525659,"spin":-1.7918600134622698},{"x":-2.830721615974584,"y":-0.047079005551478065,"z":-0.6767533485991848,"index":5,"r":0.32,"vx":1.5119081736751299,"vy":4.3095409783413885,"vz":-0.8799132272208093,"phase":4.774899051517205,"spin":1.1914716564431327}]',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

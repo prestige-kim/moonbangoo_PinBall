@@ -1,0 +1,25 @@
+chamber 6 CPU ms 11 worst relative overlap 0.0001817884023502406
+chamber 50 CPU ms 57 worst relative overlap 0.010427975795842823
+chamber 200 CPU ms 346 worst relative overlap 0.014439357213718555
+chamber 500 CPU ms 1472 worst relative overlap 0.03914004481452426
+live launch 6 worst relative overlap 0.00003803031901696206
+live launch 50 worst relative overlap 0.006715382956528661
+live launch 200 worst relative overlap 0.01915292932070193
+live launch 500 worst relative overlap 0.046077912271021114
+✔ isolated pinballs receive the same gravity and pressure, not individual phase forces (3.185084ms)
+✔ without air pressure gravity settles pinballs onto the visible floor (12.623542ms)
+✔ contact centers and visible radii agree in the front glass (0.781417ms)
+✔ same participants retain chamber position and velocity when a seeded run replaces setup (6.874542ms)
+✔ 6, 50, 200 and 500 circles remain contained, exchange order and avoid deep overlap (1943.126792ms)
+✔ waiting duration cannot change assigned slots or seeded race results (1123.023958ms)
+✔ same seed assigns identical slots for every count and waiting/frame schedule (6968.160458ms)
+✔ camera orbit projects visible contacts and glass boundary in the same plane (0.437541ms)
+✔ post-blur pressure pulses also avoid deep overlap after a live waiting chamber (2741.910375ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12860.196209

@@ -96,3 +96,18 @@ test('post-blur pressure pulses also avoid deep overlap after a live waiting cha
   console.log('live launch',n,'worst relative overlap',overlap);
  }
 });
+
+test('all participant counts reproduce final identities and arrival times despite different waits',()=>{
+ for(const n of [6,50,200,500]) {
+  let expected;
+  for(const wait of [0,2]) {
+   const pre=game(n,'PREVIEW'),run=game(n,'RACE-REPLAY-'+n),s=Object.create(P.Cinematic.prototype);s.lastTime=0;s.entries(pre);
+   s.previewChamber.seek(wait,true);s.lastStage='setup';s.entries(run);s.launchBirth=s.chamber.ticks/120;s.commitShuffle(run);
+   while(!run.complete&&run.time<180){for(let batch=0;batch<(wait?7:1)&&!run.complete;batch++)run.step();run.drainEvents();}
+   assert(run.complete,n+' seeded race must complete');
+   const actual=JSON.stringify(run.finished.map(m=>[m.id,m.colorIndex,m.finishTime]));
+   if(expected)assert.equal(actual,expected);else expected=actual;
+   console.log('race replay',n,'wait',wait,'all finished',run.finished.length,'time',run.time);
+  }
+ }
+});
