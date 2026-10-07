@@ -1,0 +1,60 @@
+shuffle exchanges 6 straight collisions 3
+shuffle exchanges 6 reversal collisions 1
+shuffle exchanges 6 circle collisions 14
+shuffle exchanges 50 straight collisions 1011
+shuffle exchanges 50 reversal collisions 138
+shuffle exchanges 50 circle collisions 529
+shuffle exchanges 200 straight collisions 9835
+shuffle exchanges 200 reversal collisions 1128
+shuffle exchanges 200 circle collisions 6279
+shuffle exchanges 500 straight collisions 49322
+shuffle exchanges 500 reversal collisions 4822
+shuffle exchanges 500 circle collisions 45110
+shuffle benchmark 6 480 steps CPU ms 2 worst relative overlap 0
+shuffle benchmark 50 480 steps CPU ms 25 worst relative overlap 0
+shuffle benchmark 200 480 steps CPU ms 163 worst relative overlap 0.004397949058664848
+shuffle benchmark 500 480 steps CPU ms 636 worst relative overlap 0.0024211431348553614
+✔ pointer applies distance-weighted force to individual bodies (2.001125ms)
+✔ stationary input leaves inertia briefly and then damps it (1.657292ms)
+✔ release cancels force without resetting position or velocity and returns softly (11.482333ms)
+✔ direct contact transfers momentum rather than carrying a rigid group (0.285333ms)
+✔ straight, reversal and circular input exchange order at every supported count (1415.453333ms)
+✔ all supported counts stay finite, contained and free of deep overlaps during vigorous input (1038.637416ms)
+✔ visual random state is independent and snapshots do not mutate live bodies (182.025959ms)
+classic six-entrant / 200 seeded trajectories: {"winnerCountsByInput":[33,42,32,31,30,32],"firstInputXRange":[48.7,937.31],"lastArrivalRange":[26.58,48.48]}
+✔ small groups occupy separated full-width lanes and participant ownership changes by seed (47.680125ms)
+✔ one to 500 participants and radii seven to eighteen stay packed inside the spawn (132.069584ms)
+✔ a fixed seed reproduces positions and physical arrival order across rendering groups (708.193916ms)
+✔ changing seeds removes a repeated first-input winner in small real races (155.786458ms)
+✔ 200 classic races with six entrants produce varied input winners and starting ownership (7588.237292ms)
+✔ offline entry uses only existing relative styles and classic scripts (11.238709ms)
+✔ mouse and touch use identical normalized position and event-time models (3.06875ms)
+✔ captured drag keeps outside coordinates and releases capture only once (1.04925ms)
+✔ coalesced positions retain individual input timestamps independent of render timing (0.752834ms)
+✔ pointer cancellation and lost capture never release or duplicate cancellation (1.687375ms)
+✔ blur, hidden page, resize and orientation changes cancel safely and allow restart (1.621417ms)
+✔ second touch cancels until all contacts lift, without jumps or duplicated launch (1.339875ms)
+✔ all-up outside the canvas clears the multitouch block after capture cancellation (0.381041ms)
+✔ second touch outside the canvas cancels the active captured gesture (0.265875ms)
+✔ right click and an initial nonprimary contact never begin a gesture (0.261875ms)
+✔ disabled settings preserve default pointer and drag behavior for panel scrolling (0.362708ms)
+✔ disabling shuffle during a gesture cancels at release instead of launching (0.295333ms)
+✔ an unrelated release cannot terminate the pointer owner or create a release (0.237958ms)
+✔ launch thresholds are public frozen normalized constants (0.719708ms)
+✔ only a long fast outward release fires, once (0.242416ms)
+✔ slow outside, short fast outside and fast motion inside each fail one condition (0.082667ms)
+✔ circular motion near and inside boundary never fires on a tangent or radial chord (0.676292ms)
+✔ boundary jitter and inward motion do not borrow tangential speed (0.116125ms)
+✔ stopping before release removes stale speed without changing event history (0.064459ms)
+✔ window interpolation and begin stationary history use exactly 100ms (0.070959ms)
+✔ the same event coordinates and timestamps ignore render evaluation schedules and count (0.179958ms)
+✔ cancel and invalid or backward events cannot trigger or duplicate a release (0.074042ms)
+✔ zero and duplicate event timestamps have finite speed and no instantaneous launch (0.094167ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 35
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8691.481834

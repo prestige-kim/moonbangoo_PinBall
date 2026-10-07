@@ -73,13 +73,15 @@
   const cinematic = new P.Cinematic(document.getElementById('cinema-canvas'), renderer);
   const audio = new P.AudioEngine();
   const handScene = new P.HandScene(cinematic);
+  const throwGate = new P.ThrowGate();
+  handScene.gate = throwGate;
   const shuffleInput = new P.ShuffleInput(document.getElementById('cinema-canvas'), {
-    enabled: () => status === 'mixing' && handScene.elapsed >= .8,
+    enabled: () => status === 'mixing' && handScene.elapsed >= .8 && !handScene.launchDecision,
     area: () => handScene.area(),
-    begin: point => handScene.shuffle.begin(point.x, point.y, point.time),
-    move: point => handScene.shuffle.move(point.x, point.y, point.time),
-    release: () => handScene.shuffle.release(),
-    cancel: () => { if (handScene.shuffle) handScene.shuffle.release(); }
+    begin: point => { throwGate.begin(point.x, point.y, point.time); handScene.shuffle.begin(point.x, point.y, point.time); },
+    move: point => { throwGate.move(point.x, point.y, point.time); handScene.shuffle.move(point.x, point.y, point.time); },
+    release: point => { const decision = throwGate.release(point.x, point.y, point.time); handScene.shuffle.release(); if (decision.fired) throwMarbles(decision); },
+    cancel: () => { throwGate.cancel(); if (handScene.shuffle) handScene.shuffle.release(); }
   });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => {
     renderer.nameSprites.clear();
@@ -197,12 +199,17 @@
     ui.clearError(); ui.hideResults(); ui.hideCountdown(); ui.setLocked(true);
     winner = null; launchElapsed = 0; flightLanded = false;
     cannonSoundPlayed = false; chargeSoundPlayed = false;
+    throwGate.cancel();
     handScene.begin(physics);
     setScene('mixing');
     accumulator = 0; leaderId = null; leadCooldown = 0; leadCandidateId = null; leadCandidateAge = 0; leadNotices = 0; lastRescueNotice = -Infinity; photoFinish = false;
     finalRanking = []; resultDelay = 0; resultShown = false;
     diagnostics.leadChanges = 0; diagnostics.photoFinishes = 0; diagnostics.events = {};
     audio.unlock(); resize();
+  }
+  function throwMarbles(decision) {
+    if (status !== 'mixing' || handScene.launchDecision) return;
+    handScene.launchDecision = decision;
   }
   function launchDuration(stage) {
     if (settings.reducedMotion) return stage === 'mixing' ? .65 : .35;
@@ -385,7 +392,7 @@
   document.addEventListener('visibilitychange', () => { lastFrame = 0; });
   visualSettings(); preview('intro');
   P.app = { ui: ui, renderer: renderer, cinematic: cinematic, camera: camera, effects: effects, audio: audio,
-    handScene, shuffleInput, get physics() { return physics; }, get status() { return status; }, get settings() { return Object.assign({}, settings); },
+    handScene, shuffleInput, throwGate, get physics() { return physics; }, get status() { return status; }, get settings() { return Object.assign({}, settings); },
     get runSettings() { return runSettings && Object.assign({}, runSettings); },
     get diagnostics() { return Object.assign({}, diagnostics); }, start: start, reset: preview
   };

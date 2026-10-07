@@ -17,7 +17,7 @@
       });
       this.entries = entries;
       this.shuffle = new P.HandShuffle(entries, physics.seed);
-      this.elapsed = 0; this.accumulator = 0;
+      this.elapsed = 0; this.accumulator = 0; this.launchDecision = null;
     }
     update(dt) {
       this.elapsed += dt;
@@ -37,6 +37,19 @@
       if (t < 1) {
         const views = P.CINEMA.matchedViews(area.w, area.h, 0, 0);
         c.drawPlate('front', views.front, 1 - t);
+      }
+      if (t === 1 && this.gate) {
+        const feedback = this.gate.evaluate(performance.now());
+        ctx.beginPath(); ctx.arc(area.x, area.y, P.THROW_THRESHOLDS.boundary * area.s, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(158,126,76,.20)'; ctx.lineWidth = 1.2; ctx.stroke();
+        if (feedback.eligible) {
+          const angle = Math.atan2(feedback.dy, feedback.dx);
+          ctx.save(); ctx.beginPath(); ctx.arc(area.x, area.y, P.THROW_THRESHOLDS.boundary * area.s, angle - .38, angle + .38);
+          ctx.strokeStyle = '#c9a24f'; ctx.lineWidth = 3; ctx.lineCap = 'round';
+          if (!state.reducedMotion) { ctx.shadowColor = '#e7c77b'; ctx.shadowBlur = 8; }
+          ctx.stroke(); ctx.restore();
+        }
+        c.canvas.dataset.throwReady = String(feedback.eligible);
       }
       this.lastPoses = this.shuffle.bodies.map((body, i) => {
         const start = this.sources[i];
