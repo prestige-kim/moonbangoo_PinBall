@@ -1,0 +1,80 @@
+shuffle exchanges 6 straight collisions 2
+shuffle exchanges 6 reversal collisions 1
+shuffle exchanges 6 circle collisions 12
+shuffle exchanges 50 straight collisions 963
+shuffle exchanges 50 reversal collisions 128
+shuffle exchanges 50 circle collisions 466
+shuffle exchanges 200 straight collisions 7315
+shuffle exchanges 200 reversal collisions 1082
+shuffle exchanges 200 circle collisions 7420
+shuffle exchanges 500 straight collisions 45872
+shuffle exchanges 500 reversal collisions 4628
+shuffle exchanges 500 circle collisions 42994
+shuffle benchmark 6 480 steps CPU ms 2 worst relative overlap 0
+shuffle benchmark 50 480 steps CPU ms 24 worst relative overlap 0.00034085568383865474
+shuffle benchmark 200 480 steps CPU ms 156 worst relative overlap 0.0034172590847045257
+shuffle benchmark 500 480 steps CPU ms 605 worst relative overlap 0.006139276299568595
+✔ pointer applies distance-weighted force to individual bodies (1.484625ms)
+✔ stationary input leaves inertia briefly and then damps it (1.610875ms)
+✔ release cancels force without resetting position or velocity and returns softly (8.471375ms)
+✔ direct contact transfers momentum rather than carrying a rigid group (0.099708ms)
+✔ straight, reversal and circular input exchange order at every supported count (1344.854541ms)
+✔ all supported counts stay finite, contained and free of deep overlaps during vigorous input (989.949666ms)
+✔ visual random state is independent and snapshots do not mutate live bodies (172.713583ms)
+✔ a settled group exchanges actual order during representative straight, reversal and circular hand input (3885.544542ms)
+✖ the central set and hand reach leave substantially more room at every count (6.019541ms)
+✖ empty-space input only records interaction when movement transfers a real local impulse (0.31175ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 8
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6469.772792
+
+✖ failing tests:
+
+test at tests/hand-shuffle.test.cjs:72:1
+✖ the central set and hand reach leave substantially more room at every count (6.019541ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(c.clusterRadius*2>=.55&&c.clusterRadius*2<=.65)
+
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-shuffle.test.cjs:74:19)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/hand-shuffle.test.cjs:79:1
+✖ empty-space input only records interaction when movement transfers a real local impulse (0.31175ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + undefined
+  - false
+
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-shuffle.test.cjs:82:9)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

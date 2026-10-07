@@ -23,7 +23,7 @@ function makeCinema(width, height) {
   const ctx = {
     strokeStyle: '', lineWidth: 0, lineCap: '', shadowBlur: 0, shadowColor: '',
     clearRect() { strokes.length = 0; orbs.length = 0; plates.length = 0; },
-    createLinearGradient() { return { addColorStop() {} }; }, fillRect() {}, fillText() {},
+    createLinearGradient() { return { addColorStop() {} }; }, createRadialGradient() { return { addColorStop() {} }; }, fill() {}, fillRect() {}, fillText() {},
     beginPath() { currentPath = []; }, arc(...args) { currentPath.push(args); },
     stroke() { strokes.push({ arcs: currentPath.map(arc => arc.slice()), style: this.strokeStyle, width: this.lineWidth, shadowBlur: this.shadowBlur }); },
     save() { stacks.push({ strokeStyle: this.strokeStyle, lineWidth: this.lineWidth, lineCap: this.lineCap, shadowBlur: this.shadowBlur, shadowColor: this.shadowColor }); },

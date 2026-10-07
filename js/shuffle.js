@@ -10,8 +10,9 @@
   // or race marble is mutated by this visual-only simulation.
   class HandShuffle {
     constructor(entries,seed) {
-      this.radius=Math.min(.034,.125/Math.sqrt(Math.max(1,entries.length)));
-      this.clusterRadius=.185;this.pointerRadius=.16;this.pointerCoreRadius=.035;
+      this.radius=Math.min(.044,.18/Math.sqrt(Math.max(1,entries.length)));
+      this.clusterRadius=.30;this.pointerRadius=.26;this.pointerCoreRadius=.045;
+      this.interacted=false;
       this.bounds={left:-.46,right:.46,top:-.46,bottom:.46};
       this.bodies=[];this.collisions=0;this.wallHits=0;this.ticks=0;
       this.pointer=null;
@@ -31,9 +32,10 @@
       for(let pass=0;pass<8;pass++)if(this.contacts(this.pairs())<.005)break;
     }
     begin(x,y,timeMs) {
+      this.interacted=false;
       this.pointer={x,y,vx:0,vy:0,timeMs,age:0};
     }
-    move(x,y,timeMs) { this.setPointer(x,y,timeMs); }
+    move(x,y,timeMs) { this.setPointer(x,y,timeMs); return this.interacted; }
     setPointer(x,y,timeMs) {
       if(!Number.isFinite(x)||!Number.isFinite(y)||!Number.isFinite(timeMs))return;
       if(!this.pointer){this.begin(x,y,timeMs);return;}
@@ -42,6 +44,18 @@
       let vx=(x-p.x)/seconds,vy=(y-p.y)/seconds;
       const speed=Math.hypot(vx,vy),limit=2.8;
       if(speed>limit){vx*=limit/speed;vy*=limit/speed;}
+      // Event-time impulse records actual contact even if release arrives before
+      // the next render tick. Sweep the real segment to retain fast crossings.
+      const mx=x-p.x,my=y-p.y,length2=mx*mx+my*my;
+      if(length2>1e-12)for(const b of this.bodies) {
+        const t=clamp(((b.x-p.x)*mx+(b.y-p.y)*my)/length2,0,1);
+        const near=Math.hypot(b.x-p.x-mx*t,b.y-p.y-my*t);
+        if(near>=this.pointerRadius)continue;
+        const weight=Math.pow(1-near/this.pointerRadius,2);
+        const transfer=1-Math.exp(-12*weight*Math.min(seconds,.1));
+        const ix=(vx-b.vx)*transfer,iy=(vy-b.vy)*transfer;
+        if(Math.hypot(ix,iy)>1e-7){b.vx+=ix;b.vy+=iy;this.interacted=true;}
+      }
       Object.assign(p,{x,y,vx,vy,timeMs,age:0});
     }
     release() {this.pointer=null;}
@@ -107,9 +121,9 @@
         const handSpeed=p?Math.hypot(p.vx,p.vy)*freshness:0;
         const pressureActivity=clamp((handSpeed-.015)/.25,0,1);
         for(const b of this.bodies) {
-          const distance=Math.hypot(b.x,b.y),returnStrength=p?.10:.65;
-          let ax=-b.x*returnStrength,ay=.016-b.y*returnStrength;
-          if(distance>.18){const extra=(distance-.18)*2.4/distance;ax-=b.x*extra;ay-=b.y*extra;}
+          const distance=Math.hypot(b.x,b.y),returnStrength=p?.06:.36;
+          let ax=-b.x*returnStrength,ay=.008-b.y*returnStrength;
+          if(distance>this.clusterRadius){const extra=(distance-this.clusterRadius)*2.4/distance;ax-=b.x*extra;ay-=b.y*extra;}
           if(p) {
             const dx=p.x-b.x,dy=p.y-b.y,near=Math.hypot(dx,dy);
             if(near<this.pointerRadius) {

@@ -60,9 +60,17 @@
         if (this.entries.length <= 16 && t === 1) c.drawLabel(this.entries[i], pose.x, pose.y, pose.radius, .68);
         return pose;
       });
+      if (t === 1 && this.shuffle.pointer) {
+        const pointer = this.shuffle.pointer, x = area.x + pointer.x * area.s, y = area.y + pointer.y * area.s;
+        const radius = this.shuffle.pointerRadius * area.s;
+        const field = ctx.createRadialGradient(x, y, 0, x, y, radius);
+        field.addColorStop(0, 'rgba(174,145,91,.09)'); field.addColorStop(1, 'rgba(174,145,91,0)');
+        ctx.save(); ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fillStyle = field; ctx.fill(); ctx.strokeStyle = 'rgba(158,126,76,.18)'; ctx.lineWidth = 1; ctx.stroke(); ctx.restore();
+      }
       if (t === 1) {
         ctx.fillStyle = '#8a7760'; ctx.font = '12px "Pretendard Variable", sans-serif'; ctx.textAlign = 'center';
-        ctx.fillText('섞어서 바깥으로 던져 주세요', area.x, area.y + .32 * area.s);
+        ctx.fillText('섞어서 바깥으로 던져 주세요', area.x, area.y + .38 * area.s);
       }
       if (c.canvas.dataset) c.canvas.dataset.handPhase = this.elapsed < .8 ? 'emerging' : this.shuffle.pointer ? 'dragging' : 'settling';
       c.lastStage = 'mixing';

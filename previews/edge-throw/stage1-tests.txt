@@ -1,0 +1,53 @@
+✔ tube extraction starts at the real projected tube coordinates for all counts and screen sizes (283.301625ms)
+✔ fully extracted display circles match individual collision radii and preserve all IDs (278.276125ms)
+✔ pale boundary stays at .24 S and the gold arc highlights only a valid outward direction (794.787ms)
+✔ rejected slow, short and circular movements never produce the ready arc (8.980583ms)
+✔ motion setting renders preserve body state, elapsed time, RNG and boundary decisions (279.915125ms)
+✔ every current shuffle pose connects continuously to the first real flight frame (347.723167ms)
+✔ manual slot commit preserves the previous seeded ownership for every count and waiting duration (5572.083917ms)
+shuffle exchanges 6 straight collisions 1
+shuffle exchanges 6 reversal collisions 1
+shuffle exchanges 6 circle collisions 2
+shuffle exchanges 50 straight collisions 487
+shuffle exchanges 50 reversal collisions 141
+shuffle exchanges 50 circle collisions 355
+shuffle exchanges 200 straight collisions 7796
+shuffle exchanges 200 reversal collisions 785
+shuffle exchanges 200 circle collisions 2788
+shuffle exchanges 500 straight collisions 35336
+shuffle exchanges 500 reversal collisions 3369
+shuffle exchanges 500 circle collisions 16362
+shuffle benchmark 6 480 steps CPU ms 3 worst relative overlap 0
+shuffle benchmark 50 480 steps CPU ms 37 worst relative overlap 0.0022421802036091515
+shuffle benchmark 200 480 steps CPU ms 251 worst relative overlap 0.012230274256455792
+shuffle benchmark 500 480 steps CPU ms 1024 worst relative overlap 0.012220811847641155
+✔ pointer applies distance-weighted force to individual bodies (1.276333ms)
+✔ stationary input leaves inertia briefly and then damps it (1.542208ms)
+✔ release cancels force without resetting position or velocity and returns softly (21.177375ms)
+✔ direct contact transfers momentum rather than carrying a rigid group (0.139208ms)
+✔ straight, reversal and circular input exchange order at every supported count (910.018125ms)
+✔ all supported counts stay finite, contained and free of deep overlaps during vigorous input (1355.001125ms)
+✔ visual random state is independent and snapshots do not mutate live bodies (31.722792ms)
+✔ a settled group exchanges actual order during representative straight, reversal and circular hand input (2642.03675ms)
+✔ the central set and hand reach leave substantially more room at every count (35.624833ms)
+✔ empty-space input only records interaction when movement transfers a real local impulse (0.190708ms)
+✔ mouse and touch use identical normalized position and event-time models (2.2385ms)
+✔ captured drag keeps outside coordinates and releases capture only once (0.690417ms)
+✔ coalesced positions retain individual input timestamps independent of render timing (0.317417ms)
+✔ pointer cancellation and lost capture never release or duplicate cancellation (0.59025ms)
+✔ blur, hidden page, resize and orientation changes cancel safely and allow restart (1.06375ms)
+✔ second touch cancels until all contacts lift, without jumps or duplicated launch (0.887958ms)
+✔ all-up outside the canvas clears the multitouch block after capture cancellation (0.328625ms)
+✔ second touch outside the canvas cancels the active captured gesture (0.303875ms)
+✔ right click and an initial nonprimary contact never begin a gesture (0.26575ms)
+✔ disabled settings preserve default pointer and drag behavior for panel scrolling (0.298417ms)
+✔ disabling shuffle during a gesture cancels at release instead of launching (0.258542ms)
+✔ an unrelated release cannot terminate the pointer owner or create a release (0.221417ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7628.842

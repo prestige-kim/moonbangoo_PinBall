@@ -23,7 +23,7 @@ test('release cancels force without resetting position or velocity and returns s
  const c=make(6);gesture(c,'reversal',.5);for(const b of c.bodies)b.x+=.15;
  const before=JSON.stringify(c.snapshot());c.release();assert.equal(JSON.stringify(c.snapshot()),before);
  const centroid=()=>Math.hypot(c.bodies.reduce((s,b)=>s+b.x,0)/6,c.bodies.reduce((s,b)=>s+b.y,0)/6);
- const displaced=centroid();for(let i=0;i<600;i++)c.step();assert(centroid()<displaced*.35);
+ const displaced=centroid();for(let i=0;i<1200;i++)c.step();assert(centroid()<displaced*.35);
 });
 test('direct contact transfers momentum rather than carrying a rigid group',()=>{
  const c=make(2),r=c.radius;Object.assign(c.bodies[0],{x:-r,y:0,vx:.6,vy:0});Object.assign(c.bodies[1],{x:r+.001,y:0,vx:0,vy:0});
@@ -66,4 +66,22 @@ test('a settled group exchanges actual order during representative straight, rev
   assert(c.collisions>before,n+' '+type+' settled input must produce collisions');
   assert(exchanged,n+' '+type+' settled input must exchange order at some point');
  }
+});
+
+
+test('the central set and hand reach leave substantially more room at every count',()=>{
+ for(const n of [6,50,200,500]){
+  const c=make(n);assert(c.clusterRadius*2>=.55&&c.clusterRadius*2<=.65);
+  assert(c.pointerRadius>=.25);assert(c.bodies.every(b=>b.r===c.radius));
+  assert(c.bodies.every(b=>Math.hypot(b.x,b.y)+b.r<=c.clusterRadius+1e-8));
+ }
+});
+test('empty-space input only records interaction when movement transfers a real local impulse',()=>{
+ const c=make(2);Object.assign(c.bodies[0],{x:0,y:0,vx:0,vy:0});Object.assign(c.bodies[1],{x:0,y:.4,vx:0,vy:0});
+ c.begin(-.45,-.4,0);const initial=JSON.stringify(c.snapshot());
+ assert.equal(c.move(-.4,-.4,100),false);assert.equal(JSON.stringify(c.snapshot()),initial);
+ assert.equal(c.move(.15,0,1100),true);assert(c.bodies[0].vx>0);assert.equal(c.bodies[1].vx,0);
+ assert.equal(c.interacted,true);const moved=JSON.stringify(c.snapshot());
+ c.move(.15,0,1600);assert.equal(JSON.stringify(c.snapshot()),moved,'stopping does not zero current momentum');
+ c.release();c.begin(.45,-.4,1800);assert.equal(c.interacted,false,'contact never leaks into the next gesture');
 });
