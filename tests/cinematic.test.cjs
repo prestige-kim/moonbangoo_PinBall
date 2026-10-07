@@ -213,10 +213,11 @@ for(const entry of shotEntries) {
   }
   assert(orders.size>=4,'welcome marbles must keep exchanging axial order, rather than settle into fixed wobbling slots');
   assert(movie.previewChamber.collisions>0);
-  assert.equal(movie.chamber.ticks,0,'waiting must never advance the actual launch shuffle');
+  assert.equal(movie.chamber,movie.previewChamber,'the same live chamber continues into setup and launch');
+  const liveTicks=movie.chamber.ticks;
   assert.equal(JSON.stringify(physical.marbles),raceBefore);
   movie.render({stage:'mixing',progress:.5,time:13,physics:physical});
-  assert.equal(movie.chamber.ticks,Math.round(P.CINEMA.timing.chamberMix*.5*120));
+  assert.equal(movie.chamber.ticks,liveTicks+Math.round(P.CINEMA.timing.chamberMix*.5*120));
 }
 // The intermediate photo is registered to exactly the same glass endpoints.
 for (const [w,h] of [[1280,720],[390,844],[844,390]]) {
@@ -228,4 +229,42 @@ for (const [w,h] of [[1280,720],[390,844],[844,390]]) {
     }
   }
 }
-console.log('PASS welcome shuffle: persistent position exchanges, independent launch clock; intermediate photo axes match desktop and mobile.');
+console.log('PASS welcome shuffle: persistent position exchanges, continuous chamber clock and frozen race; intermediate photo axes match desktop and mobile.');
+
+// Reduced motion freezes the displayed chamber; it must not select different race slots.
+for(const count of [6,50,200,500]) {
+ const quietPhysics=new P.Physics({map:P.MAPS.classic,names:P.parseNames('참가자*'+count),seed:'QUIET-'+count});
+ const normalPhysics=new P.Physics({map:P.MAPS.classic,names:P.parseNames('참가자*'+count),seed:'QUIET-'+count});
+ const quiet=new P.Cinematic(canvas(390,844)),normal=new P.Cinematic(canvas());
+ quiet.render({stage:'intro',time:0,physics:quietPhysics,reducedMotion:true});
+ const still=JSON.stringify(quiet.chamber.bodies);
+ quiet.render({stage:'setup',time:10,physics:quietPhysics,reducedMotion:true});
+ assert.equal(JSON.stringify(quiet.chamber.bodies),still);
+ normal.render({stage:'intro',time:0,physics:normalPhysics});
+ normal.render({stage:'setup',time:2,physics:normalPhysics});
+ const before=JSON.stringify(normal.chamber.bodies);
+ normal.render({stage:'mixing',progress:0,time:2,physics:normalPhysics});
+ assert.equal(JSON.stringify(normal.chamber.bodies),before,'zero-progress launch preserves position and velocity');
+ quiet.commitShuffle(quietPhysics);normal.commitShuffle(normalPhysics);
+ assert.equal(JSON.stringify(quietPhysics.marbles),JSON.stringify(normalPhysics.marbles));
+}
+
+{
+ const physical=new P.Physics({map:P.MAPS.classic,names:P.parseNames('참가자*6'),seed:'TOGGLE'}),movie=new P.Cinematic(canvas());
+ movie.render({stage:'intro',time:0,physics:physical});movie.render({stage:'setup',time:2,physics:physical});
+ const poses=JSON.stringify(movie.cache.entries.map(e=>movie.chamber.pose(e.index))),ticks=movie.chamber.ticks;
+ movie.render({stage:'setup',time:2,physics:physical,reducedMotion:true});assert.equal(JSON.stringify(movie.stillTube),poses);
+ movie.render({stage:'setup',time:20,physics:physical,reducedMotion:true});assert.equal(movie.chamber.ticks,ticks);
+ movie.render({stage:'setup',time:20+1/120,physics:physical});assert.equal(movie.chamber.ticks,ticks+1,'unpausing resumes without catching up the paused interval');
+}
+
+{
+ const physical=new P.Physics({map:P.MAPS.classic,names:P.parseNames('참가자*6'),seed:'CLEAR-FIRST'}),movie=new P.Cinematic(canvas());
+ movie.render({stage:'intro',time:0,physics:physical});movie.render({stage:'setup',time:2,physics:physical});
+ movie.render({stage:'mixing',time:2,progress:0,physics:physical});
+ const offset=movie.chamber.pressureOrigin-movie.launchBirth;
+ assert.equal(P.CINEMA.pressureAt(-offset,true).pressure,0);
+ assert(Math.abs(offset/P.CINEMA.timing.chamberMix*P.CINEMA.timing.mixing-P.CINEMA.timing.blurClear)<1e-8);
+ const wallTime=(offset+.29)/P.CINEMA.timing.chamberMix*P.CINEMA.timing.mixing;
+ assert(wallTime>P.CINEMA.timing.blurClear&&wallTime<2,'the first strong air burst is visible after blur, within the mixing shot');
+}

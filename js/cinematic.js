@@ -104,14 +104,14 @@
   }
   function project(local, front, angle, orbit) {
     if (front.frame) {
-      const f = front.frame, lateral = local.y * f.thickness * .42 + local.z * f.thickness * .035;
-      const axial = local.x * f.length * .45 + local.z * f.length * .018 * orbit;
+      const f = front.frame, lateral = local.y * f.thickness * .42;
+      const axial = local.x * f.length * .45;
       return { x: f.x + f.axisX * axial - f.axisY * lateral, y: f.y + f.axisY * axial + f.axisX * lateral,
-        depth: local.z, scale: f.thickness / f.baseThickness * (.88 + local.z * .14) };
+        depth: local.z, scale: f.thickness / f.baseThickness };
     }
     const a = pointInPlate(front, .49 + local.x * .173 + local.z * .005, .548 + local.y * .111 + local.z * .008);
     const b = pointInPlate(angle, .248 + local.x * .070 + local.y * .029 + local.z * .008, .600 - local.x * .066 + local.y * .071 + local.z * .012);
-    return { x: lerp(a.x, b.x, orbit), y: lerp(a.y, b.y, orbit), depth: local.z, scale: lerp(front.scaleY, angle.scaleY * .71, orbit) * (.88 + local.z * .14) };
+    return { x: lerp(a.x, b.x, orbit), y: lerp(a.y, b.y, orbit), depth: local.z, scale: lerp(front.scaleY, angle.scaleY * .71, orbit) };
   }
   function blastPose(progress, reduced) {
     const after = progress - FIRE_MOMENT;
@@ -202,83 +202,110 @@
       depth: Math.sin(u * Math.PI) * entry.curve, amount: t, focus: lerp(.78, 1, interval(.45, .96, u)), contained: false
     };
   }
-  // A separate, fixed-step hard-sphere chamber. It never consumes race RNG.
+  // A fixed-step physical cross-section: contacts and visible spheres use one plane.
+  const CHAMBER_HALF = .45 * (1678 / 937) * .387 / (.42 * .264);
+  function pressureAt(seconds, enabled) {
+    const cycle = 1.65, phase = seconds % cycle, burst = phase >= .18 && phase < .40;
+    const pulse = burst ? Math.sin((phase - .18) / .22 * Math.PI) : 0;
+    return { x: enabled ? (Math.floor(seconds / cycle) % 2 ? -1 : 1) * pulse * 24 : 0,
+      y: 7 - (enabled ? pulse * 55 : 0), pressure: enabled ? pulse : 0,
+      charge: enabled && phase >= 0 && phase < .18 ? phase / .18 : 0 };
+  }
   class Chamber {
     constructor(entries, seed) {
-      this.random = rng(String(seed) + '|hard-sphere-chamber');
-      this.ticks = 0; this.collisions = 0; this.wallHits = 0;
-      this.radius = Math.min(.32, Math.cbrt(1.5 / Math.max(1, entries.length)) * .55);
-      this.bodies = entries.map((entry, index) => {
+      this.random = rng(String(seed) + '|physical-cross-section');
+      this.ticks = 0; this.collisions = 0; this.wallHits = 0; this.pressureOrigin=0;
+      this.radius = Math.min(.28, Math.sqrt(1.35 / Math.max(1, entries.length)));
+      this.bodies = [];
+      for (let index = 0; index < entries.length; index++) {
         let body, attempts = 0;
         do {
-          const angle = this.random() * TAU, radial = Math.sqrt(this.random()) * (1 - this.radius);
-          body = { x: (this.random() * 2 - 1) * (3.2 - this.radius), y: Math.sin(angle) * radial, z: Math.cos(angle) * radial };
-        } while (this.bodiesNear(body, this._placed || [], this.radius * 2 + .006) && ++attempts < 2000);
-        Object.assign(body, { index, r: this.radius, vx: (this.random() * 2 - 1) * 3.6,
-          vy: (this.random() * 2 - 1) * 2, vz: (this.random() * 2 - 1) * 2,
-          phase: this.random() * TAU, spin: this.random() * TAU });
-        (this._placed || (this._placed = [])).push(body); return body;
-      });
-      delete this._placed;
-    }
-    bodiesNear(body, bodies, distance) { return bodies.some(b => Math.hypot(body.x - b.x, body.y - b.y, body.z - b.z) < distance); }
-    wall(body) {
-      const end = 3.2 - body.r;
-      if (Math.abs(body.x) > end) { body.x = Math.sign(body.x) * end; body.vx = -Math.sign(body.x) * Math.abs(body.vx) * .87; this.wallHits++; }
-      const radial = Math.hypot(body.y, body.z), wall = 1 - body.r;
-      if (radial > wall) {
-        const ny = body.y / radial, nz = body.z / radial, outward = body.vy * ny + body.vz * nz;
-        body.y = ny * wall; body.z = nz * wall;
-        if (outward > 0) { body.vy -= 1.87 * outward * ny; body.vz -= 1.87 * outward * nz; }
-        this.wallHits++;
+          body = { x: (this.random() * 2 - 1) * (CHAMBER_HALF - this.radius),
+            y: (this.random() * 2 - 1) * (1 - this.radius), z: 0 };
+          const cx = clamp(body.x, -(CHAMBER_HALF - 1), CHAMBER_HALF - 1);
+          if (Math.hypot(body.x - cx, body.y) > 1 - this.radius) continue;
+          if (!this.bodiesNear(body, this.bodies, this.radius * 2 + .001)) break;
+        } while (++attempts < 10000);
+        Object.assign(body, { index, r: this.radius, vx: 0, vy: 0, vz: 0, spin: this.random() * TAU });
+        this.wall(body); this.bodies.push(body);
       }
+    }
+    bodiesNear(body, bodies, distance) { return bodies.some(b => Math.hypot(body.x-b.x, body.y-b.y) < distance); }
+    wall(b) {
+      const cx = clamp(b.x, -(CHAMBER_HALF - 1), CHAMBER_HALF - 1), dx = b.x - cx;
+      const limit = 1-b.r, d2=dx*dx+b.y*b.y;
+      if(d2<=limit*limit)return;
+      const d=Math.sqrt(d2);
+      const nx = dx / d, ny = b.y / d, outward = b.vx * nx + b.vy * ny;
+      b.x = cx + nx * limit; b.y = ny * limit;
+      if (outward > 0) {
+        b.vx -= 1.62 * outward * nx; b.vy -= 1.62 * outward * ny;
+        const tangent = -b.vx * ny + b.vy * nx;
+        b.vx += ny * tangent * .08; b.vy -= nx * tangent * .08;
+      }
+      this.wallHits++;
+    }
+    pairs() {
+      // Cache broad-phase candidates within a substep, with a margin for corrections.
+      const cell=this.radius*2.1,grid=new Map(),pairs=[];
+      for(const b of this.bodies) {
+        const gx=Math.floor(b.x/cell),gy=Math.floor(b.y/cell),key=gy*512+gx;
+        if(!grid.has(key))grid.set(key,[]);grid.get(key).push(b);
+      }
+      for(const b of this.bodies) {
+        const gx=Math.floor(b.x/cell),gy=Math.floor(b.y/cell);
+        for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++) {
+          const near=grid.get((gy+dy)*512+gx+dx);if(!near)continue;
+          for(const a of near)if(a.index<b.index)pairs.push([a,b]);
+        }
+      }
+      return pairs;
+    }
+    contacts(pairs) {
+      let worst=0;
+      for(const [a,b] of pairs) {
+        let nx=b.x-a.x,ny=b.y-a.y;const diameter=a.r+b.r,d2=nx*nx+ny*ny;
+        if(d2>=diameter*diameter)continue;
+        const d=Math.sqrt(d2);
+        if(d<1e-9){nx=1;ny=0;}else{nx/=d;ny/=d;}
+        worst=Math.max(worst,(diameter-d)/diameter);
+        const correction=(diameter-d)*.505;
+        a.x-=nx*correction;a.y-=ny*correction;b.x+=nx*correction;b.y+=ny*correction;
+        const approach=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;
+        if(approach<0) {
+          const impulse=-approach*.89;
+          a.vx-=nx*impulse;a.vy-=ny*impulse;b.vx+=nx*impulse;b.vy+=ny*impulse;this.collisions++;
+        }
+      }
+      for(const b of this.bodies)this.wall(b);
+      return worst;
     }
     step(run) {
-      const dt = 1 / 120, t = this.ticks / 120;
-      const power = run ? t < 1.8 ? 1 : .46 : .32;
-      for (const b of this.bodies) {
-        const ax = (Math.sin(t * 5.1 + b.phase) * 7 + Math.sin(t * 2.3 + b.z * 3) * 3) * power;
-        const ay = (.7 + Math.sin(t * 6.7 + b.phase * 1.3) * 5 - b.z * 4) * power;
-        const az = (Math.cos(t * 5.8 + b.phase * .8) * 5 + b.y * 4) * power;
-        const drag = Math.exp(-dt * (run ? .25 : .8));
-        b.vx = clamp((b.vx + ax * dt) * drag, -5.6, 5.6);
-        b.vy = clamp((b.vy + ay * dt) * drag, -5, 5); b.vz = clamp((b.vz + az * dt) * drag, -5, 5);
-        b.x += b.vx * dt; b.y += b.vy * dt; b.z += b.vz * dt; b.spin += (b.vx + b.vz) * dt;
-        this.wall(b);
-      }
-      const cell = this.radius * 2 + .01, grid = new Map();
-      for (const b of this.bodies) {
-        const gx = Math.floor(b.x / cell), gy = Math.floor(b.y / cell), gz = Math.floor(b.z / cell);
-        for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++) for (let dz = -1; dz <= 1; dz++) {
-          const neighbors = grid.get((gx + dx) + ':' + (gy + dy) + ':' + (gz + dz)); if (!neighbors) continue;
-          for (const a of neighbors) {
-            let nx = b.x - a.x, ny = b.y - a.y, nz = b.z - a.z, distance = Math.hypot(nx, ny, nz);
-            const diameter = a.r + b.r; if (distance >= diameter) continue;
-            if (distance < .00001) { nx = 1; ny = 0; nz = 0; distance = 0; }
-            else { nx /= distance; ny /= distance; nz /= distance; }
-            const separate = (diameter - distance) * .505;
-            a.x -= nx * separate; a.y -= ny * separate; a.z -= nz * separate;
-            b.x += nx * separate; b.y += ny * separate; b.z += nz * separate;
-            const approach = (b.vx - a.vx) * nx + (b.vy - a.vy) * ny + (b.vz - a.vz) * nz;
-            if (approach < 0) {
-              const impulse = -approach * .92;
-              a.vx -= nx * impulse; a.vy -= ny * impulse; a.vz -= nz * impulse;
-              b.vx += nx * impulse; b.vy += ny * impulse; b.vz += nz * impulse; this.collisions++;
-            }
-          }
+      // Derive substeps from travel distance, rather than increasing all iterations blindly.
+      const speed=Math.max(...this.bodies.map(b=>Math.max(Math.abs(b.vx),Math.abs(b.vy))));
+      const steps=clamp(Math.ceil((speed+55/120)/120/(this.radius*.25)),2,4),dt=1/120/steps;
+      for (let sub=0;sub<steps;sub++) {
+        const force=pressureAt(this.ticks/120+sub*dt-this.pressureOrigin,run);
+        for (const b of this.bodies) {
+          const drag=Math.exp(-dt*(b.y>1-b.r-.03?.9:.12));
+          b.vx=clamp((b.vx+force.x*dt)*drag,-4.8,4.8);
+          b.vy=clamp((b.vy+force.y*dt)*drag,-4.8,4.8);
+          b.x+=b.vx*dt;b.y+=b.vy*dt;b.spin+=b.vx*dt/Math.max(.04,b.r);this.wall(b);
         }
-        this.wall(b); const key = gx + ':' + gy + ':' + gz;
-        if (!grid.has(key)) grid.set(key, []); grid.get(key).push(b);
+        let pairs=this.pairs();
+        for(let pass=0;pass<6;pass++) {
+          if(pass===3)pairs=this.pairs();
+          const remaining=this.contacts(pairs);
+          if(pass>=1 && remaining<.015)break;
+        }
       }
-      // Resolve wall corrections once more after the neighboring impulses.
-      for (const b of this.bodies) this.wall(b);
       this.ticks++;
     }
     seek(seconds, run) {
-      const target = Math.max(this.ticks, Math.round(Math.max(0, seconds) * 120));
-      while (this.ticks < target) this.step(run);
+      const target=Math.max(this.ticks,Math.round(Math.max(0,seconds)*120));
+      while(this.ticks<target)this.step(run);
     }
-    pose(index) { const b = this.bodies[index]; return { x: b.x / 3.2, y: b.y, z: b.z, spin: b.spin, radius: b.r }; }
+    pose(index) { const b=this.bodies[index];return {x:b.x/CHAMBER_HALF,y:b.y,z:0,spin:b.spin,radius:b.r}; }
   }
   function mapPoint(m, x, y) { return { x: m.a * x + m.c * y + m.e, y: m.b * x + m.d * y + m.f }; }
   function inverseMatrix(m) {
@@ -343,9 +370,13 @@
     entries(physics) {
       const count = physics && physics.marbles && physics.marbles.length || 36;
       if (!this.cache || this.cache.physics !== physics || this.cache.count !== count) {
-        this.cache = { physics, count, entries: descriptors(physics, 36) }; this.frozenTube = null;
-        this.chamber = new Chamber(this.cache.entries, physics && physics.seed || 'preview');
-        this.previewChamber = new Chamber(this.cache.entries, (physics && physics.seed || 'preview') + '|welcome');
+        const next = descriptors(physics,36), old = this.cache;
+        const carry = old && ['intro','setup'].includes(this.lastStage) && old.count === count &&
+          old.entries.every((entry,i)=>entry.name===next[i].name && entry.id===next[i].id);
+        const live = carry ? this.previewChamber : null;
+        this.cache = { physics, count, entries: next }; this.frozenTube = null;
+        this.chamber = live || new Chamber(this.cache.entries, physics && physics.seed || 'preview');
+        this.previewChamber = this.chamber; this.launchBirth = null; this.previewBirth = this.chamber.ticks/120;
         this.stillTube = this.cache.entries.map(entry => this.chamber.pose(entry.index));
         this.chamberBirth = this.lastTime || 0; this.shuffleCommitted = false; this.boardCache = null;
       }
@@ -353,16 +384,16 @@
     }
     commitShuffle(physics) {
       const entries = this.entries(physics); if (this.shuffleCommitted) return;
-      this.chamber.seek(4, true);
+      this.chamber.seek((this.launchBirth === null ? 0 : this.launchBirth) + 4, true);
       const order = this.chamber.bodies.slice().sort((a, b) => b.x - a.x || a.index - b.index);
       const slots = physics.marbles.map(m => ({ x: m.x, y: m.y, vx: m.vx, vy: m.vy, _anchorX: m._anchorX, _anchorY: m._anchorY }))
         .sort((a, b) => a.y - b.y || a.x - b.x);
       const lanes = this.chamber.bodies.slice().sort((a, b) => a.y - b.y || a.index - b.index);
-      lanes.forEach((body, rank) => { entries[body.index].lane = (rank + .5) / lanes.length * 2 - 1; });
-      order.forEach((body, rank) => {
-        Object.assign(physics.marbles[body.index], slots[rank]);
-        entries[body.index].delay = order.length < 2 ? 0 : rank / (order.length - 1) * .04;
-      });
+      const ownership = entries.slice().sort((a,b)=>a.lane-b.lane || a.index-b.index);
+      // Capture the seeded permutation before live lane values are replaced below.
+      ownership.forEach((entry,rank)=>Object.assign(physics.marbles[entry.index],slots[rank]));
+      lanes.forEach((body,rank)=>{entries[body.index].lane=(rank+.5)/lanes.length*2-1;});
+      order.forEach((body,rank)=>{ entries[body.index].delay=order.length<2?0:rank/(order.length-1)*.04; });
       this.frozenTube = entries.map(entry => this.chamber.pose(entry.index));
       this.shuffleCommitted = true;
     }
@@ -437,9 +468,10 @@
     }
     glassPath(front, angle, orbit, inside = false) {
       if (front.frame) {
-        const f = front.frame, radius = f.thickness / 2, ctx = this.ctx;
-        ctx.save(); ctx.translate(f.x - f.axisX * f.length / 2, f.y - f.axisY * f.length / 2); ctx.rotate(f.rotation);
-        pill(ctx, inside ? 0 : -radius * .35, -radius, inside ? f.length - radius * .32 : f.length + radius * .7, radius * 2, radius * .56); ctx.restore(); return;
+        const f=front.frame,ctx=this.ctx;
+        ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.rotation);
+        ctx.scale(f.length*.45/CHAMBER_HALF,f.thickness*.42);
+        pill(ctx,-CHAMBER_HALF,-1,CHAMBER_HALF*2,2,1);ctx.restore();return;
       }
       const ctx = this.ctx, a = pointInPlate(front, .31, .548), b = pointInPlate(front, .697, .548);
       const c = pointInPlate(angle, .193, .66), d = pointInPlate(angle, .317, .537);
@@ -472,8 +504,9 @@
     }
     drawChamberShadow(entry, local, radius, front, angle, orbit) {
       if (this.quality === 'low') return;
-      const ctx = this.ctx, floor = project({ x: local.x, y: .81, z: 0 }, front, angle, orbit);
-      const distance = clamp(.81 - local.y, 0, 1.6), size = radius * (1.15 + distance * .35);
+      const ctx = this.ctx, x=local.x*CHAMBER_HALF, dx=x-clamp(x,-(CHAMBER_HALF-1),CHAMBER_HALF-1), floorY=Math.sqrt(Math.max(0,1-dx*dx));
+      const floor = project({ x: local.x, y: floorY, z: 0 }, front, angle, orbit);
+      const distance = clamp(floorY - local.y - this.chamber.radius, 0, 2), size = radius * (1.15 + distance * .35);
       ctx.save(); ctx.translate(floor.x + radius * .18, floor.y); ctx.rotate(front.frame.rotation); ctx.scale(1, .24 + distance * .06);
       const shadow = ctx.createRadialGradient(0, 0, 0, 0, 0, size);
       shadow.addColorStop(0, 'rgba(87,68,38,' + (.18 / (1 + distance)) + ')'); shadow.addColorStop(1, 'rgba(87,68,38,0)');
@@ -589,7 +622,11 @@
     drawOrb(entry, pose, gameBlend, marble, total, reduced) {
       const ctx = this.ctx, radius = pose.radius, alpha = pose.alpha === undefined ? 1 : pose.alpha; if (radius <= 0 || alpha <= .001) return;
       const soft = !reduced && this.quality === 'high' && pose.focus < .75;
-      if (gameBlend < .999) { ctx.save(); ctx.globalAlpha = (1 - gameBlend) * alpha; const size = radius * 144 / 27; ctx.drawImage(this.orbSprite(entry.coat, soft), pose.x - size / 2, pose.y - size / 2, size, size); ctx.restore(); }
+      if (gameBlend < .999) {
+        ctx.save(); ctx.globalAlpha = (1 - gameBlend) * alpha;
+        ctx.translate(pose.x,pose.y); ctx.rotate(pose.orientation || 0); ctx.scale(pose.aspect || 1,1); ctx.rotate(-(pose.orientation || 0));
+        const size = radius * 144 / 27; ctx.drawImage(this.orbSprite(entry.coat, soft), -size/2, -size/2, size, size); ctx.restore();
+      }
       if (gameBlend > .001 && marble && this.renderer) {
         ctx.save(); ctx.globalAlpha = gameBlend * alpha;
         const color = P.marbleColor(marble.colorIndex, total, this.renderer.theme); ctx.drawImage(this.renderer.marbleSprite(color), pose.x - radius * 2.56, pose.y - radius * 2.56, radius * 5.12, radius * 5.12);
@@ -649,8 +686,22 @@
       const stage = state.stage || 'intro', p = clamp(Number(state.progress) || 0, 0, 1), time = Number(state.time) || 0, reduced = !!state.reducedMotion;
       const entries = this.entries(state.physics), count = entries.length, marbles = state.physics && state.physics.marbles || [];
       const active = ['mixing', 'aiming', 'flight'].includes(stage);
-      if (active) this.chamber.seek(stage === 'mixing' ? p * TIMING.chamberMix : stage === 'aiming' ? TIMING.chamberMix + p * TIMING.chamberAim : TIMING.chamberMix + TIMING.chamberAim, true);
-      else if (!reduced) this.previewChamber.seek(Math.max(0, time - this.chamberBirth), true);
+      if (active) {
+        if (this.launchBirth === null) {
+          this.launchBirth = this.chamber.ticks / 120;
+          // Re-arm the common air supply after the existing blur clears; keep momentum.
+          this.chamber.pressureOrigin=this.launchBirth+TIMING.blurClear/TIMING.mixing*TIMING.chamberMix;
+        }
+        this.chamber.seek(this.launchBirth + (stage === 'mixing' ? p*TIMING.chamberMix : stage === 'aiming' ? TIMING.chamberMix+p*TIMING.chamberAim : TIMING.chamberMix+TIMING.chamberAim),true);
+      }
+      else if (!reduced) this.previewChamber.seek(this.previewBirth + Math.max(0, time - this.chamberBirth), true);
+      else { this.previewBirth=this.chamber.ticks/120; this.chamberBirth=time; }
+      if(reduced && !this.lastReduced)this.stillTube=entries.map(entry=>this.chamber.pose(entry.index));
+      this.lastReduced=reduced;
+      const air=pressureAt(this.chamber.ticks/120-this.chamber.pressureOrigin,true);
+      if(this.canvas.dataset) {
+        this.canvas.dataset.chamberPhase=air.pressure>.25?'burst':air.charge>0?'charging':'settling';
+      }
       ctx.clearRect(0, 0, w, h);
       if (stage === 'flight' && p === 1 && state.camera) {
         for (const entry of entries) { const m = marbles[entry.index]; if (!m) continue; const target = state.camera.worldToScreen(m.x, m.y); this.drawOrb(entry, { x: target.x, y: target.y, radius: m.r * state.camera.zoom, focus: 1 }, 1, m, count, reduced); }
@@ -696,18 +747,21 @@
       this.targetBoard(travel, state.physics, aiming, stage);
       if (stage === 'flight' && !this.frozenTube) this.frozenTube = entries.map(entry => this.chamber.pose(entry.index));
       const baseRadius = views.frame.thickness * .42 * this.chamber.radius;
+      // Project the same contact plane during the existing camera orbit.
+      const aspect=views.frame.length*.45/CHAMBER_HALF/(views.frame.thickness*.42),orientation=Math.atan2(views.frame.axisY,views.frame.axisX);
       const drawn = entries.map(entry => {
         const local = reduced ? this.stillTube[entry.index] : stage === 'flight' ? this.frozenTube[entry.index] : (active ? this.chamber : this.previewChamber).pose(entry.index);
-        const screen = project(local, front, angle, orbit), radius = baseRadius * (.88 + local.z * .14);
-        if (stage !== 'flight') return { entry, local, pose: { x: screen.x, y: screen.y, radius, depth: local.z, focus: local.z < -.35 ? .45 : 1, alpha: reducedFade }, blend: 0 };
+        const screen = project(local, front, angle, orbit), radius = baseRadius;
+        if (stage !== 'flight') return { entry, local, pose: { x: screen.x, y: screen.y, radius, aspect, orientation, depth: local.z, focus: local.z < -.35 ? .45 : 1, alpha: reducedFade }, blend: 0 };
         const start = project(local, resting.front, resting.angle, 1), muzzle = pointInPlate(resting.angle, .359, .511), m = marbles[entry.index];
         const target = m ? mapPoint(travel.initial, m.x, m.y) : { x: w * .82, y: h * .28 };
         const endRadius = m ? m.r * travel.initial.a : radius * .4;
         const parameters = { width: w, height: h, axisX: resting.frame.axisX, axisY: resting.frame.axisY, muzzleRadius: resting.frame.thickness * .43, arrival: .74 };
-        const startRadius = resting.frame.thickness * .42 * this.chamber.radius * (.88 + local.z * .14);
+        const startRadius = resting.frame.thickness * .42 * this.chamber.radius;
         const at = progress => {
           const pose = flightPose(entry, progress, start, muzzle, target, startRadius, endRadius, parameters);
-          const offset = flightOffset(entry, progress, resting.frame, w, reduced); pose.x += offset.x; pose.y += offset.y; return pose;
+          const offset = flightOffset(entry, progress, resting.frame, w, reduced); pose.x += offset.x; pose.y += offset.y;
+          pose.aspect=lerp(aspect,1,smooth(pose.amount)); pose.orientation=orientation*(1-smooth(pose.amount)); return pose;
         };
         const pose = at(p);
         if (reduced) { const beginning = p < .65; pose.x = beginning ? start.x : target.x; pose.y = beginning ? start.y : target.y; pose.radius = beginning ? startRadius : endRadius; pose.alpha = beginning ? 1 - interval(.15, .55, p) : interval(.65, .8, p); }
@@ -742,7 +796,7 @@
       if (stage !== 'flight') ctx.restore();
       if (stage !== 'flight' || p < FIRE_MOMENT + .025) {
         ctx.save(); ctx.translate(barrelShift.x, barrelShift.y);
-        const pressure = reduced ? 0 : stage === 'aiming' ? interval(.82, 1, p) * .45 : stage === 'flight' ? blast.fired ? blast.flash : .45 + blast.compression * .55 : 0;
+        const pressure = reduced ? 0 : ['intro','setup','mixing'].includes(stage) ? air.pressure*.28+air.charge*.08 : stage === 'aiming' ? interval(.82, 1, p) * .45 : stage === 'flight' ? blast.fired ? blast.flash : .45 + blast.compression * .55 : 0;
         this.drawGlass(front, angle, orbit, reduced ? 0 : time, reducedFade, pressure); ctx.restore();
       }
       this.drawWheel(wheel, 1, stage === 'flight' ? blast.recoil * .018 : 0);
@@ -755,6 +809,6 @@
       return { reveal, fired: stage === 'flight' && blast.fired, cameraAmount: travel.amount };
     }
   }
-  P.CINEMA = { smooth, interval, easeCamera, timing: TIMING, descriptors, tubePose, layout, matchedViews, pointInPlate, project, flightPose, dischargeOrigin, assemblyPose, blastPose, barrelOffset, flightOffset, Chamber, boardView, mapPoint, fireMoment: FIRE_MOMENT };
+  P.CINEMA = { smooth, interval, easeCamera, timing: TIMING, descriptors, tubePose, layout, matchedViews, pointInPlate, project, flightPose, dischargeOrigin, assemblyPose, blastPose, barrelOffset, flightOffset, Chamber, chamberHalfLength: CHAMBER_HALF, pressureAt, boardView, mapPoint, fireMoment: FIRE_MOMENT };
   P.Cinematic = Cinematic;
 })(window.CosmicPinball = window.CosmicPinball || {});
