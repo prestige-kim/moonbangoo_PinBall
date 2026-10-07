@@ -1,0 +1,27 @@
+✖ a settled group exchanges actual order during representative straight, reversal and circular hand input (35.507167ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 87.423834
+
+✖ failing tests:
+
+test at tests/hand-shuffle.test.cjs:54:1
+✖ a settled group exchanges actual order during representative straight, reversal and circular hand input (35.507167ms)
+  AssertionError [ERR_ASSERTION]: 6 straight settled input must exchange order at some point
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-shuffle.test.cjs:67:3)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

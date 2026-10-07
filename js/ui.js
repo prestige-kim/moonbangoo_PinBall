@@ -237,7 +237,7 @@
       }
       if (event.key !== 'Tab') return;
       var controls = self.scene === 'setup' ? self.getSetupControls() : (self.scene === 'intro' ? [$('intro-start-button')] : []);
-      if (!controls.length) { event.preventDefault(); $('game-canvas').focus({ preventScroll: true }); return; }
+      if (!controls.length) { event.preventDefault(); $(self.scene === 'mixing' ? 'cinema-canvas' : 'game-canvas').focus({ preventScroll: true }); return; }
       var index = controls.indexOf(document.activeElement);
       if (index < 0 || (event.shiftKey && index === 0) || (!event.shiftKey && index === controls.length - 1)) {
         event.preventDefault(); controls[event.shiftKey ? controls.length - 1 : 0].focus({ preventScroll: true });
@@ -264,6 +264,7 @@
     $('scene-welcome').inert = this.scene !== 'intro';
     $('scene-welcome').setAttribute('aria-hidden', String(this.scene !== 'intro'));
     $('game-canvas').setAttribute('aria-hidden', String(!game));
+    $('cinema-canvas').setAttribute('aria-hidden', String(this.scene !== 'mixing'));
     $('scene-status').setAttribute('aria-hidden', String(['mixing','aiming','flight'].indexOf(this.scene) < 0));
   };
   UI.prototype.setScene = function (stage) {
@@ -285,7 +286,7 @@
     if (stage === 'intro' && previous !== stage) $('intro-start-button').focus({ preventScroll: true });
     else if (stage === 'setup' && previous !== stage) {
       requestAnimationFrame(function () { if (self.scene !== 'setup') return; var next = !$('names').disabled ? $('names') : self.getSetupControls()[0]; if (next) next.focus({ preventScroll: true }); });
-    } else if (['mixing','aiming','flight'].indexOf(stage) >= 0 && previous !== stage) $('game-canvas').focus({ preventScroll: true });
+    } else if (['mixing','aiming','flight'].indexOf(stage) >= 0 && previous !== stage) $(stage === 'mixing' ? 'cinema-canvas' : 'game-canvas').focus({ preventScroll: true });
     else if (stage === 'running' && previous !== 'running') $('game-canvas').focus({ preventScroll: true });
   };
   UI.prototype.setSceneProgress = function (payload) {

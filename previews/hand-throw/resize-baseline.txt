@@ -1,0 +1,51 @@
+✔ release starts at every actual position and velocity, with C1 propulsion onset (4.595125ms)
+✔ front pinballs receive propulsion first and delays depend on actual throw direction (1.406416ms)
+✔ gesture direction changes the visible path while endpoints retain their own seeded slots (2.905042ms)
+✔ all IDs reach exact map sprites on desktop, portrait and landscape for every count (157.352875ms)
+✔ camera starts with identity and zero velocity, follows the flight, and ends at the final map transform (4.065042ms)
+✔ reduced motion keeps the same release state and own IDs with no camera sweep or trails (10.40325ms)
+✔ snapshot positions stay fixed when the old shuffle continues or source arrays reorder (0.820125ms)
+✖ midflight resizing preserves current positions and radii while smoothly reaching the new camera (5.764875ms)
+✖ changing reduced motion midflight suppresses trails without resetting the captured path (7.036083ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 7
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 240.212333
+
+✖ failing tests:
+
+test at tests/hand-flight.test.cjs:153:1
+✖ midflight resizing preserves current positions and radii while smoothly reaching the new camera (5.764875ms)
+  TypeError: s.flight.retarget is not a function
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-flight.test.cjs:165:16)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+
+test at tests/hand-flight.test.cjs:193:1
+✖ changing reduced motion midflight suppresses trails without resetting the captured path (7.036083ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  40 !== 20
+
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-flight.test.cjs:198:60)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 40,
+    expected: 20,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

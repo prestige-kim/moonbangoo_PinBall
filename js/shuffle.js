@@ -11,7 +11,7 @@
   class HandShuffle {
     constructor(entries,seed) {
       this.radius=Math.min(.034,.125/Math.sqrt(Math.max(1,entries.length)));
-      this.clusterRadius=.185;this.pointerRadius=.16;
+      this.clusterRadius=.185;this.pointerRadius=.16;this.pointerCoreRadius=.035;
       this.bounds={left:-.46,right:.46,top:-.46,bottom:.46};
       this.bodies=[];this.collisions=0;this.wallHits=0;this.ticks=0;
       this.pointer=null;
@@ -104,6 +104,8 @@
         // the finger stops. Rendering more frames cannot manufacture momentum.
         const freshness=p?Math.exp(-Math.max(0,p.age-.025)*24):0;
         const damping=Math.exp(-h*(p?1.65:1.9));
+        const handSpeed=p?Math.hypot(p.vx,p.vy)*freshness:0;
+        const pressureActivity=clamp((handSpeed-.015)/.25,0,1);
         for(const b of this.bodies) {
           const distance=Math.hypot(b.x,b.y),returnStrength=p?.10:.65;
           let ax=-b.x*returnStrength,ay=.016-b.y*returnStrength;
@@ -112,6 +114,14 @@
             const dx=p.x-b.x,dy=p.y-b.y,near=Math.hypot(dx,dy);
             if(near<this.pointerRadius) {
               const weight=Math.pow(1-near/this.pointerRadius,2);
+              // A moving finger has a small soft core: local radial pressure
+              // deflects contacts around its real path. A stationary finger
+              // contributes none, and this never depends on a body ID or phase.
+              const core=this.pointerCoreRadius+b.r;
+              if(near<core&&near>1e-8&&pressureActivity>0) {
+                const pressure=(core-near)*120*pressureActivity;
+                ax-=dx/near*pressure;ay-=dy/near*pressure;
+              }
               // Local velocity transfer and a modest hand attraction: all
               // rotation comes from the actual path, never ID-specific waves.
               ax+=weight*((p.vx*freshness-b.vx)*18+dx*7*freshness);

@@ -3,12 +3,13 @@ const assert = require('node:assert/strict');
 const vm = require('node:vm');
 const fs = require('node:fs');
 const path = require('node:path');
-const root = path.join(__dirname, '..');
+const root = process.env.INTEGRATION_REPO_ROOT || path.join(__dirname, '..');
 
 function boot(storage, options = {}) {
   const P = { THEMES: Object.fromEntries(['cosmic', 'candy', 'gold', 'ice'].map(id => [id, { id, primary: '#8af' }])) };
   const callbacks = {};
   let frame;
+  let clock = 0;
   class UI {
     constructor() { this.values = {}; this.errors = []; this.results = null; }
     load(values) { this.values = { ...values }; }
@@ -43,7 +44,7 @@ function boot(storage, options = {}) {
   }
   class Cinematic {
     constructor() { this.endpoints = 0; }
-    commitShuffle(physics) { this.commits = (this.commits || 0) + 1; this.commitTime = physics.time; }
+    commitHandSlots(physics) { this.commits = (this.commits || 0) + 1; this.commitTime = physics.time; }
     render(scene) {
       this.scene = scene;
       if (scene.stage === 'flight' && scene.progress === 1) {
@@ -53,25 +54,68 @@ function boot(storage, options = {}) {
       return { reveal: scene.stage === 'flight' ? scene.progress : 0 };
     }
   }
+  class HandScene {
+    constructor(cinema) { this.cinema = cinema; this.elapsed = 0; }
+    begin(physics) {
+      this.elapsed = 0; this.launchDecision = null;
+      const bodies = physics.marbles.map((marble, index) => ({ id: marble.id, index,
+        x: (index % 5 - 2) * .03, y: Math.floor(index / 5) * .03, r: .012, vx: 0, vy: 0, spin: 0 }));
+      this.shuffle = {
+        bodies, released: 0,
+        begin(x, y, time) { this.start = { x, y, time }; },
+        move(x, y, time) { this.last = { x, y, time }; bodies[0].x = x; bodies[0].y = y; bodies[0].vx = .4; },
+        release() { this.released++; },
+        snapshot() { return bodies.map(body => ({ ...body })); }
+      };
+    }
+    area() { return { x: 500, y: 350, s: 650, w: 1000, h: 700 }; }
+    update(dt) { this.elapsed += dt; }
+    render(scene) { this.scene = scene; return { reveal: 0 }; }
+  }
+  class ShuffleInput {
+    constructor(canvas, handlers) { this.canvas = canvas; this.callbacks = handlers; }
+    cancel() { this.callbacks.cancel(); }
+  }
+  class HandFlight {
+    constructor(cinema) { this.cinema = cinema; this.endpoints = 0; }
+    begin(physics, handScene, decision) {
+      this.begins = (this.begins || 0) + 1;
+      this.releaseState = handScene.shuffle.snapshot(); this.decision = decision;
+      this.ids = Array.from(physics.marbles, m => m.id);
+    }
+    render(scene) {
+      this.scene = scene;
+      if (scene.progress === 1) {
+        this.endpoints++; this.landingTime = scene.physics.time;
+        this.positions = JSON.stringify(scene.physics.marbles.map(m => [m.x, m.y]));
+      }
+      return { reveal: scene.progress };
+    }
+  }
   class Effects {
     constructor() { this.particles = []; this.rings = []; }
     handle() {} burst() {} celebrate() { this.celebrated = true; } update() {}
   }
   class AudioEngine { configure() {} unlock() { this.unlocks = (this.unlocks || 0) + 1; } play(type) { this.plays = (this.plays || 0) + 1; (this.types || (this.types = [])).push(type); } }
-  Object.assign(P, { UI, Renderer, Camera, Cinematic, Effects, AudioEngine });
+  Object.assign(P, { UI, Renderer, Camera, Cinematic, HandScene, ShuffleInput, HandFlight, Effects, AudioEngine });
   const window = { CosmicPinball: P, matchMedia: () => ({ matches: false }), addEventListener() {} };
   const context = vm.createContext({ window, document: { hidden: false, getElementById: () => ({}), documentElement: { classList: { toggle() {} } }, addEventListener() {} },
     localStorage: storage || { getItem() { throw new Error('Storage denied'); }, setItem() { throw new Error('Storage denied'); } },
-    requestAnimationFrame(callback) { frame = callback; }, Uint32Array, Date, Math, console });
-  for (const file of ['maps.js', 'physics.js', 'main.js']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context, { filename: file });
+    requestAnimationFrame(callback) { frame = callback; }, performance: { now: () => clock }, Uint32Array, Date, Math, console });
+  for (const file of ['maps.js', 'physics.js', 'throw-gate.js', 'main.js']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context, { filename: file });
   if (!options.intro) callbacks.enter();
-  let clock = 0;
   function advance(seconds, frameRate = 60) {
     const count = Math.ceil(seconds * frameRate);
     for (let i = 0; i < count; i++) { clock += 1000 / frameRate; frame(clock); }
   }
-  function launch() { advance(9.8); }
-  return { P, callbacks, advance, launch };
+  function gesture(points = [[0, 0, 0], [.34, 0, 80], [.36, 0, 100]]) {
+    const input = P.app.shuffleInput.callbacks, started = clock;
+    input.begin({ x: points[0][0], y: points[0][1], time: started + points[0][2] });
+    for (const point of points.slice(1, -1)) input.move({ x: point[0], y: point[1], time: started + point[2] });
+    const last = points.at(-1); input.release({ x: last[0], y: last[1], time: started + last[2] });
+  }
+  function launch() { advance(.85); gesture(); advance(3.1); }
+  return { P, callbacks, advance, gesture, launch };
 }
 
 test('welcome uses configured participants without advancing physics or changing saved settings', () => {
@@ -95,31 +139,32 @@ test('welcome uses configured participants without advancing physics or changing
   assert.equal(P.app.status, 'setup');
 });
 
-test('start connects shuffle, camera aim, exact landing and immediate race with no second trigger', () => {
-  const { P, callbacks, advance } = boot();
+test('start waits for a valid manual throw and connects exact flight landing to the race once', () => {
+  const { P, callbacks, advance, gesture } = boot();
   callbacks.start();
   const physics = P.app.physics;
   const position = JSON.stringify(physics.marbles.map(m => [m.x, m.y]));
+  const ids = Array.from(physics.marbles, m => m.id);
   const seed = P.app.runSettings.seed;
   assert.equal(P.app.status, 'mixing');
-  callbacks.start(); callbacks.setupcancel();
-  assert.equal(P.app.runSettings.seed, seed);
-  advance(3.5);
-  assert.equal(P.app.status, 'aiming');
-  assert.equal(physics.time, 0);
-  advance(2.9);
-  assert.equal(P.app.status, 'flight');
-  assert.equal(P.app.camera.prepared, true);
+  callbacks.start(); callbacks.setupcancel(); advance(30);
+  assert.equal(P.app.status, 'mixing', 'waiting never assembles a cannon or starts the race');
+  assert.equal(physics.time, 0); assert.equal(P.app.runSettings.seed, seed);
+  assert.equal(P.app.cinematic.commits, undefined);
+  gesture();
+  assert.equal(P.app.status, 'flight'); assert.equal(P.app.camera.prepared, true);
   assert.equal(P.app.cinematic.commits, 1); assert.equal(P.app.cinematic.commitTime, 0);
-  assert.equal(P.app.renderer.scene.hideMarbles, true, 'Stationary balls must not duplicate the flying balls');
+  assert.equal(P.app.handFlight.begins, 1);
+  assert.deepEqual(P.app.handFlight.ids, ids);
+  assert.equal(P.app.handFlight.releaseState[0].x, .34, 'flight begins from current visual body positions');
+  advance(1 / 60);
+  assert.equal(P.app.renderer.scene.hideMarbles, true, 'stationary race balls do not duplicate flying balls');
   assert.equal(physics.time, 0);
-  advance(3.2);
-  assert.equal(P.app.cinematic.endpoints, 1, 'The exact p=1 landing frame is rendered once');
-  assert.equal(P.app.cinematic.commits, 1, 'Shuffle ownership is committed once before discharge');
-  assert.equal(P.app.cinematic.landingTime, 0);
-  assert.equal(P.app.cinematic.positions, position);
-  assert.equal(P.app.status, 'running');
-  assert.ok(physics.time > 0, 'Physics starts immediately after visual landing');
+  advance(3.1);
+  assert.equal(P.app.handFlight.endpoints, 1, 'the exact p=1 landing frame renders once');
+  assert.equal(P.app.cinematic.commits, 1); assert.equal(P.app.handFlight.landingTime, 0);
+  assert.equal(P.app.handFlight.positions, position);
+  assert.equal(P.app.status, 'running'); assert.ok(physics.time > 0);
 });
 
 test('automatic seeds refresh each round and restart without becoming a saved fixed seed', () => {
@@ -140,17 +185,20 @@ test('automatic seeds refresh each round and restart without becoming a saved fi
   assert.equal(P.app.settings.seed, '');
 });
 
-test('reduced motion shortens film while preserving seeded physics and exact landing', () => {
+test('reduced motion shortens flight with the same gesture decision, seed slots and exact landing', () => {
   const normal = boot(), reduced = boot();
   for (const instance of [normal, reduced]) Object.assign(instance.P.app.ui.values, { seed: 'FIXED-START' });
   reduced.P.app.ui.values.reducedMotion = true;
   normal.callbacks.start(); reduced.callbacks.start();
   const positions = app => JSON.stringify(app.physics.marbles.map(m => [m.id, m.x, m.y, m.vx, m.vy]));
   assert.equal(positions(normal.P.app), positions(reduced.P.app));
-  reduced.advance(1.5); normal.advance(1.5);
-  assert.equal(reduced.P.app.status, 'running');
-  assert.equal(reduced.P.app.cinematic.endpoints, 1);
-  assert.equal(normal.P.app.status, 'mixing');
+  for (const instance of [normal, reduced]) { instance.advance(.85); instance.gesture(); }
+  assert.equal(normal.P.app.status, 'flight'); assert.equal(reduced.P.app.status, 'flight');
+  assert.equal(JSON.stringify(normal.P.app.handFlight.decision), JSON.stringify(reduced.P.app.handFlight.decision));
+  normal.advance(1.5); reduced.advance(1.5);
+  assert.equal(reduced.P.app.status, 'running'); assert.equal(reduced.P.app.handFlight.endpoints, 1);
+  assert.equal(normal.P.app.status, 'flight'); assert.equal(normal.P.app.physics.time, 0);
+  normal.advance(1.6); assert.equal(normal.P.app.status, 'running');
 });
 
 test('setup edits appear in glass without starting physics; blocked storage still works', () => {
@@ -223,6 +271,7 @@ test('race finishes, shows seeded results and same-member restart reproduces ord
   advance(120, 60);
   assert.equal(P.app.status, 'finished');
   const first = Array.from(P.app.physics.finished, m => m.id);
+  const firstTimes = Array.from(P.app.physics.finished, m => [m.id, m.finishTime]);
   assert.equal(first.length, 2);
   assert.ok(P.app.ui.results);
   assert.equal(P.app.ui.results.seed, 'REPLAY-TEST');
@@ -231,6 +280,7 @@ test('race finishes, shows seeded results and same-member restart reproduces ord
   advance(120, 30);
   assert.equal(P.app.status, 'finished');
   assert.deepEqual(Array.from(P.app.physics.finished, m => m.id), first);
+  assert.deepEqual(Array.from(P.app.physics.finished, m => [m.id, m.finishTime]), firstTimes);
 });
 
 test('sustained slow rendering lowers quality without resetting physics', () => {
@@ -296,30 +346,82 @@ test('stuck recovery is named in the UI, rate limited and reset for a new race',
 });
 
 
-test('cannon sound fires once at discharge rather than when the flight scene first appears', () => {
-  const { P, callbacks, advance } = boot();
-  callbacks.start();
-  advance(6.23);
-  assert.equal(P.app.status, 'flight');
-  assert.equal(P.app.audio.types.filter(type => type === 'charge').length, 1);
-  assert.equal(P.app.audio.types.filter(type => type === 'cannon').length, 0);
-  advance(.42);
-  assert.equal(P.app.audio.types.filter(type => type === 'cannon').length, 1);
-  advance(3);
-  assert.equal(P.app.status, 'running');
-  assert.equal(P.app.audio.types.filter(type => type === 'cannon').length, 1);
+test('a valid release plays one launch sound, without automatic charge or cannon sounds', () => {
+  const { P, callbacks, advance, gesture } = boot(); callbacks.start(); advance(12);
+  assert.deepEqual(P.app.audio.types || [], []);
+  gesture(); assert.equal(P.app.status, 'flight');
+  assert.deepEqual(P.app.audio.types, ['launch']);
+  const input = P.app.shuffleInput.callbacks;
+  input.release({ x: .5, y: 0, time: 13000 });
+  input.cancel(); advance(1);
+  assert.deepEqual(P.app.audio.types, ['launch']); assert.equal(P.app.handFlight.begins, 1);
+  advance(2.1); assert.equal(P.app.status, 'running');
+  assert.equal(P.app.audio.types.filter(type => type === 'launch').length, 1);
+  assert.equal(P.app.audio.types.filter(type => ['charge', 'cannon'].includes(type)).length, 0);
 });
 
-
-test('the clear shuffle window lasts at least two seconds before the cannon turns', () => {
-  const { P, callbacks, advance } = boot();
-  callbacks.start(); advance(.85);
-  assert.equal(P.app.status, 'mixing');
-  advance(2.2); assert.equal(P.app.status, 'mixing');
-  assert.equal(P.app.physics.time, 0);
-  advance(.5); assert.equal(P.app.status, 'aiming');
+test('rejected and canceled gestures preserve race RNG, seed slots and visual state continuity', () => {
+  const { P, callbacks, advance, gesture } = boot();
+  P.app.ui.values.seed = 'REJECTED-THROWS'; callbacks.start(); advance(.85);
+  const slots = JSON.stringify(P.app.physics.marbles.map(m => [m.id, m.x, m.y, m.vx, m.vy]));
+  const originalRandom = P.app.physics.random;
+  let randomDraws = 0;
+  const random = P.app.physics.random = () => { randomDraws++; return originalRandom(); };
+  for (const points of [
+    [[0, 0, 0], [.3, 0, 700], [.31, 0, 800]],
+    [[0, 0, 0], [.08, 0, 10], [.1, 0, 20]],
+    [[0, 0, 0], [.34, 0, 80], [.34, 0, 280]]
+  ]) {
+    gesture(points); assert.equal(P.app.status, 'mixing');
+    assert.equal(P.app.physics.time, 0); assert.equal(P.app.cinematic.commits, undefined);
+  }
+  const input = P.app.shuffleInput.callbacks;
+  input.begin({ x: 0, y: 0, time: 1200 }); input.move({ x: .32, y: 0, time: 1260 });
+  const visual = JSON.stringify(P.app.handScene.shuffle.snapshot());
+  input.cancel(); input.release({ x: .4, y: 0, time: 1280 });
+  assert.equal(P.app.status, 'mixing'); assert.equal(P.app.throwGate.active, false);
+  assert.equal(JSON.stringify(P.app.handScene.shuffle.snapshot()), visual, 'cancel does not reset positions or velocities');
+  assert.equal(JSON.stringify(P.app.physics.marbles.map(m => [m.id, m.x, m.y, m.vx, m.vy])), slots);
+  assert.equal(P.app.physics.random, random); assert.equal(randomDraws, 0, 'visual input never consumes race RNG');
+  assert.equal(P.app.runSettings.seed, 'REJECTED-THROWS');
+  assert.deepEqual(P.app.audio.types || [], []);
 });
 
+test('motion changes retain shuffle positions and flight progress without catching up paused time', () => {
+  const { P, callbacks, advance, gesture } = boot(); callbacks.start(); advance(.85);
+  const input = P.app.shuffleInput.callbacks;
+  input.begin({ x: 0, y: 0, time: 850 }); input.move({ x: .1, y: .05, time: 900 }); input.cancel();
+  const visual = JSON.stringify(P.app.handScene.shuffle.snapshot()), handScene = P.app.handScene;
+  const elapsed = handScene.elapsed;
+  P.app.ui.values.reducedMotion = true; callbacks.change();
+  assert.equal(P.app.handScene, handScene); assert.equal(JSON.stringify(handScene.shuffle.snapshot()), visual);
+  assert.equal(handScene.elapsed, elapsed); advance(1 / 60);
+  assert.ok(handScene.elapsed - elapsed < .02, 'only the new frame is advanced');
+  P.app.ui.values.reducedMotion = false; callbacks.change(); gesture(); advance(.5);
+  const before = P.app.handFlight.scene.progress;
+  P.app.ui.values.reducedMotion = true; callbacks.change(); advance(1 / 60);
+  assert.ok(P.app.handFlight.scene.progress > before);
+  assert.ok(P.app.handFlight.scene.progress - before < .02, 'toggle does not jump to the reduced duration progress');
+  assert.equal(P.app.renderer.reduced, true);
+});
+
+test('waiting time, gesture direction and render frame grouping preserve seeded slots and full results', () => {
+  const normal = boot(), alternate = boot();
+  const slots = instance => JSON.stringify(instance.P.app.physics.marbles.map(m => [m.id, m.x, m.y, m.vx, m.vy]));
+  for (const instance of [normal, alternate]) {
+    Object.assign(instance.P.app.ui.values, { seed: 'GESTURE-INDEPENDENT', names: '왼쪽,중앙,오른쪽', speed: 3 });
+    instance.callbacks.start();
+  }
+  assert.equal(slots(normal), slots(alternate));
+  normal.advance(.85); normal.gesture(); normal.advance(3.1);
+  alternate.advance(18, 30); alternate.gesture([[0, 0, 0], [-.08, .02, 40], [-.34, -.03, 100], [-.36, -.04, 120]]); alternate.advance(3.1, 30);
+  assert.equal(normal.P.app.status, 'running'); assert.equal(alternate.P.app.status, 'running');
+  assert.equal(normal.P.app.handFlight.positions, alternate.P.app.handFlight.positions);
+  normal.advance(120, 60); alternate.advance(120, 30);
+  const results = instance => Array.from(instance.P.app.physics.finished, m => [m.id, m.finishTime]);
+  assert.equal(normal.P.app.status, 'finished'); assert.equal(alternate.P.app.status, 'finished');
+  assert.deepEqual(results(normal), results(alternate));
+});
 
 test('removed saved courses migrate to classic while preserving participants and physical settings', () => {
   for (const map of ['dynamic','hybrid']) {

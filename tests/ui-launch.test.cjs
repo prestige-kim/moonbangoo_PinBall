@@ -102,7 +102,7 @@ test('one setup submit starts the sequence; hidden automatic scenes reject furth
   assert.equal(starts, 1); assert.equal(s.node('setup-panel').inert, true); assert.equal(s.node('race-panel').inert, true);
   for (const stage of ['mixing', 'aiming', 'flight']) {
     s.ui.setScene(stage); s.emit('settings-form', 'submit'); s.key('Tab');
-    assert.equal(s.document.activeElement.id, 'game-canvas'); assert.equal(s.ui.focusMode, true);
+    assert.equal(s.document.activeElement.id, stage === 'mixing' ? 'cinema-canvas' : 'game-canvas'); assert.equal(s.ui.focusMode, true);
   }
   assert.equal(starts, 1);
 });

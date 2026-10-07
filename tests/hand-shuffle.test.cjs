@@ -1,6 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const box={window:{},Math};vm.createContext(box);
-vm.runInContext(fs.readFileSync(__dirname+'/../js/shuffle.js','utf8'),box);
+vm.runInContext(fs.readFileSync(process.env.HAND_SHUFFLE_SOURCE||__dirname+'/../js/shuffle.js','utf8'),box);
 const HandShuffle=box.window.CosmicPinball.HandShuffle;
 const entries=n=>Array.from({length:n},(_,i)=>({index:i,id:'ball-'+i}));
 const make=n=>new HandShuffle(entries(n),'HAND-SHUFFLE-'+n);
@@ -49,4 +49,21 @@ test('all supported counts stay finite, contained and free of deep overlaps duri
 test('visual random state is independent and snapshots do not mutate live bodies',()=>{
  const a=make(50),b=make(50);assert.equal(JSON.stringify(a.snapshot()),JSON.stringify(b.snapshot()));const copy=a.snapshot();copy[0].x=20;assert.notEqual(a.bodies[0].x,20);
  const small=make(6),large=make(500);assert(small.radius>large.radius);assert.equal(new Set(large.bodies.map(b=>b.id)).size,500);
+});
+
+test('a settled group exchanges actual order during representative straight, reversal and circular hand input',()=>{
+ for(const n of [6,50,200,500])for(const type of ['straight','reversal','circle']){
+  const c=new HandShuffle(entries(n),'HAND-QA-'+n),wait=n===6?30:5;for(let tick=0;tick<wait*120;tick++)c.step();
+  const initial=order(c),before=c.collisions;let exchanged=false;c.begin(0,0,wait*1000);
+  for(let tick=1;tick<=192;tick++){
+   const seconds=tick/120;let x,y;
+   if(type==='straight'){x=.16*seconds/1.6;y=0;}
+   else if(type==='reversal'){x=.13*Math.sin(seconds*Math.PI*8);y=0;}
+   else{x=.12*Math.cos(seconds*Math.PI*4);y=.12*Math.sin(seconds*Math.PI*4);}
+   if(tick%2===0)c.move(x,y,(wait+seconds)*1000);
+   c.step();if(order(c)!==initial)exchanged=true;
+  }
+  assert(c.collisions>before,n+' '+type+' settled input must produce collisions');
+  assert(exchanged,n+' '+type+' settled input must exchange order at some point');
+ }
 });

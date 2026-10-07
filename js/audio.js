@@ -132,7 +132,9 @@
       const theme = config.themes[this.theme] || config.themes.cosmic;
       const root = theme.root;
       const power = Math.max(0.1, Math.min(1, Number(intensity) || 0.5));
-      if (type === 'cannon') {
+      if (type === 'launch') {
+        this.air(.22, .045, 0, 3600, 800, 160);
+      } else if (type === 'cannon') {
         // Three restrained layers give the muzzle flash a sharp attack and a deep tail.
         this.blastBody(power);
         this.air(0.19, 0.06 + power * 0.05, 0, 4600, 1000, 180);

@@ -75,12 +75,13 @@
   const handScene = new P.HandScene(cinematic);
   const throwGate = new P.ThrowGate();
   handScene.gate = throwGate;
+  const handFlight = new P.HandFlight(cinematic);
   const shuffleInput = new P.ShuffleInput(document.getElementById('cinema-canvas'), {
     enabled: () => status === 'mixing' && handScene.elapsed >= .8 && !handScene.launchDecision,
     area: () => handScene.area(),
-    begin: point => { throwGate.begin(point.x, point.y, point.time); handScene.shuffle.begin(point.x, point.y, point.time); },
+    begin: point => { handScene.lastDecision = null; throwGate.begin(point.x, point.y, point.time); handScene.shuffle.begin(point.x, point.y, point.time); },
     move: point => { throwGate.move(point.x, point.y, point.time); handScene.shuffle.move(point.x, point.y, point.time); },
-    release: point => { const decision = throwGate.release(point.x, point.y, point.time); handScene.shuffle.release(); if (decision.fired) throwMarbles(decision); },
+    release: point => { const decision = throwGate.release(point.x, point.y, point.time); handScene.lastDecision = decision; handScene.shuffle.release(); if (decision.fired) throwMarbles(decision); },
     cancel: () => { throwGate.cancel(); if (handScene.shuffle) handScene.shuffle.release(); }
   });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => {
@@ -92,8 +93,7 @@
   let physics = null;
   let status = 'intro';
   let flightLanded = false;
-  let cannonSoundPlayed = false;
-  let chargeSoundPlayed = false;
+  let flightDuration = 2.8;
   let launchElapsed = 0;
   let seedSerial = 0;
   let accumulator = 0;
@@ -152,7 +152,6 @@
   }
   function preview(scene = 'setup') {
     launchElapsed = 0; flightLanded = false;
-    cannonSoundPlayed = false; chargeSoundPlayed = false;
     winner = null; photoFinish = false; runSettings = null;
     accumulator = 0; finalRanking = []; resultShown = false;
     resetEffects();
@@ -198,7 +197,6 @@
     resetEffects(); camera.reset(P.MAPS[runSettings.map]);
     ui.clearError(); ui.hideResults(); ui.hideCountdown(); ui.setLocked(true);
     winner = null; launchElapsed = 0; flightLanded = false;
-    cannonSoundPlayed = false; chargeSoundPlayed = false;
     throwGate.cancel();
     handScene.begin(physics);
     setScene('mixing');
@@ -210,54 +208,35 @@
   function throwMarbles(decision) {
     if (status !== 'mixing' || handScene.launchDecision) return;
     handScene.launchDecision = decision;
-  }
-  function launchDuration(stage) {
-    if (settings.reducedMotion) return stage === 'mixing' ? .65 : .35;
-    return (P.CINEMA && P.CINEMA.timing || { mixing: 3.4, aiming: 2.8, flight: 3.2 })[stage];
+    cinematic.commitHandSlots(physics);
+    camera.viewport = ui.getViewport(); camera.prepareLanding(P.MAPS[runSettings.map], physics);
+    handScene.camera = camera;
+    flightDuration = settings.reducedMotion ? 1.2 : 2.8;
+    handFlight.begin(physics, handScene, decision, flightDuration, settings.reducedMotion);
+    launchElapsed = 0; setScene('flight'); audio.play('launch');
   }
   function updateLaunch(dt) {
     if (status === 'mixing') { handScene.update(dt); return; }
     if (flightLanded) {
-      flightLanded = false; accumulator = 0;
-      setScene('running');
-      return;
+      flightLanded = false; accumulator = 0; setScene('running'); return;
     }
     launchElapsed += dt;
-    const progress = launchElapsed / launchDuration(status);
-    if (status === 'aiming' && progress >= .82 && !chargeSoundPlayed) {
-      chargeSoundPlayed = true; audio.play('charge');
-    }
-    const fireMoment = P.CINEMA && P.CINEMA.fireMoment !== undefined ? P.CINEMA.fireMoment : .12;
-    if (status === 'flight' && progress >= fireMoment && !cannonSoundPlayed) {
-      cannonSoundPlayed = true; audio.play('cannon', 1);
-    }
-    if (status !== 'flight' && launchElapsed >= launchDuration(status)) {
-      const next = status === 'mixing' ? 'aiming' : 'flight';
-      launchElapsed = 0; setScene(next); resize();
-      if (next === 'flight') {
-        if (cinematic.commitShuffle) cinematic.commitShuffle(physics);
-        camera.prepareLanding(P.MAPS[runSettings.map], physics);
-      }
-    }
   }
   function renderCinema(dt) {
     if (status === 'mixing') { ui.setSceneProgress(handScene.render({ physics, reducedMotion: settings.reducedMotion })); return; }
     const stage = status, map = P.MAPS[(runSettings || settings).map];
-    const progress = ['intro', 'setup'].includes(stage) ? 0 : Math.min(1, launchElapsed / launchDuration(stage));
-    if (stage === 'aiming' || stage === 'flight') {
-      camera.viewport = ui.getViewport(); camera.prepareLanding(map, physics);
-    }
     if (stage === 'flight') {
-      // The final visual flight frame and the first physical frame share one camera.
+      const progress = Math.min(1, launchElapsed / flightDuration);
+      camera.viewport = ui.getViewport(); camera.prepareLanding(map, physics);
       renderer.render({ physics, map, camera, effects, time: elapsedVisual, dt, status: stage, hideMarbles: true });
+      ui.setSceneProgress(handFlight.render({ stage, progress, time: elapsedVisual, physics, camera, reducedMotion: settings.reducedMotion }));
+      // Draw every exact endpoint before the following frame advances race time.
+      if (progress === 1) flightLanded = true;
+      return;
     }
-    const view = cinematic.render({ stage, progress, time: elapsedVisual, physics, camera, reducedMotion: settings.reducedMotion });
-    ui.setSceneProgress(view || { reveal: 0 });
-    // Render the exact landing endpoint before the next frame starts simulation.
-    if (stage === 'flight' && progress === 1) flightLanded = true;
+    ui.setSceneProgress(cinematic.render({ stage, progress: 0, time: elapsedVisual, physics, camera, reducedMotion: settings.reducedMotion }) || { reveal: 0 });
   }
   function onChange() {
-    if (['aiming', 'flight'].includes(status)) return;
     const next = normalize(ui.readSettings());
     const needsPreview = ['intro', 'setup'].includes(status) && (next.names !== settings.names || next.map !== settings.map || next.radius !== settings.radius || next.gravity !== settings.gravity || next.restitution !== settings.restitution || next.seed !== settings.seed || next.skills !== settings.skills);
     settings = next; save(settings); visualSettings();
@@ -328,8 +307,8 @@
     if (document.hidden) { lastFrame = 0; requestAnimationFrame(frame); return; }
     elapsedVisual += dt; hudElapsed += dt; fpsElapsed += dt; fpsFrames++; diagnostics.frames++;
     if (fpsElapsed >= 0.75) { fps = Math.round(fpsFrames / fpsElapsed); fpsElapsed = 0; fpsFrames = 0; }
-    if (['mixing', 'aiming', 'flight'].includes(status)) updateLaunch(dt);
-    if (['intro', 'setup', 'mixing', 'aiming', 'flight'].includes(status)) {
+    if (['mixing', 'flight'].includes(status)) updateLaunch(dt);
+    if (['intro', 'setup', 'mixing', 'flight'].includes(status)) {
       renderCinema(dt); requestAnimationFrame(frame); return;
     }
     if (status === 'running') updateRace(dt);
@@ -371,7 +350,7 @@
   ui.on('replay', () => { settings = normalize(ui.readSettings()); preview(); });
   ui.on('reset', () => { settings = normalize(ui.readSettings()); preview(); });
   ui.on('shuffle', () => {
-    if (['intro', 'mixing', 'aiming', 'flight', 'running'].includes(status)) return;
+    if (['intro', 'mixing', 'flight', 'running'].includes(status)) return;
     try {
       const input = ui.readSettings().names;
       P.parseNames(input);
@@ -386,13 +365,13 @@
   });
   ui.on('change', onChange);
   ui.on('layout', resize);
-  ui.on('follow', () => { if (['mixing', 'aiming', 'flight'].includes(status)) return; camera.follow = !camera.follow; camera.entrance = null; if (ui.setFollowing) ui.setFollowing(camera.follow); ui.toast(camera.follow ? '선두 추적을 켰습니다' : '자유롭게 코스를 둘러보세요'); });
+  ui.on('follow', () => { if (['mixing', 'flight'].includes(status)) return; camera.follow = !camera.follow; camera.entrance = null; if (ui.setFollowing) ui.setFollowing(camera.follow); ui.toast(camera.follow ? '선두 추적을 켰습니다' : '자유롭게 코스를 둘러보세요'); });
   camera.attach(canvas);
   window.addEventListener('resize', resize);
   document.addEventListener('visibilitychange', () => { lastFrame = 0; });
   visualSettings(); preview('intro');
   P.app = { ui: ui, renderer: renderer, cinematic: cinematic, camera: camera, effects: effects, audio: audio,
-    handScene, shuffleInput, throwGate, get physics() { return physics; }, get status() { return status; }, get settings() { return Object.assign({}, settings); },
+    handScene, handFlight, shuffleInput, throwGate, get physics() { return physics; }, get status() { return status; }, get settings() { return Object.assign({}, settings); },
     get runSettings() { return runSettings && Object.assign({}, runSettings); },
     get diagnostics() { return Object.assign({}, diagnostics); }, start: start, reset: preview
   };
