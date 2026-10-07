@@ -1,0 +1,18 @@
+desktop 6: physical exchange/collision, negatives, stopped/jitter releases, continuity, IDs/endpoints, trusted mouse target/capture PASS
+desktop 50: physical exchange/collision, negatives, stopped/jitter releases, continuity, IDs/endpoints, trusted mouse target/capture PASS
+desktop 200: physical exchange/collision, negatives, stopped/jitter releases, continuity, IDs/endpoints, trusted mouse target/capture PASS
+desktop 500: physical exchange/collision, negatives, stopped/jitter releases, continuity, IDs/endpoints, trusted mouse target/capture PASS
+portrait 6: physical exchange/collision, negatives, stopped/jitter releases, continuity, IDs/endpoints, trusted mouse target/capture PASS
+portrait 50: physical exchange/collision, negatives, stopped/jitter releases, continuity, IDs/endpoints, trusted mouse target/capture PASS
+portrait 200: physical exchange/collision, negatives, stopped/jitter releases, continuity, IDs/endpoints, trusted mouse target/capture PASS
+portrait 500: physical exchange/collision, negatives, stopped/jitter releases, continuity, IDs/endpoints, trusted mouse target/capture PASS
+landscape 6: physical exchange/collision, negatives, stopped/jitter releases, continuity, IDs/endpoints, trusted mouse target/capture PASS
+landscape 50: physical exchange/collision, negatives, stopped/jitter releases, continuity, IDs/endpoints, trusted mouse target/capture PASS
+landscape 200: physical exchange/collision, negatives, stopped/jitter releases, continuity, IDs/endpoints, trusted mouse target/capture PASS
+landscape 500: physical exchange/collision, negatives, stopped/jitter releases, continuity, IDs/endpoints, trusted mouse target/capture PASS
+500 normal/reduced: all slots and all 500 finish IDs/ranks/times EXACTLY EQUAL
+blur: cancellation without launch/position reset PASS
+multi: cancellation without launch/position reset PASS
+resize: cancellation without launch/position reset PASS
+live motion change: exact position/velocity and elapsed/accumulator preservation PASS
+500 resize during flight: actual endpoint max error 0px PASS

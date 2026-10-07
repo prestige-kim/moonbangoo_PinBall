@@ -200,3 +200,20 @@ test('changing reduced motion midflight suppresses trails without resetting the 
   s.flight.render({progress,physics:s.physics,camera:s.camera,reducedMotion:false});
   assert.equal(snapshot(s.flight.lastPoses),before);assert.ok(s.counters.trails>trailCount);
 });
+
+test('a stopped edge release still propels, while fast input changes flight without changing slots', () => {
+  for (const count of [6,50,200,500]) {
+    const slow = scene(count,1280,720,false,{dx:1,dy:0,inputSpeed:0});
+    const fast = scene(count,1280,720,false,{dx:1,dy:0,inputSpeed:4});
+    for (const s of [slow,fast]) {
+      for (const body of s.hand.shuffle.bodies) { body.vx=0;body.vy=0; }
+      s.flight.begin(s.physics,s.hand,{dx:1,dy:0,inputSpeed:s===fast?4:0},2.8,false);
+      for(let i=0;i<count;i++) { near(s.flight.pose(i,0).vx,0);near(s.flight.pose(i,0).vy,0); }
+    }
+    const index=slow.flight.items.findIndex(item=>item.delay===0),source=slow.flight.pose(index,0),mid=slow.flight.pose(index,1.4);
+    assert(Math.hypot(mid.x-source.x,mid.y-source.y)>slow.area.s*.2,'zero-speed release gets visible propulsion');
+    assert(fast.flight.pose(index,1.4).x-mid.x>slow.area.s*.15,'fast input adds thrust without a speed requirement');
+    assert.equal(snapshot(slow.physics.marbles),snapshot(fast.physics.marbles));
+    for(let i=0;i<count;i++){near(slow.flight.pose(i,2.8).x,fast.flight.pose(i,2.8).x);near(slow.flight.pose(i,2.8).y,fast.flight.pose(i,2.8).y);}
+  }
+});

@@ -21,6 +21,10 @@
       const c = this.cinema, area = handScene.area(), camera = handScene.camera || c.camera;
       this.area = Object.assign({}, area); this.duration = Math.max(.25, Number(duration) || 2.8); this.reduced = !!reduced;
       this.physics = physics;
+      // Even a stationary ready release launches. Input speed only adds visual
+      // thrust and never modifies race RNG, ownership or landing coordinates.
+      const speed = Math.min(2.8, Math.max(0, Number(decision && decision.inputSpeed) || 0));
+      this.propulsion = area.s * (this.reduced ? .12 : .8 + speed * .1);
       const origin = camera ? camera.worldToScreen(0, 0) : { x: area.w / 2 - 500 * .5, y: area.h / 2 - 450 * .5 };
       const zoom = camera && camera.zoom || .5;
       this.final = { a: zoom, b: 0, c: 0, d: zoom, e: origin.x, f: origin.y };
@@ -66,7 +70,7 @@
       const duration = this.duration - item.delay, q = (time - item.delay) / duration;
       const x = curve(item.x + item.vx * item.delay, item.vx, item.targetX, duration, q);
       const y = curve(item.y + item.vy * item.delay, item.vy, item.targetY, duration, q);
-      const amplitude = this.area.s * (this.reduced ? .12 : .9);
+      const amplitude = this.propulsion;
       // The impulse envelope has zero first and second derivatives at both ends.
       // It uses the actual release direction and starts only after the front delay.
       const bump = amplitude * 64 * q * q * q * Math.pow(1 - q, 3);

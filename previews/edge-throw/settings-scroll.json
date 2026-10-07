@@ -1,0 +1,13 @@
+{
+  "before": {
+    "clientHeight": 532,
+    "scrollHeight": 845,
+    "scrollTop": 165.4545440673828
+  },
+  "after": {
+    "clientHeight": 532,
+    "scrollHeight": 845,
+    "scrollTop": 0,
+    "touchAction": "auto"
+  }
+}

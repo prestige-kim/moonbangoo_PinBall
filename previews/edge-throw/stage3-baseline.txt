@@ -1,0 +1,38 @@
+✔ release starts at every actual position and velocity, with C1 propulsion onset (5.4785ms)
+✔ front pinballs receive propulsion first and delays depend on actual throw direction (1.485833ms)
+✔ gesture direction changes the visible path while endpoints retain their own seeded slots (1.604125ms)
+✔ all IDs reach exact map sprites on desktop, portrait and landscape for every count (160.64275ms)
+✔ camera starts with identity and zero velocity, follows the flight, and ends at the final map transform (4.457542ms)
+✔ reduced motion keeps the same release state and own IDs with no camera sweep or trails (9.427041ms)
+✔ snapshot positions stay fixed when the old shuffle continues or source arrays reorder (0.723375ms)
+✔ midflight resizing preserves current positions and radii while smoothly reaching the new camera (18.199583ms)
+✔ changing reduced motion midflight suppresses trails without resetting the captured path (7.285042ms)
+✖ a stopped edge release still propels, while fast input changes flight without changing slots (1.808542ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 267.689667
+
+✖ failing tests:
+
+test at tests/hand-flight.test.cjs:204:1
+✖ a stopped edge release still propels, while fast input changes flight without changing slots (1.808542ms)
+  AssertionError [ERR_ASSERTION]: fast input adds thrust without a speed requirement
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-flight.test.cjs:215:5)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
