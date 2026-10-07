@@ -104,3 +104,7 @@ body[data-theme=gold] .toast{background:#392819;color:#FFF0CE;border-color:#E2C5
 .brand-type,.panel-heading h1,.results-dialog h2{letter-spacing:-.04em;font-weight:650}
 .eyebrow,.scene-caption{letter-spacing:0;font-weight:500}
 .panel-bottom{justify-content:flex-end}
+
+/* 손으로 섞는 화면에서만 브라우저의 기본 포인터 동작을 막습니다. */
+.scene-mixing #cinema-canvas{pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
+.scene-mixing #cinema-canvas:active{cursor:grabbing}

@@ -1,0 +1,36 @@
+node:fs:440
+    return binding.readFileUtf8(path, stringToFlags(options.flag));
+                   ^
+
+Error: ENOENT: no such file or directory, open '/Users/proudchris/Desktop/moonbangoo_PinBall/tests/../js/shuffle.js'
+    at Object.readFileSync (node:fs:440:20)
+    at Object.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-shuffle.test.cjs:3:20)
+    at Module._compile (node:internal/modules/cjs/loader:1812:14)
+    at Object..js (node:internal/modules/cjs/loader:1943:10)
+    at Module.load (node:internal/modules/cjs/loader:1533:32)
+    at Module._load (node:internal/modules/cjs/loader:1335:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)
+    at node:internal/main/run_main_module:33:47 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/Users/proudchris/Desktop/moonbangoo_PinBall/tests/../js/shuffle.js'
+}
+
+Node.js v24.14.0
+✖ tests/hand-shuffle.test.cjs (25.84475ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 29.625333
+
+✖ failing tests:
+
+test at tests/hand-shuffle.test.cjs:1:1
+✖ tests/hand-shuffle.test.cjs (25.84475ms)
+  'test failed'

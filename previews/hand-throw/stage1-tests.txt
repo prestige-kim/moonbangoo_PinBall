@@ -1,0 +1,53 @@
+shuffle exchanges 6 straight collisions 3
+shuffle exchanges 6 reversal collisions 1
+shuffle exchanges 6 circle collisions 14
+shuffle exchanges 50 straight collisions 1011
+shuffle exchanges 50 reversal collisions 138
+shuffle exchanges 50 circle collisions 529
+shuffle exchanges 200 straight collisions 9835
+shuffle exchanges 200 reversal collisions 1128
+shuffle exchanges 200 circle collisions 6279
+shuffle exchanges 500 straight collisions 49322
+shuffle exchanges 500 reversal collisions 4822
+shuffle exchanges 500 circle collisions 45110
+shuffle benchmark 6 480 steps CPU ms 2 worst relative overlap 0
+shuffle benchmark 50 480 steps CPU ms 25 worst relative overlap 0
+shuffle benchmark 200 480 steps CPU ms 160 worst relative overlap 0.004397949058664848
+shuffle benchmark 500 480 steps CPU ms 616 worst relative overlap 0.0024211431348553614
+✔ pointer applies distance-weighted force to individual bodies (1.698375ms)
+✔ stationary input leaves inertia briefly and then damps it (1.74775ms)
+✔ release cancels force without resetting position or velocity and returns softly (12.627375ms)
+✔ direct contact transfers momentum rather than carrying a rigid group (0.156625ms)
+✔ straight, reversal and circular input exchange order at every supported count (1379.789708ms)
+✔ all supported counts stay finite, contained and free of deep overlaps during vigorous input (1008.906042ms)
+✔ visual random state is independent and snapshots do not mutate live bodies (173.455208ms)
+✔ offline entry uses only existing relative styles and classic scripts (10.803208ms)
+✔ mouse and touch use identical normalized position and event-time models (2.95825ms)
+✔ captured drag keeps outside coordinates and releases capture only once (0.818375ms)
+✔ coalesced positions retain individual input timestamps independent of render timing (0.298875ms)
+✔ pointer cancellation and lost capture never release or duplicate cancellation (0.753209ms)
+✔ blur, hidden page, resize and orientation changes cancel safely and allow restart (1.654292ms)
+✔ second touch cancels until all contacts lift, without jumps or duplicated launch (1.192333ms)
+✔ all-up outside the canvas clears the multitouch block after capture cancellation (0.326542ms)
+✔ second touch outside the canvas cancels the active captured gesture (0.501667ms)
+✔ right click and an initial nonprimary contact never begin a gesture (0.329958ms)
+✔ disabled settings preserve default pointer and drag behavior for panel scrolling (0.301875ms)
+✔ disabling shuffle during a gesture cancels at release instead of launching (0.240833ms)
+✔ an unrelated release cannot terminate the pointer owner or create a release (0.218458ms)
+✔ intro exposes only its welcome action and keeps the settings ancestor available for later (2.421ms)
+✔ setup reuses the real panel as an accessible centered dialog and focuses participant input (0.792125ms)
+✔ close and Escape return setup to intro and restore welcome focus (0.635875ms)
+✔ setup Tab wraps visible enabled controls and skips closed advanced fields (1.641166ms)
+✔ one setup submit starts the sequence; hidden automatic scenes reject further submissions (1.129958ms)
+✔ flight and running have identical final board coordinates at desktop and mobile widths (1.202083ms)
+✔ reveal waits until the final 15 percent for HUD and never fades the cinematic canvas itself (0.580708ms)
+✔ refreshing the same setup preserves slider and sound focus instead of refocusing names (0.507958ms)
+✔ short mobile landscape excludes the race HUD while portrait preserves board width (1.041125ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2633.731125

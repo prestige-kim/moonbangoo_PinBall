@@ -72,6 +72,15 @@
   const effects = new P.Effects();
   const cinematic = new P.Cinematic(document.getElementById('cinema-canvas'), renderer);
   const audio = new P.AudioEngine();
+  const handScene = new P.HandScene(cinematic);
+  const shuffleInput = new P.ShuffleInput(document.getElementById('cinema-canvas'), {
+    enabled: () => status === 'mixing' && handScene.elapsed >= .8,
+    area: () => handScene.area(),
+    begin: point => handScene.shuffle.begin(point.x, point.y, point.time),
+    move: point => handScene.shuffle.move(point.x, point.y, point.time),
+    release: () => handScene.shuffle.release(),
+    cancel: () => { if (handScene.shuffle) handScene.shuffle.release(); }
+  });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => {
     renderer.nameSprites.clear();
     cinematic.labels.clear();
@@ -188,6 +197,7 @@
     ui.clearError(); ui.hideResults(); ui.hideCountdown(); ui.setLocked(true);
     winner = null; launchElapsed = 0; flightLanded = false;
     cannonSoundPlayed = false; chargeSoundPlayed = false;
+    handScene.begin(physics);
     setScene('mixing');
     accumulator = 0; leaderId = null; leadCooldown = 0; leadCandidateId = null; leadCandidateAge = 0; leadNotices = 0; lastRescueNotice = -Infinity; photoFinish = false;
     finalRanking = []; resultDelay = 0; resultShown = false;
@@ -199,6 +209,7 @@
     return (P.CINEMA && P.CINEMA.timing || { mixing: 3.4, aiming: 2.8, flight: 3.2 })[stage];
   }
   function updateLaunch(dt) {
+    if (status === 'mixing') { handScene.update(dt); return; }
     if (flightLanded) {
       flightLanded = false; accumulator = 0;
       setScene('running');
@@ -223,6 +234,7 @@
     }
   }
   function renderCinema(dt) {
+    if (status === 'mixing') { ui.setSceneProgress(handScene.render({ physics, reducedMotion: settings.reducedMotion })); return; }
     const stage = status, map = P.MAPS[(runSettings || settings).map];
     const progress = ['intro', 'setup'].includes(stage) ? 0 : Math.min(1, launchElapsed / launchDuration(stage));
     if (stage === 'aiming' || stage === 'flight') {
@@ -238,7 +250,7 @@
     if (stage === 'flight' && progress === 1) flightLanded = true;
   }
   function onChange() {
-    if (['mixing', 'aiming', 'flight'].includes(status)) return;
+    if (['aiming', 'flight'].includes(status)) return;
     const next = normalize(ui.readSettings());
     const needsPreview = ['intro', 'setup'].includes(status) && (next.names !== settings.names || next.map !== settings.map || next.radius !== settings.radius || next.gravity !== settings.gravity || next.restitution !== settings.restitution || next.seed !== settings.seed || next.skills !== settings.skills);
     settings = next; save(settings); visualSettings();
@@ -373,7 +385,7 @@
   document.addEventListener('visibilitychange', () => { lastFrame = 0; });
   visualSettings(); preview('intro');
   P.app = { ui: ui, renderer: renderer, cinematic: cinematic, camera: camera, effects: effects, audio: audio,
-    get physics() { return physics; }, get status() { return status; }, get settings() { return Object.assign({}, settings); },
+    handScene, shuffleInput, get physics() { return physics; }, get status() { return status; }, get settings() { return Object.assign({}, settings); },
     get runSettings() { return runSettings && Object.assign({}, runSettings); },
     get diagnostics() { return Object.assign({}, diagnostics); }, start: start, reset: preview
   };
