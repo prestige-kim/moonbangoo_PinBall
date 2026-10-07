@@ -62,8 +62,8 @@ function boot(storage, options = {}) {
         x: (index % 5 - 2) * .03, y: Math.floor(index / 5) * .03, r: .012, vx: 0, vy: 0, spin: 0 }));
       this.shuffle = {
         bodies, released: 0,
-        begin(x, y, time) { this.start = { x, y, time }; },
-        move(x, y, time) { this.last = { x, y, time }; bodies[0].x = x; bodies[0].y = y; bodies[0].vx = .4; },
+        begin(x, y, time) { this.start = { x, y, time }; this.interacted = false; },
+        move(x, y, time) { this.last = { x, y, time }; bodies[0].x = x; bodies[0].y = y; bodies[0].vx = .4; if (Math.abs(x) < .35 && Math.abs(y) < .35) this.interacted = true; return this.interacted; },
         release() { this.released++; },
         snapshot() { return bodies.map(body => ({ ...body })); }
       };
@@ -108,7 +108,7 @@ function boot(storage, options = {}) {
     const count = Math.ceil(seconds * frameRate);
     for (let i = 0; i < count; i++) { clock += 1000 / frameRate; frame(clock); }
   }
-  function gesture(points = [[0, 0, 0], [.34, 0, 80], [.36, 0, 100]]) {
+  function gesture(points = [[0, 0, 0], [.30, 0, 800], [.68, 0, 1800]]) {
     const input = P.app.shuffleInput.callbacks, started = clock;
     input.begin({ x: points[0][0], y: points[0][1], time: started + points[0][2] });
     for (const point of points.slice(1, -1)) input.move({ x: point[0], y: point[1], time: started + point[2] });
@@ -156,7 +156,7 @@ test('start waits for a valid manual throw and connects exact flight landing to 
   assert.equal(P.app.cinematic.commits, 1); assert.equal(P.app.cinematic.commitTime, 0);
   assert.equal(P.app.handFlight.begins, 1);
   assert.deepEqual(P.app.handFlight.ids, ids);
-  assert.equal(P.app.handFlight.releaseState[0].x, .34, 'flight begins from current visual body positions');
+  assert.equal(P.app.handFlight.releaseState[0].x, .68, 'flight begins from current visual body positions');
   advance(1 / 60);
   assert.equal(P.app.renderer.scene.hideMarbles, true, 'stationary race balls do not duplicate flying balls');
   assert.equal(physics.time, 0);
@@ -370,7 +370,7 @@ test('rejected and canceled gestures preserve race RNG, seed slots and visual st
   for (const points of [
     [[0, 0, 0], [.3, 0, 700], [.31, 0, 800]],
     [[0, 0, 0], [.08, 0, 10], [.1, 0, 20]],
-    [[0, 0, 0], [.34, 0, 80], [.34, 0, 280]]
+    [[.64, -.4, 0], [.68, -.4, 80], [.68, -.4, 280]]
   ]) {
     gesture(points); assert.equal(P.app.status, 'mixing');
     assert.equal(P.app.physics.time, 0); assert.equal(P.app.cinematic.commits, undefined);
@@ -414,7 +414,7 @@ test('waiting time, gesture direction and render frame grouping preserve seeded 
   }
   assert.equal(slots(normal), slots(alternate));
   normal.advance(.85); normal.gesture(); normal.advance(3.1);
-  alternate.advance(18, 30); alternate.gesture([[0, 0, 0], [-.08, .02, 40], [-.34, -.03, 100], [-.36, -.04, 120]]); alternate.advance(3.1, 30);
+  alternate.advance(18, 30); alternate.gesture([[0, 0, 0], [-.08, .02, 40], [-.30, -.03, 100], [-.68, -.04, 120]]); alternate.advance(3.1, 30);
   assert.equal(normal.P.app.status, 'running'); assert.equal(alternate.P.app.status, 'running');
   assert.equal(normal.P.app.handFlight.positions, alternate.P.app.handFlight.positions);
   normal.advance(120, 60); alternate.advance(120, 30);

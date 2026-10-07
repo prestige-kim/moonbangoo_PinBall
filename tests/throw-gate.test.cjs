@@ -1,118 +1,73 @@
-const test = require('node:test');
-const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const path = require('node:path');
-const vm = require('node:vm');
-const sandbox = { window: {}, Math };
-vm.createContext(sandbox);
-vm.runInContext(fs.readFileSync(path.join(__dirname, '../js/throw-gate.js'), 'utf8'), sandbox);
-const P = sandbox.window.CosmicPinball;
-const gate = () => new P.ThrowGate();
-const near = (a, b) => assert.ok(Math.abs(a - b) < 1e-10, `${a} != ${b}`);
+const test = require('node:test'), assert = require('node:assert/strict');
+const fs = require('node:fs'), vm = require('node:vm');
+const box = { window: {}, Math }; vm.createContext(box);
+for (const name of ['shuffle', 'throw-gate']) vm.runInContext(fs.readFileSync(__dirname + '/../js/' + name + '.js', 'utf8'), box);
+const { ThrowGate, HandShuffle, THROW_THRESHOLDS: T } = box.window.CosmicPinball;
+const make = () => new ThrowGate();
+const near = (a,b) => assert(Math.abs(a-b)<1e-8,a+' vs '+b);
 
-test('launch thresholds are public frozen normalized constants', () => {
-  assert.equal(Object.isFrozen(P.THROW_THRESHOLDS), true);
-  assert.equal(P.THROW_THRESHOLDS.travel, .18);
-  assert.equal(P.THROW_THRESHOLDS.boundary, .24);
-  assert.equal(P.THROW_THRESHOLDS.outwardSpeed, 1.4);
-  assert.equal(P.THROW_THRESHOLDS.windowMs, 100);
+test('public edge thresholds replace the mandatory speed gate',()=>{
+ assert(Object.isFrozen(T)); assert.equal(T.travel,.20); assert.equal(T.edgeBand,.14); assert.equal(T.releaseBand,.19);
+ assert.equal(T.outwardSpeed,undefined);
 });
-
-test('only a long fast outward release fires, once', () => {
-  const g = gate(); g.begin(0, 0, 0); g.move(.16, 0, 50); g.move(.35, 0, 100);
-  const preview = g.evaluate(100);
-  assert.equal(preview.eligible, true); assert.equal(preview.fired, undefined);
-  near(preview.distance, .35); near(preview.radius, .35); near(preview.outwardSpeed, 3.5);
-  near(preview.dx, .35); near(preview.dy, 0);
-  assert.equal(g.release(.35, 0, 100).fired, true);
-  assert.equal(g.release(.5, 0, 110).fired, false);
-  assert.equal(g.evaluate(110).eligible, false);
+test('slow actual interaction and a stopped ready hand both release exactly once',()=>{
+ for(const hold of [0,250,5000]){const g=make();g.begin(0,0,0);g.move(.40,0,1600,true);
+  assert.equal(g.evaluate(1600+hold).eligible,true);const d=g.release(.40,0,1600+hold,true);
+  assert.equal(d.fired,true);assert.equal(g.release(.40,0,1700+hold,true).fired,false);assert.equal(g.evaluate(2000+hold).eligible,false);
+ }
 });
-
-test('slow outside, short fast outside and fast motion inside each fail one condition', () => {
-  const slow = gate(); slow.begin(0, 0, 0); slow.move(.3, 0, 500);
-  assert.equal(slow.release(.31, 0, 600).fired, false);
-  const short = gate(); short.begin(.2, 0, 0); short.move(.36, 0, 40);
-  assert.equal(short.release(.36, 0, 40).eligible, false);
-  const inside = gate(); inside.begin(-.2, 0, 0); inside.move(.2, 0, 100);
-  assert.equal(inside.release(.2, 0, 100).eligible, false);
+test('edge clicks, short movements and empty-space gestures cannot arm',()=>{
+ for(const points of [[[.40,0,0],[.40,0,100,true]],[[.34,0,0],[.41,0,50,true]],[[0,0,0],[.45,0,50,false]],[[0,0,0],[.25,0,500,true]]]){
+  const g=make();g.begin(...points[0]);g.move(...points[1]);assert.equal(g.evaluate(1000).eligible,false);
+  assert.equal(g.release(...points[1]).fired,false);
+ }
 });
-
-test('circular motion near and inside boundary never fires on a tangent or radial chord', () => {
-  for (const radius of [.2, .239, .25, .35]) {
-    const g = gate(); g.begin(radius, 0, 0);
-    for (let i = 1; i <= 40; i++) {
-      const angle = i * Math.PI / 20;
-      g.move(Math.cos(angle) * radius, Math.sin(angle) * radius, i * 5);
-      assert.equal(g.evaluate(i * 5).eligible, false);
-    }
-    assert.equal(g.release(radius, 0, 200).fired, false);
-  }
+test('hysteresis holds boundary jitter but clears a real inward retreat',()=>{
+ const g=make();g.begin(0,0,0);g.move(.37,0,400,true);assert(g.evaluate(400).eligible);
+ for(const x of [.35,.34,.32,.35]){g.move(x,0,500);assert(g.evaluate(500).eligible);}
+ g.move(.29,0,600);assert.equal(g.evaluate(600).eligible,false);
+ g.move(.35,0,700);assert.equal(g.evaluate(700).eligible,false,'must re-enter the outer threshold');
+ g.move(.37,0,800);assert(g.evaluate(800).eligible);
 });
-
-test('boundary jitter and inward motion do not borrow tangential speed', () => {
-  const g = gate(); g.begin(0, 0, 0); g.move(.242, 0, 300);
-  for (let i = 1; i <= 30; i++) {
-    g.move(i % 2 ? .243 : .239, i % 3 * .003, 300 + i * 10);
-    assert.equal(g.evaluate(300 + i * 10).eligible, false);
-  }
-  assert.equal(g.release(.244, 0, 610).fired, false);
-  const inward = gate(); inward.begin(.7, 0, 0); inward.move(.3, 0, 100);
-  assert.equal(inward.release(.3, 0, 100).fired, false);
-  assert.equal(inward.evaluate(100).outwardSpeed, 0);
+test('interaction and readiness belong to one gesture, not future edge clicks',()=>{
+ const g=make();g.begin(0,0,0);g.move(.4,0,100,true);g.cancel();g.begin(.4,0,200);
+ assert.equal(g.release(.4,0,300).fired,false);assert.equal(g.interacted,false);
 });
-
-test('stopping before release removes stale speed without changing event history', () => {
-  const g = gate(); g.begin(0, 0, 0); g.move(.4, 0, 100);
-  assert.equal(g.evaluate(100).eligible, true);
-  const stopped = g.evaluate(220);
-  assert.equal(stopped.eligible, false); near(stopped.outwardSpeed, 0);
-  assert.equal(g.evaluate(100).eligible, true, 'evaluation is read only');
-  assert.equal(g.release(.4, 0, 220).fired, false);
-  const partial = gate(); partial.begin(0, 0, 0); partial.move(.4, 0, 100);
-  near(partial.evaluate(150).outwardSpeed, 2);
-  assert.equal(partial.release(.4, 0, 200).fired, false);
+test('the direction shown while stopped is the exact release direction',()=>{
+ const g=make();g.begin(0,0,0);g.move(.39,-.12,800,true);const ready=g.evaluate(9000);
+ assert(ready.eligible);near(Math.hypot(ready.dx,ready.dy),1);
+ const released=g.release(.39,-.12,9000);near(released.dx,ready.dx);near(released.dy,ready.dy);assert(released.fired);
 });
-
-test('window interpolation and begin stationary history use exactly 100ms', () => {
-  const g = gate(); g.begin(0, 0, 0); g.move(.3, 0, 150); g.move(.5, 0, 200);
-  const value = g.evaluate(200);
-  near(value.dx, .3); near(value.outwardSpeed, 3);
-  const shortHistory = gate(); shortHistory.begin(0, 0, 1000); shortHistory.move(.3, 0, 1040);
-  near(shortHistory.evaluate(1040).outwardSpeed, 3);
-  assert.equal(shortHistory.release(.3, 0, 1040).fired, true);
+test('render evaluations never advance or change input readiness',()=>{
+ const output=[];
+ for(const frames of [[],[5,10,20,100,900,1200],Array.from({length:200},(_,i)=>i*20)]){
+  const g=make();g.begin(0,0,0);g.move(.4,0,1000,true);for(const t of frames)g.evaluate(t);
+  output.push(JSON.stringify(g.release(.4,0,1300)));
+ }
+ assert.equal(new Set(output).size,1);
 });
-
-test('the same event coordinates and timestamps ignore render evaluation schedules and count', () => {
-  for (const count of [6, 50, 200, 500]) {
-    const a = gate(), b = gate(); a.begin(0, 0, 10); b.begin(0, 0, 10);
-    for (const [x, y, t] of [[.04,.01,30],[.12,.02,65],[.21,.01,95],[.36,-.02,130]]) {
-      a.move(x,y,t); b.move(x,y,t);
-      a.evaluate(t); a.evaluate(t+3); a.evaluate(t+6);
-      if (count > 50) b.evaluate(t+20);
-    }
-    assert.equal(JSON.stringify(a.release(.39,-.025,140)), JSON.stringify(b.release(.39,-.025,140)));
-    assert.equal(a.evaluate(140).eligible, false);
-  }
+test('cancel, backward and duplicate timestamps cannot manufacture launch or infinite speed',()=>{
+ const g=make();g.begin(0,0,100);assert.equal(g.move(.4,0,100,true),false);assert.equal(g.evaluate(100).eligible,false);
+ g.move(.4,0,200,true);assert.equal(g.release(.4,0,150,true).fired,false);
+ g.begin(0,0,300);g.move(.4,0,400,true);g.cancel();assert.equal(g.release(.4,0,500,true).fired,false);
+ for(const args of [[NaN,0,0],[0,Infinity,0],[0,0,-1]])assert.equal(g.begin(...args),false);
 });
-
-test('cancel and invalid or backward events cannot trigger or duplicate a release', () => {
-  const g = gate(); g.begin(0,0,0); g.move(.4,0,100); g.cancel();
-  assert.equal(g.release(.4,0,100).fired, false);
-  g.begin(0,0,200); g.move(.4,0,300);
-  g.move(20,20,250); g.move(Infinity,0,310); g.move(0,NaN,320); g.move(.5,0,NaN);
-  near(g.evaluate(300).radius,.4);
-  assert.equal(g.release(.4,0,300).fired,true);
-  assert.equal(g.release(.4,0,300).fired,false);
-  g.begin(NaN,0,400); assert.equal(g.release(.4,0,500).fired,false);
+test('all screen shapes have an accessible edge band and rounded corner retention',()=>{
+ for(const [w,h] of [[1280,720],[390,844],[844,390]])for(const dir of [[1,0],[-1,0],[0,1],[0,-1]]){
+  const area={w,h,s:Math.min(w-32,h-48)},g=make();g.begin(0,0,0,area);
+  const x=dir[0]*(g.bounds.halfWidth-.08),y=dir[1]*(g.bounds.halfHeight-.08);
+  g.move(x,y,2000,true);const d=g.evaluate(9000);assert(d.eligible);assert(d.edgeX!==undefined);
+  assert(Math.abs(x)<g.bounds.halfWidth&&Math.abs(y)<g.bounds.halfHeight,'no need to leave the viewport');
+  assert(g.release(x,y,9000).fired);
+ }
+ const g=make();g.begin(0,0,0);g.move(.36,.36,1000,true);assert(g.evaluate(1000).eligible);
+ g.move(.20,.20,1100);assert.equal(g.evaluate(1100).eligible,false);
 });
-
-test('zero and duplicate event timestamps have finite speed and no instantaneous launch', () => {
-  const g = gate(); g.begin(0,0,0); g.move(.4,0,0);
-  const first = g.evaluate(0); near(first.outwardSpeed,0);
-  assert.equal(first.eligible,false); assert.equal(g.release(.4,0,0).fired,false);
-  const duplicate = gate(); duplicate.begin(0,0,0); duplicate.move(.2,0,100); duplicate.move(.3,0,100);
-  const result = duplicate.release(.3,0,100);
-  assert.equal(result.fired,true); near(result.outwardSpeed,3);
-  for (const value of Object.values(result)) assert.ok(typeof value === 'boolean' || Number.isFinite(value));
+test('the edge readiness certificate is an actual per-body input impulse at every count',()=>{
+ for(const n of [6,50,200,500])for(const grouping of [0,1,4]){
+  const c=new HandShuffle(Array.from({length:n},(_,i)=>({id:'ball-'+i})),'EDGE-INPUT-'+n),g=make();
+  c.begin(0,0,0);g.begin(0,0,0);
+  for(let i=1;i<=20;i++){const x=.42*i/20,contact=c.move(x,0,i*50);g.move(x,0,i*50,contact);for(let tick=0;tick<grouping;tick++)c.step();g.evaluate(i*50+20);}
+  assert(c.interacted);assert(g.release(.42,0,1500,c.interacted).fired,n+' grouping '+grouping);
+ }
 });

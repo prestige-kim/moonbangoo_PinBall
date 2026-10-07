@@ -1,0 +1,196 @@
+✖ public edge thresholds replace the mandatory speed gate (0.980958ms)
+✖ slow actual interaction and a stopped ready hand both release exactly once (0.2115ms)
+✖ edge clicks, short movements and empty-space gestures cannot arm (0.120416ms)
+✖ hysteresis holds boundary jitter but clears a real inward retreat (5.959292ms)
+✖ interaction and readiness belong to one gesture, not future edge clicks (0.134459ms)
+✖ the direction shown while stopped is the exact release direction (0.142167ms)
+✔ render evaluations never advance or change input readiness (1.2985ms)
+✖ cancel, backward and duplicate timestamps cannot manufacture launch or infinite speed (0.072792ms)
+✖ all screen shapes have an accessible edge band and rounded corner retention (0.411167ms)
+✖ the edge readiness certificate is an actual per-body input impulse at every count (0.949417ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 1
+ℹ fail 9
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 61.64775
+
+✖ failing tests:
+
+test at tests/throw-gate.test.cjs:9:1
+✖ public edge thresholds replace the mandatory speed gate (0.980958ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  0.18 !== 0.2
+
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/throw-gate.test.cjs:10:37)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0.18,
+    expected: 0.2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/throw-gate.test.cjs:13:1
+✖ slow actual interaction and a stopped ready hand both release exactly once (0.2115ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  false !== true
+
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/throw-gate.test.cjs:15:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/throw-gate.test.cjs:19:1
+✖ edge clicks, short movements and empty-space gestures cannot arm (0.120416ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  true !== false
+
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/throw-gate.test.cjs:22:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/throw-gate.test.cjs:25:1
+✖ hysteresis holds boundary jitter but clears a real inward retreat (5.959292ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(g.evaluate(400).eligible)
+
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/throw-gate.test.cjs:26:55)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/throw-gate.test.cjs:32:1
+✖ interaction and readiness belong to one gesture, not future edge clicks (0.134459ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + undefined
+  - false
+
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/throw-gate.test.cjs:34:55)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/throw-gate.test.cjs:36:1
+✖ the direction shown while stopped is the exact release direction (0.142167ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+    assert(ready.eligible)
+
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/throw-gate.test.cjs:38:2)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/throw-gate.test.cjs:49:1
+✖ cancel, backward and duplicate timestamps cannot manufacture launch or infinite speed (0.072792ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  true !== false
+
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/throw-gate.test.cjs:50:41)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/throw-gate.test.cjs:55:1
+✖ all screen shapes have an accessible edge band and rounded corner retention (0.411167ms)
+  TypeError: Cannot read properties of undefined (reading 'halfWidth')
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/throw-gate.test.cjs:58:28)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+
+test at tests/throw-gate.test.cjs:66:1
+✖ the edge readiness certificate is an actual per-body input impulse at every count (0.949417ms)
+  AssertionError [ERR_ASSERTION]: 6 grouping 0
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/throw-gate.test.cjs:71:24)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -79,9 +79,9 @@
   const shuffleInput = new P.ShuffleInput(document.getElementById('cinema-canvas'), {
     enabled: () => status === 'mixing' && handScene.elapsed >= .8 && !handScene.launchDecision,
     area: () => handScene.area(),
-    begin: point => { handScene.lastDecision = null; throwGate.begin(point.x, point.y, point.time); handScene.shuffle.begin(point.x, point.y, point.time); },
-    move: point => { throwGate.move(point.x, point.y, point.time); handScene.shuffle.move(point.x, point.y, point.time); },
-    release: point => { const decision = throwGate.release(point.x, point.y, point.time); handScene.lastDecision = decision; handScene.shuffle.release(); if (decision.fired) throwMarbles(decision); },
+    begin: point => { handScene.lastDecision = null; throwGate.begin(point.x, point.y, point.time, handScene.area()); handScene.shuffle.begin(point.x, point.y, point.time); },
+    move: point => { const contacted = handScene.shuffle.move(point.x, point.y, point.time); throwGate.move(point.x, point.y, point.time, contacted); },
+    release: point => { const contacted = throwGate.active && handScene.shuffle.move(point.x, point.y, point.time); const decision = throwGate.release(point.x, point.y, point.time, contacted); handScene.lastDecision = decision; handScene.shuffle.release(); if (decision.fired) throwMarbles(decision); },
     cancel: () => { throwGate.cancel(); if (handScene.shuffle) handScene.shuffle.release(); }
   });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => {

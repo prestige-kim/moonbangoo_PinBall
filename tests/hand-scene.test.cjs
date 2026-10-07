@@ -27,7 +27,7 @@ function makeCinema(width, height) {
     beginPath() { currentPath = []; }, arc(...args) { currentPath.push(args); },
     stroke() { strokes.push({ arcs: currentPath.map(arc => arc.slice()), style: this.strokeStyle, width: this.lineWidth, shadowBlur: this.shadowBlur }); },
     save() { stacks.push({ strokeStyle: this.strokeStyle, lineWidth: this.lineWidth, lineCap: this.lineCap, shadowBlur: this.shadowBlur, shadowColor: this.shadowColor }); },
-    restore() { Object.assign(this, stacks.pop()); }, transform() {}, moveTo() {}, lineTo() {}
+    restore() { Object.assign(this, stacks.pop()); }, transform() {}, moveTo() {}, lineTo() {}, quadraticCurveTo() {}, closePath() {}
   };
   const cinema = Object.create(P.Cinematic.prototype);
   Object.assign(cinema, {
@@ -99,55 +99,48 @@ test('fully extracted display circles match individual collision radii and prese
   }
 });
 
-test('pale boundary stays at .24 S and the gold arc highlights only a valid outward direction', () => {
-  for (const count of counts) for (const [width, height] of sizes) for (const [dx, dy] of [[.36, 0], [-.30, -.24], [0, .36]]) {
+test('edge gold and direction stay ready while stopped and clear only after an inward retreat', () => {
+  for (const count of counts) for (const [width, height] of sizes) for (const direction of [[1,0],[-1,0],[0,1]]) {
     const s = setup(count, width, height), area = s.scene.area(); s.scene.update(.8);
-    s.scene.gate.begin(0, 0, 0); s.scene.gate.move(dx, dy, 100); now = 100;
+    s.scene.gate.begin(0, 0, 0, area);
+    const frame = s.scene.gate.bounds, x = direction[0] * (frame.halfWidth - .08), y = direction[1] * (frame.halfHeight - .08);
+    s.scene.gate.move(x, y, 1000, true); now = 5000;
     s.scene.render({ physics: s.physics, reducedMotion: false });
-    const pale = s.strokes.filter(stroke => stroke.style === 'rgba(158,126,76,.20)');
-    const gold = s.strokes.filter(stroke => stroke.style === '#c9a24f');
-    assert.equal(pale.length, 1); assert.equal(gold.length, 1); assert.equal(s.cinema.canvas.dataset.throwReady, 'true');
-    const circle = pale[0].arcs[0], arc = gold[0].arcs[0];
-    close(circle[0], area.x, 'circle center x'); close(circle[1], area.y, 'circle center y');
-    close(circle[2], .24 * area.s, 'circle boundary radius'); close(circle[3], 0, 'circle begins at zero'); close(circle[4], Math.PI * 2, 'circle is complete');
-    close(arc[2], circle[2], 'gold shares boundary radius'); close((arc[3] + arc[4]) / 2, Math.atan2(dy, dx), 'gold direction');
-    assert.ok(arc[4] - arc[3] < Math.PI / 2, 'gold feedback is a directional arc, not an entire flash');
-    now = 211; s.scene.render({ physics: s.physics, reducedMotion: false });
-    assert.equal(s.strokes.filter(stroke => stroke.style === '#c9a24f').length, 0, 'stationary release cannot reuse an old flick');
-    assert.equal(s.strokes.filter(stroke => stroke.style === 'rgba(158,126,76,.20)').length, 1);
+    assert.equal(s.cinema.canvas.dataset.throwReady, 'true');
+    assert.equal(s.strokes.filter(stroke => stroke.style === '#c9a24f').length, 2, 'ready edge and arrow share the same state');
+    const shown = s.scene.gate.evaluate(now), released = s.scene.gate.release(x, y, now);
+    close(released.dx, shown.dx, 'arrow and release direction x'); close(released.dy, shown.dy, 'arrow and release direction y');
+    assert(released.fired);
+    s.scene.gate.begin(0, 0, 6000, area); s.scene.gate.move(x, y, 7000, true); s.scene.gate.move(0, 0, 8000);
+    s.scene.render({ physics: s.physics, reducedMotion: false });
     assert.equal(s.cinema.canvas.dataset.throwReady, 'false');
-  }
-});
-
-test('rejected slow, short and circular movements never produce the ready arc', () => {
-  const cases = [
-    [[0, 0, 0], [.3, 0, 1000]],
-    [[.22, 0, 0], [.30, 0, 20]],
-    [[.2, 0, 0], [0, .2, 50], [-.2, 0, 100]]
-  ];
-  for (const points of cases) {
-    const s = setup(50, 390, 844); s.scene.update(.8);
-    s.scene.gate.begin(...points[0]); for (const point of points.slice(1)) s.scene.gate.move(...point);
-    now = points.at(-1)[2]; s.scene.render({ physics: s.physics, reducedMotion: false });
     assert.equal(s.strokes.filter(stroke => stroke.style === '#c9a24f').length, 0);
-    assert.equal(s.cinema.canvas.dataset.throwReady, 'false');
   }
 });
 
-test('motion setting renders preserve body state, elapsed time, RNG and boundary decisions', () => {
-  for (const count of counts) for (const [width, height] of sizes) {
-    const s = setup(count, width, height); s.scene.update(.8);
-    s.scene.shuffle.begin(0, 0, 0); s.scene.shuffle.move(.1, .06, 80); s.scene.update(1 / 60);
-    s.scene.gate.begin(0, 0, 0); s.scene.gate.move(.36, 0, 100); now = 100;
-    const snapshot = JSON.stringify(s.scene.shuffle.snapshot()), slots = positions(s.physics), elapsed = s.scene.elapsed;
+test('short or untouched empty-space movement never shows ready gold', () => {
+  for (const points of [[[0,0,0],[.42,0,50,false]],[[.35,0,0],[.42,0,50,true]],[[0,0,0],[.20,0,1000,true]]]) {
+    const s = setup(50, 390, 844); s.scene.update(.8);
+    s.scene.gate.begin(...points[0]); s.scene.gate.move(...points[1]); now = 2000;
     s.scene.render({ physics: s.physics, reducedMotion: false });
-    const poses = JSON.stringify(s.scene.lastPoses), decision = s.cinema.canvas.dataset.throwReady;
-    assert.equal(s.strokes.find(stroke => stroke.style === '#c9a24f').shadowBlur, 8);
+    assert.equal(s.cinema.canvas.dataset.throwReady, 'false');
+    assert.equal(s.strokes.filter(stroke => stroke.style === '#c9a24f').length, 0);
+  }
+});
+
+test('motion changes preserve bodies, RNG, ready feedback and the hand influence field', () => {
+  for (const count of counts) for (const [width, height] of sizes) {
+    const s = setup(count, width, height), area = s.scene.area(); s.scene.update(.8);
+    s.scene.shuffle.begin(0, 0, 0); s.scene.shuffle.move(.1, .06, 80); s.scene.update(1 / 60);
+    s.scene.gate.begin(0, 0, 0, area); s.scene.gate.move(0, -(s.scene.gate.bounds.halfHeight - .08), 1000, true); now = 5000;
+    const snapshot = JSON.stringify(s.scene.shuffle.snapshot()), slots = positions(s.physics), elapsed = s.scene.elapsed;
+    s.scene.render({ physics: s.physics, reducedMotion: false }); const poses = JSON.stringify(s.scene.lastPoses);
     for (const reducedMotion of [true, false, true]) {
       s.scene.render({ physics: s.physics, reducedMotion });
       assert.equal(JSON.stringify(s.scene.shuffle.snapshot()), snapshot); assert.equal(s.scene.elapsed, elapsed);
-      assert.equal(JSON.stringify(s.scene.lastPoses), poses); assert.equal(s.cinema.canvas.dataset.throwReady, decision);
+      assert.equal(JSON.stringify(s.scene.lastPoses), poses); assert.equal(s.cinema.canvas.dataset.throwReady, 'true');
       assert.equal(s.strokes.find(stroke => stroke.style === '#c9a24f').shadowBlur, reducedMotion ? 0 : 8);
+      assert(s.strokes.some(stroke => stroke.arcs.some(arc => Math.abs(arc[2] - s.scene.shuffle.pointerRadius * area.s) < 1e-8)), 'visible hand field matches its actual force radius');
     }
     assert.equal(positions(s.physics), slots); assert.equal(s.physics.time, 0); assert.equal(s.randomDraws(), 0);
   }

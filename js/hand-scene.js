@@ -1,5 +1,12 @@
 (function (P) {
   'use strict';
+  function roundedPath(ctx, x, y, w, h, r) {
+    r = Math.min(r, w / 2, h / 2);
+    ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath();
+  }
   class HandScene {
     constructor(cinematic) { this.cinema = cinematic; this.shuffle = null; }
     area() {
@@ -17,10 +24,13 @@
       });
       this.entries = entries;
       this.shuffle = new P.HandShuffle(entries, physics.seed);
-      this.elapsed = 0; this.accumulator = 0; this.launchDecision = null;
+      this.elapsed = 0; this.accumulator = 0; this.launchDecision = null; this.edgeGlow = 0;
     }
     update(dt) {
       this.elapsed += dt;
+      const feedback = this.gate && this.gate.evaluate(performance.now());
+      const target = feedback ? (feedback.eligible ? 1 : feedback.approach * .65) : 0;
+      this.edgeGlow += (target - this.edgeGlow) * Math.min(1, dt * 9);
       if (this.elapsed < .8) return;
       this.accumulator = Math.min(.05, this.accumulator + dt);
       const area = this.area();
@@ -39,16 +49,30 @@
         c.drawPlate('front', views.front, 1 - t);
       }
       if (t === 1 && this.gate) {
+        const thresholds = P.THROW_THRESHOLDS, band = thresholds.edgeBand * area.s, radius = thresholds.corner * area.s;
         const feedback = this.gate.evaluate(performance.now());
-        ctx.beginPath(); ctx.arc(area.x, area.y, P.THROW_THRESHOLDS.boundary * area.s, 0, Math.PI * 2);
+        ctx.save(); ctx.beginPath();
+        roundedPath(ctx, 16, 24, area.w - 32, area.h - 48, radius + band);
+        roundedPath(ctx, 16 + band, 24 + band, area.w - 32 - 2 * band, area.h - 48 - 2 * band, radius);
+        ctx.fillStyle = 'rgba(158,126,76,.045)'; ctx.fill('evenodd');
+        ctx.beginPath(); roundedPath(ctx, 16 + band, 24 + band, area.w - 32 - 2 * band, area.h - 48 - 2 * band, radius);
         ctx.strokeStyle = 'rgba(158,126,76,.20)'; ctx.lineWidth = 1.2; ctx.stroke();
-        if (feedback.eligible) {
-          const angle = Math.atan2(feedback.dy, feedback.dx);
-          ctx.save(); ctx.beginPath(); ctx.arc(area.x, area.y, P.THROW_THRESHOLDS.boundary * area.s, angle - .38, angle + .38);
-          ctx.strokeStyle = '#c9a24f'; ctx.lineWidth = 3; ctx.lineCap = 'round';
-          if (!state.reducedMotion) { ctx.shadowColor = '#e7c77b'; ctx.shadowBlur = 8; }
-          ctx.stroke(); ctx.restore();
+        const qualified = this.gate.active && feedback.interacted && feedback.distance >= thresholds.travel;
+        const alpha = feedback.eligible ? 1 : Math.max(this.edgeGlow, feedback.approach * .65);
+        if (qualified && alpha > .01) {
+          const x = area.x + feedback.edgeX * area.s, y = area.y + feedback.edgeY * area.s;
+          const dx = feedback.dx, dy = feedback.dy, span = .075 * area.s;
+          ctx.globalAlpha = alpha; ctx.strokeStyle = feedback.eligible ? '#c9a24f' : '#b69c6e';
+          ctx.lineWidth = feedback.eligible ? 3.5 : 2; ctx.lineCap = 'round';
+          if (!state.reducedMotion) { ctx.shadowColor = '#e7c77b'; ctx.shadowBlur = feedback.eligible ? 8 : 3; }
+          ctx.beginPath(); ctx.moveTo(x - dy * span, y + dx * span); ctx.lineTo(x + dy * span, y - dx * span); ctx.stroke();
+          const ax = x + dx * .065 * area.s, ay = y + dy * .065 * area.s, length = .026 * area.s, head = .014 * area.s;
+          ctx.beginPath(); ctx.moveTo(ax - dx * length, ay - dy * length); ctx.lineTo(ax + dx * length, ay + dy * length);
+          ctx.moveTo(ax + dx * length - dx * head + dy * head, ay + dy * length - dy * head - dx * head);
+          ctx.lineTo(ax + dx * length, ay + dy * length);
+          ctx.lineTo(ax + dx * length - dx * head - dy * head, ay + dy * length - dy * head + dx * head); ctx.stroke();
         }
+        ctx.restore();
         c.canvas.dataset.throwReady = String(feedback.eligible);
       }
       this.lastPoses = this.shuffle.bodies.map((body, i) => {
@@ -70,7 +94,7 @@
       }
       if (t === 1) {
         ctx.fillStyle = '#8a7760'; ctx.font = '12px "Pretendard Variable", sans-serif'; ctx.textAlign = 'center';
-        ctx.fillText('섞어서 바깥으로 던져 주세요', area.x, area.y + .38 * area.s);
+        ctx.fillText('공을 섞고 가장자리에서 놓아 주세요', area.x, area.y + .38 * area.s);
       }
       if (c.canvas.dataset) c.canvas.dataset.handPhase = this.elapsed < .8 ? 'emerging' : this.shuffle.pointer ? 'dragging' : 'settling';
       c.lastStage = 'mixing';
