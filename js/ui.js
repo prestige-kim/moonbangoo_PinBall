@@ -373,7 +373,7 @@
     var oldPositions = new Map();
     this.rankingNodes.forEach(function (node, id) { oldPositions.set(id, node.getBoundingClientRect().top); });
     if (list.querySelector('.ranking-empty')) list.replaceChildren();
-    var present = new Set();
+    var present = new Set(), standing = P.raceStanding(ranking);
     ranking.forEach(function (marble, index) {
       var id = marble.id === undefined ? marble.name + '-' + (marble.colorIndex || index) : String(marble.id);
       present.add(id);
@@ -383,7 +383,7 @@
         ['rank-number', 'rank-marble', 'rank-name', 'rank-finish'].forEach(function (cls) { var span = document.createElement('span'); span.className = cls; row.appendChild(span); });
         self.rankingNodes.set(id, row);
       }
-      row.children[0].textContent = String(index + 1).padStart(2, '0');
+      row.children[0].textContent = String(standing.ranks[index]).padStart(2, '0');
       row.children[1].style.setProperty('--marble-color', self.colorFor(marble));
       row.children[2].textContent = marble.name;
       row.children[2].title = marble.name + (marble.copies > 1 ? ' · ' + marble.copy + '/' + marble.copies : '');

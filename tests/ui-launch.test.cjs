@@ -47,6 +47,7 @@ function scene(width = 400, height = 800) {
   document.querySelectorAll = selector => selector === '.masthead,.system-footer' ? [node('masthead'), node('system-footer')] : [];
   const window = { innerWidth: width, innerHeight: height, CosmicPinball: {}, setTimeout: () => 0 };
   const context = vm.createContext({ window, document, console, requestAnimationFrame: handler => handler() });
+  vm.runInContext(fs.readFileSync(path.join(__dirname, '../js/race-standing.js'), 'utf8'), context);
   vm.runInContext(fs.readFileSync(path.join(__dirname, '../js/ui.js'), 'utf8'), context);
   const ui = Object.create(window.CosmicPinball.UI.prototype);
   Object.assign(ui, { handlers: {}, scene: null, status: 'intro', sceneReveal: 0, panelOpen: false, focusMode: false, locked: false, lastMobile: width <= 850 });

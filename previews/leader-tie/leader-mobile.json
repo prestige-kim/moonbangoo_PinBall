@@ -1,0 +1,402 @@
+{
+  "seed": "MB-EBXW01-VGPQ86-PZQ6QS-WZLV7S-4",
+  "slots": [
+    [
+      "marble-1",
+      324.4556262049009,
+      256.9090708056465
+    ],
+    [
+      "marble-2",
+      816.7523829845595,
+      256.9090708056465
+    ],
+    [
+      "marble-3",
+      700.4474157060613,
+      256.9090708056465
+    ],
+    [
+      "marble-4",
+      183.31985795375658,
+      256.9090708056465
+    ],
+    [
+      "marble-5",
+      65.18138305837056,
+      256.9090708056465
+    ],
+    [
+      "marble-6",
+      535.0816142229014,
+      256.9090708056465
+    ],
+    [
+      "marble-7",
+      934.7629634419573,
+      256.9090708056465
+    ],
+    [
+      "marble-8",
+      440.994691445434,
+      256.9090708056465
+    ]
+  ],
+  "samples": [
+    {
+      "time": 0.016666666666666666,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    },
+    {
+      "time": 0.025,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    },
+    {
+      "time": 0.05,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    },
+    {
+      "time": 0.058333333333333334,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    },
+    {
+      "time": 0.075,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    },
+    {
+      "time": 0.09166666666666666,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    },
+    {
+      "time": 0.10833333333333334,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    },
+    {
+      "time": 0.125,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    },
+    {
+      "time": 0.15,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    },
+    {
+      "time": 0.15833333333333333,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    },
+    {
+      "time": 0.175,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    },
+    {
+      "time": 0.2,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    },
+    {
+      "time": 0.20833333333333334,
+      "leader": null,
+      "expected": null,
+      "tie": true,
+      "ranks": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "order": [
+        "marble-1",
+        "marble-2",
+        "marble-3",
+        "marble-4",
+        "marble-5",
+        "marble-6",
+        "marble-7",
+        "marble-8"
+      ]
+    }
+  ],
+  "status": "running",
+  "time": 0.20833333333333334,
+  "visibleRanks": [
+    "01",
+    "01",
+    "01",
+    "01",
+    "01"
+  ],
+  "names": [
+    "귤",
+    "귤",
+    "귤",
+    "귤",
+    "수박"
+  ],
+  "finished": []
+}

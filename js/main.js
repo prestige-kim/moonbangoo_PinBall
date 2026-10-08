@@ -169,7 +169,7 @@
     setScene(scene); resize();
     const ranking = physics.getRanking();
     ui.updateHUD({ ranking, remaining: names.length, total: names.length, time: 0, fps,
-      leader: ranking[0], seed: settings.seed || '매번 새 출발', map: P.MAPS[settings.map], quality: settings.quality });
+      leader: P.raceStanding(ranking).leader, seed: settings.seed || '매번 새 출발', map: P.MAPS[settings.map], quality: settings.quality });
   }
   function enterGame() {
     if (status !== 'intro') return;
@@ -286,8 +286,9 @@
       physics.step(STEP); accumulator -= STEP; ticks++;
     }
     processEvents();
-    const leader = physics.getRanking()[0];
+    const leader = P.raceStanding(physics.getRanking()).leader;
     leadCooldown = Math.max(0, leadCooldown - dt);
+    if (!leader) { leaderId = null; leadCandidateId = null; leadCandidateAge = 0; }
     if (leader && leaderId !== leader.id) {
       leadCandidateId = leaderId === null ? null : leader.id;
       leadCandidateAge = 0;
@@ -341,10 +342,10 @@
     camera.viewport = ui.getViewport();
     camera.update(dt, physics, map, { photoFinish: photoFinish, status: status });
     effects.update(dt);
-    renderer.render({ physics: physics, map: map, camera: camera, effects: effects, time: elapsedVisual, dt: dt, status: status, winner: winner, leader: ranking[0] || null, photoFinish: photoFinish });
+    renderer.render({ physics: physics, map: map, camera: camera, effects: effects, time: elapsedVisual, dt: dt, status: status, winner: winner, leader: P.raceStanding(ranking).leader || null, photoFinish: photoFinish });
     if (hudElapsed >= 0.1) {
       hudElapsed = 0;
-      ui.updateHUD({ ranking: ranking, remaining: physics.marbles.length - physics.finished.length, total: physics.marbles.length, time: physics.time, fps: fps, leader: ranking[0], seed: (runSettings || settings).seed || '매번 새 출발', map: map, quality: settings.quality });
+      ui.updateHUD({ ranking: ranking, remaining: physics.marbles.length - physics.finished.length, total: physics.marbles.length, time: physics.time, fps: fps, leader: P.raceStanding(ranking).leader, seed: (runSettings || settings).seed || '매번 새 출발', map: map, quality: settings.quality });
       renderer.drawMinimap(mini, physics, camera);
     }
     requestAnimationFrame(frame);

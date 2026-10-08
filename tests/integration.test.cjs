@@ -102,7 +102,7 @@ function boot(storage, options = {}) {
   const context = vm.createContext({ window, document: { hidden: false, getElementById: () => ({}), documentElement: { classList: { toggle() {} } }, addEventListener() {} },
     localStorage: storage || { getItem() { throw new Error('Storage denied'); }, setItem() { throw new Error('Storage denied'); } },
     requestAnimationFrame(callback) { frame = callback; }, performance: { now: () => clock }, Uint32Array, Date, Math, console });
-  for (const file of ['maps.js', 'physics.js', 'throw-gate.js', 'main.js']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context, { filename: file });
+  for (const file of ['maps.js', 'physics.js', 'throw-gate.js', 'race-standing.js', 'main.js']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context, { filename: file });
   if (!options.intro) callbacks.enter();
   function advance(seconds, frameRate = 60) {
     const count = Math.ceil(seconds * frameRate);
@@ -444,4 +444,18 @@ test('crossing the shuffle wall launches on movement before pointerup and ignore
  input.move({x:.9,y:.1,time:1210});input.release({x:.9,y:.1,time:1300});input.release({x:.9,y:.1,time:1400});
  assert.equal(JSON.stringify(P.app.handScene.shuffle.snapshot()),snapshot);assert.equal(JSON.stringify(P.app.handFlight),start);
  assert.equal(P.app.audio.types.filter(type=>type==='launch').length,1);assert.equal(P.app.physics.time,0);
+});
+
+test('joint race progress does not select the first input as the rendered or HUD leader', () => {
+  const { P, callbacks, advance, launch } = boot();
+  callbacks.start(); launch();
+  const marbles=P.app.physics.marbles;
+  for(const m of marbles){m.y=100;m.vx=0;m.vy=0;}
+  advance(.12);
+  assert.equal(P.app.renderer.scene.leader,null);
+  assert.equal(P.app.ui.hud.leader,null);
+  const actual=marbles.at(-1);actual.y+=4;
+  advance(.12);
+  assert.equal(P.app.renderer.scene.leader.id,actual.id);
+  assert.equal(P.app.ui.hud.leader.id,actual.id);
 });
