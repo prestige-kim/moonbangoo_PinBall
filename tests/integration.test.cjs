@@ -327,22 +327,24 @@ test('leaders arriving close together trigger the photo finish view', () => {
   assert.equal(P.app.renderer.scene.photoFinish, true);
 });
 
-test('stuck recovery is named in the UI, rate limited and reset for a new race', () => {
+test('stuck recovery events stay active without notification toasts, including replay', () => {
   const { P, callbacks, advance, launch } = boot();
   callbacks.start(); launch();
   const p = P.app.physics, notices = [];
   P.app.ui.toast = message => notices.push(message);
   for (let i = 0; i < 8; i++) p._event('rescue', p.marbles[0]);
   advance(1 / 60);
-  assert.equal(notices.filter(x => x.includes('막힘 방지')).length, 1);
+  assert.equal(notices.filter(x => x.includes('막힘 방지')).length, 0);
+  assert.equal(P.app.diagnostics.events.rescue, 8);
+  assert.ok(P.app.audio.types.includes('rescue'));
   p._event('rescue', p.marbles[1]); advance(1 / 60);
-  assert.equal(notices.filter(x => x.includes('막힘 방지')).length, 1, 'no repeated stack of rescue messages');
+  assert.equal(notices.filter(x => x.includes('막힘 방지')).length, 0, 'repeated recovery does not show notifications');
   advance(120);
   callbacks.restart(); launch();
   const next = P.app.physics;
   notices.length = 0;
   next._event('rescue', next.marbles[0]); advance(1 / 60);
-  assert.equal(notices.filter(x => x.includes('막힘 방지')).length, 1, 'notice cooldown resets on replay');
+  assert.equal(notices.filter(x => x.includes('막힘 방지')).length, 0, 'replay also keeps recovery silent');
 });
 
 
