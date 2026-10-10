@@ -108,7 +108,7 @@ function boot(storage, options = {}) {
     const count = Math.ceil(seconds * frameRate);
     for (let i = 0; i < count; i++) { clock += 1000 / frameRate; frame(clock); }
   }
-  function gesture(points = [[0, 0, 0], [.30, 0, 800], [.68, 0, 1800]]) {
+  function gesture(points = [[0, 0, 0], [.30, -.20, 800], [.68, -.50, 1800]]) {
     const input = P.app.shuffleInput.callbacks, started = clock;
     input.begin({ x: points[0][0], y: points[0][1], time: started + points[0][2] });
     for (const point of points.slice(1, -1)) input.move({ x: point[0], y: point[1], time: started + point[2] });
@@ -416,7 +416,7 @@ test('waiting time, gesture direction and render frame grouping preserve seeded 
   }
   assert.equal(slots(normal), slots(alternate));
   normal.advance(.85); normal.gesture(); normal.advance(3.1);
-  alternate.advance(18, 30); alternate.gesture([[0, 0, 0], [-.08, .02, 40], [-.30, -.03, 100], [-.68, -.04, 120]]); alternate.advance(3.1, 30);
+  alternate.advance(18, 30); alternate.gesture([[0, 0, 0], [-.08, .02, 40], [.30, -.20, 100], [.68, -.50, 120]]); alternate.advance(3.1, 30);
   assert.equal(normal.P.app.status, 'running'); assert.equal(alternate.P.app.status, 'running');
   assert.equal(normal.P.app.handFlight.positions, alternate.P.app.handFlight.positions);
   normal.advance(120, 60); alternate.advance(120, 30);
@@ -439,8 +439,8 @@ test('removed saved courses migrate to classic while preserving participants and
 
 test('crossing the shuffle wall launches on movement before pointerup and ignores later samples',()=>{
  const {P,callbacks,advance}=boot();callbacks.start();advance(.85);
- const input=P.app.shuffleInput.callbacks;input.begin({x:0,y:0,time:1000});input.move({x:.30,y:0,time:1100});
- assert.equal(P.app.status,'mixing');input.move({x:.68,y:0,time:1200});
+ const input=P.app.shuffleInput.callbacks;input.begin({x:0,y:0,time:1000});input.move({x:.30,y:-.20,time:1100});
+ assert.equal(P.app.status,'mixing');input.move({x:.68,y:-.50,time:1200});
  assert.equal(P.app.status,'flight','no pointerup needed');
  const snapshot=JSON.stringify(P.app.handScene.shuffle.snapshot()),start=JSON.stringify(P.app.handFlight);
  input.move({x:.9,y:.1,time:1210});input.release({x:.9,y:.1,time:1300});input.release({x:.9,y:.1,time:1400});

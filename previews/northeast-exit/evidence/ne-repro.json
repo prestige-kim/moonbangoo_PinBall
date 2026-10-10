@@ -1,0 +1,31 @@
+{
+  "slotsEqual": true,
+  "finishOrderAndTimesEqual": true,
+  "normalReduced": false,
+  "reduced": true,
+  "exit": {
+    "event": "pointermove",
+    "pointerId": 999,
+    "decision": {
+      "eligible": true,
+      "distance": 0.9790292876278127,
+      "radius": 0.9790292876278127,
+      "interacted": true,
+      "approach": 1,
+      "dx": 0.7071067811865476,
+      "dy": -0.7071067811865476,
+      "edgeX": 0.9571345029239765,
+      "edgeY": -0.27,
+      "inputSpeed": 0.5195661113221897,
+      "fired": true
+    },
+    "physicsTime": 0,
+    "sourceContinuous": true,
+    "upEventsBefore": 0
+  },
+  "endpoint": {
+    "count": 500,
+    "uniqueIDs": 500,
+    "maxPixelError": 0
+  }
+}

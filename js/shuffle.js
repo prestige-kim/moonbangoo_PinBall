@@ -62,6 +62,24 @@
     snapshot() {return this.bodies.map(b=>({...b}));}
     wall(b) {
       const limits=this.bounds,r=b.r;
+      if(limits.opening && b.x>limits.right-limits.opening && b.y<limits.top+limits.opening) {
+        // The two rounded wall ends leave a true northeast opening.
+        for(const end of [[limits.right-limits.opening,limits.top],[limits.right,limits.top+limits.opening]]) {
+          const dx=b.x-end[0],dy=b.y-end[1],d=Math.hypot(dx,dy);
+          if(d<r) {
+            const nx=d>1e-10?dx/d:-Math.SQRT1_2,ny=d>1e-10?dy/d:Math.SQRT1_2;
+            b.x=end[0]+nx*r;b.y=end[1]+ny*r;
+            const normal=b.vx*nx+b.vy*ny;
+            if(normal<0){const tx=b.vx-normal*nx,ty=b.vy-normal*ny;b.vx=-normal*.52*nx+tx*.97;b.vy=-normal*.52*ny+ty*.97;}
+            this.wallHits++;
+          }
+        }
+        // Escaped visual bodies stay on screen and return under the existing
+        // weak centre force when the user cancels or lets go inside the outlet.
+        const outer=limits.outer;
+        if(outer){if(b.x>outer.right-r){b.x=outer.right-r;if(b.vx>0)b.vx*=-.52;this.wallHits++;}if(b.y<outer.top+r){b.y=outer.top+r;if(b.vy<0)b.vy*=-.52;this.wallHits++;}}
+        return;
+      }
       if(limits.cornerRadius>r) {
         // Offset the same rounded enclosure by this body's collision radius.
         const corner=limits.cornerRadius-r;

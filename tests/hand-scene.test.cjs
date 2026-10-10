@@ -100,10 +100,10 @@ test('fully extracted display circles match individual collision radii and prese
 });
 
 test('wall-exit feedback shares the exact consumed direction and clears inside the wall', () => {
-  for (const count of counts) for (const [width, height] of sizes) for (const direction of [[1,0],[-1,0],[0,1]]) {
+  for (const count of counts) for (const [width, height] of sizes) for (const direction of [[1,-1]]) {
     const s = setup(count, width, height), area = s.scene.area(); s.scene.update(.8);
     s.scene.gate.begin(0, 0, 0, area);
-    const frame = s.scene.gate.bounds, x = direction[0] * (frame.halfWidth - .08), y = direction[1] * (frame.halfHeight - .08);
+    const mouth = P.EDGE_GEOMETRY.opening(s.scene.gate.bounds), x = mouth.x + .05, y = mouth.y - .05;
     s.scene.gate.move(x, y, 1000, true); now = 5000;
     s.scene.render({ physics: s.physics, reducedMotion: false });
     assert.equal(s.cinema.canvas.dataset.throwReady, 'true');
@@ -132,7 +132,7 @@ test('motion changes preserve bodies, RNG, ready feedback and the hand influence
   for (const count of counts) for (const [width, height] of sizes) {
     const s = setup(count, width, height), area = s.scene.area(); s.scene.update(.8);
     s.scene.shuffle.begin(0, 0, 0); s.scene.shuffle.move(.1, .06, 80); s.scene.update(1 / 60);
-    s.scene.gate.begin(0, 0, 0, area); s.scene.gate.move(0, -(s.scene.gate.bounds.halfHeight - .08), 1000, true); now = 5000;
+    s.scene.gate.begin(0, 0, 0, area); s.scene.gate.move(P.EDGE_GEOMETRY.opening(s.scene.gate.bounds).x + .05, P.EDGE_GEOMETRY.opening(s.scene.gate.bounds).y - .05, 1000, true); now = 5000;
     const snapshot = JSON.stringify(s.scene.shuffle.snapshot()), slots = positions(s.physics), elapsed = s.scene.elapsed;
     s.scene.render({ physics: s.physics, reducedMotion: false }); const poses = JSON.stringify(s.scene.lastPoses);
     for (const reducedMotion of [true, false, true]) {
@@ -206,7 +206,7 @@ test('visible rounded walls contain every collision circle during vigorous near-
   for(let tick=1;tick<=360;tick++){
    c.move(.345*Math.sin(tick*.11)/zoom,.345*Math.cos(tick*.09)/zoom,tick*1000/120);s.scene.update(1/120);
    if(tick%12===0)for(let i=0;i<count;i++){
-    const b=c.bodies[i];assert(P.EDGE_GEOMETRY.signed(b.x*zoom,b.y*zoom,frame,P.THROW_THRESHOLDS.edgeBand)+b.r*zoom<1e-8,'circle stays inside the drawn wall');
+    const b=c.bodies[i];const limits=c.bounds;assert((b.x>limits.right-limits.opening&&b.y<limits.top+limits.opening)||P.EDGE_GEOMETRY.signed(b.x*zoom,b.y*zoom,frame,P.THROW_THRESHOLDS.edgeBand)+b.r*zoom<1e-8,'circle stays behind closed walls or in the open outlet');assert(b.x+b.r<=limits.outer.right+1e-8&&b.y-b.r>=limits.outer.top-1e-8,'outlet bodies remain on screen');
     for(let j=0;j<i;j++){const a=c.bodies[j];worst=Math.max(worst,(a.r+b.r-Math.hypot(a.x-b.x,a.y-b.y))/(a.r+b.r));}
    }
   }

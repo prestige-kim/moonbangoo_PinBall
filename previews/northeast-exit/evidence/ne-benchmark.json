@@ -1,0 +1,56 @@
+[
+  {
+    "label": "desktop",
+    "performance": {
+      "samples": 600,
+      "averageFPS": 59.99999999999999,
+      "p95FrameMs": 18.39999999999418,
+      "maxFrameMs": 18.79999999998836,
+      "meanShuffleCPUms": 2.611499998966853,
+      "p95ShuffleCPUms": 4.600000023841858
+    },
+    "audit": {
+      "insideRoundedWall": true,
+      "wallHits": 100489,
+      "uniqueIDs": 500,
+      "worstRelativeOverlap": 0.0018349108207907328,
+      "allContained": true
+    }
+  },
+  {
+    "label": "portrait",
+    "performance": {
+      "samples": 601,
+      "averageFPS": 59.989020312422014,
+      "p95FrameMs": 18,
+      "maxFrameMs": 18.70000000001164,
+      "meanShuffleCPUms": 2.6871880179832064,
+      "p95ShuffleCPUms": 4.600000023841858
+    },
+    "audit": {
+      "insideRoundedWall": true,
+      "wallHits": 96776,
+      "uniqueIDs": 500,
+      "worstRelativeOverlap": 0.00071510300832866,
+      "allContained": true
+    }
+  },
+  {
+    "label": "landscape",
+    "performance": {
+      "samples": 601,
+      "averageFPS": 59.99500873471425,
+      "p95FrameMs": 18,
+      "maxFrameMs": 18.70000000001164,
+      "meanShuffleCPUms": 2.717803663302975,
+      "p95ShuffleCPUms": 5
+    },
+    "audit": {
+      "insideRoundedWall": true,
+      "wallHits": 97840,
+      "uniqueIDs": 500,
+      "worstRelativeOverlap": 0.001297534386170922,
+      "allContained": true
+    }
+  }
+]

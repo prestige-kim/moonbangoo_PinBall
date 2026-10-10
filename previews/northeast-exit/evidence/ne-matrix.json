@@ -1,0 +1,530 @@
+[
+  {
+    "label": "desktop",
+    "n": 6,
+    "viewport": [
+      1280,
+      720
+    ],
+    "closedEdge": "mixing",
+    "wall": {
+      "insideRoundedWall": true,
+      "wallHits": 19,
+      "uniqueIDs": 6,
+      "worstRelativeOverlap": 0,
+      "allContained": true
+    },
+    "exchange": true,
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 0.8277127632019134,
+        "radius": 0.8277127632019134,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0.7071067811865476,
+        "dy": -0.7071067811865476,
+        "edgeX": 0.6985714285714286,
+        "edgeY": -0.27,
+        "inputSpeed": 5.173204770011959,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 6,
+      "uniqueIDs": 6,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "visible": true
+  },
+  {
+    "label": "desktop",
+    "n": 50,
+    "viewport": [
+      1280,
+      720
+    ],
+    "closedEdge": "mixing",
+    "wall": {
+      "insideRoundedWall": true,
+      "wallHits": 540,
+      "uniqueIDs": 50,
+      "worstRelativeOverlap": 0,
+      "allContained": true
+    },
+    "exchange": true,
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 0.8277127632019134,
+        "radius": 0.8277127632019134,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0.7071067811865476,
+        "dy": -0.7071067811865476,
+        "edgeX": 0.6985714285714286,
+        "edgeY": -0.27,
+        "inputSpeed": 5.173204770011959,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 50,
+      "uniqueIDs": 50,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "visible": true
+  },
+  {
+    "label": "desktop",
+    "n": 200,
+    "viewport": [
+      1280,
+      720
+    ],
+    "closedEdge": "mixing",
+    "wall": {
+      "insideRoundedWall": true,
+      "wallHits": 5265,
+      "uniqueIDs": 200,
+      "worstRelativeOverlap": 0,
+      "allContained": true
+    },
+    "exchange": true,
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 0.8277127632019134,
+        "radius": 0.8277127632019134,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0.7071067811865476,
+        "dy": -0.7071067811865476,
+        "edgeX": 0.6985714285714286,
+        "edgeY": -0.27,
+        "inputSpeed": 5.173204770011959,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 200,
+      "uniqueIDs": 200,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "visible": true
+  },
+  {
+    "label": "desktop",
+    "n": 500,
+    "viewport": [
+      1280,
+      720
+    ],
+    "closedEdge": "mixing",
+    "wall": {
+      "insideRoundedWall": true,
+      "wallHits": 26157,
+      "uniqueIDs": 500,
+      "worstRelativeOverlap": 0.0023565718631924706,
+      "allContained": true
+    },
+    "exchange": true,
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 0.8277127632019134,
+        "radius": 0.8277127632019134,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0.7071067811865476,
+        "dy": -0.7071067811865476,
+        "edgeX": 0.6985714285714286,
+        "edgeY": -0.27,
+        "inputSpeed": 5.173204770011959,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 500,
+      "uniqueIDs": 500,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "visible": true
+  },
+  {
+    "label": "portrait",
+    "n": 6,
+    "viewport": [
+      390,
+      844
+    ],
+    "closedEdge": "mixing",
+    "wall": {
+      "insideRoundedWall": true,
+      "wallHits": 38,
+      "uniqueIDs": 6,
+      "worstRelativeOverlap": 0,
+      "allContained": true
+    },
+    "exchange": true,
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 0.9973788249497595,
+        "radius": 0.9973788249497595,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0.7071067811865476,
+        "dy": -0.7071067811865476,
+        "edgeX": 0.27,
+        "edgeY": -0.8817318435754191,
+        "inputSpeed": 6.233617655935997,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 6,
+      "uniqueIDs": 6,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "visible": true
+  },
+  {
+    "label": "portrait",
+    "n": 50,
+    "viewport": [
+      390,
+      844
+    ],
+    "closedEdge": "mixing",
+    "wall": {
+      "insideRoundedWall": true,
+      "wallHits": 641,
+      "uniqueIDs": 50,
+      "worstRelativeOverlap": 0,
+      "allContained": true
+    },
+    "exchange": true,
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 0.9973788249497595,
+        "radius": 0.9973788249497595,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0.7071067811865476,
+        "dy": -0.7071067811865476,
+        "edgeX": 0.27,
+        "edgeY": -0.8817318435754191,
+        "inputSpeed": 6.233617655935997,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 50,
+      "uniqueIDs": 50,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "visible": true
+  },
+  {
+    "label": "portrait",
+    "n": 200,
+    "viewport": [
+      390,
+      844
+    ],
+    "closedEdge": "mixing",
+    "wall": {
+      "insideRoundedWall": true,
+      "wallHits": 8576,
+      "uniqueIDs": 200,
+      "worstRelativeOverlap": 0,
+      "allContained": true
+    },
+    "exchange": true,
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 0.9973788249497595,
+        "radius": 0.9973788249497595,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0.7071067811865476,
+        "dy": -0.7071067811865476,
+        "edgeX": 0.27,
+        "edgeY": -0.8817318435754191,
+        "inputSpeed": 6.233617655935997,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 200,
+      "uniqueIDs": 200,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "visible": true
+  },
+  {
+    "label": "portrait",
+    "n": 500,
+    "viewport": [
+      390,
+      844
+    ],
+    "closedEdge": "mixing",
+    "wall": {
+      "insideRoundedWall": true,
+      "wallHits": 37210,
+      "uniqueIDs": 500,
+      "worstRelativeOverlap": 0.002953344156030565,
+      "allContained": true
+    },
+    "exchange": true,
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 0.9973788249497595,
+        "radius": 0.9973788249497595,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0.7071067811865476,
+        "dy": -0.7071067811865476,
+        "edgeX": 0.27,
+        "edgeY": -0.8817318435754191,
+        "inputSpeed": 6.233617655935997,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 500,
+      "uniqueIDs": 500,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "visible": true
+  },
+  {
+    "label": "landscape",
+    "n": 6,
+    "viewport": [
+      844,
+      390
+    ],
+    "closedEdge": "mixing",
+    "wall": {
+      "insideRoundedWall": true,
+      "wallHits": 36,
+      "uniqueIDs": 6,
+      "worstRelativeOverlap": 0,
+      "allContained": true
+    },
+    "exchange": true,
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 1.06984384342817,
+        "radius": 1.06984384342817,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0.7071067811865476,
+        "dy": -0.7071067811865476,
+        "edgeX": 0.9571345029239765,
+        "edgeY": -0.27,
+        "inputSpeed": 6.686524021426062,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 6,
+      "uniqueIDs": 6,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "visible": true
+  },
+  {
+    "label": "landscape",
+    "n": 50,
+    "viewport": [
+      844,
+      390
+    ],
+    "closedEdge": "mixing",
+    "wall": {
+      "insideRoundedWall": true,
+      "wallHits": 430,
+      "uniqueIDs": 50,
+      "worstRelativeOverlap": 0,
+      "allContained": true
+    },
+    "exchange": true,
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 1.06984384342817,
+        "radius": 1.06984384342817,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0.7071067811865476,
+        "dy": -0.7071067811865476,
+        "edgeX": 0.9571345029239765,
+        "edgeY": -0.27,
+        "inputSpeed": 6.686524021426062,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 50,
+      "uniqueIDs": 50,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "visible": true
+  },
+  {
+    "label": "landscape",
+    "n": 200,
+    "viewport": [
+      844,
+      390
+    ],
+    "closedEdge": "mixing",
+    "wall": {
+      "insideRoundedWall": true,
+      "wallHits": 6270,
+      "uniqueIDs": 200,
+      "worstRelativeOverlap": 0.000011966855139260911,
+      "allContained": true
+    },
+    "exchange": true,
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 1.06984384342817,
+        "radius": 1.06984384342817,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0.7071067811865476,
+        "dy": -0.7071067811865476,
+        "edgeX": 0.9571345029239765,
+        "edgeY": -0.27,
+        "inputSpeed": 6.686524021426062,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 200,
+      "uniqueIDs": 200,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "visible": true
+  },
+  {
+    "label": "landscape",
+    "n": 500,
+    "viewport": [
+      844,
+      390
+    ],
+    "closedEdge": "mixing",
+    "wall": {
+      "insideRoundedWall": true,
+      "wallHits": 26690,
+      "uniqueIDs": 500,
+      "worstRelativeOverlap": 0.004750824297392217,
+      "allContained": true
+    },
+    "exchange": true,
+    "exit": {
+      "event": "pointermove",
+      "pointerId": 1,
+      "decision": {
+        "eligible": true,
+        "distance": 1.06984384342817,
+        "radius": 1.06984384342817,
+        "interacted": true,
+        "approach": 1,
+        "dx": 0.7071067811865476,
+        "dy": -0.7071067811865476,
+        "edgeX": 0.9571345029239765,
+        "edgeY": -0.27,
+        "inputSpeed": 6.686524021426062,
+        "fired": true
+      },
+      "physicsTime": 0,
+      "sourceContinuous": true,
+      "upEventsBefore": 0
+    },
+    "endpoint": {
+      "count": 500,
+      "uniqueIDs": 500,
+      "maxPixelError": 0
+    },
+    "ids": true,
+    "visible": true
+  }
+]
