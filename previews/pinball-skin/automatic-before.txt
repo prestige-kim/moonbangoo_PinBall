@@ -1,0 +1,121 @@
+✖ tube, shuffle, flight blends and race draw the identical chrome sprite at the same pixel size (8.834083ms)
+✖ 500 IDs and theme changes reuse a bounded resolution pyramid rather than 500 image copies (5.208ms)
+✖ one async photo load replaces all cached fallbacks and normalizes the transparent bounds (0.687625ms)
+✖ failed photo loading remains visible in the same neutral steel fallback (0.6055ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 57.707625
+
+✖ failing tests:
+
+test at tests/pinball-skin.test.cjs:11:1
+✖ tube, shuffle, flight blends and race draw the identical chrome sprite at the same pixel size (8.834083ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be reference-equal to "expected":
+  + actual - expected
+  ... Skipped lines
+  
+    {
+      clientHeight: 720,
+      clientWidth: 1280,
+      context: {
+        createImageData: [Function: createImageData],
+  ...
+        drawImage: [Function: drawImage],
+  +     fillStyle: 'rgba(255,248,216,.29)',
+  -     fillStyle: {
+  -       addColorStop: [Function: addColorStop]
+  -     },
+        getImageData: [Function: getImageData],
+        images: [],
+        lineWidth: 2,
+        measureText: [Function: measureText],
+  +     strokeStyle: 'rgba(255,255,250,.66)'
+  -     strokeStyle: 'rgba(255,251,240,.3)'
+      },
+      getContext: [Function: getContext],
+  +   height: 144,
+  +   width: 144
+  -   height: 128,
+  -   width: 128
+    }
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/pinball-skin.test.cjs:16:223)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Object],
+    expected: [Object],
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pinball-skin.test.cjs:18:1
+✖ 500 IDs and theme changes reuse a bounded resolution pyramid rather than 500 image copies (5.208ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(P.Pinball)
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/pinball-skin.test.cjs:19:114)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/pinball-skin.test.cjs:24:1
+✖ one async photo load replaces all cached fallbacks and normalizes the transparent bounds (0.687625ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(P.Pinball)
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/pinball-skin.test.cjs:25:26)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/pinball-skin.test.cjs:30:1
+✖ failed photo loading remains visible in the same neutral steel fallback (0.6055ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert(P.Pinball)
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/pinball-skin.test.cjs:31:26)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

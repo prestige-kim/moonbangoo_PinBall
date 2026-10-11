@@ -1,0 +1,19 @@
+PASS cinematic: 24 matched orbit frames, 24 stable wheel assemblies, 500 continuous discharges, 240 rendering frames, 1504 exact sprite handoffs; physical state and RNG unchanged.
+PASS welcome: still positions, frozen chamber clock and frozen race; intermediate photo axes match desktop and mobile.
+✔ tests/cinematic.test.cjs (10311.332083ms)
+✔ tube, shuffle, flight blends and race draw the identical chrome sprite at the same pixel size (3.001583ms)
+✔ 500 IDs and theme changes reuse a bounded resolution pyramid rather than 500 image copies (1.207167ms)
+✔ one async photo load replaces all cached fallbacks and normalizes the transparent bounds (0.827209ms)
+✔ failed photo loading remains visible in the same neutral steel fallback (0.617166ms)
+✔ a late photo redraws the static welcome once without advancing any marble (9.829708ms)
+✔ 6, 50, 200 and 500 marbles get bounded, viewport-safe name labels (4.381125ms)
+✔ finished display uses distinct recent slots without mutating rank, coordinates or arrival time (0.966083ms)
+✔ the classic board has no portal routes (0.07ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10318.651375
