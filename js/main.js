@@ -211,7 +211,7 @@
   function start(usePrevious) {
     if (!['setup', 'finished'].includes(status)) return;
     const next = usePrevious && runSettings ? Object.assign({}, runSettings, {
-      seed: settings.seed, theme: settings.theme, sound: settings.sound, volume: settings.volume,
+      seed: settings.seed, replayStart: null, theme: settings.theme, sound: settings.sound, volume: settings.volume,
       quality: settings.quality, reducedMotion: settings.reducedMotion, speed: settings.speed
     }) : normalize(ui.readSettings());
     let names;
@@ -221,16 +221,27 @@
         throw new Error('당첨 순위는 1부터 핀볼 수(' + names.length + ')까지의 정수로 입력해 주세요.');
       }
     } catch (error) { ui.showError(error.message); return; }
-    settings = next; runSettings = Object.assign({}, next, { seed: next.seed || newRoundSeed() });
+    const candidate = Object.assign({}, next, { seed: next.seed || newRoundSeed() });
+    const nextPhysics = makePhysics(candidate, names);
+    if (next.replayStart) {
+      try { P.restoreHandStart(nextPhysics, next.replayStart); }
+      catch (error) { ui.showError(error.message); return; }
+    }
+    settings = next; runSettings = candidate;
     ui.load(settings); save(settings); visualSettings();
     if (ui.rememberRound) ui.rememberRound(runSettings);
-    physics = makePhysics(runSettings, names);
+    physics = nextPhysics;
     resetEffects(); camera.reset(P.MAPS[runSettings.map]);
     ui.clearError(); ui.hideResults(); ui.hideCountdown(); ui.setLocked(true);
     winner = null; launchElapsed = 0; flightLanded = false;
     throwGate.cancel();
-    handScene.begin(physics, settings.reducedMotion);
-    setScene('mixing');
+    if (next.replayStart) {
+      camera.prepareLanding(P.MAPS[runSettings.map], physics);
+      setScene('running');
+    } else {
+      handScene.begin(physics, settings.reducedMotion);
+      setScene('mixing');
+    }
     accumulator = 0; leaderId = null; leadCooldown = 0; leadCandidateId = null; leadCandidateAge = 0; leadNotices = 0; photoFinish = false;
     finalRanking = []; resultDelay = 0; resultShown = false; stoppedEarly = false;
     diagnostics.leadChanges = 0; diagnostics.photoFinishes = 0; diagnostics.events = {};
@@ -240,6 +251,8 @@
     if (status !== 'mixing' || handScene.launchDecision) return;
     handScene.launchDecision = decision;
     cinematic.commitHandSlots(physics, handScene.shuffle.bodies);
+    runSettings.replayStart = JSON.parse(JSON.stringify(physics.handStart));
+    if (ui.rememberRound) ui.rememberRound(runSettings);
     camera.viewport = ui.getViewport(); camera.prepareLanding(P.MAPS[runSettings.map], physics);
     handScene.camera = camera;
     flightDuration = settings.reducedMotion ? 1.2 : 2.8;

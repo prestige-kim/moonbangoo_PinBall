@@ -167,7 +167,8 @@
       gravity: Number($('gravity').value), restitution: Number($('restitution').value),
       speed: Number($('speed').value), sound: $('sound').checked, volume: Number($('volume').value),
       quality: $('quality').value, seed: $('seed').value, skills: $('skills').checked,
-      reducedMotion: $('reduced-motion').checked
+      reducedMotion: $('reduced-motion').checked,
+      replayStart: $('seed').value && this.lastRound && $('seed').value === this.lastRound.seed ? this.lastRound.replayStart || null : null
     };
   };
   UI.prototype.load = function (settings) {
@@ -261,8 +262,8 @@
     $('seed-auto').setAttribute('aria-pressed', String(!replay)); $('seed-auto').classList.toggle('active', !replay);
     $('seed-previous').setAttribute('aria-pressed', String(replay)); $('seed-previous').classList.toggle('active', replay);
     $('seed-auto').disabled = this.locked;
-    $('seed-previous').disabled = this.locked || !this.lastRound;
-    $('seed-note').textContent = replay ? '직전 시드·설정을 불러왔습니다. 손으로 섞는 동작에 따라 결과는 달라질 수 있습니다.' : '매번 새로운 출발로 시작합니다.';
+    $('seed-previous').disabled = this.locked || !this.lastRound || !this.lastRound.replayStart;
+    $('seed-note').textContent = replay ? '직전 시드·멤버·설정과 실제 출발 위치를 복원해 같은 결과를 재현합니다.' : '매번 새로운 출발로 시작합니다.';
   };
   UI.prototype.rememberRound = function (settings) {
     this.lastRound = Object.assign({}, settings);

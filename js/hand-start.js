@@ -4,6 +4,21 @@
   // Project individual positions into the obstacle-free spawn area; never
   // restore seeded lanes or consume the race random stream during handoff.
   const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+  const signature=physics=>JSON.stringify(['release-replay-v1',physics.map,P.PHYSICS_TUNING,physics.radius,physics.gravity,physics.restitution,physics.skills]);
+  P.restoreHandStart=function(physics,record){
+    if(physics.time!==0||physics.ticks!==0||!record||record.version!==1||record.seed!==physics.seed||record.signature!==signature(physics))throw new Error('직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요.');
+    const spawn=physics.map.spawn,ids=new Set();
+    if(!Array.isArray(record.starts)||record.starts.length!==physics.marbles.length)throw new Error('출발 기록의 핀볼 수가 다릅니다.');
+    record.starts.forEach((start,i)=>{
+      const r=physics.marbles[i].r;
+      if(!start||start.id!==physics.marbles[i].id||ids.has(start.id)||![start.x,start.y,start.vx,start.vy].every(Number.isFinite)||start.x<spawn.x+r||start.x>spawn.x+spawn.width-r||start.y<spawn.y+r||start.y>spawn.y+spawn.height-r||Math.hypot(start.vx,start.vy)>120.000001)throw new Error('출발 기록의 ID 또는 위치·속도가 올바르지 않습니다.');
+      ids.add(start.id);
+    });
+    const copy=JSON.parse(JSON.stringify(record));
+    copy.starts.forEach((s,i)=>Object.assign(physics.marbles[i],{x:s.x,y:s.y,vx:s.vx,vy:s.vy,_anchorY:s.y,_stuckAt:0,_rescues:0}));
+    physics.handStart=copy;
+    return copy;
+  };
   P.commitHandStart=function(physics,bodies){
     if(physics.handStart)return physics.handStart;
     if(physics.time!==0||physics.ticks!==0)throw new Error('경기 시작 후 출발 위치를 변경할 수 없습니다.');
@@ -53,7 +68,7 @@
       return {id:p.id,x:p.x,y:p.y,vx,vy};
     });
     starts.forEach((p,i)=>Object.assign(physics.marbles[i],{x:p.x,y:p.y,vx:p.vx,vy:p.vy,_anchorY:p.y,_stuckAt:0,_rescues:0}));
-    physics.handStart={version:1,seed:physics.seed,source,starts,transform:{sx,sy,cx,cy,mx,my},correctionPasses,denseFit};
+    physics.handStart={version:1,seed:physics.seed,signature:signature(physics),source,starts,transform:{sx,sy,cx,cy,mx,my},correctionPasses,denseFit};
     return physics.handStart;
   };
 })(window.CosmicPinball=window.CosmicPinball||{});
