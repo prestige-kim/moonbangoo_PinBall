@@ -1,0 +1,27 @@
+✖ default small helper and setting labels meet 4.5:1 against paper and panel (2.575917ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 80.592708
+
+✖ failing tests:
+
+test at qa/contrast.test.cjs:4:1
+✖ default small helper and setting labels meet 4.5:1 against paper and panel (2.575917ms)
+  AssertionError [ERR_ASSERTION]: muted #8A7760 on #F4EDE0
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/qa/contrast.test.cjs:4:381)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

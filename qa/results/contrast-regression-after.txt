@@ -1,0 +1,10 @@
+✔ default small helper and setting labels meet 4.5:1 against paper and panel (1.338125ms)
+✔ the shuffle stylesheet uses its content revision so old noninteractive CSS cannot stay cached (1.909292ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 80.310625
