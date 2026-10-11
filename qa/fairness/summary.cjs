@@ -1,0 +1,3 @@
+'use strict';
+const fs=require('node:fs');
+for(const phase of ['baseline','candidate-a','candidate-b','final','screen','duration']){const f='qa/fairness/results/'+phase+'.json';if(!fs.existsSync(f))continue;const r=JSON.parse(fs.readFileSync(f));console.log(phase,'wallSeconds',(Date.parse(r.finished)-Date.parse(r.started))/1000);for(const c of r.cases){const s=c.summary;console.log(JSON.stringify({groups:c.config.groups,protocol:c.protocol,skills:!!c.config.skills,radius:c.config.radius,restitution:c.config.restitution,n:s.runs,id:{p:s.id.pValue,maxpp:s.id.maxDeviationPercentagePoints,pass:s.id.pass},group:{p:s.group.pValue,maxpp:s.group.maxDeviationPercentagePoints,pass:s.group.pass},completed:s.completed,errors:s.errors,time:s.time}));}}
