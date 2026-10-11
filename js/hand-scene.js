@@ -4,7 +4,7 @@
   const mix = (a, b, t) => a + (b - a) * t;
   // Seconds, independent of render frame count. Reduced motion keeps the same
   // ID handoff and collision simulation, with a smaller camera/tube movement.
-  const POUR = { duration: 3.15, tilt: .65, firstRelease: .72, releaseSpan: 1.25, roll: .48, fall: .65, withdraw: 2.65 };
+  const POUR = { duration: 3.15, tilt: .65, firstRelease: .72, releaseSpan: 1.25, roll: .48, fall: .65, gravity: .72, withdraw: 2.65 };
   class HandScene {
     constructor(cinematic) { this.cinema = cinematic; this.shuffle = null; }
     // A shared visual camera pulls back during extraction, then stays steady
@@ -30,7 +30,7 @@
         const body = this.shuffle.bodies[i];
         const release = POUR.firstRelease + POUR.releaseSpan * rank / Math.max(1, entries.length - 1);
         const arrival = Math.ceil((release + POUR.fall) * 120) / 120;
-        this.pours[i] = { release, arrival, x: body.x * .84, y: body.y * .58 + .08 };
+        this.pours[i] = { release, arrival };
         body.pouring = true;
       });
       // Freeze choreography parameters for this pour. Toggling the setting
@@ -56,7 +56,8 @@
       return { x: mix((frame.x - area.x) / area.s, -.11, lift) - leave * (this.pourReduced ? .035 : .18),
         y: mix((frame.y - area.y) / area.s, -.25, lift) - leave * (this.pourReduced ? .04 : .16),
         length, thickness: mix(frame.thickness / area.s, .13, lift), rotation,
-        alpha: 1 - leave, opening: P.CINEMA.easeCamera((time - .2) / .35) };
+        alpha: 1 - leave, opening: P.CINEMA.easeCamera((time - .14) / .46),
+        lidAngle: 1.35 * P.CINEMA.easeCamera((time - .14) / .46) };
     }
     tubePose(i, time, area) {
       const rig = this.rigAt(time, area), local = this.sources[i], pour = this.pours[i];
@@ -80,16 +81,13 @@
       }
       const { start, vx, vy } = pour.path;
       const duration = pour.arrival - pour.release, u = clamp((time - pour.release) / duration);
-      const endVx = vx * .12, endVy = .12 + Math.max(0, pour.y - start.y) * .6;
-      const h0 = 2*u*u*u - 3*u*u + 1, h1 = u*u*u - 2*u*u + u;
-      const h2 = -2*u*u*u + 3*u*u, h3 = u*u*u - u*u;
-      const d0 = (6*u*u - 6*u) / duration, d1 = 3*u*u - 4*u + 1;
-      const d2 = (-6*u*u + 6*u) / duration, d3 = 3*u*u - 2*u;
+      const age = u * duration;
+      // Once clear of the lip, no spline attracts a ball to an assigned point.
+      // Its exit tangent continues horizontally; gravity alone accelerates y.
       const round = P.CINEMA.easeCamera(u);
-      return { x: h0*start.x + h1*duration*vx + h2*pour.x + h3*duration*endVx,
-        y: h0*start.y + h1*duration*vy + h2*pour.y + h3*duration*endVy,
-        vx: d0*start.x + d1*vx + d2*pour.x + d3*endVx,
-        vy: d0*start.y + d1*vy + d2*pour.y + d3*endVy,
+      return { x: start.x + vx * age,
+        y: start.y + vy * age + .5 * POUR.gravity * age * age,
+        vx, vy: vy + POUR.gravity * age,
         r: mix(start.r, this.shuffle.bodies[i].r * .84, round),
         aspect: mix(start.aspect, 1, round), orientation: start.orientation * (1-round) };
     }
@@ -98,15 +96,25 @@
       if (rig.alpha <= .001) return;
       const views = this.views(area), frame = views.frame;
       ctx.save(); ctx.translate(area.x + rig.x * area.s, area.y + rig.y * area.s); ctx.rotate(rig.rotation);
-      // Retract the closed tip as the tube opens; the same aperture is where
-      // the rolling marble centres emerge. No new cannon/wheel asset is used.
-      const mouth = mix(1.1, .49, rig.opening) * rig.length * area.s;
+      // Keep the glass aperture fixed. The original gold cap is a separate
+      // hinged slice of the same plate, rather than a disappearing clip wipe.
+      const mouth = .49 * rig.length * area.s;
       ctx.beginPath(); ctx.rect(-area.s * 3, -area.s * 3, area.s * 3 + mouth, area.s * 6); ctx.clip();
       ctx.scale(rig.length * area.s / frame.length, rig.thickness * area.s / frame.thickness);
       ctx.rotate(-frame.rotation); ctx.translate(-frame.x, -frame.y);
       if (glass) c.drawGlass(views.front, views.angle, 0, 0, rig.alpha, 0);
       else c.drawPlate('front', views.front, rig.alpha);
       ctx.restore();
+      if (glass) {
+        const hingeY = -rig.thickness * .43 * area.s;
+        ctx.save();ctx.translate(area.x+rig.x*area.s,area.y+rig.y*area.s);ctx.rotate(rig.rotation);
+        ctx.translate(mouth,hingeY);ctx.rotate(-rig.lidAngle);ctx.translate(-mouth,-hingeY);
+        ctx.beginPath();ctx.rect(mouth,-area.s*3,area.s*3,area.s*6);ctx.clip();
+        ctx.scale(rig.length*area.s/frame.length,rig.thickness*area.s/frame.thickness);
+        ctx.rotate(-frame.rotation);ctx.translate(-frame.x,-frame.y);c.drawPlate('front',views.front,rig.alpha);ctx.restore();
+        ctx.save();ctx.globalAlpha=rig.alpha;ctx.translate(area.x+rig.x*area.s,area.y+rig.y*area.s);ctx.rotate(rig.rotation);
+        ctx.fillStyle='#b79a61';ctx.beginPath();ctx.arc(mouth,hingeY,Math.max(1,area.s*.0035),0,Math.PI*2);ctx.fill();ctx.restore();
+      }
       if (glass && rig.opening > 0) {
         ctx.save(); ctx.globalAlpha = rig.alpha * rig.opening;
         ctx.translate(area.x + rig.x * area.s, area.y + rig.y * area.s); ctx.rotate(rig.rotation);

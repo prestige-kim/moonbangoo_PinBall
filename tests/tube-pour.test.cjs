@@ -74,3 +74,9 @@ test('deposition hands the exact falling location and velocity to the existing c
   finish(s.scene);assert.equal(seen.size,n);
  }
 });
+test('free flight has constant horizontal velocity and one positive gravity acceleration',()=>{
+ for(const n of counts){const s=setup(n),a=s.scene.area();for(let i=0;i<n;i++){const p=s.scene.pours[i],t=p.release+.10,h=.01,left=s.scene.fallingPose(i,t-h,a),mid=s.scene.fallingPose(i,t,a),right=s.scene.fallingPose(i,t+h,a);assert(Math.abs(left.vx-right.vx)<1e-8,'no invisible horizontal steering');const g=(right.vy-left.vy)/(2*h);assert(g>.1&&g<2,'bounded downward gravity');assert(Math.abs((right.y-2*mid.y+left.y)/(h*h)-g)<1e-7);}}
+});
+test('the hinged lid is fully open before the first rolling ball leaves',()=>{
+ const s=setup(6),a=s.scene.area(),first=Math.min(...s.scene.pours.map(p=>p.release));assert.equal(s.scene.rigAt(0,a).lidAngle,0);assert(s.scene.rigAt(first,a).lidAngle>1);assert(s.scene.rigAt(first-.05,a).opening>.99);
+});

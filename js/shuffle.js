@@ -196,8 +196,8 @@
           b.x+=b.vx*h;b.y+=b.vy*h;b.spin+=b.vx*h/b.r;this.wall(b);
         }
         let pairs=this.pairs();
-        for(let pass=0;pass<8;pass++) {
-          if(pass===3||pass===6)pairs=this.pairs();
+        for(let pass=0;pass<12;pass++) {
+          if(pass===3||pass===6||pass===9)pairs=this.pairs();
           const worst=this.contacts(pairs);
           if(worst===0 || pass>=1&&worst<.012)break;
         }

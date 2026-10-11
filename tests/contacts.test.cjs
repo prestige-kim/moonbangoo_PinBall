@@ -124,3 +124,13 @@ test('classic: 500 balls leave no deep obstacle overlap after each physics tick'
   assert.ok(p.complete && p.finished.length === 500, 'all 500 balls finish the audited race');
   assert.ok(worst < .1, `remaining penetration ${worst}: ${JSON.stringify(where)}`);
 });
+
+test('ordinary equal-mass contacts conserve momentum and dissipate kinetic energy',()=>{
+ for(const angle of [0,.7,1.6,2.4]){const p=new P.Physics({map:scene([]),names:names(2),seed:'ENERGY',radius:11}),[a,b]=p.marbles,nx=Math.cos(angle),ny=Math.sin(angle);Object.assign(a,{x:400,y:900,vx:nx*90-ny*20,vy:ny*90+nx*20});Object.assign(b,{x:400+nx*21,y:900+ny*21,vx:-nx*40+ny*10,vy:-ny*40-nx*10});const momentum=[a.vx+b.vx,a.vy+b.vy],energy=a.vx*a.vx+a.vy*a.vy+b.vx*b.vx+b.vy*b.vy;p._pairs();assert(Math.abs(a.vx+b.vx-momentum[0])<1e-8);assert(Math.abs(a.vy+b.vy-momentum[1])<1e-8);assert(a.vx*a.vx+a.vy*a.vy+b.vx*b.vx+b.vy*b.vy<=energy+1e-8);assert(Math.hypot(a.x-b.x,a.y-b.y)>=a.r+b.r);}
+});
+test('ordinary static impacts use restitution while moving surfaces use relative velocity',()=>{
+ const p=game([]),m=p.marbles[0];Object.assign(m,{vx:-120,vy:25});p._respond(m,1,0,null,0,0);assert(Math.abs(m.vx-120*p.restitution)<1e-8);assert.equal(m.vy,25);Object.assign(m,{vx:-120,vy:25});p._respond(m,1,0,null,30,0);assert(Math.abs(m.vx-(30+150*p.restitution))<1e-8);assert.equal(m.vy,25);
+});
+test('an unobstructed race step applies configured gravity at the fixed 120Hz clock',()=>{
+ const p=game([]),m=p.marbles[0];Object.assign(m,{x:500,y:1000,vx:0,vy:0});p.step();assert(Math.abs(m.vy-p.gravity/120)<1e-8);assert(Math.abs(m.y-(1000+p.gravity/120/120))<1e-8);assert.equal(p.time,1/120);
+});
