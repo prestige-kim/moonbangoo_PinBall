@@ -13,9 +13,9 @@
   P.MAPS = {
     classic: {
       id: 'classic', name: '자개 핀 보드', subtitle: 'CLASSIC PEARL BOARD',
-      width: 1000, height: 7160,
+      width: 1000, height: 11200,
       spawn: { x: 12, y: 50, width: 976, height: 680 },
-      finish: { y: 6960 }, obstacles: []
+      finish: { y: 11000 }, obstacles: []
     }
   };
 
@@ -61,4 +61,69 @@
       });
     }
   })();
+  // Width and center vary together so the course itself becomes a winding chute.
+  var map = P.MAPS.classic;
+  map.channel = [
+    { y: 2700, center: 500, width: 928 },
+    { y: 3000, center: 600, width: 480 },
+    { y: 3400, center: 380, width: 350 },
+    { y: 3800, center: 630, width: 320 },
+    { y: 4200, center: 370, width: 360 },
+    { y: 4600, center: 590, width: 420 },
+    { y: 5000, center: 500, width: 928 }
+  ];
+  P.courseBounds = function (map, y) {
+    var rail = P.boardBounds(map), nodes = map.channel || [];
+    for (var i = 1; i < nodes.length; i++) {
+      var a = nodes[i-1], b = nodes[i];
+      if (y < a.y || y > b.y) continue;
+      var t = (y-a.y)/(b.y-a.y), center = a.center+(b.center-a.center)*t, width = a.width+(b.width-a.width)*t;
+      return { left: center-width/2, right: center+width/2 };
+    }
+    return { left: rail.left, right: rail.right };
+  };
+  // Clear obstacles from the chute to leave room for large groups and turns.
+  map.obstacles = classic = classic.filter(function (o) {
+    var top = o.y === undefined ? Math.min(o.y1,o.y2) : o.y-(o.r||0);
+    var bottom = o.y === undefined ? Math.max(o.y1,o.y2) : o.y+(o.r||0);
+    return bottom < 2700 || top > 5000;
+  });
+  var left = map.channel.map(function (n) { return {x:n.center-n.width/2,y:n.y}; });
+  var right = map.channel.map(function (n) { return {x:n.center+n.width/2,y:n.y}; });
+  // Filled collision polygons close the side regions; there is no bypass behind a rail.
+  classic.push({type:'polygon',id:'channel-left',channelWall:true,points:left.concat([{x:36,y:5000},{x:36,y:2700}])},
+    {type:'polygon',id:'channel-right',channelWall:true,points:right.concat([{x:964,y:5000},{x:964,y:2700}])});
+  // Shared physical obstacles: timing and contact, rather than rank, decide the route.
+  [1850, 3350, 4850, 6400].forEach(function (y, section) {
+    [260, 740].forEach(function (x, side) {
+      var channel = P.courseBounds(map, y + side * 130);
+      var inChannel = y >= 2700 && y <= 5000;
+      if (inChannel) x = channel.left + (channel.right-channel.left)*(side ? .7 : .3);
+      classic.push({ type: 'rotor', id: 'race-rotor-' + section + '-' + side,
+        x: x, y: y + side * 130, length: inChannel ? 110 : 350, thickness: 9,
+        angle: (section + side) * .75, speed: (side ? -1 : 1) * (1.3 + section * .15) });
+    });
+  });
+  // A longer final act mixes sweeping gates, pins and counter-rotating paddles.
+  for (var row = 0; row < 10; row++) {
+    for (var col = 0; col < 8; col++) {
+      var x = 110 + col * 110 + (row % 2 ? 40 : 0);
+      classic.push({type:'pin',id:'extension-pin-'+row+'-'+col,x:x,y:7300+row*350,r:10});
+    }
+  }
+  [7600, 8450, 9300, 10150].forEach(function (y, index) {
+    classic.push({type:'moving',id:'sweep-gate-'+index,x:index%2?680:320,y:y,
+      axis:'x',amplitude:110,length:310,thickness:8,angle:index%2?-.3:.3,speed:.85+index*.12,phase:index*1.7});
+    classic.push({type:'bumper',id:'extension-bumper-'+index,x:index%2?290:710,y:y+230,r:32,power:100});
+  });
+  [8100, 9750, 10580].forEach(function (y, index) {
+    [270,730].forEach(function (x, side) {
+      classic.push({type:'rotor',id:'final-rotor-'+index+'-'+side,x:x,y:y+side*130,
+        length:320,thickness:8,angle:index*.6,speed:side?-1.2:1.2});
+    });
+  });
+
+  classic.push({type:'bumper',id:'final-bumper',x:500,y:10740,r:30,power:90},
+    {type:'pin',id:'final-pin-left',x:270,y:10700,r:12},
+    {type:'pin',id:'final-pin-right',x:730,y:10700,r:12});
 })(window);

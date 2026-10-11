@@ -38,7 +38,7 @@ function scene(width = 400, height = 800) {
   }
   const nodes = new Map();
   const node = id => { if (!nodes.has(id)) nodes.set(id, new Node(id)); return nodes.get(id); };
-  const controls = ['panel-close', 'names', 'advanced-summary', 'radius', 'seed', 'start-button'].map(node);
+  const controls = ['panel-close', 'group-red', 'advanced-summary', 'radius', 'seed', 'start-button'].map(node);
   node('radius').hidden = true; node('seed').hidden = true;
   const main = node('main'); main.children = ['setup-panel', 'stage-heading', 'race-panel', 'camera-hints', 'mobile-setup-button', 'countdown', 'toast-stack'].map(node);
   document = new EventTarget(); document.body = node('body'); document.activeElement = null;
@@ -69,9 +69,9 @@ test('intro exposes only its welcome action and keeps the settings ancestor avai
   assert.equal(enters, 1);
 });
 
-test('setup reuses the real panel as an accessible centered dialog and focuses participant input', () => {
+test('setup reuses the real panel as an accessible centered dialog and focuses the first color button', () => {
   const s = scene(); s.ui.setScene('setup');
-  assert.equal(s.document.activeElement.id, 'names');
+  assert.equal(s.document.activeElement.id, 'group-red');
   assert.equal(s.node('main').inert, false, 'the panel must not inherit an inert main');
   assert.equal(s.node('setup-panel').inert, false); assert.equal(s.node('setup-panel').attributes.get('role'), 'dialog');
   assert.equal(s.node('setup-panel').attributes.get('aria-modal'), 'true');
@@ -90,7 +90,7 @@ test('close and Escape return setup to intro and restore welcome focus', () => {
 
 test('setup Tab wraps visible enabled controls and skips closed advanced fields', () => {
   const s = scene(); s.ui.setScene('setup');
-  assert.deepEqual(Array.from(s.ui.getSetupControls(), item => item.id), ['panel-close', 'names', 'advanced-summary', 'start-button']);
+  assert.deepEqual(Array.from(s.ui.getSetupControls(), item => item.id), ['panel-close', 'group-red', 'advanced-summary', 'start-button']);
   s.node('start-button').focus(); const tab = s.key('Tab');
   assert.equal(tab.defaultPrevented, true); assert.equal(s.document.activeElement.id, 'panel-close');
   const back = s.key('Tab', true); assert.equal(back.defaultPrevented, true); assert.equal(s.document.activeElement.id, 'start-button');
@@ -149,4 +149,20 @@ test('short mobile landscape excludes the race HUD while portrait preserves boar
   assert.equal(JSON.stringify(views[0]), JSON.stringify(views[1]), 'flight-to-game handoff has one viewport');
   assert.ok(views[1].x + views[1].w <= landscape.node('race-panel').getBoundingClientRect().left - 18,
     'leading marble can be tracked beside the HUD');
+});
+
+
+test('bottom stop action is hidden outside a race and emits only while available', () => {
+  const s = scene(); let stops = 0; s.ui.on('stop', () => stops++);
+  assert.equal(s.node('stop-button').hidden, true);
+  s.ui.setStopAvailable(true); s.emit('stop-button', 'click'); assert.equal(stops, 0);
+  s.ui.setScene('running'); s.ui.setStopAvailable(false);
+  assert.equal(s.node('stop-button').hidden, true);
+  s.ui.setStopAvailable(true); assert.equal(s.node('stop-button').hidden, false);
+  assert.equal(s.node('body').classList.contains('can-stop'), true);
+  s.emit('stop-button', 'click'); assert.equal(stops, 1);
+  s.ui.setScene('finished'); assert.equal(s.node('stop-button').hidden, true);
+  assert.equal(s.node('body').classList.contains('can-stop'), false);
+  s.emit('stop-button', 'click'); assert.equal(stops, 1);
+  s.ui.setScene('setup'); assert.equal(s.node('stop-button').hidden, true);
 });

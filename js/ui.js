@@ -24,6 +24,7 @@
     this.theme = 'cosmic';
     this.locked = false;
     this.rankingNodes = new Map();
+    this.liveLeader = new P.LiveLeader();
     this.countAnimation = 0;
     this.displayCount = 6;
     this.totalCount = 6;
@@ -37,6 +38,12 @@
     this.panelOpen = false;
     this.lastMobile = global.innerWidth <= 850;
     this.boundResize = this.onResize.bind(this);
+    this.groupCounts = {};
+    this.lastRound = null;
+    try {
+      var previous = JSON.parse(localStorage.getItem('mungbanggu-pinball-last-round') || 'null');
+      if (previous && typeof previous.seed === 'string' && previous.seed && P.parseNames(previous.names).length) this.lastRound = previous;
+    } catch (_) {}
     this.bind();
     $('reduced-motion').checked = !!(global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches);
     document.documentElement.classList.toggle('reduced-motion', $('reduced-motion').checked);
@@ -62,8 +69,44 @@
       if (!self.isGameScene() && !event.ctrlKey && !event.metaKey && !event.altKey && event.key.toLowerCase() === 'f') { event.preventDefault(); event.stopImmediatePropagation(); }
     }, true);
     this.bindSceneKeys();
+    $('color-groups').addEventListener('click', function (event) {
+      var button = event.target.closest('[data-color-group]');
+      if (!button || self.locked) return;
+      var id = button.dataset.colorGroup;
+      if (self.groupCounts[id]) delete self.groupCounts[id];
+      else if (self.groupTotal() < 500) self.groupCounts[id] = 1;
+      self.commitGroups();
+    });
+    $('group-quantities').addEventListener('click', function (event) {
+      var button = event.target.closest('[data-quantity]');
+      if (!button || self.locked) return;
+      var id = button.dataset.group, value = self.groupCounts[id] + Number(button.dataset.quantity);
+      if (value >= 1 && self.groupTotal() + Number(button.dataset.quantity) <= 500) self.groupCounts[id] = value;
+      self.commitGroups();
+    });
+    $('group-quantities').addEventListener('change', function (event) {
+      if (self.locked || !event.target.dataset.group) return;
+      self.groupCounts[event.target.dataset.group] = Number(event.target.value);
+      self.commitGroups();
+    });
+    ['rank-minus', 'rank-plus'].forEach(function (id) {
+      $(id).addEventListener('click', function () {
+        if (self.locked) return;
+        $('rank-n').value = Math.max(1, Math.min(self.groupTotal(), Number($('rank-n').value) + (id === 'rank-plus' ? 1 : -1)));
+        $('seed').value = ''; self.syncSeed(); self.updateParticipants(); self.emit('change', self.readSettings());
+      });
+    });
+    $('seed-auto').addEventListener('click', function () {
+      if (self.locked) return;
+      $('seed').value = ''; self.syncSeed(); self.emit('change', self.readSettings());
+    });
+    $('seed-previous').addEventListener('click', function () {
+      if (self.locked || !self.lastRound) return;
+      self.load(self.lastRound); self.emit('change', self.readSettings());
+    });
     $('settings-form').addEventListener('submit', function (event) { event.preventDefault(); if (!self.locked && (self.scene === 'setup' || self.isGameScene())) self.emit('start'); });
-    ['shuffle', 'reset', 'restart', 'replay'].forEach(function (action) {
+    ['reset', 'restart', 'replay'].forEach(function (action) {
+      if (!$(action + '-button')) return;
       $(action + '-button').addEventListener('click', function () {
         if (action === 'restart' || action === 'replay') self.hideResults();
         if (action === 'replay' && global.innerWidth <= 850) { self.panelOpen = true; self.updatePanel(); }
@@ -73,11 +116,12 @@
     document.querySelectorAll('[data-rule]').forEach(function (button) {
       button.addEventListener('click', function () {
         if (self.locked) return;
-        self.rule = button.dataset.rule; self.syncSelections(); self.clearError(); self.emit('change', self.readSettings());
+        self.rule = button.dataset.rule; $('seed').value = ''; self.syncSeed(); self.syncSelections(); self.clearError(); self.emit('change', self.readSettings());
       });
     });
 
     $('settings-form').addEventListener('input', function (event) {
+      $('seed').value = ''; self.syncSeed();
       self.updateOutputs();
       if (event.target.id === 'names') { self.updateParticipants(); self.clearError(); }
       if (event.target.id === 'rank-n') self.clearError();
@@ -86,6 +130,8 @@
       self.emit('change', self.readSettings());
     });
     $('settings-form').addEventListener('change', function (event) {
+      if (event.target.closest('[data-group]')) return;
+      $('seed').value = ''; self.syncSeed();
       self.updateOutputs(); self.updateParticipants();
       if (event.target.id === 'sound') self.syncSound();
       self.emit('change', self.readSettings());
@@ -99,6 +145,7 @@
         self.panelOpen = id === 'panel-close' ? false : !self.panelOpen; self.updatePanel();
       });
     });
+    $('stop-button').addEventListener('click', function () { if (self.scene === 'running' && !$('stop-button').hidden) self.emit('stop'); });
     $('follow-button').addEventListener('click', function () { self.setFollowing(!self.following); self.emit('follow'); });
     $('game-canvas').addEventListener('followchange', function (event) { self.setFollowing(!!event.detail); });
     $('results-close').addEventListener('click', function () { self.hideResults(); });
@@ -128,6 +175,11 @@
     ['names', 'radius', 'gravity', 'restitution', 'speed', 'volume', 'quality', 'seed'].forEach(function (id) {
       if (settings[id] !== undefined) $(id).value = settings[id];
     });
+    this.groupCounts = P.colorSelection(settings.names);
+    $('names').value = P.colorNames(this.groupCounts);
+    this.renderGroups(); this.updateParticipants();
+    if (!this.lastRound) $('seed').value = '';
+    this.syncSeed();
     if (settings.rankN !== undefined) $('rank-n').value = settings.rankN;
     ['sound', 'skills'].forEach(function (id) { if (settings[id] !== undefined) $(id).checked = !!settings[id]; });
     if (settings.reducedMotion !== undefined) $('reduced-motion').checked = !!settings.reducedMotion;
@@ -166,14 +218,68 @@
     $('volume-value').textContent = Math.round(Number($('volume').value) * 100) + '%';
     document.documentElement.classList.toggle('reduced-motion', $('reduced-motion').checked);
   };
+  UI.prototype.groupTotal = function () {
+    return Object.values(this.groupCounts || {}).reduce(function (sum, count) { return sum + count; }, 0);
+  };
+  UI.prototype.renderGroups = function () {
+    var self = this, focus = document.activeElement && document.activeElement.id;
+    $('color-groups').replaceChildren(); $('group-quantities').replaceChildren();
+    P.COLOR_GROUPS.forEach(function (group) {
+      var count = self.groupCounts[group.id] || 0;
+      var button = document.createElement('button'); button.type = 'button'; button.id = 'group-' + group.id;
+      button.dataset.colorGroup = group.id; button.className = 'color-group';
+      button.setAttribute('aria-pressed', String(count > 0)); button.disabled = self.locked || (!count && self.groupTotal() >= 500);
+      var swatch = document.createElement('span'); swatch.className = 'color-swatch'; swatch.style.backgroundColor = group.color; swatch.setAttribute('aria-hidden', 'true');
+      button.append(swatch, document.createTextNode(group.name)); $('color-groups').append(button);
+      if (!count) return;
+      var row = document.createElement('div'); row.className = 'group-quantity';
+      var label = document.createElement('label'); label.htmlFor = 'quantity-' + group.id; label.textContent = group.name;
+      var control = document.createElement('div'); control.className = 'quantity-control';
+      [-1, 1].forEach(function (delta) {
+        var step = document.createElement('button'); step.type = 'button'; step.id = 'quantity-' + group.id + (delta < 0 ? '-minus' : '-plus');
+        step.dataset.group = group.id; step.dataset.quantity = delta; step.textContent = delta < 0 ? '−' : '+';
+        step.setAttribute('aria-label', group.name + (delta < 0 ? ' 수량 줄이기' : ' 수량 늘리기'));
+        step.disabled = self.locked || (delta < 0 ? count === 1 : self.groupTotal() >= 500);
+        if (delta < 0) control.append(step);
+        else {
+          var select = document.createElement('select'); select.id = 'quantity-' + group.id; select.dataset.group = group.id; select.disabled = self.locked;
+          for (var n = 1; n <= 500 - self.groupTotal() + count; n++) { var option = document.createElement('option'); option.value = n; option.textContent = n + '개'; select.append(option); }
+          select.value = count; control.append(select, step);
+        }
+      });
+      row.append(label, control); $('group-quantities').append(row);
+    });
+    if (focus && $(focus) && !$(focus).disabled) $(focus).focus({ preventScroll: true });
+  };
+  UI.prototype.commitGroups = function () {
+    $('names').value = P.colorNames(this.groupCounts);
+    $('seed').value = ''; this.syncSeed();
+    this.renderGroups(); this.clearError(); this.updateParticipants(); this.emit('change', this.readSettings());
+  };
+  UI.prototype.syncSeed = function () {
+    var replay = !!$('seed').value;
+    $('seed-auto').setAttribute('aria-pressed', String(!replay)); $('seed-auto').classList.toggle('active', !replay);
+    $('seed-previous').setAttribute('aria-pressed', String(replay)); $('seed-previous').classList.toggle('active', replay);
+    $('seed-auto').disabled = this.locked;
+    $('seed-previous').disabled = this.locked || !this.lastRound;
+    $('seed-note').textContent = replay ? '직전 시드·설정을 불러왔습니다. 손으로 섞는 동작에 따라 결과는 달라질 수 있습니다.' : '매번 새로운 출발로 시작합니다.';
+  };
+  UI.prototype.rememberRound = function (settings) {
+    this.lastRound = Object.assign({}, settings);
+    try { localStorage.setItem('mungbanggu-pinball-last-round', JSON.stringify(this.lastRound)); } catch (_) {}
+    this.syncSeed();
+  };
   UI.prototype.updateParticipants = function () {
-    var count = 0;
-    try {
-      if (P.parseNames) count = P.parseNames($('names').value).length;
-      else $('names').value.split(/[,\n]+/).forEach(function (entry) { var match = entry.trim().match(/^(.*?)(?:\*(\d+))?$/); if (match && match[1]) count += match[2] ? Number(match[2]) : 1; });
-    } catch (_) { count = null; }
-    $('participant-count').textContent = count === null ? '—' : count;
-    $('mobile-count').textContent = count === null ? '—' : count;
+    var count = this.groupTotal(), selected = Object.keys(this.groupCounts || {}).length;
+    $('participant-count').textContent = count; $('mobile-count').textContent = count;
+    $('names-help').textContent = selected + '개 그룹 · 총 ' + count + '개 / 최대 500개';
+    var rank = Math.max(1, Math.min(count || 1, Number($('rank-n').value) || 1));
+    $('rank-n').replaceChildren();
+    for (var n = 1; n <= Math.max(1, count); n++) { var option = document.createElement('option'); option.value = n; option.textContent = n; $('rank-n').append(option); }
+    $('rank-n').value = rank;
+    $('rank-minus').disabled = this.locked || rank <= 1; $('rank-plus').disabled = this.locked || rank >= count;
+    $('start-button').disabled = this.locked || !count;
+    if (!this.locked) $('start-button').querySelector('small').textContent = count ? '총 ' + count + '개의 핀볼을 섞고 발사합니다' : '색상 그룹을 하나 이상 선택해 주세요';
   };
   UI.prototype.updateStartCopy = function () {
     var stages = {
@@ -182,14 +288,17 @@
       flight: ['핀볼을 발사하고 있어요', '핀볼이 도착하면 놀이판이 펼쳐집니다'],
       running: ['게임 진행 중', '마지막 핀볼까지 천천히 지켜봐 주세요']
     };
-    var copy = this.locked ? (stages[this.scene] || stages.mixing) : ['게임 시작', '핀볼을 섞고 발사합니다'];
+    var count = this.groupTotal();
+    var copy = this.locked ? (stages[this.scene] || stages.mixing) : ['게임 시작', count ? '총 ' + count + '개의 핀볼을 섞고 발사합니다' : '색상 그룹을 하나 이상 선택해 주세요'];
     $('start-button').querySelector('span:nth-child(2)').firstChild.textContent = copy[0];
     $('start-button').querySelector('small').textContent = copy[1];
   };
   UI.prototype.setLocked = function (value) {
     this.locked = !!value;
-    document.querySelectorAll('[data-physical], [data-rule], #names, #rank-n, #shuffle-button').forEach(function (control) { control.disabled = !!value; });
-    $('start-button').disabled = !!value;
+    document.querySelectorAll('[data-physical], [data-rule], #names, #rank-n, #rank-minus, #rank-plus, #seed-auto, #seed-previous').forEach(function (control) { control.disabled = !!value; });
+    if (P.COLOR_GROUPS && this.groupCounts) this.renderGroups();
+    if (this.groupCounts) { this.updateParticipants(); this.syncSeed(); }
+    else $('start-button').disabled = !!value;
     this.updateStartCopy();
     if (value && this.isGameScene() && global.innerWidth <= 850 && this.panelOpen) { this.panelOpen = false; this.updatePanel(); }
   };
@@ -272,6 +381,7 @@
     if (states.indexOf(stage) < 0) stage = 'intro';
     var previous = this.scene, self = this;
     this.scene = stage; document.body.dataset.scene = stage;
+    if (stage !== 'running') this.setStopAvailable(false);
     if (!this.isGameScene()) this.focusMode = stage !== 'intro' && stage !== 'setup';
     else if (previous !== 'running' && previous !== 'finished') this.focusMode = true;
     document.body.classList.toggle('focus-mode', this.focusMode);
@@ -283,9 +393,10 @@
     this.setSceneProgress({ reveal: this.isGameScene() ? 1 : 0 });
     $('scene-status').textContent = '';
     if (!this.isGameScene()) { this.hideResults(); this.hideCountdown(); }
+    if (stage === 'setup' && previous !== stage && this.liveLeader) this.liveLeader = new P.LiveLeader();
     if (stage === 'intro' && previous !== stage) $('intro-start-button').focus({ preventScroll: true });
     else if (stage === 'setup' && previous !== stage) {
-      requestAnimationFrame(function () { if (self.scene !== 'setup') return; var next = !$('names').disabled ? $('names') : self.getSetupControls()[0]; if (next) next.focus({ preventScroll: true }); });
+      requestAnimationFrame(function () { if (self.scene !== 'setup') return; var next = $('group-red'); if (next) next.focus({ preventScroll: true }); });
     } else if (['mixing','aiming','flight'].indexOf(stage) >= 0 && previous !== stage) $(stage === 'mixing' ? 'cinema-canvas' : 'game-canvas').focus({ preventScroll: true });
     else if (stage === 'running' && previous !== 'running') $('game-canvas').focus({ preventScroll: true });
   };
@@ -340,6 +451,13 @@
     if (P.marbleColor && P.THEMES && P.THEMES[this.theme]) return P.marbleColor(marble.colorIndex || 0, Math.max(1, total || this.totalCount), P.THEMES[this.theme]);
     return 'hsl(' + ((marble.colorIndex || 0) * 57 + 250) + ',75%,70%)';
   };
+  UI.prototype.setStopAvailable = function (available) {
+    var visible = this.scene === 'running' && available;
+    if ($('stop-button').hidden === !visible) return;
+    $('stop-button').hidden = !visible;
+    document.body.classList.toggle('can-stop', visible);
+    this.emit('layout');
+  };
   UI.prototype.updateHUD = function (data) {
     var self = this;
     if (typeof data.total === 'number') this.totalCount = data.total;
@@ -370,36 +488,34 @@
   };
   UI.prototype.renderRanking = function (ranking) {
     var list = $('live-ranking'), self = this;
-    if (!ranking.length) { this.rankingNodes.clear(); list.replaceChildren(); return; }
-    var oldPositions = new Map();
-    this.rankingNodes.forEach(function (node, id) { oldPositions.set(id, node.getBoundingClientRect().top); });
+    if (!ranking.length) { this.rankingNodes.clear(); list.replaceChildren(); this.liveLeader = new P.LiveLeader(); return; }
+    var leader = this.liveLeader.update(ranking, (typeof performance !== 'undefined' ? performance.now() : Date.now()) / 1000);
+    var shown = ranking.slice(), standing = P.raceStanding(ranking);
+    if (leader && !ranking[0].finished) shown = [leader].concat(ranking.filter(function (m) { return m.id !== leader.id; }));
     if (list.querySelector('.ranking-empty')) list.replaceChildren();
-    var present = new Set(), standing = P.raceStanding(ranking);
-    ranking.forEach(function (marble, index) {
-      var id = marble.id === undefined ? marble.name + '-' + (marble.colorIndex || index) : String(marble.id);
-      present.add(id);
-      var row = self.rankingNodes.get(id);
+    shown.forEach(function (marble, index) {
+      var key = 'slot-' + index, row = self.rankingNodes.get(key);
       if (!row) {
         row = document.createElement('li'); row.className = 'ranking-item';
         ['rank-number', 'rank-marble', 'rank-name', 'rank-finish'].forEach(function (cls) { var span = document.createElement('span'); span.className = cls; row.appendChild(span); });
-        self.rankingNodes.set(id, row);
+        self.rankingNodes.set(key, row); list.appendChild(row);
       }
-      row.children[0].textContent = String(standing.ranks[index]).padStart(2, '0');
+      var changed = row.dataset.marbleId !== String(marble.id), previousName = row.children[2].textContent;
+      row.dataset.marbleId = String(marble.id);
+      row.children[0].textContent = index === 0 && leader && !marble.finished ? '선두' : String(standing.ranks[ranking.indexOf(marble)]).padStart(2, '0');
       row.children[1].style.setProperty('--marble-color', self.colorFor(marble));
       row.children[2].textContent = marble.name;
       row.children[2].title = marble.name + (marble.copies > 1 ? ' · ' + marble.copy + '/' + marble.copies : '');
-      row.children[3].replaceChildren();
-      if (marble.finished) row.children[3].appendChild(icon('check'));
-      list.appendChild(row);
+      if (row.dataset.finished !== String(marble.finished)) {
+        row.children[3].replaceChildren(); if (marble.finished) row.children[3].appendChild(icon('check'));
+        row.dataset.finished = String(marble.finished);
+      }
+      if (changed && previousName !== marble.name && previousName && row.animate && !document.documentElement.classList.contains('reduced-motion')) {
+        if (row._transition) row._transition.cancel();
+        row._transition = row.animate([{ opacity: .65 }, { opacity: 1 }], { duration: 220, easing: 'ease-out' });
+      }
     });
-    this.rankingNodes.forEach(function (node, id) { if (!present.has(id)) { node.remove(); self.rankingNodes.delete(id); } });
-    if (!document.documentElement.classList.contains('reduced-motion')) {
-      this.rankingNodes.forEach(function (node, id) {
-        if (!oldPositions.has(id)) return;
-        var delta = oldPositions.get(id) - node.getBoundingClientRect().top;
-        if (Math.abs(delta) > 1 && node.animate) node.animate([{ transform: 'translateY(' + delta + 'px)' }, { transform: 'translateY(0)' }], { duration: 350, easing: 'cubic-bezier(.2,.8,.2,1)' });
-      });
-    }
+    this.rankingNodes.forEach(function (node, key) { if (Number(key.slice(5)) >= shown.length) { node.remove(); self.rankingNodes.delete(key); } });
   };
   UI.prototype.showCountdown = function (value) {
     $('countdown').hidden = false; $('countdown-value').textContent = value;
@@ -425,11 +541,15 @@
   UI.prototype.showResults = function (data) {
     this.resultData = data;
     var winners = Array.isArray(data.winners) ? data.winners : [];
-    $('winner-heading').textContent = winners.length > 3 ? winners.length + '명 당첨' : (winners.length ? winners.map(function (winner) { return winner.name; }).join(' · ') : '당첨 결과');
+    $('winner-heading').textContent = winners.length > 3 ? winners.length + '명 당첨' : (winners.length ? winners.map(function (winner) { return winner.name; }).join(' · ') : (data.stoppedEarly ? '도착 결과' : '당첨 결과'));
     $('winner-heading').classList.remove('winner-reveal'); void $('winner-heading').offsetWidth; $('winner-heading').classList.add('winner-reveal');
-    $('result-rule').textContent = data.ruleLabel || '1등 당첨';
+    $('result-rule').textContent = (data.ruleLabel || '1등 당첨') + (data.stoppedEarly && !winners.length ? ' · 미확정' : '');
+    document.querySelector('.winner-subtitle').textContent = winners.length ? '축하드립니다!' : '경기를 종료했습니다';
+    $('result-ranking-title').textContent = data.stoppedEarly ? '도착 순위' : '최종 순위';
+    $('result-note').hidden = !data.stoppedEarly;
+    $('result-note').textContent = data.stoppedEarly ? '도착한 공의 순위만 표시합니다.' + (!winners.length ? ' 선택한 당첨 조건이 충족되지 않아 당첨은 미확정입니다.' : '') : '';
     $('result-time').textContent = formatTime(data.time, true);
-    $('result-total').textContent = (data.ranking || []).length + '개 핀볼';
+    $('result-total').textContent = data.stoppedEarly ? (data.ranking || []).length + ' / ' + data.total + '개 도착' : (data.ranking || []).length + '개 핀볼';
     this.renderResults(false);
     this.previousFocus = document.activeElement;
     if (!$('results-dialog').open) $('results-dialog').showModal();

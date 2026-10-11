@@ -19,7 +19,8 @@ function boot(storage, options = {}) {
     setStatus(value) { this.status = value; }
     setLocked(value) { this.locked = value; }
     setFocusMode(value) { this.focusMode = value; }
-    setScene(value) { this.scene = value; this.focusMode = !['intro', 'setup'].includes(value); }
+    setScene(value) { this.scene = value; this.focusMode = !['intro', 'setup'].includes(value); if (value !== 'running') this.stopAvailable = false; }
+    setStopAvailable(value) { this.stopAvailable = value; }
     setSceneProgress(value) { this.reveal = value.reveal; }
     getViewport() { return { x: 0, y: 0, w: 1000, h: 700 }; }
     hideResults() { this.results = null; }
@@ -487,4 +488,43 @@ test('pending quality fallback cannot overwrite restored preferences or lock int
   assert.equal(P.app.settings.quality,'high');assert.equal(P.app.ui.locked,false);
   assert.equal(P.app.status,scene);assert.equal(P.app.diagnostics.autoQualityDrops,drops);assert.equal(P.app.physics.time,0);
  }
+});
+
+
+test('stop is available only after a finish and ends the race without inventing unfinished ranks', () => {
+  for (const rule of ['first', 'last', 'nth', 'top']) {
+    const { P, callbacks, advance, launch } = boot();
+    P.app.ui.values.rule = rule; P.app.ui.values.rankN = 3;
+    callbacks.start(); callbacks.stop(); assert.equal(P.app.status, 'mixing');
+    launch(); callbacks.stop(); assert.equal(P.app.status, 'running');
+    assert.equal(P.app.ui.stopAvailable, false);
+    const physics = P.app.physics;
+    for (let i = 0; i < 12000 && !physics.finished.length; i++) advance(1 / 60);
+    assert.equal(P.app.status, 'running'); assert.ok(physics.finished.length > 0);
+    assert.equal(P.app.ui.stopAvailable, true);
+    const time = physics.time, count = physics.finished.length;
+    const snapshot = JSON.stringify(physics.marbles);
+    callbacks.stop(); advance(2);
+    assert.equal(P.app.status, 'finished'); assert.equal(P.app.ui.stopAvailable, false);
+    assert.equal(physics.time, time); assert.equal(JSON.stringify(physics.marbles), snapshot);
+    const result = P.app.ui.results;
+    assert.equal(result.stoppedEarly, true); assert.equal(result.total, 6);
+    assert.equal(result.ranking.length, count); assert.ok(result.ranking.every(m => m.finished));
+    assert.equal(result.winners.length, rule === 'first' ? 1 : 0);
+    callbacks.stop(); advance(.1); assert.equal(physics.time, time);
+    callbacks.replay(); assert.equal(P.app.status, 'setup'); assert.equal(P.app.ui.stopAvailable, false);
+  }
+});
+
+test('ending after the requested N finishes preserves confirmed nth and top winners', () => {
+  for (const rule of ['nth', 'top']) {
+    const { P, callbacks, advance, launch } = boot();
+    P.app.ui.values.rule = rule; P.app.ui.values.rankN = 2;
+    callbacks.start(); launch();
+    for (let i = 0; i < 12000 && P.app.physics.finished.length < 2; i++) advance(1 / 60);
+    assert.equal(P.app.status, 'running'); callbacks.stop(); advance(.1);
+    const result = P.app.ui.results;
+    assert.equal(result.winners.length, rule === 'nth' ? 1 : 2);
+    assert.equal(result.winners[rule === 'nth' ? 0 : 1].id, result.ranking[1].id);
+  }
 });

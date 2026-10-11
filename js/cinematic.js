@@ -618,7 +618,7 @@
       // Material never crossfades during handoff; every stage shares this sprite.
       const size = radius * 5.12;
       ctx.save(); ctx.globalAlpha = alpha;
-      const sprite = this.renderer.marbleSprite(null, size * (this.dpr || 1));
+      const sprite = this.renderer.marbleSprite(P.Pinball ? P.Pinball.group(marble && marble.name || entry.name).color : '#167aaf', size * (this.dpr || 1));
       if (pose.aspect !== undefined && pose.aspect !== 1) {
         ctx.translate(pose.x,pose.y); ctx.rotate(pose.orientation || 0); ctx.scale(pose.aspect,1); ctx.rotate(-(pose.orientation || 0));
         ctx.drawImage(sprite, -size/2, -size/2, size, size);

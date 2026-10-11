@@ -11,7 +11,7 @@
   <link rel="preload" as="image" href="./assets/cannon-barrel.png">
   <link rel="preload" as="image" href="./assets/cannon-wheel.png">
   <link rel="preload" as="image" href="./assets/cannon-bridge.png">
-  <link rel="stylesheet" href="./style.css?v=hand-e6756af51da9">
+  <link rel="stylesheet" href="./style.css?v=hand-b1cd7735a833">
 </head>
 <body class="scene-intro" data-scene="intro" data-theme="cosmic">
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
@@ -67,9 +67,11 @@
       <form id="settings-form" novalidate>
         <div class="panel-scroll">
           <section class="settings-section participants-section">
-            <div class="section-label"><label for="names">누가 함께하나요?</label><span class="count-badge"><span id="participant-count">6</span> 핀볼</span></div>
-            <textarea id="names" name="names" spellcheck="false" placeholder="수박*2,키위*2,귤*2" aria-describedby="names-help">수박*2,키위*2,귤*2</textarea>
-            <div class="input-foot"><p id="names-help">쉼표 · 줄바꿈으로 구분 / 이름*개수</p><button type="button" class="text-button" id="shuffle-button"><svg class="icon"><use href="#i-shuffle"/></svg>섞기</button></div>
+            <div class="section-label"><span id="groups-label">색상 그룹 선택</span><span class="count-badge"><span id="participant-count">6</span> 핀볼</span></div>
+            <input id="names" type="hidden" value="빨강*2,초록*2,파랑*2">
+            <div id="color-groups" class="color-groups" role="group" aria-labelledby="groups-label"></div>
+            <div id="group-quantities" class="group-quantities"></div>
+            <div class="input-foot"><p id="names-help" aria-live="polite">3개 그룹 · 총 6개 / 최대 500개</p></div>
             <p id="input-error" class="input-error" role="alert" hidden></p>
           </section>
 
@@ -78,7 +80,7 @@
             <div class="segmented rule-segments" role="group" aria-labelledby="rule-label">
               <button type="button" data-rule="first" class="active" aria-pressed="true">1등</button><button type="button" data-rule="last" aria-pressed="false">꼴등</button><button type="button" data-rule="nth" aria-pressed="false">N번째</button><button type="button" data-rule="top" aria-pressed="false">상위 N명</button>
             </div>
-            <div id="rank-n-row" class="rank-n-row" hidden><label for="rank-n" id="rank-n-label">당첨 순위</label><input type="number" id="rank-n" min="1" max="500" value="1" inputmode="numeric"><span id="rank-n-unit">번째</span></div>
+            <div id="rank-n-row" class="rank-n-row" hidden><label for="rank-n" id="rank-n-label">당첨 순위</label><div class="quantity-control"><button type="button" id="rank-minus" aria-label="당첨 숫자 줄이기">−</button><select id="rank-n" aria-label="당첨 순위 또는 인원"><option value="1">1</option></select><button type="button" id="rank-plus" aria-label="당첨 숫자 늘리기">+</button></div><span id="rank-n-unit">번째</span></div>
           </section>
 
 
@@ -99,7 +101,10 @@
               <label class="switch-row" for="sound"><span>효과음</span><span class="switch"><input type="checkbox" id="sound" checked><span></span></span></label>
               <label class="switch-row" for="skills"><span>랜덤 스킬<small>가속 · 밀치기 · 크기 변화</small></span><span class="switch"><input type="checkbox" id="skills" data-physical><span></span></span></label>
               <label class="switch-row" for="reduced-motion"><span>화면 효과 줄이기<small>흔들림 · 깜빡임을 줄입니다</small></span><span class="switch"><input type="checkbox" id="reduced-motion"><span></span></span></label>
-              <label class="seed-label" for="seed">시드 <span>같은 결과를 재현할 때만 입력</span></label><input class="seed-input" id="seed" type="text" maxlength="80" value="" placeholder="비우면 매번 새 출발" autocomplete="off" spellcheck="false" data-physical>
+              <span class="seed-label" id="seed-label">출발 방식</span>
+              <input id="seed" type="hidden" value="">
+              <div class="segmented seed-modes" role="group" aria-labelledby="seed-label"><button type="button" id="seed-auto" aria-pressed="true">매번 새로 섞기</button><button type="button" id="seed-previous" aria-pressed="false" disabled>직전 게임 재현</button></div>
+              <p class="seed-note" id="seed-note">직전 게임을 시작하면 재현할 수 있습니다.</p>
             </div>
           </details>
         </div>
@@ -120,6 +125,8 @@
     <div class="camera-hints" aria-hidden="true"><span><svg class="icon"><use href="#i-mouse"/></svg>드래그로 이동</span><i></i><span>휠 · 핀치로 확대</span><i></i><span><kbd>F</kbd> 선두 추적</span></div>
     <button id="mobile-setup-button" class="mobile-setup-button" type="button" aria-expanded="false" aria-controls="setup-panel"><svg class="icon"><use href="#i-settings"/></svg>추첨 설정<span id="mobile-count">6</span></button>
 
+    <button id="stop-button" class="game-stop-button" type="button" hidden>게임 정지</button>
+
     <div class="countdown" id="countdown" aria-live="polite" hidden><span class="countdown-ring" aria-hidden="true"></span><span id="countdown-value">3</span><span class="countdown-label">곧 추첨을 시작합니다</span></div>
     <div class="toast-stack" id="toast-stack" role="status" aria-live="polite"></div>
   </main>
@@ -132,11 +139,12 @@
     <div class="winner-medallion" aria-hidden="true"><img src="./assets/logo.svg" alt="" width="58" height="51"></div>
     <p class="eyebrow" id="result-rule">당첨 결과</p><h2 id="winner-heading">당첨 결과</h2><p class="winner-subtitle">축하드립니다!</p>
     <div class="result-meta"><span>TIME <b id="result-time"></b></span></div>
-    <div class="result-ranking-heading"><span>최종 순위</span><span id="result-total"></span></div>
+    <div class="result-ranking-heading"><span id="result-ranking-title">최종 순위</span><span id="result-total"></span></div>
     <ol id="result-ranking" class="result-ranking"></ol><button type="button" id="show-all-results" class="text-button show-all-results" hidden>전체 순위 보기</button>
+    <p id="result-note" class="results-note" hidden></p>
     <div class="result-actions"><button type="button" id="restart-button" class="start-button"><svg class="icon"><use href="#i-play"/></svg>같은 멤버로 다시 섞기</button><button type="button" id="replay-button" class="secondary-button"><svg class="icon"><use href="#i-reset"/></svg>다시 설정하기</button></div>
   </dialog>
 
-  <script src="./js/themes.js"></script><script src="./js/maps.js?v=classic-20261006"></script><script src="./js/physics.js?v=pinball-result-20261006"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/race-standing.js?v=leader-tie-20261008"></script><script src="./js/renderer.js?v=thin-group-ring-20261011"></script><script src="./js/cinematic.js?v=metal-groups-20261011"></script><script src="./js/shuffle.js?v=dense-pour-contacts-20261011"></script><script src="./js/hand-start.js?v=actual-hand-start-20261011"></script><script src="./js/shuffle-input.js?v=hand-20261007"></script><script src="./js/throw-gate.js?v=northeast-exit-20261011"></script><script src="./js/hand-scene.js?v=hinged-gravity-pour-20261011"></script><script src="./js/hand-flight.js?v=tube-pour-qa-20261011-final"></script><script src="./js/ui.js?v=metal-groups-20261011"></script><script src="./js/main.js?v=actual-hand-start-20261011"></script>
+  <script src="./js/themes.js"></script><script src="./js/maps.js?v=soft-long-course-20261011"></script><script src="./js/physics.js?v=soft-long-course-20261011"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/race-standing.js?v=winding-channel-20261011"></script><script src="./js/renderer.js?v=soft-long-course-20261011"></script><script src="./js/cinematic.js?v=winding-channel-20261011"></script><script src="./js/shuffle.js?v=dense-pour-contacts-20261011"></script><script src="./js/hand-start.js?v=color-settings-20261011"></script><script src="./js/shuffle-input.js?v=hand-20261007"></script><script src="./js/throw-gate.js?v=northeast-exit-20261011"></script><script src="./js/hand-scene.js?v=hinged-gravity-pour-20261011"></script><script src="./js/hand-flight.js?v=tube-pour-qa-20261011-final"></script><script src="./js/ui.js?v=finish-stop-20261011"></script><script src="./js/main.js?v=finish-stop-20261011"></script>
 </body>
 </html>

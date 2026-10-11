@@ -21,6 +21,41 @@
     };
   };
 
+  P.COLOR_GROUPS = [
+    { id: 'red', name: '빨강', color: '#c8786d' },
+    { id: 'green', name: '초록', color: '#8aa478' },
+    { id: 'blue', name: '파랑', color: '#7e96b6' },
+    { id: 'yellow', name: '노랑', color: '#d7ba72' },
+    { id: 'cyan', name: '청록', color: '#80b1ac' },
+    { id: 'magenta', name: '자홍', color: '#b58ba9' },
+    { id: 'white', name: '흰색', color: '#eee5d5' },
+    { id: 'black', name: '검정', color: '#666158' }
+  ];
+  P.colorSelection = function (text) {
+    var counts = {}, legacy = new Map();
+    if (text === '') return counts;
+    try { P.parseNames(text).forEach(function (entry) { legacy.set(entry.name, (legacy.get(entry.name) || 0) + 1); }); }
+    catch (_) { legacy = new Map([['빨강', 2], ['초록', 2], ['파랑', 2]]); }
+    var index = 0;
+    legacy.forEach(function (count, name) {
+      var group = P.COLOR_GROUPS.find(function (item) { return item.name === name; });
+      if (!group) group = P.COLOR_GROUPS[index++ % P.COLOR_GROUPS.length];
+      counts[group.id] = (counts[group.id] || 0) + count;
+    });
+    return counts;
+  };
+  P.colorNames = function (counts) {
+    var total = 0;
+    P.COLOR_GROUPS.forEach(function (group) {
+      var count = counts[group.id] || 0;
+      if (!Number.isInteger(count) || count < 0) throw new Error('수량은 0 이상의 정수여야 합니다.');
+      total += count;
+    });
+    if (total > 500) throw new Error('핀볼은 최대 500개까지 만들 수 있어요.');
+    return P.COLOR_GROUPS.filter(function (group) { return counts[group.id] > 0; })
+      .map(function (group) { return group.name + '*' + counts[group.id]; }).join(',');
+  };
+
   P.parseNames = function (text) {
     var input = String(text == null ? '' : text).replace(/\r\n?/g, '\n').trim();
     if (!input) throw new Error('참가자 이름을 한 명 이상 입력해 주세요.');

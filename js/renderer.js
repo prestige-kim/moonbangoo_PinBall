@@ -23,10 +23,10 @@
   function sun(ctx,x,y,r,count) { ctx.beginPath();ctx.arc(x,y,r*.42,0,TAU);ctx.stroke();for(let i=0;i<(count||20);i++){const a=i/(count||20)*TAU;ctx.beginPath();ctx.moveTo(x+Math.cos(a)*r*.6,y+Math.sin(a)*r*.6);ctx.lineTo(x+Math.cos(a)*r*(i%2?.85:1),y+Math.sin(a)*r*(i%2?.85:1));ctx.stroke();} }
   function fish(ctx,x,y,r,facing) { ctx.save();ctx.translate(x,y);ctx.scale(facing||1,1);ctx.beginPath();ctx.moveTo(-r*.85,0);ctx.bezierCurveTo(-r*.25,-r*.72,r*.65,-r*.7,r,0);ctx.bezierCurveTo(r*.65,r*.7,-r*.25,r*.72,-r*.85,0);ctx.lineTo(-r*1.35,-r*.43);ctx.lineTo(-r*1.35,r*.43);ctx.closePath();ctx.stroke();ctx.beginPath();ctx.arc(r*.55,-r*.1,r*.055,0,TAU);ctx.fill();ctx.beginPath();ctx.moveTo(r*.28,-r*.4);ctx.quadraticCurveTo(r*.05,0,r*.28,r*.4);ctx.stroke();ctx.restore(); }
   function sparkle(ctx,x,y,r) { ctx.beginPath();ctx.moveTo(x,y-r);ctx.quadraticCurveTo(x+r*.2,y-r*.2,x+r,y);ctx.quadraticCurveTo(x+r*.2,y+r*.2,x,y+r);ctx.quadraticCurveTo(x-r*.2,y+r*.2,x-r,y);ctx.quadraticCurveTo(x-r*.2,y-r*.2,x,y-r);ctx.fill(); }
-  // One photographic steel finish for the tube, hand scene, flight and board.
+  // One group-colored sphere for the tube, hand scene, flight and board.
   // Keep the existing sprite geometry: its solid circle is exactly 25/128.
   const Pinball = {
-    status: 'fallback', revision: 0, image: null, bounds: null, cache: new Map(), pending: null,
+    status: 'color', revision: 0, cache: new Map(),
     levels: [64, 128, 256, 512, 1024],
     groups: new Map(), groupSource: null,
     configureGroups(marbles) {
@@ -37,7 +37,8 @@
         const name = String(marble.name || '');
         if (this.groups.has(name)) continue;
         const index = this.groups.size;
-        this.groups.set(name, {color: palette[index] || `hsl(${Math.round(index*137.508%360)},65%,42%)`, segments: index%4+1});
+        const fixed = P.COLOR_GROUPS && P.COLOR_GROUPS.find(group => group.name === name);
+        this.groups.set(name, {color: fixed ? fixed.color : palette[index] || `hsl(${Math.round(index*137.508%360)},65%,42%)`, segments: (fixed ? P.COLOR_GROUPS.indexOf(fixed) : index)%4+1});
       }
     },
     group(name) { return this.groups.get(String(name || '')) || {color:'#167aaf',segments:1}; },
@@ -50,58 +51,30 @@
       ctx.save();ctx.lineCap='round';
       for (let i=0;i<group.segments;i++) {
         const start=-Math.PI/2+i*TAU/group.segments, end=start+TAU/group.segments-(group.segments===1?0:.20);
-        ctx.beginPath();ctx.arc(x,y,radius,start,end);ctx.strokeStyle='rgba(255,255,255,.6)';ctx.lineWidth=width*1.35;ctx.stroke();
+        ctx.beginPath();ctx.arc(x,y,radius,start,end);ctx.strokeStyle='rgba(255,248,231,.25)';ctx.lineWidth=width*1.35;ctx.stroke();
         ctx.strokeStyle=group.color;ctx.lineWidth=width;ctx.stroke();
       }
       ctx.restore();
     },
-    load() {
-      if (this.pending) return this.pending;
-      this.pending = new Promise(resolve => {
-        if (typeof Image === 'undefined') { resolve(false); return; }
-        const image = new Image();
-        image.onload = () => {
-          const w = image.naturalWidth || image.width, h = image.naturalHeight || image.height;
-          if (!w || !h) { resolve(false); return; }
-          this.bounds = { x: 0, y: 0, w, h };
-          // Use the main opaque span through the center, ignoring extraction
-          // specks outside the sphere. Normalize both axes, then circularly clip.
-          try {
-            const probe = makeCanvas(w,h), ctx = probe.getContext('2d'); ctx.drawImage(image,0,0);
-            const rgba = ctx.getImageData(0,0,w,h).data;
-            if (rgba) {
-              const span = (length, alpha) => {
-                let best = [0,length], start = -1, longest = 0;
-                for (let i=0;i<=length;i++) {
-                  if (i<length && alpha(i)>=128) { if (start<0) start=i; }
-                  else if (start>=0) { if (i-start>longest) { longest=i-start;best=[start,i-start]; } start=-1; }
-                }
-                return best;
-              };
-              const x = span(w,i=>rgba[(Math.floor(h/2)*w+i)*4+3]), y = span(h,i=>rgba[(i*w+Math.floor(w/2))*4+3]);
-              this.bounds = { x:x[0], y:y[0], w:x[1], h:y[1] };
-            }
-          } catch (_) { /* Keep full-image cropping if pixel readback is unavailable. */ }
-          this.image=image;this.status='photo';this.cache.clear();this.revision++;resolve(true);
-        };
-        image.onerror = () => resolve(false);
-        image.src = './assets/pinball-metal-soft.png';
-      });
-      return this.pending;
-    },
-    sprite(pixels = 128) {
-      const size=this.levels.find(level=>level>=pixels)||this.levels[this.levels.length-1];
-      if(this.cache.has(size))return this.cache.get(size);
-      const c=makeCanvas(size,size),ctx=c.getContext('2d'),unit=size/128,r=25*unit,center=size/2;
-      ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
-      ctx.save();ctx.beginPath();ctx.arc(center,center,r,0,TAU);ctx.clip();
-      if(this.image){const b=this.bounds;ctx.fillStyle='#9aa3ad';ctx.fillRect(center-r,center-r,r*2,r*2);ctx.drawImage(this.image,b.x,b.y,b.w,b.h,center-r,center-r,r*2,r*2);}
-      else {
-        const g=ctx.createLinearGradient(center-r,center-r,center+r,center+r);
-        for(const [offset,color] of [[0,'#f9fcff'],[.22,'#d9dfe5'],[.4,'#6e7781'],[.55,'#222a33'],[.68,'#bac3cc'],[.86,'#f5f8fb'],[1,'#7c8793']])g.addColorStop(offset,color);
-        ctx.fillStyle=g;ctx.fillRect(center-r,center-r,r*2,r*2);
-      }
-      ctx.restore();this.cache.set(size,c);return c;
+    load() { this.status = 'color'; return Promise.resolve(true); },
+    sprite(pixels = 128, color = '#167aaf') {
+      const size = this.levels.find(level => level >= pixels) || this.levels[this.levels.length - 1];
+      const key = color + ':' + size;
+      if (this.cache.has(key)) return this.cache.get(key);
+      const c = makeCanvas(size, size), ctx = c.getContext('2d'), r = size * 25 / 128, center = size / 2;
+      ctx.save(); ctx.beginPath(); ctx.arc(center, center, r, 0, TAU); ctx.clip();
+      ctx.fillStyle = color; ctx.fillRect(center-r, center-r, r*2, r*2);
+      const shade = ctx.createRadialGradient(center-r*.3, center-r*.35, r*.1, center, center, r);
+      shade.addColorStop(0, 'rgba(0,0,0,0)'); shade.addColorStop(.5, 'rgba(0,0,0,.02)'); shade.addColorStop(1, 'rgba(55,40,25,.24)');
+      ctx.fillStyle = shade; ctx.fillRect(center-r, center-r, r*2, r*2);
+      const light = ctx.createRadialGradient(center-r*.35, center-r*.42, 0, center-r*.35, center-r*.42, r*.85);
+      light.addColorStop(0, 'rgba(255,248,231,.35)'); light.addColorStop(.2, 'rgba(255,248,231,.18)'); light.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = light; ctx.fillRect(center-r, center-r, r*2, r*2);
+      ctx.strokeStyle = 'rgba(45,35,25,.4)'; ctx.lineWidth = size/128*.7;
+      ctx.beginPath(); ctx.arc(center, center, r-.4*size/128, 0, TAU); ctx.stroke(); ctx.restore();
+      // Color groups share at most five sizes; avoid growing for arbitrary legacy colors.
+      if (this.cache.size >= 80) this.cache.delete(this.cache.keys().next().value);
+      this.cache.set(key, c); return c;
     }
   };
   P.Pinball = Pinball;
@@ -138,7 +111,7 @@
       this.vignette=makeCanvas(Math.round(w),Math.round(h));const v=this.vignette.getContext('2d');g=v.createRadialGradient(w*.58,h*.48,Math.min(w,h)*.23,w*.58,h*.48,Math.max(w,h)*.78);g.addColorStop(0,'rgba(120,83,35,0)');g.addColorStop(.6,'rgba(120,83,35,.015)');g.addColorStop(1,'rgba(120,83,35,.1)');v.fillStyle=g;v.fillRect(0,0,w,h);
     }
     glow(color){const key='g:'+color;if(this.sprites.has(key))return this.sprites.get(key);const c=makeCanvas(128,128),ctx=c.getContext('2d'),g=ctx.createRadialGradient(64,64,0,64,64,64);g.addColorStop(0,color);g.addColorStop(.3,color);g.addColorStop(1,'rgba(244,237,224,0)');ctx.globalAlpha=.18;ctx.fillStyle=g;ctx.fillRect(0,0,128,128);this.sprites.set(key,c);return c;}
-    marbleSprite(color, pixels = 128) { return Pinball.sprite(pixels); }
+    marbleSprite(color, pixels = 128) { return Pinball.sprite(pixels, color || '#167aaf'); }
     pinSprite(color,kind) {
       const key='p:'+color+':'+kind;if(this.sprites.has(key))return this.sprites.get(key);const c=makeCanvas(128,128),ctx=c.getContext('2d'),r=20;let g=ctx.createRadialGradient(64,72,13,64,72,33);g.addColorStop(0,'rgba(82,53,17,.19)');g.addColorStop(1,'rgba(82,53,17,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(64,70,33,0,TAU);ctx.fill();
       ctx.fillStyle=this.foil(ctx,44,44,84,90);ctx.beginPath();ctx.arc(64,64,r,0,TAU);ctx.fill();ctx.strokeStyle='rgba(98,65,23,.45)';ctx.lineWidth=1;ctx.stroke();ctx.strokeStyle='rgba(255,250,231,.92)';ctx.beginPath();ctx.arc(64,63,r-3,3.5,5.5);ctx.stroke();
@@ -159,7 +132,12 @@
     segment(pose,color,ghost){const ctx=this.ctx,thickness=Math.max(3,pose.thickness||9);ctx.save();ctx.lineCap='round';ctx.beginPath();ctx.moveTo(pose.x1,pose.y1+(ghost?0:3));ctx.lineTo(pose.x2,pose.y2+(ghost?0:3));ctx.strokeStyle='rgba(94,66,27,.13)';ctx.lineWidth=thickness*2+4;ctx.stroke();ctx.beginPath();ctx.moveTo(pose.x1,pose.y1);ctx.lineTo(pose.x2,pose.y2);ctx.strokeStyle=ghost?rgba(color,.13):this.foil(ctx,pose.x1,pose.y1-9,pose.x2,pose.y2+12);ctx.lineWidth=thickness*2;ctx.stroke();if(!ghost){ctx.strokeStyle='rgba(255,250,231,.78)';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(pose.x1,pose.y1-thickness*.6);ctx.lineTo(pose.x2,pose.y2-thickness*.6);ctx.stroke();}ctx.restore();}
     drawObstacle(o,physics,effects,time,visible) {
       const ctx=this.ctx,t=this.theme,type=o.type,pose=physics.getObstaclePose?physics.getObstaclePose(o):o;
-      const y=type==='polygon'?o.points.reduce((sum,p)=>sum+p.y,0)/o.points.length:pose.y===undefined?(pose.y1+pose.y2)/2:pose.y,span=o.length||o.height||o.r||(type==='polygon'?260:70);if(y+span<visible.top-80||y-span>visible.bottom+80)return;const hit=effects&&effects.hits&&effects.hits.get(o.id||o),power=hit?clamp(hit.life/.3,0,1):0;
+      const y=type==='polygon'?(Math.min(...o.points.map(p=>p.y))+Math.max(...o.points.map(p=>p.y)))/2:pose.y===undefined?(pose.y1+pose.y2)/2:pose.y,span=type==='polygon'?(Math.max(...o.points.map(p=>p.y))-Math.min(...o.points.map(p=>p.y)))/2:(o.length||o.height||o.r||70);if(y+span<visible.top-80||y-span>visible.bottom+80)return;const hit=effects&&effects.hits&&effects.hits.get(o.id||o),power=hit?clamp(hit.life/.3,0,1):0;
+      if (o.channelWall) {
+        ctx.save(); ctx.beginPath(); o.points.forEach((point,index) => index ? ctx.lineTo(point.x,point.y) : ctx.moveTo(point.x,point.y)); ctx.closePath();
+        ctx.fillStyle = '#e3d8c5'; ctx.fill(); ctx.strokeStyle = 'rgba(119,88,43,.5)'; ctx.lineWidth = 5; ctx.lineJoin = 'round'; ctx.stroke();
+        ctx.strokeStyle = 'rgba(255,252,242,.85)'; ctx.lineWidth = 1.5; ctx.stroke(); ctx.restore(); return;
+      }
       if(type==='pin'||type==='bumper'){const color=type==='bumper'?t.secondary:t.primary,r=(o.r||10)*(1+power*(type==='bumper'?.14:.04));if(type==='bumper'){ctx.save();ctx.translate(o.x,o.y);ctx.rotate(this.reducedMotion?0:time*.18);ctx.strokeStyle=this.foil(ctx,-r*2,-r,r*2,r);ctx.lineWidth=1.5;sun(ctx,0,0,r*1.6,16);ctx.restore();}ctx.drawImage(this.pinSprite(color,type),o.x-r*3.2,o.y-r*3.2,r*6.4,r*6.4);if(power&&!this.reducedMotion){ctx.save();ctx.globalAlpha=power*.75;ctx.fillStyle='#fffaf0';sparkle(ctx,o.x-r*.4,o.y-r*.6,r*.6);ctx.restore();}}
       else if(type==='segment'||type==='rotor'||type==='moving'){const color=t.primary;if(type==='rotor'&&!this.reducedMotion&&this.quality==='high'){const angle=pose.angle||0,len=o.length/2;for(let i=2;i>0;i--){const a=angle-(o.speed||1)*i*.075;this.segment({x1:o.x-Math.cos(a)*len,y1:o.y-Math.sin(a)*len,x2:o.x+Math.cos(a)*len,y2:o.y+Math.sin(a)*len,thickness:o.thickness},color,true);}}
         if(type==='moving'){ctx.strokeStyle='rgba(119,93,58,.14)';ctx.lineWidth=1;ctx.setLineDash([2,7]);ctx.beginPath();if(o.axis==='y'){ctx.moveTo(o.x,o.y-o.amplitude);ctx.lineTo(o.x,o.y+o.amplitude);}else{ctx.moveTo(o.x-o.amplitude,o.y);ctx.lineTo(o.x+o.amplitude,o.y);}ctx.stroke();ctx.setLineDash([]);if(!this.reducedMotion&&this.quality==='high')for(let i=2;i>0;i--){const dx=(pose.vx||0)*.065*i,dy=(pose.vy||0)*.065*i;this.segment({x1:pose.x1-dx,y1:pose.y1-dy,x2:pose.x2-dx,y2:pose.y2-dy,thickness:pose.thickness},color,true);}}
@@ -183,7 +161,7 @@
     }
     drawFinish(map,time,visible){const y=map.finish&&map.finish.y||map.height-120;if(y<visible.top-180||y>visible.bottom+180)return;const ctx=this.ctx,x=80,w=map.width-160;ctx.save();ctx.fillStyle=PAPER_HI;pill(ctx,x,y-82,w,100,9);ctx.fill();ctx.strokeStyle=this.foil(ctx,x,y-90,x+w,y+25);ctx.lineWidth=3;ctx.stroke();ctx.strokeStyle='rgba(120,87,39,.28)';ctx.lineWidth=.8;pill(ctx,x+9,y-73,w-18,81,4);ctx.stroke();ctx.textAlign='center';ctx.fillStyle=INK;ctx.font='700 25px Pretendard Variable,sans-serif';ctx.fillText('결승',map.width/2,y-38);ctx.font='500 11px Pretendard Variable,sans-serif';ctx.fillStyle='#8a7760';ctx.fillText('어른뭉방구  ·  당첨을 확인하는 곳',map.width/2,y-12);ctx.strokeStyle=this.foil(ctx,x,y-75,x+w,y);ctx.fillStyle=this.theme.primary;ctx.lineWidth=1.3;this.brandMark(ctx,x+50,y-30,22);this.brandMark(ctx,x+w-50,y-30,22);ctx.strokeStyle='rgba(170,137,82,.55)';ctx.setLineDash([3,6]);ctx.beginPath();ctx.moveTo(x+24,y+32);ctx.lineTo(x+w-24,y+32);ctx.stroke();ctx.setLineDash([]);ctx.restore();}
     drawMarble(m, total, leader, visible, time, dt, idle) {
-      const ctx = this.ctx, color = marbleColor(m.colorIndex === undefined ? m.id : m.colorIndex, total, this.theme), r = m.r || 16;
+      const ctx = this.ctx, color = Pinball.group(m.name).color, r = m.r || 16;
       if (m.y + r * 6 < visible.top || m.y - r * 6 > visible.bottom) return;
       ctx.drawImage(this.marbleSprite(color, r * 5.12 * (this.currentZoom || 1) * (this.dpr || 1)), m.x - r * 2.56, m.y - r * 2.56, r * 5.12, r * 5.12);
       Pinball.mark(ctx,m.name,m.x,m.y,r,this.currentZoom||1);
@@ -252,7 +230,7 @@
       if (!finished.length || y > visible.bottom + 20 || y + 190 < visible.top) return;
       const ctx = this.ctx;
       for (const entry of this.finishDisplay(finished, map)) {
-        const color = marbleColor(entry.marble.colorIndex, physics.marbles.length, this.theme), r = 10;
+        const color = Pinball.group(entry.marble.name).color, r = 10;
         ctx.drawImage(this.marbleSprite(color, r * 5.12 * (this.currentZoom || 1) * (this.dpr || 1)), entry.x - r * 2.56, entry.y - r * 2.56, r * 5.12, r * 5.12);
         Pinball.mark(ctx,entry.marble.name,entry.x,entry.y,r,this.currentZoom||1);
       }
@@ -266,7 +244,7 @@
         else if(p.type==='confetti'||p.type==='gold'){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.angle);ctx.fillRect(-p.r,-p.r/3,p.r*2,p.r*.7);ctx.fillStyle='rgba(255,250,225,.65)';ctx.fillRect(-p.r,-p.r/3,p.r*2,p.r*.18);ctx.restore();}else sparkle(ctx,p.x,p.y,p.r*1.4);
       }ctx.restore();}
     drawWinner(winner,total,camera,dt,time){if(this.lastWinner!==winner.id){this.winProgress=0;this.lastWinner=winner.id;}this.winProgress=Math.min(1,this.winProgress+dt*1.15);const ease=1-Math.pow(1-this.winProgress,3),pos=camera.worldToScreen(winner.x,winner.y),area=camera.viewport||{x:0,y:0,w:this.width,h:this.height},cx=area.x+area.w/2,cy=area.y+area.h*.4;
-      const ctx=this.ctx,color=marbleColor(winner.colorIndex||0,total,this.theme),x=pos.x+(cx-pos.x)*ease,y=pos.y+(cy-pos.y)*ease,r=(winner.r||16)*camera.zoom+52*ease;ctx.save();ctx.globalAlpha=ease*.9;const g=ctx.createRadialGradient(cx,cy,50,cx,cy,Math.max(area.w,area.h)*.7);g.addColorStop(0,PAPER_HI);g.addColorStop(.6,'rgba(251,247,239,.95)');g.addColorStop(1,'rgba(244,237,224,0)');ctx.fillStyle=g;ctx.fillRect(area.x,area.y,area.w,area.h);ctx.globalAlpha=ease;
+      const ctx=this.ctx,color=Pinball.group(winner.name).color,x=pos.x+(cx-pos.x)*ease,y=pos.y+(cy-pos.y)*ease,r=(winner.r||16)*camera.zoom+52*ease;ctx.save();ctx.globalAlpha=ease*.9;const g=ctx.createRadialGradient(cx,cy,50,cx,cy,Math.max(area.w,area.h)*.7);g.addColorStop(0,PAPER_HI);g.addColorStop(.6,'rgba(251,247,239,.95)');g.addColorStop(1,'rgba(244,237,224,0)');ctx.fillStyle=g;ctx.fillRect(area.x,area.y,area.w,area.h);ctx.globalAlpha=ease;
       ctx.strokeStyle=this.foil(ctx,cx-140,cy-170,cx+140,cy+170);ctx.lineWidth=1.4;sun(ctx,cx,cy,r*2.2,32);ctx.beginPath();ctx.arc(cx,cy,r*1.66,0,TAU);ctx.stroke();ctx.strokeStyle='rgba(172,135,75,.24)';ctx.lineWidth=.7;ctx.beginPath();ctx.arc(cx,cy,r*1.85,0,TAU);ctx.stroke();ctx.globalAlpha=1;ctx.drawImage(this.marbleSprite(color, r * 5.12 * (this.dpr || 1)),x-r*2.56,y-r*2.56,r*5.12,r*5.12);Pinball.mark(ctx,winner.name,x,y,r);ctx.globalAlpha=ease;ctx.fillStyle='#9a7434';ctx.textAlign='center';ctx.font='600 11px Pretendard Variable,sans-serif';ctx.fillStyle=INK;ctx.font='700 19px Pretendard Variable,sans-serif';
       ctx.font='700 34px Pretendard Variable,sans-serif';ctx.fillText((winner.name||'당첨자').slice(0,22),cx,cy+157);ctx.font='500 12px Pretendard Variable,sans-serif';ctx.fillStyle='#8a7760';ctx.fillText('축하드립니다!',cx,cy+186);ctx.strokeStyle=this.foil(ctx,cx-90,cy+211,cx+90,cy+211);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(cx-110,cy+212);ctx.lineTo(cx-18,cy+212);ctx.moveTo(cx+18,cy+212);ctx.lineTo(cx+110,cy+212);ctx.stroke();ctx.fillStyle=this.theme.primary;sparkle(ctx,cx,cy+212,6);ctx.restore();}
     render(state) {
@@ -306,7 +284,7 @@
       if (!canvas || !physics || !physics.map) return; const map = physics.map, ctx = canvas.getContext('2d'), w = canvas.width, h = canvas.height, pad = 8, sx = (w - pad * 2) / map.width, sy = (h - pad * 2) / map.height, t = this.theme;
       ctx.clearRect(0, 0, w, h); ctx.fillStyle = PAPER_HI; pill(ctx, 0, 0, w, h, 12); ctx.fill(); ctx.save(); ctx.translate(pad, pad); ctx.scale(sx, sy);
       for (const route of this.portalPairs(map)) { ctx.strokeStyle='rgba(124,86,37,.6)';ctx.lineWidth=14;ctx.setLineDash([16,30]);ctx.beginPath();ctx.moveTo(route.x,route.y);ctx.lineTo(route.targetX,route.targetY);ctx.stroke();ctx.setLineDash([]); }
-      ctx.fillStyle = 'rgba(164,132,78,.4)'; for (const o of map.obstacles || []) { if (o.type === 'pin' || o.type === 'bumper') { ctx.beginPath(); ctx.arc(o.x, o.y, Math.max(o.r || 10, 15), 0, TAU); ctx.fill(); } else if (o.type === 'segment' || o.type === 'rotor' || o.type === 'moving') { const p = physics.getObstaclePose(o); ctx.strokeStyle = 'rgba(139,109,64,.45)'; ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(p.x1, p.y1); ctx.lineTo(p.x2, p.y2); ctx.stroke(); } }
+      ctx.fillStyle = 'rgba(164,132,78,.4)'; for (const o of map.obstacles || []) { if (o.channelWall) { ctx.beginPath(); o.points.forEach((point,index) => index ? ctx.lineTo(point.x,point.y) : ctx.moveTo(point.x,point.y)); ctx.closePath(); ctx.fillStyle='rgba(119,93,58,.28)'; ctx.fill(); } else if (o.type === 'pin' || o.type === 'bumper') { ctx.beginPath(); ctx.arc(o.x, o.y, Math.max(o.r || 10, 15), 0, TAU); ctx.fill(); } else if (o.type === 'segment' || o.type === 'rotor' || o.type === 'moving') { const p = physics.getObstaclePose(o); ctx.strokeStyle = 'rgba(139,109,64,.45)'; ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(p.x1, p.y1); ctx.lineTo(p.x2, p.y2); ctx.stroke(); } }
       const active = (physics.marbles || []).filter(m => !m.finished), leader = P.raceStanding(active.slice().sort((a,b) => b.y - a.y)).leader;
       ctx.fillStyle = 'rgba(103,75,43,.48)'; for (const m of active) { ctx.beginPath(); ctx.arc(m.x, m.y, Math.max(m.r || 16, 22), 0, TAU); ctx.fill(); }
       if (leader) { ctx.fillStyle='#A65436';ctx.beginPath();ctx.arc(leader.x,leader.y,52,0,TAU);ctx.fill(); }

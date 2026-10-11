@@ -5,7 +5,7 @@
   const STEP = 1 / 120;
   const QUALITY_ORDER = ['high', 'medium', 'low'];
   const defaults = {
-    names: '수박*2,키위*2,귤*2', rule: 'first', rankN: 1, map: 'classic', theme: 'cosmic',
+    names: '빨강*2,초록*2,파랑*2', rule: 'first', rankN: 1, map: 'classic', theme: 'cosmic',
     radius: 12, gravity: 620, restitution: 0.72, speed: 1, sound: true, volume: 0.35,
     quality: 'high', seed: '', skills: false,
     reducedMotion: !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)
@@ -121,8 +121,10 @@
   let finalRanking = [];
   let resultDelay = 0;
   let resultShown = false;
+  let stoppedEarly = false;
   const diagnostics = { leadChanges: 0, photoFinishes: 0, events: {}, autoQualityDrops: 0, frames: 0 };
   ui.load(settings);
+  settings = normalize(ui.readSettings());
   function visualSettings() {
     ui.setTheme(settings.theme);
     renderer.setTheme(settings.theme);
@@ -158,7 +160,7 @@
   function preview(scene = 'setup') {
     launchElapsed = 0; flightLanded = false;
     winner = null; photoFinish = false; runSettings = null;
-    accumulator = 0; finalRanking = []; resultShown = false;
+    accumulator = 0; finalRanking = []; resultShown = false; stoppedEarly = false;
     resetEffects();
     let names;
     try { names = P.parseNames(settings.names); } catch (_) { names = P.parseNames(defaults.names); }
@@ -198,6 +200,7 @@
     } catch (error) { ui.showError(error.message); return; }
     settings = next; runSettings = Object.assign({}, next, { seed: next.seed || newRoundSeed() });
     ui.load(settings); save(settings); visualSettings();
+    if (ui.rememberRound) ui.rememberRound(runSettings);
     physics = makePhysics(runSettings, names);
     resetEffects(); camera.reset(P.MAPS[runSettings.map]);
     ui.clearError(); ui.hideResults(); ui.hideCountdown(); ui.setLocked(true);
@@ -206,7 +209,7 @@
     handScene.begin(physics, settings.reducedMotion);
     setScene('mixing');
     accumulator = 0; leaderId = null; leadCooldown = 0; leadCandidateId = null; leadCandidateAge = 0; leadNotices = 0; photoFinish = false;
-    finalRanking = []; resultDelay = 0; resultShown = false;
+    finalRanking = []; resultDelay = 0; resultShown = false; stoppedEarly = false;
     diagnostics.leadChanges = 0; diagnostics.photoFinishes = 0; diagnostics.events = {};
     audio.unlock(); resize();
   }
@@ -249,13 +252,20 @@
     if (needsPreview) preview(status);
     resize();
   }
-  function finish() {
+  function resultWinners() {
+    // Unfinished balls never acquire a final rank when the user ends the race.
+    if (runSettings.rule === 'last' && finalRanking.length < physics.marbles.length) return [];
+    if (['nth', 'top'].includes(runSettings.rule) && finalRanking.length < runSettings.rankN) return [];
+    return P.chooseWinners(finalRanking, runSettings);
+  }
+  function finish(early) {
     status = 'finished'; photoFinish = false;
     finalRanking = physics.finished.slice();
-    winner = P.chooseWinners(finalRanking, runSettings)[0];
+    stoppedEarly = !!early && finalRanking.length < physics.marbles.length;
+    winner = resultWinners()[0];
     setScene('finished'); ui.setLocked(false);
-    effects.celebrate(winner, P.THEMES[settings.theme]);
-    audio.play('win'); resultDelay = 1.25;
+    if (winner) { effects.celebrate(winner, P.THEMES[settings.theme]); audio.play('win'); }
+    resultDelay = early ? 0 : 1.25;
   }
   function processEvents() {
     for (const event of physics.drainEvents()) {
@@ -301,6 +311,7 @@
       }
       else if (leadCandidateAge > 2 && leadCooldown > 0) leadCandidateId = null;
     }
+    if (ui.setStopAvailable) ui.setStopAvailable(physics.finished.length > 0);
     if (physics.complete) finish();
   }
   function adjustQuality(dt) {
@@ -334,7 +345,7 @@
       resultDelay -= dt;
       if (resultDelay <= 0) {
         resultShown = true;
-        ui.showResults({ winners: P.chooseWinners(finalRanking, runSettings), ranking: finalRanking, seed: runSettings.seed, time: physics.time, ruleLabel: P.ruleLabel(runSettings) });
+        ui.showResults({ winners: resultWinners(), ranking: finalRanking, stoppedEarly: stoppedEarly, total: physics.marbles.length, seed: runSettings.seed, time: physics.time, ruleLabel: P.ruleLabel(runSettings) });
       }
     }
     const map = P.MAPS[(runSettings || settings).map];
@@ -352,24 +363,11 @@
   }
   ui.on('enter', enterGame);
   ui.on('start', () => start(false));
+  ui.on('stop', () => { if (status === 'running' && physics.finished.length > 0) finish(true); });
   ui.on('setupcancel', () => { if (status === 'setup') { setScene('intro'); resize(); } });
   ui.on('restart', () => start(true));
   ui.on('replay', () => { settings = normalize(ui.readSettings()); preview(); });
   ui.on('reset', () => { settings = normalize(ui.readSettings()); preview(); });
-  ui.on('shuffle', () => {
-    if (['intro', 'mixing', 'flight', 'running'].includes(status)) return;
-    try {
-      const input = ui.readSettings().names;
-      P.parseNames(input);
-      const entries = input.split(/[,\n]+/).map(name => name.trim()).filter(Boolean);
-      const seed = String(Date.now()) + '-shuffle';
-      const random = P.seedRandom(seed);
-      for (let i = entries.length - 1; i > 0; i--) { const j = Math.floor(random() * (i + 1)); const swap = entries[i]; entries[i] = entries[j]; entries[j] = swap; }
-      settings = normalize(ui.readSettings());
-      settings.names = entries.join(',');
-      ui.load(settings); save(settings); preview(); ui.toast('출발 순서를 섞었습니다');
-    } catch (error) { ui.showError(error.message); }
-  });
   ui.on('change', onChange);
   ui.on('layout', resize);
   ui.on('follow', () => { if (['mixing', 'flight'].includes(status)) return; camera.follow = !camera.follow; camera.entrance = null; if (ui.setFollowing) ui.setFollowing(camera.follow); ui.toast(camera.follow ? '선두 추적을 켰습니다' : '자유롭게 코스를 둘러보세요'); });

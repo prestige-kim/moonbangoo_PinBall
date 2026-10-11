@@ -56,7 +56,7 @@ function run(map, count, seed = 'physics-test', skills = false, grouping = [1], 
 }
 
 for (const map of Object.values(P.MAPS)) {
-  assert.ok(map.height >= 6500 && map.height <= 7200, 'extended map height');
+  assert.ok(map.height >= 11000 && map.height <= 11500, 'extended map height');
   assert.ok(map.obstacles.some(obstacle => (obstacle.y || obstacle.y2 || (obstacle.points && obstacle.points[0].y) || 0) > map.finish.y - 500), 'inhabited final course section');
   for (const count of [2, 50, 200]) {
     const result = run(map, count);
