@@ -22,7 +22,7 @@
       this.noiseBuffer = null;
     }
     unlock() {
-      if (!this.enabled) return;
+      if (!this.enabled || !(this.volume > 0)) return;
       try {
         if (!this.context) {
           const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -45,7 +45,7 @@
     }
     tone(frequency, duration, strength, delay, glide) {
       const ctx = this.context;
-      if (!this.enabled || !ctx || ctx.state !== 'running' || this.voices >= P.SOUND_CONFIG.voices) return;
+      if (!this.enabled || !(this.volume > 0) || !ctx || ctx.state !== 'running' || this.voices >= P.SOUND_CONFIG.voices) return;
       const theme = P.SOUND_CONFIG.themes[this.theme] || P.SOUND_CONFIG.themes.cosmic;
       duration *= theme.decay || 1;
       const start = ctx.currentTime + (delay || 0);
@@ -73,7 +73,7 @@
     }
     blastBody(power) {
       const ctx = this.context;
-      if (!this.enabled || !ctx || ctx.state !== 'running' || this.voices >= P.SOUND_CONFIG.voices) return;
+      if (!this.enabled || !(this.volume > 0) || !ctx || ctx.state !== 'running' || this.voices >= P.SOUND_CONFIG.voices) return;
       const start = ctx.currentTime;
       const oscillator = ctx.createOscillator();
       const gain = ctx.createGain();
@@ -97,7 +97,7 @@
     }
     air(duration, strength, delay, lowStart, lowEnd, highpass) {
       const ctx = this.context;
-      if (!this.enabled || !ctx || ctx.state !== 'running' || this.voices >= P.SOUND_CONFIG.voices) return;
+      if (!this.enabled || !(this.volume > 0) || !ctx || ctx.state !== 'running' || this.voices >= P.SOUND_CONFIG.voices) return;
       if (!this.noiseBuffer) {
         this.noiseBuffer = ctx.createBuffer(1, Math.ceil(ctx.sampleRate * 0.9), ctx.sampleRate);
         const samples = this.noiseBuffer.getChannelData(0);
@@ -127,7 +127,7 @@
       source.stop(start + duration + 0.02);
     }
     play(type, intensity, variant) {
-      if (!this.enabled || !this.context) return;
+      if (!this.enabled || !(this.volume > 0) || !this.context) return;
       const config = P.SOUND_CONFIG;
       const theme = config.themes[this.theme] || config.themes.cosmic;
       const root = theme.root;

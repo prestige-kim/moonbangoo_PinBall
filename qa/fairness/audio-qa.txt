@@ -1,0 +1,16 @@
+✔ volume zero skips context unlock and every sound allocation path (2.440458ms)
+✔ positive-volume user unlock resumes one reusable context and OFF skips it (0.515875ms)
+✔ cannon layers share the audio clock, have a sharp attack and bounded gain (4.120583ms)
+✔ ended cannon sources release voice slots and disconnect the complete graph (2.179291ms)
+✔ sound settings and a suspended context prevent new cannon and charge voices (0.57125ms)
+✔ the existing voice limit caps cannon layers and prioritizes its body (0.52375ms)
+✔ quiet charging and repeated cannon shots reuse one noise buffer (2.685667ms)
+✔ iOS AudioContext fallback resumes and existing result melody remains available (0.646291ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 84.062958

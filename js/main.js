@@ -404,7 +404,7 @@
   ui.on('restart', () => start(true));
   ui.on('replay', () => { settings = normalize(ui.readSettings()); preview(); });
   ui.on('reset', () => { settings = normalize(ui.readSettings()); preview(); });
-  ui.on('change', onChange);
+  ui.on('change', next => { onChange(next); audio.unlock(); });
   ui.on('layout', resize);
   ui.on('follow', () => { if (['mixing', 'flight'].includes(status)) return; camera.follow = !camera.follow; camera.entrance = null; if (ui.setFollowing) ui.setFollowing(camera.follow); ui.toast(camera.follow ? '선두 추적을 켰습니다' : '자유롭게 코스를 둘러보세요'); });
   camera.attach(canvas);
