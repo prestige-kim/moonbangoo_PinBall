@@ -1,0 +1,1260 @@
+{
+  "phase": "checkpoint-smoke",
+  "candidate": "none",
+  "seeds": 3,
+  "workers": 1,
+  "started": "2026-10-11T14:59:37.418Z",
+  "sourceCommit": "434e992dafd74df7bf7e688371ef02eab63f3ad3",
+  "cases": [
+    {
+      "config": {
+        "groups": [
+          2,
+          2,
+          2
+        ],
+        "radius": 12,
+        "gravity": 620,
+        "restitution": 0.72,
+        "candidate": "none",
+        "skills": false
+      },
+      "protocol": "B",
+      "prefix": "dev-checkpoint-smoke-B-off-",
+      "summary": {
+        "runs": 3,
+        "completed": 3,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "ranking": 0,
+          "oracle": 0,
+          "timeout": 0
+        },
+        "id": {
+          "counts": [
+            0,
+            0,
+            0,
+            2,
+            1,
+            0
+          ],
+          "n": 3,
+          "expected": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "statistic": 7,
+          "df": 5,
+          "pValue": 0.22064030793670933,
+          "maxDeviationPercentagePoints": 50,
+          "validApproximation": false,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 2,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 3,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 4,
+              "wins": 2,
+              "n": 3,
+              "rate": 0.6666666666666666,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 50,
+              "ci95": {
+                "low": 0.2076596008020477,
+                "high": 0.9385080552796037,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 5,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 6,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            }
+          ],
+          "pass": false
+        },
+        "group": {
+          "counts": [
+            0,
+            2,
+            1
+          ],
+          "n": 3,
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "statistic": 2,
+          "df": 2,
+          "pValue": 0.36787944117144167,
+          "maxDeviationPercentagePoints": 33.33333333333333,
+          "validApproximation": false,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": -33.33333333333333,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 2,
+              "wins": 2,
+              "n": 3,
+              "rate": 0.6666666666666666,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 33.33333333333333,
+              "ci95": {
+                "low": 0.2076596008020477,
+                "high": 0.9385080552796037,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 3,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 0,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            }
+          ],
+          "pass": false
+        },
+        "slot": {
+          "counts": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            2
+          ],
+          "n": 3,
+          "expected": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "statistic": 7,
+          "df": 5,
+          "pValue": 0.22064030793670933,
+          "maxDeviationPercentagePoints": 50,
+          "validApproximation": false,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 2,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 3,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 4,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 5,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 6,
+              "wins": 2,
+              "n": 3,
+              "rate": 0.6666666666666666,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 50,
+              "ci95": {
+                "low": 0.2076596008020477,
+                "high": 0.9385080552796037,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            }
+          ],
+          "pass": false
+        },
+        "time": {
+          "p50": 47.791666666666664,
+          "p95": 47.791666666666664,
+          "max": 50.3,
+          "over120": 0
+        },
+        "rescues": {
+          "p50": 4,
+          "p95": 4,
+          "max": 5
+        },
+        "cpuMs": {
+          "p50": 600.8629580000002,
+          "p95": 600.8629580000002
+        }
+      }
+    },
+    {
+      "config": {
+        "groups": [
+          2,
+          2,
+          2
+        ],
+        "radius": 12,
+        "gravity": 620,
+        "restitution": 0.72,
+        "candidate": "none",
+        "skills": false
+      },
+      "protocol": "C",
+      "prefix": "dev-checkpoint-smoke-C-off-",
+      "summary": {
+        "runs": 3,
+        "completed": 3,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "ranking": 0,
+          "oracle": 0,
+          "timeout": 0
+        },
+        "id": {
+          "counts": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          "n": 3,
+          "expected": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "statistic": 3,
+          "df": 5,
+          "pValue": 0.699985835878628,
+          "maxDeviationPercentagePoints": 16.666666666666664,
+          "validApproximation": false,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 2,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 3,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 4,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 5,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 6,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            }
+          ],
+          "pass": false
+        },
+        "group": {
+          "counts": [
+            0,
+            1,
+            2
+          ],
+          "n": 3,
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "statistic": 2,
+          "df": 2,
+          "pValue": 0.36787944117144167,
+          "maxDeviationPercentagePoints": 33.33333333333333,
+          "validApproximation": false,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": -33.33333333333333,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 2,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 0,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 3,
+              "wins": 2,
+              "n": 3,
+              "rate": 0.6666666666666666,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 33.33333333333333,
+              "ci95": {
+                "low": 0.2076596008020477,
+                "high": 0.9385080552796037,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            }
+          ],
+          "pass": false
+        },
+        "slot": {
+          "counts": [
+            0,
+            0,
+            1,
+            0,
+            1,
+            1
+          ],
+          "n": 3,
+          "expected": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "statistic": 3,
+          "df": 5,
+          "pValue": 0.699985835878628,
+          "maxDeviationPercentagePoints": 16.666666666666664,
+          "validApproximation": false,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 2,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 3,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 4,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 5,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 6,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            }
+          ],
+          "pass": false
+        },
+        "time": {
+          "p50": 48.15,
+          "p95": 48.15,
+          "max": 53.083333333333336,
+          "over120": 0
+        },
+        "rescues": {
+          "p50": 12,
+          "p95": 12,
+          "max": 12
+        },
+        "cpuMs": {
+          "p50": 1303.134875,
+          "p95": 1303.134875
+        }
+      }
+    },
+    {
+      "config": {
+        "groups": [
+          2,
+          2,
+          2
+        ],
+        "radius": 12,
+        "gravity": 620,
+        "restitution": 0.72,
+        "candidate": "none",
+        "skills": true
+      },
+      "protocol": "C",
+      "prefix": "dev-checkpoint-smoke-C-on-",
+      "summary": {
+        "runs": 3,
+        "completed": 3,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "ranking": 0,
+          "oracle": 0,
+          "timeout": 0
+        },
+        "id": {
+          "counts": [
+            1,
+            0,
+            0,
+            2,
+            0,
+            0
+          ],
+          "n": 3,
+          "expected": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "statistic": 7,
+          "df": 5,
+          "pValue": 0.22064030793670933,
+          "maxDeviationPercentagePoints": 50,
+          "validApproximation": false,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 2,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 3,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 4,
+              "wins": 2,
+              "n": 3,
+              "rate": 0.6666666666666666,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 50,
+              "ci95": {
+                "low": 0.2076596008020477,
+                "high": 0.9385080552796037,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 5,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 6,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            }
+          ],
+          "pass": false
+        },
+        "group": {
+          "counts": [
+            1,
+            2,
+            0
+          ],
+          "n": 3,
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "statistic": 2,
+          "df": 2,
+          "pValue": 0.36787944117144167,
+          "maxDeviationPercentagePoints": 33.33333333333333,
+          "validApproximation": false,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 0,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 2,
+              "wins": 2,
+              "n": 3,
+              "rate": 0.6666666666666666,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 33.33333333333333,
+              "ci95": {
+                "low": 0.2076596008020477,
+                "high": 0.9385080552796037,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 3,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": -33.33333333333333,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            }
+          ],
+          "pass": false
+        },
+        "slot": {
+          "counts": [
+            0,
+            0,
+            1,
+            0,
+            2,
+            0
+          ],
+          "n": 3,
+          "expected": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "statistic": 7,
+          "df": 5,
+          "pValue": 0.22064030793670933,
+          "maxDeviationPercentagePoints": 50,
+          "validApproximation": false,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 2,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 3,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 4,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 5,
+              "wins": 2,
+              "n": 3,
+              "rate": 0.6666666666666666,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 50,
+              "ci95": {
+                "low": 0.2076596008020477,
+                "high": 0.9385080552796037,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 6,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            }
+          ],
+          "pass": false
+        },
+        "time": {
+          "p50": 47.275,
+          "p95": 47.275,
+          "max": 53.81666666666666,
+          "over120": 0
+        },
+        "rescues": {
+          "p50": 6,
+          "p95": 6,
+          "max": 6
+        },
+        "cpuMs": {
+          "p50": 502.1997080000001,
+          "p95": 502.1997080000001
+        }
+      }
+    },
+    {
+      "config": {
+        "groups": [
+          2,
+          2,
+          2
+        ],
+        "radius": 12,
+        "gravity": 620,
+        "restitution": 0.72,
+        "candidate": "none",
+        "skills": false
+      },
+      "protocol": "D",
+      "prefix": "dev-checkpoint-smoke-D-off-",
+      "summary": {
+        "runs": 3,
+        "completed": 3,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "ranking": 0,
+          "oracle": 0,
+          "timeout": 0
+        },
+        "id": {
+          "counts": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "n": 3,
+          "expected": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "statistic": 3,
+          "df": 5,
+          "pValue": 0.699985835878628,
+          "maxDeviationPercentagePoints": 16.666666666666664,
+          "validApproximation": false,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 2,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 3,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 4,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 5,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 6,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            }
+          ],
+          "pass": false
+        },
+        "group": {
+          "counts": [
+            2,
+            1,
+            0
+          ],
+          "n": 3,
+          "expected": [
+            1,
+            1,
+            1
+          ],
+          "statistic": 2,
+          "df": 2,
+          "pValue": 0.36787944117144167,
+          "maxDeviationPercentagePoints": 33.33333333333333,
+          "validApproximation": false,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 2,
+              "n": 3,
+              "rate": 0.6666666666666666,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 33.33333333333333,
+              "ci95": {
+                "low": 0.2076596008020477,
+                "high": 0.9385080552796037,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 2,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 0,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 3,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": -33.33333333333333,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            }
+          ],
+          "pass": false
+        },
+        "slot": {
+          "counts": [
+            0,
+            0,
+            2,
+            1,
+            0,
+            0
+          ],
+          "n": 3,
+          "expected": [
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5,
+            0.5
+          ],
+          "statistic": 7,
+          "df": 5,
+          "pValue": 0.22064030793670933,
+          "maxDeviationPercentagePoints": 50,
+          "validApproximation": false,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 2,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 3,
+              "wins": 2,
+              "n": 3,
+              "rate": 0.6666666666666666,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 50,
+              "ci95": {
+                "low": 0.2076596008020477,
+                "high": 0.9385080552796037,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 4,
+              "wins": 1,
+              "n": 3,
+              "rate": 0.3333333333333333,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 16.666666666666664,
+              "ci95": {
+                "low": 0.06149194472039621,
+                "high": 0.7923403991979522,
+                "widthPercentagePoints": 73.0848454477556
+              }
+            },
+            {
+              "index": 5,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            },
+            {
+              "index": 6,
+              "wins": 0,
+              "n": 3,
+              "rate": 0,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -16.666666666666664,
+              "ci95": {
+                "low": 5.551115123125783e-17,
+                "high": 0.5614970317550454,
+                "widthPercentagePoints": 56.14970317550454
+              }
+            }
+          ],
+          "pass": false
+        },
+        "time": {
+          "p50": 51.28333333333333,
+          "p95": 51.28333333333333,
+          "max": 60.15,
+          "over120": 0
+        },
+        "rescues": {
+          "p50": 9,
+          "p95": 9,
+          "max": 19
+        },
+        "cpuMs": {
+          "p50": 486.26854100000037,
+          "p95": 486.26854100000037
+        }
+      }
+    }
+  ],
+  "finished": "2026-10-11T14:59:47.641Z",
+  "sha256": "085d7bda7f8a2d7e99e79f102ff3941c8175ad7cba97e672e688a62dcaff8aa1"
+}

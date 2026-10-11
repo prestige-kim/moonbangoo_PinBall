@@ -5,3 +5,5 @@ qa/results/*.partial.json
 qa/results/simulation.json
 
 qa/fairness/results/*.progress.json
+
+qa/fairness/results/*.checkpoint/

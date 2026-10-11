@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-11T14:59:47.700Z",
+  "paused": "Graceful pause requested: finish and persist in-flight batches.\nPaused safely after 1 completed batches; resume with the same arguments plus --resume.\n",
+  "resumed": "complete checkpoint-smoke 12 games 10.223 seconds\n",
+  "completedBatchesAtPause": 1,
+  "uniqueSeeds": 12
+}
