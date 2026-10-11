@@ -335,6 +335,7 @@
     return { x: left, y: top, w: Math.max(160, right - left), h: Math.max(200, bottom - top) };
   };
   UI.prototype.colorFor = function (marble, total) {
+    if (P.Pinball) return P.Pinball.group(marble.name).color;
     if (marble.color) return marble.color;
     if (P.marbleColor && P.THEMES && P.THEMES[this.theme]) return P.marbleColor(marble.colorIndex || 0, Math.max(1, total || this.totalCount), P.THEMES[this.theme]);
     return 'hsl(' + ((marble.colorIndex || 0) * 57 + 250) + ',75%,70%)';

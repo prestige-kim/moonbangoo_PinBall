@@ -28,6 +28,32 @@
   const Pinball = {
     status: 'fallback', revision: 0, image: null, bounds: null, cache: new Map(), pending: null,
     levels: [64, 128, 256, 512, 1024],
+    groups: new Map(), groupSource: null,
+    configureGroups(marbles) {
+      if (this.groupSource === marbles) return;
+      this.groupSource = marbles; this.groups.clear();
+      const palette = ['#167aaf','#ce573e','#48853d','#9652aa','#b17a13','#078c87','#c44784','#606cbb'];
+      for (const marble of marbles) {
+        const name = String(marble.name || '');
+        if (this.groups.has(name)) continue;
+        const index = this.groups.size;
+        this.groups.set(name, {color: palette[index] || `hsl(${Math.round(index*137.508%360)},65%,42%)`, segments: index%4+1});
+      }
+    },
+    group(name) { return this.groups.get(String(name || '')) || {color:'#167aaf',segments:1}; },
+    mark(ctx,name,x,y,r) {
+      if (!name || r<=0) return;
+      const group=this.group(name), width=r*.14, radius=r*.85;
+      // An enamel identification ring stays inside the collision silhouette.
+      // The breaks provide a second cue besides color; no flashing or movement.
+      ctx.save();ctx.lineCap='round';
+      for (let i=0;i<group.segments;i++) {
+        const start=-Math.PI/2+i*TAU/group.segments, end=start+TAU/group.segments-(group.segments===1?0:.20);
+        ctx.beginPath();ctx.arc(x,y,radius,start,end);ctx.strokeStyle='rgba(255,255,255,.9)';ctx.lineWidth=width*1.65;ctx.stroke();
+        ctx.strokeStyle=group.color;ctx.lineWidth=width;ctx.stroke();
+      }
+      ctx.restore();
+    },
     load() {
       if (this.pending) return this.pending;
       this.pending = new Promise(resolve => {
@@ -58,7 +84,7 @@
           this.image=image;this.status='photo';this.cache.clear();this.revision++;resolve(true);
         };
         image.onerror = () => resolve(false);
-        image.src = './assets/pinball-chrome-photo.png';
+        image.src = './assets/pinball-metal-soft.png';
       });
       return this.pending;
     },
@@ -159,17 +185,18 @@
       const ctx = this.ctx, color = marbleColor(m.colorIndex === undefined ? m.id : m.colorIndex, total, this.theme), r = m.r || 16;
       if (m.y + r * 6 < visible.top || m.y - r * 6 > visible.bottom) return;
       ctx.drawImage(this.marbleSprite(color, r * 5.12 * (this.currentZoom || 1) * (this.dpr || 1)), m.x - r * 2.56, m.y - r * 2.56, r * 5.12, r * 5.12);
+      Pinball.mark(ctx,m.name,m.x,m.y,r);
       const isLeader = leader && leader.id === m.id;
       if (isLeader) { ctx.strokeStyle = this.foil(ctx,m.x-r*2,m.y-r*2,m.x+r*2,m.y+r*2); ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(m.x, m.y, r * 1.7, 0, TAU); ctx.stroke(); }
     }
     nameSprite(m, leader) {
       const ctx = this.ctx, font = leader ? 12 : 10;
       let name = m.name || 'PLAYER'; if (name.length > 14) name = name.slice(0, 13) + '…';
-      const key = `${leader ? 'leader' : 'name'}:${name}`; let label = this.nameSprites.get(key);
+      const key = `${leader ? 'leader' : 'name'}:${m.name}:${Pinball.group(m.name).color}`; let label = this.nameSprites.get(key);
       if (!label) {
         ctx.save(); ctx.font = `${leader ? 700 : 500} ${font}px Pretendard Variable,sans-serif`; const width = Math.ceil(ctx.measureText(name).width + (leader ? 34 : 16)), height = leader ? 25 : 20; ctx.restore();
         const sprite = makeCanvas(width * 2 + 4, height * 2 + 4), c = sprite.getContext('2d'); c.scale(2, 2); c.translate(1, 1);
-        c.fillStyle = leader ? '#fbf3dc' : 'rgba(251,247,239,.93)'; pill(c, 0, 0, width, height, height / 2); c.fill(); c.strokeStyle = leader ? '#be9d60' : 'rgba(133,108,69,.34)'; c.lineWidth = .8; c.stroke();
+        c.fillStyle = leader ? '#fbf3dc' : 'rgba(251,247,239,.93)'; pill(c, 0, 0, width, height, height / 2); c.fill(); c.strokeStyle = leader ? '#be9d60' : 'rgba(133,108,69,.34)'; c.lineWidth = .8; c.stroke(); c.strokeStyle=Pinball.group(m.name).color;c.lineWidth=2;c.beginPath();c.moveTo(width*.3,height-2);c.lineTo(width*.7,height-2);c.stroke();
         c.font = `${leader ? 700 : 500} ${font}px Pretendard Variable,sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillStyle = INK; c.fillText(name, width / 2 + (leader ? 8 : 0), height / 2 + .5);
         if (leader) { c.strokeStyle='#a87d37';c.lineWidth=1;sun(c,15,height/2,7,10); }
         label = { sprite, width: width + 2, height: height + 2 }; if (this.nameSprites.size >= 550) this.nameSprites.delete(this.nameSprites.keys().next().value); this.nameSprites.set(key, label);
@@ -226,6 +253,7 @@
       for (const entry of this.finishDisplay(finished, map)) {
         const color = marbleColor(entry.marble.colorIndex, physics.marbles.length, this.theme), r = 10;
         ctx.drawImage(this.marbleSprite(color, r * 5.12 * (this.currentZoom || 1) * (this.dpr || 1)), entry.x - r * 2.56, entry.y - r * 2.56, r * 5.12, r * 5.12);
+        Pinball.mark(ctx,entry.marble.name,entry.x,entry.y,r);
       }
       ctx.save(); ctx.textAlign = 'center'; ctx.font = '600 12px Pretendard Variable,sans-serif'; ctx.fillStyle = '#765633';
       ctx.fillText('완주 ' + finished.length + ' / ' + physics.marbles.length, map.width / 2, y + 185); ctx.restore();
@@ -238,11 +266,11 @@
       }ctx.restore();}
     drawWinner(winner,total,camera,dt,time){if(this.lastWinner!==winner.id){this.winProgress=0;this.lastWinner=winner.id;}this.winProgress=Math.min(1,this.winProgress+dt*1.15);const ease=1-Math.pow(1-this.winProgress,3),pos=camera.worldToScreen(winner.x,winner.y),area=camera.viewport||{x:0,y:0,w:this.width,h:this.height},cx=area.x+area.w/2,cy=area.y+area.h*.4;
       const ctx=this.ctx,color=marbleColor(winner.colorIndex||0,total,this.theme),x=pos.x+(cx-pos.x)*ease,y=pos.y+(cy-pos.y)*ease,r=(winner.r||16)*camera.zoom+52*ease;ctx.save();ctx.globalAlpha=ease*.9;const g=ctx.createRadialGradient(cx,cy,50,cx,cy,Math.max(area.w,area.h)*.7);g.addColorStop(0,PAPER_HI);g.addColorStop(.6,'rgba(251,247,239,.95)');g.addColorStop(1,'rgba(244,237,224,0)');ctx.fillStyle=g;ctx.fillRect(area.x,area.y,area.w,area.h);ctx.globalAlpha=ease;
-      ctx.strokeStyle=this.foil(ctx,cx-140,cy-170,cx+140,cy+170);ctx.lineWidth=1.4;sun(ctx,cx,cy,r*2.2,32);ctx.beginPath();ctx.arc(cx,cy,r*1.66,0,TAU);ctx.stroke();ctx.strokeStyle='rgba(172,135,75,.24)';ctx.lineWidth=.7;ctx.beginPath();ctx.arc(cx,cy,r*1.85,0,TAU);ctx.stroke();ctx.globalAlpha=1;ctx.drawImage(this.marbleSprite(color, r * 5.12 * (this.dpr || 1)),x-r*2.56,y-r*2.56,r*5.12,r*5.12);ctx.globalAlpha=ease;ctx.fillStyle='#9a7434';ctx.textAlign='center';ctx.font='600 11px Pretendard Variable,sans-serif';ctx.fillStyle=INK;ctx.font='700 19px Pretendard Variable,sans-serif';
+      ctx.strokeStyle=this.foil(ctx,cx-140,cy-170,cx+140,cy+170);ctx.lineWidth=1.4;sun(ctx,cx,cy,r*2.2,32);ctx.beginPath();ctx.arc(cx,cy,r*1.66,0,TAU);ctx.stroke();ctx.strokeStyle='rgba(172,135,75,.24)';ctx.lineWidth=.7;ctx.beginPath();ctx.arc(cx,cy,r*1.85,0,TAU);ctx.stroke();ctx.globalAlpha=1;ctx.drawImage(this.marbleSprite(color, r * 5.12 * (this.dpr || 1)),x-r*2.56,y-r*2.56,r*5.12,r*5.12);Pinball.mark(ctx,winner.name,x,y,r);ctx.globalAlpha=ease;ctx.fillStyle='#9a7434';ctx.textAlign='center';ctx.font='600 11px Pretendard Variable,sans-serif';ctx.fillStyle=INK;ctx.font='700 19px Pretendard Variable,sans-serif';
       ctx.font='700 34px Pretendard Variable,sans-serif';ctx.fillText((winner.name||'당첨자').slice(0,22),cx,cy+157);ctx.font='500 12px Pretendard Variable,sans-serif';ctx.fillStyle='#8a7760';ctx.fillText('축하드립니다!',cx,cy+186);ctx.strokeStyle=this.foil(ctx,cx-90,cy+211,cx+90,cy+211);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(cx-110,cy+212);ctx.lineTo(cx-18,cy+212);ctx.moveTo(cx+18,cy+212);ctx.lineTo(cx+110,cy+212);ctx.stroke();ctx.fillStyle=this.theme.primary;sparkle(ctx,cx,cy+212,6);ctx.restore();}
     render(state) {
       const { physics, map, camera, effects, time = 0, dt = 1 / 60, status, leader, winner, photoFinish } = state; if (!map || !physics || !camera) return;
-      const ctx = this.ctx, marbles = physics.marbles || [];
+      const ctx = this.ctx, marbles = physics.marbles || []; Pinball.configureGroups(marbles);
       ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0); this.drawBackground(camera, time);
       const area = camera.viewport || { x: 0, y: 0, w: this.width, h: this.height }, scale = camera.zoom || 1; this.currentZoom = scale;
       const shake = !this.reducedMotion && effects ? effects.shake : 0, sx = Math.sin(time * 93) * shake * 2, sy = Math.cos(time * 107) * shake * 1.4;

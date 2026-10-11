@@ -23,6 +23,7 @@
   }
   function descriptors(physics, fallbackCount) {
     const source = physics && physics.marbles && physics.marbles.length ? physics.marbles : Array.from({ length: fallbackCount || 36 }, (_, i) => ({ id: 'preview-' + i, name: '', r: 12, colorIndex: i }));
+    if (P.Pinball) P.Pinball.configureGroups(source);
     const seed = String(physics && physics.seed || 'mungbanggu-cinema') + '|independent-cinema|';
     const lanes = Array.from({ length: source.length }, (_, i) => i), laneRandom = rng(seed + 'release-lanes');
     for (let i = lanes.length - 1; i > 0; i--) { const j = Math.floor(laneRandom() * (i + 1)); [lanes[i], lanes[j]] = [lanes[j], lanes[i]]; }
@@ -601,13 +602,13 @@
     }
     drawLabel(entry, x, y, radius, alpha) {
       if (!entry.name || alpha <= .01) return; const ctx = this.ctx, text = entry.name.length > 12 ? entry.name.slice(0, 11) + '…' : entry.name;
-      let label = this.labels.get(text);
+      const key=text+':'+(P.Pinball?P.Pinball.group(entry.name).color:'');let label = this.labels.get(key);
       if (!label) {
         ctx.font = '500 10px Pretendard Variable,sans-serif'; const w = Math.ceil(ctx.measureText(text).width) + 16, h = 20;
         const sprite = makeCanvas((w + 2) * 2, (h + 2) * 2), c = sprite.getContext('2d'); c.scale(2, 2); c.translate(1, 1);
-        c.fillStyle = 'rgba(251,247,239,.9)'; pill(c, 0, 0, w, h, 10); c.fill(); c.strokeStyle = 'rgba(151,118,66,.3)'; c.lineWidth = .75; c.stroke();
+        c.fillStyle = 'rgba(251,247,239,.9)'; pill(c, 0, 0, w, h, 10); c.fill(); c.strokeStyle = 'rgba(151,118,66,.3)'; c.lineWidth = .75; c.stroke();if(P.Pinball){c.strokeStyle=P.Pinball.group(entry.name).color;c.lineWidth=2;c.beginPath();c.moveTo(w*.3,h-2);c.lineTo(w*.7,h-2);c.stroke();}
         c.fillStyle = '#4a3a28'; c.font = '500 10px Pretendard Variable,sans-serif'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(text, w / 2, h / 2 + .5);
-        label = { sprite, w: w + 2, h: h + 2 }; this.labels.set(text, label);
+        label = { sprite, w: w + 2, h: h + 2 }; this.labels.set(key, label);
       }
       ctx.save(); ctx.globalAlpha = alpha; ctx.drawImage(label.sprite, x - label.w / 2, y - radius - label.h - 7, label.w, label.h); ctx.restore();
     }
@@ -621,7 +622,8 @@
       if (pose.aspect !== undefined && pose.aspect !== 1) {
         ctx.translate(pose.x,pose.y); ctx.rotate(pose.orientation || 0); ctx.scale(pose.aspect,1); ctx.rotate(-(pose.orientation || 0));
         ctx.drawImage(sprite, -size/2, -size/2, size, size);
-      } else ctx.drawImage(sprite, pose.x-size/2, pose.y-size/2, size, size);
+        if(P.Pinball)P.Pinball.mark(ctx,marble&&marble.name||entry.name,0,0,radius);
+      } else {ctx.drawImage(sprite, pose.x-size/2, pose.y-size/2, size, size);if(P.Pinball)P.Pinball.mark(ctx,marble&&marble.name||entry.name,pose.x,pose.y,radius);}
       ctx.restore();
     }
     drawDust(front, angle, orbit, time, alpha, reduced) {

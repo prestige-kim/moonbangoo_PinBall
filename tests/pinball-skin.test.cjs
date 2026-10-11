@@ -37,3 +37,26 @@ test('a late photo redraws the static welcome once without advancing any marble'
  images[0].onload();cinema.render({...state,time:2});assert(cinema.ctx.images.length>draws,'photo readiness invalidates only the still-image cache');const refreshed=cinema.ctx.images.length;
  cinema.render({...state,time:3});assert.equal(cinema.ctx.images.length,refreshed);assert.equal(JSON.stringify(physics.marbles),before);assert.equal(physics.time,0);
 });
+test('name groups share colors and patterns without changing individual IDs or physics',()=>{
+ const {P}=boot(),physics=new P.Physics({names:P.parseNames('명성*2,지연*3,중빈*4'),seed:'GROUPS'}),before=JSON.stringify(physics.marbles);
+ P.Pinball.configureGroups(physics.marbles);
+ const marks=physics.marbles.map(m=>P.Pinball.group(m.name));
+ assert.equal(marks[0],marks[1]);assert.equal(marks[2],marks[4]);assert.equal(marks[5],marks[8]);
+ assert.equal(new Set(marks.map(m=>m.color)).size,3);assert.equal(new Set(marks.map(m=>m.segments)).size,3);
+ assert.equal(JSON.stringify(physics.marbles),before);assert.equal(new Set(physics.marbles.map(m=>m.id)).size,9);
+ const expected=marks.map(m=>m.color).join();P.CINEMA.descriptors(physics);assert.equal(physics.marbles.map(m=>P.Pinball.group(m.name).color).join(),expected);
+});
+test('500 grouped balls keep one metal sprite pyramid and stable marks across themes',()=>{
+ const {P}=boot(),physics=new P.Physics({names:P.parseNames('명성*200,지연*200,중빈*100'),seed:'GROUP-500'});
+ P.Pinball.configureGroups(physics.marbles);const group=P.Pinball.group('명성'),sprite=P.Pinball.sprite(64);
+ for(const theme of Object.values(P.THEMES)){for(const m of physics.marbles){assert.equal(P.Pinball.sprite(64),sprite);assert(P.Pinball.group(m.name));}assert.equal(P.Pinball.group('명성'),group);}
+ assert.equal(P.Pinball.groups.size,3);assert.equal(P.Pinball.cache.size,1);
+});
+test('group identification ring stays identical across shuffle, flight and race',()=>{
+ const {P,canvas}=boot(),c=canvas(),renderer=Object.assign(Object.create(P.Renderer.prototype),{ctx:c.context,sprites:new Map(),theme:P.THEMES.cosmic,currentZoom:1,dpr:2});
+ const cinema=Object.assign(Object.create(P.Cinematic.prototype),{ctx:c.context,renderer,dpr:2});
+ const balls=[{name:'명성'},{name:'지연'},{name:'중빈'}];P.Pinball.configureGroups(balls);
+ const strokes=[];c.context.stroke=function(){strokes.push([this.strokeStyle,this.lineWidth]);};
+ for(const item of balls){const b={...item,id:item.name,x:120,y:100,r:14};strokes.length=0;renderer.drawMarble(b,9,null,{top:0,bottom:200},0,0,false);const expected=JSON.stringify(strokes);assert(strokes.length>0);
+ for(const blend of [0,.5,1]){strokes.length=0;cinema.drawOrb({name:b.name},{x:120,y:100,radius:14},blend,b,9,false);assert.equal(JSON.stringify(strokes),expected);}}
+});
