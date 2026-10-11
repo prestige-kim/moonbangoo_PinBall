@@ -105,7 +105,7 @@
   }
   function project(local, front, angle, orbit) {
     if (front.frame) {
-      const f = front.frame, lateral = local.y * f.thickness * .42;
+      const f = front.frame, lateral = local.y * f.thickness * .54;
       const axial = local.x * f.length * .45;
       return { x: f.x + f.axisX * axial - f.axisY * lateral, y: f.y + f.axisY * axial + f.axisX * lateral,
         depth: local.z, scale: f.thickness / f.baseThickness };
@@ -204,7 +204,7 @@
     };
   }
   // A fixed-step physical cross-section: contacts and visible spheres use one plane.
-  const CHAMBER_HALF = .45 * (1678 / 937) * .387 / (.42 * .264);
+  const CHAMBER_HALF = .45 * (1678 / 937) * .387 / (.54 * .264);
   function pressureAt(seconds, enabled) {
     const cycle = 1.65, phase = seconds % cycle, burst = phase >= .18 && phase < .40;
     const pulse = burst ? Math.sin((phase - .18) / .22 * Math.PI) : 0;
@@ -229,6 +229,24 @@
         } while (++attempts < 10000);
         Object.assign(body, { index, r: this.radius, vx: 0, vy: 0, vz: 0, spin: this.random() * TAU });
         this.wall(body); this.bodies.push(body);
+      }
+    }
+    rest() {
+      // Supported hexagonal layers start at the flat glass floor. Keep the
+      // seeded ownership order, with no suspended random positions.
+      const r = this.radius = Math.min(.28, Math.sqrt(.9 / Math.max(1, this.bodies.length))), diameter = 2 * r;
+      const columns = Math.max(1, Math.floor((2 * (CHAMBER_HALF - 1) - r) / diameter) + 1);
+      const order = this.bodies.slice().sort((a, b) => a.x - b.x || a.index - b.index);
+      for (let start = 0, row = 0; start < order.length; start += columns, row++) {
+        const count = Math.min(columns, order.length - start);
+        const first = Math.floor((columns - count) / 2);
+        for (let col = 0; col < count; col++) {
+          const b = order[start + col]; b.r = r;
+          b.x = (first + col - (columns - 1) / 2) * diameter + (row % 2) * r;
+          if (order.length <= columns) b.x = (col - (count - 1) / 2) * diameter;
+          b.y = 1 - r - row * Math.sqrt(3) * r;
+          b.vx = 0; b.vy = 0; this.wall(b);
+        }
       }
     }
     bodiesNear(body, bodies, distance) { return bodies.some(b => Math.hypot(body.x-b.x, body.y-b.y) < distance); }
@@ -377,6 +395,7 @@
         const live = carry ? this.previewChamber : null;
         this.cache = { physics, count, entries: next }; this.frozenTube = null;
         this.chamber = live || new Chamber(this.cache.entries, physics && physics.seed || 'preview');
+        if (!live) this.chamber.rest();
         this.previewChamber = this.chamber; this.launchBirth = null; this.previewBirth = this.chamber.ticks/120;
         this.stillTube = this.cache.entries.map(entry => this.chamber.pose(entry.index));
         this.chamberBirth = this.lastTime || 0; this.shuffleCommitted = false; this.boardCache = null;
@@ -405,7 +424,7 @@
       this.frozenTube = entries.map(entry => this.chamber.pose(entry.index));
       this.shuffleCommitted = true;
     }
-    drawPlate(shot, view, alpha, morph = null) {
+    drawPlate(shot, view, alpha, morph = null, transparentTube = false) {
       if (alpha <= .001 || morph !== null && (shot === 'front' ? morph >= 1 : morph <= 0)) return;
       const asset = shot === 'angle' && this.plates.barrel ? 'barrel' : shot;
       const ctx = this.ctx, image = this.plates[asset]; ctx.save(); ctx.globalAlpha = alpha;
@@ -413,7 +432,7 @@
       else { ctx.translate(view.x, view.y); ctx.rotate(view.rotation); ctx.transform(view.scaleX, 0, view.shear, view.scaleY, 0, 0); }
       if (image) {
         const left = view.matrix ? 0 : -view.anchorX * view.w, top = view.matrix ? 0 : -view.anchorY * view.h;
-        ctx.drawImage(morph === null ? this.bodyFor(asset, image) : this.morphFor(asset, image, morph), left, top, view.w, view.h);
+        ctx.drawImage(transparentTube && asset === 'front' ? this.tubePlateFor(image) : morph === null ? this.bodyFor(asset, image) : this.morphFor(asset, image, morph), left, top, view.w, view.h);
       }
       else {
         const x = (.31 - view.anchorX) * view.w, y = (.4 - view.anchorY) * view.h, w = view.w * .4, h = view.h * .29;
@@ -436,6 +455,38 @@
       pill(m, -rear, -thickness * .90, length + rear + fore, thickness * 1.80, thickness * .62); m.fill();
       ctx.globalCompositeOperation = 'destination-in'; ctx.drawImage(mask, 0, 0); ctx.globalCompositeOperation = 'source-over';
       this.bodyPlates.set(shot, c); return c;
+    }
+    tubePlateFor(image) {
+      if (this.transparentTubePlate) return this.transparentTubePlate;
+      const w = image.naturalWidth || image.width, h = image.naturalHeight || image.height;
+      const layer = makeCanvas(w, h), ctx = layer.getContext('2d');
+      ctx.drawImage(image, 0, 0, w, h);
+      ctx.save(); ctx.scale(w / 1678, h / 937);
+      // Retain the original photographed gold and glass, with a close-fitting
+      // silhouette instead of the studio backdrop and shadow around it.
+      ctx.globalCompositeOperation = 'destination-in'; ctx.fillStyle = '#fff';
+      ctx.beginPath(); ctx.moveTo(237, 482);
+      ctx.bezierCurveTo(237, 474, 264, 479, 274, 458);
+      ctx.bezierCurveTo(287, 413, 295, 348, 329, 337);
+      ctx.bezierCurveTo(335, 304, 357, 302, 374, 332);
+      ctx.lineTo(523, 337); ctx.lineTo(1155, 337); ctx.lineTo(1290, 332);
+      ctx.bezierCurveTo(1307, 302, 1329, 304, 1345, 336);
+      ctx.bezierCurveTo(1392, 395, 1402, 643, 1341, 702);
+      ctx.bezierCurveTo(1325, 724, 1307, 719, 1292, 697);
+      ctx.lineTo(1154, 697); ctx.lineTo(1116, 683); ctx.lineTo(530, 683); ctx.lineTo(498, 697); ctx.lineTo(377, 697);
+      ctx.bezierCurveTo(362, 724, 337, 717, 321, 694);
+      ctx.bezierCurveTo(294, 654, 286, 598, 273, 558);
+      ctx.bezierCurveTo(263, 537, 235, 546, 237, 530); ctx.closePath(); ctx.fill();
+      // The central photographed glass includes an opaque view of the studio.
+      // Only its reflection remains; all ornamental metal pixels stay intact.
+      ctx.globalCompositeOperation = 'destination-out'; ctx.fillStyle = 'rgba(0,0,0,.92)';
+      ctx.beginPath(); ctx.moveTo(527, 363); ctx.lineTo(1150, 363);
+      ctx.bezierCurveTo(1148, 398, 1240, 435, 1240, 515);
+      ctx.bezierCurveTo(1240, 594, 1149, 635, 1152, 660);
+      ctx.lineTo(529, 660); ctx.bezierCurveTo(524, 628, 441, 600, 441, 515);
+      ctx.bezierCurveTo(441, 437, 525, 398, 527, 363); ctx.closePath(); ctx.fill();
+      ctx.restore(); ctx.globalCompositeOperation = 'source-over';
+      this.transparentTubePlate = layer; return layer;
     }
     morphFor(shot, image, amount) {
       const body = this.bodyFor(shot, image), w = body.width, h = body.height;
@@ -463,7 +514,7 @@
       if (front.frame) {
         const f=front.frame,ctx=this.ctx;
         ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.rotation);
-        ctx.scale(f.length*.45/CHAMBER_HALF,f.thickness*.42);
+        ctx.scale(f.length*.45/CHAMBER_HALF,f.thickness*.54);
         pill(ctx,-CHAMBER_HALF,-1,CHAMBER_HALF*2,2,1);ctx.restore();return;
       }
       const ctx = this.ctx, a = pointInPlate(front, .31, .548), b = pointInPlate(front, .697, .548);
@@ -744,9 +795,9 @@
       ctx.restore();
       this.targetBoard(travel, state.physics, aiming, stage);
       if (stage === 'flight' && !this.frozenTube) this.frozenTube = entries.map(entry => this.chamber.pose(entry.index));
-      const baseRadius = views.frame.thickness * .42 * this.chamber.radius;
+      const baseRadius = views.frame.thickness * .54 * this.chamber.radius;
       // Project the same contact plane during the existing camera orbit.
-      const aspect=views.frame.length*.45/CHAMBER_HALF/(views.frame.thickness*.42),orientation=Math.atan2(views.frame.axisY,views.frame.axisX);
+      const aspect=views.frame.length*.45/CHAMBER_HALF/(views.frame.thickness*.54),orientation=Math.atan2(views.frame.axisY,views.frame.axisX);
       const drawn = entries.map(entry => {
         const local = reduced ? this.stillTube[entry.index] : stage === 'flight' ? this.frozenTube[entry.index] : (active ? this.chamber : this.previewChamber).pose(entry.index);
         const screen = project(local, front, angle, orbit), radius = baseRadius;
@@ -755,7 +806,7 @@
         const target = m ? mapPoint(travel.initial, m.x, m.y) : { x: w * .82, y: h * .28 };
         const endRadius = m ? m.r * travel.initial.a : radius * .4;
         const parameters = { width: w, height: h, axisX: resting.frame.axisX, axisY: resting.frame.axisY, muzzleRadius: resting.frame.thickness * .43, arrival: .74 };
-        const startRadius = resting.frame.thickness * .42 * this.chamber.radius;
+        const startRadius = resting.frame.thickness * .54 * this.chamber.radius;
         const at = progress => {
           const pose = flightPose(entry, progress, start, muzzle, target, startRadius, endRadius, parameters);
           const offset = flightOffset(entry, progress, resting.frame, w, reduced); pose.x += offset.x; pose.y += offset.y;

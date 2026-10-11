@@ -82,13 +82,36 @@
     handScene.shuffle.release();
     if (decision.fired) { throwMarbles(decision); shuffleInput.cancel(true); }
   }
+  let inputMode = null;
   const shuffleInput = new P.ShuffleInput(document.getElementById('cinema-canvas'), {
-    enabled: () => status === 'mixing' && handScene.ready && !handScene.launchDecision,
+    enabled: () => status === 'mixing' && (handScene.ready || handScene.canTilt) && !handScene.launchDecision,
     area: () => handScene.area(),
-    begin: point => { handScene.lastDecision = null; throwGate.begin(point.x, point.y, point.time, handScene.area()); const local = shufflePoint(point); handScene.shuffle.begin(local.x, local.y, local.time); },
-    move: point => { if (status !== 'mixing' || !throwGate.active) return; const local = shufflePoint(point); const contacted = handScene.shuffle.move(local.x, local.y, local.time); if (throwGate.move(point.x, point.y, point.time, contacted)) { const decision = throwGate.takeExit(point.time); if (decision.fired) acceptWallExit(decision); } },
-    release: point => { if (status !== 'mixing' || !throwGate.active) return; const local = shufflePoint(point); const contacted = throwGate.active && handScene.shuffle.move(local.x, local.y, local.time); const decision = throwGate.release(point.x, point.y, point.time, contacted); acceptWallExit(decision); },
-    cancel: () => { throwGate.cancel(); if (handScene.shuffle) handScene.shuffle.release(); }
+    begin: point => {
+      inputMode = handScene.ready ? 'shuffle' : 'tube';
+      if (inputMode === 'tube') { handScene.beginTilt(point); return; }
+      handScene.lastDecision = null; throwGate.begin(point.x, point.y, point.time, handScene.area());
+      const local = shufflePoint(point); handScene.shuffle.begin(local.x, local.y, local.time);
+    },
+    move: point => {
+      if (status !== 'mixing') return;
+      if (inputMode === 'tube') { handScene.moveTilt(point); return; }
+      if (!throwGate.active) return;
+      const local = shufflePoint(point), contacted = handScene.shuffle.move(local.x, local.y, local.time);
+      if (throwGate.move(point.x, point.y, point.time, contacted)) {
+        const decision = throwGate.takeExit(point.time); if (decision.fired) acceptWallExit(decision);
+      }
+    },
+    release: point => {
+      if (inputMode === 'tube') { handScene.releaseTilt(point); inputMode = null; return; }
+      inputMode = null;
+      if (status !== 'mixing' || !throwGate.active) return;
+      const local = shufflePoint(point), contacted = handScene.shuffle.move(local.x, local.y, local.time);
+      const decision = throwGate.release(point.x, point.y, point.time, contacted); acceptWallExit(decision);
+    },
+    cancel: () => {
+      if (inputMode === 'tube') handScene.cancelTilt();
+      inputMode = null; throwGate.cancel(); if (handScene.shuffle) handScene.shuffle.release();
+    }
   });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => {
     renderer.nameSprites.clear();

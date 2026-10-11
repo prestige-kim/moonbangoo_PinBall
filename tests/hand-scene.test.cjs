@@ -23,7 +23,7 @@ function makeCinema(width, height) {
   const ctx = {
     strokeStyle: '', lineWidth: 0, lineCap: '', shadowBlur: 0, shadowColor: '',
     clearRect() { strokes.length = 0; orbs.length = 0; plates.length = 0; },
-    createLinearGradient() { return { addColorStop() {} }; }, createRadialGradient() { return { addColorStop() {} }; }, fill() {}, fillRect() {}, fillText() {},
+    createLinearGradient() { return { addColorStop() {} }; }, createRadialGradient() { return { addColorStop() {} }; }, fill() {}, fillRect() {}, strokeRect() {}, fillText() {},
     beginPath() { currentPath = []; }, arc(...args) { currentPath.push(args); },
     stroke() { strokes.push({ arcs: currentPath.map(arc => arc.slice()), style: this.strokeStyle, width: this.lineWidth, shadowBlur: this.shadowBlur }); },
     save() { stacks.push({ strokeStyle: this.strokeStyle, lineWidth: this.lineWidth, lineCap: this.lineCap, shadowBlur: this.shadowBlur, shadowColor: this.shadowColor }); },
@@ -49,7 +49,13 @@ function setup(count, width, height) {
   return { physics, scene, ...drawing, randomDraws: () => randomDraws };
 }
 
-function settle(scene) { for(let frame=0;frame<200;frame++)scene.update(1/60); assert(scene.ready); }
+function settle(scene) {
+  for(let frame=0;frame<60;frame++)scene.update(1/60);
+  const rig=scene.rigAt(scene.elapsed,scene.area()),p={x:rig.x+rig.length*.4,y:rig.y,time:1000};
+  assert(scene.beginTilt(p));scene.releaseTilt({...p,x:rig.x+rig.length*.12,y:rig.y+rig.length*.45});
+  for(let frame=0;frame<2400&&!scene.ready;frame++)scene.update(1/60);
+  assert(scene.ready);
+}
 
 test('tube extraction starts at the real projected tube coordinates for all counts and screen sizes', () => {
   for (const count of counts) for (const [width, height] of sizes) {
@@ -57,12 +63,12 @@ test('tube extraction starts at the real projected tube coordinates for all coun
     const views = P.CINEMA.matchedViews(width, height, 0, 0);
     s.scene.render({ physics: s.physics, reducedMotion: false });
     assert.equal(s.orbs.length, count); assert.equal(s.plates[0].shot, 'front');
-    assert.equal(s.plates[0].alpha, 1); assert.equal(s.cinema.canvas.dataset.handPhase, 'tilting');
+    assert.equal(s.plates[0].alpha, 1); assert.equal(s.cinema.canvas.dataset.handPhase, 'lifting');
     for (let i = 0; i < count; i++) {
       const tube = P.CINEMA.project(s.cinema.chamber.pose(i), views.front, views.angle, 0), pose = s.orbs[i].pose;
       assert.equal(pose.id, s.physics.marbles[i].id); assert.equal(s.orbs[i].marbleId, pose.id);
       close(pose.x, tube.x, 'tube x ' + count); close(pose.y, tube.y, 'tube y ' + count);
-      close(pose.radius, views.frame.thickness * .42 * s.cinema.chamber.radius, 'tube radius');
+      close(pose.radius, views.frame.thickness * .54 * s.cinema.chamber.radius, 'tube radius');
       close(s.scene.sources[i].x, s.cinema.chamber.pose(i).x, 'recorded source x');
     }
     const beginning = s.scene.lastPoses.map(pose => ({ ...pose }));

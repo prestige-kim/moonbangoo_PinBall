@@ -170,9 +170,9 @@
         const pressureActivity=clamp((handSpeed-.015)/.25,0,1);
         for(const b of this.bodies) {
           if(b.pouring)continue;
-          const distance=Math.hypot(b.x,b.y),returnStrength=p?.06:.36;
-          let ax=-b.x*returnStrength,ay=.008-b.y*returnStrength;
-          if(distance>this.clusterRadius){const extra=(distance-this.clusterRadius)*2.4/distance;ax-=b.x*extra;ay-=b.y*extra;}
+          const distance=Math.hypot(b.x,b.y),returnStrength=this.gravity ? 0 : p?.06:.36;
+          let ax=-b.x*returnStrength,ay=(this.gravity || .008)-b.y*returnStrength;
+          if(!this.gravity && distance>this.clusterRadius){const extra=(distance-this.clusterRadius)*2.4/distance;ax-=b.x*extra;ay-=b.y*extra;}
           if(p) {
             const dx=p.x-b.x,dy=p.y-b.y,near=Math.hypot(dx,dy);
             if(near<this.pointerRadius) {
@@ -196,8 +196,8 @@
           b.x+=b.vx*h;b.y+=b.vy*h;b.spin+=b.vx*h/b.r;this.wall(b);
         }
         let pairs=this.pairs();
-        for(let pass=0;pass<12;pass++) {
-          if(pass===3||pass===6||pass===9)pairs=this.pairs();
+        for(let pass=0;pass<(this.gravity ? 18 : 12);pass++) {
+          if(pass===3||pass===6||pass===9||pass===12||pass===15)pairs=this.pairs();
           const worst=this.contacts(pairs);
           if(worst===0 || pass>=1&&worst<.012)break;
         }

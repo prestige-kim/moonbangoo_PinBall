@@ -2,15 +2,14 @@
   'use strict';
   const clamp = value => Math.max(0, Math.min(1, value));
   const mix = (a, b, t) => a + (b - a) * t;
-  // Seconds, independent of render frame count. Reduced motion keeps the same
-  // ID handoff and collision simulation, with a smaller camera/tube movement.
-  const POUR = { duration: 3.15, tilt: .65, firstRelease: .72, releaseSpan: 1.25, roll: .48, fall: .65, gravity: .72, withdraw: 2.65 };
+  // Fixed-step gravity and collisions respond to the user-controlled angle.
+  // Reduced motion preserves the same IDs, positions and physical handoff.
+  const POUR = { lift: .85, gravity: .72, scale: .10, openingAngle: .62 };
   class HandScene {
     constructor(cinematic) { this.cinema = cinematic; this.shuffle = null; }
-    // A shared visual camera pulls back during extraction, then stays steady
-    // under the hand. Physics and edge readiness keep their original units.
-    get viewScale() { return 1 - .16 * P.CINEMA.easeCamera(this.elapsed / POUR.tilt); }
-    get ready() { return this.elapsed >= POUR.duration && this.remaining === 0; }
+    get viewScale() { return 1 - .16 * P.CINEMA.easeCamera(this.elapsed / POUR.lift); }
+    get ready() { return this.remaining === 0 && this.withdraw >= 1; }
+    get canTilt() { return this.elapsed >= POUR.lift && this.remaining > 0; }
     area() {
       this.cinema.resize();
       const w = this.cinema.width, h = this.cinema.height;
@@ -21,106 +20,171 @@
       this.sources = entries.map(entry => ({ ...c.chamber.pose(entry.index) }));
       this.entries = entries;
       this.shuffle = new P.HandShuffle(entries, physics.seed);
-      // Queue ownership is visual only: never reorder entries, race marbles or
-      // seeded starting slots. The balls nearest the mouth roll out first.
-      const order = entries.map((entry, i) => i).sort((a, b) => this.sources[b].x - this.sources[a].x || a - b);
-      this.pours = new Array(entries.length);
-      this.arrivals = order; this.nextArrival = 0;
-      order.forEach((i, rank) => {
-        const body = this.shuffle.bodies[i];
-        const release = POUR.firstRelease + POUR.releaseSpan * rank / Math.max(1, entries.length - 1);
-        const arrival = Math.ceil((release + POUR.fall) * 120) / 120;
-        this.pours[i] = { release, arrival };
-        body.pouring = true;
-      });
-      // Freeze choreography parameters for this pour. Toggling the setting
-      // later cannot restart the clock or jump the current positions.
-      this.pourReduced = !!reducedMotion;
-      this.geometry = null; this.remaining = entries.length;
+      this.shuffle.gravity = POUR.gravity / .84;
+      this.shuffle.radius = c.chamber.radius * POUR.scale / .84;
+      this.shuffle.bodies.forEach(body => { body.pouring = true; body.r = this.shuffle.radius; });
+      this.tube = Object.create(P.CINEMA.Chamber.prototype);
+      this.tube.radius = c.chamber.radius;
+      this.tube.bodies = c.chamber.bodies.map(body => ({ ...body }));
+      this.tubeByIndex = this.tube.bodies.slice();
+      this.tube.collisions = 0; this.tube.wallHits = 0;
+      this.tube.wall = body => this.tubeWall(body);
+      this.pours = entries.map(() => ({ release: null, arrival: null }));
+      this.pourReduced = !!reducedMotion; this.geometry = null; this.remaining = entries.length;
       this.elapsed = 0; this.simulationTicks = 0; this.accumulator = 0;
+      this.angle = 0; this.angularVelocity = 0; this.targetAngle = 0; this.lidOpen = 0; this.withdraw = 0; this.tiltPointer = null;
+      this.pivot = { x: 0, y: 0 }; this.lidLatched = false;
       this.launchDecision = null; this.edgeGlow = 0;
     }
     views(area) {
       if (!this.geometry || this.geometry.w !== area.w || this.geometry.h !== area.h) {
         this.geometry = { w: area.w, h: area.h, views: P.CINEMA.matchedViews(area.w, area.h, 0, 0) };
-        this.pours.forEach(pour => { pour.path = null; });
       }
       return this.geometry.views;
     }
     rigAt(time, area) {
       const frame = this.views(area).frame;
-      const lift = P.CINEMA.easeCamera(time / POUR.tilt);
-      const leave = P.CINEMA.easeCamera((time - POUR.withdraw) / (POUR.duration - POUR.withdraw));
-      const length = mix(frame.length / area.s, .40, lift);
-      const rotation = mix(frame.rotation, this.pourReduced ? .26 : .40, lift);
-      return { x: mix((frame.x - area.x) / area.s, -.11, lift) - leave * (this.pourReduced ? .035 : .18),
-        y: mix((frame.y - area.y) / area.s, -.25, lift) - leave * (this.pourReduced ? .04 : .16),
-        length, thickness: mix(frame.thickness / area.s, .13, lift), rotation,
-        alpha: 1 - leave, opening: P.CINEMA.easeCamera((time - .14) / .46),
-        lidAngle: 1.35 * P.CINEMA.easeCamera((time - .14) / .46) };
+      const lift = P.CINEMA.easeCamera(time / POUR.lift), leave = P.CINEMA.easeCamera(this.withdraw);
+      const initialScale = frame.thickness * .54 / area.s;
+      const scale = mix(initialScale, POUR.scale, lift);
+      const px = this.pivot.x, py = this.pivot.y, rotation = this.angle;
+      return { x: mix((frame.x - area.x) / area.s, -.035, lift) - leave * .12 + lift * scale * (px - Math.cos(rotation) * px + Math.sin(rotation) * py),
+        y: mix((frame.y - area.y) / area.s, -.10, lift) - leave * .15 + lift * scale * (py - Math.sin(rotation) * px - Math.cos(rotation) * py),
+        length: scale * P.CINEMA.chamberHalfLength / .45, thickness: scale / .54,
+        rotation: mix(frame.rotation, this.angle, lift), scale, alpha: 1 - leave,
+        opening: this.lidOpen, lidAngle: 1.45 * this.lidOpen };
+    }
+    centerOfMass() {
+      // Shell mass stays at its center; each marble contributes its disk mass.
+      const shellMass = this.entries.length * this.tube.radius ** 2 * .8;
+      let mass = shellMass, x = 0, y = 0;
+      for (const b of this.tube.bodies) { const m = b.r * b.r; mass += m; x += b.x * m; y += b.y * m; }
+      return { x: x / mass, y: y / mass };
+    }
+    beginTilt(point) {
+      if (!this.canTilt) return false;
+      const rig = this.rigAt(this.elapsed, this.area()), dx = point.x - rig.x, dy = point.y - rig.y;
+      const x = dx * Math.cos(rig.rotation) + dy * Math.sin(rig.rotation);
+      const y = -dx * Math.sin(rig.rotation) + dy * Math.cos(rig.rotation);
+      if (Math.abs(x) > rig.length * .95 || Math.abs(y) > rig.thickness * .8) return false;
+      // Change supports without moving the tube or its contents on pointer down.
+      const center = this.centerOfMass();
+      if (this.angle === 0) this.pivot = center;
+      const px = rig.x + rig.scale * (Math.cos(this.angle) * this.pivot.x - Math.sin(this.angle) * this.pivot.y);
+      const py = rig.y + rig.scale * (Math.sin(this.angle) * this.pivot.x + Math.cos(this.angle) * this.pivot.y);
+      let armX = point.x - px, armY = point.y - py;
+      // A center grab has little leverage: use a short virtual grip on the rim.
+      if (Math.hypot(armX, armY) < rig.thickness * .65) {
+        armX = Math.cos(this.angle) * rig.length * .38;
+        armY = Math.sin(this.angle) * rig.length * .38;
+      }
+      this.tiltPointer = { x: point.x, y: point.y, armX, armY,
+        bearing: Math.atan2(armY, armX), angle: this.angle, moved: false };
+      return true;
+    }
+    moveTilt(point) {
+      const p = this.tiltPointer;
+      if (!p) return;
+      const dx = point.x - p.x, dy = point.y - p.y;
+      if (Math.hypot(dx, dy) <= .012 && !p.moved) return;
+      p.moved = true;
+      const bearing = Math.atan2(p.armY + dy, p.armX + dx);
+      const delta = Math.atan2(Math.sin(bearing - p.bearing), Math.cos(bearing - p.bearing));
+      this.targetAngle = Math.max(0, Math.min(1.48, p.angle + delta));
+    }
+    releaseTilt(point) {
+      if (!this.tiltPointer) return;
+      this.moveTilt(point);
+      this.tiltPointer = null;
+    }
+    cancelTilt() { this.tiltPointer = null; this.targetAngle = this.angle; }
+    tubeWall(body) {
+      if (this.lidOpen < .98 || body.x < 0) {
+        P.CINEMA.Chamber.prototype.wall.call(this.tube, body); return;
+      }
+      // The opened end has no invisible cap. Top/bottom glass still collide.
+      const limit = 1 - body.r;
+      if (body.y > limit) { body.y = limit; if (body.vy > 0) body.vy *= -.22; body.vx *= .997; }
+      if (body.y < -limit) { body.y = -limit; if (body.vy < 0) body.vy *= -.22; }
     }
     tubePose(i, time, area) {
-      const rig = this.rigAt(time, area), local = this.sources[i], pour = this.pours[i];
-      const roll = clamp((time - (pour.release - POUR.roll)) / POUR.roll);
-      // Accelerate down the tilted tube. The cross-section settles toward its
-      // lower glass wall before the marble crosses the opened lip.
-      const rolling = roll * roll * (2.6 - 1.6 * roll);
-      const along = mix(local.x, 1.14, rolling) * rig.length * .45;
-      const across = mix(local.y, .52, P.CINEMA.easeCamera(roll)) * rig.thickness * .42;
-      const dx = Math.cos(rig.rotation), dy = Math.sin(rig.rotation);
-      return { x: rig.x + dx * along - dy * across, y: rig.y + dy * along + dx * across,
-        r: rig.thickness * .42 * this.cinema.chamber.radius,
-        aspect: rig.length * .45 / P.CINEMA.chamberHalfLength / (rig.thickness * .42), orientation: rig.rotation };
+      const rig = this.rigAt(time, area), b = this.tubeByIndex[i];
+      if (!b) return this.pours[i].exit;
+      return { x: rig.x + (Math.cos(rig.rotation) * b.x - Math.sin(rig.rotation) * b.y) * rig.scale,
+        y: rig.y + (Math.sin(rig.rotation) * b.x + Math.cos(rig.rotation) * b.y) * rig.scale,
+        r: b.r * rig.scale, aspect: 1, orientation: rig.rotation };
     }
-    fallingPose(i, time, area) {
-      this.views(area);
-      const pour = this.pours[i];
-      if (!pour.path) {
-        const start = this.tubePose(i, pour.release, area), before = this.tubePose(i, pour.release - .00001, area);
-        pour.path = { start, vx: (start.x - before.x) / .00001, vy: (start.y - before.y) / .00001 };
+    stepPour(dt, area) {
+      const previousSpeed = this.angularVelocity;
+      const targetSpeed = Math.max(-1, Math.min(1, (this.targetAngle - this.angle) * 4));
+      this.angularVelocity += Math.max(-dt * 2.4, Math.min(dt * 2.4, targetSpeed - this.angularVelocity));
+      this.angle += this.angularVelocity * dt;
+      const angularAcceleration = (this.angularVelocity - previousSpeed) / dt;
+      if (this.angle >= POUR.openingAngle) this.lidLatched = true;
+      const opening = this.lidLatched ? 1 : 0;
+      this.lidOpen += (opening - this.lidOpen) * Math.min(1, dt * 22);
+      const rig = this.rigAt(this.simulationTicks / 120, area), angularSpeed = this.angularVelocity;
+      const gravity = POUR.gravity / rig.scale;
+      // Rotating-frame acceleration includes gravity and inertial terms.
+      for (let sub = 0; sub < 3; sub++) {
+        const h = dt / 3, damping = Math.exp(-h * .55);
+        for (const b of this.tube.bodies) {
+          const ax = gravity * Math.sin(rig.rotation) + 2 * angularSpeed * b.vy + angularSpeed * angularSpeed * (b.x - this.pivot.x) + angularAcceleration * (b.y - this.pivot.y);
+          const ay = gravity * Math.cos(rig.rotation) - 2 * angularSpeed * b.vx + angularSpeed * angularSpeed * (b.y - this.pivot.y) - angularAcceleration * (b.x - this.pivot.x);
+          b.vx = (b.vx + ax * h) * damping; b.vy = (b.vy + ay * h) * damping;
+          b.x += b.vx * h; b.y += b.vy * h; b.spin += b.vx * h / b.r;
+          this.tube.wall(b);
+        }
+        let pairs = this.tube.pairs();
+        for (let pass = 0; pass < 8; pass++) {
+          if (pass === 4) pairs = this.tube.pairs();
+          if (this.tube.contacts(pairs) < .006) break;
+        }
+        const mouth = .49 * rig.length / rig.scale;
+        for (const b of this.tube.bodies.slice()) {
+          if (this.lidOpen < .98 || b.x < mouth + b.r) continue;
+          const i = b.index, body = this.shuffle.bodies[i], pose = this.tubePose(i, this.elapsed, area);
+          const vx = (Math.cos(rig.rotation) * (b.vx - angularSpeed * (b.y - this.pivot.y)) - Math.sin(rig.rotation) * (b.vy + angularSpeed * (b.x - this.pivot.x))) * rig.scale;
+          const vy = (Math.sin(rig.rotation) * (b.vx - angularSpeed * (b.y - this.pivot.y)) + Math.cos(rig.rotation) * (b.vy + angularSpeed * (b.x - this.pivot.x))) * rig.scale;
+          this.pours[i] = { release: this.simulationTicks / 120, arrival: this.simulationTicks / 120, exit: { ...pose, vx, vy } };
+          // The same position, radius and velocity enter the receiving solver.
+          Object.assign(body, { x: pose.x / this.viewScale, y: pose.y / this.viewScale,
+            vx: vx / this.viewScale, vy: vy / this.viewScale, r: pose.r / this.viewScale, pouring: false });
+          this.tubeByIndex[i] = null;
+          this.tube.bodies.splice(this.tube.bodies.indexOf(b), 1); this.remaining--;
+        }
       }
-      const { start, vx, vy } = pour.path;
-      const duration = pour.arrival - pour.release, u = clamp((time - pour.release) / duration);
-      const age = u * duration;
-      // Once clear of the lip, no spline attracts a ball to an assigned point.
-      // Its exit tangent continues horizontally; gravity alone accelerates y.
-      const round = P.CINEMA.easeCamera(u);
-      return { x: start.x + vx * age,
-        y: start.y + vy * age + .5 * POUR.gravity * age * age,
-        vx, vy: vy + POUR.gravity * age,
-        r: mix(start.r, this.shuffle.bodies[i].r * .84, round),
-        aspect: mix(start.aspect, 1, round), orientation: start.orientation * (1-round) };
+      if (!this.remaining) this.withdraw = Math.min(1, this.withdraw + dt / .55);
     }
     drawTube(area, glass = false) {
       const c = this.cinema, ctx = c.ctx, rig = this.rigAt(this.elapsed, area);
       if (rig.alpha <= .001) return;
       const views = this.views(area), frame = views.frame;
-      ctx.save(); ctx.translate(area.x + rig.x * area.s, area.y + rig.y * area.s); ctx.rotate(rig.rotation);
-      // Keep the glass aperture fixed. The original gold cap is a separate
-      // hinged slice of the same plate, rather than a disappearing clip wipe.
       const mouth = .49 * rig.length * area.s;
-      ctx.beginPath(); ctx.rect(-area.s * 3, -area.s * 3, area.s * 3 + mouth, area.s * 6); ctx.clip();
-      ctx.scale(rig.length * area.s / frame.length, rig.thickness * area.s / frame.thickness);
-      ctx.rotate(-frame.rotation); ctx.translate(-frame.x, -frame.y);
+      const register = () => {
+        ctx.scale(rig.length * area.s / frame.length, rig.thickness * area.s / frame.thickness);
+        ctx.rotate(-frame.rotation); ctx.translate(-frame.x, -frame.y);
+      };
+      ctx.save(); ctx.translate(area.x + rig.x * area.s, area.y + rig.y * area.s); ctx.rotate(rig.rotation);
+      // The same original tube moves and turns continuously. Its masked photo
+      // retains the gold ornament; only the studio backdrop is made transparent.
+      ctx.beginPath(); ctx.rect(-rig.length * area.s, -rig.thickness * area.s,
+        rig.length * area.s + mouth, rig.thickness * area.s * 2); ctx.clip(); register();
       if (glass) c.drawGlass(views.front, views.angle, 0, 0, rig.alpha, 0);
-      else c.drawPlate('front', views.front, rig.alpha);
+      else c.drawPlate('front', views.front, rig.alpha, null, true);
       ctx.restore();
       if (glass) {
-        const hingeY = -rig.thickness * .43 * area.s;
-        ctx.save();ctx.translate(area.x+rig.x*area.s,area.y+rig.y*area.s);ctx.rotate(rig.rotation);
-        ctx.translate(mouth,hingeY);ctx.rotate(-rig.lidAngle);ctx.translate(-mouth,-hingeY);
-        ctx.beginPath();ctx.rect(mouth,-area.s*3,area.s*3,area.s*6);ctx.clip();
-        ctx.scale(rig.length*area.s/frame.length,rig.thickness*area.s/frame.thickness);
-        ctx.rotate(-frame.rotation);ctx.translate(-frame.x,-frame.y);c.drawPlate('front',views.front,rig.alpha);ctx.restore();
-        ctx.save();ctx.globalAlpha=rig.alpha;ctx.translate(area.x+rig.x*area.s,area.y+rig.y*area.s);ctx.rotate(rig.rotation);
-        ctx.fillStyle='#b79a61';ctx.beginPath();ctx.arc(mouth,hingeY,Math.max(1,area.s*.0035),0,Math.PI*2);ctx.fill();ctx.restore();
-      }
-      if (glass && rig.opening > 0) {
-        ctx.save(); ctx.globalAlpha = rig.alpha * rig.opening;
-        ctx.translate(area.x + rig.x * area.s, area.y + rig.y * area.s); ctx.rotate(rig.rotation);
-        ctx.strokeStyle = 'rgba(255,251,229,.75)'; ctx.lineWidth = Math.max(1, .004 * area.s);
-        ctx.beginPath(); ctx.ellipse(rig.length * .49 * area.s, 0, rig.thickness * .075 * area.s, rig.thickness * .44 * area.s, 0, 0, Math.PI * 2); ctx.stroke();
-        ctx.strokeStyle = 'rgba(144,116,67,.4)'; ctx.lineWidth = 1; ctx.stroke(); ctx.restore();
+        const hingeY = -rig.thickness * .82 * area.s;
+        ctx.save(); ctx.translate(area.x + rig.x * area.s, area.y + rig.y * area.s); ctx.rotate(rig.rotation);
+        ctx.translate(mouth, hingeY); ctx.rotate(-rig.lidAngle); ctx.translate(-mouth, -hingeY);
+        ctx.beginPath(); ctx.rect(mouth, -rig.thickness * area.s, rig.length * .55 * area.s, rig.thickness * area.s * 2); ctx.clip();
+        register(); c.drawPlate('front', views.front, rig.alpha, null, true); ctx.restore();
+        if (rig.opening > 0) {
+          ctx.save(); ctx.globalAlpha = rig.alpha * rig.opening;
+          ctx.translate(area.x + rig.x * area.s, area.y + rig.y * area.s); ctx.rotate(rig.rotation);
+          ctx.strokeStyle = 'rgba(255,251,229,.65)'; ctx.lineWidth = Math.max(1, .003 * area.s);
+          ctx.beginPath(); ctx.ellipse(mouth, 0, rig.thickness * .045 * area.s, rig.scale * area.s, 0, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+        }
       }
     }
     update(dt) {
@@ -140,18 +204,7 @@
         opening: P.EDGE_GEOMETRY.opening(frame).span / zoom,
         outer: { left: -frame.halfWidth / zoom, right: frame.halfWidth / zoom, top: -frame.halfHeight / zoom, bottom: frame.halfHeight / zoom } };
       while (this.accumulator >= 1 / 120) {
-        const time = this.simulationTicks / 120;
-        while (this.nextArrival < this.arrivals.length) {
-          const i = this.arrivals[this.nextArrival], body = this.shuffle.bodies[i], pour = this.pours[i];
-          if (time + 1e-9 < pour.arrival) break;
-          this.nextArrival++;
-          const arrival = this.fallingPose(i, pour.arrival, area);
-          // Keep the falling position AND its tangent velocity at handoff.
-          // Deposited bodies immediately collide with earlier arrivals.
-          this.remaining--;
-          Object.assign(body, { x: arrival.x / zoom, y: arrival.y / zoom,
-            vx: arrival.vx / zoom, vy: arrival.vy / zoom, pouring: false });
-        }
+        if (this.simulationTicks >= Math.ceil(POUR.lift * 120) && (this.angle || this.targetAngle || !this.remaining)) this.stepPour(1 / 120, area);
         if (this.remaining < this.entries.length) this.shuffle.step(1 / 120);
         this.simulationTicks++; this.accumulator -= 1 / 120;
       }
@@ -200,8 +253,7 @@
       }
       this.drawTube(area);
       this.lastPoses = this.shuffle.bodies.map((body, i) => {
-        const local = body.pouring ? (this.elapsed < this.pours[i].release
-          ? this.tubePose(i, this.elapsed, area) : this.fallingPose(i, this.elapsed, area))
+        const local = body.pouring ? this.tubePose(i, this.elapsed, area)
           : { x: body.x * this.viewScale, y: body.y * this.viewScale, r: body.r * this.viewScale, aspect: 1, orientation: 0 };
         const pose = { id: body.id, x: area.x + local.x * area.s, y: area.y + local.y * area.s,
           radius: local.r * area.s, aspect: local.aspect, orientation: local.orientation, focus: 1 };
@@ -218,11 +270,11 @@
         ctx.save(); ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2);
         ctx.fillStyle = field; ctx.fill(); ctx.strokeStyle = 'rgba(158,126,76,.18)'; ctx.lineWidth = 1; ctx.stroke(); ctx.restore();
       }
-      if (ready) {
+      if (ready || this.canTilt) {
         ctx.fillStyle = '#8a7760'; ctx.font = '12px "Pretendard Variable", sans-serif'; ctx.textAlign = 'center';
-        ctx.fillText('우측 상단 출구로 공을 끌어 주세요', area.x, area.y + .38 * area.s);
+        ctx.fillText(ready ? '우측 상단 출구로 공을 끌어 주세요' : '유리관 오른쪽을 아래로 끌어 충분히 기울여 주세요', area.x, area.y + .38 * area.s);
       }
-      if (c.canvas.dataset) c.canvas.dataset.handPhase = !ready ? (this.elapsed < POUR.firstRelease ? 'tilting' : this.elapsed < POUR.withdraw ? 'pouring' : 'settling-pour') : this.shuffle.pointer ? 'dragging' : 'settling';
+      if (c.canvas.dataset) c.canvas.dataset.handPhase = !ready ? (this.elapsed < POUR.lift ? 'lifting' : this.remaining ? this.lidLatched ? 'pouring' : 'waiting-tilt' : 'settling-pour') : this.shuffle.pointer ? 'dragging' : 'settling';
       c.lastStage = 'mixing';
       return { reveal: 0 };
     }

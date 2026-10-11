@@ -528,3 +528,22 @@ test('ending after the requested N finishes preserves confirmed nth and top winn
     assert.equal(result.winners[rule === 'nth' ? 0 : 1].id, result.ranking[1].id);
   }
 });
+
+
+test('a tube gesture stays separate from the later launch gesture even when readiness changes', () => {
+  const { P, callbacks, advance, gesture } = boot(); callbacks.start();
+  const hand = P.app.handScene, input = P.app.shuffleInput.callbacks, calls = [];
+  Object.defineProperty(hand, 'canTilt', { get: () => !hand.ready });
+  hand.beginTilt = point => { calls.push(['begin', point]); return true; };
+  hand.moveTilt = point => calls.push(['move', point]);
+  hand.releaseTilt = point => calls.push(['release', point]);
+  hand.cancelTilt = () => calls.push(['cancel']);
+  advance(1); assert(input.enabled());
+  input.begin({ x: 0, y: 0, time: 1000 }); input.move({ x: .1, y: .2, time: 1100 });
+  advance(3); assert(hand.ready);
+  input.release({ x: .8, y: -.8, time: 4000 });
+  assert.equal(P.app.status, 'mixing'); assert.equal(P.app.physics.time, 0);
+  assert.equal(P.app.cinematic.commits, undefined);
+  assert.deepEqual(calls.map(call => call[0]), ['begin', 'move', 'release']);
+  gesture(); assert.equal(P.app.status, 'flight'); assert.equal(P.app.cinematic.commits, 1);
+});

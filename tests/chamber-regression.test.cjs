@@ -17,7 +17,7 @@ test('contact centers and visible radii agree in the front glass',()=>{
  const c=new P.CINEMA.Chamber(P.CINEMA.descriptors(game(2)),'CONTACT'),r=c.radius;
  Object.assign(c.bodies[0],{x:-r,y:0,z:0});Object.assign(c.bodies[1],{x:r,y:0,z:0});
  const v=P.CINEMA.matchedViews(1280,720,0,0),a=P.CINEMA.project(c.pose(0),v.front,v.angle,0),b=P.CINEMA.project(c.pose(1),v.front,v.angle,0);
- const displayedRadius=r*v.frame.thickness*.42*a.scale/(v.frame.thickness/v.frame.baseThickness);
+ const displayedRadius=r*v.frame.thickness*.54*a.scale/(v.frame.thickness/v.frame.baseThickness);
  assert(Math.abs(Math.hypot(a.x-b.x,a.y-b.y)-2*displayedRadius)<1e-8);
 });
 test('same participants retain chamber position and velocity when a seeded run replaces setup',()=>{
@@ -76,8 +76,8 @@ test('camera orbit projects visible contacts and glass boundary in the same plan
   const v=P.CINEMA.matchedViews(w,h,p,0),f=v.frame,r=.1;
   const a=P.CINEMA.project({x:0,y:0,z:0},v.front,v.angle,p);
   const b=P.CINEMA.project({x:2*r/P.CINEMA.chamberHalfLength,y:0,z:0},v.front,v.angle,p);
-  const aspect=f.length*.45/P.CINEMA.chamberHalfLength/(f.thickness*.42);
-  assert(Math.abs(Math.hypot(a.x-b.x,a.y-b.y)-2*r*f.thickness*.42*aspect)<1e-8);
+  const aspect=f.length*.45/P.CINEMA.chamberHalfLength/(f.thickness*.54);
+  assert(Math.abs(Math.hypot(a.x-b.x,a.y-b.y)-2*r*f.thickness*.54*aspect)<1e-8);
  }
 });
 
