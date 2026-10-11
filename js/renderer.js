@@ -23,6 +23,61 @@
   function sun(ctx,x,y,r,count) { ctx.beginPath();ctx.arc(x,y,r*.42,0,TAU);ctx.stroke();for(let i=0;i<(count||20);i++){const a=i/(count||20)*TAU;ctx.beginPath();ctx.moveTo(x+Math.cos(a)*r*.6,y+Math.sin(a)*r*.6);ctx.lineTo(x+Math.cos(a)*r*(i%2?.85:1),y+Math.sin(a)*r*(i%2?.85:1));ctx.stroke();} }
   function fish(ctx,x,y,r,facing) { ctx.save();ctx.translate(x,y);ctx.scale(facing||1,1);ctx.beginPath();ctx.moveTo(-r*.85,0);ctx.bezierCurveTo(-r*.25,-r*.72,r*.65,-r*.7,r,0);ctx.bezierCurveTo(r*.65,r*.7,-r*.25,r*.72,-r*.85,0);ctx.lineTo(-r*1.35,-r*.43);ctx.lineTo(-r*1.35,r*.43);ctx.closePath();ctx.stroke();ctx.beginPath();ctx.arc(r*.55,-r*.1,r*.055,0,TAU);ctx.fill();ctx.beginPath();ctx.moveTo(r*.28,-r*.4);ctx.quadraticCurveTo(r*.05,0,r*.28,r*.4);ctx.stroke();ctx.restore(); }
   function sparkle(ctx,x,y,r) { ctx.beginPath();ctx.moveTo(x,y-r);ctx.quadraticCurveTo(x+r*.2,y-r*.2,x+r,y);ctx.quadraticCurveTo(x+r*.2,y+r*.2,x,y+r);ctx.quadraticCurveTo(x-r*.2,y+r*.2,x-r,y);ctx.quadraticCurveTo(x-r*.2,y-r*.2,x,y-r);ctx.fill(); }
+  // One photographic steel finish for the tube, hand scene, flight and board.
+  // Keep the existing sprite geometry: its solid circle is exactly 25/128.
+  const Pinball = {
+    status: 'fallback', revision: 0, image: null, bounds: null, cache: new Map(), pending: null,
+    levels: [64, 128, 256, 512, 1024],
+    load() {
+      if (this.pending) return this.pending;
+      this.pending = new Promise(resolve => {
+        if (typeof Image === 'undefined') { resolve(false); return; }
+        const image = new Image();
+        image.onload = () => {
+          const w = image.naturalWidth || image.width, h = image.naturalHeight || image.height;
+          if (!w || !h) { resolve(false); return; }
+          this.bounds = { x: 0, y: 0, w, h };
+          // Use the main opaque span through the center, ignoring extraction
+          // specks outside the sphere. Normalize both axes, then circularly clip.
+          try {
+            const probe = makeCanvas(w,h), ctx = probe.getContext('2d'); ctx.drawImage(image,0,0);
+            const rgba = ctx.getImageData(0,0,w,h).data;
+            if (rgba) {
+              const span = (length, alpha) => {
+                let best = [0,length], start = -1, longest = 0;
+                for (let i=0;i<=length;i++) {
+                  if (i<length && alpha(i)>=128) { if (start<0) start=i; }
+                  else if (start>=0) { if (i-start>longest) { longest=i-start;best=[start,i-start]; } start=-1; }
+                }
+                return best;
+              };
+              const x = span(w,i=>rgba[(Math.floor(h/2)*w+i)*4+3]), y = span(h,i=>rgba[(i*w+Math.floor(w/2))*4+3]);
+              this.bounds = { x:x[0], y:y[0], w:x[1], h:y[1] };
+            }
+          } catch (_) { /* Keep full-image cropping if pixel readback is unavailable. */ }
+          this.image=image;this.status='photo';this.cache.clear();this.revision++;resolve(true);
+        };
+        image.onerror = () => resolve(false);
+        image.src = './assets/pinball-chrome-photo.png';
+      });
+      return this.pending;
+    },
+    sprite(pixels = 128) {
+      const size=this.levels.find(level=>level>=pixels)||this.levels[this.levels.length-1];
+      if(this.cache.has(size))return this.cache.get(size);
+      const c=makeCanvas(size,size),ctx=c.getContext('2d'),unit=size/128,r=25*unit,center=size/2;
+      ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+      ctx.save();ctx.beginPath();ctx.arc(center,center,r,0,TAU);ctx.clip();
+      if(this.image){const b=this.bounds;ctx.fillStyle='#9aa3ad';ctx.fillRect(center-r,center-r,r*2,r*2);ctx.drawImage(this.image,b.x,b.y,b.w,b.h,center-r,center-r,r*2,r*2);}
+      else {
+        const g=ctx.createLinearGradient(center-r,center-r,center+r,center+r);
+        for(const [offset,color] of [[0,'#f9fcff'],[.22,'#d9dfe5'],[.4,'#6e7781'],[.55,'#222a33'],[.68,'#bac3cc'],[.86,'#f5f8fb'],[1,'#7c8793']])g.addColorStop(offset,color);
+        ctx.fillStyle=g;ctx.fillRect(center-r,center-r,r*2,r*2);
+      }
+      ctx.restore();this.cache.set(size,c);return c;
+    }
+  };
+  P.Pinball = Pinball;
   function marbleColor(index, total, theme) {
     theme = typeof theme === 'string' ? P.THEMES[theme] : theme || P.THEMES.cosmic;
     const tone = theme.marble;
@@ -30,7 +85,7 @@
   }
   class Renderer {
     constructor(canvas) {
-      this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});this.theme=P.THEMES.cosmic;this.quality='high';this.reducedMotion=false;
+      this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});Pinball.load();this.theme=P.THEMES.cosmic;this.quality='high';this.reducedMotion=false;
       this.sprites=new Map();this.nameSprites=new Map();this.currentZoom=1;this.winProgress=0;this.lastWinner=null;this.logo=null;
       if(typeof Image!=='undefined'){const image=new Image();image.onload=()=>{this.logo=image;this.sprites.clear();this.buildBackground();};image.src='./assets/logo.svg';}
       this.noise=makeCanvas(192,192);const ctx=this.noise.getContext('2d'),data=ctx.createImageData(192,192);let seed=6197;const rand=()=>{seed=seed*16807%2147483647;return(seed-1)/2147483646;};
@@ -56,13 +111,7 @@
       this.vignette=makeCanvas(Math.round(w),Math.round(h));const v=this.vignette.getContext('2d');g=v.createRadialGradient(w*.58,h*.48,Math.min(w,h)*.23,w*.58,h*.48,Math.max(w,h)*.78);g.addColorStop(0,'rgba(120,83,35,0)');g.addColorStop(.6,'rgba(120,83,35,.015)');g.addColorStop(1,'rgba(120,83,35,.1)');v.fillStyle=g;v.fillRect(0,0,w,h);
     }
     glow(color){const key='g:'+color;if(this.sprites.has(key))return this.sprites.get(key);const c=makeCanvas(128,128),ctx=c.getContext('2d'),g=ctx.createRadialGradient(64,64,0,64,64,64);g.addColorStop(0,color);g.addColorStop(.3,color);g.addColorStop(1,'rgba(244,237,224,0)');ctx.globalAlpha=.18;ctx.fillStyle=g;ctx.fillRect(0,0,128,128);this.sprites.set(key,c);return c;}
-    marbleSprite(color) {
-      const key='m:'+color;if(this.sprites.has(key))return this.sprites.get(key);const c=makeCanvas(128,128),ctx=c.getContext('2d'),r=25;
-      let g=ctx.createRadialGradient(64,72,17,64,72,37);g.addColorStop(0,'rgba(81,55,24,.2)');g.addColorStop(1,'rgba(81,55,24,0)');ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(64,75,37,30,0,0,TAU);ctx.fill();
-      g=ctx.createRadialGradient(54,51,0,70,72,37);g.addColorStop(0,'#fffefa');g.addColorStop(.27,PAPER_HI);g.addColorStop(.54,color);g.addColorStop(.83,'#baaa92');g.addColorStop(1,'#7d6849');ctx.fillStyle=g;ctx.beginPath();ctx.arc(64,64,r,0,TAU);ctx.fill();if(this.theme.id==='gold'){ctx.strokeStyle='#684921';ctx.lineWidth=4;ctx.stroke();}ctx.strokeStyle=this.foil(ctx,41,39,87,91);ctx.lineWidth=2.3;ctx.stroke();ctx.strokeStyle='rgba(255,253,246,.88)';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(64,64,r-3,3.5,5.5);ctx.stroke();
-      ctx.save();ctx.beginPath();ctx.arc(64,64,r-3,0,TAU);ctx.clip();ctx.strokeStyle='rgba(255,251,240,.3)';ctx.lineWidth=2;wave(ctx,39,89,69,5,28,0);wave(ctx,39,89,73,4,28,9);ctx.restore();
-      if(this.material()==='gold'){ctx.strokeStyle='rgba(255,238,184,.45)';ctx.lineWidth=1;sun(ctx,66,65,15,12);}if(this.material()==='rainbow'){ctx.save();ctx.globalAlpha=.28;ctx.fillStyle=this.foil(ctx,35,37,91,85);ctx.beginPath();ctx.arc(64,64,21,0,TAU);ctx.fill();ctx.restore();}this.sprites.set(key,c);return c;
-    }
+    marbleSprite(color, pixels = 128) { return Pinball.sprite(pixels); }
     pinSprite(color,kind) {
       const key='p:'+color+':'+kind;if(this.sprites.has(key))return this.sprites.get(key);const c=makeCanvas(128,128),ctx=c.getContext('2d'),r=20;let g=ctx.createRadialGradient(64,72,13,64,72,33);g.addColorStop(0,'rgba(82,53,17,.19)');g.addColorStop(1,'rgba(82,53,17,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(64,70,33,0,TAU);ctx.fill();
       ctx.fillStyle=this.foil(ctx,44,44,84,90);ctx.beginPath();ctx.arc(64,64,r,0,TAU);ctx.fill();ctx.strokeStyle='rgba(98,65,23,.45)';ctx.lineWidth=1;ctx.stroke();ctx.strokeStyle='rgba(255,250,231,.92)';ctx.beginPath();ctx.arc(64,63,r-3,3.5,5.5);ctx.stroke();
@@ -109,8 +158,7 @@
     drawMarble(m, total, leader, visible, time, dt, idle) {
       const ctx = this.ctx, color = marbleColor(m.colorIndex === undefined ? m.id : m.colorIndex, total, this.theme), r = m.r || 16;
       if (m.y + r * 6 < visible.top || m.y - r * 6 > visible.bottom) return;
-      ctx.drawImage(this.marbleSprite(color), m.x - r * 2.56, m.y - r * 2.56, r * 5.12, r * 5.12);
-      ctx.save(); ctx.translate(m.x, m.y); ctx.rotate((m.angle || 0) * .35); ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.beginPath(); ctx.ellipse(-r * .29, -r * .38, r * .3, r * .16, -.6, 0, TAU); ctx.fill(); ctx.fillStyle = 'rgba(255,255,255,.17)'; ctx.beginPath(); ctx.ellipse(r * .29, r * .35, r * .17, r * .06, -.5, 0, TAU); ctx.fill(); ctx.restore();
+      ctx.drawImage(this.marbleSprite(color, r * 5.12 * (this.currentZoom || 1) * (this.dpr || 1)), m.x - r * 2.56, m.y - r * 2.56, r * 5.12, r * 5.12);
       const isLeader = leader && leader.id === m.id;
       if (isLeader) { ctx.strokeStyle = this.foil(ctx,m.x-r*2,m.y-r*2,m.x+r*2,m.y+r*2); ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(m.x, m.y, r * 1.7, 0, TAU); ctx.stroke(); }
     }
@@ -177,7 +225,7 @@
       const ctx = this.ctx;
       for (const entry of this.finishDisplay(finished, map)) {
         const color = marbleColor(entry.marble.colorIndex, physics.marbles.length, this.theme), r = 10;
-        ctx.drawImage(this.marbleSprite(color), entry.x - r * 2.56, entry.y - r * 2.56, r * 5.12, r * 5.12);
+        ctx.drawImage(this.marbleSprite(color, r * 5.12 * (this.currentZoom || 1) * (this.dpr || 1)), entry.x - r * 2.56, entry.y - r * 2.56, r * 5.12, r * 5.12);
       }
       ctx.save(); ctx.textAlign = 'center'; ctx.font = '600 12px Pretendard Variable,sans-serif'; ctx.fillStyle = '#765633';
       ctx.fillText('완주 ' + finished.length + ' / ' + physics.marbles.length, map.width / 2, y + 185); ctx.restore();
@@ -190,7 +238,7 @@
       }ctx.restore();}
     drawWinner(winner,total,camera,dt,time){if(this.lastWinner!==winner.id){this.winProgress=0;this.lastWinner=winner.id;}this.winProgress=Math.min(1,this.winProgress+dt*1.15);const ease=1-Math.pow(1-this.winProgress,3),pos=camera.worldToScreen(winner.x,winner.y),area=camera.viewport||{x:0,y:0,w:this.width,h:this.height},cx=area.x+area.w/2,cy=area.y+area.h*.4;
       const ctx=this.ctx,color=marbleColor(winner.colorIndex||0,total,this.theme),x=pos.x+(cx-pos.x)*ease,y=pos.y+(cy-pos.y)*ease,r=(winner.r||16)*camera.zoom+52*ease;ctx.save();ctx.globalAlpha=ease*.9;const g=ctx.createRadialGradient(cx,cy,50,cx,cy,Math.max(area.w,area.h)*.7);g.addColorStop(0,PAPER_HI);g.addColorStop(.6,'rgba(251,247,239,.95)');g.addColorStop(1,'rgba(244,237,224,0)');ctx.fillStyle=g;ctx.fillRect(area.x,area.y,area.w,area.h);ctx.globalAlpha=ease;
-      ctx.strokeStyle=this.foil(ctx,cx-140,cy-170,cx+140,cy+170);ctx.lineWidth=1.4;sun(ctx,cx,cy,r*2.2,32);ctx.beginPath();ctx.arc(cx,cy,r*1.66,0,TAU);ctx.stroke();ctx.strokeStyle='rgba(172,135,75,.24)';ctx.lineWidth=.7;ctx.beginPath();ctx.arc(cx,cy,r*1.85,0,TAU);ctx.stroke();ctx.globalAlpha=1;ctx.drawImage(this.marbleSprite(color),x-r*2.56,y-r*2.56,r*5.12,r*5.12);ctx.globalAlpha=ease;ctx.fillStyle='#9a7434';ctx.textAlign='center';ctx.font='600 11px Pretendard Variable,sans-serif';ctx.fillStyle=INK;ctx.font='700 19px Pretendard Variable,sans-serif';
+      ctx.strokeStyle=this.foil(ctx,cx-140,cy-170,cx+140,cy+170);ctx.lineWidth=1.4;sun(ctx,cx,cy,r*2.2,32);ctx.beginPath();ctx.arc(cx,cy,r*1.66,0,TAU);ctx.stroke();ctx.strokeStyle='rgba(172,135,75,.24)';ctx.lineWidth=.7;ctx.beginPath();ctx.arc(cx,cy,r*1.85,0,TAU);ctx.stroke();ctx.globalAlpha=1;ctx.drawImage(this.marbleSprite(color, r * 5.12 * (this.dpr || 1)),x-r*2.56,y-r*2.56,r*5.12,r*5.12);ctx.globalAlpha=ease;ctx.fillStyle='#9a7434';ctx.textAlign='center';ctx.font='600 11px Pretendard Variable,sans-serif';ctx.fillStyle=INK;ctx.font='700 19px Pretendard Variable,sans-serif';
       ctx.font='700 34px Pretendard Variable,sans-serif';ctx.fillText((winner.name||'당첨자').slice(0,22),cx,cy+157);ctx.font='500 12px Pretendard Variable,sans-serif';ctx.fillStyle='#8a7760';ctx.fillText('축하드립니다!',cx,cy+186);ctx.strokeStyle=this.foil(ctx,cx-90,cy+211,cx+90,cy+211);ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(cx-110,cy+212);ctx.lineTo(cx-18,cy+212);ctx.moveTo(cx+18,cy+212);ctx.lineTo(cx+110,cy+212);ctx.stroke();ctx.fillStyle=this.theme.primary;sparkle(ctx,cx,cy+212,6);ctx.restore();}
     render(state) {
       const { physics, map, camera, effects, time = 0, dt = 1 / 60, status, leader, winner, photoFinish } = state; if (!map || !physics || !camera) return;

@@ -404,21 +404,6 @@
       this.frozenTube = entries.map(entry => this.chamber.pose(entry.index));
       this.shuffleCommitted = true;
     }
-    orbSprite(coat, blurred) {
-      const key = coat + ':' + !!blurred; if (this.sprites.has(key)) return this.sprites.get(key);
-      const c = makeCanvas(144, 144), ctx = c.getContext('2d'), tones = COATS[coat % COATS.length];
-      let g = ctx.createRadialGradient(72, 80, 15, 72, 80, 43); g.addColorStop(0, 'rgba(81,58,25,.18)'); g.addColorStop(1, 'rgba(81,58,25,0)'); ctx.fillStyle = g; ctx.fillRect(28, 36, 88, 88);
-      g = ctx.createRadialGradient(61, 57, 0, 79, 82, 37); g.addColorStop(0, '#fffef5'); g.addColorStop(.17, tones[0]); g.addColorStop(.51, tones[1]); g.addColorStop(.83, tones[2]); g.addColorStop(1, tones[0]);
-      ctx.beginPath(); ctx.arc(72, 72, 27, 0, TAU); ctx.fillStyle = g; ctx.fill();
-      const rim = ctx.createLinearGradient(48, 46, 96, 101); rim.addColorStop(0, '#fff9df'); rim.addColorStop(.35, tones[1]); rim.addColorStop(.63, tones[2]); rim.addColorStop(1, '#ffedbd'); ctx.strokeStyle = rim; ctx.lineWidth = 1.1; ctx.stroke();
-      ctx.save(); ctx.beginPath(); ctx.arc(72, 72, 25, 0, TAU); ctx.clip();
-      ctx.strokeStyle = 'rgba(255,250,222,.27)'; ctx.lineWidth = 7; ctx.beginPath(); ctx.ellipse(74, 75, 30, 11, -.4, 0, TAU); ctx.stroke();
-      ctx.strokeStyle = 'rgba(255,255,250,.66)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(72, 72, 23, 3.5, 5.3); ctx.stroke();
-      ctx.fillStyle = 'rgba(255,255,247,.82)'; ctx.beginPath(); ctx.ellipse(63, 60, 8, 4.7, -.7, 0, TAU); ctx.fill();
-      ctx.fillStyle = 'rgba(255,248,216,.29)'; ctx.beginPath(); ctx.ellipse(81, 84, 8.5, 3.5, -.5, 0, TAU); ctx.fill(); ctx.restore();
-      if (blurred && 'filter' in ctx) { const soft = makeCanvas(144, 144), s = soft.getContext('2d'); s.filter = 'blur(1.25px)'; s.drawImage(c, 0, 0); this.sprites.set(key, soft); return soft; }
-      this.sprites.set(key, c); return c;
-    }
     drawPlate(shot, view, alpha, morph = null) {
       if (alpha <= .001 || morph !== null && (shot === 'front' ? morph >= 1 : morph <= 0)) return;
       const asset = shot === 'angle' && this.plates.barrel ? 'barrel' : shot;
@@ -627,19 +612,17 @@
       ctx.save(); ctx.globalAlpha = alpha; ctx.drawImage(label.sprite, x - label.w / 2, y - radius - label.h - 7, label.w, label.h); ctx.restore();
     }
     drawOrb(entry, pose, gameBlend, marble, total, reduced) {
-      const ctx = this.ctx, radius = pose.radius, alpha = pose.alpha === undefined ? 1 : pose.alpha; if (radius <= 0 || alpha <= .001) return;
-      const soft = !reduced && this.quality === 'high' && pose.focus < .75;
-      if (gameBlend < .999) {
-        ctx.save(); ctx.globalAlpha = (1 - gameBlend) * alpha;
-        ctx.translate(pose.x,pose.y); ctx.rotate(pose.orientation || 0); ctx.scale(pose.aspect || 1,1); ctx.rotate(-(pose.orientation || 0));
-        const size = radius * 144 / 27; ctx.drawImage(this.orbSprite(entry.coat, soft), -size/2, -size/2, size, size); ctx.restore();
-      }
-      if (gameBlend > .001 && marble && this.renderer) {
-        ctx.save(); ctx.globalAlpha = gameBlend * alpha;
-        const color = P.marbleColor(marble.colorIndex, total, this.renderer.theme); ctx.drawImage(this.renderer.marbleSprite(color), pose.x - radius * 2.56, pose.y - radius * 2.56, radius * 5.12, radius * 5.12);
-        ctx.translate(pose.x, pose.y); ctx.rotate((marble.angle || 0) * .35); ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.beginPath(); ctx.ellipse(-radius * .29, -radius * .38, radius * .3, radius * .16, -.6, 0, TAU); ctx.fill();
-        ctx.fillStyle = 'rgba(255,255,255,.17)'; ctx.beginPath(); ctx.ellipse(radius * .29, radius * .35, radius * .17, radius * .06, -.5, 0, TAU); ctx.fill(); ctx.restore();
-      }
+      const ctx = this.ctx, radius = pose.radius, alpha = pose.alpha === undefined ? 1 : pose.alpha;
+      if (radius <= 0 || alpha <= .001 || !this.renderer) return;
+      // Material never crossfades during handoff; every stage shares this sprite.
+      const size = radius * 5.12;
+      ctx.save(); ctx.globalAlpha = alpha;
+      const sprite = this.renderer.marbleSprite(null, size * (this.dpr || 1));
+      if (pose.aspect !== undefined && pose.aspect !== 1) {
+        ctx.translate(pose.x,pose.y); ctx.rotate(pose.orientation || 0); ctx.scale(pose.aspect,1); ctx.rotate(-(pose.orientation || 0));
+        ctx.drawImage(sprite, -size/2, -size/2, size, size);
+      } else ctx.drawImage(sprite, pose.x-size/2, pose.y-size/2, size, size);
+      ctx.restore();
     }
     drawDust(front, angle, orbit, time, alpha, reduced) {
       if (alpha < .01) return; const ctx = this.ctx, count = reduced ? 8 : this.quality === 'low' ? 18 : this.quality === 'medium' ? 42 : 76;
@@ -694,7 +677,7 @@
       const entries = this.entries(state.physics), count = entries.length, marbles = state.physics && state.physics.marbles || [];
       const active = ['mixing', 'aiming', 'flight'].includes(stage);
       const still = stage === 'intro' || stage === 'setup';
-      const stillKey = [stage, w, h, this.dpr, this.quality, reduced, Object.keys(this.plates).length].join('|');
+      const stillKey = [stage, w, h, this.dpr, this.quality, reduced, Object.keys(this.plates).length, P.Pinball && P.Pinball.revision || 0].join('|');
       if (still && this.stillCache && this.stillCache.physics === state.physics && this.stillCache.key === stillKey) {
         this.lastStage = stage; this.lastTime = time;
         return { reveal: 0 };
