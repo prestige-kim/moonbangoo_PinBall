@@ -7,7 +7,7 @@ const root = process.env.HAND_SCENE_REPO_ROOT || path.join(__dirname, '..');
 let now = 0;
 const box = { window: {}, document: {}, Math, performance: { now: () => now } };
 vm.createContext(box);
-for (const file of ['maps', 'physics', 'cinematic', 'shuffle', 'throw-gate', 'hand-scene', 'hand-flight']) {
+for (const file of ['maps', 'physics', 'cinematic', 'shuffle', 'hand-start', 'throw-gate', 'hand-scene', 'hand-flight']) {
   const source = file === 'cinematic' && process.env.HAND_CINEMATIC_SOURCE || path.join(root, 'js', file + '.js');
   vm.runInContext(fs.readFileSync(source, 'utf8'), box, { filename: file + '.js' });
 }
@@ -167,31 +167,11 @@ test('every current shuffle pose connects continuously to the first real flight 
   }
 });
 
-test('manual slot commit preserves the previous seeded ownership for every count and waiting duration', () => {
-  for (const count of counts) {
-    let baseline;
-    for (const wait of [0, 2]) {
-      const output = {};
-      for (const method of ['commitShuffle', 'commitHandSlots']) {
-        const preview = game(count, 'POLICY-PREVIEW'), physics = game(count, 'POLICY-RACE-' + count);
-        const { cinema } = makeCinema(1280, 800);
-        cinema.entries(preview); cinema.previewChamber.seek(wait, true); cinema.lastStage = 'setup';
-        cinema.entries(physics); cinema.launchBirth = cinema.chamber.ticks / 120;
-        let randomDraws = 0; const random = physics.random;
-        physics.random = () => { randomDraws++; return random(); };
-        const slots = physics.marbles.map(m => [m.x, m.y, m.vx, m.vy]).sort((a, b) => a[1] - b[1] || a[0] - b[0]);
-        assert.equal(typeof cinema[method], 'function', method + ' must be available'); cinema[method](physics);
-        const after = positions(physics); cinema[method](physics);
-        assert.equal(positions(physics), after, method + ' is committed once');
-        assert.equal(JSON.stringify(physics.marbles.map(m => [m.x, m.y, m.vx, m.vy]).sort((a, b) => a[1] - b[1] || a[0] - b[0])), JSON.stringify(slots), 'only ownership changes, never the seeded slot set');
-        assert.equal(randomDraws, 0, method + ' does not consume race RNG');
-        assert.equal(physics.time, 0); assert.equal(physics.ticks, 0); output[method] = after;
-      }
-      assert.equal(output.commitHandSlots, output.commitShuffle, count + ' manual and previous seeded slot ownership agree');
-      if (baseline) assert.equal(output.commitHandSlots, baseline, 'waiting does not change seeded ownership');
-      else baseline = output.commitHandSlots;
-    }
-  }
+test('manual handoff uses actual geometry and commits once without consuming race RNG',()=>{
+ for(const count of counts){const s=setup(count,1280,800);settle(s.scene);const before=positions(s.physics),source=JSON.stringify(s.scene.shuffle.snapshot());
+  s.cinema.commitHandSlots(s.physics,s.scene.shuffle.bodies);const after=positions(s.physics);assert.notEqual(after,before);assert.equal(JSON.stringify(s.scene.shuffle.snapshot()),source);assert.equal(s.randomDraws(),0);assert.equal(s.physics.time,0);
+  s.cinema.commitHandSlots(s.physics,s.scene.shuffle.bodies);assert.equal(positions(s.physics),after);assert.equal(s.physics.handStart.source.length,count);
+ }
 });
 
 test('visible rounded walls contain every collision circle during vigorous near-wall shuffle',()=>{

@@ -45,7 +45,7 @@ function boot(storage, options = {}) {
   class Cinematic {
     constructor() { this.endpoints = 0; }
     setQuality(value) { this.quality = value; }
-    commitHandSlots(physics) { this.commits = (this.commits || 0) + 1; this.commitTime = physics.time; }
+    commitHandSlots(physics,bodies) { this.commits = (this.commits || 0) + 1; this.commitTime = physics.time; P.commitHandStart(physics,bodies); }
     render(scene) {
       this.scene = scene;
       if (scene.stage === 'flight' && scene.progress === 1) {
@@ -104,7 +104,7 @@ function boot(storage, options = {}) {
   const context = vm.createContext({ window, document: { hidden: false, getElementById: () => ({}), documentElement: { classList: { toggle() {} } }, addEventListener() {} },
     localStorage: storage || { getItem() { throw new Error('Storage denied'); }, setItem() { throw new Error('Storage denied'); } },
     requestAnimationFrame(callback) { frame = callback; }, performance: { now: () => clock }, Uint32Array, Date, Math, console });
-  for (const file of ['maps.js', 'physics.js', 'throw-gate.js', 'race-standing.js', 'main.js']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context, { filename: file });
+  for (const file of ['maps.js', 'physics.js', 'shuffle.js', 'hand-start.js', 'throw-gate.js', 'race-standing.js', 'main.js']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context, { filename: file });
   if (!options.intro) callbacks.enter();
   function advance(seconds, frameRate = 60) {
     const count = Math.ceil(seconds * frameRate);
@@ -166,7 +166,8 @@ test('start waits for a valid manual throw and connects exact flight landing to 
   advance(3.1);
   assert.equal(P.app.handFlight.endpoints, 1, 'the exact p=1 landing frame renders once');
   assert.equal(P.app.cinematic.commits, 1); assert.equal(P.app.handFlight.landingTime, 0);
-  assert.equal(P.app.handFlight.positions, position);
+  assert.notEqual(P.app.handFlight.positions, position, 'actual hand positions replace seeded preparation');
+  assert.equal(P.app.handFlight.positions, JSON.stringify(physics.handStart.starts.map(m => [m.x, m.y])));
   assert.equal(P.app.status, 'running'); assert.ok(physics.time > 0);
 });
 
@@ -410,7 +411,7 @@ test('motion changes retain shuffle positions and flight progress without catchi
   assert.equal(P.app.renderer.reduced, true);
 });
 
-test('waiting time, gesture direction and render frame grouping preserve seeded slots and full results', () => {
+test('same captured gesture preserves actual launch layout and results across render frame grouping', () => {
   const normal = boot(), alternate = boot();
   const slots = instance => JSON.stringify(instance.P.app.physics.marbles.map(m => [m.id, m.x, m.y, m.vx, m.vy]));
   for (const instance of [normal, alternate]) {
@@ -419,7 +420,7 @@ test('waiting time, gesture direction and render frame grouping preserve seeded 
   }
   assert.equal(slots(normal), slots(alternate));
   normal.advance(3.3); normal.gesture(); normal.advance(3.1);
-  alternate.advance(18, 30); alternate.gesture([[0, 0, 0], [-.08, .02, 40], [.30, -.20, 100], [.68, -.50, 120]]); alternate.advance(3.1, 30);
+  alternate.advance(18, 30); alternate.gesture(); alternate.advance(3.1, 30);
   assert.equal(normal.P.app.status, 'running'); assert.equal(alternate.P.app.status, 'running');
   assert.equal(normal.P.app.handFlight.positions, alternate.P.app.handFlight.positions);
   normal.advance(120, 60); alternate.advance(120, 30);

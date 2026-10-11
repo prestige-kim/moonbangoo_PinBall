@@ -382,16 +382,12 @@
       }
       return this.cache.entries;
     }
-    commitHandSlots(physics) {
-      const entries = this.entries(physics);
-      if (this.shuffleCommitted) return;
-      const slots = physics.marbles.map(m => ({ x: m.x, y: m.y, vx: m.vx, vy: m.vy, _anchorX: m._anchorX, _anchorY: m._anchorY }))
-        .sort((a, b) => a.y - b.y || a.x - b.x);
-      // Slot ownership uses only the original seeded descriptor permutation.
-      // Neither hand positions, waiting time nor the visual flight consume race RNG.
-      entries.slice().sort((a,b) => a.lane-b.lane || a.index-b.index)
-        .forEach((entry,rank) => Object.assign(physics.marbles[entry.index], slots[rank]));
+    commitHandSlots(physics, bodies) {
+      this.entries(physics);
+      if (this.shuffleCommitted) return physics.handStart;
+      const start = P.commitHandStart(physics, bodies);
       this.shuffleCommitted = true;
+      return start;
     }
     commitShuffle(physics) {
       const entries = this.entries(physics); if (this.shuffleCommitted) return;

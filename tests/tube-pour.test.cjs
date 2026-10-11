@@ -51,7 +51,7 @@ test('different render rates and motion changes preserve slots, IDs and readines
   for(const fps of [24,30,60,120])for(const reduced of [false,true]){
    const s=setup(n,390,844,reduced),before=slots(s.physics);finish(s.scene,fps);
    const positions=JSON.stringify(s.scene.shuffle.snapshot());s.scene.render({physics:s.physics,reducedMotion:!reduced});assert.equal(JSON.stringify(s.scene.shuffle.snapshot()),positions);
-   s.cinema.commitHandSlots(s.physics);const actual=slots(s.physics);if(baseline)assert.equal(actual,baseline);else baseline=actual;
+   const actual=slots(s.physics);if(baseline)assert.equal(actual,baseline);else baseline=actual;
    assert.equal(s.physics.time,0);assert.equal(s.physics.ticks,0);assert.equal(new Set(s.scene.shuffle.bodies.map(b=>b.id)).size,n);assert(before);
   }
  }

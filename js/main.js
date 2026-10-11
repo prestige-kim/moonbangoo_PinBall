@@ -213,7 +213,7 @@
   function throwMarbles(decision) {
     if (status !== 'mixing' || handScene.launchDecision) return;
     handScene.launchDecision = decision;
-    cinematic.commitHandSlots(physics);
+    cinematic.commitHandSlots(physics, handScene.shuffle.bodies);
     camera.viewport = ui.getViewport(); camera.prepareLanding(P.MAPS[runSettings.map], physics);
     handScene.camera = camera;
     flightDuration = settings.reducedMotion ? 1.2 : 2.8;

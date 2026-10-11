@@ -22,7 +22,7 @@
       this.area = Object.assign({}, area); this.duration = Math.max(.25, Number(duration) || 2.8); this.reduced = !!reduced;
       this.physics = physics;
       // Even a stationary ready release launches. Input speed only adds visual
-      // thrust and never modifies race RNG, ownership or landing coordinates.
+      // thrust. Landing coordinates were already captured from the real shuffle.
       const speed = Math.min(2.8, Math.max(0, Number(decision && decision.inputSpeed) || 0));
       this.propulsion = area.s * (this.reduced ? .12 : .8 + speed * .1);
       const origin = camera ? camera.worldToScreen(0, 0) : { x: area.w / 2 - 500 * .5, y: area.h / 2 - 450 * .5 };
