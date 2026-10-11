@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "qa": "npm test",
     "test": "node --test --test-concurrency=4 tests/*.test.cjs qa/*.test.cjs",
     "qa:sim": "node qa/sim/run.cjs",
     "qa:browser": "node qa/browser/run.cjs"
