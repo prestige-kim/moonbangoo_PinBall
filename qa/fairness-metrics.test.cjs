@@ -1,0 +1,4 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),{wilson,distribution}=require('./fairness/run.cjs');
+test('Wilson intervals retain uncertainty for zero/all wins and fixed sample sizes',()=>{for(const n of [3000,5000,10000])for(const w of [0,Math.round(n/6),Math.round(n/3),n]){const r=wilson(w,n);assert.ok(r.low>=-1e-12&&r.high<=1+1e-12);assert.ok(r.low<=w/n+1e-12&&r.high>=w/n-1e-12);assert.ok(r.widthPercentagePoints>0);}assert.ok(wilson(0,5000).high>0);assert.ok(wilson(5000,5000).low<1);});
+test('participant and unequal-group criteria require both p and deviation',()=>{const equal=distribution([1000,1000,1000,1000,1000,1000]);assert.ok(equal.pass);const unequal=distribution([1000,1000,4000],[1/6,1/6,4/6]);assert.ok(unequal.pass);const biased=distribution([1000,1000,1000,1000,1000,1500]);assert.equal(biased.pass,false);assert.equal(equal.bins.length,6);assert.ok(equal.bins.every(b=>b.ci95&&b.expected>0));});

@@ -3,3 +3,5 @@
 node_modules/
 qa/results/*.partial.json
 qa/results/simulation.json
+
+qa/fairness/results/*.progress.json

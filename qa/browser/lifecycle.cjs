@@ -15,11 +15,11 @@ const {chromium}=require('playwright'),{quantile}=require('../sim/stats.cjs');
  });
  try{
   await p.goto('http://127.0.0.1:'+server.address().port+'/moonbangoo_PinBall/');await p.locator('#intro-start-button').click();
-  // Setup through the public UI adapter; actual browser keyboard launches every round.
+  // Setup through the public UI adapter; actual browser mouse launches every round.
   await p.evaluate(()=>{const a=CosmicPinball.app;a.ui.load({...a.settings,names:'빨강*500',speed:3,seed:'',quality:'high'});a.ui.emit('change');});
   for(let i=0;i<10;i++){
    const started=Date.now();if(i===0)await p.locator('#start-button').click();else await p.locator('#restart-button').click();
-   await p.waitForFunction(()=>CosmicPinball.app.handScene.canTilt,{},{timeout:30000});await p.keyboard.press('Enter');await p.waitForFunction(()=>document.querySelector('dialog').open,{},{timeout:240000});
+   await p.waitForFunction(()=>CosmicPinball.app.handScene.canTilt,{},{timeout:30000});await require('../fairness/browser.cjs').launch(p,'mouse');await p.waitForFunction(()=>document.querySelector('dialog').open,{},{timeout:240000});
    await p.locator('#show-all-results').click();
    const round=await p.evaluate(()=>{const a=CosmicPinball.app,p=a.physics,q=window.__qa,f=q.frames.splice(0);return {time:p.time,seed:a.runSettings.seed,count:p.finished.length,unique:new Set(p.finished.map(m=>m.id)).size,shown:document.querySelectorAll('#result-ranking>li').length,quality:a.settings.quality,listeners:q.listeners,contexts:q.contexts,rafPending:q.rafPending,maxRaf:q.maxRaf,canvasInDOM:document.querySelectorAll('canvas').length,caches:{sprites:a.renderer.sprites.size,spriteKeys:Array.from(a.renderer.sprites.keys()),names:a.renderer.nameSprites.size,labels:a.cinematic.labels.size},voices:a.audio.voices,frames:f};});
    const frames=round.frames;delete round.frames;round.frameTime={};for(const scene of ['mixing','flight','running']){const values=frames.filter(f=>f.scene===scene).map(f=>f.dt);round.frameTime[scene]={samples:values.length,p50:quantile(values,.5),p95:quantile(values,.95),max:Math.max(...values)};}round.wallSeconds=(Date.now()-started)/1000;

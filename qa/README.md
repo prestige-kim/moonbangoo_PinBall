@@ -18,7 +18,6 @@ node qa/sim/groups.cjs
 node qa/sim/compare-rescue.cjs
 node qa/sim/hand-fairness.cjs
 node qa/sim/enrich.cjs
-node qa/sim/keyboard-fairness.cjs
 node qa/sim/controller.cjs --seeds=300
 node qa/sim/benchmark.cjs
 node qa/sim/archive-results.cjs
@@ -35,7 +34,7 @@ python3 qa/history-scan.py
 - engine: 매 스텝 유한수·보드 경계·속도, 12스텝마다 폴리곤 중심 침범을 검사합니다. 모든 얇은 장애물의 연속 충돌 검증은 아니며, 속도 >5,000은 탐색용 폭주 기준입니다. 종료 제한은 **시뮬레이션 시간 240초**로, 시간 초과를 영구 정체의 증명으로 간주하지 않습니다.
 - extended: 기본 6개 × 스킬 두 상태 × 막힘 방지 두 상태 × 1,000시드. OFF는 QA 인스턴스에서 rescueDelay만 Infinity로 바꿉니다. production 수정이 없습니다.
 - hand: 실제 유리관·충돌·붓기·2초 원형 손동작을 실행합니다. 실제 UI의 같은 색 2개씩 입력 순서를 유지합니다. 현재 뷰포트와 입력 프로토콜에 대한 표본입니다.
-- enrich는 hand 결과의 시드로 출발을 다시 계산해 실제 출발 슬롯과 셔플 위치 순서를 붙입니다. keyboard-fairness는 원형 손동작 없이 Enter 경로와 같은 기울이기·즉시 발사로 스킬별 300판을 검사합니다.
+- enrich는 hand 결과의 시드로 출발을 다시 계산해 실제 출발 슬롯과 셔플 위치 순서를 붙입니다. R02 Enter 발사는 제품 범위 밖으로 철회됐습니다. 현재 경로는 qa/fairness/README.md를 참고하세요.
 - controller: 기존 integration fixture의 실제 main.js를 이용합니다. DOM·렌더러·손 입력만 mock하며 60/30/144Hz, 지터/스파이크, 속도 0.5/1/3을 비교합니다. 실제 다양한 손동작의 프레임 의존성 전체를 대체하지 않습니다.
 - stats: 카이제곱 survival p-value, 최대 비율 차이(percentage points), 기대빈도 5 이상 여부. 다중 검정과 표본 한계를 REPORT에서 함께 해석합니다.
 
@@ -43,7 +42,6 @@ python3 qa/history-scan.py
 
 ```sh
 npm run qa:browser
-node qa/browser/keyboard.cjs
 node qa/browser/edge.cjs
 node qa/browser/lifecycle.cjs
 node qa/browser/background.cjs
@@ -52,7 +50,6 @@ node qa/browser/reload.cjs
 ```
 
 - run: 임시 로컬 서버의 Pages 하위 경로와 라이브를 각각 실제 마우스로 출발. 완료만 일부 빠른 물리 스텝으로 진행하므로 성능 수치로 쓰지 않습니다. 5개 viewport × DPR 1/2/3, 잘못된 저장 JSON 포함.
-- keyboard: 키보드만으로 시작부터 완주 모달까지 확인.
 - edge: Chromium 합성 터치·핀치, CDP freeze, 회전, 입력 중 F, XSS 라벨·저장 차단. 휴대폰 실기기 검증이 아닙니다.
 - lifecycle: 기본 물리 500개, 속도 3, 실제 rAF로 10판. GC 후 heap/리스너/AudioContext/활성 rAF 및 프레임 시간. requestAnimationFrame 취소도 추적하고 같은 timestamp는 한 프레임으로 셉니다.
 - background: 별도 화면 표시 Chrome으로 탭/최소화 시도. document.hidden=false이면 숨김 동작을 검증한 것으로 보고하지 않습니다.

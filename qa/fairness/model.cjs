@@ -16,6 +16,7 @@ function capture(config,seed,protocol){
   for(let i=1;i<=Math.round(params.duration*120);i++){const t=i/120,q=t*params.speed*params.direction,r=params.radius;now+=1000/120;const x=r*Math.cos(q),y=params.kind==='eight'?r*Math.sin(2*q):params.kind==='shake'?0:r*Math.sin(q);s.shuffle.move(x,y,now);s.update(1/120);}
   s.shuffle.release();
  }else for(let i=0;i<Math.round(params.duration*120);i++)update();
+ if(config.candidate==='a'&&(params.kind==='none'||params.duration<2)){params.autoMixSeconds=2;s.shuffle.begin(0,0,now);for(let i=1;i<=240;i++){now+=1000/120;s.shuffle.move(.12*Math.cos(i/120*8),.12*Math.sin(i/120*8),now);s.update(1/120);}s.shuffle.release();}
  // Same public event semantics as main.js, including event-time sweep impulses.
  const a=s.area(),b=s.shuffle.bodies.slice().sort((u,v)=>u.x*u.x+u.y*u.y-v.x*v.x-v.y*v.y||u.index-v.index)[0],z=s.viewScale;
  const from={x:b.x*z,y:b.y*z},mouth=P.EDGE_GEOMETRY.opening(P.EDGE_GEOMETRY.bounds(a));gate.begin(from.x,from.y,now,a);s.shuffle.begin(from.x/z,from.y/z,now);
