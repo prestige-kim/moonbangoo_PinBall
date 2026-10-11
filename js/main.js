@@ -83,7 +83,7 @@
     if (decision.fired) { throwMarbles(decision); shuffleInput.cancel(true); }
   }
   const shuffleInput = new P.ShuffleInput(document.getElementById('cinema-canvas'), {
-    enabled: () => status === 'mixing' && handScene.elapsed >= .8 && !handScene.launchDecision,
+    enabled: () => status === 'mixing' && handScene.ready && !handScene.launchDecision,
     area: () => handScene.area(),
     begin: point => { handScene.lastDecision = null; throwGate.begin(point.x, point.y, point.time, handScene.area()); const local = shufflePoint(point); handScene.shuffle.begin(local.x, local.y, local.time); },
     move: point => { if (status !== 'mixing' || !throwGate.active) return; const local = shufflePoint(point); const contacted = handScene.shuffle.move(local.x, local.y, local.time); if (throwGate.move(point.x, point.y, point.time, contacted)) { const decision = throwGate.takeExit(point.time); if (decision.fired) acceptWallExit(decision); } },
@@ -203,7 +203,7 @@
     ui.clearError(); ui.hideResults(); ui.hideCountdown(); ui.setLocked(true);
     winner = null; launchElapsed = 0; flightLanded = false;
     throwGate.cancel();
-    handScene.begin(physics);
+    handScene.begin(physics, settings.reducedMotion);
     setScene('mixing');
     accumulator = 0; leaderId = null; leadCooldown = 0; leadCandidateId = null; leadCandidateAge = 0; leadNotices = 0; photoFinish = false;
     finalRanking = []; resultDelay = 0; resultShown = false;
@@ -303,12 +303,27 @@
     }
     if (physics.complete) finish();
   }
+  function adjustQuality(dt) {
+    qualityCooldown -= dt;
+    if (['mixing', 'flight', 'running'].includes(status) && fps < 45) lowFpsTime += dt;
+    else lowFpsTime = Math.max(0, lowFpsTime - dt * 2);
+    if (lowFpsTime > 3 && qualityCooldown <= 0 && settings.quality !== 'low') {
+      settings.quality = QUALITY_ORDER[QUALITY_ORDER.indexOf(settings.quality) + 1];
+      renderer.setQuality(settings.quality);
+      if (cinematic.setQuality) cinematic.setQuality(settings.quality);
+      if (effects.setQuality) effects.setQuality(settings.quality);
+      ui.load(settings); ui.setLocked(true);
+      save(settings); lowFpsTime = 0; qualityCooldown = 8; diagnostics.autoQualityDrops++;
+      if (status === 'running') ui.toast('더 부드러운 플레이를 위해 비주얼 품질을 조절했습니다');
+    }
+  }
   function frame(timestamp) {
     const dt = lastFrame ? Math.min(0.12, Math.max(0, (timestamp - lastFrame) / 1000)) : 1 / 60;
     lastFrame = timestamp;
     if (document.hidden) { lastFrame = 0; requestAnimationFrame(frame); return; }
     elapsedVisual += dt; hudElapsed += dt; fpsElapsed += dt; fpsFrames++; diagnostics.frames++;
     if (fpsElapsed >= 0.75) { fps = Math.round(fpsFrames / fpsElapsed); fpsElapsed = 0; fpsFrames = 0; }
+    adjustQuality(dt);
     if (['mixing', 'flight'].includes(status)) updateLaunch(dt);
     if (['intro', 'setup', 'mixing', 'flight'].includes(status)) {
       renderCinema(dt); requestAnimationFrame(frame); return;
@@ -320,17 +335,6 @@
         resultShown = true;
         ui.showResults({ winners: P.chooseWinners(finalRanking, runSettings), ranking: finalRanking, seed: runSettings.seed, time: physics.time, ruleLabel: P.ruleLabel(runSettings) });
       }
-    }
-    qualityCooldown -= dt;
-    if (status === 'running' && fps < 45) lowFpsTime += dt;
-    else lowFpsTime = Math.max(0, lowFpsTime - dt * 2);
-    if (lowFpsTime > 3 && qualityCooldown <= 0 && settings.quality !== 'low') {
-      settings.quality = QUALITY_ORDER[QUALITY_ORDER.indexOf(settings.quality) + 1];
-      renderer.setQuality(settings.quality);
-      if (effects.setQuality) effects.setQuality(settings.quality);
-      ui.load(settings); ui.setLocked(true);
-      save(settings); lowFpsTime = 0; qualityCooldown = 8; diagnostics.autoQualityDrops++;
-      ui.toast('더 부드러운 플레이를 위해 비주얼 품질을 조절했습니다');
     }
     const map = P.MAPS[(runSettings || settings).map];
     const ranking = physics.getRanking();

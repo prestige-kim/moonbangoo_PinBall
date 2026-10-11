@@ -106,11 +106,11 @@
     pairs() {
       const cell=this.radius*2.15,grid=new Map(),pairs=[];
       for(let i=0;i<this.bodies.length;i++) {
-        const b=this.bodies[i],gx=Math.floor(b.x/cell),gy=Math.floor(b.y/cell),key=(gy+4096)*8192+gx;
+        const b=this.bodies[i];if(b.pouring)continue;const gx=Math.floor(b.x/cell),gy=Math.floor(b.y/cell),key=(gy+4096)*8192+gx;
         if(!grid.has(key))grid.set(key,[]);grid.get(key).push(i);
       }
       for(let i=0;i<this.bodies.length;i++) {
-        const b=this.bodies[i],gx=Math.floor(b.x/cell),gy=Math.floor(b.y/cell);
+        const b=this.bodies[i];if(b.pouring)continue;const gx=Math.floor(b.x/cell),gy=Math.floor(b.y/cell);
         for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++) {
           const near=grid.get((gy+dy+4096)*8192+gx+dx);if(!near)continue;
           for(const j of near)if(j<i)pairs.push([this.bodies[j],b]);
@@ -138,7 +138,7 @@
           this.collisions++;
         }
       }
-      for(const b of this.bodies)this.wall(b);
+      if(worst>0)for(const b of this.bodies)if(!b.pouring)this.wall(b);
       return worst;
     }
     step(dt=1/120) {
@@ -157,6 +157,7 @@
         const handSpeed=p?Math.hypot(p.vx,p.vy)*freshness:0;
         const pressureActivity=clamp((handSpeed-.015)/.25,0,1);
         for(const b of this.bodies) {
+          if(b.pouring)continue;
           const distance=Math.hypot(b.x,b.y),returnStrength=p?.06:.36;
           let ax=-b.x*returnStrength,ay=.008-b.y*returnStrength;
           if(distance>this.clusterRadius){const extra=(distance-this.clusterRadius)*2.4/distance;ax-=b.x*extra;ay-=b.y*extra;}
@@ -186,7 +187,7 @@
         for(let pass=0;pass<8;pass++) {
           if(pass===3||pass===6)pairs=this.pairs();
           const worst=this.contacts(pairs);
-          if(pass>=1&&worst<.012)break;
+          if(worst===0 || pass>=1&&worst<.012)break;
         }
         if(p)p.age+=h;
       }

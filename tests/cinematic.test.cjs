@@ -211,9 +211,9 @@ for(const entry of shotEntries) {
     movie.render({stage:'intro',time,physics:physical});
     orders.add(movie.previewChamber.bodies.slice().sort((a,b)=>a.x-b.x).map(b=>b.index).join(','));
   }
-  assert(orders.size>=4,'welcome marbles must keep exchanging axial order, rather than settle into fixed wobbling slots');
-  assert(movie.previewChamber.collisions>0);
-  assert.equal(movie.chamber,movie.previewChamber,'the same live chamber continues into setup and launch');
+  assert.equal(orders.size,1,'welcome marbles stay completely still');
+  assert.equal(movie.previewChamber.ticks,0);
+  assert.equal(movie.chamber,movie.previewChamber,'the same still arrangement continues into setup');
   const liveTicks=movie.chamber.ticks;
   assert.equal(JSON.stringify(physical.marbles),raceBefore);
   movie.render({stage:'mixing',progress:.5,time:13,physics:physical});
@@ -229,7 +229,7 @@ for (const [w,h] of [[1280,720],[390,844],[844,390]]) {
     }
   }
 }
-console.log('PASS welcome shuffle: persistent position exchanges, continuous chamber clock and frozen race; intermediate photo axes match desktop and mobile.');
+console.log('PASS welcome: still positions, frozen chamber clock and frozen race; intermediate photo axes match desktop and mobile.');
 
 // Reduced motion freezes the displayed chamber; it must not select different race slots.
 for(const count of [6,50,200,500]) {
@@ -255,7 +255,7 @@ for(const count of [6,50,200,500]) {
  const poses=JSON.stringify(movie.cache.entries.map(e=>movie.chamber.pose(e.index))),ticks=movie.chamber.ticks;
  movie.render({stage:'setup',time:2,physics:physical,reducedMotion:true});assert.equal(JSON.stringify(movie.stillTube),poses);
  movie.render({stage:'setup',time:20,physics:physical,reducedMotion:true});assert.equal(movie.chamber.ticks,ticks);
- movie.render({stage:'setup',time:20+1/120,physics:physical});assert.equal(movie.chamber.ticks,ticks+1,'unpausing resumes without catching up the paused interval');
+ movie.render({stage:'setup',time:20+1/120,physics:physical});assert.equal(movie.chamber.ticks,ticks,'welcome remains still when reduced motion is disabled');
 }
 
 {

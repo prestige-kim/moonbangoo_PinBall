@@ -27,12 +27,12 @@ function makeCinema(width, height) {
     beginPath() { currentPath = []; }, arc(...args) { currentPath.push(args); },
     stroke() { strokes.push({ arcs: currentPath.map(arc => arc.slice()), style: this.strokeStyle, width: this.lineWidth, shadowBlur: this.shadowBlur }); },
     save() { stacks.push({ strokeStyle: this.strokeStyle, lineWidth: this.lineWidth, lineCap: this.lineCap, shadowBlur: this.shadowBlur, shadowColor: this.shadowColor }); },
-    restore() { Object.assign(this, stacks.pop()); }, transform() {}, moveTo() {}, lineTo() {}, quadraticCurveTo() {}, closePath() {}
+    restore() { Object.assign(this, stacks.pop()); }, transform() {}, translate() {}, rotate() {}, scale() {}, rect() {}, clip() {}, ellipse() {}, moveTo() {}, lineTo() {}, quadraticCurveTo() {}, closePath() {}
   };
   const cinema = Object.create(P.Cinematic.prototype);
   Object.assign(cinema, {
     width, height, lastTime: 0, lastStage: null, canvas: { dataset: {} }, ctx,
-    resize() {}, drawLabel() {}, targetBoard() {},
+    resize() {}, drawLabel() {}, drawGlass() {}, targetBoard() {},
     drawOrb(entry, pose, blend, marble) { orbs.push({ id: entry.id, pose: { ...pose }, marbleId: marble.id, blend }); },
     drawPlate(shot, view, alpha) { plates.push({ shot, alpha }); }
   });
@@ -49,19 +49,21 @@ function setup(count, width, height) {
   return { physics, scene, ...drawing, randomDraws: () => randomDraws };
 }
 
+function settle(scene) { for(let frame=0;frame<200;frame++)scene.update(1/60); assert(scene.ready); }
+
 test('tube extraction starts at the real projected tube coordinates for all counts and screen sizes', () => {
   for (const count of counts) for (const [width, height] of sizes) {
     const s = setup(count, width, height), area = s.scene.area();
     const views = P.CINEMA.matchedViews(width, height, 0, 0);
     s.scene.render({ physics: s.physics, reducedMotion: false });
     assert.equal(s.orbs.length, count); assert.equal(s.plates[0].shot, 'front');
-    assert.equal(s.plates[0].alpha, 1); assert.equal(s.cinema.canvas.dataset.handPhase, 'emerging');
+    assert.equal(s.plates[0].alpha, 1); assert.equal(s.cinema.canvas.dataset.handPhase, 'tilting');
     for (let i = 0; i < count; i++) {
       const tube = P.CINEMA.project(s.cinema.chamber.pose(i), views.front, views.angle, 0), pose = s.orbs[i].pose;
       assert.equal(pose.id, s.physics.marbles[i].id); assert.equal(s.orbs[i].marbleId, pose.id);
       close(pose.x, tube.x, 'tube x ' + count); close(pose.y, tube.y, 'tube y ' + count);
       close(pose.radius, views.frame.thickness * .42 * s.cinema.chamber.radius, 'tube radius');
-      close(pose.x, area.x + s.scene.sources[i].x * area.s, 'recorded source x');
+      close(s.scene.sources[i].x, s.cinema.chamber.pose(i).x, 'recorded source x');
     }
     const beginning = s.scene.lastPoses.map(pose => ({ ...pose }));
     s.scene.elapsed = .00001; s.scene.render({ physics: s.physics, reducedMotion: false });
@@ -75,7 +77,7 @@ test('tube extraction starts at the real projected tube coordinates for all coun
 test('fully extracted display circles match individual collision radii and preserve all IDs', () => {
   for (const count of counts) for (const [width, height] of sizes) {
     const s = setup(count, width, height), slots = positions(s.physics), area = s.scene.area();
-    s.scene.update(.8); s.scene.render({ physics: s.physics, reducedMotion: false });
+    settle(s.scene); s.scene.render({ physics: s.physics, reducedMotion: false });
     assert.equal(s.plates.length, 0); assert.equal(s.scene.lastPoses.length, count);
     assert.equal(new Set(s.scene.lastPoses.map(p => p.id)).size, count);
     for (let i = 0; i < count; i++) {
@@ -87,13 +89,6 @@ test('fully extracted display circles match individual collision radii and prese
       assert.ok(pose.x - pose.radius >= 16 - 1e-8 && pose.x + pose.radius <= width - 16 + 1e-8);
       assert.ok(pose.y - pose.radius >= 24 - 1e-8 && pose.y + pose.radius <= height - 24 + 1e-8);
     }
-    const endpoint = s.scene.lastPoses.map(pose => ({ ...pose }));
-    s.scene.elapsed = .8 - .00001; s.scene.render({ physics: s.physics, reducedMotion: false });
-    for (let i = 0; i < count; i++) {
-      close(s.scene.lastPoses[i].x, endpoint[i].x, 'end extraction x has no jump');
-      close(s.scene.lastPoses[i].y, endpoint[i].y, 'end extraction y has no jump');
-      close(s.scene.lastPoses[i].radius, endpoint[i].radius, 'end extraction radius has no jump');
-    }
     assert.equal(positions(s.physics), slots); assert.equal(s.physics.time, 0); assert.equal(s.physics.ticks, 0);
     assert.equal(s.randomDraws(), 0, 'display extraction consumes no race RNG');
   }
@@ -101,7 +96,7 @@ test('fully extracted display circles match individual collision radii and prese
 
 test('wall-exit feedback shares the exact consumed direction and clears inside the wall', () => {
   for (const count of counts) for (const [width, height] of sizes) for (const direction of [[1,-1]]) {
-    const s = setup(count, width, height), area = s.scene.area(); s.scene.update(.8);
+    const s = setup(count, width, height), area = s.scene.area(); settle(s.scene);
     s.scene.gate.begin(0, 0, 0, area);
     const mouth = P.EDGE_GEOMETRY.opening(s.scene.gate.bounds), x = mouth.x + .05, y = mouth.y - .05;
     s.scene.gate.move(x, y, 1000, true); now = 5000;
@@ -120,7 +115,7 @@ test('wall-exit feedback shares the exact consumed direction and clears inside t
 
 test('inside or untouched empty-space movement never shows exit gold', () => {
   for (const points of [[[0,0,0],[.42,0,50,false]],[[.35,0,0],[.42,0,50,false]],[[0,0,0],[.20,0,1000,true]]]) {
-    const s = setup(50, 390, 844); s.scene.update(.8);
+    const s = setup(50, 390, 844); settle(s.scene);
     s.scene.gate.begin(...points[0]); s.scene.gate.move(...points[1]); now = 2000;
     s.scene.render({ physics: s.physics, reducedMotion: false });
     assert.equal(s.cinema.canvas.dataset.throwReady, 'false');
@@ -130,7 +125,7 @@ test('inside or untouched empty-space movement never shows exit gold', () => {
 
 test('motion changes preserve bodies, RNG, ready feedback and the hand influence field', () => {
   for (const count of counts) for (const [width, height] of sizes) {
-    const s = setup(count, width, height), area = s.scene.area(); s.scene.update(.8);
+    const s = setup(count, width, height), area = s.scene.area(); settle(s.scene);
     s.scene.shuffle.begin(0, 0, 0); s.scene.shuffle.move(.1, .06, 80); s.scene.update(1 / 60);
     s.scene.gate.begin(0, 0, 0, area); s.scene.gate.move(P.EDGE_GEOMETRY.opening(s.scene.gate.bounds).x + .05, P.EDGE_GEOMETRY.opening(s.scene.gate.bounds).y - .05, 1000, true); now = 5000;
     const snapshot = JSON.stringify(s.scene.shuffle.snapshot()), slots = positions(s.physics), elapsed = s.scene.elapsed;
@@ -148,7 +143,7 @@ test('motion changes preserve bodies, RNG, ready feedback and the hand influence
 
 test('every current shuffle pose connects continuously to the first real flight frame', () => {
   for (const count of counts) for (const [width, height] of sizes) {
-    const s = setup(count, width, height); s.scene.update(.8);
+    const s = setup(count, width, height); settle(s.scene);
     s.scene.shuffle.begin(0, 0, 0);
     for (let step = 1; step <= 12; step++) {
       s.scene.shuffle.move(step * .025, -.02 * Math.sin(step), step * 1000 / 120); s.scene.update(1 / 120);
@@ -201,7 +196,7 @@ test('manual slot commit preserves the previous seeded ownership for every count
 
 test('visible rounded walls contain every collision circle during vigorous near-wall shuffle',()=>{
  for(const count of counts)for(const [width,height] of sizes){
-  const s=setup(count,width,height);s.scene.update(.8);const area=s.scene.area(),frame=P.EDGE_GEOMETRY.bounds(area),zoom=s.scene.viewScale;
+  const s=setup(count,width,height);settle(s.scene);const area=s.scene.area(),frame=P.EDGE_GEOMETRY.bounds(area),zoom=s.scene.viewScale;
   const c=s.scene.shuffle;let worst=0;c.begin(0,0,0);
   for(let tick=1;tick<=360;tick++){
    c.move(.345*Math.sin(tick*.11)/zoom,.345*Math.cos(tick*.09)/zoom,tick*1000/120);s.scene.update(1/120);

@@ -108,15 +108,19 @@
       this.landingFinal = next;
       return true;
     }
-    cameraAt(progress) {
+    cameraAt(progress, samples) {
       const p = clamp(Number(progress) || 0), amount = this.reduced ? 0 : ease(p);
       let scene = { a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 };
       if (!this.reduced) {
         const desired = Math.exp(Math.log(.66) * ease(p / .25)
           + Math.log(this.final.a / this.initial.a / .66) * ease((p - .65) / .35));
-        const poses = this.items.map((_, index) => this.pose(index, p * this.duration));
-        const left = Math.min(...poses.map(item => item.x - item.radius)), right = Math.max(...poses.map(item => item.x + item.radius));
-        const top = Math.min(...poses.map(item => item.y - item.radius)), bottom = Math.max(...poses.map(item => item.y + item.radius));
+        const poses = samples || this.items.map((_, index) => this.pose(index, p * this.duration));
+        let left = Infinity, right = -Infinity, top = Infinity, bottom = -Infinity, sumX = 0, sumY = 0;
+        for (const pose of poses) {
+          left = Math.min(left, pose.x - pose.radius); right = Math.max(right, pose.x + pose.radius);
+          top = Math.min(top, pose.y - pose.radius); bottom = Math.max(bottom, pose.y + pose.radius);
+          sumX += pose.x; sumY += pose.y;
+        }
         const fit = Math.min(this.area.w * .82 / Math.max(1, right - left), this.area.h * .72 / Math.max(1, bottom - top));
         const limit = Math.exp(Math.log(fit) * ease(p / .22));
         const wide = Math.min(desired, limit);
@@ -126,7 +130,7 @@
         const enter = ease((p - .72) / .28);
         const focus = { x: lerp(lerp(this.releaseCenter.x, frame.x, interval(0, .22, p)), this.finalCenter.x, enter),
           y: lerp(lerp(this.releaseCenter.y, frame.y, interval(0, .22, p)), this.finalCenter.y, enter) };
-        const mean = centroid(poses);
+        const mean = { x: sumX / poses.length, y: sumY / poses.length };
         const movingCenter = { x: lerp(center.x, mean.x, enter), y: lerp(center.y, mean.y, enter) };
         const pan = interval(0, .22, p);
         scene = { a: scale, b: 0, c: 0, d: scale,
@@ -148,7 +152,8 @@
       const c = this.cinema; c.resize();
       const ctx = c.ctx, w = c.width, h = c.height, p = clamp(Number(state.progress) || 0);
       this.retarget(state.camera, p);
-      const view = this.cameraAt(p), reduced = state.reducedMotion === undefined ? this.reduced : !!state.reducedMotion;
+      const samples = p === 1 ? null : this.items.map((_, index) => this.pose(index, p * this.duration));
+      const view = this.cameraAt(p, samples), reduced = state.reducedMotion === undefined ? this.reduced : !!state.reducedMotion;
       const physics = state.physics || this.physics, camera = state.camera;
       ctx.clearRect(0, 0, w, h);
       if (p === 1 && camera) {
@@ -165,9 +170,8 @@
       ctx.fillStyle = background; ctx.fillRect(0, 0, w, h);
       ctx.save(); ctx.transform(view.a, 0, 0, view.d, view.e, view.f);
       c.targetBoard(view, physics, 1, 'flight');
-      const seconds = p * this.duration;
       this.lastPoses = this.items.map((item, index) => {
-        const pose = this.pose(index, seconds);
+        const pose = samples[index];
         c.drawOrb(item.entry, pose, interval(.55, 1, p), item.marble, this.items.length, reduced);
         const screen = point(view.scene, pose.x, pose.y);
         return { id: pose.id, index, x: screen.x, y: screen.y, radius: pose.radius * view.a, focus: 1 };

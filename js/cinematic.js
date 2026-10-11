@@ -697,6 +697,12 @@
       const stage = state.stage || 'intro', p = clamp(Number(state.progress) || 0, 0, 1), time = Number(state.time) || 0, reduced = !!state.reducedMotion;
       const entries = this.entries(state.physics), count = entries.length, marbles = state.physics && state.physics.marbles || [];
       const active = ['mixing', 'aiming', 'flight'].includes(stage);
+      const still = stage === 'intro' || stage === 'setup';
+      const stillKey = [stage, w, h, this.dpr, this.quality, reduced, Object.keys(this.plates).length].join('|');
+      if (still && this.stillCache && this.stillCache.physics === state.physics && this.stillCache.key === stillKey) {
+        this.lastStage = stage; this.lastTime = time;
+        return { reveal: 0 };
+      }
       if (active) {
         if (this.launchBirth === null) {
           this.launchBirth = this.chamber.ticks / 120;
@@ -705,13 +711,13 @@
         }
         this.chamber.seek(this.launchBirth + (stage === 'mixing' ? p*TIMING.chamberMix : stage === 'aiming' ? TIMING.chamberMix+p*TIMING.chamberAim : TIMING.chamberMix+TIMING.chamberAim),true);
       }
-      else if (!reduced) this.previewChamber.seek(this.previewBirth + Math.max(0, time - this.chamberBirth), true);
-      else { this.previewBirth=this.chamber.ticks/120; this.chamberBirth=time; }
+      // The welcome/setup tube is a still arrangement, never an air-driven
+      // preview. Only an explicit game transition may move these marbles.
       if(reduced && !this.lastReduced)this.stillTube=entries.map(entry=>this.chamber.pose(entry.index));
       this.lastReduced=reduced;
       const air=pressureAt(this.chamber.ticks/120-this.chamber.pressureOrigin,true);
       if(this.canvas.dataset) {
-        this.canvas.dataset.chamberPhase=air.pressure>.25?'burst':air.charge>0?'charging':'settling';
+        this.canvas.dataset.chamberPhase=active ? (air.pressure>.25?'burst':air.charge>0?'charging':'settling') : 'still';
       }
       ctx.clearRect(0, 0, w, h);
       if (stage === 'flight' && p === 1 && state.camera) {
@@ -807,7 +813,7 @@
       if (stage !== 'flight') ctx.restore();
       if (stage !== 'flight' || p < FIRE_MOMENT + .025) {
         ctx.save(); ctx.translate(barrelShift.x, barrelShift.y);
-        const pressure = reduced ? 0 : ['intro','setup','mixing'].includes(stage) ? air.pressure*.28+air.charge*.08 : stage === 'aiming' ? interval(.82, 1, p) * .45 : stage === 'flight' ? blast.fired ? blast.flash : .45 + blast.compression * .55 : 0;
+        const pressure = reduced ? 0 : stage === 'mixing' ? air.pressure*.28+air.charge*.08 : stage === 'aiming' ? interval(.82, 1, p) * .45 : stage === 'flight' ? blast.fired ? blast.flash : .45 + blast.compression * .55 : 0;
         this.drawGlass(front, angle, orbit, reduced ? 0 : time, reducedFade, pressure); ctx.restore();
       }
       this.drawWheel(wheel, 1, stage === 'flight' ? blast.recoil * .018 : 0);
@@ -816,6 +822,7 @@
       ctx.restore();
       if (stage === 'flight' && this.renderer && this.renderer.vignette) ctx.drawImage(this.renderer.vignette, 0, 0, w, h);
       if (stage === 'flight' && this.quality === 'high' && this.renderer && this.renderer.noise) { ctx.save(); ctx.globalAlpha = .26; ctx.fillStyle = ctx.createPattern(this.renderer.noise, 'repeat'); ctx.fillRect(0, 0, w, h); ctx.restore(); }
+      this.stillCache = still ? { physics: state.physics, key: stillKey } : null;
       this.lastStage = stage; this.lastTime = time;
       return { reveal, fired: stage === 'flight' && blast.fired, cameraAmount: travel.amount };
     }
