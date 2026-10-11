@@ -41,15 +41,16 @@
       }
     },
     group(name) { return this.groups.get(String(name || '')) || {color:'#167aaf',segments:1}; },
-    mark(ctx,name,x,y,r) {
+    mark(ctx,name,x,y,r,scale=1) {
       if (!name || r<=0) return;
-      const group=this.group(name), width=r*.14, radius=r*.85;
+      // Preserve a readable screen-space stroke when the board camera zooms out.
+      const group=this.group(name), width=Math.max(r*.09,Math.min(r*.12,.75/Math.max(.01,scale))), radius=r*.88;
       // An enamel identification ring stays inside the collision silhouette.
       // The breaks provide a second cue besides color; no flashing or movement.
       ctx.save();ctx.lineCap='round';
       for (let i=0;i<group.segments;i++) {
         const start=-Math.PI/2+i*TAU/group.segments, end=start+TAU/group.segments-(group.segments===1?0:.20);
-        ctx.beginPath();ctx.arc(x,y,radius,start,end);ctx.strokeStyle='rgba(255,255,255,.9)';ctx.lineWidth=width*1.65;ctx.stroke();
+        ctx.beginPath();ctx.arc(x,y,radius,start,end);ctx.strokeStyle='rgba(255,255,255,.6)';ctx.lineWidth=width*1.35;ctx.stroke();
         ctx.strokeStyle=group.color;ctx.lineWidth=width;ctx.stroke();
       }
       ctx.restore();
@@ -185,7 +186,7 @@
       const ctx = this.ctx, color = marbleColor(m.colorIndex === undefined ? m.id : m.colorIndex, total, this.theme), r = m.r || 16;
       if (m.y + r * 6 < visible.top || m.y - r * 6 > visible.bottom) return;
       ctx.drawImage(this.marbleSprite(color, r * 5.12 * (this.currentZoom || 1) * (this.dpr || 1)), m.x - r * 2.56, m.y - r * 2.56, r * 5.12, r * 5.12);
-      Pinball.mark(ctx,m.name,m.x,m.y,r);
+      Pinball.mark(ctx,m.name,m.x,m.y,r,this.currentZoom||1);
       const isLeader = leader && leader.id === m.id;
       if (isLeader) { ctx.strokeStyle = this.foil(ctx,m.x-r*2,m.y-r*2,m.x+r*2,m.y+r*2); ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(m.x, m.y, r * 1.7, 0, TAU); ctx.stroke(); }
     }
@@ -253,7 +254,7 @@
       for (const entry of this.finishDisplay(finished, map)) {
         const color = marbleColor(entry.marble.colorIndex, physics.marbles.length, this.theme), r = 10;
         ctx.drawImage(this.marbleSprite(color, r * 5.12 * (this.currentZoom || 1) * (this.dpr || 1)), entry.x - r * 2.56, entry.y - r * 2.56, r * 5.12, r * 5.12);
-        Pinball.mark(ctx,entry.marble.name,entry.x,entry.y,r);
+        Pinball.mark(ctx,entry.marble.name,entry.x,entry.y,r,this.currentZoom||1);
       }
       ctx.save(); ctx.textAlign = 'center'; ctx.font = '600 12px Pretendard Variable,sans-serif'; ctx.fillStyle = '#765633';
       ctx.fillText('완주 ' + finished.length + ' / ' + physics.marbles.length, map.width / 2, y + 185); ctx.restore();

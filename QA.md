@@ -1,5 +1,7 @@
 # 어른뭉방구 구슬 추첨 검증 기록
 
+> 최신 링 조정: [얇은 그룹 링과 3·8·12개 그룹 검증](previews/pinball-thin-rings/REPORT.md). 관련8개 검사 통과.
+
 > 최신 그룹 디자인 검증: [부드러운 금속 핀볼과 이름별 식별 링](previews/pinball-groups/REPORT.md). 전체166개 검사 통과.
 
 > 최신 디자인 검증: [공통 사진 핀볼](previews/pinball-skin/REPORT.md). 셔플·비행·경기 같은 이미지, 전체163개 검사 통과.
