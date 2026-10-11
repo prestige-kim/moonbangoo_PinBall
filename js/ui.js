@@ -392,7 +392,7 @@
     else if (previous !== 'running' && previous !== 'finished') this.panelOpen = false;
     this.updatePanel(); this.syncSceneAccess(); this.setStatus(stage);
     this.setSceneProgress({ reveal: this.isGameScene() ? 1 : 0 });
-    $('scene-status').textContent = '';
+    $('scene-status').textContent = stage === 'mixing' ? '유리관을 드래그해 쏟은 뒤 우측 상단으로 발사하세요. 키보드는 유리관이 멈춘 뒤 Enter를 누르면 쏟고 발사합니다.' : '';
     if (!this.isGameScene()) { this.hideResults(); this.hideCountdown(); }
     if (stage === 'setup' && previous !== stage && this.liveLeader) this.liveLeader = new P.LiveLeader();
     if (stage === 'intro' && previous !== stage) $('intro-start-button').focus({ preventScroll: true });

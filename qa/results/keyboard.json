@@ -1,0 +1,9 @@
+[
+  {
+    "keyboardOnly": true,
+    "status": "running"
+  },
+  {
+    "modal": "results-dialog"
+  }
+]
