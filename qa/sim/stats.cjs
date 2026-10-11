@@ -17,7 +17,7 @@ function gammaQ(a,x) {
 function chiSquare(counts, probabilities) {
   const n=counts.reduce((a,b)=>a+b,0),probs=probabilities||counts.map(()=>1/counts.length);
   const expected=probs.map(p=>p*n);let statistic=0,maxDeviation=0;
-  counts.forEach((o,i)=>{statistic+=(o-expected[i])**2/expected[i];maxDeviation=Math.max(maxDeviation,Math.abs(o/n-probs[i]));});
+  counts.forEach((o,i)=>{statistic+=(o-expected[i])**2/expected[i];maxDeviation=Math.max(maxDeviation,Math.abs(o-expected[i])/n);});
   return {counts,n,expected,statistic,df:counts.length-1,pValue:gammaQ((counts.length-1)/2,statistic/2),maxDeviationPercentagePoints:maxDeviation*100,validApproximation:Math.min(...expected)>=5};
 }
 module.exports={quantile,chiSquare,gammaQ};

@@ -1,6 +1,7 @@
 'use strict';
 const fs=require('node:fs'),crypto=require('node:crypto'),assert=require('node:assert/strict');
-const baseline=JSON.parse(fs.readFileSync('qa/fairness/results/baseline.json')),confirm=JSON.parse(fs.readFileSync('qa/fairness/results/confirm.json'));
+const {rederive}=require('./tables.cjs');
+const baseline=rederive(JSON.parse(fs.readFileSync('qa/fairness/results/baseline.json'))),confirm=rederive(JSON.parse(fs.readFileSync('qa/fairness/results/confirm.json')));
 assert.ok(baseline.cases.some(c=>!c.summary.id.pass||!c.summary.group.pass),'No baseline failure: protocol changes are outside the approved scope');
 assert.equal(confirm.seeds,10000);assert.ok(confirm.cases.every(c=>c.summary.id.pass&&c.summary.group.pass&&c.summary.completed===c.summary.runs&&!Object.values(c.summary.errors).some(Boolean)),'Independent dev confirmation must pass before adoption');
 assert.ok(fs.readFileSync('js/hand-start.js','utf8').includes("protocol:'participant-slot-v2'"),'Apply selected protocol before freezing');
