@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-11T11:56:38.677Z",
+  "conditions": "500 frozen initial balls, desktop 1280x720 DPR3; 20 warmup+200 synchronous render calls per quality; renderer CPU only, not fps or total game cost; concurrent simulation CPU",
+  "result": [
+    {
+      "quality": "high",
+      "dpr": 2,
+      "pixels": 3686400,
+      "particleLimit": 900,
+      "renderCpuP50": 1,
+      "renderCpuP95": 11.299999952316284
+    },
+    {
+      "quality": "medium",
+      "dpr": 1.5,
+      "pixels": 2073600,
+      "particleLimit": 420,
+      "renderCpuP50": 1,
+      "renderCpuP95": 11
+    },
+    {
+      "quality": "low",
+      "dpr": 1,
+      "pixels": 921600,
+      "particleLimit": 140,
+      "renderCpuP50": 1.100000023841858,
+      "renderCpuP95": 12
+    }
+  ]
+}

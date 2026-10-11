@@ -1,0 +1,986 @@
+{
+  "at": "2026-10-11T11:30:12.087Z",
+  "browser": "154.0.8037.98",
+  "baseline": true,
+  "loads": [
+    {
+      "url": "http://127.0.0.1:55588/moonbangoo_PinBall/",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "failed": [],
+      "httpErrors": [],
+      "resources": [
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/",
+          "status": 200,
+          "sha256": "53454ee10d8bd0fe826ea3ad57dec51452a409cda1c637446c18c56b93588c67"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/style.css?v=hand-b1cd7735a833",
+          "status": 200,
+          "sha256": "b1cd7735a833555146b9c48bdbee0f3d493d80a1ca2f87248e042d78a682140c"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/themes.js",
+          "status": 200,
+          "sha256": "0d1b6170131b97b7ec49edfc8972e54f5172aab5f92a79f69467cfddd3d48c34"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/maps.js?v=soft-long-course-20261011",
+          "status": 200,
+          "sha256": "8f943928322996b98838ab82648b2177f0c4adb5c07e572343907af16b38ede5"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/audio.js",
+          "status": 200,
+          "sha256": "fb25e198031e882c6a73d3f4ac93b6faae33f031b681a9c79ee4839b6c35f77e"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/camera.js",
+          "status": 200,
+          "sha256": "5ee1f1ebfb5af52dadf848ca4e261c9af541269fcecdd71c7575c76ef3e22dde"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/race-standing.js?v=winding-channel-20261011",
+          "status": 200,
+          "sha256": "cad6e28fe03ff61eec21b548d646c3dee8a6b07d604b1eab3a1ea7393585c718"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/shuffle.js?v=interactive-tilt-local-20261011",
+          "status": 200,
+          "sha256": "098c6cf5a33d17f5d8d5303dd7e5d383b96efbec22b513dee377bfd78ed314df"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/physics.js?v=soft-long-course-20261011",
+          "status": 200,
+          "sha256": "6a24e3398dd7616562e73f1d0c74e08cfe06ca202a0a12c9ba633f80b938a572"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/shuffle-input.js?v=hand-20261007",
+          "status": 200,
+          "sha256": "c53898379372660a8922e1412cf18cbaac8596e8265df31ec117db1c9c0396bf"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/hand-start.js?v=color-settings-20261011",
+          "status": 200,
+          "sha256": "fe2574d2a9c99a21788d4b6d9667daefa3e9dd421c344f499704d83635e8eccc"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/effects.js",
+          "status": 200,
+          "sha256": "fc19741e8634901304734ecc1f5896eb301024d5711ab9e4c6d642fdd386efc4"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/renderer.js?v=soft-long-course-20261011",
+          "status": 200,
+          "sha256": "d80bcd777a5a00c3757395fc75fddc5f54d12293cfba3f5ee9f0f94cee3e6ebe"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/cinematic.js?v=original-tube-alpha-local-20261011",
+          "status": 200,
+          "sha256": "ea7fbaa4697870ff252e675b553c1a1938a1b540c0e216b318d61e696bc97a93"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/throw-gate.js?v=northeast-exit-20261011",
+          "status": 200,
+          "sha256": "2edf9c6af6ea90594963603822228c445026df95793ffa4ee7555be778e2f7da"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/hand-flight.js?v=tube-pour-qa-20261011-final",
+          "status": 200,
+          "sha256": "01b5a49248a118117e9fdb4a7176f30e8b4d266e879782cef671540d44212e13"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/hand-scene.js?v=original-tube-alpha-local-20261011",
+          "status": 200,
+          "sha256": "2e7360f6c6eba7585bca6d2e58085c789f9030f12a2f2ba80609f594db52e8c0"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/ui.js?v=finish-stop-20261011",
+          "status": 200,
+          "sha256": "8f18613d7f2a9b0648ca5ca6acf0367f0fe7155269daa164ed83c2de10e9bc70"
+        },
+        {
+          "url": "http://127.0.0.1:55588/moonbangoo_PinBall/js/main.js?v=interactive-tilt-local-20261011",
+          "status": 200,
+          "sha256": "3bb40f1a64a6795668031fa71a41a8d17bf1d9bd800f4924a4aea88b1ce29cf1"
+        }
+      ],
+      "status": 200,
+      "title": "어른뭉방구 — 핀볼",
+      "started": {
+        "status": "running",
+        "count": 6,
+        "seed": "MB-5D98KU-1YTM90P-1N6M8LN-1LCPZCJ-1"
+      },
+      "results": {
+        "heading": "빨강",
+        "count": 6
+      }
+    },
+    {
+      "url": "https://prestige-kim.github.io/moonbangoo_PinBall/",
+      "console": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 ()"
+        },
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 ()"
+        }
+      ],
+      "failed": [],
+      "httpErrors": [],
+      "resources": [
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/",
+          "status": 200,
+          "sha256": "53454ee10d8bd0fe826ea3ad57dec51452a409cda1c637446c18c56b93588c67",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/shuffle.js?v=interactive-tilt-local-20261011",
+          "status": 200,
+          "sha256": "098c6cf5a33d17f5d8d5303dd7e5d383b96efbec22b513dee377bfd78ed314df",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/style.css?v=hand-b1cd7735a833",
+          "status": 200,
+          "sha256": "b1cd7735a833555146b9c48bdbee0f3d493d80a1ca2f87248e042d78a682140c",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/main.js?v=interactive-tilt-local-20261011",
+          "status": 200,
+          "sha256": "3bb40f1a64a6795668031fa71a41a8d17bf1d9bd800f4924a4aea88b1ce29cf1",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/throw-gate.js?v=northeast-exit-20261011",
+          "status": 200,
+          "sha256": "2edf9c6af6ea90594963603822228c445026df95793ffa4ee7555be778e2f7da",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/race-standing.js?v=winding-channel-20261011",
+          "status": 200,
+          "sha256": "cad6e28fe03ff61eec21b548d646c3dee8a6b07d604b1eab3a1ea7393585c718",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/ui.js?v=finish-stop-20261011",
+          "status": 200,
+          "sha256": "8f18613d7f2a9b0648ca5ca6acf0367f0fe7155269daa164ed83c2de10e9bc70",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/shuffle-input.js?v=hand-20261007",
+          "status": 200,
+          "sha256": "c53898379372660a8922e1412cf18cbaac8596e8265df31ec117db1c9c0396bf",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/camera.js",
+          "status": 200,
+          "sha256": "5ee1f1ebfb5af52dadf848ca4e261c9af541269fcecdd71c7575c76ef3e22dde",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/hand-scene.js?v=original-tube-alpha-local-20261011",
+          "status": 200,
+          "sha256": "2e7360f6c6eba7585bca6d2e58085c789f9030f12a2f2ba80609f594db52e8c0",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/maps.js?v=soft-long-course-20261011",
+          "status": 200,
+          "sha256": "8f943928322996b98838ab82648b2177f0c4adb5c07e572343907af16b38ede5",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/renderer.js?v=soft-long-course-20261011",
+          "status": 200,
+          "sha256": "d80bcd777a5a00c3757395fc75fddc5f54d12293cfba3f5ee9f0f94cee3e6ebe",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/cinematic.js?v=original-tube-alpha-local-20261011",
+          "status": 200,
+          "sha256": "ea7fbaa4697870ff252e675b553c1a1938a1b540c0e216b318d61e696bc97a93",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/themes.js",
+          "status": 200,
+          "sha256": "0d1b6170131b97b7ec49edfc8972e54f5172aab5f92a79f69467cfddd3d48c34",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/hand-flight.js?v=tube-pour-qa-20261011-final",
+          "status": 200,
+          "sha256": "01b5a49248a118117e9fdb4a7176f30e8b4d266e879782cef671540d44212e13",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/effects.js",
+          "status": 200,
+          "sha256": "fc19741e8634901304734ecc1f5896eb301024d5711ab9e4c6d642fdd386efc4",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/audio.js",
+          "status": 200,
+          "sha256": "fb25e198031e882c6a73d3f4ac93b6faae33f031b681a9c79ee4839b6c35f77e",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/hand-start.js?v=color-settings-20261011",
+          "status": 200,
+          "sha256": "fe2574d2a9c99a21788d4b6d9667daefa3e9dd421c344f499704d83635e8eccc",
+          "cache": "max-age=600"
+        },
+        {
+          "url": "https://prestige-kim.github.io/moonbangoo_PinBall/js/physics.js?v=soft-long-course-20261011",
+          "status": 200,
+          "sha256": "6a24e3398dd7616562e73f1d0c74e08cfe06ca202a0a12c9ba633f80b938a572",
+          "cache": "max-age=600"
+        }
+      ],
+      "status": 200,
+      "title": "어른뭉방구 — 핀볼",
+      "started": {
+        "status": "running",
+        "count": 6,
+        "seed": "MB-L9LLHF-1XJM30-M034JJ-FQZJ8R-1"
+      },
+      "results": {
+        "heading": "빨강",
+        "count": 6
+      }
+    }
+  ],
+  "viewports": [
+    {
+      "w": 360,
+      "h": 640,
+      "dpr": 1,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 20.639999389648438,
+        "y": 50.72003173828125,
+        "w": 318.719970703125,
+        "h": 587.5199584960938
+      },
+      "start": {
+        "x": 42.720001220703125,
+        "y": 547.52001953125,
+        "w": 274.5599670410156,
+        "h": 46.08001708984375
+      },
+      "canvas": {
+        "width": 360,
+        "height": 640
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 360,
+      "h": 640,
+      "dpr": 2,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 20.639999389648438,
+        "y": 50.72003173828125,
+        "w": 318.719970703125,
+        "h": 587.5199584960938
+      },
+      "start": {
+        "x": 42.720001220703125,
+        "y": 547.52001953125,
+        "w": 274.5599670410156,
+        "h": 46.08001708984375
+      },
+      "canvas": {
+        "width": 720,
+        "height": 1280
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 360,
+      "h": 640,
+      "dpr": 3,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 20.639999389648438,
+        "y": 50.72003173828125,
+        "w": 318.719970703125,
+        "h": 587.5199584960938
+      },
+      "start": {
+        "x": 42.720001220703125,
+        "y": 547.52001953125,
+        "w": 274.5599670410156,
+        "h": 46.08001708984375
+      },
+      "canvas": {
+        "width": 720,
+        "height": 1280
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "dpr": 1,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 20.491546630859375,
+        "y": 57.898651123046875,
+        "w": 349.01690673828125,
+        "h": 786.7342529296875
+      },
+      "start": {
+        "x": 42.666656494140625,
+        "y": 745.29052734375,
+        "w": 304.66668701171875,
+        "h": 50.135009765625
+      },
+      "canvas": {
+        "width": 390,
+        "height": 844
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "dpr": 2,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 21.240005493164062,
+        "y": 62.96002197265625,
+        "w": 347.52001953125,
+        "h": 783.3599853515625
+      },
+      "start": {
+        "x": 43.32000732421875,
+        "y": 747.9199829101562,
+        "w": 303.3599853515625,
+        "h": 49.9200439453125
+      },
+      "canvas": {
+        "width": 780,
+        "height": 1688
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "dpr": 3,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 21.240005493164062,
+        "y": 62.96002197265625,
+        "w": 347.52001953125,
+        "h": 783.3599853515625
+      },
+      "start": {
+        "x": 43.32000732421875,
+        "y": 747.9199829101562,
+        "w": 303.3599853515625,
+        "h": 49.9200439453125
+      },
+      "canvas": {
+        "width": 780,
+        "height": 1688
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "dpr": 1,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 192,
+        "y": 73.760009765625,
+        "w": 384,
+        "h": 956.159912109375
+      },
+      "start": {
+        "x": 214.0800018310547,
+        "y": 931.52001953125,
+        "w": 339.8399658203125,
+        "h": 49.91998291015625
+      },
+      "canvas": {
+        "width": 768,
+        "height": 1024
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "dpr": 2,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 192,
+        "y": 73.760009765625,
+        "w": 384,
+        "h": 956.159912109375
+      },
+      "start": {
+        "x": 214.0800018310547,
+        "y": 931.52001953125,
+        "w": 339.8399658203125,
+        "h": 49.91998291015625
+      },
+      "canvas": {
+        "width": 1536,
+        "height": 2048
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 768,
+      "h": 1024,
+      "dpr": 3,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 192,
+        "y": 73.760009765625,
+        "w": 384,
+        "h": 956.159912109375
+      },
+      "start": {
+        "x": 214.0800018310547,
+        "y": 931.52001953125,
+        "w": 339.8399658203125,
+        "h": 49.91998291015625
+      },
+      "canvas": {
+        "width": 1536,
+        "height": 2048
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 1280,
+      "h": 720,
+      "dpr": 1,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 448,
+        "y": 64.32000732421875,
+        "w": 384,
+        "h": 645.1199951171875
+      },
+      "start": {
+        "x": 474.8800048828125,
+        "y": 606.239990234375,
+        "w": 330.239990234375,
+        "h": 52.79998779296875
+      },
+      "canvas": {
+        "width": 1280,
+        "height": 720
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 1280,
+      "h": 720,
+      "dpr": 2,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 447.1700439453125,
+        "y": 60.136993408203125,
+        "w": 385.659912109375,
+        "h": 647.90869140625
+      },
+      "start": {
+        "x": 474.1662292480469,
+        "y": 603.8792724609375,
+        "w": 331.6675109863281,
+        "h": 53.0281982421875
+      },
+      "canvas": {
+        "width": 2560,
+        "height": 1440
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 1280,
+      "h": 720,
+      "dpr": 3,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 447.17327880859375,
+        "y": 60.153350830078125,
+        "w": 385.65338134765625,
+        "h": 647.8978271484375
+      },
+      "start": {
+        "x": 474.16900634765625,
+        "y": 603.888427734375,
+        "w": 331.66192626953125,
+        "h": 53.02734375
+      },
+      "canvas": {
+        "width": 2560,
+        "height": 1440
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "dpr": 1,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 766.3429565429688,
+        "y": 73.09454345703125,
+        "w": 387.31402587890625,
+        "h": 999.2702026367188
+      },
+      "start": {
+        "x": 793.4549560546875,
+        "y": 968.274169921875,
+        "w": 333.090087890625,
+        "h": 53.25567626953125
+      },
+      "canvas": {
+        "width": 1920,
+        "height": 1080
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "dpr": 2,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 767.1708984375,
+        "y": 79.502685546875,
+        "w": 385.658203125,
+        "h": 994.9981689453125
+      },
+      "start": {
+        "x": 794.1669921875,
+        "y": 970.855224609375,
+        "w": 331.666015625,
+        "h": 53.02801513671875
+      },
+      "canvas": {
+        "width": 3840,
+        "height": 2160
+      },
+      "touchAction": "auto"
+    },
+    {
+      "w": 1920,
+      "h": 1080,
+      "dpr": 3,
+      "overflowX": false,
+      "bodyH": 0,
+      "setup": {
+        "x": 767.1740112304688,
+        "y": 79.52700805664062,
+        "w": 385.65191650390625,
+        "h": 994.9820556640625
+      },
+      "start": {
+        "x": 794.169677734375,
+        "y": 970.8651123046875,
+        "w": 331.66064453125,
+        "h": 53.027099609375
+      },
+      "canvas": {
+        "width": 3840,
+        "height": 2160
+      },
+      "touchAction": "auto"
+    }
+  ],
+  "flow": {
+    "firstStart": {
+      "seed": "MB-VSDEK4-1KCEV64-16WTM8O-M6I9XF-1",
+      "handStart": {
+        "version": 1,
+        "seed": "MB-VSDEK4-1KCEV64-16WTM8O-M6I9XF-1",
+        "source": [
+          {
+            "id": "marble-1",
+            "x": -0.07134763850686433,
+            "y": 0.393660123077685,
+            "vx": 0.07781642096238556,
+            "vy": 0.03644124876830042,
+            "r": 0.03333333333333334
+          },
+          {
+            "id": "marble-2",
+            "x": 0.6974839172309624,
+            "y": -0.22068896252814224,
+            "vx": 1.2018304655329444,
+            "vy": -0.9475322826244575,
+            "r": 0.03333333333333334
+          },
+          {
+            "id": "marble-3",
+            "x": 0.16373344766925255,
+            "y": 0.2641695513051616,
+            "vx": 0.335565307172864,
+            "vy": 0.015858412139126345,
+            "r": 0.03333333333333334
+          },
+          {
+            "id": "marble-4",
+            "x": 0.4172450801254977,
+            "y": 0.1057349619836542,
+            "vx": 0.6365066061318148,
+            "vy": -0.27131354166534966,
+            "r": 0.03333333333333334
+          },
+          {
+            "id": "marble-5",
+            "x": 0.23556277474624315,
+            "y": 0.14627158617137634,
+            "vx": 0.4310858021865411,
+            "vy": -0.07148611795047312,
+            "r": 0.03333333333333334
+          },
+          {
+            "id": "marble-6",
+            "x": 0.6358684836958205,
+            "y": -0.025618292312298403,
+            "vx": 0.9103537264502433,
+            "vy": -0.5279432529987409,
+            "r": 0.03333333333333334
+          }
+        ],
+        "starts": [
+          {
+            "id": "marble-1",
+            "x": 473.28744414303003,
+            "y": 547.3863500802853,
+            "vx": 29.13446800831715,
+            "vy": 13.643603538851677
+          },
+          {
+            "id": "marble-2",
+            "x": 761.1379786112724,
+            "y": 317.3740524294636,
+            "vx": 94.23477076455937,
+            "vy": -74.2954102145681
+          },
+          {
+            "id": "marble-3",
+            "x": 561.3018028073682,
+            "y": 498.9050800086525,
+            "vx": 119.86622042157883,
+            "vy": 5.66473316630891
+          },
+          {
+            "id": "marble-4",
+            "x": 656.2165579989864,
+            "y": 439.5871697666801,
+            "vx": 110.3898131001841,
+            "vy": -47.05410889291624
+          },
+          {
+            "id": "marble-5",
+            "x": 588.1947028649935,
+            "y": 454.76408186256333,
+            "vx": 118.38333061956737,
+            "vy": -19.631276866729678
+          },
+          {
+            "id": "marble-6",
+            "x": 738.0691602957153,
+            "y": 390.40851135827546,
+            "vx": 103.80680634841534,
+            "vy": -60.20088833017826
+          }
+        ],
+        "transform": {
+          "sx": 374.4,
+          "sy": 374.4,
+          "cx": 617.2127113771512,
+          "cy": 432.3802012548744,
+          "mx": 0.313068139362049,
+          "my": 0.08648558027477138
+        },
+        "correctionPasses": 0,
+        "denseFit": false
+      },
+      "config": {
+        "names": "빨강*2,초록*2,파랑*2",
+        "rule": "first",
+        "rankN": 1,
+        "map": "classic",
+        "theme": "cosmic",
+        "radius": 12,
+        "gravity": 620,
+        "restitution": 0.72,
+        "speed": 1,
+        "sound": true,
+        "volume": 0.35,
+        "quality": "high",
+        "seed": "MB-VSDEK4-1KCEV64-16WTM8O-M6I9XF-1",
+        "skills": false,
+        "reducedMotion": false
+      }
+    },
+    "camera": {
+      "follow": false,
+      "zoom": 0.9568000000000001
+    },
+    "firstRanking": [
+      [
+        "marble-2",
+        33.61188102092989
+      ],
+      [
+        "marble-4",
+        39.8154789863819
+      ],
+      [
+        "marble-5",
+        40.33661509795396
+      ],
+      [
+        "marble-6",
+        42.55559646405106
+      ],
+      [
+        "marble-3",
+        43.306531835773875
+      ],
+      [
+        "marble-1",
+        52.813387279841656
+      ]
+    ],
+    "restoredConfig": {
+      "names": "빨강*2,초록*2,파랑*2",
+      "rule": "first",
+      "rankN": 1,
+      "map": "classic",
+      "theme": "cosmic",
+      "radius": 12,
+      "gravity": 620,
+      "restitution": 0.72,
+      "speed": 1,
+      "sound": true,
+      "volume": 0.35,
+      "quality": "high",
+      "seed": "MB-VSDEK4-1KCEV64-16WTM8O-M6I9XF-1",
+      "skills": false,
+      "reducedMotion": false
+    },
+    "replayStatus": "mixing",
+    "replayStart": {
+      "version": 1,
+      "seed": "MB-VSDEK4-1KCEV64-16WTM8O-M6I9XF-1",
+      "source": [
+        {
+          "id": "marble-1",
+          "x": -0.07382926192691869,
+          "y": 0.39447616749979514,
+          "vx": 0.07376896265105315,
+          "vy": 0.047798938555403896,
+          "r": 0.03333333333333334
+        },
+        {
+          "id": "marble-2",
+          "x": 0.6837627582809687,
+          "y": -0.20555550483338264,
+          "vx": 1.1646815408350266,
+          "vy": -0.8964591571163447,
+          "r": 0.03333333333333334
+        },
+        {
+          "id": "marble-3",
+          "x": 0.14919510408529046,
+          "y": 0.27674315466357874,
+          "vx": 0.31398675354144107,
+          "vy": 0.03516053253445322,
+          "r": 0.03333333333333334
+        },
+        {
+          "id": "marble-4",
+          "x": 0.39089208345864995,
+          "y": 0.12930257882826363,
+          "vx": 0.5961422606930108,
+          "vy": -0.23503543333052312,
+          "r": 0.03333333333333334
+        },
+        {
+          "id": "marble-5",
+          "x": 0.218905255939318,
+          "y": 0.159761403938608,
+          "vx": 0.40638173655054605,
+          "vy": -0.05046103945078761,
+          "r": 0.03333333333333334
+        },
+        {
+          "id": "marble-6",
+          "x": 0.6078638085097464,
+          "y": 0.002676686838964832,
+          "vx": 0.8628890374148848,
+          "vy": -0.4743460873294116,
+          "r": 0.03333333333333334
+        }
+      ],
+      "starts": [
+        {
+          "id": "marble-1",
+          "x": 472.35832433456164,
+          "y": 547.6918771119233,
+          "vx": 27.619099616554298,
+          "vy": 17.89592259514322
+        },
+        {
+          "id": "marble-2",
+          "x": 756.0007767003947,
+          "y": 323.04001899038155,
+          "vx": 95.0931616687587,
+          "vy": -73.19351476626409
+        },
+        {
+          "id": "marble-3",
+          "x": 555.8586469695327,
+          "y": 503.6126371060439,
+          "vx": 117.55664052591553,
+          "vy": 13.164103380899284
+        },
+        {
+          "id": "marble-4",
+          "x": 646.3499960469185,
+          "y": 448.41088551330193,
+          "vx": 111.63677269292307,
+          "vy": -44.013986216981365
+        },
+        {
+          "id": "marble-5",
+          "x": 581.9581278236806,
+          "y": 459.81466963461486,
+          "vx": 119.08544828440635,
+          "vy": -14.787021569673152
+        },
+        {
+          "id": "marble-6",
+          "x": 727.584209906049,
+          "y": 401.00215155250845,
+          "vx": 105.15840547871207,
+          "vy": -57.80752336136515
+        }
+      ],
+      "transform": {
+        "sx": 374.4,
+        "sy": 374.4,
+        "cx": 614.1795505174781,
+        "cy": 435.36594805115243,
+        "mx": 0.30496674817702496,
+        "my": 0.09446033133320625
+      },
+      "correctionPasses": 0,
+      "denseFit": false
+    },
+    "replayRanking": [
+      [
+        "marble-4",
+        37.38591075616088
+      ],
+      [
+        "marble-1",
+        40.69327913591776
+      ],
+      [
+        "marble-5",
+        42.726481516025984
+      ],
+      [
+        "marble-6",
+        43.65835202184634
+      ],
+      [
+        "marble-3",
+        45.4828886078411
+      ],
+      [
+        "marble-2",
+        50.341829910160456
+      ]
+    ],
+    "exactReplay": false,
+    "modalFocus": "results-dialog",
+    "escapeClosed": true,
+    "refresh": "intro"
+  },
+  "storage": [
+    {
+      "value": "{broken",
+      "error": null,
+      "status": "intro",
+      "xss": 0
+    },
+    {
+      "value": "null",
+      "error": null,
+      "status": "intro",
+      "xss": 0
+    },
+    {
+      "value": "[]",
+      "error": null,
+      "status": "intro",
+      "xss": 0
+    },
+    {
+      "value": "{\"names\":\"<img src=x onerror=window.__xss=1>\",\"seed\":\"evil\"}",
+      "error": null,
+      "status": "intro",
+      "xss": 0
+    },
+    {
+      "value": "{\"names\":\"빨강*500\",\"radius\":null,\"gravity\":\"bad\"}",
+      "error": null,
+      "status": "intro",
+      "xss": 0
+    }
+  ],
+  "limitations": [
+    "Desktop Chromium emulation only; no physical mobile device",
+    "Native OS minimize/restore and tab throttling are not emulated by changing document.hidden"
+  ]
+}

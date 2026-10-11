@@ -1,0 +1,1 @@
+{"build":"none; source served directly", "pages":"main:/ legacy", "dist":false, "workflow":false, "serviceWorker":false, "sizesMeasured":{"git":"47MiB","previews":"40MiB","assets":"12MiB","js":"312KiB"}, "runtimeDependencies":0, "devDependencies":["playwright@1.64.0"]}

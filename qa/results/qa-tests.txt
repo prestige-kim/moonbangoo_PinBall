@@ -1,0 +1,14 @@
+✔ independent oracle checks arrival ties and all N boundaries (1.3855ms)
+✔ chi-square survival agrees with exact df=2 distribution (0.449292ms)
+✔ simultaneous finish ordering is deterministic by input index (1.742167ms)
+✔ saved hand start restores exact seeded results without consuming RNG (681.186167ms)
+✔ replay rejects corrupt, mismatched and incompatible snapshots before moving any ball (23.141458ms)
+✔ 500 saved start positions restore byte-for-byte and preserve launch RNG (22.948459ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 813.06875

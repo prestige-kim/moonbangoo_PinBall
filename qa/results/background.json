@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-11T11:43:07.009Z",
+  "headful": true,
+  "backgroundBefore": {
+    "hidden": false,
+    "visibility": "visible",
+    "time": 0.425,
+    "status": "running"
+  },
+  "backgroundAfter": {
+    "hidden": false,
+    "visibility": "visible",
+    "time": 1.9333333333333333,
+    "status": "running"
+  },
+  "returned": {
+    "hidden": false,
+    "visibility": "visible",
+    "time": 2.1416666666666666,
+    "status": "running"
+  },
+  "minimizedBefore": {
+    "hidden": false,
+    "visibility": "visible",
+    "time": 2.7666666666666666,
+    "status": "running"
+  },
+  "minimizedAfter": {
+    "hidden": false,
+    "visibility": "visible",
+    "time": 4.175,
+    "status": "running"
+  },
+  "restored": {
+    "hidden": false,
+    "visibility": "visible",
+    "time": 5.025,
+    "status": "running"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-11T11:53:35.220Z",
+  "console": [],
+  "network": [],
+  "storageDenied": "intro",
+  "setupScroll": {
+    "before": 0,
+    "after": 476
+  },
+  "tapAngle": 0,
+  "beforePinch": {
+    "zoom": 0.3422545454545455,
+    "pageScale": 1
+  },
+  "afterPinch": {
+    "zoom": 0.6417272727272728,
+    "pageScale": 1
+  },
+  "freezeDelta": 1.3333333333333333,
+  "rotate": {
+    "status": "running",
+    "finite": true
+  },
+  "fInInputIgnored": true,
+  "xss": {
+    "executed": 0,
+    "injectedImage": 0,
+    "literal": "<img src=x onerror=window.__xss=1>"
+  },
+  "reloadStatus": "intro"
+}

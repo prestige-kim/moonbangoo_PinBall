@@ -1,0 +1,11 @@
+✔ real start rejects zero, too-large and fractional N at all participant bounds (247.979334ms)
+✔ valid first/middle/last N and minimum/max count start normally (325.249709ms)
+✔ empty groups and 501 participants never start a draw (11.423875ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 737.186875

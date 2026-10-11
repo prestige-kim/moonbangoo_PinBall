@@ -1,0 +1,5 @@
+{
+  "scannedTextBlobs": 616,
+  "scope": "all reachable refs; structured secret patterns only, no semantic PII audit",
+  "findings": []
+}

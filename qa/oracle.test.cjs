@@ -1,0 +1,6 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),{oracle}=require('./sim/oracle.cjs'),{loadPhysics,loadRules}=require('./sim/adapter.cjs'),{chiSquare,gammaQ}=require('./sim/stats.cjs');
+const P=loadPhysics();loadRules(P);
+test('independent oracle checks arrival ties and all N boundaries',()=>{const log=[{id:'b',time:1,order:1},{id:'a',time:1,order:0}],ranking=[{id:'a'},{id:'b'}];for(const rule of ['first','last','nth','top'])for(const n of [1,2])assert.deepEqual(P.chooseWinners(ranking,{rule,rankN:n}).map(m=>m.id),oracle(log,rule,n));for(const rule of ['nth','top'])for(const n of [0,3,-1,1.5])assert.equal(oracle(log,rule,n),null);assert.deepEqual(oracle(log.slice(0,1),'last',1,2,true),[]);});
+test('chi-square survival agrees with exact df=2 distribution',()=>{assert.ok(Math.abs(gammaQ(1,5)-Math.exp(-5))<1e-12);assert.equal(chiSquare([20,20,20]).pValue,1);});
+test('simultaneous finish ordering is deterministic by input index',()=>{const map={...P.MAPS.classic,obstacles:[],finish:{y:1000}},p=new P.Physics({names:P.parseNames('A,B'),map,seed:'tie'});p.marbles.forEach(m=>Object.assign(m,{x:500,y:999,vx:0,vy:300}));p._pairs=()=>{};p.step();assert.deepEqual(p.finished.map(m=>m.id),['marble-1','marble-2']);assert.equal(p.finished[0].finishTime,p.finished[1].finishTime);});

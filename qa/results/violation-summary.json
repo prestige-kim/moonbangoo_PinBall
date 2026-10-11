@@ -1,0 +1,13 @@
+{
+  "games": 19200,
+  "violations": {
+    "finite": 0,
+    "bounds": 0,
+    "velocity": 0,
+    "polygon": 0,
+    "ranking": 0,
+    "oracle": 0,
+    "timeout": 0
+  },
+  "representatives": []
+}

@@ -1,0 +1,51 @@
+{
+  "at": "2026-10-11T12:14:56.832Z",
+  "runs": [
+    {
+      "seed": "release-controller-0000",
+      "fps": 30,
+      "speed": 1,
+      "jitter": false,
+      "complete": true,
+      "equal": true,
+      "time": 47.125
+    },
+    {
+      "seed": "release-controller-0000",
+      "fps": 144,
+      "speed": 1,
+      "jitter": false,
+      "complete": true,
+      "equal": true,
+      "time": 47.125
+    },
+    {
+      "seed": "release-controller-0000",
+      "fps": 60,
+      "speed": 1,
+      "jitter": true,
+      "complete": true,
+      "equal": true,
+      "time": 47.125
+    },
+    {
+      "seed": "release-controller-0000",
+      "fps": 60,
+      "speed": 0.5,
+      "jitter": false,
+      "complete": true,
+      "equal": true,
+      "time": 47.125
+    },
+    {
+      "seed": "release-controller-0000",
+      "fps": 60,
+      "speed": 3,
+      "jitter": false,
+      "complete": true,
+      "equal": true,
+      "time": 47.125
+    }
+  ],
+  "limitWallSeconds": 900
+}

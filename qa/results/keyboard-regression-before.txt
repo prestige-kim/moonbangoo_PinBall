@@ -1,0 +1,5 @@
+page.waitForFunction: Timeout 30000ms exceeded.
+    at /Users/proudchris/Desktop/moonbangoo_PinBall/qa/browser/keyboard.cjs:3:941 {
+  log: [],
+  name: 'TimeoutError'
+}

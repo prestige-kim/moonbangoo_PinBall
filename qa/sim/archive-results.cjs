@@ -1,0 +1,3 @@
+'use strict';
+const fs=require('node:fs'),zlib=require('node:zlib'),crypto=require('node:crypto');
+const data=fs.readFileSync('qa/results/simulation.json'),r=JSON.parse(data);fs.writeFileSync('qa/results/simulation.json.gz',zlib.gzipSync(data));const summary={started:r.started,finished:r.finished,mode:r.mode,seeds:r.seeds,workers:r.workers,sha256Uncompressed:crypto.createHash('sha256').update(data).digest('hex'),configs:r.configs.map(({config,summary})=>({config,summary}))};fs.writeFileSync('qa/results/simulation-summary.json',JSON.stringify(summary,null,2));console.log({games:r.configs.length*r.seeds,rawBytes:data.length,gzipBytes:fs.statSync('qa/results/simulation.json.gz').size});

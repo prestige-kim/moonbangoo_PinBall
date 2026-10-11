@@ -1,0 +1,470 @@
+{
+  "at": "2026-10-11T11:39:35.195Z",
+  "browser": "154.0.8037.98",
+  "conditions": "Desktop headless Chrome; concurrent Node simulation CPU load; 500 balls, default physics, speed 3, high quality with auto fallback; real rAF, no accelerated stepping",
+  "rounds": [
+    {
+      "time": 58.49166666666667,
+      "seed": "MB-P6IB2T-1E8E4M1-1P6947F-1DMGS73-1",
+      "count": 500,
+      "unique": 500,
+      "shown": 500,
+      "quality": "high",
+      "listeners": 68,
+      "contexts": 1,
+      "rafPending": 80,
+      "maxRaf": 82,
+      "canvasInDOM": 3,
+      "caches": {
+        "sprites": 5,
+        "names": 2,
+        "labels": 3
+      },
+      "voices": 0,
+      "frameTime": {
+        "mixing": {
+          "samples": 545,
+          "p50": 16.5,
+          "p95": 16.700000000000273,
+          "max": 16.800000000000182
+        },
+        "flight": {
+          "samples": 336,
+          "p50": 0,
+          "p95": 16.700000000000728,
+          "max": 50
+        },
+        "running": {
+          "samples": 2935,
+          "p50": 0,
+          "p95": 16.700000000000728,
+          "max": 216.60000000000036
+        }
+      },
+      "wallSeconds": 30.427,
+      "heap": {
+        "usedSize": 6454604,
+        "totalSize": 7766016,
+        "embedderHeapUsedSize": 14769432,
+        "backingStorageSize": 457098
+      }
+    },
+    {
+      "time": 70.46666666666667,
+      "seed": "MB-FBQ5QH-11Z1IR3-1LL97LF-AAOGOI-2",
+      "count": 500,
+      "unique": 500,
+      "shown": 500,
+      "quality": "high",
+      "listeners": 68,
+      "contexts": 1,
+      "rafPending": 148,
+      "maxRaf": 150,
+      "canvasInDOM": 3,
+      "caches": {
+        "sprites": 6,
+        "names": 2,
+        "labels": 3
+      },
+      "voices": 0,
+      "frameTime": {
+        "mixing": {
+          "samples": 658,
+          "p50": 16.5,
+          "p95": 16.700000000004366,
+          "max": 999.9000000000015
+        },
+        "flight": {
+          "samples": 336,
+          "p50": 0,
+          "p95": 16.700000000004366,
+          "max": 50
+        },
+        "running": {
+          "samples": 3416,
+          "p50": 0,
+          "p95": 16.700000000004366,
+          "max": 16.80000000000291
+        }
+      },
+      "wallSeconds": 35.553,
+      "heap": {
+        "usedSize": 6756204,
+        "totalSize": 7766016,
+        "embedderHeapUsedSize": 14918136,
+        "backingStorageSize": 457559
+      }
+    },
+    {
+      "time": 62.31666666666666,
+      "seed": "MB-BFVI5-62S9SC-PNUC6T-5WFGXP-3",
+      "count": 500,
+      "unique": 500,
+      "shown": 500,
+      "quality": "high",
+      "listeners": 68,
+      "contexts": 1,
+      "rafPending": 217,
+      "maxRaf": 219,
+      "canvasInDOM": 3,
+      "caches": {
+        "sprites": 7,
+        "names": 2,
+        "labels": 3
+      },
+      "voices": 0,
+      "frameTime": {
+        "mixing": {
+          "samples": 656,
+          "p50": 16.59999999999127,
+          "p95": 16.70000000001164,
+          "max": 866.6000000000058
+        },
+        "flight": {
+          "samples": 332,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 83.29999999998836
+        },
+        "running": {
+          "samples": 3103,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 16.80000000000291
+        }
+      },
+      "wallSeconds": 32.537,
+      "heap": {
+        "usedSize": 6880152,
+        "totalSize": 7766016,
+        "embedderHeapUsedSize": 15296120,
+        "backingStorageSize": 458063
+      }
+    },
+    {
+      "time": 67.36666666666666,
+      "seed": "MB-1Q85096-1SJE3B2-196EATQ-IIXQDD-4",
+      "count": 500,
+      "unique": 500,
+      "shown": 500,
+      "quality": "high",
+      "listeners": 68,
+      "contexts": 1,
+      "rafPending": 286,
+      "maxRaf": 288,
+      "canvasInDOM": 3,
+      "caches": {
+        "sprites": 8,
+        "names": 2,
+        "labels": 3
+      },
+      "voices": 0,
+      "frameTime": {
+        "mixing": {
+          "samples": 539,
+          "p50": 16.59999999999127,
+          "p95": 16.70000000001164,
+          "max": 1133.199999999997
+        },
+        "flight": {
+          "samples": 334,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 49.90000000000873
+        },
+        "running": {
+          "samples": 3303,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 16.80000000000291
+        }
+      },
+      "wallSeconds": 33.386,
+      "heap": {
+        "usedSize": 6887012,
+        "totalSize": 8028160,
+        "embedderHeapUsedSize": 15009672,
+        "backingStorageSize": 458388
+      }
+    },
+    {
+      "time": 59.9,
+      "seed": "MB-TA2NFQ-15HDZRC-13U5D1Y-AZ85ME-5",
+      "count": 500,
+      "unique": 500,
+      "shown": 500,
+      "quality": "high",
+      "listeners": 68,
+      "contexts": 1,
+      "rafPending": 353,
+      "maxRaf": 355,
+      "canvasInDOM": 3,
+      "caches": {
+        "sprites": 9,
+        "names": 2,
+        "labels": 3
+      },
+      "voices": 0,
+      "frameTime": {
+        "mixing": {
+          "samples": 530,
+          "p50": 16.5,
+          "p95": 16.70000000001164,
+          "max": 1166.7000000000116
+        },
+        "flight": {
+          "samples": 334,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 50
+        },
+        "running": {
+          "samples": 2991,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 16.800000000017462
+        }
+      },
+      "wallSeconds": 30.825,
+      "heap": {
+        "usedSize": 6996944,
+        "totalSize": 8290304,
+        "embedderHeapUsedSize": 15637520,
+        "backingStorageSize": 458731
+      }
+    },
+    {
+      "time": 64.25833333333333,
+      "seed": "MB-V346PT-1BN3EPU-8OETAN-1PY8PZD-6",
+      "count": 500,
+      "unique": 500,
+      "shown": 500,
+      "quality": "high",
+      "listeners": 68,
+      "contexts": 1,
+      "rafPending": 422,
+      "maxRaf": 424,
+      "canvasInDOM": 3,
+      "caches": {
+        "sprites": 10,
+        "names": 2,
+        "labels": 3
+      },
+      "voices": 0,
+      "frameTime": {
+        "mixing": {
+          "samples": 674,
+          "p50": 16.599999999976717,
+          "p95": 16.70000000001164,
+          "max": 1033.3000000000175
+        },
+        "flight": {
+          "samples": 330,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 100
+        },
+        "running": {
+          "samples": 3190,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 33.29999999998836
+        }
+      },
+      "wallSeconds": 33.433,
+      "heap": {
+        "usedSize": 6991380,
+        "totalSize": 8028160,
+        "embedderHeapUsedSize": 15084136,
+        "backingStorageSize": 458990
+      }
+    },
+    {
+      "time": 57.916666666666664,
+      "seed": "MB-1FB954V-IHTY9W-GV9B0P-1M46DVG-7",
+      "count": 500,
+      "unique": 500,
+      "shown": 500,
+      "quality": "high",
+      "listeners": 68,
+      "contexts": 1,
+      "rafPending": 491,
+      "maxRaf": 493,
+      "canvasInDOM": 3,
+      "caches": {
+        "sprites": 11,
+        "names": 2,
+        "labels": 3
+      },
+      "voices": 0,
+      "frameTime": {
+        "mixing": {
+          "samples": 589,
+          "p50": 16.5,
+          "p95": 16.70000000001164,
+          "max": 1366.7000000000116
+        },
+        "flight": {
+          "samples": 336,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 50
+        },
+        "running": {
+          "samples": 2950,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 16.800000000017462
+        }
+      },
+      "wallSeconds": 31.276,
+      "heap": {
+        "usedSize": 7052068,
+        "totalSize": 8290304,
+        "embedderHeapUsedSize": 14950696,
+        "backingStorageSize": 459372
+      }
+    },
+    {
+      "time": 57.81666666666666,
+      "seed": "MB-RW8F0G-10736MQ-1MAR855-4DGLAA-8",
+      "count": 500,
+      "unique": 500,
+      "shown": 500,
+      "quality": "high",
+      "listeners": 68,
+      "contexts": 1,
+      "rafPending": 563,
+      "maxRaf": 565,
+      "canvasInDOM": 3,
+      "caches": {
+        "sprites": 12,
+        "names": 2,
+        "labels": 3
+      },
+      "voices": 0,
+      "frameTime": {
+        "mixing": {
+          "samples": 555,
+          "p50": 16.599999999976717,
+          "p95": 16.70000000001164,
+          "max": 1166.5
+        },
+        "flight": {
+          "samples": 330,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 100
+        },
+        "running": {
+          "samples": 2929,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 16.800000000017462
+        }
+      },
+      "wallSeconds": 30.39,
+      "heap": {
+        "usedSize": 7047744,
+        "totalSize": 8028160,
+        "embedderHeapUsedSize": 15626672,
+        "backingStorageSize": 459269
+      }
+    },
+    {
+      "time": 57.80833333333333,
+      "seed": "MB-10HPPD9-1NGT3QH-TC3PL1-1DL06CP-9",
+      "count": 500,
+      "unique": 500,
+      "shown": 500,
+      "quality": "high",
+      "listeners": 68,
+      "contexts": 1,
+      "rafPending": 641,
+      "maxRaf": 643,
+      "canvasInDOM": 3,
+      "caches": {
+        "sprites": 14,
+        "names": 2,
+        "labels": 3
+      },
+      "voices": 0,
+      "frameTime": {
+        "mixing": {
+          "samples": 593,
+          "p50": 16.599999999976717,
+          "p95": 16.70000000001164,
+          "max": 916.5
+        },
+        "flight": {
+          "samples": 334,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 66.70000000001164
+        },
+        "running": {
+          "samples": 2916,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 16.800000000046566
+        }
+      },
+      "wallSeconds": 30.463,
+      "heap": {
+        "usedSize": 6996100,
+        "totalSize": 8028160,
+        "embedderHeapUsedSize": 15164224,
+        "backingStorageSize": 459431
+      }
+    },
+    {
+      "time": 56.1,
+      "seed": "MB-K8T4K6-DASXHP-X3UTSX-L3XLSL-a",
+      "count": 500,
+      "unique": 500,
+      "shown": 500,
+      "quality": "high",
+      "listeners": 68,
+      "contexts": 1,
+      "rafPending": 711,
+      "maxRaf": 713,
+      "canvasInDOM": 3,
+      "caches": {
+        "sprites": 15,
+        "names": 2,
+        "labels": 3
+      },
+      "voices": 0,
+      "frameTime": {
+        "mixing": {
+          "samples": 627,
+          "p50": 16.5,
+          "p95": 16.70000000001164,
+          "max": 1416.7000000000116
+        },
+        "flight": {
+          "samples": 332,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 50
+        },
+        "running": {
+          "samples": 2845,
+          "p50": 0,
+          "p95": 16.70000000001164,
+          "max": 16.800000000046566
+        }
+      },
+      "wallSeconds": 30.57,
+      "heap": {
+        "usedSize": 7014764,
+        "totalSize": 8290304,
+        "embedderHeapUsedSize": 15005856,
+        "backingStorageSize": 459660
+      }
+    }
+  ],
+  "console": [],
+  "networkErrors": [],
+  "quality": []
+}
