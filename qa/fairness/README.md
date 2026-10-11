@@ -26,3 +26,5 @@ npm run qa
 브라우저 측정은 시스템 Chrome의 별도 임시 context, localhost의 `/moonbangoo_PinBall/` 하위 경로와 CDP 합성 터치 이벤트를 사용한다. 사용자가 열어 둔 탭을 수정하지 않는다. `browser-revert.json`의 live 관측은 수정되지 않은 기존 배포의 상태다.
 
 장시간 실행을 멈출 때는 SIGINT/SIGTERM을 한 번 보내고 실행 중 배치 저장 및 `Paused safely` 메시지를 기다린다. 동일 인자에 `--resume`을 추가해 재개하면 완료 배치는 재실행하지 않는다. 강제 종료 등으로 미저장 실행 중 배치가 남으면 재개를 거부하고 holdout을 조용히 재사용하지 않는다. 소스·설정·Node 버전이 바뀐 재개도 거부한다.
+
+완성된 결과 경로는 모든 단계에서 덮어쓰기를 거부한다. 새 dev 실험은 별도 phase 이름·시드 구획을 사전 등록한다. 수정 전 재현에는 원시 결과의 `sourceCommit`에 해당하는 소스를 사용한다.
