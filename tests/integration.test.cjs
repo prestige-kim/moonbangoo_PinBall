@@ -358,7 +358,7 @@ test('a valid release plays one launch sound, without automatic charge or cannon
   assert.deepEqual(P.app.audio.types, ['launch']);
   const input = P.app.shuffleInput.callbacks;
   input.release({ x: .5, y: 0, time: 13000 });
-  input.cancel(); advance(3.3);
+  input.cancel(); advance(1);
   assert.deepEqual(P.app.audio.types, ['launch']); assert.equal(P.app.handFlight.begins, 1);
   advance(2.1); assert.equal(P.app.status, 'running');
   assert.equal(P.app.audio.types.filter(type => type === 'launch').length, 1);
@@ -474,4 +474,16 @@ test('slow shuffle rendering lowers both canvas qualities without resetting the 
  const app=P.app,original=app.physics,input=app.shuffleInput.callbacks;input.begin({x:0,y:0,time:3300});input.move({x:.1,y:0,time:3400});
  const before=JSON.stringify(app.handScene.shuffle.snapshot()),slots=JSON.stringify(app.physics.marbles),start=JSON.stringify(app.throwGate.start);
  advance(6,20);assert.equal(app.status,'mixing');assert.notEqual(app.renderer.quality,'high');assert.equal(app.cinematic.quality,app.renderer.quality);assert(app.throwGate.active);assert.equal(JSON.stringify(app.throwGate.start),start);assert.equal(JSON.stringify(app.handScene.shuffle.snapshot()),before);assert.equal(app.physics,original);assert.equal(JSON.stringify(app.physics.marbles),slots);assert.equal(app.physics.time,0);
+});
+
+
+test('pending quality fallback cannot overwrite restored preferences or lock intro/setup',()=>{
+ for(const scene of ['intro','setup']){
+  const {P,callbacks,advance}=boot();callbacks.start();advance(15.9,20);
+  assert.equal(P.app.settings.quality,'medium');
+  P.app.ui.values.quality='high';callbacks.change();P.app.reset(scene);
+  const drops=P.app.diagnostics.autoQualityDrops;advance(1,20);
+  assert.equal(P.app.settings.quality,'high');assert.equal(P.app.ui.locked,false);
+  assert.equal(P.app.status,scene);assert.equal(P.app.diagnostics.autoQualityDrops,drops);assert.equal(P.app.physics.time,0);
+ }
 });

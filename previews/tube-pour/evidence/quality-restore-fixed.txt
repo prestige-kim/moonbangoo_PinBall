@@ -1,0 +1,33 @@
+✔ welcome uses configured participants without advancing physics or changing saved settings (12.192125ms)
+✔ start waits for a valid manual throw and connects exact flight landing to the race once (14.43225ms)
+✔ automatic seeds refresh each round and restart without becoming a saved fixed seed (99.537042ms)
+✔ reduced motion shortens flight with the same gesture decision, seed slots and exact landing (10.007167ms)
+✔ setup edits appear in glass without starting physics; blocked storage still works (10.358666ms)
+✔ original saved participants survive the brand upgrade with gentler default pacing (8.297958ms)
+✔ invalid rank cannot launch a race (5.58425ms)
+✔ first, last, nth and top rules select physical arrival order (2.165417ms)
+✔ live visuals and speed leave the physical run configuration intact (18.872958ms)
+✔ race finishes, shows seeded results and same-member restart reproduces order at another frame rate (64.863625ms)
+✔ sustained slow rendering lowers quality without resetting physics (672.634125ms)
+✔ a natural six-marble race triggers lead changes and celebration (88.560458ms)
+✔ crowded races announce only settled leader changes and keep arrival results intact (1401.6385ms)
+✔ leaders arriving close together trigger the photo finish view (15.7785ms)
+✔ stuck recovery events stay active without notification toasts, including replay (92.301083ms)
+✔ a valid release plays one launch sound, without automatic charge or cannon sounds (5.492667ms)
+✔ rejected and canceled gestures preserve race RNG, seed slots and visual state continuity (3.256291ms)
+✔ motion changes retain shuffle positions and flight progress without catching up paused time (3.130084ms)
+✔ waiting time, gesture direction and render frame grouping preserve seeded slots and full results (86.112833ms)
+✔ removed saved courses migrate to classic while preserving participants and physical settings (7.147458ms)
+✔ crossing the shuffle wall launches on movement before pointerup and ignores later samples (3.476125ms)
+✔ joint race progress does not select the first input as the rendered or HUD leader (5.218042ms)
+✔ shuffle adapter stays locked throughout the pour and unlocks without starting the race (2.685959ms)
+✔ slow shuffle rendering lowers both canvas qualities without resetting the gesture or seeded race (3.193625ms)
+✔ pending quality fallback cannot overwrite restored preferences or lock intro/setup (6.726417ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2722.254125

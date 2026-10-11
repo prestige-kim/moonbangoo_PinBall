@@ -104,16 +104,28 @@
       if(b.y>limits.bottom-r){b.y=limits.bottom-r;if(b.vy>0)b.vy*=-.52;b.vx*=.97;this.wallHits++;}
     }
     pairs() {
-      const cell=this.radius*2.15,grid=new Map(),pairs=[];
+      const size=this.radius*2.15,grid=new Map(),locations=new Array(this.bodies.length),pairs=[];
       for(let i=0;i<this.bodies.length;i++) {
-        const b=this.bodies[i];if(b.pouring)continue;const gx=Math.floor(b.x/cell),gy=Math.floor(b.y/cell),key=(gy+4096)*8192+gx;
-        if(!grid.has(key))grid.set(key,[]);grid.get(key).push(i);
+        const b=this.bodies[i];if(b.pouring)continue;
+        const gx=Math.floor(b.x/size),gy=Math.floor(b.y/size),key=(gy+4096)*8192+gx;
+        let cell=grid.get(key);
+        if(!cell){cell={gx,gy,indices:[],neighbors:null};grid.set(key,cell);}
+        cell.indices.push(i);locations[i]=cell;
       }
       for(let i=0;i<this.bodies.length;i++) {
-        const b=this.bodies[i];if(b.pouring)continue;const gx=Math.floor(b.x/cell),gy=Math.floor(b.y/cell);
-        for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++) {
-          const near=grid.get((gy+dy+4096)*8192+gx+dx);if(!near)continue;
-          for(const j of near)if(j<i)pairs.push([this.bodies[j],b]);
+        const cell=locations[i];if(!cell)continue;
+        // Bodies sharing a cell reuse its nine neighbor lookups. Keep the old
+        // dx/dy/index ordering so collision responses remain exactly the same.
+        if(!cell.neighbors) {
+          cell.neighbors=[];
+          for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++) {
+            const near=grid.get((cell.gy+dy+4096)*8192+cell.gx+dx);
+            if(near)cell.neighbors.push(near.indices);
+          }
+        }
+        for(const near of cell.neighbors)for(const j of near) {
+          if(j>=i)break;
+          pairs.push([this.bodies[j],this.bodies[i]]);
         }
       }
       return pairs;

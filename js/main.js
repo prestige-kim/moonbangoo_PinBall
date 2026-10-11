@@ -305,9 +305,10 @@
   }
   function adjustQuality(dt) {
     qualityCooldown -= dt;
-    if (['mixing', 'flight', 'running'].includes(status) && fps < 45) lowFpsTime += dt;
+    const playing = ['mixing', 'flight', 'running'].includes(status);
+    if (playing && fps < 45) lowFpsTime += dt;
     else lowFpsTime = Math.max(0, lowFpsTime - dt * 2);
-    if (lowFpsTime > 3 && qualityCooldown <= 0 && settings.quality !== 'low') {
+    if (playing && lowFpsTime > 3 && qualityCooldown <= 0 && settings.quality !== 'low') {
       settings.quality = QUALITY_ORDER[QUALITY_ORDER.indexOf(settings.quality) + 1];
       renderer.setQuality(settings.quality);
       if (cinematic.setQuality) cinematic.setQuality(settings.quality);

@@ -1,0 +1,221 @@
+{
+  "startIDs": [
+    "marble-1",
+    "marble-2",
+    "marble-3",
+    "marble-4",
+    "marble-5",
+    "marble-6"
+  ],
+  "pourFrames": 96,
+  "offscreenPour": 0,
+  "originalSettings": {
+    "names": "귤*4,수박*2,키위*2",
+    "rule": "first",
+    "rankN": 1,
+    "map": "classic",
+    "theme": "cosmic",
+    "radius": 11,
+    "gravity": 620,
+    "restitution": 0.72,
+    "speed": 1,
+    "sound": false,
+    "volume": 0.35,
+    "quality": "high",
+    "seed": "EDGE-QA-50",
+    "skills": false,
+    "reducedMotion": false,
+    "seedMode": "manual"
+  },
+  "matrix": [],
+  "handReady": true,
+  "scene": "mixing",
+  "physicsTime": 0,
+  "finished": 0,
+  "count": 6,
+  "viewport": [
+    1280,
+    720
+  ],
+  "opening": {
+    "x": 0.6985714285714286,
+    "y": -0.27,
+    "span": 0.18,
+    "topX": 0.6085714285714285,
+    "topY": -0.36,
+    "sideX": 0.7885714285714286,
+    "sideY": -0.18
+  },
+  "reduced": false,
+  "quality": "low",
+  "ready": "false",
+  "wallHits": 1,
+  "brandTextPresent": false,
+  "actions": [],
+  "performance": {
+    "samples": 2130,
+    "averageFPS": 30.071111826417688,
+    "p95FrameMs": 35.30000000000291,
+    "maxFrameMs": 35.5,
+    "meanShuffleCPUms": 0.16452081546201827,
+    "p95ShuffleCPUms": 0.5
+  },
+  "gate": {
+    "eligible": false,
+    "distance": 0.7961309523809524,
+    "radius": 0.8929811421831846,
+    "interacted": true,
+    "approach": 0,
+    "dx": 0.7071067811865476,
+    "dy": -0.7071067811865476,
+    "edgeX": 0.6985714285714286,
+    "edgeY": -0.27,
+    "inputSpeed": 0
+  },
+  "pourCapture": 1.3334,
+  "pourPerformance": {
+    "samples": 96,
+    "p95UpdateMs": 0.5999999046325684,
+    "p95RenderMs": 0.6000000238418579
+  },
+  "nativeEvents": [
+    {
+      "type": "pointerdown",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 71821.39999997616,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "gotpointercapture",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 71828.89999997616,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 71828.89999997616,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 71890.5,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 71924.89999997616,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 71956.30000007153,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 71990,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 72025.10000002384,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 72061.60000002384,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointermove",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 72089,
+      "hasCapture": true,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "pointerup",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 72122,
+      "hasCapture": false,
+      "target": "cinema-canvas"
+    },
+    {
+      "type": "lostpointercapture",
+      "pointerType": "mouse",
+      "pointerId": 1,
+      "isTrusted": true,
+      "timeStamp": 72122,
+      "hasCapture": false,
+      "target": "cinema-canvas"
+    }
+  ],
+  "nativeGesture": {
+    "samples": 9,
+    "start": {
+      "x": -0.09672619047619048,
+      "y": -0.01488095238095238,
+      "time": 71821.39999997616
+    },
+    "before": "marble-5,marble-1,marble-3,marble-6,marble-4,marble-2",
+    "collisionsBefore": 82143,
+    "end": {
+      "x": -0.8928571428571429,
+      "y": -0.01488095238095238,
+      "time": 72122
+    },
+    "decision": {
+      "eligible": false,
+      "distance": 0.7961309523809524,
+      "radius": 0.8929811421831846,
+      "interacted": true,
+      "approach": 0,
+      "dx": 0.7071067811865476,
+      "dy": -0.7071067811865476,
+      "edgeX": 0.6985714285714286,
+      "edgeY": -0.27,
+      "inputSpeed": 2.387161978278463,
+      "fired": false
+    },
+    "collisions": 30,
+    "positionExchange": false
+  }
+}

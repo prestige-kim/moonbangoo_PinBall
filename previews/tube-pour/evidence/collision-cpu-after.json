@@ -1,0 +1,30 @@
+[
+  {
+    "n": 6,
+    "cpuMs": 16.627458000000004,
+    "collisions": 44,
+    "wallHits": 16,
+    "hash": "0c9fdf3fd8f6166b646d70bfa9b239c6419aa155b646f5acaca5f76e3c136397"
+  },
+  {
+    "n": 50,
+    "cpuMs": 59.023375000000016,
+    "collisions": 902,
+    "wallHits": 102,
+    "hash": "f431afaac7bb2be2031e9f18c59b87b0d86ebd07945207833a8349377ab97c18"
+  },
+  {
+    "n": 200,
+    "cpuMs": 246.761084,
+    "collisions": 10282,
+    "wallHits": 283,
+    "hash": "271831499bed5ca9f51ea06f3ad621e471a48e454c997ce1d057a01b1afd4f72"
+  },
+  {
+    "n": 500,
+    "cpuMs": 922.4392909999999,
+    "collisions": 77373,
+    "wallHits": 1057,
+    "hash": "04a2dd3cf0cfcae1e7db3e5216cd6304e916b841a8cbaf3aab5564e83f4c9645"
+  }
+]

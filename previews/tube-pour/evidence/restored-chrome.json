@@ -1,0 +1,40 @@
+[
+  {
+    "id": "names",
+    "value": "핀볼*6"
+  },
+  {
+    "id": "radius",
+    "value": "12"
+  },
+  {
+    "id": "gravity",
+    "value": "620"
+  },
+  {
+    "id": "restitution",
+    "value": "0.72"
+  },
+  {
+    "id": "speed",
+    "value": "3"
+  },
+  {
+    "id": "quality",
+    "value": "high"
+  },
+  {
+    "checked": false,
+    "id": "sound",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "reduced-motion",
+    "value": "on"
+  },
+  {
+    "id": "seed",
+    "value": "HAND-QA-6"
+  }
+]

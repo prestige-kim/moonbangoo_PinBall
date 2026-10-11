@@ -1,0 +1,53 @@
+✖ pour renders use shared geometry rather than repeated plate registrations per ball (156.299375ms)
+✔ tube exit and freefall share position and tangent velocity for all IDs and screens (1555.429916ms)
+✖ pouring keeps balls on screen, finite, unique and never changes race state (203.743959ms)
+✔ all deposited circles meet closed walls and avoid deep overlap (3541.924084ms)
+✔ different render rates and motion changes preserve slots, IDs and readiness (7046.986625ms)
+✔ large resume delta cannot skip the pour or manufacture input readiness (0.767625ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 4
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12582.118583
+
+✖ failing tests:
+
+test at tests/tube-pour.test.cjs:13:1
+✖ pour renders use shared geometry rather than repeated plate registrations per ball (156.299375ms)
+  AssertionError [ERR_ASSERTION]: plate registrations in one frame: 504
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/tube-pour.test.cjs:16:42)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/tube-pour.test.cjs:30:1
+✖ pouring keeps balls on screen, finite, unique and never changes race state (203.743959ms)
+  AssertionError [ERR_ASSERTION]: 50 1280x720 pouring balls must remain visible
+  
+  101 !== 0
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/tube-pour.test.cjs:37:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 101,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

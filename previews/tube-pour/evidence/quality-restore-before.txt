@@ -1,0 +1,30 @@
+✖ pending quality fallback cannot overwrite restored preferences or lock intro/setup (15.419458ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 91.858792
+
+✖ failing tests:
+
+test at tests/integration.test.cjs:480:1
+✖ pending quality fallback cannot overwrite restored preferences or lock intro/setup (15.419458ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'medium' !== 'high'
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/integration.test.cjs:486:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'medium',
+    expected: 'high',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

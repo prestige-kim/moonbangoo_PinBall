@@ -1,0 +1,54 @@
+✔ welcome uses configured participants without advancing physics or changing saved settings (14.075667ms)
+✔ start waits for a valid manual throw and connects exact flight landing to the race once (14.1825ms)
+✔ automatic seeds refresh each round and restart without becoming a saved fixed seed (140.83275ms)
+✔ reduced motion shortens flight with the same gesture decision, seed slots and exact landing (14.371625ms)
+✔ setup edits appear in glass without starting physics; blocked storage still works (10.824125ms)
+✔ original saved participants survive the brand upgrade with gentler default pacing (5.197417ms)
+✔ invalid rank cannot launch a race (3.164333ms)
+✔ first, last, nth and top rules select physical arrival order (3.707584ms)
+✔ live visuals and speed leave the physical run configuration intact (24.273834ms)
+✔ race finishes, shows seeded results and same-member restart reproduces order at another frame rate (105.279542ms)
+✔ sustained slow rendering lowers quality without resetting physics (937.615417ms)
+✔ a natural six-marble race triggers lead changes and celebration (133.957875ms)
+✔ crowded races announce only settled leader changes and keep arrival results intact (1643.358541ms)
+✔ leaders arriving close together trigger the photo finish view (16.307833ms)
+✔ stuck recovery events stay active without notification toasts, including replay (101.375417ms)
+✔ a valid release plays one launch sound, without automatic charge or cannon sounds (17.63825ms)
+✔ rejected and canceled gestures preserve race RNG, seed slots and visual state continuity (4.82225ms)
+✔ motion changes retain shuffle positions and flight progress without catching up paused time (4.641584ms)
+✔ waiting time, gesture direction and render frame grouping preserve seeded slots and full results (121.813458ms)
+✔ removed saved courses migrate to classic while preserving participants and physical settings (9.603917ms)
+✔ crossing the shuffle wall launches on movement before pointerup and ignores later samples (4.128917ms)
+✔ joint race progress does not select the first input as the rendered or HUD leader (7.17225ms)
+✔ shuffle adapter stays locked throughout the pour and unlocks without starting the race (3.636667ms)
+✖ slow shuffle rendering lowers both canvas qualities without resetting the gesture or seeded race (6.465125ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 23
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3445.234
+
+✖ failing tests:
+
+test at tests/integration.test.cjs:472:1
+✖ slow shuffle rendering lowers both canvas qualities without resetting the gesture or seeded race (6.465125ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+  
+  'high'
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/integration.test.cjs:476:57)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'high',
+    expected: 'high',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }

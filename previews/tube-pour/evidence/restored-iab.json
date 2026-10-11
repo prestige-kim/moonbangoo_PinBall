@@ -1,0 +1,40 @@
+[
+  {
+    "id": "names",
+    "value": "귤*4,수박*2,키위*2"
+  },
+  {
+    "id": "radius",
+    "value": "11"
+  },
+  {
+    "id": "gravity",
+    "value": "620"
+  },
+  {
+    "id": "restitution",
+    "value": "0.72"
+  },
+  {
+    "id": "speed",
+    "value": "1"
+  },
+  {
+    "id": "quality",
+    "value": "high"
+  },
+  {
+    "checked": false,
+    "id": "sound",
+    "value": "on"
+  },
+  {
+    "checked": false,
+    "id": "reduced-motion",
+    "value": "on"
+  },
+  {
+    "id": "seed",
+    "value": "EDGE-QA-50"
+  }
+]
