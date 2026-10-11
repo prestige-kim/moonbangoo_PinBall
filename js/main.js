@@ -83,7 +83,6 @@
     if (decision.fired) { throwMarbles(decision); shuffleInput.cancel(true); }
   }
   let inputMode = null;
-  let keyboardLaunchPending = false;
   const shuffleInput = new P.ShuffleInput(document.getElementById('cinema-canvas'), {
     enabled: () => status === 'mixing' && (handScene.ready || handScene.canTilt) && !handScene.launchDecision,
     area: () => handScene.area(),
@@ -236,7 +235,6 @@
     ui.clearError(); ui.hideResults(); ui.hideCountdown(); ui.setLocked(true);
     winner = null; launchElapsed = 0; flightLanded = false;
     throwGate.cancel();
-    keyboardLaunchPending = false;
     if (next.replayStart) {
       camera.prepareLanding(P.MAPS[runSettings.map], physics);
       setScene('running');
@@ -262,14 +260,7 @@
     launchElapsed = 0; setScene('flight'); audio.play('launch');
   }
   function updateLaunch(dt) {
-    if (status === 'mixing') {
-      handScene.update(dt);
-      if (keyboardLaunchPending && handScene.ready) {
-        keyboardLaunchPending = false;
-        throwMarbles({ fired: true, inputSpeed: 0, dx: 1, dy: -1 });
-      }
-      return;
-    }
+    if (status === 'mixing') { handScene.update(dt); return; }
     if (flightLanded) {
       flightLanded = false; accumulator = 0; setScene('running'); return;
     }
@@ -419,19 +410,6 @@
   camera.attach(canvas);
   window.addEventListener('resize', resize);
   document.addEventListener('visibilitychange', () => { lastFrame = 0; });
-  document.addEventListener('keydown', event => {
-    if (status !== 'mixing' || event.key !== 'Enter' || event.repeat || event.isComposing || event.ctrlKey || event.metaKey || event.altKey || /^(INPUT|TEXTAREA|SELECT|BUTTON)$/.test(event.target.tagName)) return;
-    if (!handScene.canTilt && !handScene.ready) return;
-    event.preventDefault();
-    if (handScene.ready) { throwMarbles({ fired: true, inputSpeed: 0, dx: 1, dy: -1 }); return; }
-    // Use the same tube grip and drag calculation as pointer input.
-    const rig = handScene.rigAt(handScene.elapsed, handScene.area());
-    const grip = { x: rig.x + Math.cos(rig.rotation) * rig.length * .38, y: rig.y + Math.sin(rig.rotation) * rig.length * .38 };
-    if (handScene.beginTilt(grip)) {
-      const end = { x: grip.x - rig.length * .38, y: grip.y + rig.length };
-      handScene.moveTilt(end); handScene.releaseTilt(end); keyboardLaunchPending = true;
-    }
-  });
   visualSettings(); preview('intro');
   P.app = { ui: ui, renderer: renderer, cinematic: cinematic, camera: camera, effects: effects, audio: audio,
     handScene, handFlight, shuffleInput, throwGate, get physics() { return physics; }, get status() { return status; }, get settings() { return Object.assign({}, settings); },
