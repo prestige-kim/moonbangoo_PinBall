@@ -1,0 +1,16 @@
+✔ tube, shuffle, flight blends and race draw the identical chrome sprite at the same pixel size (5.946084ms)
+✔ 500 IDs and theme changes reuse a bounded resolution pyramid rather than 500 image copies (1.24675ms)
+✔ one async photo load replaces all cached fallbacks and normalizes the transparent bounds (0.829708ms)
+✔ failed photo loading remains visible in the same neutral steel fallback (0.591458ms)
+✔ a late photo redraws the static welcome once without advancing any marble (10.515209ms)
+✔ name groups share colors and patterns without changing individual IDs or physics (1.377875ms)
+✔ 500 grouped balls keep one metal sprite pyramid and stable marks across themes (3.60625ms)
+✔ group identification ring stays identical across shuffle, flight and race (1.027625ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 63.898959

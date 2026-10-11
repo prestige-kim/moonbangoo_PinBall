@@ -1,0 +1,39 @@
+✔ tube, shuffle, flight blends and race draw the identical chrome sprite at the same pixel size (6.481875ms)
+✔ 500 IDs and theme changes reuse a bounded resolution pyramid rather than 500 image copies (1.539916ms)
+✔ one async photo load replaces all cached fallbacks and normalizes the transparent bounds (0.96ms)
+✔ failed photo loading remains visible in the same neutral steel fallback (0.59025ms)
+✔ a late photo redraws the static welcome once without advancing any marble (10.140875ms)
+✖ name groups share colors and patterns without changing individual IDs or physics (1.424209ms)
+✖ 500 grouped balls keep one metal sprite pyramid and stable marks across themes (2.926083ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 5
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 68.289
+
+✖ failing tests:
+
+test at tests/pinball-skin.test.cjs:40:1
+✖ name groups share colors and patterns without changing individual IDs or physics (1.424209ms)
+  TypeError: P.Pinball.configureGroups is not a function
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/pinball-skin.test.cjs:42:12)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+
+test at tests/pinball-skin.test.cjs:49:1
+✖ 500 grouped balls keep one metal sprite pyramid and stable marks across themes (2.926083ms)
+  TypeError: P.Pinball.configureGroups is not a function
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/pinball-skin.test.cjs:51:12)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
