@@ -1,5 +1,6 @@
 {
-  "scannedTextBlobs": 616,
-  "scope": "all reachable refs; structured secret patterns only, no semantic PII audit",
+  "auditedHead": "bdcd43c7c2559ed493e461d0335b5fa198e65bdd",
+  "scannedTextBlobs": 675,
+  "scope": "all reachable refs at scan time; structured secret patterns only, no semantic PII audit",
   "findings": []
 }

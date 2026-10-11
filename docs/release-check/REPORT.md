@@ -76,7 +76,7 @@ qa/                  감사 전용 실행기·오라클·회귀 검사·원시 �
 
 - 새 UI에는 자유 이름 입력이 없고 숨김 names를 색상 선택으로 생성합니다. parseNames는 <>를 거부합니다(physics 82). 결과/순위/토스트는 textContent/createElement(ui 508, 532, 545, 570)입니다. 실제 browser storage `<img onerror>`와 직접 결과 라벨 렌더링에서 실행 0, 삽입 img 0을 확인했습니다(`browser-before.json`, `browser-edge.json`).
 - settings/legacy 저장 JSON은 normalize/try-catch(main 34–55), last-round는 ui 43–46과 replay 시작 검증입니다. 손상 JSON, null, 배열, 잘못된 물리 값, 접근 자체가 예외인 localStorage에서 intro 부팅을 확인했습니다. 구버전 이름은 수량을 유지하며 색상으로 변환하는 의도된 마이그레이션입니다.
-- production eval/외부 CDN 스크립트/런타임 fetch·XHR·WebSocket은 없습니다. qa adapter의 new Function은 신뢰한 저장소 소스 실행용이며 production에서 로드되지 않습니다. npm audit 결과는 `qa/results/npm-audit.json`입니다. 도달 가능한 전체 Git refs의 구조화된 비밀 패턴 검사는 `history-scan.json`; 의미적 개인정보·삭제된 dangling 객체까지의 전수 검사는 아닙니다.
+- production eval/외부 CDN 스크립트/런타임 fetch·XHR·WebSocket은 없습니다. qa adapter의 new Function은 신뢰한 저장소 소스 실행용이며 production에서 로드되지 않습니다. npm audit 결과는 `qa/results/npm-audit.json`(취약점 0)입니다. QA 증거 커밋 `bdcd43c7c2559ed493e461d0335b5fa198e65bdd`까지 도달 가능한 전체 Git refs의 텍스트 blob 675개를 구조화된 비밀 패턴으로 검사해 탐지 0건이었습니다(`qa/results/history-scan.json`). 이후 커밋은 이 스캔 기록과 보고서 설명만 저장합니다. 의미적 개인정보·삭제된 dangling 객체까지의 전수 검사는 아닙니다.
 
 ### E. 리소스·품질·오디오
 
