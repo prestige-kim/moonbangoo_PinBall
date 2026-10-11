@@ -1,0 +1,1260 @@
+{
+  "phase": "baseline",
+  "candidate": "none",
+  "seeds": 5000,
+  "workers": 4,
+  "started": "2026-10-11T12:39:23.382Z",
+  "sourceCommit": "fc130f43ae992b1018ec55ff738632087ee6af49",
+  "cases": [
+    {
+      "config": {
+        "groups": [
+          2,
+          2,
+          2
+        ],
+        "radius": 12,
+        "gravity": 620,
+        "restitution": 0.72,
+        "candidate": "none",
+        "skills": false
+      },
+      "protocol": "B",
+      "prefix": "dev-baseline-B-off-",
+      "summary": {
+        "runs": 5000,
+        "completed": 5000,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "ranking": 0,
+          "oracle": 0,
+          "timeout": 0
+        },
+        "id": {
+          "counts": [
+            811,
+            806,
+            758,
+            931,
+            910,
+            784
+          ],
+          "n": 5000,
+          "expected": [
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333
+          ],
+          "statistic": 29.7256,
+          "df": 5,
+          "pValue": 0.000016700749890314466,
+          "maxDeviationPercentagePoints": 1.9533333333333347,
+          "validApproximation": true,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 811,
+              "n": 5000,
+              "rate": 0.1622,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.44666666666666516,
+              "ci95": {
+                "low": 0.15224213050442784,
+                "high": 0.17267652892965282,
+                "widthPercentagePoints": 2.0434398425224964
+              }
+            },
+            {
+              "index": 2,
+              "wins": 806,
+              "n": 5000,
+              "rate": 0.1612,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.5466666666666652,
+              "ci95": {
+                "low": 0.1512683295949322,
+                "high": 0.1716518652430386,
+                "widthPercentagePoints": 2.03835356481064
+              }
+            },
+            {
+              "index": 3,
+              "wins": 758,
+              "n": 5000,
+              "rate": 0.1516,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -1.5066666666666653,
+              "ci95": {
+                "low": 0.14192707512979888,
+                "high": 0.161807859585517,
+                "widthPercentagePoints": 1.988078445571809
+              }
+            },
+            {
+              "index": 4,
+              "wins": 931,
+              "n": 5000,
+              "rate": 0.1862,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 1.9533333333333347,
+              "ci95": {
+                "low": 0.17565259763047125,
+                "high": 0.19722921211024663,
+                "widthPercentagePoints": 2.1576614479775356
+              }
+            },
+            {
+              "index": 5,
+              "wins": 910,
+              "n": 5000,
+              "rate": 0.182,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 1.5333333333333348,
+              "ci95": {
+                "low": 0.1715505800486939,
+                "high": 0.19293767838836245,
+                "widthPercentagePoints": 2.138709833966858
+              }
+            },
+            {
+              "index": 6,
+              "wins": 784,
+              "n": 5000,
+              "rate": 0.1568,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.9866666666666652,
+              "ci95": {
+                "low": 0.14698527209700052,
+                "high": 0.1671416785180867,
+                "widthPercentagePoints": 2.015640642108618
+              }
+            }
+          ],
+          "pass": false
+        },
+        "group": {
+          "counts": [
+            1617,
+            1689,
+            1694
+          ],
+          "n": 5000,
+          "expected": [
+            1666.6666666666665,
+            1666.6666666666665,
+            1666.6666666666665
+          ],
+          "statistic": 2.2276000000000002,
+          "df": 2,
+          "pValue": 0.32830901342773644,
+          "maxDeviationPercentagePoints": 0.9933333333333294,
+          "validApproximation": true,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 1617,
+              "n": 5000,
+              "rate": 0.3234,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": -0.9933333333333303,
+              "ci95": {
+                "low": 0.3105740516896243,
+                "high": 0.33649710063737,
+                "widthPercentagePoints": 2.592304894774563
+              }
+            },
+            {
+              "index": 2,
+              "wins": 1689,
+              "n": 5000,
+              "rate": 0.3378,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 0.4466666666666697,
+              "ci95": {
+                "low": 0.3248194213257986,
+                "high": 0.35102962118517794,
+                "widthPercentagePoints": 2.621019985937939
+              }
+            },
+            {
+              "index": 3,
+              "wins": 1694,
+              "n": 5000,
+              "rate": 0.3388,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 0.5466666666666697,
+              "ci95": {
+                "low": 0.3258091918614725,
+                "high": 0.352038315245614,
+                "widthPercentagePoints": 2.622912338414156
+              }
+            }
+          ],
+          "pass": true
+        },
+        "slot": {
+          "counts": [
+            981,
+            882,
+            580,
+            996,
+            734,
+            827
+          ],
+          "n": 5000,
+          "expected": [
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333
+          ],
+          "statistic": 149.66320000000002,
+          "df": 5,
+          "pValue": 1.5747672565563961e-30,
+          "maxDeviationPercentagePoints": 5.0666666666666655,
+          "validApproximation": true,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 981,
+              "n": 5000,
+              "rate": 0.1962,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 2.953333333333335,
+              "ci95": {
+                "low": 0.18542753566964318,
+                "high": 0.2074389200321736,
+                "widthPercentagePoints": 2.2011384362530437
+              }
+            },
+            {
+              "index": 2,
+              "wins": 882,
+              "n": 5000,
+              "rate": 0.1764,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 0.9733333333333349,
+              "ci95": {
+                "low": 0.16608453753984626,
+                "high": 0.18721231915899478,
+                "widthPercentagePoints": 2.112778161914855
+              }
+            },
+            {
+              "index": 3,
+              "wins": 580,
+              "n": 5000,
+              "rate": 0.116,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -5.0666666666666655,
+              "ci95": {
+                "low": 0.10741729036033222,
+                "high": 0.12517230473347168,
+                "widthPercentagePoints": 1.7755014373139453
+              }
+            },
+            {
+              "index": 4,
+              "wins": 996,
+              "n": 5000,
+              "rate": 0.1992,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 3.253333333333335,
+              "ci95": {
+                "low": 0.18836220082656505,
+                "high": 0.21049964866358137,
+                "widthPercentagePoints": 2.213744783701633
+              }
+            },
+            {
+              "index": 5,
+              "wins": 734,
+              "n": 5000,
+              "rate": 0.1468,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -1.986666666666665,
+              "ci95": {
+                "low": 0.13726156477427967,
+                "high": 0.15688073987970877,
+                "widthPercentagePoints": 1.9619175105429116
+              }
+            },
+            {
+              "index": 6,
+              "wins": 827,
+              "n": 5000,
+              "rate": 0.1654,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.12666666666666515,
+              "ci95": {
+                "low": 0.15535921602934696,
+                "high": 0.17595453011228532,
+                "widthPercentagePoints": 2.059531408293837
+              }
+            }
+          ],
+          "pass": false
+        },
+        "time": {
+          "p50": 50.75,
+          "p95": 60.725,
+          "max": 71.525,
+          "over120": 0
+        },
+        "rescues": {
+          "p50": 7,
+          "p95": 12,
+          "max": 19
+        },
+        "cpuMs": {
+          "p50": 151.82241600000998,
+          "p95": 256.8200829999996
+        }
+      }
+    },
+    {
+      "config": {
+        "groups": [
+          2,
+          2,
+          2
+        ],
+        "radius": 12,
+        "gravity": 620,
+        "restitution": 0.72,
+        "candidate": "none",
+        "skills": false
+      },
+      "protocol": "C",
+      "prefix": "dev-baseline-C-off-",
+      "summary": {
+        "runs": 5000,
+        "completed": 5000,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "ranking": 0,
+          "oracle": 0,
+          "timeout": 0
+        },
+        "id": {
+          "counts": [
+            816,
+            798,
+            931,
+            909,
+            784,
+            762
+          ],
+          "n": 5000,
+          "expected": [
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333
+          ],
+          "statistic": 29.2024,
+          "df": 5,
+          "pValue": 0.00002116098533573439,
+          "maxDeviationPercentagePoints": 1.9533333333333347,
+          "validApproximation": true,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 816,
+              "n": 5000,
+              "rate": 0.1632,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.3466666666666651,
+              "ci95": {
+                "low": 0.15321606945244948,
+                "high": 0.1737010545777411,
+                "widthPercentagePoints": 2.04849851252916
+              }
+            },
+            {
+              "index": 2,
+              "wins": 798,
+              "n": 5000,
+              "rate": 0.1596,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.7066666666666652,
+              "ci95": {
+                "low": 0.14971053785160376,
+                "high": 0.17001211363259117,
+                "widthPercentagePoints": 2.0301575780987404
+              }
+            },
+            {
+              "index": 3,
+              "wins": 931,
+              "n": 5000,
+              "rate": 0.1862,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 1.9533333333333347,
+              "ci95": {
+                "low": 0.17565259763047125,
+                "high": 0.19722921211024663,
+                "widthPercentagePoints": 2.1576614479775356
+              }
+            },
+            {
+              "index": 4,
+              "wins": 909,
+              "n": 5000,
+              "rate": 0.1818,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 1.513333333333335,
+              "ci95": {
+                "low": 0.17135529840851516,
+                "high": 0.1927332671093192,
+                "widthPercentagePoints": 2.1377968700804066
+              }
+            },
+            {
+              "index": 5,
+              "wins": 784,
+              "n": 5000,
+              "rate": 0.1568,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.9866666666666652,
+              "ci95": {
+                "low": 0.14698527209700052,
+                "high": 0.1671416785180867,
+                "widthPercentagePoints": 2.015640642108618
+              }
+            },
+            {
+              "index": 6,
+              "wins": 762,
+              "n": 5000,
+              "rate": 0.1524,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -1.4266666666666652,
+              "ci95": {
+                "low": 0.1427049996573499,
+                "high": 0.16262870673485386,
+                "widthPercentagePoints": 1.9923707077503985
+              }
+            }
+          ],
+          "pass": false
+        },
+        "group": {
+          "counts": [
+            1614,
+            1840,
+            1546
+          ],
+          "n": 5000,
+          "expected": [
+            1666.6666666666665,
+            1666.6666666666665,
+            1666.6666666666665
+          ],
+          "statistic": 28.4272,
+          "df": 2,
+          "pValue": 6.716019555294632e-7,
+          "maxDeviationPercentagePoints": 3.4666666666666677,
+          "validApproximation": true,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 1614,
+              "n": 5000,
+              "rate": 0.3228,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": -1.0533333333333303,
+              "ci95": {
+                "low": 0.3099807956047949,
+                "high": 0.3358912779645334,
+                "widthPercentagePoints": 2.5910482359738527
+              }
+            },
+            {
+              "index": 2,
+              "wins": 1840,
+              "n": 5000,
+              "rate": 0.368,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 3.46666666666667,
+              "ci95": {
+                "low": 0.3547387277538572,
+                "high": 0.38146394555963803,
+                "widthPercentagePoints": 2.672521780578086
+              }
+            },
+            {
+              "index": 3,
+              "wins": 1546,
+              "n": 5000,
+              "rate": 0.3092,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": -2.41333333333333,
+              "ci95": {
+                "low": 0.29654026696771063,
+                "high": 0.32215268809452324,
+                "widthPercentagePoints": 2.5612421126812572
+              }
+            }
+          ],
+          "pass": false
+        },
+        "slot": {
+          "counts": [
+            873,
+            685,
+            955,
+            724,
+            804,
+            959
+          ],
+          "n": 5000,
+          "expected": [
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333
+          ],
+          "statistic": 80.3824,
+          "df": 5,
+          "pValue": 6.979901824375249e-16,
+          "maxDeviationPercentagePoints": 2.9666666666666646,
+          "validApproximation": true,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 873,
+              "n": 5000,
+              "rate": 0.1746,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 0.7933333333333348,
+              "ci95": {
+                "low": 0.16432842018488464,
+                "high": 0.1853712002409586,
+                "widthPercentagePoints": 2.1042780056073984
+              }
+            },
+            {
+              "index": 2,
+              "wins": 685,
+              "n": 5000,
+              "rate": 0.137,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -2.966666666666665,
+              "ci95": {
+                "low": 0.1277474728981889,
+                "high": 0.14680987871392262,
+                "widthPercentagePoints": 1.906240581573372
+              }
+            },
+            {
+              "index": 3,
+              "wins": 955,
+              "n": 5000,
+              "rate": 0.191,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 2.433333333333335,
+              "ci95": {
+                "low": 0.1803431476537075,
+                "high": 0.2021312921483379,
+                "widthPercentagePoints": 2.178814449463038
+              }
+            },
+            {
+              "index": 4,
+              "wins": 724,
+              "n": 5000,
+              "rate": 0.1448,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -2.186666666666665,
+              "ci95": {
+                "low": 0.13531865457260792,
+                "high": 0.15482672088916075,
+                "widthPercentagePoints": 1.9508066316552848
+              }
+            },
+            {
+              "index": 5,
+              "wins": 804,
+              "n": 5000,
+              "rate": 0.1608,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.5866666666666651,
+              "ci95": {
+                "low": 0.15087884811343222,
+                "high": 0.17124196088609456,
+                "widthPercentagePoints": 2.0363112772662317
+              }
+            },
+            {
+              "index": 6,
+              "wins": 959,
+              "n": 5000,
+              "rate": 0.1918,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 2.513333333333335,
+              "ci95": {
+                "low": 0.18112516313838853,
+                "high": 0.20294804834054472,
+                "widthPercentagePoints": 2.1822885202156175
+              }
+            }
+          ],
+          "pass": false
+        },
+        "time": {
+          "p50": 50.75,
+          "p95": 61.96666666666667,
+          "max": 70.09166666666667,
+          "over120": 0
+        },
+        "rescues": {
+          "p50": 8,
+          "p95": 13,
+          "max": 19
+        },
+        "cpuMs": {
+          "p50": 158.12441699998453,
+          "p95": 200.3190830000094
+        }
+      }
+    },
+    {
+      "config": {
+        "groups": [
+          2,
+          2,
+          2
+        ],
+        "radius": 12,
+        "gravity": 620,
+        "restitution": 0.72,
+        "candidate": "none",
+        "skills": true
+      },
+      "protocol": "C",
+      "prefix": "dev-baseline-C-on-",
+      "summary": {
+        "runs": 5000,
+        "completed": 5000,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "ranking": 0,
+          "oracle": 0,
+          "timeout": 0
+        },
+        "id": {
+          "counts": [
+            847,
+            880,
+            914,
+            797,
+            821,
+            741
+          ],
+          "n": 5000,
+          "expected": [
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333
+          ],
+          "statistic": 22.6432,
+          "df": 5,
+          "pValue": 0.00039491336692613904,
+          "maxDeviationPercentagePoints": 1.8466666666666658,
+          "validApproximation": true,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 847,
+              "n": 5000,
+              "rate": 0.1694,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 0.27333333333333487,
+              "ci95": {
+                "low": 0.1592575109198049,
+                "high": 0.1800500936062669,
+                "widthPercentagePoints": 2.0792582686461976
+              }
+            },
+            {
+              "index": 2,
+              "wins": 880,
+              "n": 5000,
+              "rate": 0.176,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 0.9333333333333348,
+              "ci95": {
+                "low": 0.16569425409788283,
+                "high": 0.18680321676251424,
+                "widthPercentagePoints": 2.110896266463139
+              }
+            },
+            {
+              "index": 3,
+              "wins": 914,
+              "n": 5000,
+              "rate": 0.1828,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 1.613333333333335,
+              "ci95": {
+                "low": 0.172331754707912,
+                "high": 0.19375527540603227,
+                "widthPercentagePoints": 2.142352069812026
+              }
+            },
+            {
+              "index": 4,
+              "wins": 797,
+              "n": 5000,
+              "rate": 0.1594,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.7266666666666651,
+              "ci95": {
+                "low": 0.14951583913193098,
+                "high": 0.16980711943304197,
+                "widthPercentagePoints": 2.0291280301110977
+              }
+            },
+            {
+              "index": 5,
+              "wins": 821,
+              "n": 5000,
+              "rate": 0.1642,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.24666666666666512,
+              "ci95": {
+                "low": 0.15419014541886372,
+                "high": 0.17472544320743671,
+                "widthPercentagePoints": 2.053529778857297
+              }
+            },
+            {
+              "index": 6,
+              "wins": 741,
+              "n": 5000,
+              "rate": 0.1482,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -1.8466666666666651,
+              "ci95": {
+                "low": 0.13862197376386604,
+                "high": 0.15831818132467618,
+                "widthPercentagePoints": 1.9696207560810168
+              }
+            }
+          ],
+          "pass": false
+        },
+        "group": {
+          "counts": [
+            1727,
+            1711,
+            1562
+          ],
+          "n": 5000,
+          "expected": [
+            1666.6666666666665,
+            1666.6666666666665,
+            1666.6666666666665
+          ],
+          "statistic": 9.9364,
+          "df": 2,
+          "pValue": 0.006955656955860253,
+          "maxDeviationPercentagePoints": 2.09333333333333,
+          "validApproximation": true,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 1727,
+              "n": 5000,
+              "rate": 0.3454,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 1.2066666666666697,
+              "ci95": {
+                "low": 0.3323433079488894,
+                "high": 0.3586940654925223,
+                "widthPercentagePoints": 2.6350757543632897
+              }
+            },
+            {
+              "index": 2,
+              "wins": 1711,
+              "n": 5000,
+              "rate": 0.3422,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 0.8866666666666696,
+              "ci95": {
+                "low": 0.3291748990866013,
+                "high": 0.35546738764725877,
+                "widthPercentagePoints": 2.629248856065747
+              }
+            },
+            {
+              "index": 3,
+              "wins": 1562,
+              "n": 5000,
+              "rate": 0.3124,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": -2.09333333333333,
+              "ci95": {
+                "low": 0.2997015947015856,
+                "high": 0.3253864470681999,
+                "widthPercentagePoints": 2.5684852366614277
+              }
+            }
+          ],
+          "pass": false
+        },
+        "slot": {
+          "counts": [
+            813,
+            740,
+            918,
+            814,
+            915,
+            800
+          ],
+          "n": 5000,
+          "expected": [
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333
+          ],
+          "statistic": 29.336800000000004,
+          "df": 5,
+          "pValue": 0.00001991341331337163,
+          "maxDeviationPercentagePoints": 1.8666666666666665,
+          "validApproximation": true,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 813,
+              "n": 5000,
+              "rate": 0.1626,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.4066666666666652,
+              "ci95": {
+                "low": 0.15263168957649123,
+                "high": 0.17308635569603334,
+                "widthPercentagePoints": 2.045466611954213
+              }
+            },
+            {
+              "index": 2,
+              "wins": 740,
+              "n": 5000,
+              "rate": 0.148,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -1.8666666666666651,
+              "ci95": {
+                "low": 0.13842761104205764,
+                "high": 0.1581128511272626,
+                "widthPercentagePoints": 1.9685240085204927
+              }
+            },
+            {
+              "index": 3,
+              "wins": 918,
+              "n": 5000,
+              "rate": 0.1836,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 1.693333333333335,
+              "ci95": {
+                "low": 0.1731130060310836,
+                "high": 0.19457279575974862,
+                "widthPercentagePoints": 2.145978972866502
+              }
+            },
+            {
+              "index": 4,
+              "wins": 814,
+              "n": 5000,
+              "rate": 0.1628,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.38666666666666516,
+              "ci95": {
+                "low": 0.1528264773742563,
+                "high": 0.17329126081749024,
+                "widthPercentagePoints": 2.046478344323392
+              }
+            },
+            {
+              "index": 5,
+              "wins": 915,
+              "n": 5000,
+              "rate": 0.183,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 1.6333333333333349,
+              "ci95": {
+                "low": 0.17252706036669055,
+                "high": 0.1939596626664757,
+                "widthPercentagePoints": 2.1432602299785186
+              }
+            },
+            {
+              "index": 6,
+              "wins": 800,
+              "n": 5000,
+              "rate": 0.16,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.6666666666666652,
+              "ci95": {
+                "low": 0.15009995217412261,
+                "high": 0.17042208514851628,
+                "widthPercentagePoints": 2.0322132974393656
+              }
+            }
+          ],
+          "pass": false
+        },
+        "time": {
+          "p50": 50.80833333333333,
+          "p95": 60.85,
+          "max": 80.49166666666666,
+          "over120": 0
+        },
+        "rescues": {
+          "p50": 8,
+          "p95": 13,
+          "max": 20
+        },
+        "cpuMs": {
+          "p50": 162.59016700001666,
+          "p95": 209.12800000002608
+        }
+      }
+    },
+    {
+      "config": {
+        "groups": [
+          2,
+          2,
+          2
+        ],
+        "radius": 12,
+        "gravity": 620,
+        "restitution": 0.72,
+        "candidate": "none",
+        "skills": false
+      },
+      "protocol": "D",
+      "prefix": "dev-baseline-D-off-",
+      "summary": {
+        "runs": 5000,
+        "completed": 5000,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "ranking": 0,
+          "oracle": 0,
+          "timeout": 0
+        },
+        "id": {
+          "counts": [
+            777,
+            868,
+            840,
+            846,
+            850,
+            819
+          ],
+          "n": 5000,
+          "expected": [
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333
+          ],
+          "statistic": 6.0760000000000005,
+          "df": 5,
+          "pValue": 0.29889388955573404,
+          "maxDeviationPercentagePoints": 1.1266666666666647,
+          "validApproximation": true,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 777,
+              "n": 5000,
+              "rate": 0.1554,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -1.1266666666666652,
+              "ci95": {
+                "low": 0.14562306056387467,
+                "high": 0.16570603961665878,
+                "widthPercentagePoints": 2.0082979052784133
+              }
+            },
+            {
+              "index": 2,
+              "wins": 868,
+              "n": 5000,
+              "rate": 0.1736,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 0.6933333333333349,
+              "ci95": {
+                "low": 0.16335297608667623,
+                "high": 0.1843481797430571,
+                "widthPercentagePoints": 2.0995203656380848
+              }
+            },
+            {
+              "index": 3,
+              "wins": 840,
+              "n": 5000,
+              "rate": 0.168,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 0.13333333333333486,
+              "ci95": {
+                "low": 0.15789286617041443,
+                "high": 0.17861688792110358,
+                "widthPercentagePoints": 2.072402175068917
+              }
+            },
+            {
+              "index": 4,
+              "wins": 846,
+              "n": 5000,
+              "rate": 0.1692,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 0.25333333333333485,
+              "ci95": {
+                "low": 0.1590625458874694,
+                "high": 0.1798453657193804,
+                "widthPercentagePoints": 2.0782819831911015
+              }
+            },
+            {
+              "index": 5,
+              "wins": 850,
+              "n": 5000,
+              "rate": 0.17,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 0.3333333333333348,
+              "ci95": {
+                "low": 0.15984243743353688,
+                "high": 0.1806642458502009,
+                "widthPercentagePoints": 2.082180841666401
+              }
+            },
+            {
+              "index": 6,
+              "wins": 819,
+              "n": 5000,
+              "rate": 0.1638,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.2866666666666651,
+              "ci95": {
+                "low": 0.153800498654732,
+                "high": 0.17431570413312447,
+                "widthPercentagePoints": 2.051520547839248
+              }
+            }
+          ],
+          "pass": true
+        },
+        "group": {
+          "counts": [
+            1645,
+            1686,
+            1669
+          ],
+          "n": 5000,
+          "expected": [
+            1666.6666666666665,
+            1666.6666666666665,
+            1666.6666666666665
+          ],
+          "statistic": 0.5092,
+          "df": 2,
+          "pValue": 0.7752265265618516,
+          "maxDeviationPercentagePoints": 0.43333333333333,
+          "validApproximation": true,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 1645,
+              "n": 5000,
+              "rate": 0.329,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": -0.4333333333333303,
+              "ci95": {
+                "low": 0.31611227755690946,
+                "high": 0.34215027650830016,
+                "widthPercentagePoints": 2.6037998951390655
+              }
+            },
+            {
+              "index": 2,
+              "wins": 1686,
+              "n": 5000,
+              "rate": 0.3372,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 0.3866666666666697,
+              "ci95": {
+                "low": 0.32422559039406,
+                "high": 0.35042437335925064,
+                "widthPercentagePoints": 2.619878296519062
+              }
+            },
+            {
+              "index": 3,
+              "wins": 1669,
+              "n": 5000,
+              "rate": 0.3338,
+              "expected": 0.3333333333333333,
+              "deviationPercentagePoints": 0.046666666666669694,
+              "ci95": {
+                "low": 0.320860994760081,
+                "high": 0.346994189366456,
+                "widthPercentagePoints": 2.613319460637497
+              }
+            }
+          ],
+          "pass": true
+        },
+        "slot": {
+          "counts": [
+            772,
+            802,
+            924,
+            762,
+            919,
+            821
+          ],
+          "n": 5000,
+          "expected": [
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333,
+            833.3333333333333
+          ],
+          "statistic": 30.652,
+          "df": 5,
+          "pValue": 0.000010971992951102995,
+          "maxDeviationPercentagePoints": 1.8133333333333335,
+          "validApproximation": true,
+          "bins": [
+            {
+              "index": 1,
+              "wins": 772,
+              "n": 5000,
+              "rate": 0.1544,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -1.2266666666666652,
+              "ci95": {
+                "low": 0.14465022663901864,
+                "high": 0.1646804089454049,
+                "widthPercentagePoints": 2.003018230638624
+              }
+            },
+            {
+              "index": 2,
+              "wins": 802,
+              "n": 5000,
+              "rate": 0.1604,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.6266666666666652,
+              "ci95": {
+                "low": 0.15048938895068395,
+                "high": 0.17083203421039886,
+                "widthPercentagePoints": 2.0342645259714898
+              }
+            },
+            {
+              "index": 3,
+              "wins": 924,
+              "n": 5000,
+              "rate": 0.1848,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 1.8133333333333348,
+              "ci95": {
+                "low": 0.17428502591304304,
+                "high": 0.19579893339312102,
+                "widthPercentagePoints": 2.1513907480077963
+              }
+            },
+            {
+              "index": 4,
+              "wins": 762,
+              "n": 5000,
+              "rate": 0.1524,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -1.4266666666666652,
+              "ci95": {
+                "low": 0.1427049996573499,
+                "high": 0.16262870673485386,
+                "widthPercentagePoints": 1.9923707077503985
+              }
+            },
+            {
+              "index": 5,
+              "wins": 919,
+              "n": 5000,
+              "rate": 0.1838,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": 1.7133333333333347,
+              "ci95": {
+                "low": 0.17330833079505062,
+                "high": 0.19477716391500352,
+                "widthPercentagePoints": 2.1468833119952886
+              }
+            },
+            {
+              "index": 6,
+              "wins": 821,
+              "n": 5000,
+              "rate": 0.1642,
+              "expected": 0.16666666666666666,
+              "deviationPercentagePoints": -0.24666666666666512,
+              "ci95": {
+                "low": 0.15419014541886372,
+                "high": 0.17472544320743671,
+                "widthPercentagePoints": 2.053529778857297
+              }
+            }
+          ],
+          "pass": false
+        },
+        "time": {
+          "p50": 50.958333333333336,
+          "p95": 60.958333333333336,
+          "max": 76.50833333333333,
+          "over120": 0
+        },
+        "rescues": {
+          "p50": 8,
+          "p95": 13,
+          "max": 19
+        },
+        "cpuMs": {
+          "p50": 161.3779589999467,
+          "p95": 208.25558300002012
+        }
+      }
+    }
+  ],
+  "finished": "2026-10-11T12:53:10.108Z",
+  "sha256": "778423ed30173622cdad350ea26a493baf31780fc437c613de73d4137c925867"
+}

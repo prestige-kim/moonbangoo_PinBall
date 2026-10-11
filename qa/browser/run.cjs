@@ -1,7 +1,8 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto');
 const {chromium}=require('playwright');
-const root=path.resolve(__dirname,'../..'),out=path.join(root,'qa/results');
+const root=path.resolve(__dirname,'../..'),out=path.join(root,process.argv.find(a=>a.startsWith('--out-dir='))?.slice(10)||'qa/results');
+fs.mkdirSync(out,{recursive:true});
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 async function startServer(){return new Promise(resolve=>{const server=http.createServer((req,res)=>{let name=decodeURIComponent(req.url.split('?')[0]).replace(/^\/moonbangoo_PinBall\//,'/');if(name==='/')name='/index.html';const file=path.resolve(root,'.'+name);if(!file.startsWith(root+path.sep)){res.writeHead(403).end();return;}fs.readFile(file,(err,data)=>{if(err){res.writeHead(404).end();return;}const type={'.html':'text/html','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.png':'image/png','.woff2':'font/woff2'}[path.extname(file)]||'application/octet-stream';res.writeHead(200,{'Content-Type':type});res.end(data);});}).listen(0,'127.0.0.1',()=>resolve(server));});}
@@ -20,7 +21,7 @@ async function main(){
  const baseline=process.argv.includes('--baseline'),server=await startServer(),base='http://127.0.0.1:'+server.address().port+'/moonbangoo_PinBall/',browser=await chromium.launch({channel:'chrome',headless:true});
  const report={at:new Date().toISOString(),browser:browser.version(),baseline,loads:[],viewports:[],flow:{},storage:[],limitations:['Desktop Chromium emulation only; no physical mobile device','Native OS minimize/restore and tab throttling are not emulated by changing document.hidden']};
  try{
-  for(const url of [base,'https://prestige-kim.github.io/moonbangoo_PinBall/']){
+  for(const url of process.argv.includes('--local-only')?[base]:[base,'https://prestige-kim.github.io/moonbangoo_PinBall/']){
    const context=await browser.newContext(),page=await context.newPage(),record={url,console:[],failed:[],httpErrors:[],resources:[]};
    page.on('console',msg=>{if(['error','warning'].includes(msg.type()))record.console.push({type:msg.type(),text:msg.text()});});page.on('pageerror',e=>record.console.push({type:'exception',text:e.message}));page.on('requestfailed',req=>record.failed.push({url:req.url(),error:req.failure()}));
    const cdp=await context.newCDPSession(page);await cdp.send('Log.enable');cdp.on('Log.entryAdded',({entry})=>{if(entry.level==='error')record.console.push({type:'cdp',text:entry.text,url:entry.url});});
