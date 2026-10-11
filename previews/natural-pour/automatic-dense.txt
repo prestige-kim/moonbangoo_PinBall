@@ -1,0 +1,29 @@
+rounded wall QA 6 1280 800 hits 8 worst overlap 0.00006580246477708542
+rounded wall QA 6 390 844 hits 15 worst overlap 0.0011022506086501356
+rounded wall QA 6 844 390 hits 8 worst overlap 0
+rounded wall QA 50 1280 800 hits 222 worst overlap 0.0014219869695058318
+rounded wall QA 50 390 844 hits 419 worst overlap 0.005826684665753005
+rounded wall QA 50 844 390 hits 217 worst overlap 0.002268044560603356
+rounded wall QA 200 1280 800 hits 1513 worst overlap 0.0070446390658944905
+rounded wall QA 200 390 844 hits 3870 worst overlap 0.009624192970112135
+rounded wall QA 200 844 390 hits 1779 worst overlap 0.010429970793939815
+rounded wall QA 500 1280 800 hits 9703 worst overlap 0.01097188179577417
+rounded wall QA 500 390 844 hits 17015 worst overlap 0.017988953214115286
+rounded wall QA 500 844 390 hits 9836 worst overlap 0.010994695604878545
+✔ tube extraction starts at the real projected tube coordinates for all counts and screen sizes (286.839875ms)
+✔ fully extracted display circles match individual collision radii and preserve all IDs (3070.933875ms)
+✔ wall-exit feedback shares the exact consumed direction and clears inside the wall (3037.23125ms)
+✔ inside or untouched empty-space movement never shows exit gold (53.768625ms)
+✔ motion changes preserve bodies, RNG, ready feedback and the hand influence field (3122.862542ms)
+✔ every current shuffle pose connects continuously to the first real flight frame (3512.634375ms)
+✔ manual handoff uses actual geometry and commits once without consuming race RNG (1000.702541ms)
+✔ visible rounded walls contain every collision circle during vigorous near-wall shuffle (8435.557667ms)
+✔ cached spatial neighbors match an independent exhaustive candidate/order oracle (55.333125ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22575.324792

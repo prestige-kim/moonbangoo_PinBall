@@ -1,0 +1,18 @@
+✔ pour renders use shared geometry rather than repeated plate registrations per ball (75.712ms)
+✔ tube exit and freefall share position and tangent velocity for all IDs and screens (713.887458ms)
+✔ pouring keeps balls on screen, finite, unique and never changes race state (6954.085834ms)
+✔ all deposited circles meet closed walls and avoid deep overlap (4125.656625ms)
+✔ different render rates and motion changes preserve slots, IDs and readiness (8368.253375ms)
+✔ large resume delta cannot skip the pour or manufacture input readiness (0.419625ms)
+✔ after tilting, the whole occupied tube fits the viewport and freefall never rises upward (714.765ms)
+✔ deposition hands the exact falling location and velocity to the existing collision solver (1015.008542ms)
+✔ free flight has constant horizontal velocity and one positive gravity acceleration (90.756167ms)
+✔ the hinged lid is fully open before the first rolling ball leaves (0.453792ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22097.161083

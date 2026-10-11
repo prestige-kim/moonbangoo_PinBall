@@ -1,5 +1,7 @@
 # 어른뭉방구 구슬 추첨 검증 기록
 
+> 최신 연출·물리 검증: [힌지 뚜껑·중력 낙하·500개 밀집 충돌](previews/natural-pour/REPORT.md). 전체171개 검사 통과. 경기의 범퍼/속도 제한/막힘 방지 보정은 유지됩니다.
+
 > 최신 링 조정: [얇은 그룹 링과 3·8·12개 그룹 검증](previews/pinball-thin-rings/REPORT.md). 관련8개 검사 통과.
 
 > 최신 그룹 디자인 검증: [부드러운 금속 핀볼과 이름별 식별 링](previews/pinball-groups/REPORT.md). 전체166개 검사 통과.

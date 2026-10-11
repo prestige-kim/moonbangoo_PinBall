@@ -1,0 +1,59 @@
+✔ pour renders use shared geometry rather than repeated plate registrations per ball (82.072417ms)
+✔ tube exit and freefall share position and tangent velocity for all IDs and screens (740.894834ms)
+✔ pouring keeps balls on screen, finite, unique and never changes race state (3140.312875ms)
+✔ all deposited circles meet closed walls and avoid deep overlap (1778.87375ms)
+✔ different render rates and motion changes preserve slots, IDs and readiness (3629.461333ms)
+✔ large resume delta cannot skip the pour or manufacture input readiness (0.420084ms)
+✔ after tilting, the whole occupied tube fits the viewport and freefall never rises upward (734.86025ms)
+✔ deposition hands the exact falling location and velocity to the existing collision solver (452.868583ms)
+✖ free flight has constant horizontal velocity and one positive gravity acceleration (1.722ms)
+✖ the hinged lid is fully open before the first rolling ball leaves (0.536875ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 8
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10611.673209
+
+✖ failing tests:
+
+test at tests/tube-pour.test.cjs:77:1
+✖ free flight has constant horizontal velocity and one positive gravity acceleration (1.722ms)
+  AssertionError [ERR_ASSERTION]: no invisible horizontal steering
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/tube-pour.test.cjs:78:227)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/tube-pour.test.cjs:80:1
+✖ the hinged lid is fully open before the first rolling ball leaves (0.536875ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  undefined !== 0
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/tube-pour.test.cjs:81:94)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

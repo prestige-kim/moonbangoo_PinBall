@@ -1,0 +1,50 @@
+[
+  {
+    "count": 6,
+    "complete": true,
+    "finished": 6,
+    "uniqueFinishedIDs": 6,
+    "time": 33.35,
+    "finite": true,
+    "rescueEvents": 3,
+    "bumperEvents": 24,
+    "boostEvents": 0,
+    "sampledMaxSpeed": 1007.5870422820113
+  },
+  {
+    "count": 50,
+    "complete": true,
+    "finished": 50,
+    "uniqueFinishedIDs": 50,
+    "time": 42.583333333333336,
+    "finite": true,
+    "rescueEvents": 32,
+    "bumperEvents": 160,
+    "boostEvents": 0,
+    "sampledMaxSpeed": 901.9502093868898
+  },
+  {
+    "count": 200,
+    "complete": true,
+    "finished": 200,
+    "uniqueFinishedIDs": 200,
+    "time": 39.233333333333334,
+    "finite": true,
+    "rescueEvents": 31,
+    "bumperEvents": 629,
+    "boostEvents": 0,
+    "sampledMaxSpeed": 967.5168577981677
+  },
+  {
+    "count": 500,
+    "complete": true,
+    "finished": 500,
+    "uniqueFinishedIDs": 500,
+    "time": 37.6,
+    "finite": true,
+    "rescueEvents": 30,
+    "bumperEvents": 1264,
+    "boostEvents": 0,
+    "sampledMaxSpeed": 986.0392939743997
+  }
+]
