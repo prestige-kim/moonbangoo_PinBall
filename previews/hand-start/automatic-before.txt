@@ -1,0 +1,69 @@
+✖ shuffle geometry determines actual race positions rather than seeded lane ownership (3.628375ms)
+✖ launch mapping is ID-based, consumes no race RNG and commits once (5.135875ms)
+✖ 6/50/200/500 launch snapshots fit the true spawn rectangle without deep overlap (2.393958ms)
+✖ same seed plus captured hand snapshot replays all finish IDs and times (0.636834ms)
+✖ gesture-dependent placement changes real outcomes for the original fixed-seed eight entrants (0.435834ms)
+✔ invalid hand ownership or coordinates cannot partially mutate race state (1.338666ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 1
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 74.774041
+
+✖ failing tests:
+
+test at tests/hand-start.test.cjs:7:1
+✖ shuffle geometry determines actual race positions rather than seeded lane ownership (3.628375ms)
+  TypeError: P.commitHandStart is not a function
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-start.test.cjs:9:4)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+
+test at tests/hand-start.test.cjs:16:1
+✖ launch mapping is ID-based, consumes no race RNG and commits once (5.135875ms)
+  TypeError: P.commitHandStart is not a function
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-start.test.cjs:18:4)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+
+test at tests/hand-start.test.cjs:22:1
+✖ 6/50/200/500 launch snapshots fit the true spawn rectangle without deep overlap (2.393958ms)
+  TypeError: P.commitHandStart is not a function
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-start.test.cjs:26:5)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+
+test at tests/hand-start.test.cjs:32:1
+✖ same seed plus captured hand snapshot replays all finish IDs and times (0.636834ms)
+  TypeError: P.commitHandStart is not a function
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-start.test.cjs:33:63)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+
+test at tests/hand-start.test.cjs:36:1
+✖ gesture-dependent placement changes real outcomes for the original fixed-seed eight entrants (0.435834ms)
+  TypeError: P.commitHandStart is not a function
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-start.test.cjs:39:134)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7)

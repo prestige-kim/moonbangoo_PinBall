@@ -1,0 +1,15 @@
+✔ shuffle geometry determines actual race positions rather than seeded lane ownership (4.891917ms)
+✔ launch mapping is ID-based, consumes no race RNG and commits once (5.564ms)
+✔ 6/50/200/500 launch snapshots fit the true spawn rectangle without deep overlap (1906.980958ms)
+✔ same seed plus captured hand snapshot replays all finish IDs and times (14924.042417ms)
+✔ gesture-dependent placement changes real outcomes for the original fixed-seed eight entrants (394.110209ms)
+✔ invalid hand ownership or coordinates cannot partially mutate race state (2.941459ms)
+✔ real circular drag physics changes winners among original fruit entrants (390.673292ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17704.685917
