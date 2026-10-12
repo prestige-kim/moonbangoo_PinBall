@@ -20,6 +20,7 @@
       this.sources = entries.map(entry => ({ ...c.chamber.pose(entry.index) }));
       this.entries = entries;
       this.shuffle = new P.HandShuffle(entries, physics.seed);
+      this.shuffle.circleGrabEnabled = true;
       this.shuffle.gravity = POUR.gravity / .84;
       this.shuffle.radius = c.chamber.radius * POUR.scale / .84;
       this.shuffle.bodies.forEach(body => { body.pouring = true; body.r = this.shuffle.radius; });
@@ -272,10 +273,10 @@
         c.canvas.dataset.throwReady = String(feedback.eligible);
       }
       if (ready && this.shuffle.pointer) {
-        const pointer = this.shuffle.pointer, x = area.x + pointer.x * area.s * this.viewScale, y = area.y + pointer.y * area.s * this.viewScale;
+        const pointer = this.shuffle.grab || this.shuffle.pointer, x = area.x + pointer.x * area.s * this.viewScale, y = area.y + pointer.y * area.s * this.viewScale;
         const radius = this.shuffle.pointerRadius * area.s * this.viewScale;
         ctx.save(); ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(158,126,76,.18)'; ctx.lineWidth = 1; ctx.stroke(); ctx.restore();
+        ctx.strokeStyle = 'rgba(55,43,32,.48)'; ctx.lineWidth = 1; ctx.stroke(); ctx.restore();
       }
       const currentRig = this.rigAt(this.elapsed, area);
       const sameArea = this.displayArea && this.displayArea.w === area.w && this.displayArea.h === area.h;
@@ -301,9 +302,9 @@
       for (let i = 0; i < this.shuffle.bodies.length; i++) if (this.shuffle.bodies[i].pouring) draw(this.shuffle.bodies[i], i);
       this.drawTube(area, true, rig);
       for (let i = 0; i < this.shuffle.bodies.length; i++) if (!this.shuffle.bodies[i].pouring) draw(this.shuffle.bodies[i], i);
-      if (ready || this.canTilt) {
+      if (!ready && this.canTilt) {
         ctx.fillStyle = '#8a7760'; ctx.font = '12px "Pretendard Variable", sans-serif'; ctx.textAlign = 'center';
-        ctx.fillText(ready ? '우측 상단 출구로 공을 끌어 주세요' : '유리관 오른쪽을 아래로 끌어 충분히 기울여 주세요', area.x, area.y + .38 * area.s);
+        ctx.fillText('유리관 오른쪽을 아래로 끌어 충분히 기울여 주세요', area.x, area.y + .38 * area.s);
       }
       if (c.canvas.dataset) c.canvas.dataset.handPhase = !ready ? (this.elapsed < POUR.lift ? 'lifting' : this.remaining ? this.lidLatched ? 'pouring' : 'waiting-tilt' : 'settling-pour') : this.shuffle.pointer ? 'dragging' : 'settling';
       c.lastStage = 'mixing';
