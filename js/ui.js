@@ -65,10 +65,10 @@
     $('intro-start-button').addEventListener('click', function () {
       if (self.scene === 'intro') self.emit('enter');
     });
-    document.addEventListener('keydown', function (event) {
-      if (!self.isGameScene() && !event.ctrlKey && !event.metaKey && !event.altKey && event.key.toLowerCase() === 'f') { event.preventDefault(); event.stopImmediatePropagation(); }
-    }, true);
     this.bindSceneKeys();
+    $('camera-out').addEventListener('click', function () { self.emit('camerazoom', 1 / 1.2); });
+    $('camera-in').addEventListener('click', function () { self.emit('camerazoom', 1.2); });
+    $('camera-home').addEventListener('click', function () { self.emit('camerahome'); });
     $('color-groups').addEventListener('click', function (event) {
       var button = event.target.closest('[data-color-group]');
       if (!button || self.locked) return;

@@ -101,12 +101,16 @@
       const maxStep = Math.max(20, physicsRate * 700 * this.zoom * dt + 8) / this.zoom;
       this.y += clamp(desiredStep, -maxStep, maxStep);
     }
+    zoomBy(factor) {
+      this.entrance = null; this.follow = false;
+      this.zoom = clamp(this.zoom * factor, .16, 2.8);
+      this.canvas.dispatchEvent(new CustomEvent('followchange', { detail: false }));
+    }
     attach(canvas) {
       if (this.attached) return; this.attached = true;
       const position = e => { const rect = canvas.getBoundingClientRect(); return { x: e.clientX - rect.left, y: e.clientY - rect.top }; };
       const stopFollowing = () => { this.entrance = null; if (this.follow) { this.follow = false; canvas.dispatchEvent(new CustomEvent('followchange', { detail: false })); } };
       const scaleAt = (next, x, y) => { const before = this.screenToWorld(x, y); this.zoom = clamp(next, .16, 2.8); const after = this.screenToWorld(x, y); this.x += before.x - after.x; this.y += before.y - after.y; };
-      canvas.addEventListener('wheel', e => { e.preventDefault(); const p = position(e); stopFollowing(); scaleAt(this.zoom * Math.exp(-e.deltaY * .0013), p.x, p.y); }, { passive: false });
       canvas.addEventListener('pointerdown', e => {
         if (e.button !== undefined && e.button > 0) return; const p = position(e); this.pointer.set(e.pointerId, p); canvas.setPointerCapture(e.pointerId);
         if (this.pointer.size === 1) this.drag = { x: p.x, y: p.y, originalX: p.x, originalY: p.y };
@@ -119,7 +123,11 @@
       });
       const release = e => { this.pointer.delete(e.pointerId); this.pinch = null; if (!this.pointer.size) this.drag = null; else { const p = [...this.pointer.values()][0]; this.drag = { x: p.x, y: p.y, originalX: p.x, originalY: p.y }; } };
       canvas.addEventListener('pointerup', release); canvas.addEventListener('pointercancel', release);
-      document.addEventListener('keydown', e => { if (e.key.toLowerCase() !== 'f' || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.ctrlKey || e.metaKey || e.altKey) return; this.follow = !this.follow; if (this.follow) this.manualZoom = 1; canvas.dispatchEvent(new CustomEvent('followchange', { detail: this.follow })); });
+      const clear = () => { this.pointer.clear(); this.drag = null; this.pinch = null; };
+      canvas.addEventListener('lostpointercapture', release);
+      if (typeof window.addEventListener === 'function') {
+        window.addEventListener('blur', clear); window.addEventListener('resize', clear); window.addEventListener('orientationchange', clear);
+      }
     }
   }
   P.Camera = Camera;

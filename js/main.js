@@ -407,6 +407,14 @@
   ui.on('change', next => { onChange(next); audio.unlock(); });
   ui.on('layout', resize);
   ui.on('follow', () => { if (['mixing', 'flight'].includes(status)) return; camera.follow = !camera.follow; camera.entrance = null; if (ui.setFollowing) ui.setFollowing(camera.follow); ui.toast(camera.follow ? '선두 추적을 켰습니다' : '자유롭게 코스를 둘러보세요'); });
+  ui.on('camerazoom', factor => {
+    if (!['running', 'finished'].includes(status)) return;
+    camera.zoomBy(factor); ui.setFollowing(false);
+  });
+  ui.on('camerahome', () => {
+    if (!['running', 'finished'].includes(status)) return;
+    camera.resumeFollow(); ui.setFollowing(true);
+  });
   camera.attach(canvas);
   window.addEventListener('resize', resize);
   document.addEventListener('visibilitychange', () => { lastFrame = 0; });

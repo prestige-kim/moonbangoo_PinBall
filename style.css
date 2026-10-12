@@ -130,3 +130,13 @@ body[data-theme=gold] .toast{background:#392819;color:#FFF0CE;border-color:#E2C5
 .game-stop-button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 @media(max-width:850px){.can-stop .mobile-setup-button{bottom:calc(80px + env(safe-area-inset-bottom))}.can-stop .camera-hints{bottom:138px}.mobile-sheet-open .game-stop-button{visibility:hidden}}
 @media(max-width:850px) and (max-height:500px) and (orientation:landscape){.can-stop .mobile-setup-button{left:20px;transform:none;bottom:12px}.can-stop .camera-hints{bottom:66px}.game-stop-button{bottom:12px}}
+
+.camera-controls { display:flex; gap:5px; margin-top:7px; }
+.camera-controls button { min-width:32px; min-height:32px; padding:4px 8px; border:1px solid #b8a07b; border-radius:7px; background:#f7f0e2; color:#4a3a28; cursor:pointer; }
+.camera-controls button:nth-child(2) { flex:1; font-size:11px; }
+.camera-controls button:focus-visible { outline:2px solid #167aaf; outline-offset:2px; }
+@media(max-width:850px){
+  .scene-flight .minimap-panel,.scene-running .minimap-panel,.scene-finished .minimap-panel{width:132px}
+  .camera-controls{gap:2px}.camera-controls button{padding:2px;min-width:32px}
+  .camera-controls button:nth-child(2){font-size:8px;min-width:0;white-space:normal}
+}

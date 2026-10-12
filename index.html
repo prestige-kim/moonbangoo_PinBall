@@ -16,7 +16,7 @@
   <link rel="preload" as="image" href="./assets/cannon-barrel.png">
   <link rel="preload" as="image" href="./assets/cannon-wheel.png">
   <link rel="preload" as="image" href="./assets/cannon-bridge.png">
-  <link rel="stylesheet" href="./style.css?v=hand-11cc484d2088">
+  <link rel="stylesheet" href="./style.css?v=hand-9273d37d3398">
 </head>
 <body class="scene-intro" data-scene="intro" data-theme="cosmic">
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
@@ -124,10 +124,10 @@
     <aside class="race-panel" aria-label="실시간 경기 정보">
       <div class="race-stats glass-panel"><div><span class="eyebrow">굴러가는 핀볼</span><strong id="remaining">6<span> / 6</span></strong><small>남은 핀볼</small></div><div><span class="eyebrow">TIME</span><strong id="elapsed">00:00<small>.00</small></strong><small>경과 시간</small></div></div>
       <div class="ranking-panel glass-panel"><div class="ranking-heading"><span class="eyebrow">지금의 순위</span><svg class="icon"><use href="#i-crown"/></svg></div><ol id="live-ranking" aria-label="실시간 상위 순위"><li class="ranking-empty"><span class="empty-rank-orbit" aria-hidden="true"></span><span>누가 먼저 도착할까요?<small>출발하면 순위가 표시됩니다</small></span></li></ol><div class="ranking-foot"><span class="live-dot"></span>한 알 한 알, 모두의 작은 가능성</div></div>
-      <div class="minimap-panel glass-panel"><div class="minimap-heading"><span class="eyebrow">놀이판 한눈에</span><span class="tiny-label">LIVE</span></div><canvas id="minimap" width="160" height="208" aria-label="놀이판 전체, 선두 핀볼과 카메라 위치를 보여 주는 미니맵"></canvas><button id="follow-button" class="follow-button active" type="button" aria-pressed="true"><svg class="icon"><use href="#i-target"/></svg>선두 따라가기<span>F</span></button></div>
+      <div class="minimap-panel glass-panel"><div class="minimap-heading"><span class="eyebrow">놀이판 한눈에</span><span class="tiny-label">LIVE</span></div><canvas id="minimap" width="160" height="208" aria-label="놀이판 전체, 선두 핀볼과 카메라 위치를 보여 주는 미니맵"></canvas><button id="follow-button" class="follow-button active" type="button" aria-pressed="true"><svg class="icon"><use href="#i-target"/></svg>선두 따라가기</button><div class="camera-controls" role="group" aria-label="경기 화면 보기"><button id="camera-out" type="button" aria-label="축소">−</button><button id="camera-home" type="button">보기 초기화</button><button id="camera-in" type="button" aria-label="확대">+</button></div></div>
     </aside>
 
-    <div class="camera-hints" aria-hidden="true"><span><svg class="icon"><use href="#i-mouse"/></svg>드래그로 이동</span><i></i><span>휠 · 핀치로 확대</span><i></i><span><kbd>F</kbd> 선두 추적</span></div>
+    <div class="camera-hints" aria-hidden="true"><span><svg class="icon"><use href="#i-mouse"/></svg>드래그로 이동</span><i></i><span>버튼 · 핀치로 확대</span><i></i><span>선두 따라가기 버튼</span></div>
     <button id="mobile-setup-button" class="mobile-setup-button" type="button" aria-expanded="false" aria-controls="setup-panel"><svg class="icon"><use href="#i-settings"/></svg>추첨 설정<span id="mobile-count">6</span></button>
 
     <button id="stop-button" class="game-stop-button" type="button" hidden>게임 정지</button>
@@ -150,6 +150,6 @@
     <div class="result-actions"><button type="button" id="restart-button" class="start-button"><svg class="icon"><use href="#i-play"/></svg>같은 멤버로 다시 섞기</button><button type="button" id="replay-button" class="secondary-button"><svg class="icon"><use href="#i-reset"/></svg>다시 설정하기</button></div>
   </dialog>
 
-  <script src="./js/themes.js"></script><script src="./js/maps.js?v=soft-long-course-20261011"></script><script src="./js/physics.js?v=soft-long-course-20261011"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/race-standing.js?v=winding-channel-20261011"></script><script src="./js/renderer.js?v=soft-long-course-20261011"></script><script src="./js/cinematic.js?v=original-tube-alpha-local-20261011"></script><script src="./js/shuffle.js?v=interactive-tilt-local-20261011"></script><script src="./js/hand-start.js?v=release-93e4ed9bae2d"></script><script src="./js/shuffle-input.js?v=hand-20261007"></script><script src="./js/throw-gate.js?v=northeast-exit-20261011"></script><script src="./js/hand-scene.js?v=original-tube-alpha-local-20261011"></script><script src="./js/hand-flight.js?v=tube-pour-qa-20261011-final"></script><script src="./js/ui.js?v=release-1115da54892c"></script><script src="./js/main.js?v=release-b1b6cc063174"></script>
+  <script src="./js/themes.js"></script><script src="./js/maps.js?v=soft-long-course-20261011"></script><script src="./js/physics.js?v=soft-long-course-20261011"></script><script src="./js/camera.js?v=release-3e49873999ba"></script><script src="./js/effects.js"></script><script src="./js/audio.js?v=release-3b07575709a2"></script><script src="./js/race-standing.js?v=winding-channel-20261011"></script><script src="./js/renderer.js?v=release-ecc5c094aea2"></script><script src="./js/cinematic.js?v=original-tube-alpha-local-20261011"></script><script src="./js/shuffle.js?v=interactive-tilt-local-20261011"></script><script src="./js/hand-start.js?v=release-93e4ed9bae2d"></script><script src="./js/shuffle-input.js?v=hand-20261007"></script><script src="./js/throw-gate.js?v=northeast-exit-20261011"></script><script src="./js/hand-scene.js?v=release-eca1f2a72078"></script><script src="./js/hand-flight.js?v=release-f56df87af457"></script><script src="./js/ui.js?v=release-dfaedfce8fb4"></script><script src="./js/main.js?v=release-cf11e62ee189"></script>
 </body>
 </html>

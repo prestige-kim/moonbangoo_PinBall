@@ -66,7 +66,7 @@ test('real 3x races do not leave a sustained empty board after a leader finishes
   }
 });
 
-test('drag and wheel stop following; the follow key resumes without changing the race', () => {
+test('drag and pinch remain available without game keyboard or wheel handlers', () => {
   const canvasEvents = new Map(), docEvents = new Map(), changes = [];
   const doc = { addEventListener(name, fn) { docEvents.set(name, fn); } };
   const custom = vm.createContext({ window: {}, document: doc, CustomEvent: class { constructor(type, options) { this.type = type; this.detail = options.detail; } } });
@@ -85,10 +85,9 @@ test('drag and wheel stop following; the follow key resumes without changing the
   physics.time += 3 / 60; marble.y += 35; camera.update(1 / 60, physics, map, { status: 'running' });
   assert.deepEqual({ x: camera.x, y: camera.y, zoom: camera.zoom }, manual);
   canvasEvents.get('pointerup')({ pointerId: 1 });
-  docEvents.get('keydown')({ key: 'f', target: { tagName: 'CANVAS' }, ctrlKey: false, metaKey: false, altKey: false });
-  assert.equal(camera.follow, true); assert.equal(changes.at(-1).detail, true);
-  canvasEvents.get('wheel')({ deltaY: -100, clientX: 500, clientY: 350, preventDefault() {} });
-  assert.equal(camera.follow, false); assert.ok(camera.zoom > manual.zoom);
+  assert.equal(docEvents.has('keydown'), false);
+  assert.equal(canvasEvents.has('wheel'), false);
+  camera.resumeFollow(); assert.equal(camera.follow, true);
   const wheelZoom = camera.zoom;
   canvasEvents.get('pointerdown')({ pointerId: 2, button: 0, clientX: 400, clientY: 350 });
   canvasEvents.get('pointerdown')({ pointerId: 3, button: 0, clientX: 600, clientY: 350 });
