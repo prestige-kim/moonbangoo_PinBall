@@ -447,7 +447,7 @@
     var left = this.isGameScene() && this.panelOpen && panel.right > 0 && panel.left < width ? Math.max(32, panel.right + 25) : 32;
     var race = document.querySelector('.race-panel').getBoundingClientRect();
     var right = race.width > 0 ? race.left - 25 : width - 32;
-    return { x: left, y: top, w: Math.max(160, right - left), h: Math.max(200, bottom - top) };
+    return { x: left, y: top, w: Math.max(160, right - left), h: Math.max(1, bottom - top) };
   };
   UI.prototype.colorFor = function (marble, total) {
     if (P.Pinball) return P.Pinball.group(marble.name).color;

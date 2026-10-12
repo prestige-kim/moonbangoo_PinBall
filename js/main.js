@@ -197,7 +197,7 @@
   }
   function enterGame() {
     if (status !== 'intro') return;
-    setScene('setup'); resize();
+    audio.unlock(); setScene('setup'); resize();
   }
   function newRoundSeed() {
     const values = new Uint32Array(4);
@@ -353,16 +353,16 @@
   function adjustQuality(dt) {
     qualityCooldown -= dt;
     const playing = ['mixing', 'flight', 'running'].includes(status);
-    if (playing && fps < 45) lowFpsTime += dt;
+    if (playing && fps < 22) lowFpsTime += dt;
     else lowFpsTime = Math.max(0, lowFpsTime - dt * 2);
-    if (playing && lowFpsTime > 3 && qualityCooldown <= 0 && settings.quality !== 'low') {
-      settings.quality = QUALITY_ORDER[QUALITY_ORDER.indexOf(settings.quality) + 1];
-      renderer.setQuality(settings.quality);
-      if (cinematic.setQuality) cinematic.setQuality(settings.quality);
-      if (effects.setQuality) effects.setQuality(settings.quality);
-      ui.load(settings); ui.setLocked(true);
-      save(settings); lowFpsTime = 0; qualityCooldown = 8; diagnostics.autoQualityDrops++;
-      if (status === 'running') ui.toast('더 부드러운 플레이를 위해 비주얼 품질을 조절했습니다');
+    if (playing && lowFpsTime > 6 && qualityCooldown <= 0 && renderer.quality !== 'low') {
+      const effectQuality = QUALITY_ORDER[QUALITY_ORDER.indexOf(renderer.quality) + 1];
+      renderer.setQuality(effectQuality);
+      if (cinematic.setQuality) cinematic.setQuality(effectQuality);
+      if (effects.setQuality) effects.setQuality(effectQuality);
+      // Temporary effects relief must not overwrite the user's quality setting.
+      lowFpsTime = 0; qualityCooldown = 8; diagnostics.autoQualityDrops++;
+      if (status === 'running') ui.toast('화면 선명도는 유지하며 효과를 줄였습니다');
     }
   }
   function frame(timestamp) {
@@ -387,7 +387,7 @@
     const map = P.MAPS[(runSettings || settings).map];
     const ranking = physics.getRanking();
     camera.viewport = ui.getViewport();
-    camera.update(dt, physics, map, { photoFinish: photoFinish, status: status });
+    camera.update(dt, physics, map, { photoFinish: photoFinish, status: status, reducedMotion: settings.reducedMotion });
     effects.update(dt);
     renderer.render({ physics: physics, map: map, camera: camera, effects: effects, time: elapsedVisual, dt: dt, status: status, winner: winner, leader: P.raceStanding(ranking).leader || null, photoFinish: photoFinish });
     if (hudElapsed >= 0.1) {

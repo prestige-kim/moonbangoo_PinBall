@@ -1,0 +1,34 @@
+✔ volume zero skips context unlock and every sound allocation path (2.549459ms)
+✔ positive-volume user unlock resumes one reusable context and OFF skips it (0.400333ms)
+✔ pack tracking ignores collision velocity spikes, glides through a leader finish, and preserves physics (3.503959ms)
+✔ spring framing has consistent motion at 30 and 60 display Hz (1.909208ms)
+✔ TV native and browser-scaled resolution stays sharp within a 12MP backing budget (3.341792ms)
+✔ map textures and pins use display density with bounded reusable caches (3.229875ms)
+✔ new soundtrack is removed while the existing synthesized effects remain (0.657334ms)
+✔ start zoom expands smoothly while a desktop panel changes the board viewport (1.65775ms)
+✔ mobile entrance zooms without relying on a wider layout, and reset restores preparation framing (1.027917ms)
+✔ reduced motion uses a brief entrance and never advances physical marbles (0.511125ms)
+✔ landing frames every real seeded spawn circle on desktop and mobile (75.539833ms)
+✔ landing is deterministic and clears previous camera interaction without changing physical state (6.171667ms)
+✔ the first running frame smoothly follows the landing pose rather than resetting it (21.495042ms)
+✔ intro exposes only its welcome action and keeps the settings ancestor available for later (3.53275ms)
+✔ setup reuses the real panel as an accessible centered dialog and focuses the first color button (1.06ms)
+✔ close and Escape return setup to intro and restore welcome focus (1.666917ms)
+✔ setup Tab wraps visible enabled controls and skips closed advanced fields (0.900875ms)
+✔ one setup submit starts the sequence; hidden automatic scenes reject further submissions (1.068ms)
+✔ flight and running have identical final board coordinates at desktop and mobile widths (1.556625ms)
+✔ reveal waits until the final 15 percent for HUD and never fades the cinematic canvas itself (1.769375ms)
+✔ refreshing the same setup preserves slider and sound focus instead of refocusing names (0.589667ms)
+✔ short mobile landscape excludes the race HUD while portrait preserves board width (1.549417ms)
+✔ bottom stop action is hidden outside a race and emits only while available (0.555125ms)
+✔ 6, 50, 200 and 500 marbles get bounded, viewport-safe name labels (3.657417ms)
+✔ finished display uses distinct recent slots without mutating rank, coordinates or arrival time (0.668667ms)
+✔ the classic board has no portal routes (0.074458ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 171.859292

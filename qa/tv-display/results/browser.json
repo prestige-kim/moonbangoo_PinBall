@@ -1,0 +1,127 @@
+{
+  "errors": [],
+  "layouts": [
+    {
+      "w": 1280,
+      "h": 720,
+      "dpr": 3,
+      "backing": [
+        3840,
+        2160
+      ],
+      "background": [
+        3840,
+        2160
+      ],
+      "viewport": {
+        "x": 32,
+        "y": 105,
+        "w": 1012,
+        "h": 580
+      },
+      "panel": {
+        "top": 101,
+        "bottom": 700,
+        "left": 1069,
+        "right": 1246
+      },
+      "follow": {
+        "top": 624,
+        "bottom": 648,
+        "left": 1083,
+        "right": 1232
+      },
+      "controls": {
+        "top": 655,
+        "bottom": 687,
+        "left": 1083,
+        "right": 1232
+      },
+      "overflow": false
+    },
+    {
+      "w": 960,
+      "h": 540,
+      "dpr": 4,
+      "backing": [
+        3840,
+        2160
+      ],
+      "background": [
+        3840,
+        2160
+      ],
+      "viewport": {
+        "x": 32,
+        "y": 105,
+        "w": 721,
+        "h": 400
+      },
+      "panel": {
+        "top": 101,
+        "bottom": 520,
+        "left": 778,
+        "right": 936
+      },
+      "follow": {
+        "top": 444,
+        "bottom": 468,
+        "left": 789,
+        "right": 925
+      },
+      "controls": {
+        "top": 475,
+        "bottom": 511,
+        "left": 789,
+        "right": 925
+      },
+      "overflow": false
+    },
+    {
+      "w": 640,
+      "h": 360,
+      "dpr": 3,
+      "backing": [
+        1920,
+        1080
+      ],
+      "background": [
+        1920,
+        1080
+      ],
+      "viewport": {
+        "x": 14,
+        "y": 74,
+        "w": 479,
+        "h": 130
+      },
+      "panel": {
+        "top": 105,
+        "bottom": 242.796875,
+        "left": 511,
+        "right": 623
+      },
+      "follow": {
+        "top": 291,
+        "bottom": 306,
+        "left": 499,
+        "right": 552.625
+      },
+      "controls": {
+        "top": 313,
+        "bottom": 345,
+        "left": 499,
+        "right": 615
+      },
+      "overflow": false
+    }
+  ],
+  "quality": {
+    "user": "high",
+    "effects": "high",
+    "dpr": 3,
+    "fps": 36
+  },
+  "finished": 6,
+  "exactReplay": true
+}

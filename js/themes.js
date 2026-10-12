@@ -4,9 +4,13 @@
   P.CONFIG = {
     background: ['#F4EDE0', '#FBF7EF', '#E6D9C2'],
     neon: ['#C29A55', '#7A5520', '#B48775', '#8C9678', '#79969B', '#9B879D'],
-    physicsStep: 1 / 120, maxDpr: 2,
+    physicsStep: 1 / 120, maxDpr: 4,
     particles: { high: 900, medium: 420, low: 140 },
     minZoom: .16, maxZoom: 2.8, lowFpsThreshold: 45
+  };
+  P.renderDensity = function (width, height, pixelRatio) {
+    const native = Math.max(1, Number(pixelRatio) || 1);
+    return Math.min(native, P.CONFIG.maxDpr, Math.sqrt(12000000 / Math.max(1, width * height)));
   };
   P.THEMES = {
     cosmic: {
