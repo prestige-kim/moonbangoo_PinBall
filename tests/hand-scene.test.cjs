@@ -89,8 +89,8 @@ test('fully extracted display circles match individual collision radii and prese
     for (let i = 0; i < count; i++) {
       const body = s.scene.shuffle.bodies[i], pose = s.scene.lastPoses[i];
       assert.equal(pose.id, body.id); assert.equal(pose.id, s.physics.marbles[i].id);
-      close(pose.x, area.x + body.x * area.s * s.scene.viewScale, 'extracted x');
-      close(pose.y, area.y + body.y * area.s * s.scene.viewScale, 'extracted y');
+      close(pose.x, area.x + body.x * area.s * s.scene.viewScale, 'interpolated x stays within one tick', 3 * area.s * s.scene.viewScale / 120);
+      close(pose.y, area.y + body.y * area.s * s.scene.viewScale, 'interpolated y stays within one tick', 3 * area.s * s.scene.viewScale / 120);
       close(pose.radius, body.r * area.s * s.scene.viewScale, 'display radius equals collision radius');
       assert.ok(pose.x - pose.radius >= 16 - 1e-8 && pose.x + pose.radius <= width - 16 + 1e-8);
       assert.ok(pose.y - pose.radius >= 24 - 1e-8 && pose.y + pose.radius <= height - 24 + 1e-8);

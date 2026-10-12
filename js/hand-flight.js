@@ -39,13 +39,18 @@
       if (length > 1e-10) { dx /= length; dy /= length; } else { dx = 1; dy = 0; }
       this.direction = { x: dx, y: dy };
       const bodies = new Map(handScene.shuffle.bodies.map(body => [body.id, body]));
+      // Start at the last visible sphere, including its sub-tick display interpolation.
+      // Physical landing slots and inherited velocity still come from the real solvers.
+      const sameViewport = handScene.lastPoseArea && handScene.lastPoseArea.w === area.w && handScene.lastPoseArea.h === area.h;
+      const displayed = new Map(sameViewport && handScene.lastPoses ? handScene.lastPoses.map(pose => [pose.id, pose]) : []);
       const marbles = new Map(physics.marbles.map(marble => [marble.id, marble]));
       this.items = handScene.entries.map((entry, index) => {
         const body = bodies.get(entry.id), marble = marbles.get(entry.id);
         if (!body || !marble) throw new Error('비행 핀볼 ID가 셔플 또는 경기 출발 슬롯과 일치하지 않습니다.');
         const displayScale = area.s * (handScene.viewScale || 1);
-        const source = { id: entry.id, index, entry, x: area.x + body.x * displayScale, y: area.y + body.y * displayScale,
-          vx: body.vx * displayScale, vy: body.vy * displayScale, radius: body.r * displayScale, delay: 0 };
+        const visible = displayed.get(entry.id);
+        const source = { id: entry.id, index, entry, x: visible ? visible.x : area.x + body.x * displayScale, y: visible ? visible.y : area.y + body.y * displayScale,
+          vx: body.vx * displayScale, vy: body.vy * displayScale, radius: visible ? visible.radius : body.r * displayScale, delay: 0 };
         const target = point(this.initial, marble.x, marble.y);
         return Object.assign(source, { targetX: target.x, targetY: target.y, endRadius: marble.r * this.initial.a, marble });
       });
