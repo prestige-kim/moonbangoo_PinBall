@@ -555,7 +555,9 @@ test('soundtrack follows setup, mixing, race, confirmed results and restart', ()
   assert.equal(b.P.app.audio.musicScene, 'setup');
   b.callbacks.start(); assert.equal(b.P.app.audio.musicScene, 'mixing');
   b.launch(); assert.equal(b.P.app.audio.musicScene, 'running');
-  b.advance(200); assert.equal(b.P.app.audio.musicScene, 'result');
+  for (let i=0;i<12000 && b.P.app.status !== 'finished';i++) b.advance(1/60);
+  assert.equal(b.P.app.status,'finished'); assert.equal(b.P.app.audio.musicScene,'resultPending');
+  b.advance(2); assert.equal(b.P.app.audio.musicScene, 'result');
   b.callbacks.restart(); assert.equal(b.P.app.audio.musicScene, 'mixing');
 });
 test('early stop with no confirmed winner leaves result music silent', () => {

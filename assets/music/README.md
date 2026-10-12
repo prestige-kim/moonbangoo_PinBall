@@ -9,7 +9,7 @@ Public credits and per-track source links: [music-credits.html](../../music-cred
 - Winner Winner!: confirmed winners only, first 12 seconds, one-shot.
 
 All files: MP3 96 kbps, 44.1 kHz, 0.3-second fade-in. Result cue also has a 2-second fade-out.
-Runtime adjusts volume and switches playback with game scenes. Original compositions remain by Kevin MacLeod; conversion/editing and synchronization were done for this game.
+Runtime uses a smoothstep equal-power crossfade (1.25–1.8 seconds) between scenes, waits for incoming playback readiness, and preserves outgoing music until result reveal. Cached media players and Web Audio gains are reused, with at most four tracks. Volume and tab visibility control all players together. Original compositions remain by Kevin MacLeod; conversion/editing and synchronization were done for this game.
 
 `licenses/manifest.json` records source URLs, ISRC, original download hashes, deployed hashes and changes.
 `licenses/CC-BY-4.0.html` and `licenses/composer-faq.html` preserve official license and attribution guidance as retrieved on 2026-10-13.

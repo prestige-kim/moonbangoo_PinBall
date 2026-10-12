@@ -12,7 +12,8 @@
     "bytes": 6892257,
     "deployed_file": "assets/music/chipper-doodle-v2.mp3",
     "deployed_sha256": "1555641327651b1f2e3e2ad68d1c741034ffecccf46c0e5c762a765ad71bbaa7",
-    "changes": "MP3 96 kbps, 44.1 kHz, 0.3s fade-in; scene-controlled playback and volume; repeat during assigned scene"
+    "changes": "MP3 96 kbps, 44.1 kHz, 0.3s fade-in; scene-controlled playback and volume; repeat during assigned scene",
+    "runtime_processing": "Scene-triggered 1.25–1.8 second equal-power crossfade with smoothstep envelope; asynchronous playback readiness; gain/volume control. Original deployed MP3 files unchanged."
   },
   {
     "title": "Electrodoodle",
@@ -27,7 +28,8 @@
     "bytes": 6644624,
     "deployed_file": "assets/music/electrodoodle.mp3",
     "deployed_sha256": "550458d3e148af6d2c07b874ad3eb6a3be48b1dacd22a61aa77c92c68ea4582b",
-    "changes": "MP3 96 kbps, 44.1 kHz, 0.3s fade-in; scene-controlled playback and volume; repeat during assigned scene"
+    "changes": "MP3 96 kbps, 44.1 kHz, 0.3s fade-in; scene-controlled playback and volume; repeat during assigned scene",
+    "runtime_processing": "Scene-triggered 1.25–1.8 second equal-power crossfade with smoothstep envelope; asynchronous playback readiness; gain/volume control. Original deployed MP3 files unchanged."
   },
   {
     "title": "Bit Quest",
@@ -42,7 +44,8 @@
     "bytes": 6147935,
     "deployed_file": "assets/music/bit-quest.mp3",
     "deployed_sha256": "80c72638898d8b9e8f7c602d26817be6fdd8c5fa04ec03973f2d25c415d4e8e0",
-    "changes": "MP3 96 kbps, 44.1 kHz, 0.3s fade-in; scene-controlled playback and volume; repeat during assigned scene"
+    "changes": "MP3 96 kbps, 44.1 kHz, 0.3s fade-in; scene-controlled playback and volume; repeat during assigned scene",
+    "runtime_processing": "Scene-triggered 1.25–1.8 second equal-power crossfade with smoothstep envelope; asynchronous playback readiness; gain/volume control. Original deployed MP3 files unchanged."
   },
   {
     "title": "Winner Winner!",
@@ -57,6 +60,7 @@
     "bytes": 6340163,
     "deployed_file": "assets/music/winner-winner.mp3",
     "deployed_sha256": "f4337fbc4e7dc3b5be57ce15588d002801008b9470495d713aebc783279f4f33",
-    "changes": "MP3 96 kbps, 44.1 kHz, 0.3s fade-in; scene-controlled playback and volume; first 12s with 2s fade-out"
+    "changes": "MP3 96 kbps, 44.1 kHz, 0.3s fade-in; scene-controlled playback and volume; first 12s with 2s fade-out",
+    "runtime_processing": "Scene-triggered 1.25–1.8 second equal-power crossfade with smoothstep envelope; asynchronous playback readiness; gain/volume control. Original deployed MP3 files unchanged."
   }
 ]

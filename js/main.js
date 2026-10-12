@@ -182,7 +182,7 @@
     status = scene;
     ui.setScene(scene);
     ui.setStatus(scene);
-    audio.setMusicScene(scene);
+    audio.setMusicScene(scene === 'finished' && winner ? 'resultPending' : scene);
   }
   function preview(scene = 'setup') {
     launchElapsed = 0; flightLanded = false;
