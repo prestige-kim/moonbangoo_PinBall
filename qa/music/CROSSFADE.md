@@ -16,3 +16,8 @@ Baseline: 273b60c.
 
 Audio + real controller: 46 checks passed. Expanded crossfade suite: 9/9 passed, including slow-buffer and rapid-reversal cases.
 Local browser observed both Chipper Doodle v2 and Electrodoodle playing during the transition, then Chipper paused/reset and Electrodoodle continuing. No console errors.
+
+## Full regression validation
+
+`npm test`: 238/238 passed, zero failures/skips/cancellations (408.033 seconds).
+`git diff --check`: clean.
