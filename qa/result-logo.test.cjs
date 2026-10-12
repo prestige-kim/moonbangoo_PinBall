@@ -1,0 +1,4 @@
+'use strict';
+const fs=require('node:fs'),test=require('node:test'),assert=require('node:assert/strict');
+test('result branding is a standalone contained logo without a medal backing',()=>{const html=fs.readFileSync('index.html','utf8'),css=fs.readFileSync('style.css','utf8');assert(html.includes('class="result-logo"'));assert(!html.includes('winner-medallion'));assert(!css.includes('winner-medallion'));assert(css.includes('.result-logo{'));assert(css.includes('background:none;border:0;box-shadow:none'));assert(css.includes('.results-decoration{position:absolute;top:120px;'));});
+test('camera hint removal also removes its viewport dependency',()=>{for(const file of ['index.html','style.css','js/ui.js'])assert(!fs.readFileSync(file,'utf8').includes('camera-hints'),file);const ui=fs.readFileSync('js/ui.js','utf8');assert(ui.includes("var stop = $('stop-button')"));assert(ui.includes('stopRect.top - 18'));});

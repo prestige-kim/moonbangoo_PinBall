@@ -418,10 +418,13 @@
   UI.prototype.getViewport = function () {
     var width = global.innerWidth, height = global.innerHeight;
     var panel = $('setup-panel').getBoundingClientRect();
-    var hints = document.querySelector('.camera-hints').getBoundingClientRect();
-    var footer = document.querySelector('.system-footer').getBoundingClientRect();
     var top = document.querySelector('.masthead').getBoundingClientRect().bottom + 20;
-    var bottom = Math.min(height - 35, hints.top > 0 ? hints.top - 18 : footer.top - 26);
+    var bottom = height - 35;
+    var stop = $('stop-button');
+    if (stop && !stop.hidden) {
+      var stopRect = stop.getBoundingClientRect();
+      if (stopRect.width > 0 && stopRect.top > top) bottom = Math.min(bottom, stopRect.top - 18);
+    }
     if (width <= 850) {
       var launch = $('mobile-setup-button').getBoundingClientRect();
       bottom = Math.min(bottom, launch.top - 18);
