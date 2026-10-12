@@ -22,7 +22,7 @@
       this.area = Object.assign({}, area); this.duration = Math.max(.25, Number(duration) || 2.8); this.reduced = !!reduced;
       this.physics = physics;
       // Even a stationary ready release launches. Input speed only adds visual
-      // thrust. Landing coordinates were already captured from the real shuffle.
+      // thrust. Random top landing coordinates were already committed before flight.
       const speed = Math.min(2.8, Math.max(0, Number(decision && decision.inputSpeed) || 0));
       this.propulsion = area.s * (this.reduced ? .12 : .8 + speed * .1);
       const origin = camera ? camera.worldToScreen(0, 0) : { x: area.w / 2 - 500 * .5, y: area.h / 2 - 450 * .5 };
@@ -40,7 +40,7 @@
       this.direction = { x: dx, y: dy };
       const bodies = new Map(handScene.shuffle.bodies.map(body => [body.id, body]));
       // Start at the last visible sphere, including its sub-tick display interpolation.
-      // Physical landing slots and inherited velocity still come from the real solvers.
+      // Physical landing slots are the committed seeded scatter endpoints.
       const sameViewport = handScene.lastPoseArea && handScene.lastPoseArea.w === area.w && handScene.lastPoseArea.h === area.h;
       const displayed = new Map(sameViewport && handScene.lastPoses ? handScene.lastPoses.map(pose => [pose.id, pose]) : []);
       const marbles = new Map(physics.marbles.map(marble => [marble.id, marble]));

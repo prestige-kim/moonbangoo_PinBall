@@ -1,0 +1,13 @@
+✔ top scatter is independent of gesture location and covers the map width (3.054584ms)
+✔ launch mapping is ID-based, consumes no race RNG and commits once (3.050583ms)
+✔ 6/50/200/500 launch snapshots fit the true spawn rectangle without deep overlap (872.386709ms)
+✔ different round seeds produce different top scatter endpoints (1.777208ms)
+✔ invalid hand ownership or coordinates cannot partially mutate race state (1.230208ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 922.03725

@@ -147,7 +147,7 @@ body[data-theme=gold] .toast{background:#392819;color:#FFF0CE;border-color:#E2C5
 @media(min-width:851px){
   .scene-flight .race-panel,.scene-running .race-panel,.scene-finished .race-panel{bottom:16px;max-height:calc(100dvh - 121px);min-height:0}
   .race-panel .race-stats{flex:0 0 auto}
-  .race-panel .ranking-panel{flex:1 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain}
+  .race-panel .ranking-panel{flex:0 1 auto;min-height:0;overflow:auto;overscroll-behavior:contain}
   .race-panel .minimap-panel{flex:0 0 auto}
   .race-panel #minimap{width:100%;height:clamp(54px,calc((100dvh - 420px)*.5),191px)}
 }

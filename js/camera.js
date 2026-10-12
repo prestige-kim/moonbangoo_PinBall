@@ -49,7 +49,7 @@
       const maxY = Math.max(minY, map.height - area.h / (2 * this.zoom) + 150);
       this.y = clamp((top + bottom) / 2, minY, maxY);
     }
-    baseZoom() { const area = this.area(); return Math.min(area.w / ((this.map ? this.map.width : 1000) + 100), 1.15); }
+    baseZoom() { const area = this.area(); return Math.min(area.w / ((this.map ? this.map.width : 1000) + 100), area.w > 2000 ? 2.4 : 1.15); }
     resumeFollow() { this.follow = true; this.manualZoom = 1; this.xVelocity = this.yVelocity = this.zoomVelocity = 0; }
     worldToScreen(x, y) { const area = this.area(); return { x: area.x + area.w / 2 + (x - this.x) * this.zoom, y: area.y + area.h / 2 + (y - this.y) * this.zoom }; }
     screenToWorld(x, y) { const area = this.area(); return { x: this.x + (x - area.x - area.w / 2) / this.zoom, y: this.y + (y - area.y - area.h / 2) / this.zoom }; }
