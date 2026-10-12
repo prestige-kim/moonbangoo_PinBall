@@ -70,6 +70,20 @@
       const light = ctx.createRadialGradient(center-r*.35, center-r*.42, 0, center-r*.35, center-r*.42, r*.85);
       light.addColorStop(0, 'rgba(255,248,231,.35)'); light.addColorStop(.2, 'rgba(255,248,231,.18)'); light.addColorStop(1, 'rgba(255,255,255,0)');
       ctx.fillStyle = light; ctx.fillRect(center-r, center-r, r*2, r*2);
+      // Stable material grain is built once per cached sprite, never from race RNG.
+      // A normalized pattern keeps the same surface at every resolution.
+      let grain = 739391;
+      for (let i = 0; i < 420; i++) {
+        grain = (Math.imul(grain, 1664525) + 1013904223) >>> 0;
+        const x = (grain / 4294967296 * 2 - 1) * r;
+        grain = (Math.imul(grain, 1664525) + 1013904223) >>> 0;
+        const y = (grain / 4294967296 * 2 - 1) * r;
+        ctx.fillStyle = i % 2 ? 'rgba(255,248,231,.065)' : 'rgba(48,35,23,.045)';
+        ctx.beginPath(); ctx.ellipse(center + x, center + y, r * .012, r * .008, -.3, 0, TAU); ctx.fill();
+      }
+      const reflection = ctx.createRadialGradient(center-r*.3, center-r*.48, 0, center-r*.3, center-r*.48, r*.5);
+      reflection.addColorStop(0, 'rgba(255,250,239,.16)'); reflection.addColorStop(1, 'rgba(255,250,239,0)');
+      ctx.fillStyle = reflection; ctx.fillRect(center-r, center-r, r*2, r*2);
       ctx.strokeStyle = 'rgba(45,35,25,.4)'; ctx.lineWidth = size/128*.7;
       ctx.beginPath(); ctx.arc(center, center, r-.4*size/128, 0, TAU); ctx.stroke(); ctx.restore();
       // Color groups share at most five sizes; avoid growing for arbitrary legacy colors.
