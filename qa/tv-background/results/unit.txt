@@ -1,0 +1,15 @@
+✔ volume zero skips context unlock and every sound allocation path (2.107084ms)
+✔ positive-volume user unlock resumes one reusable context and OFF skips it (0.360292ms)
+✔ paper variation is deterministic, smooth, and seamless rather than single-pixel pepper (40.651042ms)
+✔ world-space board art contains no noise pattern, while fixed paper remains cached (16.090292ms)
+✔ 6, 50, 200 and 500 marbles get bounded, viewport-safe name labels (3.851916ms)
+✔ finished display uses distinct recent slots without mutating rank, coordinates or arrival time (0.886833ms)
+✔ the classic board has no portal routes (0.095625ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 94.970208

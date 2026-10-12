@@ -1,0 +1,39 @@
+✔ captured boundary coordinates remain legal and exactly replayable after floating-point fitting (321.220542ms)
+✔ replay still rejects malformed and old records without changing marbles (3.378458ms)
+✔ saved hand start restores exact seeded results without consuming RNG (384.598084ms)
+✔ replay rejects corrupt, mismatched and incompatible snapshots before moving any ball (3.015875ms)
+✔ 500 saved start positions restore byte-for-byte and preserve launch RNG (8.364625ms)
+✔ right-exit clusters scatter across the whole top band, preserving all IDs and race RNG (7.606333ms)
+✔ maximum-size top scatter is collision-free and in the legal spawn area (52.589333ms)
+✔ v1 clustered records are rejected before mutating physical marbles (2.156708ms)
+✔ paper variation is deterministic, smooth, and seamless rather than single-pixel pepper (63.018875ms)
+✔ world-space board art contains no noise pattern, while fixed paper remains cached (22.316667ms)
+✔ start zoom expands smoothly while a desktop panel changes the board viewport (1.830209ms)
+✔ mobile entrance zooms without relying on a wider layout, and reset restores preparation framing (0.998916ms)
+✔ reduced motion uses a brief entrance and never advances physical marbles (0.449666ms)
+✔ landing frames every real seeded spawn circle on desktop and mobile (112.144333ms)
+✔ landing is deterministic and clears previous camera interaction without changing physical state (11.500458ms)
+✔ the first running frame smoothly follows the landing pose rather than resetting it (26.931666ms)
+✔ release starts at every actual position and velocity, with C1 propulsion onset (7.965208ms)
+✔ front pinballs receive propulsion first and delays depend on actual throw direction (3.701041ms)
+✔ gesture direction changes the visible path while endpoints retain their own seeded slots (4.680916ms)
+✔ all IDs reach exact map sprites on desktop, portrait and landscape for every count (179.156041ms)
+✔ camera starts with identity and zero velocity, follows the flight, and ends at the final map transform (4.784292ms)
+✔ reduced motion keeps the same release state and own IDs with no camera sweep or trails (10.299333ms)
+✔ snapshot positions stay fixed when the old shuffle continues or source arrays reorder (0.830292ms)
+✔ midflight resizing preserves current positions and radii while smoothly reaching the new camera (26.61875ms)
+✔ changing reduced motion midflight suppresses trails without resetting the captured path (6.845167ms)
+✔ a stopped edge release still propels, while fast input changes flight without changing slots (20.749666ms)
+✔ flight zooms out to frame the full group and draws no tails across viewport sizes (30.683125ms)
+✔ a widely scattered release starts without a camera snap before pulling back (0.585292ms)
+✔ 6, 50, 200 and 500 marbles get bounded, viewport-safe name labels (6.241416ms)
+✔ finished display uses distinct recent slots without mutating rank, coordinates or arrival time (1.218042ms)
+✔ the classic board has no portal routes (0.126542ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 458.300541

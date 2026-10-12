@@ -102,9 +102,17 @@
       this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});Pinball.load();this.theme=P.THEMES.cosmic;this.quality='high';this.reducedMotion=false;
       this.sprites=new Map();this.nameSprites=new Map();this.currentZoom=1;this.winProgress=0;this.lastWinner=null;this.logo=null;
       if(typeof Image!=='undefined'){const image=new Image();image.onload=()=>{this.logo=image;this.sprites.clear();this.buildBackground();};image.src='./assets/logo.svg';}
-      this.noise=makeCanvas(192,192);const ctx=this.noise.getContext('2d'),data=ctx.createImageData(192,192);let seed=6197;const rand=()=>{seed=seed*16807%2147483647;return(seed-1)/2147483646;};
-      for(let i=0;i<data.data.length;i+=4){data.data[i]=116;data.data[i+1]=86;data.data[i+2]=47;data.data[i+3]=rand()<.4?Math.floor(rand()*13):0;}ctx.putImageData(data,0,0);ctx.strokeStyle='rgba(130,101,62,.055)';ctx.lineWidth=.6;
-      for(let i=0;i<75;i++){const x=rand()*192,y=rand()*192;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+rand()*5,y+rand()*1.5);ctx.stroke();}this.resize();
+      // Soft, screen-anchored paper variation. Interpolated 32px cells avoid
+      // single-pixel grain aliasing into pepper bands on a scaled TV canvas.
+      const size=256,cells=8,grid=[],ctx=(this.noise=makeCanvas(size,size)).getContext('2d'),data=ctx.createImageData(size,size);
+      let seed=6197;for(let i=0;i<cells*cells;i++){seed=seed*16807%2147483647;grid.push((seed-1)/2147483646);}
+      const smooth=t=>t*t*(3-2*t),at=(x,y)=>grid[(y%cells)*cells+(x%cells)];
+      for(let y=0;y<size;y++)for(let x=0;x<size;x++){
+        const gx=x/32,gy=y/32,ix=Math.floor(gx),iy=Math.floor(gy),u=smooth(gx-ix),v=smooth(gy-iy),i=(y*size+x)*4;
+        const upper=at(ix,iy)+(at(ix+1,iy)-at(ix,iy))*u,lower=at(ix,iy+1)+(at(ix+1,iy+1)-at(ix,iy+1))*u;
+        data.data[i]=116;data.data[i+1]=86;data.data[i+2]=47;data.data[i+3]=Math.round(2+(upper+(lower-upper)*v)*5);
+      }
+      ctx.putImageData(data,0,0);this.paperPattern=this.ctx.createPattern(this.noise,'repeat');this.resize();
     }
     brandMark(ctx,x,y,r){if(!this.logo)return;ctx.save();ctx.drawImage(this.logo,x-r,y-r*.87,r*2,r*1.74);ctx.restore();}
     material(){return METALS[this.theme.material]?this.theme.material:{cosmic:'ivory',candy:'rainbow',gold:'gold',ice:'silver'}[this.theme.id]||'gold';}
@@ -136,12 +144,12 @@
       const density=this.boardDensity=Math.min(4,Math.max(this.boardDensity||1,Math.ceil(this.currentZoom*this.dpr))),key='board:'+width+':'+density;if(this.sprites.has(key))return this.sprites.get(key);
       // Retain only the current board density rather than each zoom history.
       for(const old of this.sprites.keys())if(old.startsWith('board:'))this.sprites.delete(old);
-      const c=makeCanvas(width*density,520*density),ctx=c.getContext('2d');ctx.scale(density,density);ctx.fillStyle=ctx.createPattern(this.noise,'repeat');ctx.fillRect(0,0,width,520);ctx.strokeStyle='rgba(184,157,111,.065)';ctx.fillStyle=ctx.strokeStyle;ctx.lineWidth=1.5;
+      const c=makeCanvas(width*density,520*density),ctx=c.getContext('2d');ctx.scale(density,density);ctx.strokeStyle='rgba(184,157,111,.065)';ctx.fillStyle=ctx.strokeStyle;ctx.lineWidth=1.5;
       ctx.save();ctx.globalAlpha=.12;this.brandMark(ctx,width/2,240,95);ctx.restore();fish(ctx,145,370,28,1);fish(ctx,width-145,385,28,-1);for(let i=0;i<3;i++)wave(ctx,55,width-55,420+i*9,6,98,i*24);this.sprites.set(key,c);return c;
     }
     drawBoard(map,time,visible) {
       const ctx=this.ctx,t=this.theme,w=map.width,h=map.height,top=Math.max(0,visible.top),bottom=Math.min(h,visible.bottom);ctx.save();ctx.fillStyle='rgba(91,67,35,.035)';pill(ctx,10,8,w-20,h,28);ctx.fill();ctx.fillStyle=t.id==='gold'?'#EAD9B9':PAPER_HI;pill(ctx,23,0,w-46,h-18,24);ctx.fill();ctx.beginPath();pill(ctx,23,0,w-46,h-18,24);ctx.clip();
-      let g=ctx.createLinearGradient(25,0,w-25,0);g.addColorStop(0,'rgba(171,139,86,.07)');g.addColorStop(.2,'rgba(248,239,221,.04)');g.addColorStop(.8,'rgba(248,239,221,.04)');g.addColorStop(1,'rgba(171,139,86,.07)');ctx.fillStyle=g;ctx.fillRect(23,top,w-46,bottom-top);for(let y=Math.floor(top/520)*520;y<bottom;y+=520)ctx.drawImage(this.boardTile(w),0,y,w,520);ctx.restore();ctx.strokeStyle=this.foil(ctx,0,0,w,240);ctx.lineWidth=3;pill(ctx,24,2,w-48,h-22,23);ctx.stroke();ctx.strokeStyle='rgba(116,85,42,.24)';ctx.lineWidth=.8;const bounds=P.boardBounds(map);pill(ctx,bounds.left,bounds.top,bounds.right-bounds.left,bounds.bottom-bounds.top,bounds.radius);ctx.stroke();
+      let g=ctx.createLinearGradient(25,0,w-25,0);g.addColorStop(0,'rgba(171,139,86,.07)');g.addColorStop(.2,'rgba(248,239,221,.04)');g.addColorStop(.8,'rgba(248,239,221,.04)');g.addColorStop(1,'rgba(171,139,86,.07)');ctx.fillStyle=g;ctx.fillRect(23,0,w-46,h);for(let y=Math.floor(top/520)*520;y<bottom;y+=520)ctx.drawImage(this.boardTile(w),0,y,w,520);ctx.restore();ctx.strokeStyle=this.foil(ctx,0,0,w,240);ctx.lineWidth=3;pill(ctx,24,2,w-48,h-22,23);ctx.stroke();ctx.strokeStyle='rgba(116,85,42,.24)';ctx.lineWidth=.8;const bounds=P.boardBounds(map);pill(ctx,bounds.left,bounds.top,bounds.right-bounds.left,bounds.bottom-bounds.top,bounds.radius);ctx.stroke();
       ctx.strokeStyle='rgba(255,252,242,.85)';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(27,Math.max(24,top));ctx.lineTo(27,Math.min(h-46,bottom));ctx.stroke();for(let y=Math.max(110,Math.floor(top/300)*300);y<bottom;y+=300){ctx.strokeStyle=this.foil(ctx,34,y,72,y+35);ctx.lineWidth=1.1;this.brandMark(ctx,55,y,13);this.brandMark(ctx,w-55,y,13);}
       if(top<170){ctx.save();ctx.textAlign='center';ctx.fillStyle=INK;ctx.font='600 10px Pretendard Variable,sans-serif';ctx.fillStyle='#8a7760';ctx.font='500 10px Pretendard Variable,sans-serif';if(this.logo){ctx.globalAlpha=.2;ctx.drawImage(this.logo,w/2-70,84,140,122);}ctx.restore();}
     }
@@ -282,7 +290,7 @@
         this.drawFinishers(physics, map, visible);
       }
       ctx.restore(); ctx.drawImage(this.vignette, 0, 0, this.width, this.height);
-      if (this.quality === 'high') { ctx.save(); ctx.globalAlpha = .26; ctx.fillStyle = ctx.createPattern(this.noise, 'repeat'); ctx.fillRect(0, 0, this.width, this.height); ctx.restore(); }
+      ctx.save();ctx.globalAlpha=.26;ctx.fillStyle=this.paperPattern;ctx.fillRect(0,0,this.width,this.height);ctx.restore();
       if(photoFinish){ctx.save();ctx.textAlign='center';ctx.font='600 10px Pretendard Variable,sans-serif';ctx.fillStyle='#8f6834';ctx.fillText('아주 가까운 승부  ·  마지막 순간을 천천히',area.x+area.w/2,area.y+35);ctx.restore();}
       if(!this.reducedMotion&&effects&&effects.flash>.01){ctx.save();ctx.globalAlpha=effects.flash*.06;ctx.fillStyle='#fff6dc';ctx.fillRect(0,0,this.width,this.height);ctx.restore();}
       if (!state.hideMarbles && status !== 'finished') this.drawLabels(marbles, leader, camera, area);

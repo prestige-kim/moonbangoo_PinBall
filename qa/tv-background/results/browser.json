@@ -1,0 +1,64 @@
+{
+  "before": {
+    "adjacentAlphaStep": 17,
+    "tileGrainPeakAlpha": 18,
+    "materialStripe": [
+      [
+        251,
+        247,
+        239,
+        255
+      ],
+      [
+        251,
+        246,
+        238,
+        255
+      ],
+      [
+        251,
+        246,
+        238,
+        255
+      ],
+      [
+        251,
+        247,
+        239,
+        255
+      ]
+    ]
+  },
+  "after": {
+    "adjacentAlphaStep": 1,
+    "tileGrainPeakAlpha": 0,
+    "materialStripe": [
+      [
+        251,
+        246,
+        238,
+        255
+      ],
+      [
+        251,
+        246,
+        238,
+        255
+      ],
+      [
+        251,
+        246,
+        238,
+        255
+      ],
+      [
+        251,
+        246,
+        238,
+        255
+      ]
+    ]
+  },
+  "screenPaperStable": true,
+  "errors": []
+}
