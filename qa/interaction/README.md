@@ -1,5 +1,7 @@
 # Interaction evidence
 
+Historical paired render evidence: e48358f. After the approved physical circular-grab change, use `qa/circular-grab/browser.cjs` and its PLAN.md. The original paired-video generators require the e48358f checkout because their equal-solver assertion is no longer applicable to the new physical shuffle.
+
 Baseline: 78b23b4 (unfinished fairness audit). The original checkout and its pending duration changes are untouched. `*-before.js` are immutable visual comparison fixtures; production never imports them. No fairness completion is claimed.
 
 `node --test qa/interaction.test.cjs` verifies display-only changes against the baseline solver and race at 30/60/120Hz render cadences.

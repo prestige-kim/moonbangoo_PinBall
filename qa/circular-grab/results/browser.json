@@ -1,0 +1,154 @@
+{
+  "url": "http://127.0.0.1:60700/moonbangoo_PinBall/",
+  "cases": [
+    {
+      "w": 1280,
+      "h": 720,
+      "count": 6,
+      "ready": true,
+      "outside": 0,
+      "displayError": 0,
+      "rngDraws": 0,
+      "ids": 6,
+      "wallHits": 1017
+    },
+    {
+      "w": 1280,
+      "h": 720,
+      "count": 50,
+      "ready": true,
+      "outside": 0,
+      "displayError": 0,
+      "rngDraws": 0,
+      "ids": 50,
+      "wallHits": 31110
+    },
+    {
+      "w": 1280,
+      "h": 720,
+      "count": 200,
+      "ready": true,
+      "outside": 0,
+      "displayError": 0,
+      "rngDraws": 0,
+      "ids": 200,
+      "wallHits": 108104
+    },
+    {
+      "w": 1280,
+      "h": 720,
+      "count": 500,
+      "ready": true,
+      "outside": 0,
+      "displayError": 0,
+      "rngDraws": 0,
+      "ids": 500,
+      "wallHits": 504598
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "count": 6,
+      "ready": true,
+      "outside": 0,
+      "displayError": 0,
+      "rngDraws": 0,
+      "ids": 6,
+      "wallHits": 402
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "count": 50,
+      "ready": true,
+      "outside": 0,
+      "displayError": 0,
+      "rngDraws": 0,
+      "ids": 50,
+      "wallHits": 22126
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "count": 200,
+      "ready": true,
+      "outside": 0,
+      "displayError": 0,
+      "rngDraws": 0,
+      "ids": 200,
+      "wallHits": 78500
+    },
+    {
+      "w": 390,
+      "h": 844,
+      "count": 500,
+      "ready": true,
+      "outside": 0,
+      "displayError": 0,
+      "rngDraws": 0,
+      "ids": 500,
+      "wallHits": 382902
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "count": 6,
+      "ready": true,
+      "outside": 0,
+      "displayError": 0,
+      "rngDraws": 0,
+      "ids": 6,
+      "wallHits": 1017
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "count": 50,
+      "ready": true,
+      "outside": 0,
+      "displayError": 0,
+      "rngDraws": 0,
+      "ids": 50,
+      "wallHits": 31110
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "count": 200,
+      "ready": true,
+      "outside": 0,
+      "displayError": 0,
+      "rngDraws": 0,
+      "ids": 200,
+      "wallHits": 108104
+    },
+    {
+      "w": 844,
+      "h": 390,
+      "count": 500,
+      "ready": true,
+      "outside": 0,
+      "displayError": 0,
+      "rngDraws": 0,
+      "ids": 500,
+      "wallHits": 504598
+    }
+  ],
+  "flows": [
+    {
+      "mode": "mouse",
+      "heldContained": true,
+      "released": true,
+      "finished": 6,
+      "exactReplay": true
+    },
+    {
+      "mode": "touch",
+      "heldContained": true,
+      "released": true,
+      "finished": 6,
+      "exactReplay": true
+    }
+  ],
+  "errors": []
+}
