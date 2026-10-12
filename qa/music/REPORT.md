@@ -31,3 +31,7 @@ These checks fail without the music changes. Music does not change physics, came
 `npm test`: 235 tests, 230 passed, 5 failed (all five baseline failures above), 0 canceled/skipped.
 Music/audio/deployment focused checks: 15 passed; real-controller soundtrack routing checks: 2 passed.
 `git diff --check`: clean. Final local browser media readyState 4 and no console errors.
+
+## Subsequent regression repair
+
+All five baseline failures listed above were repaired and revalidated: `npm test` now passes 235/235 with zero failures or skips. See [five-check repair report](../regressions/2026-10-13.md) for root causes and validation.
