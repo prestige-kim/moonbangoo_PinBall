@@ -208,7 +208,7 @@
   UI.prototype.syncSound = function () {
     var enabled = $('sound').checked;
     $('sound-toggle').setAttribute('aria-pressed', String(enabled));
-    $('sound-toggle').setAttribute('aria-label', enabled ? '효과음 끄기' : '효과음 켜기');
+    $('sound-toggle').setAttribute('aria-label', enabled ? '음악과 효과음 끄기' : '음악과 효과음 켜기');
     $('sound-toggle').replaceChildren(icon(enabled ? 'sound' : 'mute'));
   };
   UI.prototype.updateOutputs = function () {

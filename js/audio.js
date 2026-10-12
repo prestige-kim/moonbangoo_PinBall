@@ -20,9 +20,19 @@
       this.voices = 0;
       this.lastHit = -1;
       this.noiseBuffer = null;
+      this.music = null;
+      this.musicGain = null;
+      this.musicNode = null;
+      this.musicTrack = null;
+      this.musicUnlocked = false;
+      this.musicFinished = false;
+      this.musicFade = null;
+      this.musicScene = 'intro';
     }
     unlock() {
       if (!this.enabled || !(this.volume > 0)) return;
+      this.musicUnlocked = true;
+      this.syncMusic();
       try {
         if (!this.context) {
           const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -33,15 +43,86 @@
           this.master.connect(this.context.destination);
         }
         if (this.context.state === 'suspended') this.context.resume().catch(function () {});
+        this.syncMusic();
       } catch (_) { this.context = null; }
     }
     configure(settings) {
       this.enabled = !!settings.sound;
       this.volume = Math.max(0, Math.min(1, Number(settings.volume)));
       this.theme = settings.theme || 'cosmic';
+      this.syncMusic();
       if (this.master && this.context) {
         this.master.gain.setTargetAtTime(this.enabled ? this.volume * 0.42 : 0, this.context.currentTime, 0.035);
       }
+    }
+    setMusicScene(scene) {
+      this.musicScene = scene;
+      const tracks = { intro: 'chipper-doodle-v2', setup: 'chipper-doodle-v2',
+        mixing: 'electrodoodle', flight: 'electrodoodle', running: 'bit-quest', result: 'winner-winner' };
+      const track = tracks[scene] || null;
+      if (track !== this.musicTrack) {
+        if (this.musicFade) window.clearInterval(this.musicFade);
+        this.musicFade = null;
+        if (this.music) { this.music.pause(); this.music.currentTime = 0; }
+        this.musicTrack = track;
+        this.musicFinished = false;
+        if (track && this.music) {
+          this.music.src = './assets/music/' + track + '.mp3';
+          this.music.loop = track !== 'winner-winner';
+          this.music.volume = 0;
+        }
+      }
+      this.syncMusic();
+    }
+    syncMusic() {
+      if (!window.Audio) return;
+      const allowed = this.musicUnlocked && this.enabled && this.volume > 0 &&
+        this.musicTrack && !this.musicFinished && !document.hidden;
+      if (!allowed) {
+        if (this.musicFade) window.clearInterval(this.musicFade);
+        this.musicFade = null;
+        if (this.music) this.music.pause();
+        return;
+      }
+      if (!this.music) {
+        this.music = new window.Audio('./assets/music/' + this.musicTrack + '.mp3');
+        this.music.preload = 'none';
+        this.music.hidden = true;
+        this.music.id = 'background-music';
+        if (document.body) document.body.appendChild(this.music);
+        this.music.loop = this.musicTrack !== 'winner-winner';
+        this.music.volume = 0;
+        this.music.addEventListener('ended', () => { if (!this.music.loop) this.musicFinished = true; });
+      }
+      const target = this.volume * 0.55;
+      // Route through Web Audio so music volume also works on mobile Safari.
+      if (!this.musicGain && this.context && this.context.createMediaElementSource) {
+        try {
+          this.musicNode = this.context.createMediaElementSource(this.music);
+          this.musicGain = this.context.createGain();
+          this.musicGain.gain.value = 0;
+          this.musicNode.connect(this.musicGain);
+          this.musicGain.connect(this.context.destination);
+        } catch (_) { this.musicGain = null; }
+      }
+      if (this.musicFade) window.clearInterval(this.musicFade);
+      this.musicFade = null;
+      if (this.music.paused) {
+        const playing = this.music.play();
+        if (playing && playing.catch) playing.catch(() => {});
+      }
+      if (this.musicGain) {
+        this.music.volume = 1;
+        this.musicGain.gain.setTargetAtTime(target, this.context.currentTime, 0.08);
+        return;
+      }
+      this.musicFade = window.setInterval(() => {
+        const step = 0.055, delta = target - this.music.volume;
+        this.music.volume = Math.abs(delta) <= step ? target : this.music.volume + Math.sign(delta) * step;
+        if (this.music.volume === target) {
+          window.clearInterval(this.musicFade); this.musicFade = null;
+        }
+      }, 50);
     }
     tone(frequency, duration, strength, delay, glide) {
       const ctx = this.context;

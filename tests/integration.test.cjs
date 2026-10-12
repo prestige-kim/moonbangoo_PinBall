@@ -35,6 +35,7 @@ function boot(storage, options = {}) {
   class Renderer {
     resize() {} setTheme(value) { this.theme = value; }
     setQuality(value) { this.quality = value; }
+    setRenderScale(value) { this.renderScale = value; }
     setReducedMotion(value) { this.reduced = value; }
     render(value) { this.scene = value; } drawMinimap() {} drawLaunch(canvas, value) { this.launchScene = value; }
   }
@@ -99,13 +100,13 @@ function boot(storage, options = {}) {
     constructor() { this.particles = []; this.rings = []; }
     handle() {} burst() {} celebrate() { this.celebrated = true; } update() {}
   }
-  class AudioEngine { configure() {} unlock() { this.unlocks = (this.unlocks || 0) + 1; } play(type) { this.plays = (this.plays || 0) + 1; (this.types || (this.types = [])).push(type); } }
+  class AudioEngine { setMusicScene(scene) { this.musicScene = scene; } syncMusic() {} configure() {} unlock() { this.unlocks = (this.unlocks || 0) + 1; } play(type) { this.plays = (this.plays || 0) + 1; (this.types || (this.types = [])).push(type); } }
   Object.assign(P, { UI, Renderer, Camera, Cinematic, HandScene, ShuffleInput, HandFlight, Effects, AudioEngine });
   const window = { CosmicPinball: P, matchMedia: () => ({ matches: false }), addEventListener() {} };
   const context = vm.createContext({ window, document: { hidden: false, getElementById: () => ({}), documentElement: { classList: { toggle() {} } }, addEventListener() {} },
     localStorage: storage || { getItem() { throw new Error('Storage denied'); }, setItem() { throw new Error('Storage denied'); } },
     requestAnimationFrame(callback) { frame = callback; }, performance: { now: () => clock }, Uint32Array, Date, Math, console });
-  for (const file of ['maps.js', 'physics.js', 'shuffle.js', 'hand-start.js', 'throw-gate.js', 'race-standing.js', 'main.js']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context, { filename: file });
+  for (const file of ['display-budget.js', 'maps.js', 'physics.js', 'shuffle.js', 'hand-start.js', 'throw-gate.js', 'race-standing.js', 'main.js']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context, { filename: file });
   if (!options.intro) callbacks.enter();
   function advance(seconds, frameRate = 60) {
     const count = Math.ceil(seconds * frameRate);
@@ -546,4 +547,20 @@ test('a tube gesture stays separate from the later launch gesture even when read
   assert.equal(P.app.cinematic.commits, undefined);
   assert.deepEqual(calls.map(call => call[0]), ['begin', 'move', 'release']);
   gesture(); assert.equal(P.app.status, 'flight'); assert.equal(P.app.cinematic.commits, 1);
+});
+
+// Soundtrack routing is driven by the real game controller, including early stops.
+test('soundtrack follows setup, mixing, race, confirmed results and restart', () => {
+  const b = boot();
+  assert.equal(b.P.app.audio.musicScene, 'setup');
+  b.callbacks.start(); assert.equal(b.P.app.audio.musicScene, 'mixing');
+  b.launch(); assert.equal(b.P.app.audio.musicScene, 'running');
+  b.advance(200); assert.equal(b.P.app.audio.musicScene, 'result');
+  b.callbacks.restart(); assert.equal(b.P.app.audio.musicScene, 'mixing');
+});
+test('early stop with no confirmed winner leaves result music silent', () => {
+  const b = boot(); b.P.app.ui.values.rule = 'last'; b.callbacks.start(); b.launch();
+  const p=b.P.app.physics; while(!p.finished.length && p.time<200) p.step();
+  b.callbacks.stop(); b.advance(.1);
+  assert.equal(b.P.app.audio.musicScene, 'finished');
 });
