@@ -480,13 +480,19 @@
       } else this.writeRemaining(Math.round(this.displayCount));
     }
     if (typeof data.time === 'number') {
-      $('elapsed').replaceChildren(document.createTextNode(formatTime(data.time, false)));
-      var small = document.createElement('small'); small.textContent = '.' + String(Math.floor((Math.max(0, data.time) % 1) * 100)).padStart(2, '0'); $('elapsed').appendChild(small);
+      if(!this.elapsedParts){
+        this.elapsedParts={text:document.createTextNode(''),small:document.createElement('small')};
+        $('elapsed').replaceChildren(this.elapsedParts.text,this.elapsedParts.small);
+      }
+      var seconds=formatTime(data.time,false),fraction='.'+String(Math.floor((Math.max(0,data.time)%1)*100)).padStart(2,'0');
+      if(this.elapsedParts.text.textContent!==seconds)this.elapsedParts.text.textContent=seconds;
+      if(this.elapsedParts.small.textContent!==fraction)this.elapsedParts.small.textContent=fraction;
     }
     if (data.fps !== undefined) $('fps').textContent = Math.round(data.fps);
     if (Array.isArray(data.ranking)) this.renderRanking(data.ranking.slice(0, 5));
   };
   UI.prototype.writeRemaining = function (count) {
+    var key=count+'|'+this.totalCount;if(this.remainingKey===key)return;this.remainingKey=key;
     var total = document.createElement('span'); total.textContent = ' / ' + this.totalCount;
     $('remaining').replaceChildren(document.createTextNode(String(count)), total);
   };
@@ -505,11 +511,16 @@
         self.rankingNodes.set(key, row); list.appendChild(row);
       }
       var changed = row.dataset.marbleId !== String(marble.id), previousName = row.children[2].textContent;
-      row.dataset.marbleId = String(marble.id);
-      row.children[0].textContent = index === 0 && leader && !marble.finished ? '선두' : String(standing.ranks[ranking.indexOf(marble)]).padStart(2, '0');
-      row.children[1].style.setProperty('--marble-color', self.colorFor(marble));
-      row.children[2].textContent = marble.name;
-      row.children[2].title = marble.name + (marble.copies > 1 ? ' · ' + marble.copy + '/' + marble.copies : '');
+      var rankText=index===0&&leader&&!marble.finished?'선두':String(standing.ranks[ranking.indexOf(marble)]).padStart(2,'0');
+      if(row.children[0].textContent!==rankText)row.children[0].textContent=rankText;
+      var color=self.colorFor(marble),detail=marble.name+'|'+marble.copy+'|'+marble.copies;
+      if(changed)row.dataset.marbleId=String(marble.id);
+      if(row.dataset.color!==color){row.children[1].style.setProperty('--marble-color',color);row.dataset.color=color;}
+      if(row.dataset.detail!==detail){
+        row.children[2].textContent=marble.name;
+        row.children[2].title=marble.name+(marble.copies>1?' · '+marble.copy+'/'+marble.copies:'');
+        row.dataset.detail=detail;
+      }
       if (row.dataset.finished !== String(marble.finished)) {
         row.children[3].replaceChildren(); if (marble.finished) row.children[3].appendChild(icon('check'));
         row.dataset.finished = String(marble.finished);

@@ -68,6 +68,8 @@
   const mini = document.getElementById('minimap');
   const ui = new P.UI();
   const renderer = new P.Renderer(canvas);
+  const displayBudget = new P.DisplayBudget();
+  let viewportSettle = 0;
   const camera = new P.Camera(canvas);
   const effects = new P.Effects();
   const cinematic = new P.Cinematic(document.getElementById('cinema-canvas'), renderer);
@@ -160,6 +162,7 @@
     document.documentElement.classList.toggle('reduced-motion', settings.reducedMotion);
   }
   function resize() {
+    viewportSettle = .7;
     renderer.resize();
     camera.viewport = ui.getViewport();
   }
@@ -372,6 +375,10 @@
     elapsedVisual += dt; hudElapsed += dt; fpsElapsed += dt; fpsFrames++; diagnostics.frames++;
     if (fpsElapsed >= 0.75) { fps = Math.round(fpsFrames / fpsElapsed); fpsElapsed = 0; fpsFrames = 0; }
     adjustQuality(dt);
+    if(['mixing','flight','running'].includes(status)){
+      const scale=displayBudget.sample(dt);renderer.setRenderScale(scale);
+    }
+    viewportSettle=Math.max(0,viewportSettle-dt);
     if (['mixing', 'flight'].includes(status)) updateLaunch(dt);
     if (['intro', 'setup', 'mixing', 'flight'].includes(status)) {
       renderCinema(dt); requestAnimationFrame(frame); return;
@@ -386,7 +393,7 @@
     }
     const map = P.MAPS[(runSettings || settings).map];
     const ranking = physics.getRanking();
-    camera.viewport = ui.getViewport();
+    if(viewportSettle>0||hudElapsed>=.1||!camera.viewport)camera.viewport=ui.getViewport();
     camera.update(dt, physics, map, { photoFinish: photoFinish, status: status, reducedMotion: settings.reducedMotion });
     effects.update(dt);
     renderer.render({ physics: physics, map: map, camera: camera, effects: effects, time: elapsedVisual, dt: dt, status: status, winner: winner, leader: P.raceStanding(ranking).leader || null, photoFinish: photoFinish });
@@ -416,13 +423,13 @@
     camera.resumeFollow(); ui.setFollowing(true);
   });
   camera.attach(canvas);
-  window.addEventListener('resize', resize);
-  document.addEventListener('visibilitychange', () => { lastFrame = 0; });
+  window.addEventListener('resize', () => { displayBudget.resetTiming(); resize(); });
+  document.addEventListener('visibilitychange', () => { lastFrame = 0; displayBudget.resetTiming(); });
   visualSettings(); preview('intro');
   P.app = { ui: ui, renderer: renderer, cinematic: cinematic, camera: camera, effects: effects, audio: audio,
     handScene, handFlight, shuffleInput, throwGate, get physics() { return physics; }, get status() { return status; }, get settings() { return Object.assign({}, settings); },
     get runSettings() { return runSettings && Object.assign({}, runSettings); },
-    get diagnostics() { return Object.assign({}, diagnostics); }, start: start, reset: preview
+    get diagnostics() { return Object.assign({}, diagnostics, {renderScale:renderer.renderScale}); }, start: start, reset: preview
   };
   requestAnimationFrame(frame);
 })();

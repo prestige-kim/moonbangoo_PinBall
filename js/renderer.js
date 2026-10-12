@@ -99,7 +99,7 @@
   }
   class Renderer {
     constructor(canvas) {
-      this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});Pinball.load();this.theme=P.THEMES.cosmic;this.quality='high';this.reducedMotion=false;
+      this.renderScale=1;this.surface=typeof document.getElementById==='function'?document.getElementById('game-surface'):null;this.canvas=canvas;this.ctx=canvas.getContext('2d',{alpha:false});Pinball.load();this.theme=P.THEMES.cosmic;this.quality='high';this.reducedMotion=false;
       this.sprites=new Map();this.nameSprites=new Map();this.currentZoom=1;this.winProgress=0;this.lastWinner=null;this.logo=null;
       if(typeof Image!=='undefined'){const image=new Image();image.onload=()=>{this.logo=image;this.sprites.clear();this.buildBackground();};image.src='./assets/logo.svg';}
       // Soft, screen-anchored paper variation. Interpolated 32px cells avoid
@@ -118,11 +118,13 @@
     material(){return METALS[this.theme.material]?this.theme.material:{cosmic:'ivory',candy:'rainbow',gold:'gold',ice:'silver'}[this.theme.id]||'gold';}
     foil(ctx,x1,y1,x2,y2){const g=ctx.createLinearGradient(x1,y1,x2,y2);METALS[this.material()].forEach((c,i,a)=>g.addColorStop(i/(a.length-1),c));return g;}
     resize() {
-      this.width = this.canvas.clientWidth || innerWidth; this.height = this.canvas.clientHeight || innerHeight;
-      this.dpr = P.renderDensity(this.width, this.height, devicePixelRatio); this.canvas.width = Math.round(this.width * this.dpr); this.canvas.height = Math.round(this.height * this.dpr);
-      this.ctx.imageSmoothingQuality = 'high';
-      this.buildBackground();
+      const width=this.canvas.clientWidth||innerWidth,height=this.canvas.clientHeight||innerHeight;
+      const density=P.renderDensity(width,height,devicePixelRatio)*(this.renderScale||1),w=Math.round(width*density),h=Math.round(height*density);
+      if(this.width===width&&this.height===height&&this.dpr===density&&this.canvas.width===w&&this.canvas.height===h&&this.background)return false;
+      this.width=width;this.height=height;this.dpr=density;
+      this.canvas.width=w;this.canvas.height=h;this.ctx.imageSmoothingQuality='high';this.buildBackground();return true;
     }
+    setRenderScale(scale){const next=clamp(Number(scale)||1,.65,1);if(Math.abs(next-(this.renderScale||1))<.001)return false;this.renderScale=next;return this.resize();}
     setTheme(id) { const next = P.THEMES[id] || P.THEMES.cosmic; if (this.theme === next) return; this.theme = next; this.sprites.clear(); this.nameSprites.clear(); this.buildBackground(); }
     setQuality(quality) { if (this.quality === quality) return; this.quality = quality; this.resize(); }
     setReducedMotion(value) { this.reducedMotion = value; }
@@ -131,6 +133,12 @@
       let g=ctx.createLinearGradient(0,0,w,h);g.addColorStop(0,t.background[0]);g.addColorStop(.52,t.background[1]);g.addColorStop(1,t.background[2]);ctx.fillStyle=g;ctx.fillRect(0,0,w,h);ctx.fillStyle=ctx.createPattern(this.noise,'repeat');ctx.fillRect(0,0,w,h);
       ctx.strokeStyle=t.id==='gold'?'rgba(217,184,114,.045)':'rgba(144,111,63,.06)';ctx.fillStyle=ctx.strokeStyle;ctx.lineWidth=1;ctx.save();ctx.globalAlpha=.06;this.brandMark(ctx,w*.72,h*.46,Math.min(w,h)*.22);ctx.restore();sun(ctx,w*.3,h*.25,Math.min(w,h)*.22,28);for(let i=0;i<7;i++)wave(ctx,0,w,h*.75+i*15,13,180,i*20);fish(ctx,w*.87,h*.74,48,-1);fish(ctx,w*.17,h*.85,36,1);
       this.vignette=makeCanvas(Math.round(w*d),Math.round(h*d));const v=this.vignette.getContext('2d');v.scale(d,d);g=v.createRadialGradient(w*.58,h*.48,Math.min(w,h)*.23,w*.58,h*.48,Math.max(w,h)*.78);g.addColorStop(0,'rgba(120,83,35,0)');g.addColorStop(.6,'rgba(120,83,35,.015)');g.addColorStop(1,'rgba(120,83,35,.1)');v.fillStyle=g;v.fillRect(0,0,w,h);
+      if(this.surface){const density=P.renderDensity(w,h,devicePixelRatio),surface=this.surface;
+        surface.width=Math.round(w*density);surface.height=Math.round(h*density);
+        const overlay=surface.getContext('2d');overlay.setTransform(density,0,0,density,0,0);
+        overlay.drawImage(this.vignette,0,0,w,h);overlay.globalAlpha=.26;overlay.fillStyle=this.paperPattern;overlay.fillRect(0,0,w,h);overlay.globalAlpha=1;
+        // The composite retains this effect; release the temporary full-size texture.
+        this.vignette=null;}
     }
     glow(color){const key='g:'+color;if(this.sprites.has(key))return this.sprites.get(key);const c=makeCanvas(128,128),ctx=c.getContext('2d'),g=ctx.createRadialGradient(64,64,0,64,64,64);g.addColorStop(0,color);g.addColorStop(.3,color);g.addColorStop(1,'rgba(244,237,224,0)');ctx.globalAlpha=.18;ctx.fillStyle=g;ctx.fillRect(0,0,128,128);this.sprites.set(key,c);return c;}
     marbleSprite(color, pixels = 128) { return Pinball.sprite(pixels, color || '#167aaf'); }
@@ -274,7 +282,7 @@
     render(state) {
       // Chrome can change DPR on zoom/display changes without changing CSS size.
       if(this.canvas&&this.width&&this.height&&typeof devicePixelRatio==='number'&&
-          Math.abs(this.dpr-P.renderDensity(this.width,this.height,devicePixelRatio))>.001)this.resize();
+          Math.abs(this.dpr-P.renderDensity(this.width,this.height,devicePixelRatio)*(this.renderScale||1))>.001)this.resize();
       const { physics, map, camera, effects, time = 0, dt = 1 / 60, status, leader, winner, photoFinish } = state; if (!map || !physics || !camera) return;
       const ctx = this.ctx, marbles = physics.marbles || []; Pinball.configureGroups(marbles);
       ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0); this.drawBackground(camera, time);
@@ -289,8 +297,8 @@
         for (const m of marbles) if (!m.finished) this.drawMarble(m, marbles.length, leader, visible, time, dt, status === 'idle');
         this.drawFinishers(physics, map, visible);
       }
-      ctx.restore(); ctx.drawImage(this.vignette, 0, 0, this.width, this.height);
-      ctx.save();ctx.globalAlpha=.26;ctx.fillStyle=this.paperPattern;ctx.fillRect(0,0,this.width,this.height);ctx.restore();
+      ctx.restore();
+      if(!this.surface){ctx.drawImage(this.vignette,0,0,this.width,this.height);ctx.save();ctx.globalAlpha=.26;ctx.fillStyle=this.paperPattern;ctx.fillRect(0,0,this.width,this.height);ctx.restore();}
       if(photoFinish){ctx.save();ctx.textAlign='center';ctx.font='600 10px Pretendard Variable,sans-serif';ctx.fillStyle='#8f6834';ctx.fillText('아주 가까운 승부  ·  마지막 순간을 천천히',area.x+area.w/2,area.y+35);ctx.restore();}
       if(!this.reducedMotion&&effects&&effects.flash>.01){ctx.save();ctx.globalAlpha=effects.flash*.06;ctx.fillStyle='#fff6dc';ctx.fillRect(0,0,this.width,this.height);ctx.restore();}
       if (!state.hideMarbles && status !== 'finished') this.drawLabels(marbles, leader, camera, area);

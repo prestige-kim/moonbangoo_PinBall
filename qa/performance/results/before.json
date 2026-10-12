@@ -1,0 +1,58 @@
+{
+  "cases": [
+    {
+      "w": 1920,
+      "h": 1080,
+      "dpr": 1,
+      "slowdown": 1,
+      "renderAvgMs": 0.5242524935161552,
+      "renderP95Ms": 0.7999999523162842,
+      "frameP50Ms": 16.69999999999891,
+      "frameP95Ms": 16.700000000000728,
+      "frames": 301,
+      "viewportReads": 302,
+      "pixels": 2073600,
+      "userQuality": "high",
+      "diagnostics": {
+        "leadChanges": 1,
+        "photoFinishes": 0,
+        "events": {
+          "hit": 25,
+          "bumper": 3,
+          "rescue": 1
+        },
+        "autoQualityDrops": 0,
+        "frames": 805
+      },
+      "finished": 6,
+      "exactReplay": true
+    },
+    {
+      "w": 3840,
+      "h": 2160,
+      "dpr": 1,
+      "slowdown": 2,
+      "renderAvgMs": 0.7760797339024338,
+      "renderP95Ms": 1.0999999046325684,
+      "frameP50Ms": 16.69999999999891,
+      "frameP95Ms": 16.799999999999272,
+      "frames": 301,
+      "viewportReads": 302,
+      "pixels": 8294400,
+      "userQuality": "high",
+      "diagnostics": {
+        "leadChanges": 1,
+        "photoFinishes": 0,
+        "events": {
+          "hit": 21,
+          "bumper": 2
+        },
+        "autoQualityDrops": 0,
+        "frames": 807
+      },
+      "finished": 6,
+      "exactReplay": true
+    }
+  ],
+  "errors": []
+}
