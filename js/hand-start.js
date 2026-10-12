@@ -65,7 +65,9 @@
     }
     const starts=placed.map((p,i)=>{
       let vx=source[i].vx*sx,vy=source[i].vy*sy;const speed=Math.hypot(vx,vy);if(speed>120){vx*=120/speed;vy*=120/speed;}
-      return {id:p.id,x:p.x,y:p.y,vx,vy};
+      // Endpoint fitting can produce 61.99999999999999 for a legal top of 62.
+      // Store canonical in-bounds coordinates; keep the strict replay validator.
+      return {id:p.id,x:clamp(p.x,left,right),y:clamp(p.y,top,bottom),vx,vy};
     });
     starts.forEach((p,i)=>Object.assign(physics.marbles[i],{x:p.x,y:p.y,vx:p.vx,vy:p.vy,_anchorY:p.y,_stuckAt:0,_rescues:0}));
     physics.handStart={version:1,seed:physics.seed,signature:signature(physics),source,starts,transform:{sx,sy,cx,cy,mx,my},correctionPasses,denseFit};

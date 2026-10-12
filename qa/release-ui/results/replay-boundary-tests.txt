@@ -1,0 +1,32 @@
+✔ captured boundary coordinates remain legal and exactly replayable after floating-point fitting (652.854208ms)
+✔ replay still rejects malformed and old records without changing marbles (9.098375ms)
+✔ saved hand start restores exact seeded results without consuming RNG (767.454417ms)
+✔ replay rejects corrupt, mismatched and incompatible snapshots before moving any ball (10.690042ms)
+✔ 500 saved start positions restore byte-for-byte and preserve launch RNG (30.44675ms)
+✔ release starts at every actual position and velocity, with C1 propulsion onset (8.907791ms)
+✔ front pinballs receive propulsion first and delays depend on actual throw direction (3.573708ms)
+✔ gesture direction changes the visible path while endpoints retain their own seeded slots (3.791209ms)
+✔ all IDs reach exact map sprites on desktop, portrait and landscape for every count (405.941792ms)
+✔ camera starts with identity and zero velocity, follows the flight, and ends at the final map transform (12.4405ms)
+✔ reduced motion keeps the same release state and own IDs with no camera sweep or trails (31.418708ms)
+✔ snapshot positions stay fixed when the old shuffle continues or source arrays reorder (2.380875ms)
+✔ midflight resizing preserves current positions and radii while smoothly reaching the new camera (69.56ms)
+✔ changing reduced motion midflight suppresses trails without resetting the captured path (21.433083ms)
+✔ a stopped edge release still propels, while fast input changes flight without changing slots (55.918208ms)
+✔ flight zooms out to frame the full group and draws no tails across viewport sizes (79.597167ms)
+✔ a widely scattered release starts without a camera snap before pulling back (1.747709ms)
+✔ shuffle geometry determines actual race positions rather than seeded lane ownership (5.625875ms)
+✔ launch mapping is ID-based, consumes no race RNG and commits once (8.553834ms)
+✔ 6/50/200/500 launch snapshots fit the true spawn rectangle without deep overlap (2108.751916ms)
+✔ same seed plus captured hand snapshot replays all finish IDs and times (27945.259541ms)
+✔ gesture-dependent placement changes real outcomes for the original fixed-seed eight entrants (2068.741666ms)
+✔ invalid hand ownership or coordinates cannot partially mutate race state (3.0505ms)
+✔ real circular drag physics changes winners among original fruit entrants (2011.120667ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 34240.938875

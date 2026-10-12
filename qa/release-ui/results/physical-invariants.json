@@ -4,10 +4,10 @@
     "maps",
     "physics",
     "shuffle",
-    "hand-start",
     "throw-gate",
     "hand-scene",
     "hand-flight",
     "cinematic"
-  ]
+  ],
+  "intentionalChange": "hand-start: canonical in-bounds captured coordinates only; replay format and strict validator unchanged"
 }
