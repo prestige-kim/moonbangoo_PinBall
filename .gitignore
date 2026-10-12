@@ -1,6 +1,6 @@
 .DS_Store
 *.zip
-node_modules/
+node_modules
 qa/results/*.partial.json
 qa/results/simulation.json
 

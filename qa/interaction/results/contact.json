@@ -1,0 +1,26 @@
+[
+  {
+    "stage": "before",
+    "count": 6,
+    "peak": 0.6031455569741515,
+    "ids": 6
+  },
+  {
+    "stage": "after",
+    "count": 6,
+    "peak": 0.6031455569741515,
+    "ids": 6
+  },
+  {
+    "stage": "before",
+    "count": 500,
+    "peak": 0.6806226701799913,
+    "ids": 500
+  },
+  {
+    "stage": "after",
+    "count": 500,
+    "peak": 0.6806226701799913,
+    "ids": 500
+  }
+]

@@ -1,0 +1,32 @@
+scene before 6 1280
+scene before 50 1280
+scene before 200 1280
+scene before 500 1280
+scene before 6 390
+scene before 50 390
+scene before 200 390
+scene before 500 390
+scene before 6 844
+scene before 50 844
+scene before 200 844
+scene before 500 844
+scene after 6 1280
+scene after 50 1280
+scene after 200 1280
+scene after 500 1280
+scene after 6 390
+scene after 50 390
+scene after 200 390
+scene after 500 390
+scene after 6 844
+scene after 50 844
+scene after 200 844
+scene after 500 844
+locator.selectOption: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('#win-rule')[22m
+
+    at main (/private/tmp/pinball-interaction/qa/interaction/browser.cjs:19:419) {
+  log: [ "  - waiting for locator('#win-rule')" ],
+  name: 'TimeoutError'
+}

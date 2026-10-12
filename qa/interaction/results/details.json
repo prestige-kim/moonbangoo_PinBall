@@ -1,0 +1,106 @@
+{
+  "motions": [
+    {
+      "kind": "circle",
+      "ready": true,
+      "peak": 0.48581097856025096,
+      "remainingInputSpeed": 7.70381599022477e-32,
+      "stoppedBodySpeed": 0.011674984521346533,
+      "ids": 6
+    },
+    {
+      "kind": "eight",
+      "ready": true,
+      "peak": 0.45955488996206684,
+      "remainingInputSpeed": 1.352774335818735e-31,
+      "stoppedBodySpeed": 0.003168922377208167,
+      "ids": 6
+    },
+    {
+      "kind": "shake",
+      "ready": true,
+      "peak": 0.15193052173362515,
+      "remainingInputSpeed": 1.9708465497081755e-32,
+      "stoppedBodySpeed": 0.0025096086845822004,
+      "ids": 6
+    },
+    {
+      "kind": "slow",
+      "ready": true,
+      "peak": 0.06180902343967634,
+      "remainingInputSpeed": 9.631525640659777e-33,
+      "stoppedBodySpeed": 0.049656865150654435,
+      "ids": 6
+    },
+    {
+      "kind": "fast",
+      "ready": true,
+      "peak": 0.8768952214415255,
+      "remainingInputSpeed": 1.5399072977449136e-31,
+      "stoppedBodySpeed": 0.0025075440082183344,
+      "ids": 6
+    },
+    {
+      "kind": "none",
+      "ready": true,
+      "peak": 0.0048441024775920435,
+      "remainingInputSpeed": 0,
+      "stoppedBodySpeed": 0.0169872626207483,
+      "ids": 6
+    }
+  ],
+  "bars": [
+    {
+      "quality": "high",
+      "reducedMotion": false
+    },
+    {
+      "quality": "high",
+      "reducedMotion": true
+    },
+    {
+      "quality": "low",
+      "reducedMotion": false
+    },
+    {
+      "quality": "low",
+      "reducedMotion": true
+    }
+  ],
+  "materials": [
+    {
+      "dpr": 1,
+      "radii": [
+        2.5,
+        5,
+        10,
+        20,
+        35
+      ],
+      "groups": 8
+    },
+    {
+      "dpr": 2,
+      "radii": [
+        2.5,
+        5,
+        10,
+        20,
+        35
+      ],
+      "groups": 8
+    },
+    {
+      "dpr": 3,
+      "radii": [
+        2.5,
+        5,
+        10,
+        20,
+        35
+      ],
+      "groups": 8
+    }
+  ],
+  "errors": []
+}

@@ -1,0 +1,452 @@
+[
+  {
+    "w": 360,
+    "h": 640,
+    "dpr": 1,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 360,
+    "h": 640,
+    "dpr": 2,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 360,
+    "h": 640,
+    "dpr": 3,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 390,
+    "h": 844,
+    "dpr": 1,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 390,
+    "h": 844,
+    "dpr": 2,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 390,
+    "h": 844,
+    "dpr": 3,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 768,
+    "h": 1024,
+    "dpr": 1,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 768,
+    "h": 1024,
+    "dpr": 2,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 768,
+    "h": 1024,
+    "dpr": 3,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 1280,
+    "h": 720,
+    "dpr": 1,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 1280,
+    "h": 720,
+    "dpr": 2,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 1280,
+    "h": 720,
+    "dpr": 3,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 1920,
+    "h": 1080,
+    "dpr": 1,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 1920,
+    "h": 1080,
+    "dpr": 2,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 1920,
+    "h": 1080,
+    "dpr": 3,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 844,
+    "h": 390,
+    "dpr": 1,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 844,
+    "h": 390,
+    "dpr": 2,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  },
+  {
+    "w": 844,
+    "h": 390,
+    "dpr": 3,
+    "status": "running",
+    "overflow": false,
+    "controls": [
+      {
+        "id": "camera-in",
+        "visible": true
+      },
+      {
+        "id": "camera-out",
+        "visible": true
+      },
+      {
+        "id": "camera-home",
+        "visible": true
+      },
+      {
+        "id": "follow-button",
+        "visible": true
+      }
+    ]
+  }
+]

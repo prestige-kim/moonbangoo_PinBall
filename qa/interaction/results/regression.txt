@@ -1,0 +1,13 @@
+✔ game camera has no wheel/keyboard handler; pointer buttons zoom and reset without physical writes (10.510417ms)
+✔ moving bars draw one body without shadow in both quality/motion modes; static bars retain shadow (2.662583ms)
+✔ enamel uses deterministic cached grain, exact 25/128 silhouette and bounded cache (36.396708ms)
+✔ display interpolation and layer changes preserve exact pre-change solver and race across 30/60/120Hz (1988.645708ms)
+✔ idle display interpolates once, keeps exact pointer/outlet coordinates and reuses the pose pool (3.746667ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2106.94975

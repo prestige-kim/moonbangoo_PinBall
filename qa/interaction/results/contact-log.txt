@@ -1,0 +1,5 @@
+contact before 6 0.6031455569741515
+contact after 6 0.6031455569741515
+contact before 500 0.6806226701799913
+contact after 500 0.6806226701799913
+PASS actual contacts and unchanged before/after body states
