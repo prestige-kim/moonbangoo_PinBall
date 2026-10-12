@@ -1,0 +1,20 @@
+✔ result branding is a standalone contained logo without a medal backing (3.435958ms)
+✔ camera hint removal also removes its viewport dependency (3.614542ms)
+✔ intro exposes only its welcome action and keeps the settings ancestor available for later (9.47425ms)
+✔ setup reuses the real panel as an accessible centered dialog and focuses the first color button (3.945625ms)
+✔ close and Escape return setup to intro and restore welcome focus (4.933916ms)
+✔ setup Tab wraps visible enabled controls and skips closed advanced fields (5.524291ms)
+✔ one setup submit starts the sequence; hidden automatic scenes reject further submissions (2.780917ms)
+✔ flight and running have identical final board coordinates at desktop and mobile widths (5.325417ms)
+✔ reveal waits until the final 15 percent for HUD and never fades the cinematic canvas itself (1.325084ms)
+✔ refreshing the same setup preserves slider and sound focus instead of refocusing names (1.424417ms)
+✔ short mobile landscape excludes the race HUD while portrait preserves board width (3.902375ms)
+✔ bottom stop action is hidden outside a race and emits only while available (10.98475ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 280.95425
