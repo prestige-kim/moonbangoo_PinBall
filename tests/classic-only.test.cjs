@@ -6,9 +6,9 @@ const vm = require('node:vm');
 const root = path.join(__dirname, '..');
 test('classic includes a narrowing winding chute with closed collision walls and rotors', () => {
   const scope = { window: {} }; vm.createContext(scope);
-  for (const name of ['maps','physics']) vm.runInContext(fs.readFileSync(path.join(root, 'js/'+name+'.js'), 'utf8'), scope);
+  for (const name of ['maps','map-registry','maps/twinfold','maps/cascade','maps/rhythm','physics']) vm.runInContext(fs.readFileSync(path.join(root, 'js/'+name+'.js'), 'utf8'), scope);
   const P=scope.window.CosmicPinball,maps=P.MAPS,map=maps.classic;
-  assert.deepEqual(Object.keys(maps), ['classic']);
+  assert.deepEqual(Object.keys(maps), ['classic','twinfold','cascade','rhythm']);
   assert.equal(map.obstacles.filter(o=>o.type==='rotor').length,14);
   const walls=map.obstacles.filter(o=>o.channelWall);assert.equal(walls.length,2);
   assert.equal(Math.min(...map.channel.map(n=>n.width)),320);

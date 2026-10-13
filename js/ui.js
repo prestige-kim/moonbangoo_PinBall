@@ -80,6 +80,7 @@
     if (!info.skills) $('skills').checked = false;
     $('skills').disabled = this.locked || !info.skills;
     if ($('map-policy')) $('map-policy').textContent = info.skills ? '기본 코스 · 기존 스킬과 막힘 방지 설정을 유지합니다.' : '지형과 충돌로 진행해요. 랜덤 스킬과 강제로 밀어주는 막힘 방지는 사용하지 않아요.';
+    if ($('recovery-mode-label')) $('recovery-mode-label').textContent = info.recovery ? '모든 핀볼에 자동 적용' : '지형과 충돌로 진행';
     if ($('recovery-label')) $('recovery-label').textContent = info.recovery ? '막힘 방지' : '자연스러운 통과';
     var note = document.querySelector('.recovery-note'); if (note) note.textContent = info.recovery ? '약 3초 동안 앞으로 나아가지 못한 핀볼을 가볍게 밀어줍니다. 랜덤 스킬과 별도로 작동하며, 같은 시드에서는 동일하게 적용됩니다.' : '경사진 지형과 열린 통로로 빠져나갑니다. 공의 위치나 속도를 강제로 바꾸지 않습니다.';
   };

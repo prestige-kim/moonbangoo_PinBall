@@ -18,7 +18,7 @@ test('offline entry uses only existing relative styles and classic scripts', () 
   assert.doesNotMatch(html, /<(?:img|iframe|audio|video)[^>]*src\s*=\s*["'](?:https?:)?\/\//i);
   const css = fs.readFileSync(path.join(root, 'style.css'), 'utf8');
   assert.doesNotMatch(css, /@import\b|url\s*\(\s*["']?(?:https?:)?\/\//i);
-  for (const file of fs.readdirSync(path.join(root, 'js'))) {
+  for (const file of fs.readdirSync(path.join(root, 'js'), { recursive: true }).filter(name => name.endsWith('.js'))) {
     const source = fs.readFileSync(path.join(root, 'js', file), 'utf8');
     new vm.Script(source, { filename: file });
     assert.doesNotMatch(source, /\bfetch\s*\(|\bXMLHttpRequest\b|\bWebSocket\b|\bimport\s*(?:\(|["'{*])/,

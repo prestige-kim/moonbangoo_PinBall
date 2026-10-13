@@ -7,3 +7,6 @@ qa/results/simulation.json
 qa/fairness/results/*.progress.json
 
 qa/fairness/results/*.checkpoint/
+
+# Local four-map raw runs and captures; curated report/screenshots live in docs.
+qa/four-maps/results/
