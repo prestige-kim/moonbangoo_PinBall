@@ -1,8 +1,8 @@
 (function(P){
   'use strict';
-  var map={id:'cascade',version:1,name:'빗살 낙하',width:1000,height:11200,spawn:{x:36,y:50,width:928,height:700},finish:{y:11000},obstacles:[]};
+  var map={id:'cascade',version:2,name:'빗살 낙하',width:1000,height:11200,spawn:{x:36,y:50,width:928,height:700},finish:{y:11000},obstacles:[]};
   function rail(id,x1,y1,x2,y2,role){map.obstacles.push({type:'segment',id:'cascade-'+id,x1:x1,y1:y1,x2:x2,y2:y2,thickness:8,role:role||'guide'});}
-  rail('entry-left',100,950,240,1060);rail('entry-right',900,950,760,1060);
+  rail('entry-left',140,950,280,1060);rail('entry-right',860,950,720,1060);
   for(var row=0;row<6;row++){
     var y=1600+row*1100,angle=(row%2?-1:1)*Math.PI/6,dx=Math.cos(angle)*90,dy=Math.sin(angle)*90;
     [220,500,780].forEach(function(x,col){rail('shelf-'+row+'-'+col,x-dx,y-dy,x+dx,y+dy,'shelf');});
