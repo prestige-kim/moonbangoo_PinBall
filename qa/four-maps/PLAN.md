@@ -15,3 +15,7 @@ Baseline preserves existing duration guidance, result home link and related QA s
 - Browsers: real mouse pouring/mixing/exit/race/result; four maps; widths360/390/768/1280/1920; browser emulation explicitly distinguished from real handset. Capture screenshots and input-start records. Replay under visual quality/motion settings and different frame groupings. Check selection, persistence, restart, rules and early-stop unmet winners.
 
 Duration targets (200/default/1x, excludes launch): twinfold30–50s, cascade40–65s, rhythm35–60s. Record misses honestly; do not force velocities or ranking to meet them.
+
+## Development geometry revision before final samples
+
+Twinfold v1's B pilot (40 seeds) flagged group p=.00050. Replace two outer entry guides with six short fixed sloping guides in two open rows (y920/1220); no identity-dependent behavior or force added. New twinfold geometry version2. Re-run its full matrix and hand/replay cases and the same development seed set. Final seeds remain unused.
