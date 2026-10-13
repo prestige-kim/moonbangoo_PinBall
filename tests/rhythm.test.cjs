@@ -1,5 +1,5 @@
 'use strict';
-const test=require('node:test'),assert=require('node:assert/strict'),{P,run,assertRun,terminal}=require('../qa/four-maps/helpers.cjs');
+const test=require('node:test'),assert=require('node:assert/strict'),{P,run,assertRun,terminal,assertGaps}=require('../qa/four-maps/helpers.cjs');
 test('rhythm has exactly six tick-driven opposed bars with open central and lateral routes throughout a cycle',()=>{
  terminal('rhythm');const map=P.MAPS.rhythm,bars=map.obstacles.filter(o=>o.type==='moving');assert.equal(bars.length,6);const p=new P.Physics({map,names:P.parseNames('공'),skills:true});assert.equal(p.skills,false);
  for(let i=0;i<bars.length;i+=2){const a=bars[i],b=bars[i+1];assert.equal(a.length,160);assert.equal(a.thickness,8);assert.equal(a.amplitude,55);assert.equal(a.speed,.8);assert.ok(Math.abs(b.phase-a.phase-Math.PI)<1e-9);
@@ -10,3 +10,5 @@ test('rhythm completes 1..500 balls without force recovery, and grouping does no
  for(const n of [1,2,6,50,200,500])assertRun(run('rhythm',n,'fourmaps-dev-rhythm-smoke-'+n));
  assert.deepEqual(run('rhythm',6,'repeat',{},null,[1]).ranking,run('rhythm',6,'repeat',{},null,[4,2,1]).ranking);
 });
+
+test("rhythm keeps physical gaps >=96 including the walls and full motion cycle",()=>assertGaps("rhythm"));

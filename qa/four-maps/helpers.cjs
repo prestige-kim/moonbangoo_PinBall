@@ -17,4 +17,10 @@ function run(id,count,seed,config={},record=null,grouping=[1],benchmark=false){
 }
 function assertRun(result){assert.equal(result.complete,true,JSON.stringify(result.remaining));for(const [key,n]of Object.entries(result.errors))assert.equal(n,0,key+' '+JSON.stringify(result));}
 function terminal(id){const m=P.MAPS[id];assert.equal(m.finish.y,11000);for(const o of m.obstacles){assert.ok(!['portal','boost','bumper','rotor','pin'].includes(o.type));const bottom=o.points?Math.max(...o.points.map(p=>p.y)):o.y===undefined?Math.max(o.y1,o.y2)+o.thickness:o.y+o.length/2+(o.amplitude||0)+o.thickness;assert.ok(bottom<8800,JSON.stringify(o));}}
-module.exports={P,run,assertRun,terminal,inside};
+function distance(p,a,b){const dx=b.x-a.x,dy=b.y-a.y,t=Math.max(0,Math.min(1,((p.x-a.x)*dx+(p.y-a.y)*dy)/(dx*dx+dy*dy||1)));return Math.hypot(p.x-a.x-dx*t,p.y-a.y-dy*t);}
+function edges(o,pose=o){return o.points?o.points.map((p,i)=>[p,o.points[(i+1)%o.points.length]]):[[{x:pose.x1,y:pose.y1},{x:pose.x2,y:pose.y2}]];}
+function gap(a,b,pa=a,pb=b){let d=Infinity;for(const[x,y]of edges(a,pa))for(const[u,v]of edges(b,pb)){const cross=(a,b,c)=>(b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x);if(cross(x,y,u)*cross(x,y,v)<=0&&cross(u,v,x)*cross(u,v,y)<=0&&Math.max(Math.min(x.x,y.x),Math.min(u.x,v.x))<=Math.min(Math.max(x.x,y.x),Math.max(u.x,v.x))&&Math.max(Math.min(x.y,y.y),Math.min(u.y,v.y))<=Math.min(Math.max(x.y,y.y),Math.max(u.y,v.y)))d=0;d=Math.min(d,distance(x,u,v),distance(y,u,v),distance(u,x,y),distance(v,x,y));}return d-(a.thickness||1)-(b.thickness||1);}
+function assertGaps(id){const map=P.MAPS[id],p=new P.Physics({map,names:P.parseNames('공')}),all=map.obstacles;let min=Infinity;
+ for(let tick=0;tick<=(id==='rhythm'?960:0);tick++){p.time=tick/120;for(let i=0;i<all.length;i++){const a=all[i],pa=p.getObstaclePose(a);for(let j=i+1;j<all.length;j++){const d=gap(a,all[j],pa,p.getObstaclePose(all[j]));min=Math.min(min,d);assert.ok(d>=96-1e-8,a.id+' / '+all[j].id+' gap='+d);}const xs=edges(a,pa).flat().map(q=>q.x),lo=Math.min(...xs),hi=Math.max(...xs);if(lo>36&&hi<964){assert.ok(lo-(a.thickness||1)-36>=96-1e-8,a.id+' left wall');assert.ok(964-hi-(a.thickness||1)>=96-1e-8,a.id+' right wall');}}}return min;
+}
+module.exports={P,run,assertRun,terminal,inside,assertGaps};

@@ -19,3 +19,9 @@ Duration targets (200/default/1x, excludes launch): twinfold30â€“50s, cascade40â
 ## Development geometry revision before final samples
 
 Twinfold v1's B pilot (40 seeds) flagged group p=.00050. Replace two outer entry guides with six short fixed sloping guides in two open rows (y920/1220); no identity-dependent behavior or force added. New twinfold geometry version2. Re-run its full matrix and hand/replay cases and the same development seed set. Final seeds remain unused.
+
+## Geometric gap correction, independent of holdout statistics
+
+A separate pairwise geometry audit found twinfold's extra bend bars only46/61/90 units from island boundaries, despite completion tests passing. Move and shorten those bars and move merge guides away from the side rails; version3. This correction is required by the >=96 geometric acceptance rule, not selected to fit final winner counts. Preserve v2 holdout results including its flagged D group result. Version3 uses fresh `fourmaps-final-v3-fair-twinfold-{B|C|D}-0000..0299` seeds, same300 samples and p/.1.5pp criteria. Never reuse v2 holdout seeds to tune or confirm. Re-run twinfold matrix, replay and browser flow. Cascade/rhythm geometry is unchanged.
+
+The same explicit side-wall audit found cascade entry guides at x100/900 had only56 clear units to the rails. Move to x140/860 (96 clear units), preserving all18 shelves and their slopes; cascade version2. Preserve prior version1 holdout. New independent final prefix `fourmaps-final-v2-fair-cascade-`, same300 samples per protocol. Rhythm geometry passes the new all-pairs and wall clearance audit unchanged.
