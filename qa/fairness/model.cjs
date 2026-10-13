@@ -6,7 +6,7 @@ function entries(groups){return P.parseNames(groups.map((n,i)=>P.COLOR_GROUPS[i]
 function permutation(n,seed){const out=Array.from({length:n},(_,i)=>i),r=P.seedRandom(seed+'|participant-slot-v2');for(let i=n-1;i>0;i--){const j=Math.floor(r()*(i+1));[out[i],out[j]]=[out[j],out[i]];}return out;}
 function gesture(seed,protocol){if(protocol==='B')return {kind:'none',duration:0};if(protocol==='C')return {kind:'circle',duration:2,direction:1,radius:.12,speed:8};const r=P.seedRandom(seed+'|gesture');return {kind:['circle','eight','shake','none'][Math.floor(r()*4)],duration:r()*6,direction:r()<.5?-1:1,radius:.03+r()*.17,speed:2+r()*10};}
 function capture(config,seed,protocol){
- const p=new P.Physics({names:entries(config.groups),seed,radius:config.radius||12,gravity:config.gravity||620,restitution:config.restitution||.72,skills:!!config.skills}),c=Object.create(P.Cinematic.prototype);Object.assign(c,{width:1280,height:720,lastTime:0,lastStage:null,resize(){}});
+ const p=new P.Physics({names:entries(config.groups),seed,map:config.map?P.MAPS[config.map]:undefined,radius:config.radius||12,gravity:config.gravity||620,restitution:config.restitution||.72,skills:!!config.skills}),c=Object.create(P.Cinematic.prototype);Object.assign(c,{width:1280,height:720,lastTime:0,lastStage:null,resize(){}});
  const s=new P.HandScene(c),gate=s.gate=new P.ThrowGate();s.begin(p);now=0;
  const update=()=>{now+=1000/120;s.update(1/120);};for(let i=0;i<120;i++)update();
  const rig=s.rigAt(s.elapsed,s.area()),start={x:rig.x+rig.length*.4,y:rig.y,time:now};if(!s.beginTilt(start))throw new Error('tilt rejected');s.releaseTilt({...start,x:rig.x+rig.length*.12,y:rig.y+rig.length*.45});for(let t=0;t<2400&&!s.ready;t++)update();if(!s.ready)throw new Error('pour timeout');
