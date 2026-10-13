@@ -3,7 +3,7 @@
   // Reference samples are compiled from measured QA runs, never fetched at runtime.
   P.RACE_WARNING_SECONDS=120;
   P.estimateRaceDuration=function(settings,count){
-    const rows=(P.RACE_DURATION_SAMPLES||[]).filter(r=>r.skills===!!settings.skills);
+    const rows=(P.RACE_DURATION_SAMPLES||[]).filter(r=>(r.map||'classic')===(settings.map||'classic') && r.skills===!!settings.skills);
     if(!rows.length||!Number.isFinite(count)||count<1)return null;
     const distance=r=>Math.abs(Math.log(count/r.count))*2+Math.abs(Number(settings.radius)-r.radius)/8+Math.abs(Math.log(Number(settings.gravity)/r.gravity))+Math.abs(Number(settings.restitution)-r.restitution)/.57;
     const ranked=rows.map(row=>({row,distance:distance(row)})).sort((a,b)=>a.distance-b.distance),best=ranked[0].distance;

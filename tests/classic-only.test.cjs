@@ -23,5 +23,5 @@ test('classic includes a narrowing winding chute with closed collision walls and
   }
   assert.equal(P.courseBounds(map,1000).left,36);assert.equal(P.courseBounds(map,5500).right,964);
   const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
-  assert.doesNotMatch(html,/data-map=|id="map-label"|class="map-grid"|코스를 골라/);
+  assert.match(html,/id="map-grid"/);
 });

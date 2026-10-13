@@ -105,7 +105,7 @@ function boot(storage, options = {}) {
   const context = vm.createContext({ window, document: { hidden: false, getElementById: () => ({}), documentElement: { classList: { toggle() {} } }, addEventListener() {} },
     localStorage: storage || { getItem() { throw new Error('Storage denied'); }, setItem() { throw new Error('Storage denied'); } },
     requestAnimationFrame(callback) { frame = callback; }, performance: { now: () => clock }, Uint32Array, Date, Math, console });
-  for (const file of ['maps.js', 'physics.js', 'shuffle.js', 'hand-start.js', 'throw-gate.js', 'race-standing.js', 'main.js']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context, { filename: file });
+  for (const file of ['maps.js', 'map-registry.js', ...(['twinfold','cascade','rhythm'].filter(id=>fs.existsSync(path.join(root,'js/maps/'+id+'.js'))).map(id=>'maps/'+id+'.js')), 'physics.js', 'shuffle.js', 'hand-start.js', 'throw-gate.js', 'race-standing.js', 'main.js']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context, { filename: file });
   if (!options.intro) callbacks.enter();
   function advance(seconds, frameRate = 60) {
     const count = Math.ceil(seconds * frameRate);

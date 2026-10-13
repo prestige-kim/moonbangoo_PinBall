@@ -99,7 +99,8 @@
     this.radius = clamp(Number(options.radius) || 12, 7, 18);
     this.gravity = clamp(Number(options.gravity) || P.PHYSICS_TUNING.gravity, 300, 1800);
     this.restitution = clamp(Number(options.restitution) || 0.72, 0.3, 0.95);
-    this.skills = !!options.skills;
+    this.mapPolicy = P.mapInfo ? P.mapInfo(this.map.id) : { skills: true, recovery: true };
+    this.skills = this.mapPolicy.skills && !!options.skills;
     this.time = 0;
     this.ticks = 0;
     this.finished = [];
@@ -567,7 +568,7 @@
       var ball = this.marbles[n];
       if (ball.finished) continue;
       if (ball.y > ball._anchorY + P.PHYSICS_TUNING.rescueProgress) { ball._anchorY = ball.y; ball._stuckAt = this.time; ball._rescues = 0; }
-      if (this.time - ball._stuckAt >= P.PHYSICS_TUNING.rescueDelay) {
+      if (this.mapPolicy.recovery && this.time - ball._stuckAt >= P.PHYSICS_TUNING.rescueDelay) {
         // A separate, disclosed stuck-recovery rule; never consume the skill RNG.
         // Alternate sides on repeated attempts instead of repeatedly pushing into a wall.
         var direction = ball._rescueDirection * (ball._rescues % 2 ? -1 : 1);

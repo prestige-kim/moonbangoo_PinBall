@@ -22,6 +22,7 @@
     this.handlers = {};
     this.rule = 'first';
     this.theme = 'cosmic';
+    this.map = 'classic';
     this.locked = false;
     this.rankingNodes = new Map();
     this.liveLeader = new P.LiveLeader();
@@ -44,6 +45,7 @@
       var previous = JSON.parse(localStorage.getItem('mungbanggu-pinball-last-round') || 'null');
       if (previous && typeof previous.seed === 'string' && previous.seed && P.parseNames(previous.names).length) this.lastRound = previous;
     } catch (_) {}
+    this.buildMapCards();
     this.bind();
     $('reduced-motion').checked = !!(global.matchMedia && global.matchMedia('(prefers-reduced-motion: reduce)').matches);
     document.documentElement.classList.toggle('reduced-motion', $('reduced-motion').checked);
@@ -53,6 +55,34 @@
     this.setScene(document.body.dataset.scene || 'intro');
     global.addEventListener('resize', this.boundResize);
   }
+  UI.prototype.buildMapCards = function () {
+    if (!P.MAP_INFO || !$('map-grid')) return;
+    Object.keys(P.MAPS).forEach(function (id) {
+      var info = P.mapInfo(id), button = document.createElement('button');
+      button.type = 'button'; button.dataset.map = id; button.className = 'map-card';
+      button.style.setProperty('--map-accent', info.accent);
+      var picture = document.createElement('canvas'); picture.width = 76; picture.height = 64; picture.setAttribute('aria-hidden', 'true');
+      var ctx = picture.getContext('2d'), map = P.MAPS[id], sx = 68 / map.width, sy = 56 / map.height;
+      ctx.translate(4, 4); ctx.fillStyle = info.accent; ctx.strokeStyle = info.accent;
+      map.obstacles.forEach(function (o) {
+        if (o.type === 'polygon') { ctx.beginPath(); o.points.forEach(function (p, i) { if (i) ctx.lineTo(p.x*sx,p.y*sy); else ctx.moveTo(p.x*sx,p.y*sy); }); ctx.closePath(); ctx.globalAlpha=.3; ctx.fill(); ctx.globalAlpha=1; }
+        else if (o.type === 'segment' || o.type === 'moving' || o.type === 'rotor') { var a=o.angle||0, x=o.x1 == null?o.x-Math.cos(a)*o.length/2:o.x1, y=o.y1 == null?o.y-Math.sin(a)*o.length/2:o.y1, xx=o.x2 == null?o.x+Math.cos(a)*o.length/2:o.x2, yy=o.y2 == null?o.y+Math.sin(a)*o.length/2:o.y2; ctx.lineWidth=1.3; ctx.beginPath(); ctx.moveTo(x*sx,y*sy); ctx.lineTo(xx*sx,yy*sy); ctx.stroke(); }
+        else if (o.type === 'pin') { ctx.fillRect(o.x*sx,o.y*sy,1,1); }
+      });
+      var copy = document.createElement('span'), name = document.createElement('strong'), detail = document.createElement('small');
+      name.textContent = info.name; detail.textContent = info.description; copy.append(name, detail); button.append(picture, copy); $('map-grid').append(button);
+    });
+  };
+  UI.prototype.syncMap = function () {
+    if (!P.mapInfo) return;
+    var info = P.mapInfo(this.map), self = this;
+    document.querySelectorAll('[data-map]').forEach(function (button) { var active=button.dataset.map===self.map; button.setAttribute('aria-pressed',String(active)); button.classList.toggle('active',active); button.disabled=self.locked || self.scene !== 'setup'; });
+    if (!info.skills) $('skills').checked = false;
+    $('skills').disabled = this.locked || !info.skills;
+    if ($('map-policy')) $('map-policy').textContent = info.skills ? '기본 코스 · 기존 스킬과 막힘 방지 설정을 유지합니다.' : '지형과 충돌로 진행해요. 랜덤 스킬과 강제로 밀어주는 막힘 방지는 사용하지 않아요.';
+    if ($('recovery-label')) $('recovery-label').textContent = info.recovery ? '막힘 방지' : '자연스러운 통과';
+    var note = document.querySelector('.recovery-note'); if (note) note.textContent = info.recovery ? '약 3초 동안 앞으로 나아가지 못한 핀볼을 가볍게 밀어줍니다. 랜덤 스킬과 별도로 작동하며, 같은 시드에서는 동일하게 적용됩니다.' : '경사진 지형과 열린 통로로 빠져나갑니다. 공의 위치나 속도를 강제로 바꾸지 않습니다.';
+  };
   UI.prototype.on = function (action, handler) {
     (this.handlers[action] || (this.handlers[action] = [])).push(handler);
     return this;
@@ -69,6 +99,13 @@
       if (!self.isGameScene() && !event.ctrlKey && !event.metaKey && !event.altKey && event.key.toLowerCase() === 'f') { event.preventDefault(); event.stopImmediatePropagation(); }
     }, true);
     this.bindSceneKeys();
+    if ($('map-grid')) $('map-grid').addEventListener('click', function (event) {
+      var button = event.target.closest('[data-map]');
+      if (!button || self.locked || self.scene !== 'setup') return;
+      self.map = P.resolveMapId(button.dataset.map);
+      $('seed').value = ''; self.syncSeed(); self.syncMap(); self.updateDuration();
+      self.emit('change', self.readSettings());
+    });
     $('color-groups').addEventListener('click', function (event) {
       var button = event.target.closest('[data-color-group]');
       if (!button || self.locked) return;
@@ -163,12 +200,12 @@
   UI.prototype.readSettings = function () {
     return {
       names: $('names').value, rule: this.rule, rankN: Number($('rank-n').value),
-      map: 'classic', theme: this.theme, radius: Number($('radius').value),
+      map: this.map, theme: this.theme, radius: Number($('radius').value),
       gravity: Number($('gravity').value), restitution: Number($('restitution').value),
       speed: Number($('speed').value), sound: $('sound').checked, volume: Number($('volume').value),
-      quality: $('quality').value, seed: $('seed').value, skills: $('skills').checked,
+      quality: $('quality').value, seed: $('seed').value, skills: (!P.mapInfo || P.mapInfo(this.map).skills) && $('skills').checked,
       reducedMotion: $('reduced-motion').checked,
-      replayStart: $('seed').value && this.lastRound && $('seed').value === this.lastRound.seed ? this.lastRound.replayStart || null : null
+      replayStart: $('seed').value && this.lastRound && $('seed').value === this.lastRound.seed && this.map === (this.lastRound.map || 'classic') ? this.lastRound.replayStart || null : null
     };
   };
   UI.prototype.load = function (settings) {
@@ -176,6 +213,7 @@
     ['names', 'radius', 'gravity', 'restitution', 'speed', 'volume', 'quality', 'seed'].forEach(function (id) {
       if (settings[id] !== undefined) $(id).value = settings[id];
     });
+    this.map = P.resolveMapId ? P.resolveMapId(settings.map) : 'classic';
     this.groupCounts = P.colorSelection(settings.names);
     $('names').value = P.colorNames(this.groupCounts);
     this.renderGroups(); this.updateParticipants();
@@ -186,7 +224,7 @@
     if (settings.reducedMotion !== undefined) $('reduced-motion').checked = !!settings.reducedMotion;
     this.rule = settings.rule || this.rule;
     this.setTheme(settings.theme || this.theme);
-    this.syncSelections(); this.syncSound(); this.updateOutputs(); this.updateParticipants();
+    this.syncMap(); this.syncSelections(); this.syncSound(); this.updateOutputs(); this.updateParticipants();
   };
   UI.prototype.setTheme = function () {
     this.theme = 'cosmic';
@@ -224,7 +262,7 @@
     var output = $('duration-estimate'), warning = $('duration-warning');
     if (!output || !warning || !P.estimateRaceDuration) return;
     var estimate = P.estimateRaceDuration(this.readSettings(), this.groupTotal());
-    output.textContent = estimate ? '약 ' + P.durationText(estimate.p50) + '–' + P.durationText(estimate.p95) + (estimate.approximate ? ' · 유사 설정 참고값' : ' · 측정 참고값') : '핀볼을 선택해 주세요';
+    output.textContent = estimate ? '약 ' + P.durationText(estimate.p50) + '–' + P.durationText(estimate.p95) + (estimate.approximate ? ' · 유사 설정 참고값' : ' · 측정 참고값') : (this.groupTotal() ? '이 맵의 경기 시간 측정 중' : '핀볼을 선택해 주세요');
     warning.hidden = !estimate || !estimate.warning;
     warning.textContent = '이 설정에서는 경기 시간이 ' + P.durationText(P.RACE_WARNING_SECONDS) + '보다 길어질 수 있어요.';
   };
@@ -306,10 +344,11 @@
   };
   UI.prototype.setLocked = function (value) {
     this.locked = !!value;
-    document.querySelectorAll('[data-physical], [data-rule], #names, #rank-n, #rank-minus, #rank-plus, #seed-auto, #seed-previous').forEach(function (control) { control.disabled = !!value; });
+    document.querySelectorAll('[data-physical], [data-rule], [data-map], #names, #rank-n, #rank-minus, #rank-plus, #seed-auto, #seed-previous').forEach(function (control) { control.disabled = !!value; });
     if (P.COLOR_GROUPS && this.groupCounts) this.renderGroups();
     if (this.groupCounts) { this.updateParticipants(); this.syncSeed(); }
     else $('start-button').disabled = !!value;
+    this.syncMap();
     this.updateStartCopy();
     if (value && this.isGameScene() && global.innerWidth <= 850 && this.panelOpen) { this.panelOpen = false; this.updatePanel(); }
   };
@@ -400,7 +439,7 @@
     document.body.classList.remove('intro-active','launch-active');
     if (!this.isGameScene()) this.panelOpen = stage === 'setup';
     else if (previous !== 'running' && previous !== 'finished') this.panelOpen = false;
-    this.updatePanel(); this.syncSceneAccess(); this.setStatus(stage);
+    this.updatePanel(); this.syncSceneAccess(); this.setStatus(stage); this.syncMap();
     this.setSceneProgress({ reveal: this.isGameScene() ? 1 : 0 });
     $('scene-status').textContent = '';
     if (!this.isGameScene()) { this.hideResults(); this.hideCountdown(); }
@@ -471,6 +510,7 @@
   };
   UI.prototype.updateHUD = function (data) {
     var self = this;
+    if (data.map && $('hud-map-name')) $('hud-map-name').textContent = data.map.name;
     if (typeof data.total === 'number') this.totalCount = data.total;
     if (typeof data.remaining === 'number') {
       var target = data.remaining;
@@ -551,6 +591,7 @@
   UI.prototype.clearError = function () { $('input-error').hidden = true; $('input-error').textContent = ''; $('names').removeAttribute('aria-invalid'); };
   UI.prototype.showResults = function (data) {
     this.resultData = data;
+    if ($('result-map') && P.mapInfo) $('result-map').textContent = P.mapInfo(data.map || this.map).name;
     var winners = Array.isArray(data.winners) ? data.winners : [];
     $('winner-heading').textContent = winners.length > 3 ? winners.length + '명 당첨' : (winners.length ? winners.map(function (winner) { return winner.name; }).join(' · ') : (data.stoppedEarly ? '도착 결과' : '당첨 결과'));
     $('winner-heading').classList.remove('winner-reveal'); void $('winner-heading').offsetWidth; $('winner-heading').classList.add('winner-reveal');

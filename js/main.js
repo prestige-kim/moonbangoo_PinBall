@@ -18,7 +18,7 @@
     const s = Object.assign({}, defaults, input || {});
     s.names = typeof s.names === 'string' ? s.names : defaults.names;
     s.seed = typeof s.seed === 'string' ? s.seed.trim().slice(0, 128) : defaults.seed;
-    s.map = 'classic';
+    s.map = P.resolveMapId(s.map);
     s.theme = defaults.theme;
     s.rule = ['first', 'last', 'nth', 'top'].includes(s.rule) ? s.rule : 'first';
     s.rankN = Number(s.rankN);
@@ -28,7 +28,7 @@
     s.speed = clamp(s.speed, 0.5, 3, defaults.speed);
     s.volume = clamp(s.volume, 0, 1, defaults.volume);
     s.quality = QUALITY_ORDER.includes(s.quality) ? s.quality : 'high';
-    s.sound = !!s.sound; s.skills = !!s.skills; s.reducedMotion = !!s.reducedMotion;
+    s.sound = !!s.sound; s.skills = P.mapInfo(s.map).skills && !!s.skills; s.reducedMotion = !!s.reducedMotion;
     return s;
   }
   function readSaved() {
@@ -151,6 +151,7 @@
   function visualSettings() {
     ui.setTheme(settings.theme);
     renderer.setTheme(settings.theme);
+    if (renderer.setMap) renderer.setMap(settings.map);
     renderer.setQuality(settings.quality);
     if (cinematic.setQuality) cinematic.setQuality(settings.quality);
     if (effects.setQuality) effects.setQuality(settings.quality);
@@ -381,7 +382,7 @@
       resultDelay -= dt;
       if (resultDelay <= 0) {
         resultShown = true;
-        ui.showResults({ winners: resultWinners(), ranking: finalRanking, stoppedEarly: stoppedEarly, total: physics.marbles.length, seed: runSettings.seed, time: physics.time, ruleLabel: P.ruleLabel(runSettings) });
+        ui.showResults({ winners: resultWinners(), ranking: finalRanking, stoppedEarly: stoppedEarly, total: physics.marbles.length, seed: runSettings.seed, time: physics.time, map: runSettings.map, ruleLabel: P.ruleLabel(runSettings) });
       }
     }
     const map = P.MAPS[(runSettings || settings).map];

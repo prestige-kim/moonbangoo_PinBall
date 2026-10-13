@@ -92,6 +92,11 @@
 
           <details class="advanced-settings" id="advanced-settings"><summary><span><svg class="icon"><use href="#i-settings"/></svg>세부 설정</span><svg class="icon disclosure-chevron"><use href="#i-chevron"/></svg></summary>
             <div class="advanced-content">
+          <section class="settings-section map-section" aria-labelledby="map-label">
+            <div class="section-label"><span id="map-label">놀이판 선택</span><span class="tiny-label">4가지 코스</span></div>
+            <div id="map-grid" class="map-grid" role="group" aria-labelledby="map-label"></div>
+            <p id="map-policy" class="map-policy"></p>
+          </section>
           <section class="settings-section" aria-labelledby="recovery-label">
             <div class="section-label"><span id="recovery-label">막힘 방지</span><span class="tiny-label">모든 핀볼에 자동 적용</span></div>
             <p class="recovery-note">약 3초 동안 앞으로 나아가지 못한 핀볼을 가볍게 밀어줍니다. 랜덤 스킬과 별도로 작동하며, 같은 시드에서는 동일하게 적용됩니다.</p>
@@ -124,7 +129,7 @@
 
 
     <aside class="race-panel" aria-label="실시간 경기 정보">
-      <div class="race-stats glass-panel"><div><span class="eyebrow">굴러가는 핀볼</span><strong id="remaining">6<span> / 6</span></strong><small>남은 핀볼</small></div><div><span class="eyebrow">TIME</span><strong id="elapsed">00:00<small>.00</small></strong><small>경과 시간</small></div></div>
+      <p id="hud-map-name" class="hud-map-name"></p><div class="race-stats glass-panel"><div><span class="eyebrow">굴러가는 핀볼</span><strong id="remaining">6<span> / 6</span></strong><small>남은 핀볼</small></div><div><span class="eyebrow">TIME</span><strong id="elapsed">00:00<small>.00</small></strong><small>경과 시간</small></div></div>
       <div class="ranking-panel glass-panel"><div class="ranking-heading"><span class="eyebrow">지금의 순위</span><svg class="icon"><use href="#i-crown"/></svg></div><ol id="live-ranking" aria-label="실시간 상위 순위"><li class="ranking-empty"><span class="empty-rank-orbit" aria-hidden="true"></span><span>누가 먼저 도착할까요?<small>출발하면 순위가 표시됩니다</small></span></li></ol><div class="ranking-foot"><span class="live-dot"></span>한 알 한 알, 모두의 작은 가능성</div></div>
       <div class="minimap-panel glass-panel"><div class="minimap-heading"><span class="eyebrow">놀이판 한눈에</span><span class="tiny-label">LIVE</span></div><canvas id="minimap" width="160" height="208" aria-label="놀이판 전체, 선두 핀볼과 카메라 위치를 보여 주는 미니맵"></canvas><button id="follow-button" class="follow-button active" type="button" aria-pressed="true"><svg class="icon"><use href="#i-target"/></svg>선두 따라가기<span>F</span></button></div>
     </aside>
@@ -148,11 +153,12 @@
     <div class="result-meta"><span>TIME <b id="result-time"></b></span></div>
     <div class="result-ranking-heading"><span id="result-ranking-title">최종 순위</span><span id="result-total"></span></div>
     <ol id="result-ranking" class="result-ranking"></ol><button type="button" id="show-all-results" class="text-button show-all-results" hidden>전체 순위 보기</button>
+    <p id="result-map" class="results-note"></p>
     <p id="result-note" class="results-note" hidden></p>
     <div class="result-actions"><button type="button" id="restart-button" class="start-button"><svg class="icon"><use href="#i-play"/></svg>같은 멤버로 다시 섞기</button><button type="button" id="replay-button" class="secondary-button"><svg class="icon"><use href="#i-reset"/></svg>다시 설정하기</button></div>
     <a id="results-home-link" class="results-home-link" href="https://jeondowon.github.io/moonbangoo/"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8"/></svg>어른뭉방구 홈으로</a>
   </dialog>
 
-  <script src="./js/themes.js"></script><script src="./js/maps.js?v=soft-long-course-20261011"></script><script src="./js/physics.js?v=soft-long-course-20261011"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/race-standing.js?v=winding-channel-20261011"></script><script src="./js/renderer.js?v=soft-long-course-20261011"></script><script src="./js/cinematic.js?v=original-tube-alpha-local-20261011"></script><script src="./js/shuffle.js?v=interactive-tilt-local-20261011"></script><script src="./js/hand-start.js?v=release-93e4ed9bae2d"></script><script src="./js/shuffle-input.js?v=hand-20261007"></script><script src="./js/throw-gate.js?v=northeast-exit-20261011"></script><script src="./js/hand-scene.js?v=original-tube-alpha-local-20261011"></script><script src="./js/hand-flight.js?v=tube-pour-qa-20261011-final"></script><script src="./js/race-duration-data.js"></script><script src="./js/race-duration.js"></script><script src="./js/ui.js?v=release-573dc17be28e"></script><script src="./js/main.js?v=release-b1b6cc063174"></script>
+  <script src="./js/themes.js"></script><script src="./js/maps.js?v=soft-long-course-20261011"></script><script src="./js/map-registry.js"></script><script src="./js/physics.js?v=soft-long-course-20261011"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/race-standing.js?v=winding-channel-20261011"></script><script src="./js/renderer.js?v=soft-long-course-20261011"></script><script src="./js/cinematic.js?v=original-tube-alpha-local-20261011"></script><script src="./js/shuffle.js?v=interactive-tilt-local-20261011"></script><script src="./js/hand-start.js?v=release-93e4ed9bae2d"></script><script src="./js/shuffle-input.js?v=hand-20261007"></script><script src="./js/throw-gate.js?v=northeast-exit-20261011"></script><script src="./js/hand-scene.js?v=original-tube-alpha-local-20261011"></script><script src="./js/hand-flight.js?v=tube-pour-qa-20261011-final"></script><script src="./js/race-duration-data.js"></script><script src="./js/race-duration.js"></script><script src="./js/ui.js?v=release-573dc17be28e"></script><script src="./js/main.js?v=release-b1b6cc063174"></script>
 </body>
 </html>
