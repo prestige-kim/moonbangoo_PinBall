@@ -6,8 +6,8 @@ test('rhythm has exactly six tick-driven opposed bars with open central and late
   for(let tick=0;tick<=960;tick++){p.time=tick/120;const l=p.getObstaclePose(a),r=p.getObstaclePose(b),left=Math.max(l.x1,l.x2)+a.thickness,right=Math.min(r.x1,r.x2)-b.thickness;assert.ok(right-left>=96);assert.ok(Math.min(l.x1,l.x2)-a.thickness-36>=96);assert.ok(964-Math.max(r.x1,r.x2)-b.thickness>=96);assert.ok(Math.abs(l.vx)<=44+1e-9);assert.ok(Math.abs(l.vx+r.vx)<1e-8);}
  }
 });
-test('rhythm completes 1..500 balls without force recovery, and grouping does not change results',()=>{
- for(const n of [1,2,6,50,200,500])assertRun(run('rhythm',n,'fourmaps-dev-rhythm-smoke-'+n));
+test('rhythm completes 1..50 balls without force recovery, and grouping does not change results',()=>{
+ for(const n of [1,2,6,25,49,50])assertRun(run('rhythm',n,'fourmaps-dev-rhythm-smoke-'+n));
  assert.deepEqual(run('rhythm',6,'repeat',{},null,[1]).ranking,run('rhythm',6,'repeat',{},null,[4,2,1]).ranking);
 });
 

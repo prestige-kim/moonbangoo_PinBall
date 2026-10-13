@@ -71,10 +71,10 @@ test('rotated rounded boost areas apply force exactly within the visible region,
 test('the visible inner rail also contains initial positions, bounces and finished marbles', () => {
   for (const map of Object.values(P.MAPS)) {
     for (const radius of [8, 16, 18]) {
-      const p = new P.Physics({ map, names: names(500), radius, seed: 'rail-packing' });
+      const p = new P.Physics({ map, names: names(50), radius, seed: 'rail-packing' });
       for (const m of p.marbles) {
         assert.ok(m.x - m.r >= 36 && m.x + m.r <= map.width - 36, 'spawn lies inside the inner rail');
-        assert.ok(m.y + m.r <= map.spawn.y + map.spawn.height, '500 balls fit above the first obstacle');
+        assert.ok(m.y + m.r <= map.spawn.y + map.spawn.height, '50 balls fit above the first obstacle');
       }
       const m = p.marbles[0];
       Object.assign(m, { x: 5, vx: -300, y: 1000 }); p._walls(m);
@@ -108,8 +108,8 @@ test('stuck recovery is a distinct, repeatable event and lets a balanced ball fi
   assert.equal(run([1]), run([2, 4, 1, 7]));
 });
 
-test('classic: 500 balls leave no deep obstacle overlap after each physics tick', () => {
-  const p = new P.Physics({ map: P.MAPS.classic, names: names(500), seed: 'CLASSIC-CONTACT-500', radius: 8, gravity: 1500, restitution: .35 });
+test('classic: 50 balls leave no deep obstacle overlap after each physics tick', () => {
+  const p = new P.Physics({ map: P.MAPS.classic, names: names(50), seed: 'CLASSIC-CONTACT-500', radius: 8, gravity: 1500, restitution: .35 });
   Object.create(P.Cinematic.prototype).commitShuffle(p);
   let worst = 0, where;
   while (!p.complete && p.time < 60) {
@@ -121,7 +121,7 @@ test('classic: 500 balls leave no deep obstacle overlap after each physics tick'
       if (amount > worst) { worst = amount; where = { time: p.time, marble: m.id, obstacle: o.id }; }
     }
   }
-  assert.ok(p.complete && p.finished.length === 500, 'all 500 balls finish the audited race');
+  assert.ok(p.complete && p.finished.length === 50, 'all 50 balls finish the audited race');
   assert.ok(worst < .1, `remaining penetration ${worst}: ${JSON.stringify(where)}`);
 });
 

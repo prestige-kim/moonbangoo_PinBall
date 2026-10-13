@@ -58,9 +58,9 @@ test('small groups occupy separated full-width lanes and participant ownership c
   assert.ok(Math.max(...singles) - Math.min(...singles) > map.spawn.width * 0.85, 'a single participant samples the launch width across seeds');
 });
 
-test('one to 500 participants and radii seven to eighteen stay packed inside the spawn', () => {
+test('one to 50 participants and radii seven to eighteen stay packed inside the spawn', () => {
   for (let radius = 7; radius <= 18; radius++) {
-    for (const count of [1, 2, 6, 31, 50, 100, 200, 499, 500]) {
+    for (const count of [1,2,6,25,31,49,50]) {
       assertPacking(spawn(count, 'packing-' + radius + '-' + count, radius));
     }
   }

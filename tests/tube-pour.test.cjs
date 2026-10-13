@@ -1,7 +1,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const box={window:{},document:{},Math,performance};vm.createContext(box);
 for(const f of ['maps','physics','cinematic','shuffle','throw-gate','hand-scene'])vm.runInContext(fs.readFileSync(__dirname+'/../js/'+f+'.js','utf8'),box);
-const P=box.window.CosmicPinball,counts=[6,50,200,500],sizes=[[1280,720],[390,844],[844,390],[320,568]];
+const P=box.window.CosmicPinball,counts=[6,25,49,50],sizes=[[1280,720],[390,844],[844,390],[320,568]];
 function setup(n,w=1280,h=720,reduced=false){
  const physics=new P.Physics({map:P.MAPS.classic,names:P.parseNames('구슬*'+n),seed:'POUR-QA-'+n});
  const ctx=new Proxy({createLinearGradient(){return{addColorStop(){}};},createRadialGradient(){return{addColorStop(){}};}},{get:(o,k)=>o[k]||(()=>{})});
@@ -66,7 +66,7 @@ test('receiving solver inherits exact exit position, tangent velocity and collis
   }step(dt);};finish(s.scene);assert.equal(seen.size,n);
  }
 });
-test('gravity deposited balls meet the floor and avoid deep overlap including 500 balls',()=>{
+test('gravity deposited balls meet the floor and avoid deep overlap including 50 balls',()=>{
  for(const n of counts){const s=setup(n);finish(s.scene);advance(s.scene,2);const c=s.scene.shuffle;let worst=0;
   for(let i=0;i<n;i++){const b=c.bodies[i];assert(!b.pouring);assert(b.x-b.r>=c.bounds.outer.left-1e-8&&b.x+b.r<=c.bounds.outer.right+1e-8&&b.y-b.r>=c.bounds.outer.top-1e-8&&b.y+b.r<=c.bounds.outer.bottom+1e-8);
    for(let j=0;j<i;j++){const a=c.bodies[j];worst=Math.max(worst,(a.r+b.r-Math.hypot(a.x-b.x,a.y-b.y))/(a.r+b.r));}
@@ -74,7 +74,7 @@ test('gravity deposited balls meet the floor and avoid deep overlap including 50
  }
 });
 test('fixed-step tilt and release preserve physical outcomes across render frame grouping and motion settings',()=>{
- for(const n of [6,500]){let baseline;
+ for(const n of [6,50]){let baseline;
   for(const fps of [24,60,120])for(const reduced of [false,true]){
    const s=setup(n,390,844,reduced);advance(s.scene,1,fps);tilt(s.scene);advance(s.scene,18,fps);
    assert(s.scene.ready);const actual=JSON.stringify(s.scene.shuffle.snapshot());if(baseline)assert.equal(actual,baseline);else baseline=actual;

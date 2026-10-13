@@ -291,7 +291,7 @@ test('race finishes, shows seeded results and same-member restart reproduces ord
 
 test('sustained slow rendering lowers quality without resetting physics', () => {
   const { P, callbacks, advance, launch } = boot();
-  Object.assign(P.app.ui.values, { names: '참가자*200', speed: 0.5 });
+  Object.assign(P.app.ui.values, { names: '참가자*20', speed: 0.5 });
   callbacks.start(); launch();
   const originalPhysics = P.app.physics;
   advance(15, 20);
@@ -310,7 +310,7 @@ test('a natural six-marble race triggers lead changes and celebration', () => {
 
 test('crowded races announce only settled leader changes and keep arrival results intact', () => {
   const { P, callbacks, advance, launch } = boot();
-  Object.assign(P.app.ui.values, { names: '참가자*200', speed: 3, gravity: 1500, seed: 'VISUAL-HUD-200' });
+  Object.assign(P.app.ui.values, { names: '참가자*20', speed: 3, gravity: 1500, seed: 'VISUAL-HUD-200' });
   callbacks.start(); launch();
   const physics = P.app.physics, notices = [];
   P.app.ui.toast = message => { if (message.startsWith('선두 교체')) notices.push({ message, time: physics.time }); };
@@ -318,7 +318,7 @@ test('crowded races announce only settled leader changes and keep arrival result
   assert.equal(P.app.status, 'finished');
   assert.ok(notices.length <= 3, 'lead messages do not occupy the HUD repeatedly');
   for (let i = 1; i < notices.length; i++) assert.ok(notices[i].time - notices[i - 1].time >= 6, 'lead alerts have breathing room');
-  assert.equal(physics.finished.length, 200);
+  assert.equal(physics.finished.length, 20);
   assert.ok(physics.finished.every(m => Number.isFinite(m.finishTime)));
 });
 

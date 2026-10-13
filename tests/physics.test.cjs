@@ -10,7 +10,7 @@ for (const file of ['maps.js', 'physics.js']) {
 const P = context.window.CosmicPinball;
 assert.equal(P.parseNames('수박*2,키위*2,귤*2').length, 6);
 assert.equal(P.parseNames('가\n나\n다').length, 3);
-for (const invalid of ['', '가,,나', '가,가', '가*0', '가*1.5', '*2', '가*501', '<script>']) {
+for (const invalid of ['', '가,,나', '가,가', '가*0', '가*1.5', '*2', '가*51', '<script>']) {
   assert.throws(() => P.parseNames(invalid), /./, invalid);
 }
 
@@ -58,7 +58,7 @@ function run(map, count, seed = 'physics-test', skills = false, grouping = [1], 
 for (const map of Object.values(P.MAPS)) {
   assert.ok(map.height >= 11000 && map.height <= 11500, 'extended map height');
   assert.ok(map.obstacles.some(obstacle => (obstacle.y || obstacle.y2 || (obstacle.points && obstacle.points[0].y) || 0) > map.finish.y - 500), 'inhabited final course section');
-  for (const count of [2, 50, 200]) {
+  for (const count of [2,25,50]) {
     const result = run(map, count);
     // Duration is an outcome of the corrected geometry (especially portal paths).
     // Course length is checked above; do not pin a seeded trajectory to the old solver's time window.
@@ -71,7 +71,7 @@ for (const map of Object.values(P.MAPS)) {
   const other = run(map, 50, 'different-seed', true);
   assert.notEqual(single.snapshot, other.snapshot, `${map.id} seeds affect physical trajectories`);
 
-  const largeSpawn = new P.Physics({ names: P.parseNames('행운 구슬*500'), map, seed: 'packing', radius: 18 });
+  const largeSpawn = new P.Physics({ names: P.parseNames('행운 구슬*50'), map, seed: 'packing', radius: 18 });
   for (const marble of largeSpawn.marbles) {
     assert.ok(marble.x - marble.r >= map.spawn.x && marble.x + marble.r <= map.spawn.x + map.spawn.width, 'spawn horizontal bounds');
     assert.ok(marble.y - marble.r >= map.spawn.y && marble.y + marble.r <= map.spawn.y + map.spawn.height, 'spawn vertical bounds');
@@ -82,7 +82,7 @@ for (const map of Object.values(P.MAPS)) {
       assert.ok(Math.hypot(a.x - b.x, a.y - b.y) >= a.r + b.r, 'spawn circles do not overlap');
     }
   }
-  const extreme = run(map, 500, 'extreme-settings', true, [4], { radius: 16, gravity: 350, restitution: 0.92 });
-  console.log(`${map.id.padEnd(7)} 500 marbles / low gravity / high bounce / skills: ${extreme.game.time.toFixed(2)}s simulated / ${extreme.duration}ms CPU`);
+  const extreme = run(map, 50, 'extreme-settings', true, [4], { radius: 16, gravity: 350, restitution: 0.92 });
+  console.log(`${map.id.padEnd(7)} 50 marbles / low gravity / high bounce / skills: ${extreme.game.time.toFixed(2)}s simulated / ${extreme.duration}ms CPU`);
 }
 console.log('Input validation, wall containment, complete arrivals, seeded skills and render grouping reproducibility passed.');

@@ -117,19 +117,21 @@
       if (!button || self.locked) return;
       var id = button.dataset.colorGroup;
       if (self.groupCounts[id]) delete self.groupCounts[id];
-      else if (self.groupTotal() < 500) self.groupCounts[id] = 1;
+      else if (self.groupTotal() < P.MAX_MARBLES) self.groupCounts[id] = 1;
       self.commitGroups();
     });
     $('group-quantities').addEventListener('click', function (event) {
       var button = event.target.closest('[data-quantity]');
       if (!button || self.locked) return;
       var id = button.dataset.group, value = self.groupCounts[id] + Number(button.dataset.quantity);
-      if (value >= 1 && self.groupTotal() + Number(button.dataset.quantity) <= 500) self.groupCounts[id] = value;
+      if (value >= 1 && self.groupTotal() + Number(button.dataset.quantity) <= P.MAX_MARBLES) self.groupCounts[id] = value;
       self.commitGroups();
     });
     $('group-quantities').addEventListener('change', function (event) {
       if (self.locked || !event.target.dataset.group) return;
-      self.groupCounts[event.target.dataset.group] = Number(event.target.value);
+      var value = Number(event.target.value), old = self.groupCounts[event.target.dataset.group] || 0;
+      if (!Number.isInteger(value) || value < 1 || self.groupTotal() - old + value > P.MAX_MARBLES) { self.renderGroups(); return; }
+      self.groupCounts[event.target.dataset.group] = value;
       self.commitGroups();
     });
     ['rank-minus', 'rank-plus'].forEach(function (id) {
@@ -222,7 +224,10 @@
     });
     this.map = P.resolveMapId ? P.resolveMapId(settings.map) : 'classic';
     this.classicSkills = typeof settings.classicSkills === 'boolean' ? settings.classicSkills : (this.map === 'classic' ? !!settings.skills : this.classicSkills);
+    this.participantReset = !!settings.participantReset;
+    try { P.parseNames(settings.names); } catch (_) { if (settings.names) this.participantReset = true; }
     this.groupCounts = P.colorSelection(settings.names);
+    if (this.participantReset) { $('seed').value = ''; }
     $('names').value = P.colorNames(this.groupCounts);
     this.renderGroups(); this.updateParticipants();
     if (!this.lastRound) $('seed').value = '';
@@ -285,7 +290,7 @@
       var count = self.groupCounts[group.id] || 0;
       var button = document.createElement('button'); button.type = 'button'; button.id = 'group-' + group.id;
       button.dataset.colorGroup = group.id; button.className = 'color-group';
-      button.setAttribute('aria-pressed', String(count > 0)); button.disabled = self.locked || (!count && self.groupTotal() >= 500);
+      button.setAttribute('aria-pressed', String(count > 0)); button.disabled = self.locked || (!count && self.groupTotal() >= P.MAX_MARBLES);
       var swatch = document.createElement('span'); swatch.className = 'color-swatch'; swatch.style.backgroundColor = group.color; swatch.setAttribute('aria-hidden', 'true');
       button.append(swatch, document.createTextNode(group.name)); $('color-groups').append(button);
       if (!count) return;
@@ -296,11 +301,11 @@
         var step = document.createElement('button'); step.type = 'button'; step.id = 'quantity-' + group.id + (delta < 0 ? '-minus' : '-plus');
         step.dataset.group = group.id; step.dataset.quantity = delta; step.textContent = delta < 0 ? '−' : '+';
         step.setAttribute('aria-label', group.name + (delta < 0 ? ' 수량 줄이기' : ' 수량 늘리기'));
-        step.disabled = self.locked || (delta < 0 ? count === 1 : self.groupTotal() >= 500);
+        step.disabled = self.locked || (delta < 0 ? count === 1 : self.groupTotal() >= P.MAX_MARBLES);
         if (delta < 0) control.append(step);
         else {
           var select = document.createElement('select'); select.id = 'quantity-' + group.id; select.dataset.group = group.id; select.disabled = self.locked;
-          for (var n = 1; n <= 500 - self.groupTotal() + count; n++) { var option = document.createElement('option'); option.value = n; option.textContent = n + '개'; select.append(option); }
+          for (var n = 1; n <= P.MAX_MARBLES - self.groupTotal() + count; n++) { var option = document.createElement('option'); option.value = n; option.textContent = n + '개'; select.append(option); }
           select.value = count; control.append(select, step);
         }
       });
@@ -309,6 +314,7 @@
     if (focus && $(focus) && !$(focus).disabled) $(focus).focus({ preventScroll: true });
   };
   UI.prototype.commitGroups = function () {
+    this.participantReset = false;
     $('names').value = P.colorNames(this.groupCounts);
     $('seed').value = ''; this.syncSeed();
     this.renderGroups(); this.clearError(); this.updateParticipants(); this.emit('change', this.readSettings());
@@ -330,7 +336,7 @@
     this.updateDuration();
     var count = this.groupTotal(), selected = Object.keys(this.groupCounts || {}).length;
     $('participant-count').textContent = count; $('mobile-count').textContent = count;
-    $('names-help').textContent = selected + '개 그룹 · 총 ' + count + '개 / 최대 500개';
+    $('names-help').textContent = selected + '개 그룹 · 총 ' + count + '개 / 최대 50개' + (this.participantReset ? ' · 이전 참가자 설정이 한도를 넘거나 유효하지 않아 기본 6개로 복원했어요.' : '');
     var rank = Math.max(1, Math.min(count || 1, Number($('rank-n').value) || 1));
     $('rank-n').replaceChildren();
     for (var n = 1; n <= Math.max(1, count); n++) { var option = document.createElement('option'); option.value = n; option.textContent = n; $('rank-n').append(option); }

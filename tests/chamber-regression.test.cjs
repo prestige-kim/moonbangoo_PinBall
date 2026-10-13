@@ -25,8 +25,8 @@ test('same participants retain chamber position and velocity when a seeded run r
  s.previewChamber.seek(2,true);const before=JSON.stringify(s.previewChamber.bodies);s.lastStage='setup';s.entries(b);
  assert.equal(JSON.stringify(s.chamber.bodies),before);
 });
-test('6, 50, 200 and 500 circles remain contained, exchange order and avoid deep overlap',()=>{
- for(const n of [6,50,200,500]) {
+test('6, 25, 49 and 50 circles remain contained, exchange order and avoid deep overlap',()=>{
+ for(const n of [6,25,49,50]) {
   const c=new P.CINEMA.Chamber(P.CINEMA.descriptors(game(n,'CONTACT-'+n)),'CONTACT-'+n);
   const initial=c.bodies.slice().sort((a,b)=>a.x-b.x).map(b=>b.index).join(',');let overlap=0;
   const started=performance.now();
@@ -59,7 +59,7 @@ test('waiting duration cannot change assigned slots or seeded race results',()=>
 });
 
 test('same seed assigns identical slots for every count and waiting/frame schedule',()=>{
- for(const n of [6,50,200,500]) {
+ for(const n of [6,25,49,50]) {
   let expected;
   for(const wait of [0,.3,2]) {
    const pre=game(n,'PRE-'+n),run=game(n,'RUN-'+n),s=Object.create(P.Cinematic.prototype);s.lastTime=0;s.entries(pre);
@@ -82,7 +82,7 @@ test('camera orbit projects visible contacts and glass boundary in the same plan
 });
 
 test('post-blur pressure pulses also avoid deep overlap after a live waiting chamber',()=>{
- for(const n of [6,50,200,500]) {
+ for(const n of [6,25,49,50]) {
   const c=new P.CINEMA.Chamber(P.CINEMA.descriptors(game(n,'GLASS-QA-'+n)),'GLASS-QA-'+n);c.seek(2,true);
   c.pressureOrigin=c.ticks/120+P.CINEMA.timing.blurClear/P.CINEMA.timing.mixing*P.CINEMA.timing.chamberMix;
   let overlap=0;
@@ -98,7 +98,7 @@ test('post-blur pressure pulses also avoid deep overlap after a live waiting cha
 });
 
 test('all participant counts reproduce final identities and arrival times despite different waits',()=>{
- for(const n of [6,50,200,500]) {
+ for(const n of [6,25,49,50]) {
   let expected;
   for(const wait of [0,2]) {
    const pre=game(n,'PREVIEW'),run=game(n,'RACE-REPLAY-'+n),s=Object.create(P.Cinematic.prototype);s.lastTime=0;s.entries(pre);

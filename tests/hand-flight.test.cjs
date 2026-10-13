@@ -81,7 +81,7 @@ test('gesture direction changes the visible path while endpoints retain their ow
 });
 
 test('all IDs reach exact map sprites on desktop, portrait and landscape for every count', () => {
-  for (const count of [6, 50, 200, 500]) for (const [width, height] of [[1280,720],[390,844],[844,390]]) for (const reduced of [false,true]) {
+  for (const count of [6,25,49,50]) for (const [width, height] of [[1280,720],[390,844],[844,390]]) for (const reduced of [false,true]) {
     const s = scene(count, width, height, reduced), snapshotBefore = snapshot(s.physics.marbles);
     const twin = new P.Physics({ names: P.parseNames('참가자*' + count), map: P.MAPS.classic, seed: s.physics.seed });
     for (const progress of [0,.01,.1,.25,.5,.75,.9,.999,1]) {
@@ -105,7 +105,7 @@ test('all IDs reach exact map sprites on desktop, portrait and landscape for eve
 
 test('camera starts with identity and zero velocity, follows the flight, and ends at the final map transform', () => {
   for (const reduced of [false, true]) {
-    const s = scene(200, 390, 844, reduced), first = s.flight.cameraAt(0), h = 1e-6;
+    const s = scene(50, 390, 844, reduced), first = s.flight.cameraAt(0), h = 1e-6;
     near(first.a,1); near(first.d,1); near(first.e,0); near(first.f,0);
     const next=s.flight.cameraAt(h);
     near((next.a-first.a)/h,0,.0001); near((next.e-first.e)/h,0,.01); near((next.f-first.f)/h,0,.01);
@@ -124,8 +124,8 @@ test('camera starts with identity and zero velocity, follows the flight, and end
 });
 
 test('reduced motion keeps the same release state and own IDs with no camera sweep or trails', () => {
-  const normal=scene(500,844,390,false), reduced=scene(500,844,390,true);
-  for(let i=0;i<500;i++){
+  const normal=scene(50,844,390,false), reduced=scene(50,844,390,true);
+  for(let i=0;i<50;i++){
     const a=normal.flight.pose(i,0),b=reduced.flight.pose(i,0);
     near(a.x,b.x);near(a.y,b.y);near(a.vx,b.vx);near(a.vy,b.vy);assert.equal(a.id,b.id);
   }
@@ -152,7 +152,7 @@ test('snapshot positions stay fixed when the old shuffle continues or source arr
 
 test('midflight resizing preserves current positions and radii while smoothly reaching the new camera', () => {
   for (const reduced of [false, true]) {
-    const s = scene(500, 1280, 720, reduced), originalSlots = snapshot(s.physics.marbles);
+    const s = scene(50, 1280, 720, reduced), originalSlots = snapshot(s.physics.marbles);
     const originalInitial = snapshot(s.flight.initial), originalFinal = snapshot(s.flight.final);
     const cameras = [
       { zoom: .31, worldToScreen(x, y) { return { x: 195 + (x - 500) * this.zoom, y: 410 + (y - 570) * this.zoom }; } },
@@ -191,7 +191,7 @@ test('midflight resizing preserves current positions and radii while smoothly re
 });
 
 test('changing reduced motion midflight suppresses trails without resetting the captured path', () => {
-  const s=scene(500),progress=.5;
+  const s=scene(50),progress=.5;
   s.flight.render({progress,physics:s.physics,camera:s.camera,reducedMotion:false});
   const before=snapshot(s.flight.lastPoses),trailCount=s.counters.trails,path=snapshot(s.flight.items.map((_,i)=>s.flight.pose(i,1.4)));
   s.flight.render({progress,physics:s.physics,camera:s.camera,reducedMotion:true});
@@ -202,7 +202,7 @@ test('changing reduced motion midflight suppresses trails without resetting the 
 });
 
 test('a stopped edge release still propels, while fast input changes flight without changing slots', () => {
-  for (const count of [6,50,200,500]) {
+  for (const count of [6,25,49,50]) {
     const slow = scene(count,1280,720,false,{dx:1,dy:0,inputSpeed:0});
     const fast = scene(count,1280,720,false,{dx:1,dy:0,inputSpeed:4});
     for (const s of [slow,fast]) {
@@ -219,7 +219,7 @@ test('a stopped edge release still propels, while fast input changes flight with
 });
 
 test('flight zooms out to frame the full group and draws no tails across viewport sizes', () => {
-  for (const count of [6,50,200,500]) for (const [w,h] of [[1280,720],[390,844],[844,390]]) {
+  for (const count of [6,25,49,50]) for (const [w,h] of [[1280,720],[390,844],[844,390]]) {
     const s=scene(count,w,h);
     assert(s.flight.cameraAt(.25).a<1,'early flight pulls back');
     for(const progress of [.25,.5,.75]) {

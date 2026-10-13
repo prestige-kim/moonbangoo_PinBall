@@ -45,8 +45,8 @@ test('name groups share colors and patterns without changing individual IDs or p
  assert.equal(JSON.stringify(physics.marbles),before);assert.equal(new Set(physics.marbles.map(m=>m.id)).size,9);
  const expected=marks.map(m=>m.color).join();P.CINEMA.descriptors(physics);assert.equal(physics.marbles.map(m=>P.Pinball.group(m.name).color).join(),expected);
 });
-test('500 grouped balls share per-group sprite pyramids and stable marks across themes',()=>{
- const {P}=boot(),physics=new P.Physics({names:P.parseNames('명성*200,지연*200,중빈*100'),seed:'GROUP-500'});
+test('50 grouped balls share per-group sprite pyramids and stable marks across themes',()=>{
+ const {P}=boot(),physics=new P.Physics({names:P.parseNames('명성*20,지연*20,중빈*10'),seed:'GROUP-500'});
  P.Pinball.configureGroups(physics.marbles);const group=P.Pinball.group('명성'),sprite=P.Pinball.sprite(64);
  for(const theme of Object.values(P.THEMES)){for(const m of physics.marbles){assert.equal(P.Pinball.sprite(64),sprite);assert(P.Pinball.group(m.name));}assert.equal(P.Pinball.group('명성'),group);}
  assert.equal(P.Pinball.groups.size,3);assert.equal(P.Pinball.cache.size,1);
@@ -67,12 +67,12 @@ test('fixed RGB group colors survive reordering and removing another group',()=>
   for(const name of new Set(P.parseNames(input).map(m=>m.name))) assert.equal(P.Pinball.group(name).color,P.COLOR_GROUPS.find(g=>g.name===name).color);
  }
 });
-test('color selections preserve legacy quantities and reject more than 500 balls',()=>{
- const {P}=boot(),counts=P.colorSelection('수박*200,키위*200,귤*100');
- assert.equal(P.parseNames(P.colorNames(counts)).length,500);
+test('color selections preserve legacy quantities and reject more than 50 balls',()=>{
+ const {P}=boot(),counts=P.colorSelection('수박*20,키위*20,귤*10');
+ assert.equal(P.parseNames(P.colorNames(counts)).length,50);
  assert.equal(P.colorNames(P.colorSelection('파랑*7,빨강*2')),'빨강*2,파랑*7');
  assert.equal(P.colorNames(P.colorSelection('')),'');
- assert.throws(()=>P.colorNames({red:501}),/500/);
+ assert.throws(()=>P.colorNames({red:51}),/50/);
  assert.throws(()=>P.colorNames({red:1.5}),/정수/);
  assert.equal(P.COLOR_GROUPS.length,8);
 });

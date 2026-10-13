@@ -30,13 +30,13 @@ test('direct contact transfers momentum rather than carrying a rigid group',()=>
  c.step();assert(c.collisions>0);assert(c.bodies[1].vx>c.bodies[0].vx);assert(overlaps(c)<.05);
 });
 test('straight, reversal and circular input exchange order at every supported count',()=>{
- for(const n of [6,50,200,500])for(const type of ['straight','reversal','circle']){
+ for(const n of [6,25,49,50])for(const type of ['straight','reversal','circle']){
   const c=make(n),initial=order(c);gesture(c,type);assert(c.collisions>0,n+' '+type+' must collide');assert.notEqual(order(c),initial,n+' '+type+' must exchange order');
   console.log('shuffle exchanges',n,type,'collisions',c.collisions);
  }
 });
 test('all supported counts stay finite, contained and free of deep overlaps during vigorous input',()=>{
- for(const n of [6,50,200,500]){
+ for(const n of [6,25,49,50]){
   const c=make(n),ids=c.bodies.map(b=>b.id).join(',');let worst=overlaps(c);c.begin(0,0,0);const started=performance.now();
   for(let tick=1;tick<=480;tick++){
    const t=tick/120;c.move(.39*Math.sin(t*11),.35*Math.cos(t*9),t*1000);c.step();
@@ -48,11 +48,11 @@ test('all supported counts stay finite, contained and free of deep overlaps duri
 });
 test('visual random state is independent and snapshots do not mutate live bodies',()=>{
  const a=make(50),b=make(50);assert.equal(JSON.stringify(a.snapshot()),JSON.stringify(b.snapshot()));const copy=a.snapshot();copy[0].x=20;assert.notEqual(a.bodies[0].x,20);
- const small=make(6),large=make(500);assert(small.radius>large.radius);assert.equal(new Set(large.bodies.map(b=>b.id)).size,500);
+ const small=make(6),large=make(50);assert(small.radius>large.radius);assert.equal(new Set(large.bodies.map(b=>b.id)).size,50);
 });
 
 test('a settled group exchanges actual order during representative straight, reversal and circular hand input',()=>{
- for(const n of [6,50,200,500])for(const type of ['straight','reversal','circle']){
+ for(const n of [6,25,49,50])for(const type of ['straight','reversal','circle']){
   const c=new HandShuffle(entries(n),'HAND-QA-'+n),wait=n===6?30:5;for(let tick=0;tick<wait*120;tick++)c.step();
   const initial=order(c),before=c.collisions;let exchanged=false;c.begin(0,0,wait*1000);
   for(let tick=1;tick<=192;tick++){
@@ -70,7 +70,7 @@ test('a settled group exchanges actual order during representative straight, rev
 
 
 test('the central set and hand reach leave substantially more room at every count',()=>{
- for(const n of [6,50,200,500]){
+ for(const n of [6,25,49,50]){
   const c=make(n);assert(c.clusterRadius*2>=.55&&c.clusterRadius*2<=.65);
   assert(c.pointerRadius>=.25);assert(c.bodies.every(b=>b.r===c.radius));
   assert(c.bodies.every(b=>Math.hypot(b.x,b.y)+b.r<=c.clusterRadius+1e-8));

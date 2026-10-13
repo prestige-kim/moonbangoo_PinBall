@@ -1,7 +1,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const box={window:{},Math};vm.createContext(box);vm.runInContext(fs.readFileSync(__dirname+'/../js/shuffle.js','utf8'),box);const P=box.window.CosmicPinball;
 test('cached spatial neighbors match an independent exhaustive candidate/order oracle',()=>{
- for(const n of [6,50,200,500]){
+ for(const n of [6,25,49,50]){
   const c=new P.HandShuffle(Array.from({length:n},(_,i)=>({id:'m'+i,index:i})),'CONTACT-CACHE-'+n),size=c.radius*2.15;
   for(const crowded of [false,true])for(const suspended of [false,true]){
    if(crowded)c.bodies.forEach((b,i)=>{b.x=(i%31-15)*size*.98;b.y=(Math.floor(i/31)-8)*size*1.01;});

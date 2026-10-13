@@ -30,8 +30,8 @@ test('hard spheres exchange axial order, collide and bounce off the glass wall',
   }
 });
 
-test('fixed-step mixing is identical across frame grouping, including 500 participants', () => {
-  for (const count of [1,6,50,200,500]) {
+test('fixed-step mixing is identical across frame grouping, including 50 participants', () => {
+  for (const count of [1,6,25,49,50]) {
     const physics=game(count,'fixed-'+count), one=chamber(physics), many=chamber(physics);
     one.seek(4,true);
     for (let t=0;t<4;t+=1/24) many.seek(Math.min(4,t),true);
@@ -117,7 +117,7 @@ test('shuffled physical races keep seeded results and allow different input owne
 });
 
 test('longer visible choreography preserves fixed-step shuffle ownership', () => {
-  for(const count of [6,50,200,500]) {
+  for(const count of [6,25,49,50]) {
     const a=game(count,'film-preservation-'+count),b=game(count,'film-preservation-'+count), scene=cinema(a),direct=cinema(b);
     // Render schedules drive the old virtual clock, despite a longer wall-clock shot.
     const timing=P.CINEMA.timing;

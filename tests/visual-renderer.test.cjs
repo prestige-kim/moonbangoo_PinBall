@@ -16,9 +16,9 @@ function plan(count, area) {
   return { renderer, marbles, labels: renderer.planLabels(marbles, marbles[0], camera, area) };
 }
 
-test('6, 50, 200 and 500 marbles get bounded, viewport-safe name labels', () => {
+test('6, 25, 49 and 50 marbles get bounded, viewport-safe name labels', () => {
   for (const area of [{ x: 350, y: 100, w: 800, h: 580 }, { x: 14, y: 350, w: 347, h: 265 }]) {
-    for (const count of [6, 50, 200, 500]) {
+    for (const count of [6,25,49,50]) {
       const { labels, marbles } = plan(count, area);
       assert.ok(labels.length <= (count <= 12 ? 12 : count <= 50 ? 7 : count <= 200 ? 3 : 1), count + ' label cap');
       for (const item of labels) {
@@ -37,7 +37,7 @@ test('6, 50, 200 and 500 marbles get bounded, viewport-safe name labels', () => 
 
 test('finished display uses distinct recent slots without mutating rank, coordinates or arrival time', () => {
   const renderer = Object.create(P.Renderer.prototype), map = P.MAPS.classic;
-  for (const count of [6, 50, 200, 500]) {
+  for (const count of [6,25,49,50]) {
     const finished = Array.from({ length: count }, (_, id) => ({ id, x: id % 2 ? 30 : 970, y: map.finish.y, finishTime: id / 10 }));
     const original = JSON.stringify(finished), entries = renderer.finishDisplay(finished, map);
     assert.equal(entries.length, Math.min(count, 12));

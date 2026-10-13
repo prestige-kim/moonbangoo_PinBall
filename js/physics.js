@@ -4,6 +4,7 @@
   var STEP = 1 / 120;
   var clamp = function (value, low, high) { return Math.max(low, Math.min(high, value)); };
 
+  P.MAX_MARBLES = 50;
   P.PHYSICS_STEP = STEP;
   P.PHYSICS_TUNING = { gravity: 620, fallSoftThreshold: 540, fallDrag: 5, fallMax: 700, velocityMax: 1050, rescueDelay: 3, rescueProgress: 24 };
   P.seedRandom = function (seed) {
@@ -51,7 +52,7 @@
       if (!Number.isInteger(count) || count < 0) throw new Error('수량은 0 이상의 정수여야 합니다.');
       total += count;
     });
-    if (total > 500) throw new Error('핀볼은 최대 500개까지 만들 수 있어요.');
+    if (total > P.MAX_MARBLES) throw new Error('핀볼은 최대 50개까지 만들 수 있어요.');
     return P.COLOR_GROUPS.filter(function (group) { return counts[group.id] > 0; })
       .map(function (group) { return group.name + '*' + counts[group.id]; }).join(',');
   };
@@ -81,7 +82,7 @@
       if (/[\u0000-\u001f\u007f<>]/.test(name)) throw new Error('이름에는 제어 문자나 꺾쇠 괄호를 사용할 수 없어요.');
       if (seen.has(name)) throw new Error('“' + name + '” 이름이 중복돼요. 같은 이름은 ' + name + '*2처럼 입력해 주세요.');
       seen.add(name);
-      if (!Number.isSafeInteger(count) || names.length + count > 500) throw new Error('핀볼은 최대 500개까지 만들 수 있어요.');
+      if (!Number.isSafeInteger(count) || names.length + count > P.MAX_MARBLES) throw new Error('핀볼은 최대 50개까지 만들 수 있어요.');
       for (var copy = 1; copy <= count; copy++) {
         names.push({ id: 'marble-' + (names.length + 1), name: name, copy: copy, copies: count });
       }
@@ -91,7 +92,7 @@
 
   function Physics(options) {
     options = options || {};
-    if (!options.names || !options.names.length || options.names.length > 500) throw new Error('참가자는 1~500개의 핀볼로 설정해 주세요.');
+    if (!options.names || !options.names.length || options.names.length > P.MAX_MARBLES) throw new Error('참가자는 1~50개의 핀볼로 설정해 주세요.');
     this.map = options.map || P.MAPS.classic;
     this.bounds = P.boardBounds(this.map);
     this.seed = String(options.seed == null ? 'cosmic' : options.seed);

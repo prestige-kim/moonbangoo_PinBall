@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),{run}=require('./helpers.cjs');const results=[];
 // Run after other QA has finished: serial samples on one machine, no browser FPS inference.
-for(const map of ['classic','twinfold','cascade','rhythm'])for(const count of [200,500])for(let i=0;i<5;i++){
+for(const map of ['classic','twinfold','cascade','rhythm'])for(const count of [50])for(let i=0;i<5;i++){
  const r=run(map,count,'fourmaps-isolated-performance-'+map+'-'+count+'-'+i,{},null,[1],true);
  results.push({map,count,seed:r.seed,time:r.time,complete:r.complete,stepP50:r.stepP50,stepP95:r.stepP95});
 }

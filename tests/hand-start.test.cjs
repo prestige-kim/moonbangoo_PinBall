@@ -16,8 +16,8 @@ test('launch mapping is ID-based, consumes no race RNG and commits once',()=>{
  assert.equal(snapshot(a.physics),snapshot(b.physics));assert.equal(calls,0);assert.equal(a.physics.time,0);assert.equal(a.physics.ticks,0);
  const before=snapshot(a.physics);for(const p of a.hand.bodies)p.x+=.3;P.commitHandStart(a.physics,a.hand.bodies);assert.equal(snapshot(a.physics),before);
 });
-test('6/50/200/500 launch snapshots fit the true spawn rectangle without deep overlap',()=>{
- for(const n of [6,50,200,500])for(const radius of [8,11,16]){
+test('6/25/49/50 launch snapshots fit the true spawn rectangle without deep overlap',()=>{
+ for(const n of [6,25,49,50])for(const radius of [8,11,16]){
   const s=setup(n,radius);s.hand.begin(0,0,0);
   for(let i=1;i<=120;i++){s.hand.move(.27*Math.sin(i*.12),.22*Math.cos(i*.15),i*1000/120);s.hand.step(1/120);}
   P.commitHandStart(s.physics,s.hand.bodies);const spawn=s.physics.map.spawn;let worst=0;
@@ -27,7 +27,7 @@ test('6/50/200/500 launch snapshots fit the true spawn rectangle without deep ov
  }
 });
 test('same seed plus captured hand snapshot replays all finish IDs and times',()=>{
- for(const n of [6,50,200,500]){const a=setup(n),b=setup(n);P.commitHandStart(a.physics,a.hand.bodies);P.commitHandStart(b.physics,a.hand.bodies);
+ for(const n of [6,25,49,50]){const a=setup(n),b=setup(n);P.commitHandStart(a.physics,a.hand.bodies);P.commitHandStart(b.physics,a.hand.bodies);
   const run=p=>{for(let i=0;i<30000&&!p.complete;i++)p.step(1/120);assert(p.complete);return JSON.stringify(p.finished.map(m=>[m.id,m.finishTime]));};assert.equal(run(a.physics),run(b.physics));}
 });
 test('different round seeds produce different top scatter endpoints',()=>{

@@ -1,0 +1,391 @@
+{
+  "baseline": "a60111c",
+  "cases": 48,
+  "exactEqual": true,
+  "rows": [
+    {
+      "map": "classic",
+      "count": 1,
+      "skills": false,
+      "complete": true,
+      "time": 46.25833333333333,
+      "rankingHash": "2b3b3efec587bdd1b6254102a901cfbe4c42c8698d7cb8769bd60f21df3fc461"
+    },
+    {
+      "map": "classic",
+      "count": 1,
+      "skills": true,
+      "complete": true,
+      "time": 46.03333333333333,
+      "rankingHash": "21d5690329d9522be2ea4768e9e1503e1f3efe22f09065e69174848f85ae4ece"
+    },
+    {
+      "map": "classic",
+      "count": 2,
+      "skills": false,
+      "complete": true,
+      "time": 42.291666666666664,
+      "rankingHash": "4f34b25e86fb635d3aa986dd07da2fd54b32552d04913c25772a6d0217324229"
+    },
+    {
+      "map": "classic",
+      "count": 2,
+      "skills": true,
+      "complete": true,
+      "time": 39.025,
+      "rankingHash": "715955a80ff7ebbb8806483ba807add6d7d6946fe934748b5ce1493d624e939f"
+    },
+    {
+      "map": "classic",
+      "count": 6,
+      "skills": false,
+      "complete": true,
+      "time": 56.06666666666666,
+      "rankingHash": "c16969ef40bdcef73b8e7ff21d5105a174cc6646f56ec874c4f8841daf80f0ad"
+    },
+    {
+      "map": "classic",
+      "count": 6,
+      "skills": true,
+      "complete": true,
+      "time": 52.708333333333336,
+      "rankingHash": "0126d49f2ca88b823df6673ad43e740302f6971fc0842632c1fffddd435fb9af"
+    },
+    {
+      "map": "classic",
+      "count": 25,
+      "skills": false,
+      "complete": true,
+      "time": 50.833333333333336,
+      "rankingHash": "604c6fde2f2e451e10c6caf120dfbfd7bca781b034f3c21dcabbdfceb39b6319"
+    },
+    {
+      "map": "classic",
+      "count": 25,
+      "skills": true,
+      "complete": true,
+      "time": 52.333333333333336,
+      "rankingHash": "e74f304187e5ba3619fd1c84d0d9d18ed9ca8ab7d66874200a9007a3367e86b1"
+    },
+    {
+      "map": "classic",
+      "count": 49,
+      "skills": false,
+      "complete": true,
+      "time": 54.516666666666666,
+      "rankingHash": "62b508dd366ead68502ed235f6dc1c1fbe84f29ff0afb9f0403826fa1b5032fc"
+    },
+    {
+      "map": "classic",
+      "count": 49,
+      "skills": true,
+      "complete": true,
+      "time": 64.60833333333333,
+      "rankingHash": "e8b9893bed25473d65004af87da7eae84c7ae3b60361be3d58217e3c4ff946ae"
+    },
+    {
+      "map": "classic",
+      "count": 50,
+      "skills": false,
+      "complete": true,
+      "time": 55.55833333333333,
+      "rankingHash": "a0db5d9a77f7dbdc260b554be5336627d744393853751f80c09cb615a647ab75"
+    },
+    {
+      "map": "classic",
+      "count": 50,
+      "skills": true,
+      "complete": true,
+      "time": 63.74166666666667,
+      "rankingHash": "b340505ac7cfc210733c4ad2669d0c496654c812bfea019672487325083cc4c4"
+    },
+    {
+      "map": "twinfold",
+      "count": 1,
+      "skills": false,
+      "complete": true,
+      "time": 17.725,
+      "rankingHash": "eb71369912b6d06a8a4ea85d1a3ac28c07e696c5db7b1d22dc9cade305414263"
+    },
+    {
+      "map": "twinfold",
+      "count": 1,
+      "skills": true,
+      "complete": true,
+      "time": 18.458333333333332,
+      "rankingHash": "c04e01449e0c44c45cc6d59e6a42b54f0ba24a553d23fa2717be649c271b3da2"
+    },
+    {
+      "map": "twinfold",
+      "count": 2,
+      "skills": false,
+      "complete": true,
+      "time": 19.266666666666666,
+      "rankingHash": "669a478245f9f146d42c3909bd0adf7175c2e5d9954990c87159b44f66e56268"
+    },
+    {
+      "map": "twinfold",
+      "count": 2,
+      "skills": true,
+      "complete": true,
+      "time": 21,
+      "rankingHash": "b548d03dbf930344b5e216b418ddf4cd68dd280882a3dd196cb24fa594a1229b"
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "skills": false,
+      "complete": true,
+      "time": 21.825,
+      "rankingHash": "92540cb087b5cf77f65d28188080682d42bbe9815610559974c5df94eebc0785"
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "skills": true,
+      "complete": true,
+      "time": 24.641666666666666,
+      "rankingHash": "02de8bd5d826576899de0781186a0969af70a0cf3d7a4ccf21fd3aebd7b2c503"
+    },
+    {
+      "map": "twinfold",
+      "count": 25,
+      "skills": false,
+      "complete": true,
+      "time": 23.116666666666667,
+      "rankingHash": "a1f74aaa77e965919f167f8859800d36c01c46a903873266dc023b9794effc16"
+    },
+    {
+      "map": "twinfold",
+      "count": 25,
+      "skills": true,
+      "complete": true,
+      "time": 24.325,
+      "rankingHash": "1e3cd6ee9b214f2761ab4681a1a7a025d058ff2d5be3ad1f99011fc5bdad3758"
+    },
+    {
+      "map": "twinfold",
+      "count": 49,
+      "skills": false,
+      "complete": true,
+      "time": 22.333333333333332,
+      "rankingHash": "5ef12a8737385c0829674510e86dcdcb49386d7b14c363a6abefcc6a043311f5"
+    },
+    {
+      "map": "twinfold",
+      "count": 49,
+      "skills": true,
+      "complete": true,
+      "time": 25.025,
+      "rankingHash": "78013371f1a1cd7ecc6a0d0b7819ac7d6131bf6d46d81148a4096ac0beb48ae6"
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "skills": false,
+      "complete": true,
+      "time": 22.358333333333334,
+      "rankingHash": "c809ec2912d2d1a4b635f62c461f3d98f70d0b63c493fc51a6abe23bfab7f7d5"
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "skills": true,
+      "complete": true,
+      "time": 20.216666666666665,
+      "rankingHash": "429ce75da998715a93adba35826d2681c4b297d20a1e5a977605c3bd9240c07b"
+    },
+    {
+      "map": "cascade",
+      "count": 1,
+      "skills": false,
+      "complete": true,
+      "time": 17.058333333333334,
+      "rankingHash": "df0b5466f8fc3829275813cef3bdba6a3cb049a8ca4191137fdbda7c4a5598f9"
+    },
+    {
+      "map": "cascade",
+      "count": 1,
+      "skills": true,
+      "complete": true,
+      "time": 22.366666666666667,
+      "rankingHash": "0f078688ae0a87cdab88fec0a7b6b80a5f71a0df9cf18ccb82a32153354cbaaf"
+    },
+    {
+      "map": "cascade",
+      "count": 2,
+      "skills": false,
+      "complete": true,
+      "time": 26.583333333333332,
+      "rankingHash": "554d82713428b43374977ff0c203f93486d9b40b5a0b56226e1c5aab80135c16"
+    },
+    {
+      "map": "cascade",
+      "count": 2,
+      "skills": true,
+      "complete": true,
+      "time": 24.233333333333334,
+      "rankingHash": "7a319cb6db7aa46eeb7e39a98eb4c22287b714a8e8ad340374ed3dc80e75d593"
+    },
+    {
+      "map": "cascade",
+      "count": 6,
+      "skills": false,
+      "complete": true,
+      "time": 25.491666666666667,
+      "rankingHash": "20cc839e7d305252c47f4469e6afcec5fc5c1db383e7cb56400844a93efcb2ef"
+    },
+    {
+      "map": "cascade",
+      "count": 6,
+      "skills": true,
+      "complete": true,
+      "time": 24.825,
+      "rankingHash": "3bfe190a798f5bbfd56a048e58ca9c5ab51d28410859aa5eaccdba99a863400f"
+    },
+    {
+      "map": "cascade",
+      "count": 25,
+      "skills": false,
+      "complete": true,
+      "time": 25.225,
+      "rankingHash": "bc0bee97fbce2d5038b2d746090c8d27de208bdfe25646f0e8c00b6c04c91527"
+    },
+    {
+      "map": "cascade",
+      "count": 25,
+      "skills": true,
+      "complete": true,
+      "time": 26.474999999999998,
+      "rankingHash": "90b398d1d8073d3a0dd6a34ea433205ef9fb5d2ba964372c477e6cde20a50545"
+    },
+    {
+      "map": "cascade",
+      "count": 49,
+      "skills": false,
+      "complete": true,
+      "time": 26.03333333333333,
+      "rankingHash": "4029358fdd7bdf8ede66ceba11cb085ec41860f2114e6bf0a6043e02b9322511"
+    },
+    {
+      "map": "cascade",
+      "count": 49,
+      "skills": true,
+      "complete": true,
+      "time": 27.099999999999998,
+      "rankingHash": "2a8ff881cde90d2bc11ccd16ec1a3151d2bf1903d4d2cece5cbaeb0e8b808b79"
+    },
+    {
+      "map": "cascade",
+      "count": 50,
+      "skills": false,
+      "complete": true,
+      "time": 28.15833333333333,
+      "rankingHash": "a68dd6a2e9abee1417aacdbbad03e4b7f47520811aed23b05daa8accc9b5e366"
+    },
+    {
+      "map": "cascade",
+      "count": 50,
+      "skills": true,
+      "complete": true,
+      "time": 26.141666666666666,
+      "rankingHash": "9e941be53127fd1427a93dc5bdd5c836c46e976f1eddcb294ce694d739c1bf30"
+    },
+    {
+      "map": "rhythm",
+      "count": 1,
+      "skills": false,
+      "complete": true,
+      "time": 22.008333333333333,
+      "rankingHash": "73360a3645e751751972e5dd3bd4972795625512f308455faad99a9aa5370e58"
+    },
+    {
+      "map": "rhythm",
+      "count": 1,
+      "skills": true,
+      "complete": true,
+      "time": 20.291666666666668,
+      "rankingHash": "4330b50d981d5828d5bb990e4acbb027d8baf448df36732dac1e9ccf7bd72be4"
+    },
+    {
+      "map": "rhythm",
+      "count": 2,
+      "skills": false,
+      "complete": true,
+      "time": 17.233333333333334,
+      "rankingHash": "a3b5d5cea3b34d1f4ebd231039d4de31f9ae809c90fc396a8a04566708ba8c8a"
+    },
+    {
+      "map": "rhythm",
+      "count": 2,
+      "skills": true,
+      "complete": true,
+      "time": 23.091666666666665,
+      "rankingHash": "41f0effa899d66d719e02a6d01f520bb9092088dc853f941c0f40eb7ee7c2b10"
+    },
+    {
+      "map": "rhythm",
+      "count": 6,
+      "skills": false,
+      "complete": true,
+      "time": 20,
+      "rankingHash": "63def13deaebfefa9fc2505e9b87abfa3ce14d61a4060913c474d1219587bf7d"
+    },
+    {
+      "map": "rhythm",
+      "count": 6,
+      "skills": true,
+      "complete": true,
+      "time": 20.241666666666667,
+      "rankingHash": "f54f4c92b46ab0aaeea476fc59244362bbfbbcb87bd7b5956a8e31836e90a812"
+    },
+    {
+      "map": "rhythm",
+      "count": 25,
+      "skills": false,
+      "complete": true,
+      "time": 25.233333333333334,
+      "rankingHash": "ceff40b10cd958147b21ef592ee8bdc0dcd89db9c700cb0f41b0ab1d9b9654c7"
+    },
+    {
+      "map": "rhythm",
+      "count": 25,
+      "skills": true,
+      "complete": true,
+      "time": 28.383333333333333,
+      "rankingHash": "30443df790a04d532ed35de93da675f6c209316b000ac056c076418eb7023cdc"
+    },
+    {
+      "map": "rhythm",
+      "count": 49,
+      "skills": false,
+      "complete": true,
+      "time": 24.725,
+      "rankingHash": "370359e26d33b0a8cd18a8f9c2db131df0ae62682d61c03d3c87fa91306a1236"
+    },
+    {
+      "map": "rhythm",
+      "count": 49,
+      "skills": true,
+      "complete": true,
+      "time": 26.599999999999998,
+      "rankingHash": "74f08b4eee32ea636da1e53fc1d1694550c18310604318a7104d99ba858a345e"
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "skills": false,
+      "complete": true,
+      "time": 24.808333333333334,
+      "rankingHash": "938e33c2cb5f175f9d225736ed1a073a56c1041fabf2157dad75284dec15b36b"
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "skills": true,
+      "complete": true,
+      "time": 24.25,
+      "rankingHash": "5bca7ab17f7a81e4d9e479785c08c32f6f5b7facce8e80cf2fa25bba123f1f31"
+    }
+  ]
+}

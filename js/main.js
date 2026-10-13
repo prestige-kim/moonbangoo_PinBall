@@ -38,6 +38,7 @@
         const values = JSON.parse(saved);
         // Earlier builds persisted the built-in/generated seed, unintentionally replaying each round.
         if (values.seedMode !== 'manual' && (values.seed === 'MUNGBANGGU-2026' || /^MUNGBANGGU-[0-9A-Z]{1,7}$/.test(values.seed || ''))) values.seed = '';
+        try { P.parseNames(values.names || defaults.names); } catch (_) { values.names = defaults.names; values.seed = ''; values.replayStart = null; values.participantReset = true; }
         return normalize(values);
       }
       const legacy = JSON.parse(localStorage.getItem('orbit-pinball-settings-v1') || 'null');
@@ -45,6 +46,7 @@
       // Keep participant choices; adopt the gentler pacing when upgrading the original game.
       legacy.gravity = defaults.gravity; legacy.speed = defaults.speed;
       if (legacy.seed === 'ORBIT-2026') legacy.seed = '';
+      try { P.parseNames(legacy.names || defaults.names); } catch (_) { legacy.names = defaults.names; legacy.seed = ''; legacy.replayStart = null; legacy.participantReset = true; }
       return normalize(legacy);
     }
     catch (_) { return normalize(defaults); }

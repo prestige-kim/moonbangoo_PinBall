@@ -75,7 +75,7 @@ const landingViewports = [
 
 test('landing frames every real seeded spawn circle on desktop and mobile', () => {
   for (const viewport of landingViewports) {
-    for (const count of [1, 6, 200, 500]) {
+    for (const count of [1,6,49,50]) {
       for (const seed of ['landing-a', 'landing-b']) {
         const { camera, map, physics } = landingScene(viewport, count, 18, seed);
         const physicalState = JSON.stringify(physics.marbles);
@@ -96,7 +96,7 @@ test('landing frames every real seeded spawn circle on desktop and mobile', () =
 });
 
 test('landing is deterministic and clears previous camera interaction without changing physical state', () => {
-  const { camera, map, physics } = landingScene(landingViewports[0], 500, 18, 'repeat-landing');
+  const { camera, map, physics } = landingScene(landingViewports[0], 50, 18, 'repeat-landing');
   const before = JSON.stringify(physics.marbles);
   camera.prepareLanding(map, physics);
   const first = { x: camera.x, y: camera.y, zoom: camera.zoom };
@@ -115,7 +115,7 @@ test('landing is deterministic and clears previous camera interaction without ch
 
 test('the first running frame smoothly follows the landing pose rather than resetting it', () => {
   for (const viewport of landingViewports) {
-    for (const count of [6, 500]) {
+    for (const count of [6,50]) {
       const { camera, map, physics } = landingScene(viewport, count, 18, 'first-running');
       const physicalState = JSON.stringify(physics.marbles);
       camera.prepareLanding(map, physics);

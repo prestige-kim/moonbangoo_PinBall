@@ -12,7 +12,7 @@ for (const file of ['maps', 'physics', 'cinematic', 'shuffle', 'hand-start', 'th
   vm.runInContext(fs.readFileSync(source, 'utf8'), box, { filename: file + '.js' });
 }
 const P = box.window.CosmicPinball;
-const counts = [6, 50, 200, 500];
+const counts = [6,25,49,50];
 const sizes = [[1280, 800], [390, 844], [844, 390]];
 const game = (count, seed = 'HAND-SCENE-' + count) => new P.Physics({ map: P.MAPS.classic, names: P.parseNames('참가자*' + count), seed });
 const positions = physics => JSON.stringify(physics.marbles.map(m => [m.id, m.x, m.y, m.vx, m.vy, m._anchorX, m._anchorY]));

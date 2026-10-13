@@ -56,7 +56,7 @@ for (const [w, h] of [[1280, 720], [587, 668], [390, 844]]) {
 // A single discharge owns all release times. The shot has nonzero speed at the
 // muzzle, and the in-barrel acceleration meets that speed without a position jump.
 let discharges = 0;
-const shotPhysics = new P.Physics({ map: P.MAPS.classic, names: P.parseNames('구슬*500'), seed: 'DISCHARGE' });
+const shotPhysics = new P.Physics({ map: P.MAPS.classic, names: P.parseNames('구슬*50'), seed: 'DISCHARGE' });
 const shotEntries = P.CINEMA.descriptors(shotPhysics);
 const start = { x: 220, y: 520, depth: .3 }, muzzle = { x: 440, y: 375 }, target = { x: 805, y: 190 };
 const screen = { width: 1280, height: 720, axisX: .85, axisY: -.5267826876 };
@@ -96,7 +96,7 @@ assert(fanPositions.reduce((sum, pose) => sum + Math.hypot(pose.x - muzzle.x, po
 
 const gameRenderer = new P.Renderer(canvas());
 let frames = 0, handoffs = 0;
-for (const count of [2, 50, 200, 500]) {
+for (const count of [2,25,49,50]) {
   const options = { map: P.MAPS.classic, names: P.parseNames('참가자*' + count), seed: 'CINEMA-PURITY-2026' };
   const physics = new P.Physics(options), twin = new P.Physics(options), before = JSON.stringify(physics.marbles);
   assert.equal(JSON.stringify(P.CINEMA.descriptors(physics)), JSON.stringify(P.CINEMA.descriptors(twin)));
@@ -232,7 +232,7 @@ for (const [w,h] of [[1280,720],[390,844],[844,390]]) {
 console.log('PASS welcome: still positions, frozen chamber clock and frozen race; intermediate photo axes match desktop and mobile.');
 
 // Reduced motion freezes the displayed chamber; it must not select different race slots.
-for(const count of [6,50,200,500]) {
+for(const count of [6,25,49,50]) {
  const quietPhysics=new P.Physics({map:P.MAPS.classic,names:P.parseNames('참가자*'+count),seed:'QUIET-'+count});
  const normalPhysics=new P.Physics({map:P.MAPS.classic,names:P.parseNames('참가자*'+count),seed:'QUIET-'+count});
  const quiet=new P.Cinematic(canvas(390,844)),normal=new P.Cinematic(canvas());
