@@ -218,6 +218,15 @@
     $('speed-value').textContent = Number($('speed').value).toFixed(2).replace(/0$/, '') + '×';
     $('volume-value').textContent = Math.round(Number($('volume').value) * 100) + '%';
     document.documentElement.classList.toggle('reduced-motion', $('reduced-motion').checked);
+    this.updateDuration();
+  };
+  UI.prototype.updateDuration = function () {
+    var output = $('duration-estimate'), warning = $('duration-warning');
+    if (!output || !warning || !P.estimateRaceDuration) return;
+    var estimate = P.estimateRaceDuration(this.readSettings(), this.groupTotal());
+    output.textContent = estimate ? '약 ' + P.durationText(estimate.p50) + '–' + P.durationText(estimate.p95) + (estimate.approximate ? ' · 유사 설정 참고값' : ' · 측정 참고값') : '핀볼을 선택해 주세요';
+    warning.hidden = !estimate || !estimate.warning;
+    warning.textContent = '이 설정에서는 경기 시간이 ' + P.durationText(P.RACE_WARNING_SECONDS) + '보다 길어질 수 있어요.';
   };
   UI.prototype.groupTotal = function () {
     return Object.values(this.groupCounts || {}).reduce(function (sum, count) { return sum + count; }, 0);
@@ -271,6 +280,7 @@
     this.syncSeed();
   };
   UI.prototype.updateParticipants = function () {
+    this.updateDuration();
     var count = this.groupTotal(), selected = Object.keys(this.groupCounts || {}).length;
     $('participant-count').textContent = count; $('mobile-count').textContent = count;
     $('names-help').textContent = selected + '개 그룹 · 총 ' + count + '개 / 최대 500개';

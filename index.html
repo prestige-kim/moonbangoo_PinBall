@@ -16,7 +16,7 @@
   <link rel="preload" as="image" href="./assets/cannon-barrel.png">
   <link rel="preload" as="image" href="./assets/cannon-wheel.png">
   <link rel="preload" as="image" href="./assets/cannon-bridge.png">
-  <link rel="stylesheet" href="./style.css?v=hand-11cc484d2088">
+  <link rel="stylesheet" href="./style.css?v=hand-47190ce29a4d">
 </head>
 <body class="scene-intro" data-scene="intro" data-theme="cosmic">
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
@@ -114,6 +114,8 @@
           </details>
         </div>
         <div class="panel-footer">
+          <p class="duration-reference">예상 경기 시간 <output id="duration-estimate" aria-live="polite">참고 표본 기준</output><small>준비·비행 시간은 별도이며, 실제 시간은 달라질 수 있어요.</small></p>
+          <p class="duration-warning" id="duration-warning" hidden></p>
           <button class="start-button" id="start-button" type="submit"><span class="start-icon"><svg class="icon"><use href="#i-play"/></svg></span><span>게임 시작<small>핀볼을 섞고 발사합니다</small></span><svg class="icon start-arrow"><use href="#i-chevron"/></svg></button>
           <div class="panel-bottom"><button class="text-button" id="reset-button" type="button"><svg class="icon"><use href="#i-reset"/></svg>초기화</button></div>
         </div>
@@ -148,8 +150,9 @@
     <ol id="result-ranking" class="result-ranking"></ol><button type="button" id="show-all-results" class="text-button show-all-results" hidden>전체 순위 보기</button>
     <p id="result-note" class="results-note" hidden></p>
     <div class="result-actions"><button type="button" id="restart-button" class="start-button"><svg class="icon"><use href="#i-play"/></svg>같은 멤버로 다시 섞기</button><button type="button" id="replay-button" class="secondary-button"><svg class="icon"><use href="#i-reset"/></svg>다시 설정하기</button></div>
+    <a id="results-home-link" class="results-home-link" href="https://jeondowon.github.io/moonbangoo/"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8"/></svg>어른뭉방구 홈으로</a>
   </dialog>
 
-  <script src="./js/themes.js"></script><script src="./js/maps.js?v=soft-long-course-20261011"></script><script src="./js/physics.js?v=soft-long-course-20261011"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/race-standing.js?v=winding-channel-20261011"></script><script src="./js/renderer.js?v=soft-long-course-20261011"></script><script src="./js/cinematic.js?v=original-tube-alpha-local-20261011"></script><script src="./js/shuffle.js?v=interactive-tilt-local-20261011"></script><script src="./js/hand-start.js?v=release-93e4ed9bae2d"></script><script src="./js/shuffle-input.js?v=hand-20261007"></script><script src="./js/throw-gate.js?v=northeast-exit-20261011"></script><script src="./js/hand-scene.js?v=original-tube-alpha-local-20261011"></script><script src="./js/hand-flight.js?v=tube-pour-qa-20261011-final"></script><script src="./js/ui.js?v=release-1115da54892c"></script><script src="./js/main.js?v=release-b1b6cc063174"></script>
+  <script src="./js/themes.js"></script><script src="./js/maps.js?v=soft-long-course-20261011"></script><script src="./js/physics.js?v=soft-long-course-20261011"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/race-standing.js?v=winding-channel-20261011"></script><script src="./js/renderer.js?v=soft-long-course-20261011"></script><script src="./js/cinematic.js?v=original-tube-alpha-local-20261011"></script><script src="./js/shuffle.js?v=interactive-tilt-local-20261011"></script><script src="./js/hand-start.js?v=release-93e4ed9bae2d"></script><script src="./js/shuffle-input.js?v=hand-20261007"></script><script src="./js/throw-gate.js?v=northeast-exit-20261011"></script><script src="./js/hand-scene.js?v=original-tube-alpha-local-20261011"></script><script src="./js/hand-flight.js?v=tube-pour-qa-20261011-final"></script><script src="./js/race-duration-data.js"></script><script src="./js/race-duration.js"></script><script src="./js/ui.js?v=release-573dc17be28e"></script><script src="./js/main.js?v=release-b1b6cc063174"></script>
 </body>
 </html>

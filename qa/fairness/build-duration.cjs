@@ -1,0 +1,6 @@
+'use strict';
+const fs=require('node:fs');
+const measured=JSON.parse(fs.readFileSync('qa/results/simulation-summary.json')),rows=measured.configs.map(({config:c,summary:s})=>({count:c.count,radius:c.radius,gravity:c.gravity,restitution:c.restitution,skills:c.skills,p50:s.time.p50,p95:s.time.p95,max:s.time.max,source:'first-audit-physics'}));
+for(const phase of ['duration','final','screen']){const file='qa/fairness/results/'+phase+'.json';if(!fs.existsSync(file))continue;const result=JSON.parse(fs.readFileSync(file));for(const {config:c,summary:s}of result.cases){if(s.completed!==s.runs)throw new Error('Censored duration samples cannot be presented as completed ranges');const row={count:c.groups.reduce((a,b)=>a+b,0),radius:c.radius,gravity:c.gravity,restitution:c.restitution,skills:!!c.skills,p50:s.time.p50,p95:s.time.p95,max:s.time.max,source:'second-audit-'+phase};if(phase==='duration'){for(let i=rows.length-1;i>=0;i--)if(rows[i].count===row.count&&rows[i].radius===row.radius&&rows[i].gravity===row.gravity&&rows[i].restitution===row.restitution&&rows[i].skills===row.skills)rows.splice(i,1);}rows.push(row);}}
+fs.writeFileSync('js/race-duration-data.js',"(function(P){'use strict';P.RACE_DURATION_SAMPLES="+JSON.stringify(rows)+";})(window.CosmicPinball=window.CosmicPinball||{});\n");
+console.log('duration sample rows',rows.length);

@@ -14,6 +14,7 @@
 .reduced-motion *,.reduced-motion *:before,.reduced-motion *:after{animation:none!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.reduced-motion #countdown-value{opacity:1;filter:none;transform:none}.reduced-motion .countdown-ring{animation:none;opacity:.35}
 
 /* 어른뭉방구: 종이결, 눌러 찍은 박, 조개와 햇살의 문방구. */
+.duration-reference{margin:0 0 8px;color:var(--muted);font-size:12px;line-height:1.5}.duration-reference output{display:block;font-weight:650}.duration-reference small{display:block;font-size:11px;font-weight:400}.duration-warning{margin:0 0 10px;color:var(--text);font-size:12px;line-height:1.5}.duration-warning[hidden]{display:none}
 :root{color-scheme:light;--bg:#F4EDE0;--panel:rgba(251,247,239,.94);--panel-solid:#FBF7EF;--text:#4A3A28;--muted:#76634C;--subtle:#76634C;--accent:#A57B37;--accent-bright:#7A5520;--secondary:#C29A55;--border:rgba(122,85,32,.16);--strong-border:rgba(157,119,61,.48);--accent-rgb:165,123,55;--secondary-rgb:194,154,85;--field:rgba(232,218,195,.32);--serif:"Pretendard Variable",sans-serif}
 body[data-theme=candy]{--bg:#F3EEE9;--panel:rgba(250,247,242,.95);--panel-solid:#FAF7F2;--text:#51414D;--muted:#927D8D;--subtle:#AA98A8;--accent:#9A7E99;--accent-bright:#785D77;--secondary:#789D99;--border:rgba(118,85,114,.15);--strong-border:rgba(154,126,153,.45);--accent-rgb:154,126,153;--secondary-rgb:120,157,153;--field:rgba(228,219,229,.35)}
 body[data-theme=gold]{color-scheme:dark;--bg:#211A13;--panel:rgba(51,42,32,.94);--panel-solid:#332A20;--text:#F4EDE0;--muted:#B7A48A;--subtle:#82725D;--accent:#D9B872;--accent-bright:#E7CE9C;--secondary:#C29A55;--border:rgba(217,184,114,.18);--strong-border:rgba(217,184,114,.45);--accent-rgb:217,184,114;--secondary-rgb:194,154,85;--field:rgba(21,16,12,.36)}
@@ -130,3 +131,7 @@ body[data-theme=gold] .toast{background:#392819;color:#FFF0CE;border-color:#E2C5
 .game-stop-button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 @media(max-width:850px){.can-stop .mobile-setup-button{bottom:calc(80px + env(safe-area-inset-bottom))}.can-stop .camera-hints{bottom:138px}.mobile-sheet-open .game-stop-button{visibility:hidden}}
 @media(max-width:850px) and (max-height:500px) and (orientation:landscape){.can-stop .mobile-setup-button{left:20px;transform:none;bottom:12px}.can-stop .camera-hints{bottom:66px}.game-stop-button{bottom:12px}}
+
+/* Return to the main site from every game result. */
+.results-home-link{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;margin-top:12px;padding:12px 16px;border:1px solid var(--border);border-radius:7px;background:var(--field);color:var(--text);font-size:12px;font-weight:600;text-decoration:none;transition:background .2s,border-color .2s}
+.results-home-link:hover{background:rgba(var(--accent-rgb),.12);border-color:var(--strong-border)}
