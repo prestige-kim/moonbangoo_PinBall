@@ -183,6 +183,7 @@
     status = scene;
     ui.setScene(scene);
     ui.setStatus(scene);
+    audio.setMusicScene(scene === 'finished' && winner ? 'resultPending' : scene);
   }
   function preview(scene = 'setup') {
     launchElapsed = 0; flightLanded = false;
@@ -389,6 +390,7 @@
       resultDelay -= dt;
       if (resultDelay <= 0) {
         resultShown = true;
+        audio.setMusicScene(resultWinners().length ? 'result' : 'finished');
         ui.showResults({ winners: resultWinners(), ranking: finalRanking, stoppedEarly: stoppedEarly, total: physics.marbles.length, seed: runSettings.seed, time: physics.time, map: runSettings.map, ruleLabel: P.ruleLabel(runSettings) });
       }
     }
@@ -425,7 +427,7 @@
   });
   camera.attach(canvas);
   window.addEventListener('resize', () => { displayBudget.resetTiming(); resize(); });
-  document.addEventListener('visibilitychange', () => { lastFrame = 0; displayBudget.resetTiming(); });
+  document.addEventListener('visibilitychange', () => { lastFrame = 0; displayBudget.resetTiming(); audio.syncMusic(); });
   visualSettings(); preview('intro');
   P.app = { ui: ui, renderer: renderer, cinematic: cinematic, camera: camera, effects: effects, audio: audio,
     handScene, handFlight, shuffleInput, throwGate, get physics() { return physics; }, get status() { return status; }, get settings() { return Object.assign({}, settings); },

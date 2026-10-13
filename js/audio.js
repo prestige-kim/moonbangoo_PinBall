@@ -20,9 +20,22 @@
       this.voices = 0;
       this.lastHit = -1;
       this.noiseBuffer = null;
+      this.music = null;
+      this.musicGain = null;
+      this.musicNode = null;
+      this.musicTrack = null;
+      this.musicUnlocked = false;
+      this.musicFinished = false;
+      this.musicFade = null;
+      this.musicScene = 'intro';
+      this.musicDecks = new Map();
+      this.musicTransition = null;
+      this.musicFadeDuration = 1.6;
     }
     unlock() {
       if (!this.enabled || !(this.volume > 0)) return;
+      this.musicUnlocked = true;
+      this.syncMusic();
       try {
         if (!this.context) {
           const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -33,15 +46,145 @@
           this.master.connect(this.context.destination);
         }
         if (this.context.state === 'suspended') this.context.resume().catch(function () {});
+        this.syncMusic();
       } catch (_) { this.context = null; }
     }
     configure(settings) {
       this.enabled = !!settings.sound;
       this.volume = Math.max(0, Math.min(1, Number(settings.volume)));
       this.theme = settings.theme || 'cosmic';
+      this.syncMusic();
       if (this.master && this.context) {
         this.master.gain.setTargetAtTime(this.enabled ? this.volume * 0.42 : 0, this.context.currentTime, 0.035);
       }
+    }
+    musicNow() { return window.performance ? window.performance.now() / 1000 : Date.now() / 1000; }
+    musicAllowed() { return this.musicUnlocked && this.enabled && this.volume > 0 && !document.hidden; }
+    setMusicScene(scene) {
+      this.musicScene = scene;
+      const tracks = { intro: 'chipper-doodle-v2', setup: 'chipper-doodle-v2',
+        mixing: 'electrodoodle', flight: 'electrodoodle', running: 'bit-quest',
+        resultPending: 'bit-quest', result: 'winner-winner' };
+      const track = tracks[scene] || null;
+      if (track !== this.musicTrack) {
+        this.musicTrack = track;
+        this.musicFinished = false;
+        this.musicFadeDuration = scene === 'running' ? 1.25 : scene === 'result' ? 1.8 : 1.6;
+        // Keep the outgoing music until the next player's play promise confirms readiness.
+        if (!track) this.beginMusicFade(null);
+      }
+      this.syncMusic();
+    }
+    musicDeck(track) {
+      let deck = this.musicDecks.get(track);
+      if (deck) return deck;
+      const media = new window.Audio('./assets/music/' + track + '.mp3');
+      media.preload = 'auto'; media.hidden = true; media.loop = track !== 'winner-winner'; media.volume = 0;
+      if (document.body) document.body.appendChild(media);
+      deck = { track, media, gain: null, node: null, level: 0, ended: false, pending: false };
+      media.addEventListener('ended', () => {
+        if (!media.loop) {
+          deck.ended = true; deck.level = 0;
+          if (this.musicTrack === track) this.musicFinished = true;
+        }
+      });
+      this.musicDecks.set(track, deck);
+      return deck;
+    }
+    musicLevel(deck) {
+      if (!deck.gain && this.context && this.context.createMediaElementSource) {
+        try {
+          deck.node = this.context.createMediaElementSource(deck.media);
+          deck.gain = this.context.createGain(); deck.gain.gain.value = 0;
+          deck.node.connect(deck.gain); deck.gain.connect(this.context.destination);
+        } catch (_) { deck.gain = null; }
+      }
+      const volume = deck.level * this.volume * 0.55;
+      if (deck.gain) {
+        deck.media.volume = 1;
+        deck.gain.gain.setTargetAtTime(volume, this.context.currentTime, 0.025);
+      } else deck.media.volume = volume;
+      if (deck.media === this.music) { this.musicGain = deck.gain; this.musicNode = deck.node; }
+    }
+    beginMusicFade(track) {
+      if (this.musicTransition && this.musicTransition.target === track) return;
+      if (this.musicFade) window.clearInterval(this.musicFade);
+      this.musicFade = null;
+      const starts = new Map();
+      for (const deck of this.musicDecks.values()) starts.set(deck, deck.level);
+      this.musicTransition = { target: track, starts, duration: this.musicFadeDuration,
+        started: this.musicNow(), elapsed: 0 };
+      this.runMusicFade();
+    }
+    runMusicFade() {
+      if (!this.musicAllowed() || !this.musicTransition || this.musicFade) return;
+      const transition = this.musicTransition;
+      transition.started = this.musicNow() - transition.elapsed;
+      const tick = () => {
+        const t = Math.min(1, Math.max(0, (this.musicNow() - transition.started) / transition.duration));
+        transition.elapsed = t * transition.duration;
+        // Smoothstep eases the endpoints. Equal-power curves avoid a dip in loudness.
+        const ease = t * t * (3 - 2 * t), angle = ease * Math.PI / 2;
+        for (const deck of this.musicDecks.values()) {
+          const start = transition.starts.get(deck) || 0, incoming = deck.track === transition.target;
+          deck.level = deck.ended ? 0 : t === 1 ? (incoming ? 1 : 0) :
+            Math.sqrt(start * start * Math.cos(angle) ** 2 + (incoming ? Math.sin(angle) ** 2 : 0));
+          this.musicLevel(deck);
+          if (t === 1 && !incoming && !(deck.pending && deck.track === this.musicTrack)) {
+            deck.media.pause(); deck.media.currentTime = 0;
+          }
+        }
+        if (t === 1) {
+          window.clearInterval(this.musicFade); this.musicFade = null; this.musicTransition = null;
+        }
+      };
+      this.musicFade = window.setInterval(tick, 20);
+      tick();
+    }
+    syncMusic() {
+      if (!window.Audio) return;
+      if (!this.musicAllowed()) {
+        if (this.musicFade) window.clearInterval(this.musicFade);
+        this.musicFade = null;
+        for (const deck of this.musicDecks.values()) deck.media.pause();
+        return;
+      }
+      let selected = null;
+      if (this.musicTrack && !this.musicFinished) {
+        selected = this.musicDeck(this.musicTrack);
+        if (this.music !== selected.media) {
+          if (this.music) this.music.id = '';
+          if (selected.level === 0 && selected.media.paused) selected.media.currentTime = 0;
+          selected.ended = false;
+          this.music = selected.media; this.music.id = 'background-music';
+        }
+      }
+      for (const deck of this.musicDecks.values()) {
+        this.musicLevel(deck);
+        if (deck.ended || (deck !== selected && deck.level === 0) || deck.pending) continue;
+        if (deck.media.paused) {
+          deck.pending = true;
+          const ready = () => {
+            deck.pending = false;
+            if (!this.musicAllowed()) { deck.media.pause(); return; }
+            if (deck.track === this.musicTrack && !this.musicFinished) {
+              const fadingTo = this.musicTransition && this.musicTransition.target;
+              if (fadingTo !== deck.track && deck.level !== 1) this.beginMusicFade(deck.track);
+              else this.runMusicFade();
+            } else if (deck.level === 0) deck.media.pause();
+          };
+          try {
+            const playing = deck.media.play();
+            if (playing && playing.then) playing.then(ready, error => {
+              deck.pending = false;
+              if (error && error.name === 'AbortError' && this.musicAllowed() && deck.track === this.musicTrack) this.syncMusic();
+            });
+            else ready();
+          } catch (_) { deck.pending = false; }
+        } else if (deck === selected && ((!this.musicTransition && deck.level !== 1) ||
+          (this.musicTransition && this.musicTransition.target !== deck.track))) this.beginMusicFade(deck.track);
+      }
+      this.runMusicFade();
     }
     tone(frequency, duration, strength, delay, glide) {
       const ctx = this.context;

@@ -95,6 +95,16 @@
       glide(this, 'x', targetX, dt, omega, 360 / Math.max(.01, this.zoom));
       glide(this, 'zoom', targetZoom, dt, 3, .45);
       glide(this, 'y', clamp(targetY, minY, maxY), dt, omega, 1400 / Math.max(.01, this.zoom));
+      if (options.status === 'running') {
+        // Spring lag must not hide the leader on a short viewport or at 3x speed.
+        // Use actual positions rather than collision velocity or participant IDs.
+        const inset = Math.min(20, area.h * .12);
+        const halfView = Math.max(0, (area.h / 2 - inset) / this.zoom - (front.r || 12));
+        const safeY = clamp(this.y, front.y - halfView, front.y + halfView);
+        if (safeY > this.y) this.yVelocity = Math.max(0, this.yVelocity);
+        else if (safeY < this.y) this.yVelocity = Math.min(0, this.yVelocity);
+        this.y = safeY;
+      }
 
     }
     zoomBy(factor) {

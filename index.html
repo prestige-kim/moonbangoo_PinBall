@@ -61,7 +61,7 @@
     </a>
     <nav class="masthead-actions" aria-label="게임 설정">
       <span class="fps-badge"><b id="fps">60</b> FPS</span>
-      <button class="icon-button" id="sound-toggle" type="button" aria-label="효과음 끄기" aria-pressed="true"><svg class="icon"><use href="#i-sound"/></svg></button>
+      <button class="icon-button" id="sound-toggle" type="button" aria-label="음악과 효과음 끄기" aria-pressed="true"><svg class="icon"><use href="#i-sound"/></svg></button>
       <button class="icon-button" id="settings-toggle" type="button" aria-label="설정 패널 열기 또는 닫기" aria-expanded="true" aria-controls="setup-panel"><svg class="icon"><use href="#i-settings"/></svg></button>
     </nav>
   </header>
@@ -108,14 +108,15 @@
               <div class="range-setting"><label for="restitution">반발력 <output id="restitution-value">0.72</output></label><input type="range" id="restitution" min="0.35" max="0.92" step="0.01" value="0.72" data-physical></div>
               <div class="range-setting"><label for="speed">게임 속도 <output id="speed-value">1.0×</output></label><input type="range" id="speed" min="0.5" max="3" step="0.25" value="1"></div>
               <div class="select-setting"><label for="quality">비주얼 품질</label><select id="quality"><option value="high">최고</option><option value="medium">보통</option><option value="low">절약</option></select></div>
-              <div class="range-setting"><label for="volume">효과음 볼륨 <output id="volume-value">35%</output></label><input type="range" id="volume" min="0" max="1" step="0.05" value="0.35"></div>
-              <label class="switch-row" for="sound"><span>효과음</span><span class="switch"><input type="checkbox" id="sound" checked><span></span></span></label>
+              <div class="range-setting"><label for="volume">음악 · 효과음 볼륨 <output id="volume-value">35%</output></label><input type="range" id="volume" min="0" max="1" step="0.05" value="0.35"></div>
+              <label class="switch-row" for="sound"><span>음악 · 효과음</span><span class="switch"><input type="checkbox" id="sound" checked><span></span></span></label>
               <label class="switch-row" for="skills"><span>랜덤 스킬<small>가속 · 밀치기 · 크기 변화</small></span><span class="switch"><input type="checkbox" id="skills" data-physical><span></span></span></label>
               <label class="switch-row" for="reduced-motion"><span>화면 효과 줄이기<small>흔들림 · 깜빡임을 줄입니다</small></span><span class="switch"><input type="checkbox" id="reduced-motion"><span></span></span></label>
               <span class="seed-label" id="seed-label">출발 방식</span>
               <input id="seed" type="hidden" value="">
               <div class="segmented seed-modes" role="group" aria-labelledby="seed-label"><button type="button" id="seed-auto" aria-pressed="true">매번 새로 섞기</button><button type="button" id="seed-previous" aria-pressed="false" disabled>직전 게임 재현</button></div>
               <p class="seed-note" id="seed-note">직전 게임을 시작하면 재현할 수 있습니다.</p>
+              <p><a href="./music-credits.html" target="_blank" rel="noopener">음악 크레딧 · 라이선스</a></p>
             </div>
           </details>
         </div>
@@ -159,6 +160,6 @@
     <a id="results-home-link" class="results-home-link" href="https://jeondowon.github.io/moonbangoo/"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8"/></svg>어른뭉방구 홈으로</a>
   </dialog>
 
-  <script src="./js/themes.js?v=local-1719b27b8c26"></script><script src="./js/maps.js?v=local-8f9439283229"></script><script src="./js/map-registry.js?v=local-4b9e705306ef"></script><script src="./js/maps/twinfold.js?v=local-70a658f4243b"></script><script src="./js/maps/twinfold-style.js?v=local-23cd5ac0dcee"></script><script src="./js/maps/cascade.js?v=local-a93b926d56fd"></script><script src="./js/maps/cascade-style.js?v=local-36a8c57c8808"></script><script src="./js/maps/rhythm.js?v=local-f984fd1faa52"></script><script src="./js/maps/rhythm-style.js?v=local-9110678807e4"></script><script src="./js/physics.js?v=local-bceb87dd4c6f"></script><script src="./js/camera.js?v=local-06c22835dda5"></script><script src="./js/effects.js?v=local-fc19741e8634"></script><script src="./js/audio.js?v=local-3b07575709a2"></script><script src="./js/race-standing.js?v=local-cad6e28fe03f"></script><script src="./js/renderer.js?v=local-f99884c59756"></script><script src="./js/cinematic.js?v=local-3f14458572d7"></script><script src="./js/shuffle.js?v=local-89c28332289c"></script><script src="./js/hand-start.js?v=local-298e6c089a19"></script><script src="./js/shuffle-input.js?v=local-c53898379372"></script><script src="./js/throw-gate.js?v=local-2edf9c6af6ea"></script><script src="./js/hand-scene.js?v=local-25bf0a15b52d"></script><script src="./js/hand-flight.js?v=local-861ecf9565c4"></script><script src="./js/race-duration-data.js?v=local-96651f0797bb"></script><script src="./js/maps-duration-data.js?v=local-cfa59cb74812"></script><script src="./js/race-duration.js?v=local-9d9acb9a4244"></script><script src="./js/ui.js?v=local-7db9bb207a3b"></script><script src="./js/display-budget.js?v=local-d918720b9ecf"></script><script src="./js/main.js?v=local-2989cd0422bf"></script>
+  <script src="./js/themes.js?v=local-1719b27b8c26"></script><script src="./js/maps.js?v=local-8f9439283229"></script><script src="./js/map-registry.js?v=local-4b9e705306ef"></script><script src="./js/maps/twinfold.js?v=local-70a658f4243b"></script><script src="./js/maps/twinfold-style.js?v=local-23cd5ac0dcee"></script><script src="./js/maps/cascade.js?v=local-a93b926d56fd"></script><script src="./js/maps/cascade-style.js?v=local-36a8c57c8808"></script><script src="./js/maps/rhythm.js?v=local-f984fd1faa52"></script><script src="./js/maps/rhythm-style.js?v=local-9110678807e4"></script><script src="./js/physics.js?v=local-bceb87dd4c6f"></script><script src="./js/camera.js?v=local-f94d5a585527"></script><script src="./js/effects.js?v=local-fc19741e8634"></script><script src="./js/audio.js?v=local-cf25ff727976"></script><script src="./js/race-standing.js?v=local-cad6e28fe03f"></script><script src="./js/renderer.js?v=local-f99884c59756"></script><script src="./js/cinematic.js?v=local-3f14458572d7"></script><script src="./js/shuffle.js?v=local-89c28332289c"></script><script src="./js/hand-start.js?v=local-298e6c089a19"></script><script src="./js/shuffle-input.js?v=local-c53898379372"></script><script src="./js/throw-gate.js?v=local-2edf9c6af6ea"></script><script src="./js/hand-scene.js?v=local-25bf0a15b52d"></script><script src="./js/hand-flight.js?v=local-861ecf9565c4"></script><script src="./js/race-duration-data.js?v=local-96651f0797bb"></script><script src="./js/maps-duration-data.js?v=local-cfa59cb74812"></script><script src="./js/race-duration.js?v=local-9d9acb9a4244"></script><script src="./js/ui.js?v=local-327c858ca23b"></script><script src="./js/display-budget.js?v=local-d918720b9ecf"></script><script src="./js/main.js?v=local-d15082d977b3"></script>
 </body>
 </html>

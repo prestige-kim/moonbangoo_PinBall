@@ -1,0 +1,1646 @@
+{
+  "browser": "155.0.8059.40",
+  "maps": [
+    {
+      "map": "classic",
+      "start": {
+        "settings": {
+          "names": "빨강*2,초록*2,파랑*2",
+          "rule": "first",
+          "rankN": 1,
+          "map": "classic",
+          "theme": "cosmic",
+          "radius": 12,
+          "gravity": 620,
+          "restitution": 0.72,
+          "speed": 3,
+          "sound": true,
+          "volume": 0.35,
+          "quality": "high",
+          "seed": "MB-1D424P-62XJ3X-1V97X2R-T911IM-1",
+          "skills": false,
+          "reducedMotion": false,
+          "classicSkills": false,
+          "replayStart": {
+            "version": 2,
+            "seed": "MB-1D424P-62XJ3X-1V97X2R-T911IM-1",
+            "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"classic\",\"name\":\"자개 핀 보드\",\"subtitle\":\"CLASSIC PEARL BOARD\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"pin\",\"id\":\"star-pin-0-0\",\"x\":80,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-1\",\"x\":185,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-2\",\"x\":290,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-3\",\"x\":395,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-4\",\"x\":500,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-5\",\"x\":605,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-6\",\"x\":710,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-7\",\"x\":815,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-8\",\"x\":920,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-1-0\",\"x\":128,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-1\",\"x\":233,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-2\",\"x\":338,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-3\",\"x\":443,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-4\",\"x\":548,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-5\",\"x\":653,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-6\",\"x\":758,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-7\",\"x\":863,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-0\",\"x\":80,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-1\",\"x\":185,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-2\",\"x\":290,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-3\",\"x\":395,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-4\",\"x\":500,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-5\",\"x\":605,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-6\",\"x\":710,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-7\",\"x\":815,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-8\",\"x\":920,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-3-0\",\"x\":128,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-1\",\"x\":233,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-2\",\"x\":338,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-3\",\"x\":443,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-4\",\"x\":548,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-5\",\"x\":653,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-6\",\"x\":758,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-7\",\"x\":863,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-4-0\",\"x\":80,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-1\",\"x\":185,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-2\",\"x\":290,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-3\",\"x\":395,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-4\",\"x\":500,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-5\",\"x\":605,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-6\",\"x\":710,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-7\",\"x\":815,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-8\",\"x\":920,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-0\",\"x\":128,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-1\",\"x\":233,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-2\",\"x\":338,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-3\",\"x\":443,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-4\",\"x\":548,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-5\",\"x\":653,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-6\",\"x\":758,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-7\",\"x\":863,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-6-0\",\"x\":80,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-1\",\"x\":185,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-2\",\"x\":290,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-3\",\"x\":395,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-4\",\"x\":500,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-5\",\"x\":605,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-6\",\"x\":710,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-7\",\"x\":815,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-8\",\"x\":920,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-7-0\",\"x\":128,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-1\",\"x\":233,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-2\",\"x\":338,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-3\",\"x\":443,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-4\",\"x\":548,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-5\",\"x\":653,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-6\",\"x\":758,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-7\",\"x\":863,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-0\",\"x\":80,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-1\",\"x\":185,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-2\",\"x\":290,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-3\",\"x\":395,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-4\",\"x\":500,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-5\",\"x\":605,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-6\",\"x\":710,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-7\",\"x\":815,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-8\",\"x\":920,\"y\":2534,\"r\":9},{\"type\":\"bumper\",\"id\":\"star-bumper-0\",\"x\":290,\"y\":1120,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-1\",\"x\":710,\"y\":1340,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-2\",\"x\":500,\"y\":1560,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-3\",\"x\":245,\"y\":1990,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-4\",\"x\":755,\"y\":2210,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-5\",\"x\":500,\"y\":2650,\"r\":38,\"power\":110},{\"type\":\"segment\",\"id\":\"star-ramp-l\",\"x1\":0,\"y1\":1790,\"x2\":150,\"y2\":1880,\"thickness\":7},{\"type\":\"segment\",\"id\":\"star-ramp-r\",\"x1\":1000,\"y1\":2410,\"x2\":850,\"y2\":2500,\"thickness\":7},{\"type\":\"pin\",\"id\":\"star-pin-2-0-section-3\",\"x\":80,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-1-section-3\",\"x\":185,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-2-section-3\",\"x\":290,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-3-section-3\",\"x\":395,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-4-section-3\",\"x\":500,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-5-section-3\",\"x\":605,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-6-section-3\",\"x\":710,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-7-section-3\",\"x\":815,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-8-section-3\",\"x\":920,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-3-0-section-3\",\"x\":128,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-1-section-3\",\"x\":233,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-2-section-3\",\"x\":338,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-3-section-3\",\"x\":443,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-4-section-3\",\"x\":548,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-5-section-3\",\"x\":653,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-6-section-3\",\"x\":758,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-7-section-3\",\"x\":863,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-4-0-section-3\",\"x\":80,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-1-section-3\",\"x\":185,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-2-section-3\",\"x\":290,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-3-section-3\",\"x\":395,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-4-section-3\",\"x\":500,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-5-section-3\",\"x\":605,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-6-section-3\",\"x\":710,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-7-section-3\",\"x\":815,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-8-section-3\",\"x\":920,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-0-section-3\",\"x\":128,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-1-section-3\",\"x\":233,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-2-section-3\",\"x\":338,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-3-section-3\",\"x\":443,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-4-section-3\",\"x\":548,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-5-section-3\",\"x\":653,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-6-section-3\",\"x\":758,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-7-section-3\",\"x\":863,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-6-0-section-3\",\"x\":80,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-1-section-3\",\"x\":185,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-2-section-3\",\"x\":290,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-3-section-3\",\"x\":395,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-4-section-3\",\"x\":500,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-5-section-3\",\"x\":605,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-6-section-3\",\"x\":710,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-7-section-3\",\"x\":815,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-8-section-3\",\"x\":920,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-7-0-section-3\",\"x\":128,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-1-section-3\",\"x\":233,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-2-section-3\",\"x\":338,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-3-section-3\",\"x\":443,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-4-section-3\",\"x\":548,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-5-section-3\",\"x\":653,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-6-section-3\",\"x\":758,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-7-section-3\",\"x\":863,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-0-section-3\",\"x\":80,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-1-section-3\",\"x\":185,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-2-section-3\",\"x\":290,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-3-section-3\",\"x\":395,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-4-section-3\",\"x\":500,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-5-section-3\",\"x\":605,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-6-section-3\",\"x\":710,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-7-section-3\",\"x\":815,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-8-section-3\",\"x\":920,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-9-0-section-3\",\"x\":128,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-1-section-3\",\"x\":233,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-2-section-3\",\"x\":338,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-3-section-3\",\"x\":443,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-4-section-3\",\"x\":548,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-5-section-3\",\"x\":653,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-6-section-3\",\"x\":758,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-7-section-3\",\"x\":863,\"y\":6752,\"r\":11},{\"type\":\"bumper\",\"id\":\"star-bumper-0-section-3\",\"x\":290,\"y\":5120,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-1-section-3\",\"x\":710,\"y\":5340,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-2-section-3\",\"x\":500,\"y\":5560,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-3-section-3\",\"x\":245,\"y\":5990,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-4-section-3\",\"x\":755,\"y\":6210,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-5-section-3\",\"x\":500,\"y\":6650,\"r\":38,\"power\":110},{\"type\":\"segment\",\"id\":\"star-ramp-l-section-3\",\"x1\":0,\"y1\":5790,\"x2\":150,\"y2\":5880,\"thickness\":7},{\"type\":\"segment\",\"id\":\"star-ramp-r-section-3\",\"x1\":1000,\"y1\":6410,\"x2\":850,\"y2\":6500,\"thickness\":7},{\"type\":\"polygon\",\"id\":\"channel-left\",\"channelWall\":true,\"points\":[{\"x\":36,\"y\":2700},{\"x\":360,\"y\":3000},{\"x\":205,\"y\":3400},{\"x\":470,\"y\":3800},{\"x\":190,\"y\":4200},{\"x\":380,\"y\":4600},{\"x\":36,\"y\":5000},{\"x\":36,\"y\":5000},{\"x\":36,\"y\":2700}]},{\"type\":\"polygon\",\"id\":\"channel-right\",\"channelWall\":true,\"points\":[{\"x\":964,\"y\":2700},{\"x\":840,\"y\":3000},{\"x\":555,\"y\":3400},{\"x\":790,\"y\":3800},{\"x\":550,\"y\":4200},{\"x\":800,\"y\":4600},{\"x\":964,\"y\":5000},{\"x\":964,\"y\":5000},{\"x\":964,\"y\":2700}]},{\"type\":\"rotor\",\"id\":\"race-rotor-0-0\",\"x\":260,\"y\":1850,\"length\":350,\"thickness\":9,\"angle\":0,\"speed\":1.3},{\"type\":\"rotor\",\"id\":\"race-rotor-0-1\",\"x\":740,\"y\":1980,\"length\":350,\"thickness\":9,\"angle\":0.75,\"speed\":-1.3},{\"type\":\"rotor\",\"id\":\"race-rotor-1-0\",\"x\":334.25,\"y\":3350,\"length\":110,\"thickness\":9,\"angle\":0.75,\"speed\":1.45},{\"type\":\"rotor\",\"id\":\"race-rotor-1-1\",\"x\":498.79999999999995,\"y\":3480,\"length\":110,\"thickness\":9,\"angle\":1.5,\"speed\":-1.45},{\"type\":\"rotor\",\"id\":\"race-rotor-2-0\",\"x\":386.25,\"y\":4850,\"length\":110,\"thickness\":9,\"angle\":1.5,\"speed\":1.6},{\"type\":\"rotor\",\"id\":\"race-rotor-2-1\",\"x\":685.02,\"y\":4980,\"length\":110,\"thickness\":9,\"angle\":2.25,\"speed\":-1.6},{\"type\":\"rotor\",\"id\":\"race-rotor-3-0\",\"x\":260,\"y\":6400,\"length\":350,\"thickness\":9,\"angle\":2.25,\"speed\":1.75},{\"type\":\"rotor\",\"id\":\"race-rotor-3-1\",\"x\":740,\"y\":6530,\"length\":350,\"thickness\":9,\"angle\":3,\"speed\":-1.75},{\"type\":\"pin\",\"id\":\"extension-pin-0-0\",\"x\":110,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-1\",\"x\":220,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-2\",\"x\":330,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-3\",\"x\":440,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-4\",\"x\":550,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-5\",\"x\":660,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-6\",\"x\":770,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-7\",\"x\":880,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-0\",\"x\":150,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-1\",\"x\":260,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-2\",\"x\":370,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-3\",\"x\":480,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-4\",\"x\":590,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-5\",\"x\":700,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-6\",\"x\":810,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-7\",\"x\":920,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-0\",\"x\":110,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-1\",\"x\":220,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-2\",\"x\":330,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-3\",\"x\":440,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-4\",\"x\":550,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-5\",\"x\":660,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-6\",\"x\":770,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-7\",\"x\":880,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-0\",\"x\":150,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-1\",\"x\":260,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-2\",\"x\":370,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-3\",\"x\":480,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-4\",\"x\":590,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-5\",\"x\":700,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-6\",\"x\":810,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-7\",\"x\":920,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-0\",\"x\":110,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-1\",\"x\":220,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-2\",\"x\":330,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-3\",\"x\":440,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-4\",\"x\":550,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-5\",\"x\":660,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-6\",\"x\":770,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-7\",\"x\":880,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-0\",\"x\":150,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-1\",\"x\":260,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-2\",\"x\":370,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-3\",\"x\":480,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-4\",\"x\":590,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-5\",\"x\":700,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-6\",\"x\":810,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-7\",\"x\":920,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-0\",\"x\":110,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-1\",\"x\":220,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-2\",\"x\":330,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-3\",\"x\":440,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-4\",\"x\":550,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-5\",\"x\":660,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-6\",\"x\":770,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-7\",\"x\":880,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-0\",\"x\":150,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-1\",\"x\":260,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-2\",\"x\":370,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-3\",\"x\":480,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-4\",\"x\":590,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-5\",\"x\":700,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-6\",\"x\":810,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-7\",\"x\":920,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-0\",\"x\":110,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-1\",\"x\":220,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-2\",\"x\":330,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-3\",\"x\":440,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-4\",\"x\":550,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-5\",\"x\":660,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-6\",\"x\":770,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-7\",\"x\":880,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-0\",\"x\":150,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-1\",\"x\":260,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-2\",\"x\":370,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-3\",\"x\":480,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-4\",\"x\":590,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-5\",\"x\":700,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-6\",\"x\":810,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-7\",\"x\":920,\"y\":10450,\"r\":10},{\"type\":\"moving\",\"id\":\"sweep-gate-0\",\"x\":320,\"y\":7600,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":0.3,\"speed\":0.85,\"phase\":0},{\"type\":\"bumper\",\"id\":\"extension-bumper-0\",\"x\":710,\"y\":7830,\"r\":32,\"power\":100},{\"type\":\"moving\",\"id\":\"sweep-gate-1\",\"x\":680,\"y\":8450,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":-0.3,\"speed\":0.97,\"phase\":1.7},{\"type\":\"bumper\",\"id\":\"extension-bumper-1\",\"x\":290,\"y\":8680,\"r\":32,\"power\":100},{\"type\":\"moving\",\"id\":\"sweep-gate-2\",\"x\":320,\"y\":9300,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":0.3,\"speed\":1.0899999999999999,\"phase\":3.4},{\"type\":\"bumper\",\"id\":\"extension-bumper-2\",\"x\":710,\"y\":9530,\"r\":32,\"power\":100},{\"type\":\"moving\",\"id\":\"sweep-gate-3\",\"x\":680,\"y\":10150,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":-0.3,\"speed\":1.21,\"phase\":5.1},{\"type\":\"bumper\",\"id\":\"extension-bumper-3\",\"x\":290,\"y\":10380,\"r\":32,\"power\":100},{\"type\":\"rotor\",\"id\":\"final-rotor-0-0\",\"x\":270,\"y\":8100,\"length\":320,\"thickness\":8,\"angle\":0,\"speed\":1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-0-1\",\"x\":730,\"y\":8230,\"length\":320,\"thickness\":8,\"angle\":0,\"speed\":-1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-1-0\",\"x\":270,\"y\":9750,\"length\":320,\"thickness\":8,\"angle\":0.6,\"speed\":1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-1-1\",\"x\":730,\"y\":9880,\"length\":320,\"thickness\":8,\"angle\":0.6,\"speed\":-1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-2-0\",\"x\":270,\"y\":10580,\"length\":320,\"thickness\":8,\"angle\":1.2,\"speed\":1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-2-1\",\"x\":730,\"y\":10710,\"length\":320,\"thickness\":8,\"angle\":1.2,\"speed\":-1.2},{\"type\":\"bumper\",\"id\":\"final-bumper\",\"x\":500,\"y\":10740,\"r\":30,\"power\":90},{\"type\":\"pin\",\"id\":\"final-pin-left\",\"x\":270,\"y\":10700,\"r\":12},{\"type\":\"pin\",\"id\":\"final-pin-right\",\"x\":730,\"y\":10700,\"r\":12}],\"channel\":[{\"y\":2700,\"center\":500,\"width\":928},{\"y\":3000,\"center\":600,\"width\":480},{\"y\":3400,\"center\":380,\"width\":350},{\"y\":3800,\"center\":630,\"width\":320},{\"y\":4200,\"center\":370,\"width\":360},{\"y\":4600,\"center\":590,\"width\":420},{\"y\":5000,\"center\":500,\"width\":928}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+            "source": [
+              {
+                "id": "marble-1",
+                "x": 0.7504031474661292,
+                "y": -0.12576369320976505,
+                "vx": 1.9451346752462555,
+                "vy": -0.38440146633501887,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-2",
+                "x": 0.5641476986168861,
+                "y": -0.1420334944328697,
+                "vx": 1.4977589476992674,
+                "vy": -0.2814394197125631,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-3",
+                "x": 0.6545485172982505,
+                "y": -0.33816062016437143,
+                "vx": 2.0014802490112396,
+                "vy": -0.13403684570992674,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-4",
+                "x": 0.5666159909819872,
+                "y": -0.2269991603197648,
+                "vx": 1.844965544597398,
+                "vy": -0.40186219938922024,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-5",
+                "x": 0.7171128102262181,
+                "y": -0.3803314387280361,
+                "vx": 2.115364011124607,
+                "vy": -0.18376847359896611,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-6",
+                "x": 0.7236455493386322,
+                "y": -0.3052321093052505,
+                "vx": 1.9902319189172202,
+                "vy": 0.060157489570988765,
+                "r": 0.03333333333333334
+              }
+            ],
+            "starts": [
+              {
+                "id": "marble-1",
+                "x": 125.09643677032241,
+                "y": 163.9582160380669,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-2",
+                "x": 254.67646355562223,
+                "y": 133.24427570356056,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-3",
+                "x": 365.7251944519424,
+                "y": 102.86460472666658,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-4",
+                "x": 745.0160794497157,
+                "y": 145.86752012209035,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-5",
+                "x": 516.1064379774033,
+                "y": 220.07994056958705,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-6",
+                "x": 902.2122250335912,
+                "y": 210.24345128424466,
+                "vx": 0,
+                "vy": 0
+              }
+            ],
+            "placement": "seeded-top-scatter-v2"
+          }
+        },
+        "record": {
+          "version": 2,
+          "seed": "MB-1D424P-62XJ3X-1V97X2R-T911IM-1",
+          "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"classic\",\"name\":\"자개 핀 보드\",\"subtitle\":\"CLASSIC PEARL BOARD\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"pin\",\"id\":\"star-pin-0-0\",\"x\":80,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-1\",\"x\":185,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-2\",\"x\":290,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-3\",\"x\":395,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-4\",\"x\":500,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-5\",\"x\":605,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-6\",\"x\":710,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-7\",\"x\":815,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-8\",\"x\":920,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-1-0\",\"x\":128,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-1\",\"x\":233,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-2\",\"x\":338,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-3\",\"x\":443,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-4\",\"x\":548,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-5\",\"x\":653,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-6\",\"x\":758,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-7\",\"x\":863,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-0\",\"x\":80,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-1\",\"x\":185,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-2\",\"x\":290,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-3\",\"x\":395,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-4\",\"x\":500,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-5\",\"x\":605,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-6\",\"x\":710,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-7\",\"x\":815,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-8\",\"x\":920,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-3-0\",\"x\":128,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-1\",\"x\":233,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-2\",\"x\":338,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-3\",\"x\":443,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-4\",\"x\":548,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-5\",\"x\":653,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-6\",\"x\":758,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-7\",\"x\":863,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-4-0\",\"x\":80,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-1\",\"x\":185,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-2\",\"x\":290,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-3\",\"x\":395,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-4\",\"x\":500,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-5\",\"x\":605,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-6\",\"x\":710,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-7\",\"x\":815,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-8\",\"x\":920,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-0\",\"x\":128,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-1\",\"x\":233,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-2\",\"x\":338,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-3\",\"x\":443,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-4\",\"x\":548,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-5\",\"x\":653,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-6\",\"x\":758,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-7\",\"x\":863,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-6-0\",\"x\":80,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-1\",\"x\":185,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-2\",\"x\":290,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-3\",\"x\":395,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-4\",\"x\":500,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-5\",\"x\":605,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-6\",\"x\":710,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-7\",\"x\":815,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-8\",\"x\":920,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-7-0\",\"x\":128,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-1\",\"x\":233,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-2\",\"x\":338,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-3\",\"x\":443,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-4\",\"x\":548,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-5\",\"x\":653,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-6\",\"x\":758,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-7\",\"x\":863,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-0\",\"x\":80,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-1\",\"x\":185,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-2\",\"x\":290,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-3\",\"x\":395,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-4\",\"x\":500,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-5\",\"x\":605,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-6\",\"x\":710,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-7\",\"x\":815,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-8\",\"x\":920,\"y\":2534,\"r\":9},{\"type\":\"bumper\",\"id\":\"star-bumper-0\",\"x\":290,\"y\":1120,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-1\",\"x\":710,\"y\":1340,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-2\",\"x\":500,\"y\":1560,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-3\",\"x\":245,\"y\":1990,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-4\",\"x\":755,\"y\":2210,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-5\",\"x\":500,\"y\":2650,\"r\":38,\"power\":110},{\"type\":\"segment\",\"id\":\"star-ramp-l\",\"x1\":0,\"y1\":1790,\"x2\":150,\"y2\":1880,\"thickness\":7},{\"type\":\"segment\",\"id\":\"star-ramp-r\",\"x1\":1000,\"y1\":2410,\"x2\":850,\"y2\":2500,\"thickness\":7},{\"type\":\"pin\",\"id\":\"star-pin-2-0-section-3\",\"x\":80,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-1-section-3\",\"x\":185,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-2-section-3\",\"x\":290,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-3-section-3\",\"x\":395,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-4-section-3\",\"x\":500,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-5-section-3\",\"x\":605,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-6-section-3\",\"x\":710,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-7-section-3\",\"x\":815,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-8-section-3\",\"x\":920,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-3-0-section-3\",\"x\":128,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-1-section-3\",\"x\":233,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-2-section-3\",\"x\":338,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-3-section-3\",\"x\":443,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-4-section-3\",\"x\":548,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-5-section-3\",\"x\":653,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-6-section-3\",\"x\":758,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-7-section-3\",\"x\":863,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-4-0-section-3\",\"x\":80,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-1-section-3\",\"x\":185,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-2-section-3\",\"x\":290,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-3-section-3\",\"x\":395,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-4-section-3\",\"x\":500,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-5-section-3\",\"x\":605,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-6-section-3\",\"x\":710,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-7-section-3\",\"x\":815,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-8-section-3\",\"x\":920,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-0-section-3\",\"x\":128,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-1-section-3\",\"x\":233,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-2-section-3\",\"x\":338,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-3-section-3\",\"x\":443,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-4-section-3\",\"x\":548,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-5-section-3\",\"x\":653,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-6-section-3\",\"x\":758,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-7-section-3\",\"x\":863,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-6-0-section-3\",\"x\":80,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-1-section-3\",\"x\":185,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-2-section-3\",\"x\":290,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-3-section-3\",\"x\":395,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-4-section-3\",\"x\":500,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-5-section-3\",\"x\":605,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-6-section-3\",\"x\":710,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-7-section-3\",\"x\":815,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-8-section-3\",\"x\":920,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-7-0-section-3\",\"x\":128,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-1-section-3\",\"x\":233,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-2-section-3\",\"x\":338,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-3-section-3\",\"x\":443,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-4-section-3\",\"x\":548,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-5-section-3\",\"x\":653,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-6-section-3\",\"x\":758,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-7-section-3\",\"x\":863,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-0-section-3\",\"x\":80,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-1-section-3\",\"x\":185,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-2-section-3\",\"x\":290,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-3-section-3\",\"x\":395,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-4-section-3\",\"x\":500,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-5-section-3\",\"x\":605,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-6-section-3\",\"x\":710,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-7-section-3\",\"x\":815,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-8-section-3\",\"x\":920,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-9-0-section-3\",\"x\":128,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-1-section-3\",\"x\":233,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-2-section-3\",\"x\":338,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-3-section-3\",\"x\":443,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-4-section-3\",\"x\":548,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-5-section-3\",\"x\":653,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-6-section-3\",\"x\":758,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-7-section-3\",\"x\":863,\"y\":6752,\"r\":11},{\"type\":\"bumper\",\"id\":\"star-bumper-0-section-3\",\"x\":290,\"y\":5120,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-1-section-3\",\"x\":710,\"y\":5340,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-2-section-3\",\"x\":500,\"y\":5560,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-3-section-3\",\"x\":245,\"y\":5990,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-4-section-3\",\"x\":755,\"y\":6210,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-5-section-3\",\"x\":500,\"y\":6650,\"r\":38,\"power\":110},{\"type\":\"segment\",\"id\":\"star-ramp-l-section-3\",\"x1\":0,\"y1\":5790,\"x2\":150,\"y2\":5880,\"thickness\":7},{\"type\":\"segment\",\"id\":\"star-ramp-r-section-3\",\"x1\":1000,\"y1\":6410,\"x2\":850,\"y2\":6500,\"thickness\":7},{\"type\":\"polygon\",\"id\":\"channel-left\",\"channelWall\":true,\"points\":[{\"x\":36,\"y\":2700},{\"x\":360,\"y\":3000},{\"x\":205,\"y\":3400},{\"x\":470,\"y\":3800},{\"x\":190,\"y\":4200},{\"x\":380,\"y\":4600},{\"x\":36,\"y\":5000},{\"x\":36,\"y\":5000},{\"x\":36,\"y\":2700}]},{\"type\":\"polygon\",\"id\":\"channel-right\",\"channelWall\":true,\"points\":[{\"x\":964,\"y\":2700},{\"x\":840,\"y\":3000},{\"x\":555,\"y\":3400},{\"x\":790,\"y\":3800},{\"x\":550,\"y\":4200},{\"x\":800,\"y\":4600},{\"x\":964,\"y\":5000},{\"x\":964,\"y\":5000},{\"x\":964,\"y\":2700}]},{\"type\":\"rotor\",\"id\":\"race-rotor-0-0\",\"x\":260,\"y\":1850,\"length\":350,\"thickness\":9,\"angle\":0,\"speed\":1.3},{\"type\":\"rotor\",\"id\":\"race-rotor-0-1\",\"x\":740,\"y\":1980,\"length\":350,\"thickness\":9,\"angle\":0.75,\"speed\":-1.3},{\"type\":\"rotor\",\"id\":\"race-rotor-1-0\",\"x\":334.25,\"y\":3350,\"length\":110,\"thickness\":9,\"angle\":0.75,\"speed\":1.45},{\"type\":\"rotor\",\"id\":\"race-rotor-1-1\",\"x\":498.79999999999995,\"y\":3480,\"length\":110,\"thickness\":9,\"angle\":1.5,\"speed\":-1.45},{\"type\":\"rotor\",\"id\":\"race-rotor-2-0\",\"x\":386.25,\"y\":4850,\"length\":110,\"thickness\":9,\"angle\":1.5,\"speed\":1.6},{\"type\":\"rotor\",\"id\":\"race-rotor-2-1\",\"x\":685.02,\"y\":4980,\"length\":110,\"thickness\":9,\"angle\":2.25,\"speed\":-1.6},{\"type\":\"rotor\",\"id\":\"race-rotor-3-0\",\"x\":260,\"y\":6400,\"length\":350,\"thickness\":9,\"angle\":2.25,\"speed\":1.75},{\"type\":\"rotor\",\"id\":\"race-rotor-3-1\",\"x\":740,\"y\":6530,\"length\":350,\"thickness\":9,\"angle\":3,\"speed\":-1.75},{\"type\":\"pin\",\"id\":\"extension-pin-0-0\",\"x\":110,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-1\",\"x\":220,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-2\",\"x\":330,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-3\",\"x\":440,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-4\",\"x\":550,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-5\",\"x\":660,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-6\",\"x\":770,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-7\",\"x\":880,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-0\",\"x\":150,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-1\",\"x\":260,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-2\",\"x\":370,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-3\",\"x\":480,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-4\",\"x\":590,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-5\",\"x\":700,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-6\",\"x\":810,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-7\",\"x\":920,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-0\",\"x\":110,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-1\",\"x\":220,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-2\",\"x\":330,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-3\",\"x\":440,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-4\",\"x\":550,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-5\",\"x\":660,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-6\",\"x\":770,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-7\",\"x\":880,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-0\",\"x\":150,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-1\",\"x\":260,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-2\",\"x\":370,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-3\",\"x\":480,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-4\",\"x\":590,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-5\",\"x\":700,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-6\",\"x\":810,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-7\",\"x\":920,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-0\",\"x\":110,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-1\",\"x\":220,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-2\",\"x\":330,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-3\",\"x\":440,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-4\",\"x\":550,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-5\",\"x\":660,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-6\",\"x\":770,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-7\",\"x\":880,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-0\",\"x\":150,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-1\",\"x\":260,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-2\",\"x\":370,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-3\",\"x\":480,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-4\",\"x\":590,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-5\",\"x\":700,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-6\",\"x\":810,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-7\",\"x\":920,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-0\",\"x\":110,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-1\",\"x\":220,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-2\",\"x\":330,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-3\",\"x\":440,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-4\",\"x\":550,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-5\",\"x\":660,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-6\",\"x\":770,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-7\",\"x\":880,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-0\",\"x\":150,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-1\",\"x\":260,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-2\",\"x\":370,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-3\",\"x\":480,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-4\",\"x\":590,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-5\",\"x\":700,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-6\",\"x\":810,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-7\",\"x\":920,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-0\",\"x\":110,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-1\",\"x\":220,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-2\",\"x\":330,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-3\",\"x\":440,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-4\",\"x\":550,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-5\",\"x\":660,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-6\",\"x\":770,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-7\",\"x\":880,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-0\",\"x\":150,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-1\",\"x\":260,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-2\",\"x\":370,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-3\",\"x\":480,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-4\",\"x\":590,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-5\",\"x\":700,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-6\",\"x\":810,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-7\",\"x\":920,\"y\":10450,\"r\":10},{\"type\":\"moving\",\"id\":\"sweep-gate-0\",\"x\":320,\"y\":7600,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":0.3,\"speed\":0.85,\"phase\":0},{\"type\":\"bumper\",\"id\":\"extension-bumper-0\",\"x\":710,\"y\":7830,\"r\":32,\"power\":100},{\"type\":\"moving\",\"id\":\"sweep-gate-1\",\"x\":680,\"y\":8450,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":-0.3,\"speed\":0.97,\"phase\":1.7},{\"type\":\"bumper\",\"id\":\"extension-bumper-1\",\"x\":290,\"y\":8680,\"r\":32,\"power\":100},{\"type\":\"moving\",\"id\":\"sweep-gate-2\",\"x\":320,\"y\":9300,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":0.3,\"speed\":1.0899999999999999,\"phase\":3.4},{\"type\":\"bumper\",\"id\":\"extension-bumper-2\",\"x\":710,\"y\":9530,\"r\":32,\"power\":100},{\"type\":\"moving\",\"id\":\"sweep-gate-3\",\"x\":680,\"y\":10150,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":-0.3,\"speed\":1.21,\"phase\":5.1},{\"type\":\"bumper\",\"id\":\"extension-bumper-3\",\"x\":290,\"y\":10380,\"r\":32,\"power\":100},{\"type\":\"rotor\",\"id\":\"final-rotor-0-0\",\"x\":270,\"y\":8100,\"length\":320,\"thickness\":8,\"angle\":0,\"speed\":1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-0-1\",\"x\":730,\"y\":8230,\"length\":320,\"thickness\":8,\"angle\":0,\"speed\":-1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-1-0\",\"x\":270,\"y\":9750,\"length\":320,\"thickness\":8,\"angle\":0.6,\"speed\":1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-1-1\",\"x\":730,\"y\":9880,\"length\":320,\"thickness\":8,\"angle\":0.6,\"speed\":-1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-2-0\",\"x\":270,\"y\":10580,\"length\":320,\"thickness\":8,\"angle\":1.2,\"speed\":1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-2-1\",\"x\":730,\"y\":10710,\"length\":320,\"thickness\":8,\"angle\":1.2,\"speed\":-1.2},{\"type\":\"bumper\",\"id\":\"final-bumper\",\"x\":500,\"y\":10740,\"r\":30,\"power\":90},{\"type\":\"pin\",\"id\":\"final-pin-left\",\"x\":270,\"y\":10700,\"r\":12},{\"type\":\"pin\",\"id\":\"final-pin-right\",\"x\":730,\"y\":10700,\"r\":12}],\"channel\":[{\"y\":2700,\"center\":500,\"width\":928},{\"y\":3000,\"center\":600,\"width\":480},{\"y\":3400,\"center\":380,\"width\":350},{\"y\":3800,\"center\":630,\"width\":320},{\"y\":4200,\"center\":370,\"width\":360},{\"y\":4600,\"center\":590,\"width\":420},{\"y\":5000,\"center\":500,\"width\":928}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+          "source": [
+            {
+              "id": "marble-1",
+              "x": 0.7504031474661292,
+              "y": -0.12576369320976505,
+              "vx": 1.9451346752462555,
+              "vy": -0.38440146633501887,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-2",
+              "x": 0.5641476986168861,
+              "y": -0.1420334944328697,
+              "vx": 1.4977589476992674,
+              "vy": -0.2814394197125631,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-3",
+              "x": 0.6545485172982505,
+              "y": -0.33816062016437143,
+              "vx": 2.0014802490112396,
+              "vy": -0.13403684570992674,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-4",
+              "x": 0.5666159909819872,
+              "y": -0.2269991603197648,
+              "vx": 1.844965544597398,
+              "vy": -0.40186219938922024,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-5",
+              "x": 0.7171128102262181,
+              "y": -0.3803314387280361,
+              "vx": 2.115364011124607,
+              "vy": -0.18376847359896611,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-6",
+              "x": 0.7236455493386322,
+              "y": -0.3052321093052505,
+              "vx": 1.9902319189172202,
+              "vy": 0.060157489570988765,
+              "r": 0.03333333333333334
+            }
+          ],
+          "starts": [
+            {
+              "id": "marble-1",
+              "x": 125.09643677032241,
+              "y": 163.9582160380669,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-2",
+              "x": 254.67646355562223,
+              "y": 133.24427570356056,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-3",
+              "x": 365.7251944519424,
+              "y": 102.86460472666658,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-4",
+              "x": 745.0160794497157,
+              "y": 145.86752012209035,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-5",
+              "x": 516.1064379774033,
+              "y": 220.07994056958705,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-6",
+              "x": 902.2122250335912,
+              "y": 210.24345128424466,
+              "vx": 0,
+              "vy": 0
+            }
+          ],
+          "placement": "seeded-top-scatter-v2"
+        }
+      },
+      "first": {
+        "ranking": [
+          [
+            "marble-2",
+            28.10374829918077
+          ],
+          [
+            "marble-3",
+            29.837940611669257
+          ],
+          [
+            "marble-5",
+            33.38171860335413
+          ],
+          [
+            "marble-4",
+            38.03880865181403
+          ],
+          [
+            "marble-1",
+            44.79157796088926
+          ],
+          [
+            "marble-6",
+            50.78020607886809
+          ]
+        ],
+        "time": 50.78333333333333,
+        "map": "자개 핀 보드",
+        "events": {
+          "hit": 223,
+          "bumper": 13,
+          "rescue": 4,
+          "finish": 6
+        }
+      },
+      "music": {
+        "setup": {
+          "scene": "setup",
+          "track": "chipper-doodle-v2",
+          "readyState": 4,
+          "time": 0.922993,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0.839468915614698,
+              "paused": false
+            }
+          ]
+        },
+        "muteResume": true,
+        "mixing": {
+          "scene": "mixing",
+          "track": "electrodoodle",
+          "readyState": 4,
+          "time": 0.05805,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0.9764495985487881,
+              "paused": false
+            },
+            {
+              "track": "electrodoodle",
+              "level": 0.006610739822698354,
+              "paused": false
+            }
+          ]
+        },
+        "running": {
+          "scene": "running",
+          "track": "bit-quest",
+          "readyState": 4,
+          "time": 0.068001,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0,
+              "paused": true
+            },
+            {
+              "track": "electrodoodle",
+              "level": 0.9999399133315148,
+              "paused": false
+            },
+            {
+              "track": "bit-quest",
+              "level": 0.010962195335005252,
+              "paused": false
+            }
+          ]
+        },
+        "result": {
+          "scene": "result",
+          "track": "winner-winner",
+          "readyState": 4,
+          "time": 0.052245,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0,
+              "paused": true
+            },
+            {
+              "track": "electrodoodle",
+              "level": 0,
+              "paused": true
+            },
+            {
+              "track": "bit-quest",
+              "level": 0.9999972660369905,
+              "paused": false
+            },
+            {
+              "track": "winner-winner",
+              "level": 0.00233835808733852,
+              "paused": false
+            }
+          ]
+        }
+      },
+      "exactReplay": true,
+      "persisted": true,
+      "restart": true
+    },
+    {
+      "map": "twinfold",
+      "start": {
+        "settings": {
+          "names": "빨강*2,초록*2,파랑*2",
+          "rule": "first",
+          "rankN": 1,
+          "map": "twinfold",
+          "theme": "cosmic",
+          "radius": 12,
+          "gravity": 620,
+          "restitution": 0.72,
+          "speed": 3,
+          "sound": true,
+          "volume": 0.35,
+          "quality": "high",
+          "seed": "MB-G9AB9W-AA1MCJ-BS0D95-PU72AJ-1",
+          "skills": false,
+          "reducedMotion": false,
+          "classicSkills": false,
+          "replayStart": {
+            "version": 2,
+            "seed": "MB-G9AB9W-AA1MCJ-BS0D95-PU72AJ-1",
+            "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"twinfold\",\"version\":3,\"name\":\"갈래 서가\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"polygon\",\"id\":\"twinfold-first-island\",\"points\":[{\"x\":500,\"y\":1500},{\"x\":610,\"y\":1750},{\"x\":610,\"y\":2100},{\"x\":450,\"y\":2700},{\"x\":590,\"y\":3300},{\"x\":570,\"y\":3850},{\"x\":500,\"y\":4150},{\"x\":390,\"y\":3850},{\"x\":390,\"y\":1750}]},{\"type\":\"polygon\",\"id\":\"twinfold-first-side-island\",\"points\":[{\"x\":1000,\"y\":1800},{\"x\":910,\"y\":2000},{\"x\":760,\"y\":2650},{\"x\":910,\"y\":3300},{\"x\":1000,\"y\":3500}]},{\"type\":\"polygon\",\"id\":\"twinfold-second-island\",\"points\":[{\"x\":500,\"y\":4900},{\"x\":390,\"y\":5150},{\"x\":390,\"y\":5500},{\"x\":550,\"y\":6100},{\"x\":410,\"y\":6700},{\"x\":430,\"y\":7250},{\"x\":500,\"y\":7550},{\"x\":610,\"y\":7250},{\"x\":610,\"y\":5150}]},{\"type\":\"polygon\",\"id\":\"twinfold-second-side-island\",\"points\":[{\"x\":0,\"y\":5200},{\"x\":90,\"y\":5400},{\"x\":240,\"y\":6050},{\"x\":90,\"y\":6700},{\"x\":0,\"y\":6900}]},{\"type\":\"segment\",\"id\":\"twinfold-entry-0-0\",\"x1\":150,\"y1\":875,\"x2\":290,\"y2\":965,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-0-1\",\"x1\":430,\"y1\":965,\"x2\":570,\"y2\":875,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-0-2\",\"x1\":710,\"y1\":875,\"x2\":850,\"y2\":965,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-1-0\",\"x1\":150,\"y1\":1265,\"x2\":290,\"y2\":1175,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-1-1\",\"x1\":430,\"y1\":1175,\"x2\":570,\"y2\":1265,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-1-2\",\"x1\":710,\"y1\":1265,\"x2\":850,\"y2\":1175,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-first-bend-a\",\"x1\":725,\"y1\":1800,\"x2\":820,\"y2\":1910,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-first-bend-b\",\"x1\":850,\"y1\":3550,\"x2\":740,\"y2\":3700,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-second-bend-a\",\"x1\":275,\"y1\":5200,\"x2\":180,\"y2\":5310,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-second-bend-b\",\"x1\":150,\"y1\":6950,\"x2\":260,\"y2\":7100,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-a-left\",\"x1\":150,\"y1\":4250,\"x2\":270,\"y2\":4460,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-a-right\",\"x1\":850,\"y1\":4250,\"x2\":730,\"y2\":4460,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-b-left\",\"x1\":150,\"y1\":7750,\"x2\":270,\"y2\":7960,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-b-right\",\"x1\":850,\"y1\":7750,\"x2\":730,\"y2\":7960,\"thickness\":8}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+            "source": [
+              {
+                "id": "marble-1",
+                "x": 0.6002211529151664,
+                "y": -0.011642021769576327,
+                "vx": 1.8318653377176648,
+                "vy": 0.13173815248751475,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-2",
+                "x": 0.5435825481329595,
+                "y": -0.12703929505832637,
+                "vx": 1.619910505822727,
+                "vy": -0.1503881824430024,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-3",
+                "x": 0.7091926965812841,
+                "y": -0.316317413740651,
+                "vx": 1.880449992487368,
+                "vy": 0.0032879683766336007,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-4",
+                "x": 0.8327266101124982,
+                "y": -0.2251573540846709,
+                "vx": 2.0322511559553207,
+                "vy": 0.41655808122654053,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-5",
+                "x": 0.6638380490808351,
+                "y": -0.1850885143017573,
+                "vx": 1.7616097442143033,
+                "vy": 0.2723975929078028,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-6",
+                "x": 0.5969886534652407,
+                "y": -0.2420901625931671,
+                "vx": 1.826773379768221,
+                "vy": 0.06339029497461848,
+                "r": 0.03333333333333334
+              }
+            ],
+            "starts": [
+              {
+                "id": "marble-1",
+                "x": 815.293481356309,
+                "y": 124.00065104220994,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-2",
+                "x": 369.59621630391723,
+                "y": 118.20660418411717,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-3",
+                "x": 253.10866202351949,
+                "y": 156.0176064730622,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-4",
+                "x": 179.47372379627387,
+                "y": 98.21029924112372,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-5",
+                "x": 709.9007032113926,
+                "y": 176.24271961767226,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-6",
+                "x": 541.1730364481917,
+                "y": 120.42506814096123,
+                "vx": 0,
+                "vy": 0
+              }
+            ],
+            "placement": "seeded-top-scatter-v2"
+          }
+        },
+        "record": {
+          "version": 2,
+          "seed": "MB-G9AB9W-AA1MCJ-BS0D95-PU72AJ-1",
+          "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"twinfold\",\"version\":3,\"name\":\"갈래 서가\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"polygon\",\"id\":\"twinfold-first-island\",\"points\":[{\"x\":500,\"y\":1500},{\"x\":610,\"y\":1750},{\"x\":610,\"y\":2100},{\"x\":450,\"y\":2700},{\"x\":590,\"y\":3300},{\"x\":570,\"y\":3850},{\"x\":500,\"y\":4150},{\"x\":390,\"y\":3850},{\"x\":390,\"y\":1750}]},{\"type\":\"polygon\",\"id\":\"twinfold-first-side-island\",\"points\":[{\"x\":1000,\"y\":1800},{\"x\":910,\"y\":2000},{\"x\":760,\"y\":2650},{\"x\":910,\"y\":3300},{\"x\":1000,\"y\":3500}]},{\"type\":\"polygon\",\"id\":\"twinfold-second-island\",\"points\":[{\"x\":500,\"y\":4900},{\"x\":390,\"y\":5150},{\"x\":390,\"y\":5500},{\"x\":550,\"y\":6100},{\"x\":410,\"y\":6700},{\"x\":430,\"y\":7250},{\"x\":500,\"y\":7550},{\"x\":610,\"y\":7250},{\"x\":610,\"y\":5150}]},{\"type\":\"polygon\",\"id\":\"twinfold-second-side-island\",\"points\":[{\"x\":0,\"y\":5200},{\"x\":90,\"y\":5400},{\"x\":240,\"y\":6050},{\"x\":90,\"y\":6700},{\"x\":0,\"y\":6900}]},{\"type\":\"segment\",\"id\":\"twinfold-entry-0-0\",\"x1\":150,\"y1\":875,\"x2\":290,\"y2\":965,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-0-1\",\"x1\":430,\"y1\":965,\"x2\":570,\"y2\":875,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-0-2\",\"x1\":710,\"y1\":875,\"x2\":850,\"y2\":965,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-1-0\",\"x1\":150,\"y1\":1265,\"x2\":290,\"y2\":1175,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-1-1\",\"x1\":430,\"y1\":1175,\"x2\":570,\"y2\":1265,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-1-2\",\"x1\":710,\"y1\":1265,\"x2\":850,\"y2\":1175,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-first-bend-a\",\"x1\":725,\"y1\":1800,\"x2\":820,\"y2\":1910,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-first-bend-b\",\"x1\":850,\"y1\":3550,\"x2\":740,\"y2\":3700,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-second-bend-a\",\"x1\":275,\"y1\":5200,\"x2\":180,\"y2\":5310,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-second-bend-b\",\"x1\":150,\"y1\":6950,\"x2\":260,\"y2\":7100,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-a-left\",\"x1\":150,\"y1\":4250,\"x2\":270,\"y2\":4460,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-a-right\",\"x1\":850,\"y1\":4250,\"x2\":730,\"y2\":4460,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-b-left\",\"x1\":150,\"y1\":7750,\"x2\":270,\"y2\":7960,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-b-right\",\"x1\":850,\"y1\":7750,\"x2\":730,\"y2\":7960,\"thickness\":8}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+          "source": [
+            {
+              "id": "marble-1",
+              "x": 0.6002211529151664,
+              "y": -0.011642021769576327,
+              "vx": 1.8318653377176648,
+              "vy": 0.13173815248751475,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-2",
+              "x": 0.5435825481329595,
+              "y": -0.12703929505832637,
+              "vx": 1.619910505822727,
+              "vy": -0.1503881824430024,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-3",
+              "x": 0.7091926965812841,
+              "y": -0.316317413740651,
+              "vx": 1.880449992487368,
+              "vy": 0.0032879683766336007,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-4",
+              "x": 0.8327266101124982,
+              "y": -0.2251573540846709,
+              "vx": 2.0322511559553207,
+              "vy": 0.41655808122654053,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-5",
+              "x": 0.6638380490808351,
+              "y": -0.1850885143017573,
+              "vx": 1.7616097442143033,
+              "vy": 0.2723975929078028,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-6",
+              "x": 0.5969886534652407,
+              "y": -0.2420901625931671,
+              "vx": 1.826773379768221,
+              "vy": 0.06339029497461848,
+              "r": 0.03333333333333334
+            }
+          ],
+          "starts": [
+            {
+              "id": "marble-1",
+              "x": 815.293481356309,
+              "y": 124.00065104220994,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-2",
+              "x": 369.59621630391723,
+              "y": 118.20660418411717,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-3",
+              "x": 253.10866202351949,
+              "y": 156.0176064730622,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-4",
+              "x": 179.47372379627387,
+              "y": 98.21029924112372,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-5",
+              "x": 709.9007032113926,
+              "y": 176.24271961767226,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-6",
+              "x": 541.1730364481917,
+              "y": 120.42506814096123,
+              "vx": 0,
+              "vy": 0
+            }
+          ],
+          "placement": "seeded-top-scatter-v2"
+        }
+      },
+      "first": {
+        "ranking": [
+          [
+            "marble-2",
+            17.06195767979518
+          ],
+          [
+            "marble-3",
+            19.50024400065657
+          ],
+          [
+            "marble-6",
+            20.631220099748017
+          ],
+          [
+            "marble-5",
+            21.308552192945744
+          ],
+          [
+            "marble-4",
+            23.283798096660018
+          ],
+          [
+            "marble-1",
+            23.38527963144767
+          ]
+        ],
+        "time": 23.391666666666666,
+        "map": "갈래 서가",
+        "events": {
+          "hit": 39,
+          "finish": 6
+        }
+      },
+      "music": {
+        "setup": {
+          "scene": "setup",
+          "track": "chipper-doodle-v2",
+          "readyState": 4,
+          "time": 0.06285,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0.006567810311730632,
+              "paused": false
+            }
+          ]
+        },
+        "muteResume": true,
+        "mixing": {
+          "scene": "mixing",
+          "track": "electrodoodle",
+          "readyState": 4,
+          "time": 0.062998,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0.8970730915691801,
+              "paused": false
+            },
+            {
+              "track": "electrodoodle",
+              "level": 0.006783818179624133,
+              "paused": false
+            }
+          ]
+        },
+        "running": {
+          "scene": "running",
+          "track": "bit-quest",
+          "readyState": 4,
+          "time": 0.056885,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0,
+              "paused": true
+            },
+            {
+              "track": "electrodoodle",
+              "level": 0.9999884010927681,
+              "paused": false
+            },
+            {
+              "track": "bit-quest",
+              "level": 0.004816396986247629,
+              "paused": false
+            }
+          ]
+        },
+        "result": {
+          "scene": "result",
+          "track": "winner-winner",
+          "readyState": 4,
+          "time": 0.05805,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0,
+              "paused": true
+            },
+            {
+              "track": "electrodoodle",
+              "level": 0,
+              "paused": true
+            },
+            {
+              "track": "bit-quest",
+              "level": 0.9999972660369905,
+              "paused": false
+            },
+            {
+              "track": "winner-winner",
+              "level": 0.00233835808733852,
+              "paused": false
+            }
+          ]
+        }
+      },
+      "exactReplay": true,
+      "persisted": true,
+      "restart": true
+    },
+    {
+      "map": "cascade",
+      "start": {
+        "settings": {
+          "names": "빨강*2,초록*2,파랑*2",
+          "rule": "first",
+          "rankN": 1,
+          "map": "cascade",
+          "theme": "cosmic",
+          "radius": 12,
+          "gravity": 620,
+          "restitution": 0.72,
+          "speed": 3,
+          "sound": true,
+          "volume": 0.35,
+          "quality": "high",
+          "seed": "MB-SDE1D3-11VDD4L-19KPJM-1R9C5F0-1",
+          "skills": false,
+          "reducedMotion": false,
+          "classicSkills": false,
+          "replayStart": {
+            "version": 2,
+            "seed": "MB-SDE1D3-11VDD4L-19KPJM-1R9C5F0-1",
+            "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"cascade\",\"version\":2,\"name\":\"빗살 낙하\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"segment\",\"id\":\"cascade-entry-left\",\"x1\":140,\"y1\":950,\"x2\":280,\"y2\":1060,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-entry-right\",\"x1\":860,\"y1\":950,\"x2\":720,\"y2\":1060,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-0-0\",\"x1\":142.05771365940052,\"y1\":1555,\"x2\":297.9422863405995,\"y2\":1645,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-0-1\",\"x1\":422.0577136594005,\"y1\":1555,\"x2\":577.9422863405995,\"y2\":1645,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-0-2\",\"x1\":702.0577136594005,\"y1\":1555,\"x2\":857.9422863405995,\"y2\":1645,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-0\",\"x1\":150,\"y1\":1920,\"x2\":225,\"y2\":2100,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-0\",\"points\":[{\"x\":352,\"y\":2110},{\"x\":398,\"y\":2170},{\"x\":384,\"y\":2200},{\"x\":324,\"y\":2190},{\"x\":318,\"y\":2160}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-1-0\",\"x1\":142.05771365940052,\"y1\":2745,\"x2\":297.9422863405995,\"y2\":2655,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-1-1\",\"x1\":422.0577136594005,\"y1\":2745,\"x2\":577.9422863405995,\"y2\":2655,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-1-2\",\"x1\":702.0577136594005,\"y1\":2745,\"x2\":857.9422863405995,\"y2\":2655,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-1\",\"x1\":850,\"y1\":3020,\"x2\":775,\"y2\":3200,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-1\",\"points\":[{\"x\":632,\"y\":3210},{\"x\":678,\"y\":3270},{\"x\":664,\"y\":3300},{\"x\":604,\"y\":3290},{\"x\":598,\"y\":3260}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-2-0\",\"x1\":142.05771365940052,\"y1\":3755,\"x2\":297.9422863405995,\"y2\":3845,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-2-1\",\"x1\":422.0577136594005,\"y1\":3755,\"x2\":577.9422863405995,\"y2\":3845,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-2-2\",\"x1\":702.0577136594005,\"y1\":3755,\"x2\":857.9422863405995,\"y2\":3845,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-2\",\"x1\":150,\"y1\":4120,\"x2\":225,\"y2\":4300,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-2\",\"points\":[{\"x\":352,\"y\":4310},{\"x\":398,\"y\":4370},{\"x\":384,\"y\":4400},{\"x\":324,\"y\":4390},{\"x\":318,\"y\":4360}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-3-0\",\"x1\":142.05771365940052,\"y1\":4945,\"x2\":297.9422863405995,\"y2\":4855,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-3-1\",\"x1\":422.0577136594005,\"y1\":4945,\"x2\":577.9422863405995,\"y2\":4855,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-3-2\",\"x1\":702.0577136594005,\"y1\":4945,\"x2\":857.9422863405995,\"y2\":4855,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-3\",\"x1\":850,\"y1\":5220,\"x2\":775,\"y2\":5400,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-3\",\"points\":[{\"x\":632,\"y\":5410},{\"x\":678,\"y\":5470},{\"x\":664,\"y\":5500},{\"x\":604,\"y\":5490},{\"x\":598,\"y\":5460}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-4-0\",\"x1\":142.05771365940052,\"y1\":5955,\"x2\":297.9422863405995,\"y2\":6045,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-4-1\",\"x1\":422.0577136594005,\"y1\":5955,\"x2\":577.9422863405995,\"y2\":6045,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-4-2\",\"x1\":702.0577136594005,\"y1\":5955,\"x2\":857.9422863405995,\"y2\":6045,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-4\",\"x1\":150,\"y1\":6320,\"x2\":225,\"y2\":6500,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-4\",\"points\":[{\"x\":352,\"y\":6510},{\"x\":398,\"y\":6570},{\"x\":384,\"y\":6600},{\"x\":324,\"y\":6590},{\"x\":318,\"y\":6560}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-5-0\",\"x1\":142.05771365940052,\"y1\":7145,\"x2\":297.9422863405995,\"y2\":7055,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-5-1\",\"x1\":422.0577136594005,\"y1\":7145,\"x2\":577.9422863405995,\"y2\":7055,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-5-2\",\"x1\":702.0577136594005,\"y1\":7145,\"x2\":857.9422863405995,\"y2\":7055,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-5\",\"x1\":850,\"y1\":7420,\"x2\":775,\"y2\":7600,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-5\",\"points\":[{\"x\":632,\"y\":7610},{\"x\":678,\"y\":7670},{\"x\":664,\"y\":7700},{\"x\":604,\"y\":7690},{\"x\":598,\"y\":7660}]},{\"type\":\"segment\",\"id\":\"cascade-exit-left-a\",\"x1\":140,\"y1\":8070,\"x2\":220,\"y2\":8250,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-exit-right-a\",\"x1\":860,\"y1\":8070,\"x2\":780,\"y2\":8250,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-exit-left-b\",\"x1\":300,\"y1\":8440,\"x2\":350,\"y2\":8610,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-exit-right-b\",\"x1\":700,\"y1\":8440,\"x2\":650,\"y2\":8610,\"thickness\":8,\"role\":\"guide\"}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+            "source": [
+              {
+                "id": "marble-1",
+                "x": 0.6280932261135842,
+                "y": -0.020299834762279666,
+                "vx": 1.6737166626724527,
+                "vy": -0.34265865242703464,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-2",
+                "x": 0.5741364173289257,
+                "y": -0.27110930544460404,
+                "vx": 1.700461687937294,
+                "vy": -0.12212031696994265,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-3",
+                "x": 0.686879568409499,
+                "y": -0.33721431594978724,
+                "vx": 1.7376431820287512,
+                "vy": -0.23518652561864087,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-4",
+                "x": 0.8663613145577791,
+                "y": -0.2587932810968833,
+                "vx": 0.4204583757548984,
+                "vy": 1.4176561304452397,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-5",
+                "x": 0.7071408433066083,
+                "y": -0.22915794050670618,
+                "vx": 1.7767652801431946,
+                "vy": -0.14721859424858727,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-6",
+                "x": 0.8757232297711838,
+                "y": -0.06572386697998583,
+                "vx": -0.7616437642234527,
+                "vy": -0.8619545284496074,
+                "r": 0.03333333333333334
+              }
+            ],
+            "starts": [
+              {
+                "id": "marble-1",
+                "x": 311.88191654734936,
+                "y": 150.14065122255124,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-2",
+                "x": 774.2428918532096,
+                "y": 115.85969469835982,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-3",
+                "x": 424.63636991661036,
+                "y": 220.5753792526666,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-4",
+                "x": 595.0208126363189,
+                "y": 149.9774777421262,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-5",
+                "x": 915.4130040462284,
+                "y": 222.5524515081197,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-6",
+                "x": 67.73291120817885,
+                "y": 172.27793961996213,
+                "vx": 0,
+                "vy": 0
+              }
+            ],
+            "placement": "seeded-top-scatter-v2"
+          }
+        },
+        "record": {
+          "version": 2,
+          "seed": "MB-SDE1D3-11VDD4L-19KPJM-1R9C5F0-1",
+          "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"cascade\",\"version\":2,\"name\":\"빗살 낙하\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"segment\",\"id\":\"cascade-entry-left\",\"x1\":140,\"y1\":950,\"x2\":280,\"y2\":1060,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-entry-right\",\"x1\":860,\"y1\":950,\"x2\":720,\"y2\":1060,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-0-0\",\"x1\":142.05771365940052,\"y1\":1555,\"x2\":297.9422863405995,\"y2\":1645,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-0-1\",\"x1\":422.0577136594005,\"y1\":1555,\"x2\":577.9422863405995,\"y2\":1645,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-0-2\",\"x1\":702.0577136594005,\"y1\":1555,\"x2\":857.9422863405995,\"y2\":1645,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-0\",\"x1\":150,\"y1\":1920,\"x2\":225,\"y2\":2100,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-0\",\"points\":[{\"x\":352,\"y\":2110},{\"x\":398,\"y\":2170},{\"x\":384,\"y\":2200},{\"x\":324,\"y\":2190},{\"x\":318,\"y\":2160}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-1-0\",\"x1\":142.05771365940052,\"y1\":2745,\"x2\":297.9422863405995,\"y2\":2655,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-1-1\",\"x1\":422.0577136594005,\"y1\":2745,\"x2\":577.9422863405995,\"y2\":2655,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-1-2\",\"x1\":702.0577136594005,\"y1\":2745,\"x2\":857.9422863405995,\"y2\":2655,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-1\",\"x1\":850,\"y1\":3020,\"x2\":775,\"y2\":3200,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-1\",\"points\":[{\"x\":632,\"y\":3210},{\"x\":678,\"y\":3270},{\"x\":664,\"y\":3300},{\"x\":604,\"y\":3290},{\"x\":598,\"y\":3260}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-2-0\",\"x1\":142.05771365940052,\"y1\":3755,\"x2\":297.9422863405995,\"y2\":3845,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-2-1\",\"x1\":422.0577136594005,\"y1\":3755,\"x2\":577.9422863405995,\"y2\":3845,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-2-2\",\"x1\":702.0577136594005,\"y1\":3755,\"x2\":857.9422863405995,\"y2\":3845,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-2\",\"x1\":150,\"y1\":4120,\"x2\":225,\"y2\":4300,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-2\",\"points\":[{\"x\":352,\"y\":4310},{\"x\":398,\"y\":4370},{\"x\":384,\"y\":4400},{\"x\":324,\"y\":4390},{\"x\":318,\"y\":4360}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-3-0\",\"x1\":142.05771365940052,\"y1\":4945,\"x2\":297.9422863405995,\"y2\":4855,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-3-1\",\"x1\":422.0577136594005,\"y1\":4945,\"x2\":577.9422863405995,\"y2\":4855,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-3-2\",\"x1\":702.0577136594005,\"y1\":4945,\"x2\":857.9422863405995,\"y2\":4855,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-3\",\"x1\":850,\"y1\":5220,\"x2\":775,\"y2\":5400,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-3\",\"points\":[{\"x\":632,\"y\":5410},{\"x\":678,\"y\":5470},{\"x\":664,\"y\":5500},{\"x\":604,\"y\":5490},{\"x\":598,\"y\":5460}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-4-0\",\"x1\":142.05771365940052,\"y1\":5955,\"x2\":297.9422863405995,\"y2\":6045,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-4-1\",\"x1\":422.0577136594005,\"y1\":5955,\"x2\":577.9422863405995,\"y2\":6045,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-4-2\",\"x1\":702.0577136594005,\"y1\":5955,\"x2\":857.9422863405995,\"y2\":6045,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-4\",\"x1\":150,\"y1\":6320,\"x2\":225,\"y2\":6500,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-4\",\"points\":[{\"x\":352,\"y\":6510},{\"x\":398,\"y\":6570},{\"x\":384,\"y\":6600},{\"x\":324,\"y\":6590},{\"x\":318,\"y\":6560}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-5-0\",\"x1\":142.05771365940052,\"y1\":7145,\"x2\":297.9422863405995,\"y2\":7055,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-5-1\",\"x1\":422.0577136594005,\"y1\":7145,\"x2\":577.9422863405995,\"y2\":7055,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-5-2\",\"x1\":702.0577136594005,\"y1\":7145,\"x2\":857.9422863405995,\"y2\":7055,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-5\",\"x1\":850,\"y1\":7420,\"x2\":775,\"y2\":7600,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-5\",\"points\":[{\"x\":632,\"y\":7610},{\"x\":678,\"y\":7670},{\"x\":664,\"y\":7700},{\"x\":604,\"y\":7690},{\"x\":598,\"y\":7660}]},{\"type\":\"segment\",\"id\":\"cascade-exit-left-a\",\"x1\":140,\"y1\":8070,\"x2\":220,\"y2\":8250,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-exit-right-a\",\"x1\":860,\"y1\":8070,\"x2\":780,\"y2\":8250,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-exit-left-b\",\"x1\":300,\"y1\":8440,\"x2\":350,\"y2\":8610,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-exit-right-b\",\"x1\":700,\"y1\":8440,\"x2\":650,\"y2\":8610,\"thickness\":8,\"role\":\"guide\"}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+          "source": [
+            {
+              "id": "marble-1",
+              "x": 0.6280932261135842,
+              "y": -0.020299834762279666,
+              "vx": 1.6737166626724527,
+              "vy": -0.34265865242703464,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-2",
+              "x": 0.5741364173289257,
+              "y": -0.27110930544460404,
+              "vx": 1.700461687937294,
+              "vy": -0.12212031696994265,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-3",
+              "x": 0.686879568409499,
+              "y": -0.33721431594978724,
+              "vx": 1.7376431820287512,
+              "vy": -0.23518652561864087,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-4",
+              "x": 0.8663613145577791,
+              "y": -0.2587932810968833,
+              "vx": 0.4204583757548984,
+              "vy": 1.4176561304452397,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-5",
+              "x": 0.7071408433066083,
+              "y": -0.22915794050670618,
+              "vx": 1.7767652801431946,
+              "vy": -0.14721859424858727,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-6",
+              "x": 0.8757232297711838,
+              "y": -0.06572386697998583,
+              "vx": -0.7616437642234527,
+              "vy": -0.8619545284496074,
+              "r": 0.03333333333333334
+            }
+          ],
+          "starts": [
+            {
+              "id": "marble-1",
+              "x": 311.88191654734936,
+              "y": 150.14065122255124,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-2",
+              "x": 774.2428918532096,
+              "y": 115.85969469835982,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-3",
+              "x": 424.63636991661036,
+              "y": 220.5753792526666,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-4",
+              "x": 595.0208126363189,
+              "y": 149.9774777421262,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-5",
+              "x": 915.4130040462284,
+              "y": 222.5524515081197,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-6",
+              "x": 67.73291120817885,
+              "y": 172.27793961996213,
+              "vx": 0,
+              "vy": 0
+            }
+          ],
+          "placement": "seeded-top-scatter-v2"
+        }
+      },
+      "first": {
+        "ranking": [
+          [
+            "marble-5",
+            16.903577946948232
+          ],
+          [
+            "marble-6",
+            16.979886338379778
+          ],
+          [
+            "marble-4",
+            18.479555732250244
+          ],
+          [
+            "marble-1",
+            20.351893431930858
+          ],
+          [
+            "marble-2",
+            22.13862023609092
+          ],
+          [
+            "marble-3",
+            22.45043758500793
+          ]
+        ],
+        "time": 22.458333333333332,
+        "map": "빗살 낙하",
+        "events": {
+          "hit": 29,
+          "finish": 6
+        }
+      },
+      "music": {
+        "setup": {
+          "scene": "setup",
+          "track": "chipper-doodle-v2",
+          "readyState": 4,
+          "time": 0.052245,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0.011360065801757748,
+              "paused": false
+            }
+          ]
+        },
+        "muteResume": true,
+        "mixing": {
+          "scene": "mixing",
+          "track": "electrodoodle",
+          "readyState": 4,
+          "time": 0.063855,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0.908823598170691,
+              "paused": false
+            },
+            {
+              "track": "electrodoodle",
+              "level": 0.006805605971357471,
+              "paused": false
+            }
+          ]
+        },
+        "running": {
+          "scene": "running",
+          "track": "bit-quest",
+          "readyState": 4,
+          "time": 0.052245,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0,
+              "paused": true
+            },
+            {
+              "track": "electrodoodle",
+              "level": 0.9999884010930389,
+              "paused": false
+            },
+            {
+              "track": "bit-quest",
+              "level": 0.0048163969300268426,
+              "paused": false
+            }
+          ]
+        },
+        "result": {
+          "scene": "result",
+          "track": "winner-winner",
+          "readyState": 4,
+          "time": 0.062531,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0,
+              "paused": true
+            },
+            {
+              "track": "electrodoodle",
+              "level": 0,
+              "paused": true
+            },
+            {
+              "track": "bit-quest",
+              "level": 0.9999858273084955,
+              "paused": false
+            },
+            {
+              "track": "winner-winner",
+              "level": 0.005324019359830413,
+              "paused": false
+            }
+          ]
+        }
+      },
+      "exactReplay": true,
+      "persisted": true,
+      "restart": true
+    },
+    {
+      "map": "rhythm",
+      "start": {
+        "settings": {
+          "names": "빨강*2,초록*2,파랑*2",
+          "rule": "first",
+          "rankN": 1,
+          "map": "rhythm",
+          "theme": "cosmic",
+          "radius": 12,
+          "gravity": 620,
+          "restitution": 0.72,
+          "speed": 3,
+          "sound": true,
+          "volume": 0.35,
+          "quality": "high",
+          "seed": "MB-119ZKWI-MCBQS6-1MG3G3T-CLW3PX-1",
+          "skills": false,
+          "reducedMotion": false,
+          "classicSkills": false,
+          "replayStart": {
+            "version": 2,
+            "seed": "MB-119ZKWI-MCBQS6-1MG3G3T-CLW3PX-1",
+            "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"rhythm\",\"version\":1,\"name\":\"박자 분배기\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"moving\",\"id\":\"rhythm-throat-0-0\",\"x\":330,\"y\":2400,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":0},{\"type\":\"moving\",\"id\":\"rhythm-throat-0-1\",\"x\":670,\"y\":2400,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":-0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":3.141592653589793},{\"type\":\"polygon\",\"id\":\"rhythm-entry-0\",\"points\":[{\"x\":492,\"y\":2050},{\"x\":540,\"y\":2120},{\"x\":530,\"y\":2150},{\"x\":470,\"y\":2150},{\"x\":460,\"y\":2110}]},{\"type\":\"segment\",\"id\":\"rhythm-inlet-left-0\",\"x1\":150,\"y1\":1890,\"x2\":240,\"y2\":2070,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-inlet-right-0\",\"x1\":850,\"y1\":1890,\"x2\":760,\"y2\":2070,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-left-0\",\"x1\":150,\"y1\":2700,\"x2\":310,\"y2\":2830,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-right-0\",\"x1\":850,\"y1\":2700,\"x2\":690,\"y2\":2830,\"thickness\":8},{\"type\":\"moving\",\"id\":\"rhythm-throat-1-0\",\"x\":330,\"y\":4800,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"rhythm-throat-1-1\",\"x\":670,\"y\":4800,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":-0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":5.235987755982988},{\"type\":\"polygon\",\"id\":\"rhythm-entry-1\",\"points\":[{\"x\":492,\"y\":4450},{\"x\":540,\"y\":4520},{\"x\":530,\"y\":4550},{\"x\":470,\"y\":4550},{\"x\":460,\"y\":4510}]},{\"type\":\"segment\",\"id\":\"rhythm-inlet-left-1\",\"x1\":150,\"y1\":4290,\"x2\":240,\"y2\":4470,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-inlet-right-1\",\"x1\":850,\"y1\":4290,\"x2\":760,\"y2\":4470,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-left-1\",\"x1\":150,\"y1\":5100,\"x2\":310,\"y2\":5230,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-right-1\",\"x1\":850,\"y1\":5100,\"x2\":690,\"y2\":5230,\"thickness\":8},{\"type\":\"moving\",\"id\":\"rhythm-throat-2-0\",\"x\":330,\"y\":7000,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"rhythm-throat-2-1\",\"x\":670,\"y\":7000,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":-0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":7.330382858376184},{\"type\":\"polygon\",\"id\":\"rhythm-entry-2\",\"points\":[{\"x\":492,\"y\":6650},{\"x\":540,\"y\":6720},{\"x\":530,\"y\":6750},{\"x\":470,\"y\":6750},{\"x\":460,\"y\":6710}]},{\"type\":\"segment\",\"id\":\"rhythm-inlet-left-2\",\"x1\":150,\"y1\":6490,\"x2\":240,\"y2\":6670,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-inlet-right-2\",\"x1\":850,\"y1\":6490,\"x2\":760,\"y2\":6670,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-left-2\",\"x1\":150,\"y1\":7300,\"x2\":310,\"y2\":7430,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-right-2\",\"x1\":850,\"y1\":7300,\"x2\":690,\"y2\":7430,\"thickness\":8}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+            "source": [
+              {
+                "id": "marble-1",
+                "x": 0.6253560687584441,
+                "y": -0.07503395619045827,
+                "vx": 1.8006340544276644,
+                "vy": -0.043035399396559024,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-2",
+                "x": 0.7133181721127453,
+                "y": -0.22527255722744324,
+                "vx": 1.97045248757836,
+                "vy": 0.01583546010069395,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-3",
+                "x": 0.5696250919961134,
+                "y": -0.13355097538657898,
+                "vx": 1.7541517832585933,
+                "vy": -0.10760930191285474,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-4",
+                "x": 0.8140957639055197,
+                "y": -0.11146977538747999,
+                "vx": 2.035435366890758,
+                "vy": 0.5696434916527465,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-5",
+                "x": 0.7370643110029961,
+                "y": -0.34479292904986525,
+                "vx": 2.005739327844475,
+                "vy": -0.18498618091583044,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-6",
+                "x": 0.8216627352628545,
+                "y": -0.0031823233595938034,
+                "vx": 2.0939974059364084,
+                "vy": -0.3265761941028722,
+                "r": 0.03333333333333334
+              }
+            ],
+            "starts": [
+              {
+                "id": "marble-1",
+                "x": 184.53433734116453,
+                "y": 156.404589737067,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-2",
+                "x": 219.80671364627779,
+                "y": 163.31848418270238,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-3",
+                "x": 780.0416452475669,
+                "y": 208.1311551029794,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-4",
+                "x": 454.0692231515422,
+                "y": 78.99954926618375,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-5",
+                "x": 634.226572186298,
+                "y": 97.1008795646485,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-6",
+                "x": 892.3407363143439,
+                "y": 178.4669252682943,
+                "vx": 0,
+                "vy": 0
+              }
+            ],
+            "placement": "seeded-top-scatter-v2"
+          }
+        },
+        "record": {
+          "version": 2,
+          "seed": "MB-119ZKWI-MCBQS6-1MG3G3T-CLW3PX-1",
+          "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"rhythm\",\"version\":1,\"name\":\"박자 분배기\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"moving\",\"id\":\"rhythm-throat-0-0\",\"x\":330,\"y\":2400,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":0},{\"type\":\"moving\",\"id\":\"rhythm-throat-0-1\",\"x\":670,\"y\":2400,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":-0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":3.141592653589793},{\"type\":\"polygon\",\"id\":\"rhythm-entry-0\",\"points\":[{\"x\":492,\"y\":2050},{\"x\":540,\"y\":2120},{\"x\":530,\"y\":2150},{\"x\":470,\"y\":2150},{\"x\":460,\"y\":2110}]},{\"type\":\"segment\",\"id\":\"rhythm-inlet-left-0\",\"x1\":150,\"y1\":1890,\"x2\":240,\"y2\":2070,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-inlet-right-0\",\"x1\":850,\"y1\":1890,\"x2\":760,\"y2\":2070,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-left-0\",\"x1\":150,\"y1\":2700,\"x2\":310,\"y2\":2830,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-right-0\",\"x1\":850,\"y1\":2700,\"x2\":690,\"y2\":2830,\"thickness\":8},{\"type\":\"moving\",\"id\":\"rhythm-throat-1-0\",\"x\":330,\"y\":4800,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"rhythm-throat-1-1\",\"x\":670,\"y\":4800,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":-0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":5.235987755982988},{\"type\":\"polygon\",\"id\":\"rhythm-entry-1\",\"points\":[{\"x\":492,\"y\":4450},{\"x\":540,\"y\":4520},{\"x\":530,\"y\":4550},{\"x\":470,\"y\":4550},{\"x\":460,\"y\":4510}]},{\"type\":\"segment\",\"id\":\"rhythm-inlet-left-1\",\"x1\":150,\"y1\":4290,\"x2\":240,\"y2\":4470,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-inlet-right-1\",\"x1\":850,\"y1\":4290,\"x2\":760,\"y2\":4470,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-left-1\",\"x1\":150,\"y1\":5100,\"x2\":310,\"y2\":5230,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-right-1\",\"x1\":850,\"y1\":5100,\"x2\":690,\"y2\":5230,\"thickness\":8},{\"type\":\"moving\",\"id\":\"rhythm-throat-2-0\",\"x\":330,\"y\":7000,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"rhythm-throat-2-1\",\"x\":670,\"y\":7000,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":-0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":7.330382858376184},{\"type\":\"polygon\",\"id\":\"rhythm-entry-2\",\"points\":[{\"x\":492,\"y\":6650},{\"x\":540,\"y\":6720},{\"x\":530,\"y\":6750},{\"x\":470,\"y\":6750},{\"x\":460,\"y\":6710}]},{\"type\":\"segment\",\"id\":\"rhythm-inlet-left-2\",\"x1\":150,\"y1\":6490,\"x2\":240,\"y2\":6670,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-inlet-right-2\",\"x1\":850,\"y1\":6490,\"x2\":760,\"y2\":6670,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-left-2\",\"x1\":150,\"y1\":7300,\"x2\":310,\"y2\":7430,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-right-2\",\"x1\":850,\"y1\":7300,\"x2\":690,\"y2\":7430,\"thickness\":8}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+          "source": [
+            {
+              "id": "marble-1",
+              "x": 0.6253560687584441,
+              "y": -0.07503395619045827,
+              "vx": 1.8006340544276644,
+              "vy": -0.043035399396559024,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-2",
+              "x": 0.7133181721127453,
+              "y": -0.22527255722744324,
+              "vx": 1.97045248757836,
+              "vy": 0.01583546010069395,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-3",
+              "x": 0.5696250919961134,
+              "y": -0.13355097538657898,
+              "vx": 1.7541517832585933,
+              "vy": -0.10760930191285474,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-4",
+              "x": 0.8140957639055197,
+              "y": -0.11146977538747999,
+              "vx": 2.035435366890758,
+              "vy": 0.5696434916527465,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-5",
+              "x": 0.7370643110029961,
+              "y": -0.34479292904986525,
+              "vx": 2.005739327844475,
+              "vy": -0.18498618091583044,
+              "r": 0.03333333333333334
+            },
+            {
+              "id": "marble-6",
+              "x": 0.8216627352628545,
+              "y": -0.0031823233595938034,
+              "vx": 2.0939974059364084,
+              "vy": -0.3265761941028722,
+              "r": 0.03333333333333334
+            }
+          ],
+          "starts": [
+            {
+              "id": "marble-1",
+              "x": 184.53433734116453,
+              "y": 156.404589737067,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-2",
+              "x": 219.80671364627779,
+              "y": 163.31848418270238,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-3",
+              "x": 780.0416452475669,
+              "y": 208.1311551029794,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-4",
+              "x": 454.0692231515422,
+              "y": 78.99954926618375,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-5",
+              "x": 634.226572186298,
+              "y": 97.1008795646485,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-6",
+              "x": 892.3407363143439,
+              "y": 178.4669252682943,
+              "vx": 0,
+              "vy": 0
+            }
+          ],
+          "placement": "seeded-top-scatter-v2"
+        }
+      },
+      "first": {
+        "ranking": [
+          [
+            "marble-6",
+            16.970492482095942
+          ],
+          [
+            "marble-4",
+            17.351333955486034
+          ],
+          [
+            "marble-3",
+            17.423357877631936
+          ],
+          [
+            "marble-2",
+            17.66175567530683
+          ],
+          [
+            "marble-5",
+            20.47344803188222
+          ],
+          [
+            "marble-1",
+            21.417365343927447
+          ]
+        ],
+        "time": 21.425,
+        "map": "박자 분배기",
+        "events": {
+          "hit": 16,
+          "finish": 6
+        }
+      },
+      "music": {
+        "setup": {
+          "scene": "setup",
+          "track": "chipper-doodle-v2",
+          "readyState": 4,
+          "time": 0.062044,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0.011811420845751923,
+              "paused": false
+            }
+          ]
+        },
+        "muteResume": true,
+        "mixing": {
+          "scene": "mixing",
+          "track": "electrodoodle",
+          "readyState": 4,
+          "time": 0.068498,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0.9081564999485927,
+              "paused": false
+            },
+            {
+              "track": "electrodoodle",
+              "level": 0.0068056059193708895,
+              "paused": false
+            }
+          ]
+        },
+        "running": {
+          "scene": "running",
+          "track": "bit-quest",
+          "readyState": 4,
+          "time": 0.055564,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0,
+              "paused": true
+            },
+            {
+              "track": "electrodoodle",
+              "level": 0.9999878227832044,
+              "paused": false
+            },
+            {
+              "track": "bit-quest",
+              "level": 0.004935006110079494,
+              "paused": false
+            }
+          ]
+        },
+        "result": {
+          "scene": "result",
+          "track": "winner-winner",
+          "readyState": 4,
+          "time": 0.062333,
+          "paused": false,
+          "error": null,
+          "context": "running",
+          "decks": [
+            {
+              "track": "chipper-doodle-v2",
+              "level": 0,
+              "paused": true
+            },
+            {
+              "track": "electrodoodle",
+              "level": 0,
+              "paused": true
+            },
+            {
+              "track": "bit-quest",
+              "level": 0.9999841066288233,
+              "paused": false
+            },
+            {
+              "track": "winner-winner",
+              "level": 0.005637950847076661,
+              "paused": false
+            }
+          ]
+        }
+      },
+      "exactReplay": true,
+      "persisted": true,
+      "restart": true
+    }
+  ],
+  "layouts": [
+    {
+      "width": 360,
+      "height": 640,
+      "input": "emulated touch",
+      "overflow": false,
+      "cards": [
+        {
+          "x": 37,
+          "y": 122.5,
+          "w": 139,
+          "h": 78
+        },
+        {
+          "x": 184,
+          "y": 122.5,
+          "w": 139,
+          "h": 78
+        },
+        {
+          "x": 37,
+          "y": 208.5,
+          "w": 139,
+          "h": 78
+        },
+        {
+          "x": 184,
+          "y": 208.5,
+          "w": 139,
+          "h": 78
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "input": "emulated touch",
+      "overflow": false,
+      "cards": [
+        {
+          "x": 37,
+          "y": 129.75,
+          "w": 154,
+          "h": 78
+        },
+        {
+          "x": 199,
+          "y": 129.75,
+          "w": 154,
+          "h": 78
+        },
+        {
+          "x": 37,
+          "y": 215.75,
+          "w": 154,
+          "h": 78
+        },
+        {
+          "x": 199,
+          "y": 215.75,
+          "w": 154,
+          "h": 78
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "input": "emulated touch",
+      "overflow": false,
+      "cards": [
+        {
+          "x": 207,
+          "y": 129.75,
+          "w": 173,
+          "h": 78
+        },
+        {
+          "x": 388,
+          "y": 129.75,
+          "w": 173,
+          "h": 78
+        },
+        {
+          "x": 207,
+          "y": 215.75,
+          "w": 173,
+          "h": 78
+        },
+        {
+          "x": 388,
+          "y": 215.75,
+          "w": 173,
+          "h": 78
+        }
+      ]
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "input": "mouse",
+      "overflow": false,
+      "cards": [
+        {
+          "x": 468,
+          "y": 150.5,
+          "w": 168,
+          "h": 78
+        },
+        {
+          "x": 644,
+          "y": 150.5,
+          "w": 168,
+          "h": 78
+        },
+        {
+          "x": 468,
+          "y": 236.5,
+          "w": 168,
+          "h": 78
+        },
+        {
+          "x": 644,
+          "y": 236.5,
+          "w": 168,
+          "h": 78
+        }
+      ]
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "input": "mouse",
+      "overflow": false,
+      "cards": [
+        {
+          "x": 788,
+          "y": 150.5,
+          "w": 168,
+          "h": 78
+        },
+        {
+          "x": 964,
+          "y": 150.5,
+          "w": 168,
+          "h": 78
+        },
+        {
+          "x": 788,
+          "y": 236.5,
+          "w": 168,
+          "h": 78
+        },
+        {
+          "x": 964,
+          "y": 236.5,
+          "w": 168,
+          "h": 78
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Chromium desktop and touch emulation; no physical handset tested",
+    "Screenshot and FPS checks use this local machine only"
+  ],
+  "performance": [
+    {
+      "map": "twinfold",
+      "count": 200,
+      "fps": 60,
+      "quality": "high",
+      "time": 6.008333333333333
+    },
+    {
+      "map": "twinfold",
+      "count": 500,
+      "fps": 60,
+      "quality": "high",
+      "time": 6.008333333333333
+    },
+    {
+      "map": "cascade",
+      "count": 200,
+      "fps": 60,
+      "quality": "high",
+      "time": 6.008333333333333
+    },
+    {
+      "map": "cascade",
+      "count": 500,
+      "fps": 60,
+      "quality": "high",
+      "time": 6.008333333333333
+    },
+    {
+      "map": "rhythm",
+      "count": 200,
+      "fps": 60,
+      "quality": "high",
+      "time": 6.008333333333333
+    },
+    {
+      "map": "rhythm",
+      "count": 500,
+      "fps": 60,
+      "quality": "high",
+      "time": 6.008333333333333
+    }
+  ]
+}

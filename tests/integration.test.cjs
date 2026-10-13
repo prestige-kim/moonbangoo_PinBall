@@ -33,8 +33,9 @@ function boot(storage, options = {}) {
     clearError() { this.errors = []; }
   }
   class Renderer {
-    setRenderScale() {} resize() {} setTheme(value) { this.theme = value; }
+    resize() {} setTheme(value) { this.theme = value; }
     setQuality(value) { this.quality = value; }
+    setRenderScale(value) { this.renderScale = value; }
     setReducedMotion(value) { this.reduced = value; }
     render(value) { this.scene = value; } drawMinimap() {} drawLaunch(canvas, value) { this.launchScene = value; }
   }
@@ -99,7 +100,7 @@ function boot(storage, options = {}) {
     constructor() { this.particles = []; this.rings = []; }
     handle() {} burst() {} celebrate() { this.celebrated = true; } update() {}
   }
-  class AudioEngine { configure() {} unlock() { this.unlocks = (this.unlocks || 0) + 1; } play(type) { this.plays = (this.plays || 0) + 1; (this.types || (this.types = [])).push(type); } }
+  class AudioEngine { setMusicScene(scene) { this.musicScene = scene; } syncMusic() {} configure() {} unlock() { this.unlocks = (this.unlocks || 0) + 1; } play(type) { this.plays = (this.plays || 0) + 1; (this.types || (this.types = [])).push(type); } }
   Object.assign(P, { UI, Renderer, Camera, Cinematic, HandScene, ShuffleInput, HandFlight, Effects, AudioEngine });
   const window = { CosmicPinball: P, matchMedia: () => ({ matches: false }), addEventListener() {} };
   const context = vm.createContext({ window, document: { hidden: false, getElementById: () => ({}), documentElement: { classList: { toggle() {} } }, addEventListener() {} },
@@ -475,14 +476,14 @@ test('slow shuffle rendering lowers both canvas qualities without resetting the 
  const {P,callbacks,advance}=boot();callbacks.start();advance(3.3);
  const app=P.app,original=app.physics,input=app.shuffleInput.callbacks;input.begin({x:0,y:0,time:3300});input.move({x:.1,y:0,time:3400});
  const before=JSON.stringify(app.handScene.shuffle.snapshot()),slots=JSON.stringify(app.physics.marbles),start=JSON.stringify(app.throwGate.start);
- advance(8,20);assert.equal(app.status,'mixing');assert.equal(app.settings.quality,'high');assert.notEqual(app.renderer.quality,'high');assert.equal(app.cinematic.quality,app.renderer.quality);assert(app.throwGate.active);assert.equal(JSON.stringify(app.throwGate.start),start);assert.equal(JSON.stringify(app.handScene.shuffle.snapshot()),before);assert.equal(app.physics,original);assert.equal(JSON.stringify(app.physics.marbles),slots);assert.equal(app.physics.time,0);
+ advance(10,20);assert.equal(app.status,'mixing');assert.equal(app.settings.quality,'high');assert.notEqual(app.renderer.quality,'high');assert(app.renderer.renderScale<1);assert.equal(app.cinematic.quality,app.renderer.quality);assert(app.throwGate.active);assert.equal(JSON.stringify(app.throwGate.start),start);assert.equal(JSON.stringify(app.handScene.shuffle.snapshot()),before);assert.equal(app.physics,original);assert.equal(JSON.stringify(app.physics.marbles),slots);assert.equal(app.physics.time,0);
 });
 
 
 test('pending quality fallback cannot overwrite restored preferences or lock intro/setup',()=>{
  for(const scene of ['intro','setup']){
   const {P,callbacks,advance}=boot();callbacks.start();advance(15.9,20);
-  assert.equal(P.app.settings.quality,'high');assert.notEqual(P.app.renderer.quality,'high');
+  assert.equal(P.app.settings.quality,'high');assert.equal(P.app.renderer.quality,'medium');assert(P.app.diagnostics.autoQualityDrops>0);
   P.app.ui.values.quality='high';callbacks.change();P.app.reset(scene);
   const drops=P.app.diagnostics.autoQualityDrops;advance(1,20);
   assert.equal(P.app.settings.quality,'high');assert.equal(P.app.ui.locked,false);
@@ -546,4 +547,22 @@ test('a tube gesture stays separate from the later launch gesture even when read
   assert.equal(P.app.cinematic.commits, undefined);
   assert.deepEqual(calls.map(call => call[0]), ['begin', 'move', 'release']);
   gesture(); assert.equal(P.app.status, 'flight'); assert.equal(P.app.cinematic.commits, 1);
+});
+
+// Soundtrack routing is driven by the real game controller, including early stops.
+test('soundtrack follows setup, mixing, race, confirmed results and restart', () => {
+  const b = boot();
+  assert.equal(b.P.app.audio.musicScene, 'setup');
+  b.callbacks.start(); assert.equal(b.P.app.audio.musicScene, 'mixing');
+  b.launch(); assert.equal(b.P.app.audio.musicScene, 'running');
+  for (let i=0;i<12000 && b.P.app.status !== 'finished';i++) b.advance(1/60);
+  assert.equal(b.P.app.status,'finished'); assert.equal(b.P.app.audio.musicScene,'resultPending');
+  b.advance(2); assert.equal(b.P.app.audio.musicScene, 'result');
+  b.callbacks.restart(); assert.equal(b.P.app.audio.musicScene, 'mixing');
+});
+test('early stop with no confirmed winner leaves result music silent', () => {
+  const b = boot(); b.P.app.ui.values.rule = 'last'; b.callbacks.start(); b.launch();
+  const p=b.P.app.physics; while(!p.finished.length && p.time<200) p.step();
+  b.callbacks.stop(); b.advance(.1);
+  assert.equal(b.P.app.audio.musicScene, 'finished');
 });
