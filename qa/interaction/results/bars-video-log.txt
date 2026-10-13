@@ -1,0 +1,1 @@
+PASS native-map bars, four seconds, before/after

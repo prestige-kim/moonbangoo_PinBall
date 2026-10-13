@@ -1,0 +1,47 @@
+✖ the leading marble remains inside the usable HUD-free view at all maps, speeds and orientations (4.308084ms)
+✖ real 3x races do not leave a sustained empty board after a leader finishes or teleports (350.270291ms)
+✔ drag and pinch remain available without game keyboard or wheel handlers (1.692875ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 428.179625
+
+✖ failing tests:
+
+test at ../../../../private/tmp/fourmaps-preserved-main/tests/camera-follow.test.cjs:16:1
+✖ the leading marble remains inside the usable HUD-free view at all maps, speeds and orientations (4.308084ms)
+  AssertionError [ERR_ASSERTION]: classic/0.5/landscape frame 12: leading marble fell below usable view (219.4)
+      at TestContext.<anonymous> (/private/tmp/fourmaps-preserved-main/tests/camera-follow.test.cjs:33:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at ../../../../private/tmp/fourmaps-preserved-main/tests/camera-follow.test.cjs:46:1
+✖ real 3x races do not leave a sustained empty board after a leader finishes or teleports (350.270291ms)
+  AssertionError [ERR_ASSERTION]: classic/820x560: 406 consecutive empty frames
+      at TestContext.<anonymous> (/private/tmp/fourmaps-preserved-main/tests/camera-follow.test.cjs:64:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

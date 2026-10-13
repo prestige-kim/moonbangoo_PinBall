@@ -26,7 +26,6 @@ function scene(width = 400, height = 800) {
       if (this.id === 'stage-heading') return { left: 20, right: width - 20, top: 95, bottom: 127, width: width - 40, height: 32 };
       if (this.id === 'race-panel') return { left: width - 170, right: width - 24, top: 150, bottom: 346, width: 146, height: 196 };
       if (this.id === 'minimap-panel') return { left: width - 129, right: width - 17, top: height - (width <= 500 ? 232 : 105), bottom: height - (width <= 500 ? 82 : 10), width: 112, height: width <= 500 ? 150 : 95 };
-      if (this.id === 'camera-hints') return { left: 20, right: width - 20, top: height - 96, bottom: height - 82, width: width - 40, height: 14 };
       if (this.id === 'system-footer') return { left: 18, right: width - 18, top: height - 21, bottom: height - 1, width: width - 36, height: 20 };
       if (this.id === 'mobile-setup-button') return { left: 100, right: 280, top: height - 67, bottom: height - 24, width: 180, height: 43 };
       return { left: width / 2 - 174, right: width / 2 + 174, top: 50, bottom: 750, width: 348, height: 700 };
@@ -40,10 +39,10 @@ function scene(width = 400, height = 800) {
   const node = id => { if (!nodes.has(id)) nodes.set(id, new Node(id)); return nodes.get(id); };
   const controls = ['panel-close', 'group-red', 'advanced-summary', 'radius', 'seed', 'start-button'].map(node);
   node('radius').hidden = true; node('seed').hidden = true;
-  const main = node('main'); main.children = ['setup-panel', 'stage-heading', 'race-panel', 'camera-hints', 'mobile-setup-button', 'countdown', 'toast-stack'].map(node);
+  const main = node('main'); main.children = ['setup-panel', 'stage-heading', 'race-panel', 'mobile-setup-button', 'countdown', 'toast-stack'].map(node);
   document = new EventTarget(); document.body = node('body'); document.activeElement = null;
   document.getElementById = node;
-  document.querySelector = selector => node(selector.replace(/^\./, ''));
+  document.querySelector = selector => selector === '.camera-hints' ? null : node(selector.replace(/^\./, ''));
   document.querySelectorAll = selector => selector === '.masthead,.system-footer' ? [node('masthead'), node('system-footer')] : [];
   const window = { innerWidth: width, innerHeight: height, CosmicPinball: {}, setTimeout: () => 0 };
   const context = vm.createContext({ window, document, console, requestAnimationFrame: handler => handler() });

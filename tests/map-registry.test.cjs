@@ -1,8 +1,8 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto');
 const {loadPhysics}=require('../qa/sim/adapter.cjs'),P=loadPhysics();
-const fixture=require('./fixtures/classic-before-four-maps.json');
-test('classic signed geometry and captured pre-map starts preserve exact arrival results',()=>{
+const fixture=require('./fixtures/classic-preserved-main.json');
+test('classic signed geometry and captured preserved-main v2 starts preserve exact arrival results',()=>{
   assert.equal(crypto.createHash('sha256').update(JSON.stringify(P.MAPS.classic)).digest('hex'),fixture.mapHash);
   for(const c of fixture.cases){const p=new P.Physics({map:P.MAPS.classic,names:P.parseNames('빨강*2,초록*2,파랑*2'),seed:c.seed});P.restoreHandStart(p,c.start);while(!p.complete&&p.time<240){p.step();p.drainEvents();}assert.equal(p.complete,true);assert.deepEqual(p.finished.map(m=>[m.id,m.finishTime]),c.ranking);assert.equal(p.time,c.time);}
 });

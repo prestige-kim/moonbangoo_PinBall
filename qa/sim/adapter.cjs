@@ -4,7 +4,7 @@ const path = require('node:path');
 const root = process.env.QA_SOURCE_ROOT || path.resolve(__dirname, '../..');
 function loadPhysics() {
   const window = { CosmicPinball: {} };
-  for (const file of ['maps', 'map-registry', ...(['twinfold','cascade','rhythm'].filter(id => fs.existsSync(path.join(root, 'js/maps/'+id+'.js'))).map(id => 'maps/'+id)), 'physics', 'shuffle', 'hand-start']) {
+  for (const file of ['maps', ...(fs.existsSync(path.join(root,'js/map-registry.js'))?['map-registry']:[]), ...(['twinfold','cascade','rhythm'].filter(id => fs.existsSync(path.join(root, 'js/maps/'+id+'.js'))).map(id => 'maps/'+id)), 'physics', 'shuffle', 'hand-start']) {
     // Execute only trusted repository sources; no copied/reimplemented physics.
     new Function('window', fs.readFileSync(path.join(root, 'js', file + '.js'), 'utf8'))(window);
   }

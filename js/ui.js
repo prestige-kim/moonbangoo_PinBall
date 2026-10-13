@@ -23,6 +23,7 @@
     this.rule = 'first';
     this.theme = 'cosmic';
     this.map = 'classic';
+    this.classicSkills = false;
     this.locked = false;
     this.rankingNodes = new Map();
     this.liveLeader = new P.LiveLeader();
@@ -96,17 +97,21 @@
     $('intro-start-button').addEventListener('click', function () {
       if (self.scene === 'intro') self.emit('enter');
     });
-    document.addEventListener('keydown', function (event) {
-      if (!self.isGameScene() && !event.ctrlKey && !event.metaKey && !event.altKey && event.key.toLowerCase() === 'f') { event.preventDefault(); event.stopImmediatePropagation(); }
-    }, true);
     this.bindSceneKeys();
     if ($('map-grid')) $('map-grid').addEventListener('click', function (event) {
       var button = event.target.closest('[data-map]');
       if (!button || self.locked || self.scene !== 'setup') return;
-      self.map = P.resolveMapId(button.dataset.map);
+      var nextMap = P.resolveMapId(button.dataset.map);
+      if (nextMap === self.map) return;
+      if (self.map === 'classic') self.classicSkills = $('skills').checked;
+      self.map = nextMap;
+      $('skills').checked = self.map === 'classic' && self.classicSkills;
       $('seed').value = ''; self.syncSeed(); self.syncMap(); self.updateDuration();
       self.emit('change', self.readSettings());
     });
+    $('camera-out').addEventListener('click', function () { self.emit('camerazoom', 1 / 1.2); });
+    $('camera-in').addEventListener('click', function () { self.emit('camerazoom', 1.2); });
+    $('camera-home').addEventListener('click', function () { self.emit('camerahome'); });
     $('color-groups').addEventListener('click', function (event) {
       var button = event.target.closest('[data-color-group]');
       if (!button || self.locked) return;
@@ -204,6 +209,7 @@
       map: this.map, theme: this.theme, radius: Number($('radius').value),
       gravity: Number($('gravity').value), restitution: Number($('restitution').value),
       speed: Number($('speed').value), sound: $('sound').checked, volume: Number($('volume').value),
+      classicSkills: this.map === 'classic' ? $('skills').checked : this.classicSkills,
       quality: $('quality').value, seed: $('seed').value, skills: (!P.mapInfo || P.mapInfo(this.map).skills) && $('skills').checked,
       reducedMotion: $('reduced-motion').checked,
       replayStart: $('seed').value && this.lastRound && $('seed').value === this.lastRound.seed && this.map === (this.lastRound.map || 'classic') ? this.lastRound.replayStart || null : null
@@ -215,6 +221,7 @@
       if (settings[id] !== undefined) $(id).value = settings[id];
     });
     this.map = P.resolveMapId ? P.resolveMapId(settings.map) : 'classic';
+    this.classicSkills = typeof settings.classicSkills === 'boolean' ? settings.classicSkills : (this.map === 'classic' ? !!settings.skills : this.classicSkills);
     this.groupCounts = P.colorSelection(settings.names);
     $('names').value = P.colorNames(this.groupCounts);
     this.renderGroups(); this.updateParticipants();
@@ -225,6 +232,7 @@
     if (settings.reducedMotion !== undefined) $('reduced-motion').checked = !!settings.reducedMotion;
     this.rule = settings.rule || this.rule;
     this.setTheme(settings.theme || this.theme);
+    if (this.map === 'classic') $('skills').checked = this.classicSkills;
     this.syncMap(); this.syncSelections(); this.syncSound(); this.updateOutputs(); this.updateParticipants();
   };
   UI.prototype.setTheme = function () {
@@ -468,10 +476,13 @@
   UI.prototype.getViewport = function () {
     var width = global.innerWidth, height = global.innerHeight;
     var panel = $('setup-panel').getBoundingClientRect();
-    var hints = document.querySelector('.camera-hints').getBoundingClientRect();
-    var footer = document.querySelector('.system-footer').getBoundingClientRect();
     var top = document.querySelector('.masthead').getBoundingClientRect().bottom + 20;
-    var bottom = Math.min(height - 35, hints.top > 0 ? hints.top - 18 : footer.top - 26);
+    var bottom = height - 35;
+    var stop = $('stop-button');
+    if (stop && !stop.hidden) {
+      var stopRect = stop.getBoundingClientRect();
+      if (stopRect.width > 0 && stopRect.top > top) bottom = Math.min(bottom, stopRect.top - 18);
+    }
     if (width <= 850) {
       var launch = $('mobile-setup-button').getBoundingClientRect();
       bottom = Math.min(bottom, launch.top - 18);
@@ -494,7 +505,7 @@
     var left = this.isGameScene() && this.panelOpen && panel.right > 0 && panel.left < width ? Math.max(32, panel.right + 25) : 32;
     var race = document.querySelector('.race-panel').getBoundingClientRect();
     var right = race.width > 0 ? race.left - 25 : width - 32;
-    return { x: left, y: top, w: Math.max(160, right - left), h: Math.max(200, bottom - top) };
+    return { x: left, y: top, w: Math.max(160, right - left), h: Math.max(1, bottom - top) };
   };
   UI.prototype.colorFor = function (marble, total) {
     if (P.Pinball) return P.Pinball.group(marble.name).color;
@@ -528,13 +539,19 @@
       } else this.writeRemaining(Math.round(this.displayCount));
     }
     if (typeof data.time === 'number') {
-      $('elapsed').replaceChildren(document.createTextNode(formatTime(data.time, false)));
-      var small = document.createElement('small'); small.textContent = '.' + String(Math.floor((Math.max(0, data.time) % 1) * 100)).padStart(2, '0'); $('elapsed').appendChild(small);
+      if(!this.elapsedParts){
+        this.elapsedParts={text:document.createTextNode(''),small:document.createElement('small')};
+        $('elapsed').replaceChildren(this.elapsedParts.text,this.elapsedParts.small);
+      }
+      var seconds=formatTime(data.time,false),fraction='.'+String(Math.floor((Math.max(0,data.time)%1)*100)).padStart(2,'0');
+      if(this.elapsedParts.text.textContent!==seconds)this.elapsedParts.text.textContent=seconds;
+      if(this.elapsedParts.small.textContent!==fraction)this.elapsedParts.small.textContent=fraction;
     }
     if (data.fps !== undefined) $('fps').textContent = Math.round(data.fps);
     if (Array.isArray(data.ranking)) this.renderRanking(data.ranking.slice(0, 5));
   };
   UI.prototype.writeRemaining = function (count) {
+    var key=count+'|'+this.totalCount;if(this.remainingKey===key)return;this.remainingKey=key;
     var total = document.createElement('span'); total.textContent = ' / ' + this.totalCount;
     $('remaining').replaceChildren(document.createTextNode(String(count)), total);
   };
@@ -553,11 +570,16 @@
         self.rankingNodes.set(key, row); list.appendChild(row);
       }
       var changed = row.dataset.marbleId !== String(marble.id), previousName = row.children[2].textContent;
-      row.dataset.marbleId = String(marble.id);
-      row.children[0].textContent = index === 0 && leader && !marble.finished ? '선두' : String(standing.ranks[ranking.indexOf(marble)]).padStart(2, '0');
-      row.children[1].style.setProperty('--marble-color', self.colorFor(marble));
-      row.children[2].textContent = marble.name;
-      row.children[2].title = marble.name + (marble.copies > 1 ? ' · ' + marble.copy + '/' + marble.copies : '');
+      var rankText=index===0&&leader&&!marble.finished?'선두':String(standing.ranks[ranking.indexOf(marble)]).padStart(2,'0');
+      if(row.children[0].textContent!==rankText)row.children[0].textContent=rankText;
+      var color=self.colorFor(marble),detail=marble.name+'|'+marble.copy+'|'+marble.copies;
+      if(changed)row.dataset.marbleId=String(marble.id);
+      if(row.dataset.color!==color){row.children[1].style.setProperty('--marble-color',color);row.dataset.color=color;}
+      if(row.dataset.detail!==detail){
+        row.children[2].textContent=marble.name;
+        row.children[2].title=marble.name+(marble.copies>1?' · '+marble.copy+'/'+marble.copies:'');
+        row.dataset.detail=detail;
+      }
       if (row.dataset.finished !== String(marble.finished)) {
         row.children[3].replaceChildren(); if (marble.finished) row.children[3].appendChild(icon('check'));
         row.dataset.finished = String(marble.finished);

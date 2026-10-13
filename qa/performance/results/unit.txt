@@ -1,0 +1,29 @@
+✔ saved hand start restores exact seeded results without consuming RNG (350.516292ms)
+✔ replay rejects corrupt, mismatched and incompatible snapshots before moving any ball (3.643125ms)
+✔ 500 saved start positions restore byte-for-byte and preserve launch RNG (9.413834ms)
+✔ paper variation is deterministic, smooth, and seamless rather than single-pixel pepper (54.302833ms)
+✔ world-space board art contains no noise pattern, while fixed paper remains cached (16.073ms)
+✔ TV native and browser-scaled resolution stays sharp within a 12MP backing budget (2.481167ms)
+✔ map textures and pins use display density with bounded reusable caches (2.338792ms)
+✔ new soundtrack is removed while the existing synthesized effects remain (0.554459ms)
+✔ intro exposes only its welcome action and keeps the settings ancestor available for later (6.2175ms)
+✔ setup reuses the real panel as an accessible centered dialog and focuses the first color button (0.751125ms)
+✔ close and Escape return setup to intro and restore welcome focus (1.417791ms)
+✔ setup Tab wraps visible enabled controls and skips closed advanced fields (7.244083ms)
+✔ one setup submit starts the sequence; hidden automatic scenes reject further submissions (1.493167ms)
+✔ flight and running have identical final board coordinates at desktop and mobile widths (2.165583ms)
+✔ reveal waits until the final 15 percent for HUD and never fades the cinematic canvas itself (0.811542ms)
+✔ refreshing the same setup preserves slider and sound focus instead of refocusing names (1.313125ms)
+✔ short mobile landscape excludes the race HUD while portrait preserves board width (1.919542ms)
+✔ bottom stop action is hidden outside a race and emits only while available (1.222708ms)
+✔ 6, 50, 200 and 500 marbles get bounded, viewport-safe name labels (5.602125ms)
+✔ finished display uses distinct recent slots without mutating rank, coordinates or arrival time (4.23725ms)
+✔ the classic board has no portal routes (0.090542ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 440.7055

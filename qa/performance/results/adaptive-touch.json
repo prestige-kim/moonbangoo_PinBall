@@ -1,0 +1,22 @@
+{
+  "scale": 0.65,
+  "dynamic": [
+    2496,
+    1404
+  ],
+  "static": [
+    3840,
+    2160
+  ],
+  "viewport": {
+    "x": 32,
+    "y": 105,
+    "w": 721,
+    "h": 400
+  },
+  "backdrop": "none",
+  "reusedRowUpdates": true,
+  "finished": 6,
+  "exactReplay": true,
+  "errors": []
+}

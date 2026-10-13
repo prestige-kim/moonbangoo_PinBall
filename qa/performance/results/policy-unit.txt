@@ -1,0 +1,12 @@
+✔ stable 30/60/120Hz displays retain native resolution instead of chasing an impossible refresh rate (4.494875ms)
+✔ sustained missed frames lower only presentation scale with a floor, then recover gradually (1.343416ms)
+✔ a single pause does not lower quality or feed an invalid cadence sample (0.300333ms)
+✔ unchanged canvas layout does not rebuild full-screen buffers, while adaptive pixels preserve CSS dimensions (3.167084ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 55.246375

@@ -68,6 +68,8 @@
   const mini = document.getElementById('minimap');
   const ui = new P.UI();
   const renderer = new P.Renderer(canvas);
+  const displayBudget = new P.DisplayBudget();
+  let viewportSettle = 0;
   const camera = new P.Camera(canvas);
   const effects = new P.Effects();
   const cinematic = new P.Cinematic(document.getElementById('cinema-canvas'), renderer);
@@ -161,6 +163,7 @@
     document.documentElement.classList.toggle('reduced-motion', settings.reducedMotion);
   }
   function resize() {
+    viewportSettle = .7;
     renderer.resize();
     camera.viewport = ui.getViewport();
   }
@@ -198,7 +201,7 @@
   }
   function enterGame() {
     if (status !== 'intro') return;
-    setScene('setup'); resize();
+    audio.unlock(); setScene('setup'); resize();
   }
   function newRoundSeed() {
     const values = new Uint32Array(4);
@@ -354,16 +357,16 @@
   function adjustQuality(dt) {
     qualityCooldown -= dt;
     const playing = ['mixing', 'flight', 'running'].includes(status);
-    if (playing && fps < 45) lowFpsTime += dt;
+    if (playing && fps < 22) lowFpsTime += dt;
     else lowFpsTime = Math.max(0, lowFpsTime - dt * 2);
-    if (playing && lowFpsTime > 3 && qualityCooldown <= 0 && settings.quality !== 'low') {
-      settings.quality = QUALITY_ORDER[QUALITY_ORDER.indexOf(settings.quality) + 1];
-      renderer.setQuality(settings.quality);
-      if (cinematic.setQuality) cinematic.setQuality(settings.quality);
-      if (effects.setQuality) effects.setQuality(settings.quality);
-      ui.load(settings); ui.setLocked(true);
-      save(settings); lowFpsTime = 0; qualityCooldown = 8; diagnostics.autoQualityDrops++;
-      if (status === 'running') ui.toast('더 부드러운 플레이를 위해 비주얼 품질을 조절했습니다');
+    if (playing && lowFpsTime > 6 && qualityCooldown <= 0 && renderer.quality !== 'low') {
+      const effectQuality = QUALITY_ORDER[QUALITY_ORDER.indexOf(renderer.quality) + 1];
+      renderer.setQuality(effectQuality);
+      if (cinematic.setQuality) cinematic.setQuality(effectQuality);
+      if (effects.setQuality) effects.setQuality(effectQuality);
+      // Temporary effects relief must not overwrite the user's quality setting.
+      lowFpsTime = 0; qualityCooldown = 8; diagnostics.autoQualityDrops++;
+      if (status === 'running') ui.toast('화면 선명도는 유지하며 효과를 줄였습니다');
     }
   }
   function frame(timestamp) {
@@ -373,6 +376,10 @@
     elapsedVisual += dt; hudElapsed += dt; fpsElapsed += dt; fpsFrames++; diagnostics.frames++;
     if (fpsElapsed >= 0.75) { fps = Math.round(fpsFrames / fpsElapsed); fpsElapsed = 0; fpsFrames = 0; }
     adjustQuality(dt);
+    if(['mixing','flight','running'].includes(status)){
+      const scale=displayBudget.sample(dt);renderer.setRenderScale(scale);
+    }
+    viewportSettle=Math.max(0,viewportSettle-dt);
     if (['mixing', 'flight'].includes(status)) updateLaunch(dt);
     if (['intro', 'setup', 'mixing', 'flight'].includes(status)) {
       renderCinema(dt); requestAnimationFrame(frame); return;
@@ -387,8 +394,8 @@
     }
     const map = P.MAPS[(runSettings || settings).map];
     const ranking = physics.getRanking();
-    camera.viewport = ui.getViewport();
-    camera.update(dt, physics, map, { photoFinish: photoFinish, status: status });
+    if(viewportSettle>0||hudElapsed>=.1||!camera.viewport)camera.viewport=ui.getViewport();
+    camera.update(dt, physics, map, { photoFinish: photoFinish, status: status, reducedMotion: settings.reducedMotion });
     effects.update(dt);
     renderer.render({ physics: physics, map: map, camera: camera, effects: effects, time: elapsedVisual, dt: dt, status: status, winner: winner, leader: P.raceStanding(ranking).leader || null, photoFinish: photoFinish });
     if (hudElapsed >= 0.1) {
@@ -408,14 +415,22 @@
   ui.on('change', next => { onChange(next); audio.unlock(); });
   ui.on('layout', resize);
   ui.on('follow', () => { if (['mixing', 'flight'].includes(status)) return; camera.follow = !camera.follow; camera.entrance = null; if (ui.setFollowing) ui.setFollowing(camera.follow); ui.toast(camera.follow ? '선두 추적을 켰습니다' : '자유롭게 코스를 둘러보세요'); });
+  ui.on('camerazoom', factor => {
+    if (!['running', 'finished'].includes(status)) return;
+    camera.zoomBy(factor); ui.setFollowing(false);
+  });
+  ui.on('camerahome', () => {
+    if (!['running', 'finished'].includes(status)) return;
+    camera.resumeFollow(); ui.setFollowing(true);
+  });
   camera.attach(canvas);
-  window.addEventListener('resize', resize);
-  document.addEventListener('visibilitychange', () => { lastFrame = 0; });
+  window.addEventListener('resize', () => { displayBudget.resetTiming(); resize(); });
+  document.addEventListener('visibilitychange', () => { lastFrame = 0; displayBudget.resetTiming(); });
   visualSettings(); preview('intro');
   P.app = { ui: ui, renderer: renderer, cinematic: cinematic, camera: camera, effects: effects, audio: audio,
     handScene, handFlight, shuffleInput, throwGate, get physics() { return physics; }, get status() { return status; }, get settings() { return Object.assign({}, settings); },
     get runSettings() { return runSettings && Object.assign({}, runSettings); },
-    get diagnostics() { return Object.assign({}, diagnostics); }, start: start, reset: preview
+    get diagnostics() { return Object.assign({}, diagnostics, {renderScale:renderer.renderScale}); }, start: start, reset: preview
   };
   requestAnimationFrame(frame);
 })();

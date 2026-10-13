@@ -6,8 +6,8 @@
     for(const letter of String(seed)+'|hand-visual-only'){hash^=letter.charCodeAt(0);hash=Math.imul(hash,16777619);}
     return ()=>{hash+=0x6d2b79f5;let n=Math.imul(hash^hash>>>15,1|hash);n^=n+Math.imul(n^n>>>7,61|n);return ((n^n>>>14)>>>0)/4294967296;};
   }
-  // All distances are in units of the usable screen's short side. No race RNG
-  // or race marble is mutated by this visual-only simulation.
+  // Preparation distances use the usable screen's short side. This solver has
+  // its own seeded state; HandStart later captures it without consuming race RNG.
   class HandShuffle {
     constructor(entries,seed) {
       this.radius=Math.min(.044,.18/Math.sqrt(Math.max(1,entries.length)));
@@ -15,7 +15,7 @@
       this.interacted=false;
       this.bounds={left:-.46,right:.46,top:-.46,bottom:.46};
       this.bodies=[];this.collisions=0;this.wallHits=0;this.ticks=0;
-      this.pointer=null;
+      this.pointer=null;this.circleGrabEnabled=false;this.grab=null;
       const random=visualRandom(seed);
       for(let i=0;i<entries.length;i++) {
         const entry=entries[i];let x=0,y=0,attempt=0;
@@ -34,6 +34,33 @@
     begin(x,y,timeMs) {
       this.interacted=false;
       this.pointer={x,y,vx:0,vy:0,timeMs,age:0};
+      if(this.circleGrabEnabled)this.beginCircle(x,y);
+    }
+    circleCenter(x,y) {
+      const r=this.pointerRadius,b=this.bounds;
+      return {x:clamp(x,b.left+r,b.right-r),y:clamp(y,b.top+r,b.bottom-r)};
+    }
+    beginCircle(x,y) {
+      const center=this.circleCenter(x,y),active=this.bodies.filter(b=>!b.pouring);
+      this.grab={x:center.x,y:center.y,vx:0,vy:0};
+      if(!active.length)return;
+      let cx=0,cy=0;for(const b of active){cx+=b.x;cy+=b.y;}cx/=active.length;cy/=active.length;
+      let scale=1;
+      for(const b of active){const d=Math.hypot(b.x-cx,b.y-cy);if(d>0)scale=Math.min(scale,(this.pointerRadius-b.r)/d);}
+      // One geometric transform for the entire group, with no ID/color ordering.
+      for(const b of active){b.x=center.x+(b.x-cx)*scale;b.y=center.y+(b.y-cy)*scale;this.wall(b);}
+      for(let pass=0;pass<32;pass++)if(this.contacts(this.pairs())<.005)break;
+    }
+    moveCircle(x,y,seconds) {
+      const g=this.grab,next=this.circleCenter(x,y),dx=next.x-g.x,dy=next.y-g.y;
+      let vx=dx/seconds,vy=dy/seconds;const speed=Math.hypot(vx,vy);
+      if(speed>2.8){vx*=2.8/speed;vy*=2.8/speed;}
+      for(const b of this.bodies)if(!b.pouring){b.x+=dx;b.y+=dy;b.vx-=vx-g.vx;b.vy-=vy-g.vy;}
+      Object.assign(g,{x:next.x,y:next.y,vx,vy});
+      this.interacted=this.interacted||Math.hypot(dx,dy)>1e-8;
+      // Raw pointer motion still owns the existing outlet gesture when the cage
+      // reaches the screen boundary. Its contained marbles remain visible.
+      this.interacted=this.interacted||Math.hypot(x-this.pointer.x,y-this.pointer.y)>1e-8;
     }
     move(x,y,timeMs) { this.setPointer(x,y,timeMs); return this.interacted; }
     setPointer(x,y,timeMs) {
@@ -41,6 +68,11 @@
       if(!this.pointer){this.begin(x,y,timeMs);return;}
       const p=this.pointer,seconds=(timeMs-p.timeMs)/1000;
       if(seconds<=0)return;
+      if(this.grab){
+        this.moveCircle(x,y,seconds);
+        Object.assign(p,{x,y,vx:this.grab.vx,vy:this.grab.vy,timeMs,age:0});
+        return;
+      }
       let vx=(x-p.x)/seconds,vy=(y-p.y)/seconds;
       const speed=Math.hypot(vx,vy),limit=2.8;
       if(speed>limit){vx*=limit/speed;vy*=limit/speed;}
@@ -58,10 +90,24 @@
       }
       Object.assign(p,{x,y,vx,vy,timeMs,age:0});
     }
-    release() {this.pointer=null;}
+    release() {
+      if(this.grab)for(const b of this.bodies)if(!b.pouring){b.vx+=this.grab.vx;b.vy+=this.grab.vy;}
+      this.pointer=null;this.grab=null;
+    }
     snapshot() {return this.bodies.map(b=>({...b}));}
     wall(b) {
       const limits=this.bounds,r=b.r;
+      if(this.grab){
+        const g=this.grab,dx=b.x-g.x,dy=b.y-g.y,d=Math.hypot(dx,dy),limit=this.pointerRadius-r;
+        if(d>limit){
+          const nx=d>1e-10?dx/d:1,ny=d>1e-10?dy/d:0;
+          b.x=g.x+nx*limit;b.y=g.y+ny*limit;
+          const normal=b.vx*nx+b.vy*ny;
+          if(normal>0){const tx=b.vx-normal*nx,ty=b.vy-normal*ny;b.vx=-normal*.52*nx+tx*.97;b.vy=-normal*.52*ny+ty*.97;}
+          this.wallHits++;
+        }
+        return;
+      }
       if(limits.opening && b.x>limits.right-limits.opening && b.y<limits.top+limits.opening) {
         // The two rounded wall ends leave a true northeast opening.
         for(const end of [[limits.right-limits.opening,limits.top],[limits.right,limits.top+limits.opening]]) {
@@ -165,6 +211,11 @@
         // Input velocity comes from event timestamps, and becomes stale when
         // the finger stops. Rendering more frames cannot manufacture momentum.
         const freshness=p?Math.exp(-Math.max(0,p.age-.025)*24):0;
+        if(this.grab){
+          const g=this.grab,vx=p.vx*freshness,vy=p.vy*freshness;
+          for(const b of this.bodies)if(!b.pouring){b.vx-=vx-g.vx;b.vy-=vy-g.vy;}
+          g.vx=vx;g.vy=vy;
+        }
         const damping=Math.exp(-h*(p?1.65:1.9));
         const handSpeed=p?Math.hypot(p.vx,p.vy)*freshness:0;
         const pressureActivity=clamp((handSpeed-.015)/.25,0,1);
@@ -173,7 +224,7 @@
           const distance=Math.hypot(b.x,b.y),returnStrength=this.gravity ? 0 : p?.06:.36;
           let ax=-b.x*returnStrength,ay=(this.gravity || .008)-b.y*returnStrength;
           if(!this.gravity && distance>this.clusterRadius){const extra=(distance-this.clusterRadius)*2.4/distance;ax-=b.x*extra;ay-=b.y*extra;}
-          if(p) {
+          if(p&&!this.grab) {
             const dx=p.x-b.x,dy=p.y-b.y,near=Math.hypot(dx,dy);
             if(near<this.pointerRadius) {
               const weight=Math.pow(1-near/this.pointerRadius,2);

@@ -1,0 +1,34 @@
+✔ captured boundary coordinates remain legal and exactly replayable after floating-point fitting (341.592833ms)
+✔ replay still rejects malformed and old records without changing marbles (4.832584ms)
+✔ saved hand start restores exact seeded results without consuming RNG (425.425084ms)
+✔ replay rejects corrupt, mismatched and incompatible snapshots before moving any ball (3.130583ms)
+✔ 500 saved start positions restore byte-for-byte and preserve launch RNG (8.396875ms)
+✔ right-exit clusters scatter across the whole top band, preserving all IDs and race RNG (9.653833ms)
+✔ maximum-size top scatter is collision-free and in the legal spawn area (62.457208ms)
+✔ v1 clustered records are rejected before mutating physical marbles (0.5195ms)
+✔ start zoom expands smoothly while a desktop panel changes the board viewport (2.233958ms)
+✔ mobile entrance zooms without relying on a wider layout, and reset restores preparation framing (0.959917ms)
+✔ reduced motion uses a brief entrance and never advances physical marbles (0.406875ms)
+✔ landing frames every real seeded spawn circle on desktop and mobile (137.968791ms)
+✔ landing is deterministic and clears previous camera interaction without changing physical state (8.218292ms)
+✔ the first running frame smoothly follows the landing pose rather than resetting it (29.890625ms)
+✔ release starts at every actual position and velocity, with C1 propulsion onset (11.614708ms)
+✔ front pinballs receive propulsion first and delays depend on actual throw direction (3.539709ms)
+✔ gesture direction changes the visible path while endpoints retain their own seeded slots (5.090041ms)
+✔ all IDs reach exact map sprites on desktop, portrait and landscape for every count (194.397458ms)
+✔ camera starts with identity and zero velocity, follows the flight, and ends at the final map transform (5.172333ms)
+✔ reduced motion keeps the same release state and own IDs with no camera sweep or trails (11.534ms)
+✔ snapshot positions stay fixed when the old shuffle continues or source arrays reorder (2.2505ms)
+✔ midflight resizing preserves current positions and radii while smoothly reaching the new camera (27.915166ms)
+✔ changing reduced motion midflight suppresses trails without resetting the captured path (7.292792ms)
+✔ a stopped edge release still propels, while fast input changes flight without changing slots (22.570791ms)
+✔ flight zooms out to frame the full group and draws no tails across viewport sizes (35.240958ms)
+✔ a widely scattered release starts without a camera snap before pulling back (0.58525ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 500.852916

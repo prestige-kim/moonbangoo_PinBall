@@ -33,7 +33,7 @@ function boot(storage, options = {}) {
     clearError() { this.errors = []; }
   }
   class Renderer {
-    resize() {} setTheme(value) { this.theme = value; }
+    setRenderScale() {} resize() {} setTheme(value) { this.theme = value; }
     setQuality(value) { this.quality = value; }
     setReducedMotion(value) { this.reduced = value; }
     render(value) { this.scene = value; } drawMinimap() {} drawLaunch(canvas, value) { this.launchScene = value; }
@@ -105,7 +105,7 @@ function boot(storage, options = {}) {
   const context = vm.createContext({ window, document: { hidden: false, getElementById: () => ({}), documentElement: { classList: { toggle() {} } }, addEventListener() {} },
     localStorage: storage || { getItem() { throw new Error('Storage denied'); }, setItem() { throw new Error('Storage denied'); } },
     requestAnimationFrame(callback) { frame = callback; }, performance: { now: () => clock }, Uint32Array, Date, Math, console });
-  for (const file of ['maps.js', 'map-registry.js', ...(['twinfold','cascade','rhythm'].filter(id=>fs.existsSync(path.join(root,'js/maps/'+id+'.js'))).map(id=>'maps/'+id+'.js')), 'physics.js', 'shuffle.js', 'hand-start.js', 'throw-gate.js', 'race-standing.js', 'main.js']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context, { filename: file });
+  for (const file of ['maps.js', 'map-registry.js', ...(['twinfold','cascade','rhythm'].filter(id=>fs.existsSync(path.join(root,'js/maps/'+id+'.js'))).map(id=>'maps/'+id+'.js')), 'physics.js', 'shuffle.js', 'hand-start.js', 'throw-gate.js', 'race-standing.js', 'display-budget.js', 'main.js']) vm.runInContext(fs.readFileSync(path.join(root, 'js', file), 'utf8'), context, { filename: file });
   if (!options.intro) callbacks.enter();
   function advance(seconds, frameRate = 60) {
     const count = Math.ceil(seconds * frameRate);
@@ -475,14 +475,14 @@ test('slow shuffle rendering lowers both canvas qualities without resetting the 
  const {P,callbacks,advance}=boot();callbacks.start();advance(3.3);
  const app=P.app,original=app.physics,input=app.shuffleInput.callbacks;input.begin({x:0,y:0,time:3300});input.move({x:.1,y:0,time:3400});
  const before=JSON.stringify(app.handScene.shuffle.snapshot()),slots=JSON.stringify(app.physics.marbles),start=JSON.stringify(app.throwGate.start);
- advance(6,20);assert.equal(app.status,'mixing');assert.notEqual(app.renderer.quality,'high');assert.equal(app.cinematic.quality,app.renderer.quality);assert(app.throwGate.active);assert.equal(JSON.stringify(app.throwGate.start),start);assert.equal(JSON.stringify(app.handScene.shuffle.snapshot()),before);assert.equal(app.physics,original);assert.equal(JSON.stringify(app.physics.marbles),slots);assert.equal(app.physics.time,0);
+ advance(8,20);assert.equal(app.status,'mixing');assert.equal(app.settings.quality,'high');assert.notEqual(app.renderer.quality,'high');assert.equal(app.cinematic.quality,app.renderer.quality);assert(app.throwGate.active);assert.equal(JSON.stringify(app.throwGate.start),start);assert.equal(JSON.stringify(app.handScene.shuffle.snapshot()),before);assert.equal(app.physics,original);assert.equal(JSON.stringify(app.physics.marbles),slots);assert.equal(app.physics.time,0);
 });
 
 
 test('pending quality fallback cannot overwrite restored preferences or lock intro/setup',()=>{
  for(const scene of ['intro','setup']){
   const {P,callbacks,advance}=boot();callbacks.start();advance(15.9,20);
-  assert.equal(P.app.settings.quality,'medium');
+  assert.equal(P.app.settings.quality,'high');assert.notEqual(P.app.renderer.quality,'high');
   P.app.ui.values.quality='high';callbacks.change();P.app.reset(scene);
   const drops=P.app.diagnostics.autoQualityDrops;advance(1,20);
   assert.equal(P.app.settings.quality,'high');assert.equal(P.app.ui.locked,false);

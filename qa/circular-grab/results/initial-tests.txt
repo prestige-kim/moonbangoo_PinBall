@@ -1,0 +1,18 @@
+✔ game camera has no wheel/keyboard handler; pointer buttons zoom and reset without physical writes (13.989542ms)
+✔ moving bars draw one body without shadow in both quality/motion modes; static bars retain shadow (2.663333ms)
+✔ enamel uses deterministic cached grain, exact 25/128 silhouette and bounded cache (37.981334ms)
+✔ circular grab and display preserve exact race outcomes across 30/60/120Hz (2078.885625ms)
+✔ idle display interpolates once, keeps exact pointer/outlet coordinates and reuses the pose pool (3.755667ms)
+✔ ready shuffle omits the lower outlet caption while tube tilt guidance remains (1.185292ms)
+✔ 6/50/200/500 balls gather and collide only inside the moving circle without losing IDs (6398.374541ms)
+✔ circle wall reflects outward velocity and preserves the visible collision radius (1.516625ms)
+✔ container follows the hand, remains on screen, and converts local velocity on release (0.91775ms)
+✔ fixed-step circular motion is deterministic at 30/60/120Hz display cadence (31.467334ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6501.901208

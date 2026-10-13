@@ -1,0 +1,277 @@
+
+> moonbangoo-pinball-qa@0.0.0 qa
+> npm test
+
+
+> moonbangoo-pinball-qa@0.0.0 test
+> node --test --test-concurrency=4 tests/*.test.cjs qa/*.test.cjs
+
+✔ volume zero skips context unlock and every sound allocation path (2.500958ms)
+✔ positive-volume user unlock resumes one reusable context and OFF skips it (0.752958ms)
+✔ real start rejects zero, too-large and fractional N at all participant bounds (85.842042ms)
+✔ valid first/middle/last N and minimum/max count start normally (210.372792ms)
+✔ empty groups and 501 participants never start a draw (13.004208ms)
+✔ graceful batch checkpoints preserve raw results and prohibit duplicate seed batches on resume (8.664291ms)
+✔ hard-interrupted batches, changed sources and accidental overwrite refuse holdout reuse (2.884625ms)
+✔ default small helper and setting labels meet 4.5:1 against paper and panel (1.153375ms)
+✔ favicon resolves under the Pages subpath (1.068708ms)
+✔ Wilson intervals retain uncertainty for zero/all wins and fixed sample sizes (0.698667ms)
+✔ participant and unequal-group criteria require both p and deviation (0.413084ms)
+✔ exact 1.5pp count boundary passes without floating-point subtraction artifacts (0.130083ms)
+✔ game camera has no wheel/keyboard handler; pointer buttons zoom and reset without physical writes (7.535334ms)
+✔ moving bars draw one body without shadow in both quality/motion modes; static bars retain shadow (2.43625ms)
+✔ enamel uses deterministic cached grain, exact 25/128 silhouette and bounded cache (33.444333ms)
+✔ display interpolation and layer changes preserve exact pre-change solver and race across 30/60/120Hz (2982.819083ms)
+✔ idle display interpolates once, keeps exact pointer/outlet coordinates and reuses the pose pool (10.843625ms)
+✔ R02 automatic keyboard launch is retired while existing panel keys remain (0.941542ms)
+✔ independent oracle checks arrival ties and all N boundaries (1.178583ms)
+✔ chi-square survival agrees with exact df=2 distribution (0.293792ms)
+✔ simultaneous finish ordering is deterministic by input index (1.300459ms)
+✔ saved hand start restores exact seeded results without consuming RNG (965.844791ms)
+✔ replay rejects corrupt, mismatched and incompatible snapshots before moving any ball (13.3345ms)
+✔ 500 saved start positions restore byte-for-byte and preserve launch RNG (44.599958ms)
+✔ cannon layers share the audio clock, have a sharp attack and bounded gain (5.226083ms)
+✔ ended cannon sources release voice slots and disconnect the complete graph (2.563542ms)
+✔ sound settings and a suspended context prevent new cannon and charge voices (0.676459ms)
+✔ the existing voice limit caps cannon layers and prioritizes its body (1.007084ms)
+✔ quiet charging and repeated cannon shots reuse one noise buffer (2.853875ms)
+✔ iOS AudioContext fallback resumes and existing result melody remains available (0.83875ms)
+✔ the leading marble remains inside the usable HUD-free view at all maps, speeds and orientations (11.0935ms)
+✔ real 3x races do not leave a sustained empty board after a leader finishes or teleports (1534.070042ms)
+✔ drag and pinch remain available without game keyboard or wheel handlers (2.749125ms)
+✔ start zoom expands smoothly while a desktop panel changes the board viewport (3.2875ms)
+✔ mobile entrance zooms without relying on a wider layout, and reset restores preparation framing (3.245625ms)
+✔ reduced motion uses a brief entrance and never advances physical marbles (1.70575ms)
+✔ landing frames every real seeded spawn circle on desktop and mobile (256.709917ms)
+✔ landing is deterministic and clears previous camera interaction without changing physical state (18.049541ms)
+✔ the first running frame smoothly follows the landing pose rather than resetting it (87.631834ms)
+chamber 6 CPU ms 26 worst relative overlap 0.000012448736340574052
+chamber 50 CPU ms 175 worst relative overlap 0.010895529368590793
+chamber 200 CPU ms 1031 worst relative overlap 0.01568685229752703
+chamber 500 CPU ms 4485 worst relative overlap 0.037209530975057886
+live launch 6 worst relative overlap 0.000020769359374204844
+live launch 50 worst relative overlap 0.010686240482046642
+live launch 200 worst relative overlap 0.016110580406385907
+live launch 500 worst relative overlap 0.04174977066290782
+race replay 6 wait 0 all finished 6 time 56.46666666666667
+race replay 6 wait 2 all finished 6 time 56.46666666666667
+race replay 50 wait 0 all finished 50 time 51.38333333333333
+race replay 50 wait 2 all finished 50 time 51.38333333333333
+race replay 200 wait 0 all finished 200 time 54.875
+race replay 200 wait 2 all finished 200 time 54.875
+race replay 500 wait 0 all finished 500 time 66.375
+race replay 500 wait 2 all finished 500 time 66.375
+✔ isolated pinballs receive the same gravity and pressure, not individual phase forces (6.324375ms)
+✔ without air pressure gravity settles pinballs onto the visible floor (29.567125ms)
+✔ contact centers and visible radii agree in the front glass (1.987584ms)
+✔ same participants retain chamber position and velocity when a seeded run replaces setup (21.343166ms)
+✔ 6, 50, 200 and 500 circles remain contained, exchange order and avoid deep overlap (15009.516333ms)
+✔ waiting duration cannot change assigned slots or seeded race results (6929.122166ms)
+✔ same seed assigns identical slots for every count and waiting/frame schedule (46707.772667ms)
+✔ camera orbit projects visible contacts and glass boundary in the same plane (1.23175ms)
+✔ post-blur pressure pulses also avoid deep overlap after a live waiting chamber (18234.911833ms)
+✔ all participant counts reproduce final identities and arrival times despite different waits (88212.05775ms)
+✔ hard spheres exchange axial order, collide and bounce off the glass wall (17.939666ms)
+✔ fixed-step mixing is identical across frame grouping, including 500 participants (32124.828083ms)
+✔ visible pinballs retain seeded race slots without changing time or race RNG (316.195958ms)
+✔ seeded shuffled starts replay across rendering schedules and vary with fresh seeds (326.150125ms)
+✔ the visible board remains in one scene as the camera moves to the exact race transform (1.9415ms)
+✔ shuffled physical races keep seeded results and allow different input owners to win (8015.142667ms)
+✔ longer visible choreography preserves fixed-step shuffle ownership (33355.135375ms)
+PASS cinematic: 24 matched orbit frames, 24 stable wheel assemblies, 500 continuous discharges, 240 rendering frames, 1504 exact sprite handoffs; physical state and RNG unchanged.
+PASS welcome: still positions, frozen chamber clock and frozen race; intermediate photo axes match desktop and mobile.
+✔ tests/cinematic.test.cjs (86729.406958ms)
+✔ classic includes a narrowing winding chute with closed collision walls and rotors (9.315459ms)
+✔ a pin and a sweeping bar resolve their simultaneous contacts without pushing back into the pin (3.132084ms)
+✔ exact centers and polygon edges have a valid separating normal (1.636917ms)
+✔ rotated rounded boost areas apply force exactly within the visible region, including corners (0.847416ms)
+✔ the visible inner rail also contains initial positions, bounces and finished marbles (37.279875ms)
+✔ stuck recovery is a distinct, repeatable event and lets a balanced ball finish with skills disabled (20.934458ms)
+✔ classic: 500 balls leave no deep obstacle overlap after each physics tick (44856.239ms)
+✔ ordinary equal-mass contacts conserve momentum and dissipate kinetic energy (0.81725ms)
+✔ ordinary static impacts use restitution while moving surfaces use relative velocity (0.232166ms)
+✔ an unobstructed race step applies configured gravity at the fixed 120Hz clock (0.236625ms)
+✔ release starts at every actual position and velocity, with C1 propulsion onset (11.3035ms)
+✔ front pinballs receive propulsion first and delays depend on actual throw direction (4.254542ms)
+✔ gesture direction changes the visible path while endpoints retain their own seeded slots (4.135834ms)
+✔ all IDs reach exact map sprites on desktop, portrait and landscape for every count (436.459583ms)
+✔ camera starts with identity and zero velocity, follows the flight, and ends at the final map transform (13.970458ms)
+✔ reduced motion keeps the same release state and own IDs with no camera sweep or trails (28.306333ms)
+✔ snapshot positions stay fixed when the old shuffle continues or source arrays reorder (2.087125ms)
+✔ midflight resizing preserves current positions and radii while smoothly reaching the new camera (58.999333ms)
+✔ changing reduced motion midflight suppresses trails without resetting the captured path (21.194083ms)
+✔ a stopped edge release still propels, while fast input changes flight without changing slots (47.953708ms)
+✔ flight zooms out to frame the full group and draws no tails across viewport sizes (79.156958ms)
+✔ a widely scattered release starts without a camera snap before pulling back (1.558791ms)
+rounded wall QA 6 1280 800 hits 1184 worst overlap 0
+rounded wall QA 6 390 844 hits 1754 worst overlap 0.00023791920630206182
+rounded wall QA 6 844 390 hits 1171 worst overlap 0
+rounded wall QA 50 1280 800 hits 25699 worst overlap 0.007493961667524536
+rounded wall QA 50 390 844 hits 15084 worst overlap 0.009650476953799338
+rounded wall QA 50 844 390 hits 21346 worst overlap 0.00816949177268971
+rounded wall QA 200 1280 800 hits 209454 worst overlap 0.010903432449397565
+rounded wall QA 200 390 844 hits 136945 worst overlap 0.012781686809601595
+rounded wall QA 200 844 390 hits 220431 worst overlap 0.010839788255672394
+rounded wall QA 500 1280 800 hits 797932 worst overlap 0.015052979981283151
+rounded wall QA 500 390 844 hits 594377 worst overlap 0.015820375353896104
+rounded wall QA 500 844 390 hits 818543 worst overlap 0.01182078403527358
+✔ tube extraction starts at the real projected tube coordinates for all counts and screen sizes (25937.769584ms)
+✔ fully extracted display circles match individual collision radii and preserve all IDs (70642.834958ms)
+✔ wall-exit feedback shares the exact consumed direction and clears inside the wall (60445.674333ms)
+✔ inside or untouched empty-space movement never shows exit gold (703.381833ms)
+✔ motion changes preserve bodies, RNG, ready feedback and the hand influence field (52078.629167ms)
+✔ every current shuffle pose connects continuously to the first real flight frame (42723.109375ms)
+✔ manual handoff uses actual geometry and commits once without consuming race RNG (15192.770709ms)
+✔ visible rounded walls contain every collision circle during vigorous near-wall shuffle (57674.011334ms)
+shuffle exchanges 6 straight collisions 1
+shuffle exchanges 6 reversal collisions 1
+shuffle exchanges 6 circle collisions 2
+shuffle exchanges 50 straight collisions 487
+shuffle exchanges 50 reversal collisions 141
+shuffle exchanges 50 circle collisions 355
+shuffle exchanges 200 straight collisions 7796
+shuffle exchanges 200 reversal collisions 785
+shuffle exchanges 200 circle collisions 2788
+shuffle exchanges 500 straight collisions 35336
+shuffle exchanges 500 reversal collisions 3369
+shuffle exchanges 500 circle collisions 16362
+shuffle benchmark 6 480 steps CPU ms 8 worst relative overlap 0
+shuffle benchmark 50 480 steps CPU ms 87 worst relative overlap 0.0022421802036091515
+shuffle benchmark 200 480 steps CPU ms 613 worst relative overlap 0.011095002242117544
+shuffle benchmark 500 480 steps CPU ms 2496 worst relative overlap 0.010971427121769673
+✔ pointer applies distance-weighted force to individual bodies (2.319417ms)
+✔ stationary input leaves inertia briefly and then damps it (3.461125ms)
+✔ release cancels force without resetting position or velocity and returns softly (24.868458ms)
+✔ direct contact transfers momentum rather than carrying a rigid group (0.320458ms)
+✔ straight, reversal and circular input exchange order at every supported count (2357.699833ms)
+✔ all supported counts stay finite, contained and free of deep overlaps during vigorous input (3310.471667ms)
+✔ visual random state is independent and snapshots do not mutate live bodies (97.413459ms)
+✔ a settled group exchanges actual order during representative straight, reversal and circular hand input (7064.875875ms)
+✔ the central set and hand reach leave substantially more room at every count (106.592ms)
+✔ empty-space input only records interaction when movement transfers a real local impulse (0.400625ms)
+✔ virtual rounded walls reflect only outward momentum, dissipate tangential speed and contain circles (1.067375ms)
+✔ shuffle geometry determines actual race positions rather than seeded lane ownership (7.954625ms)
+✔ launch mapping is ID-based, consumes no race RNG and commits once (8.69775ms)
+✔ 6/50/200/500 launch snapshots fit the true spawn rectangle without deep overlap (3432.465458ms)
+✔ same seed plus captured hand snapshot replays all finish IDs and times (49191.629459ms)
+✔ gesture-dependent placement changes real outcomes for the original fixed-seed eight entrants (5335.117625ms)
+✔ invalid hand ownership or coordinates cannot partially mutate race state (5.381875ms)
+✔ real circular drag physics changes winners among original fruit entrants (2902.100167ms)
+✔ welcome uses configured participants without advancing physics or changing saved settings (16.16775ms)
+✔ start waits for a valid manual throw and connects exact flight landing to the race once (22.290458ms)
+✔ automatic seeds refresh each round and restart without becoming a saved fixed seed (710.688ms)
+✔ reduced motion shortens flight with the same gesture decision, seed slots and exact landing (24.852291ms)
+✔ setup edits appear in glass without starting physics; blocked storage still works (17.55625ms)
+✔ original saved participants survive the brand upgrade with gentler default pacing (5.906958ms)
+✔ invalid rank cannot launch a race (3.602834ms)
+✔ first, last, nth and top rules select physical arrival order (3.578334ms)
+✔ live visuals and speed leave the physical run configuration intact (56.388541ms)
+✔ race finishes, shows seeded results and same-member restart reproduces order at another frame rate (1209.384792ms)
+✔ sustained slow rendering lowers quality without resetting physics (1847.564875ms)
+✔ a natural six-marble race triggers lead changes and celebration (880.731875ms)
+✔ crowded races announce only settled leader changes and keep arrival results intact (4315.637125ms)
+✔ leaders arriving close together trigger the photo finish view (56.522ms)
+✔ stuck recovery events stay active without notification toasts, including replay (699.296542ms)
+✔ a valid release plays one launch sound, without automatic charge or cannon sounds (12.898166ms)
+✔ rejected and canceled gestures preserve race RNG, seed slots and visual state continuity (6.6095ms)
+✔ motion changes retain shuffle positions and flight progress without catching up paused time (6.448291ms)
+✔ same captured gesture preserves actual launch layout and results across render frame grouping (1179.918459ms)
+✔ removed saved courses migrate to classic while preserving participants and physical settings (12.239292ms)
+✔ crossing the shuffle wall launches on movement before pointerup and ignores later samples (5.821166ms)
+✔ joint race progress does not select the first input as the rendered or HUD leader (16.511833ms)
+✔ shuffle adapter stays locked throughout the pour and unlocks without starting the race (5.629542ms)
+✔ slow shuffle rendering lowers both canvas qualities without resetting the gesture or seeded race (5.672958ms)
+✔ pending quality fallback cannot overwrite restored preferences or lock intro/setup (12.104ms)
+✔ stop is available only after a finish and ends the race without inventing unfinished ranks (2299.143417ms)
+✔ ending after the requested N finishes preserves confirmed nth and top winners (1062.435625ms)
+✔ a tube gesture stays separate from the later launch gesture even when readiness changes (6.944917ms)
+classic six-entrant / 200 seeded trajectories: {"winnerCountsByInput":[37,33,28,33,32,37],"firstInputXRange":[48.7,937.31],"lastArrivalRange":[40.29,75.22]}
+✔ small groups occupy separated full-width lanes and participant ownership changes by seed (123.658041ms)
+✔ one to 500 participants and radii seven to eighteen stay packed inside the spawn (411.5975ms)
+✔ a fixed seed reproduces positions and physical arrival order across rendering groups (4206.024167ms)
+✔ changing seeds removes a repeated first-input winner in small real races (5572.045541ms)
+✔ 200 classic races with six entrants produce varied input winners and starting ownership (136562.953292ms)
+✔ all closed edges reject exits, including dragging outside then around the wall (1.910083ms)
+✔ the diagonal gap is a real opening while other walls reflect collision circles (0.805709ms)
+✔ outlet ends reflect incoming bodies and escaped bodies stay visible then return without reset (7.44775ms)
+✔ offline entry uses only existing relative styles and classic scripts (18.284958ms)
+classic   2 marbles: 52.28s simulated / 570.3ms CPU / 1 max queued events
+classic  50 marbles: 56.27s simulated / 2054ms CPU / 4 max queued events
+classic 200 marbles: 60.52s simulated / 6615.2ms CPU / 9 max queued events
+classic 500 marbles / low gravity / high bounce / skills: 201.35s simulated / 35645.8ms CPU
+Input validation, wall containment, complete arrivals, seeded skills and render grouping reproducibility passed.
+✔ tests/physics.test.cjs (51829.012125ms)
+✔ tube, shuffle, flight blends and race draw the identical group-colored sprite at the same pixel size (23.719625ms)
+✔ group colors share bounded resolution sprites and retain their color across themes (23.928042ms)
+✔ colored spheres are available immediately without loading metal photos (3.41275ms)
+✔ colored static welcome remains cached without advancing physics (23.072542ms)
+✔ name groups share colors and patterns without changing individual IDs or physics (5.417ms)
+✔ 500 grouped balls share per-group sprite pyramids and stable marks across themes (14.0275ms)
+✔ group identification ring stays identical across shuffle, flight and race (10.09075ms)
+✔ fixed RGB group colors survive reordering and removing another group (6.824791ms)
+✔ color selections preserve legacy quantities and reject more than 500 balls (10.112625ms)
+✔ initial equal-height participants have joint ranks and no arbitrary leader (66.19925ms)
+✔ real lead, tied later positions, and finish order stay distinct (0.303667ms)
+✔ HUD leader ignores brief crossings, confirms a persistent lead, and commits finish immediately (0.279667ms)
+✔ HUD stabilization never changes actual ranking or finish data (0.161625ms)
+{
+  before: { lateWins: 23, changes: 201, meanTime: 32.52812500000001 },
+  after: { lateWins: 23, changes: 203, meanTime: 34.4984375 }
+}
+✔ winding rotating course retains overtakes and uncertain late winners on a fixed seed cohort (26797.467083ms)
+✔ rotating obstacles share deterministic contact poses and stay inside the board (270.946875ms)
+✔ cached spatial neighbors match an independent exhaustive candidate/order oracle (126.418791ms)
+✔ mouse and touch use identical normalized position and event-time models (4.16775ms)
+✔ captured drag keeps outside coordinates and releases capture only once (1.578667ms)
+✔ coalesced positions retain individual input timestamps independent of render timing (0.747333ms)
+✔ pointer cancellation and lost capture never release or duplicate cancellation (1.215041ms)
+✔ blur, hidden page, resize and orientation changes cancel safely and allow restart (2.673167ms)
+✔ second touch cancels until all contacts lift, without jumps or duplicated launch (1.409375ms)
+✔ all-up outside the canvas clears the multitouch block after capture cancellation (0.628166ms)
+✔ second touch outside the canvas cancels the active captured gesture (0.571083ms)
+✔ right click and an initial nonprimary contact never begin a gesture (0.602084ms)
+✔ disabled settings preserve default pointer and drag behavior for panel scrolling (0.6885ms)
+✔ disabling shuffle during a gesture cancels at release instead of launching (0.553333ms)
+✔ an unrelated release cannot terminate the pointer owner or create a release (0.546584ms)
+✔ the shuffle stylesheet uses its content revision so old noninteractive CSS cannot stay cached (2.753917ms)
+✔ northeast opening uses shared immutable geometry without speed or travel gates (0.85825ms)
+✔ an inside-to-outlet drag is consumed immediately once at any speed (0.949ms)
+✔ touching the diagonal mouth does not exit but a short outward crossing does (0.204083ms)
+✔ outside clicks and untouched motion cannot exit; entering the group then using the outlet works (0.975ms)
+✔ inside circles and all closed-edge jitter never launch (1.080792ms)
+✔ render evaluations do not alter the opening crossing or consume its event (1.434959ms)
+✔ cancel, backward and duplicate timestamp samples cannot manufacture outlet crossings (0.195542ms)
+✔ all screen shapes share the mouth, and outside travel around a closed wall cannot fake entry (0.274ms)
+✔ actual per-body contact yields the same exit across counts and physics frame groupings (457.903708ms)
+✔ welcome spheres rest on supported floor layers instead of floating random positions (8194.040709ms)
+✔ lift waits indefinitely for an actual touch and rejects touches outside the tube (13939.246041ms)
+✔ taps never tilt or open the lid; a subthreshold drag keeps the tube closed (16.347416ms)
+✔ drag follows angular leverage about the loaded center and cancellation preserves the race (3.545542ms)
+✔ once sufficiently tilted every marble drains promptly without timed releases (19012.327125ms)
+✔ physical pour keeps every displayed ID finite and on screen at portrait and landscape sizes (50563.203167ms)
+✔ receiving solver inherits exact exit position, tangent velocity and collision radius (14684.903666ms)
+✔ gravity deposited balls meet the floor and avoid deep overlap including 500 balls (13259.549292ms)
+✔ fixed-step tilt and release preserve physical outcomes across render frame grouping and motion settings (107834.298959ms)
+✔ large hidden-tab resume deltas neither open the lid nor manufacture readiness (1.081875ms)
+✔ the original tube and opening cap always use the transparent photo layer above the receiving board (4.918917ms)
+✔ intro exposes only its welcome action and keeps the settings ancestor available for later (6.038209ms)
+✔ setup reuses the real panel as an accessible centered dialog and focuses the first color button (1.618417ms)
+✔ close and Escape return setup to intro and restore welcome focus (2.52275ms)
+✔ setup Tab wraps visible enabled controls and skips closed advanced fields (2.069625ms)
+✔ one setup submit starts the sequence; hidden automatic scenes reject further submissions (1.485417ms)
+✔ flight and running have identical final board coordinates at desktop and mobile widths (2.720459ms)
+✔ reveal waits until the final 15 percent for HUD and never fades the cinematic canvas itself (1.125958ms)
+✔ refreshing the same setup preserves slider and sound focus instead of refocusing names (1.140834ms)
+✔ short mobile landscape excludes the race HUD while portrait preserves board width (3.02525ms)
+✔ bottom stop action is hidden outside a race and emits only while available (1.430875ms)
+✔ 6, 50, 200 and 500 marbles get bounded, viewport-safe name labels (9.730208ms)
+✔ finished display uses distinct recent slots without mutating rank, coordinates or arrival time (1.638333ms)
+✔ the classic board has no portal routes (0.1915ms)
+ℹ tests 205
+ℹ suites 0
+ℹ pass 205
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 429997.198708

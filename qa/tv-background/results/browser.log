@@ -1,0 +1,13 @@
+{
+  before: {
+    adjacentAlphaStep: 17,
+    tileGrainPeakAlpha: 18,
+    materialStripe: [ [Array], [Array], [Array], [Array] ]
+  },
+  after: {
+    adjacentAlphaStep: 1,
+    tileGrainPeakAlpha: 0,
+    materialStripe: [ [Array], [Array], [Array], [Array] ]
+  },
+  screenPaperStable: true
+}

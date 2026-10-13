@@ -7,6 +7,13 @@ async function pour(page,touch=false){
  if(touch){const cdp=await page.context().newCDPSession(page);await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:t.x,y:t.y}]});for(let i=1;i<=20;i++)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:t.x-t.s*.12*i/20,y:t.y+t.s*.35*i/20}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await cdp.detach();}
  else{await page.mouse.move(t.x,t.y);await page.mouse.down();await page.mouse.move(t.x-t.s*.12,t.y+t.s*.35,{steps:20});await page.mouse.up();}
  await page.waitForFunction(()=>CosmicPinball.app.handScene.ready,{},{timeout:30000});
+ if(!touch){
+  const a=await page.evaluate(()=>CosmicPinball.app.handScene.area());await page.mouse.move(a.x,a.y);await page.mouse.down();
+  for(let i=1;i<=45;i++){await page.mouse.move(a.x+Math.cos(i*.25)*a.s*.10,a.y+Math.sin(i*.25)*a.s*.10);await page.waitForTimeout(9);}
+  const circle=await page.evaluate(()=>{const s=CosmicPinball.app.handScene.shuffle;return {enabled:s.circleGrabEnabled,grab:!!s.grab,contained:s.bodies.every(b=>Math.hypot(b.x-s.grab.x,b.y-s.grab.y)+b.r<=s.pointerRadius+1e-7),wallHits:s.wallHits,count:s.bodies.length,map:CosmicPinball.app.settings.map};});
+  assert(circle.enabled&&circle.grab&&circle.contained);assert(circle.wallHits>0);await page.screenshot({path:path.join(out,circle.map+'-circle-'+circle.count+'.png')});await page.mouse.up();
+ }
+
  const d=await page.evaluate(()=>{const P=CosmicPinball,s=P.app.handScene,a=s.area(),b=s.shuffle.bodies[Math.floor(s.shuffle.bodies.length/2)],o=P.EDGE_GEOMETRY.opening(P.EDGE_GEOMETRY.bounds(a));return {x:a.x+b.x*s.viewScale*a.s,y:a.y+b.y*s.viewScale*a.s,ex:a.x+o.x*a.s+30,ey:a.y+o.y*a.s-30};});
  if(touch){const cdp=await page.context().newCDPSession(page);await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:d.x,y:d.y}]});for(let i=1;i<=32;i++)await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:d.x+(d.ex-d.x)*i/32,y:d.y+(d.ey-d.y)*i/32}]});await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});await cdp.detach();}
  else{await page.mouse.move(d.x,d.y);await page.mouse.down();await page.mouse.move(d.ex,d.ey,{steps:32});await page.mouse.up();}
@@ -19,6 +26,7 @@ async function main(){
   for(const map of ['classic','twinfold','cascade','rhythm']){
    const context=await browser.newContext({viewport:{width:1280,height:720}}),page=await context.newPage();page.on('pageerror',e=>report.errors.push(e.message));await page.goto(url);await page.locator('#intro-start-button').click();await page.locator('[data-map="'+map+'"]').click();
    assert.equal(await page.locator('[data-map="'+map+'"]').getAttribute('aria-pressed'),'true');
+   if(map==='classic'){await page.evaluate(()=>{const u=CosmicPinball.app.ui;u.load({...u.readSettings(),skills:true,classicSkills:true,seed:''});u.emit('change',u.readSettings());});await page.locator('[data-map="classic"]').click();await page.locator('[data-map="twinfold"]').click();await page.reload();await page.locator('#intro-start-button').click();await page.locator('[data-map="classic"]').click();assert.equal(await page.locator('#skills').isChecked(),true);await page.evaluate(()=>{const u=CosmicPinball.app.ui;u.load({...u.readSettings(),skills:false,classicSkills:false});u.emit('change',u.readSettings());});}
    await page.evaluate(()=>{const u=CosmicPinball.app.ui;u.load({...u.readSettings(),names:'빨강*2,초록*2,파랑*2',speed:3,sound:false});u.emit('change',u.readSettings());});
    if(map!=='classic')assert.equal(await page.locator('#skills').isDisabled(),true);
    await page.locator('#start-button').click();await pour(page);assert.equal(await page.locator('[data-map="'+map+'"]').isDisabled(),true);
@@ -26,7 +34,7 @@ async function main(){
    await page.waitForFunction(()=>CosmicPinball.app.physics.time>3);await page.screenshot({path:path.join(out,map+'-play.png')});
    await page.waitForFunction(()=>document.querySelector('#results-dialog').open,{},{timeout:120000});
    const first=await page.evaluate(()=>({ranking:CosmicPinball.app.physics.finished.map(m=>[m.id,m.finishTime]),time:CosmicPinball.app.physics.time,map:document.getElementById('result-map').textContent,events:CosmicPinball.app.diagnostics.events}));assert.equal(first.ranking.length,6);assert.equal(first.map,start.settings.map==='classic'?'자개 핀 보드':start.settings.map==='twinfold'?'갈래 서가':start.settings.map==='cascade'?'빗살 낙하':'박자 분배기');
-   await page.screenshot({path:path.join(out,map+'-result.png')});await page.locator('#replay-button').click();await page.locator('#advanced-settings').evaluate(e=>e.open=true);await page.locator('#seed-previous').click();
+   await page.screenshot({path:path.join(out,map+'-result.png')});await page.locator('#replay-button').click();await page.locator('#advanced-settings').evaluate(e=>e.open=true);await page.locator('#seed-previous').click();const replaySeed=await page.locator('#seed').inputValue();await page.locator('[data-map="'+map+'"]').click();assert.equal(await page.locator('#seed').inputValue(),replaySeed);assert(replaySeed);
    assert.equal(await page.locator('[data-map="'+map+'"]').getAttribute('aria-pressed'),'true');
    await page.locator('#start-button').click();await page.waitForFunction(()=>CosmicPinball.app.status==='running');
    await page.evaluate(()=>{const p=CosmicPinball.app.physics;while(!p.complete&&p.time<240){p.step();p.drainEvents();}});await page.waitForFunction(()=>document.querySelector('#results-dialog').open,{},{timeout:10000});const replay=await page.evaluate(()=>CosmicPinball.app.physics.finished.map(m=>[m.id,m.finishTime]));assert.deepEqual(replay,first.ranking);

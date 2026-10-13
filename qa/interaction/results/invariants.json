@@ -1,0 +1,54 @@
+{
+  "baseline": "78b23b4",
+  "files": [
+    {
+      "file": "js/maps.js",
+      "sha256": "8f943928322996b98838ab82648b2177f0c4adb5c07e572343907af16b38ede5",
+      "unchanged": true
+    },
+    {
+      "file": "js/physics.js",
+      "sha256": "6a24e3398dd7616562e73f1d0c74e08cfe06ca202a0a12c9ba633f80b938a572",
+      "unchanged": true
+    },
+    {
+      "file": "js/shuffle.js",
+      "sha256": "098c6cf5a33d17f5d8d5303dd7e5d383b96efbec22b513dee377bfd78ed314df",
+      "unchanged": true
+    },
+    {
+      "file": "js/shuffle-input.js",
+      "sha256": "c53898379372660a8922e1412cf18cbaac8596e8265df31ec117db1c9c0396bf",
+      "unchanged": true
+    },
+    {
+      "file": "js/hand-start.js",
+      "sha256": "93e4ed9bae2d4187af06ea64c60154bf8b10a7a91675eb297652645a50b9e784",
+      "unchanged": true
+    },
+    {
+      "file": "js/throw-gate.js",
+      "sha256": "2edf9c6af6ea90594963603822228c445026df95793ffa4ee7555be778e2f7da",
+      "unchanged": true
+    },
+    {
+      "file": "js/cinematic.js",
+      "sha256": "ea7fbaa4697870ff252e675b553c1a1938a1b540c0e216b318d61e696bc97a93",
+      "unchanged": true
+    }
+  ],
+  "functions": [
+    {
+      "file": "js/hand-scene.js",
+      "start": "    stepPour(dt, area) {",
+      "sha256": "42c7c77381d213028693aa086d468ca312f253e69df4d1e51d129225d70d70ab",
+      "unchanged": true
+    },
+    {
+      "file": "js/main.js",
+      "start": "  function updateRace(",
+      "sha256": "b0873923af87b0efa4d68d34b69eb2a7eabdf9d048ba7a634baf8d6c3334efa7",
+      "unchanged": true
+    }
+  ]
+}

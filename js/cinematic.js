@@ -380,8 +380,7 @@
     setQuality(quality) { this.quality = ['high', 'medium', 'low'].includes(quality) ? quality : 'high'; }
     resize() {
       this.width = this.canvas.clientWidth || innerWidth; this.height = this.canvas.clientHeight || innerHeight;
-      const limit = this.quality === 'low' ? 1 : this.quality === 'medium' ? 1.5 : P.CONFIG && P.CONFIG.maxDpr || 2;
-      this.dpr = Math.min(devicePixelRatio || 1, limit);
+      this.dpr = P.renderDensity(this.width, this.height, devicePixelRatio) * (this.renderer && this.renderer.renderScale || 1);
       const w = Math.round(this.width * this.dpr), h = Math.round(this.height * this.dpr);
       if (this.canvas.width !== w || this.canvas.height !== h) { this.canvas.width = w; this.canvas.height = h; }
       this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);

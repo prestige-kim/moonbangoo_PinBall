@@ -1,6 +1,15 @@
 (function (P) {
   'use strict';
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  // Critically damped display motion: velocity stays continuous on leader changes.
+  function glide(camera, axis, target, dt, omega, maxSpeed) {
+    const key = axis + 'Velocity', value = camera[axis], velocity = camera[key] || 0;
+    target = value + clamp(target - value, -maxSpeed / omega, maxSpeed / omega);
+    const offset = value - target, decay = Math.exp(-omega * dt);
+    const impulse = (velocity + omega * offset) * dt;
+    camera[axis] = target + (offset + impulse) * decay;
+    camera[key] = (velocity - omega * impulse) * decay;
+  }
   class Camera {
     constructor(canvas, options) {
       this.canvas = canvas; this.x = 500; this.y = 510; this.zoom = 1; this.follow = true; this.viewport = null; this.map = null; this.pointer = new Map(); this.drag = null; this.manualZoom = 1;
@@ -12,7 +21,7 @@
       return w > 1050 ? { x: 352, y: 0, w: Math.max(280, w - 632), h } : { x: 0, y: 0, w, h };
     }
     reset(map) {
-      this.entrance = null; this.map = map; this.lastPhysicsTime = null; const area = this.area(); this.x = map.width / 2; this.y = Math.min(540, area.h / (2 * Math.min(area.w / (map.width + 90), 1.15))); this.zoom = this.baseZoom() * .82; this.follow = true; this.manualZoom = 1; this.pointer.clear();
+      this.xVelocity = this.yVelocity = this.zoomVelocity = 0; this.entrance = null; this.map = map; this.lastPhysicsTime = null; const area = this.area(); this.x = map.width / 2; this.y = Math.min(540, area.h / (2 * Math.min(area.w / (map.width + 90), 1.15))); this.zoom = this.baseZoom() * .82; this.follow = true; this.manualZoom = 1; this.pointer.clear();
     }
     enter(map, options) {
       const area = this.area();
@@ -22,7 +31,7 @@
       this.map = map; this.lastPhysicsTime = null; this.follow = true; this.manualZoom = 1; this.pointer.clear(); this.drag = null;
     }
     prepareLanding(map, physics) {
-      this.map = map; this.entrance = null; this.lastPhysicsTime = physics && physics.time; this.follow = true; this.manualZoom = 1;
+      this.xVelocity = this.yVelocity = this.zoomVelocity = 0; this.map = map; this.entrance = null; this.lastPhysicsTime = physics && physics.time; this.follow = true; this.manualZoom = 1;
       this.pointer.clear(); this.drag = null; this.pinch = null;
       const area = this.area();
       const active = physics && physics.marbles ? physics.marbles.filter(m => !m.finished) : [];
@@ -40,18 +49,13 @@
       const maxY = Math.max(minY, map.height - area.h / (2 * this.zoom) + 150);
       this.y = clamp((top + bottom) / 2, minY, maxY);
     }
-    baseZoom() { const area = this.area(); return Math.min(area.w / ((this.map ? this.map.width : 1000) + 100), 1.15); }
-    resumeFollow() { this.follow = true; this.manualZoom = 1; }
+    baseZoom() { const area = this.area(); return Math.min(area.w / ((this.map ? this.map.width : 1000) + 100), area.w > 2000 ? 2.4 : 1.15); }
+    resumeFollow() { this.follow = true; this.manualZoom = 1; this.xVelocity = this.yVelocity = this.zoomVelocity = 0; }
     worldToScreen(x, y) { const area = this.area(); return { x: area.x + area.w / 2 + (x - this.x) * this.zoom, y: area.y + area.h / 2 + (y - this.y) * this.zoom }; }
     screenToWorld(x, y) { const area = this.area(); return { x: this.x + (x - area.x - area.w / 2) / this.zoom, y: this.y + (y - area.y - area.h / 2) / this.zoom }; }
     update(dt, physics, map, options) {
       this.map = map; options = options || {};
       if (!physics || !physics.marbles.length) return;
-      // Follow real simulated progress. A 3x race may advance many physics ticks
-      // in one display frame, while photo finish and frame caps advance fewer.
-      const physicsRate = dt > 0 && Number.isFinite(physics.time) && Number.isFinite(this.lastPhysicsTime)
-        ? clamp((physics.time - this.lastPhysicsTime) / dt, 0, 3) : 0;
-      this.lastPhysicsTime = physics.time;
       if (!this.follow) return;
       const area = this.area(), active = physics.marbles.filter(m => !m.finished);
       if (this.entrance) {
@@ -68,45 +72,41 @@
         if (progress === 1) this.entrance = null;
         return;
       }
-      const ranked = physics.getRanking ? physics.getRanking() : active.slice().sort((a, b) => b.y - a.y);
-      const front = active.length ? active.slice().sort((a, b) => b.y - a.y)[0] : ranked[0]; if (!front) return;
-      const base = this.baseZoom(); let targetZoom = base * (options.status === 'idle' ? .82 : 1.04) * this.manualZoom, targetX = map.width / 2;
-      if (options.photoFinish) { targetZoom = Math.min(1.45, base * 1.45) * this.manualZoom; targetX = clamp(front.x, map.width * .25, map.width * .75); }
-      else if (options.status === 'running' && active.length) {
-        const close = active.filter(m => front.y - m.y < 200); const spread = close.length > 1 ? Math.max(...close.map(m => m.x)) - Math.min(...close.map(m => m.x)) : 0;
-        if (spread > map.width * .8) targetZoom = base * .92 * this.manualZoom;
-        const finishY = map.finish && map.finish.y || map.height - 120;
-        if (front.y > finishY - 260) targetZoom = base * 1.12 * this.manualZoom;
+      if (options.status === 'finished') return;
+      const ordered = active.slice().sort((a, b) => b.y - a.y);
+      const front = ordered[0]; if (!front) return;
+      const base = this.baseZoom(), finishY = map.finish && map.finish.y || map.height - 120;
+      // Frame the leading pack, with a limited trail so a distant laggard cannot
+      // pull the race out of view. No participant IDs affect this framing.
+      const pack = ordered.slice(0, 3), trail = area.h / Math.max(.01, this.zoom) * .24;
+      const packY = pack.reduce((sum, m) => sum + Math.max(m.y, front.y - trail), 0) / pack.length;
+      const spread = pack.length > 1 ? Math.max(...pack.map(m => m.x)) - Math.min(...pack.map(m => m.x)) : 0;
+      const finishBlend = clamp((front.y - (finishY - 500)) / 500, 0, 1);
+      let targetZoom = base * (1 - .07 * clamp(spread / map.width, 0, 1) + .06 * finishBlend) * this.manualZoom;
+      let targetX = map.width / 2;
+      if (options.photoFinish && !options.reducedMotion) {
+        targetZoom = base * 1.16 * this.manualZoom;
+        targetX = map.width / 2 * .7 + pack.reduce((sum, m) => sum + m.x, 0) / pack.length * .3;
       }
-      const inset = Math.min(20, area.h * .12), radius = front.r || 12;
-      const ahead = Math.min(60, Math.max(0, (area.h / 2 - inset - radius * targetZoom) / targetZoom) * .65);
-      const followRate = 3.1;
-      const fallingSpeed = clamp(front.vy || 0, -700, 700) * physicsRate;
-      const targetY = options.status === 'idle' ? Math.max(460, front.y - 35) : options.status === 'countdown' ? Math.max(220, front.y - 35) : front.y + ahead + fallingSpeed / followRate;
-      const lerp = 1 - Math.exp(-dt * followRate), zLerp = 1 - Math.exp(-dt * 2.4);
-      this.x += (targetX - this.x) * lerp; this.zoom += (targetZoom - this.zoom) * zLerp;
-      const minY = Math.max(220, area.h / (2 * this.zoom) - 30), maxY = Math.max(minY, map.height - area.h / (2 * this.zoom) + 150);
-      // Finishing, a portal, or a new leader can put the next live marble far
-      // from the camera. Catch up sooner, but cap board travel in screen pixels.
-      const screenY = area.h / 2 + (front.y - this.y) * this.zoom;
-      const safeTop = inset + radius * this.zoom, safeBottom = area.h - inset - radius * this.zoom;
-      const outside = Math.max(safeTop - screenY, screenY - safeBottom, 0);
-      const catchupRate = followRate + Math.min(9, outside / Math.max(25, area.h * .2) * 3);
-      let followY = clamp(targetY, minY, maxY);
-      // Once an active marble is outside the view, its current position takes
-      // priority over velocity look-ahead until it re-enters the safe band.
-      if (screenY < safeTop) followY = Math.min(followY, front.y + (area.h / 2 - safeTop) / this.zoom);
-      else if (screenY > safeBottom) followY = Math.max(followY, front.y - (safeBottom - area.h / 2) / this.zoom);
-      const desiredStep = (followY - this.y) * (1 - Math.exp(-dt * catchupRate));
-      const maxStep = Math.max(20, physicsRate * 700 * this.zoom * dt + 8) / this.zoom;
-      this.y += clamp(desiredStep, -maxStep, maxStep);
+      const ahead = Math.min(95, area.h / Math.max(.01, targetZoom) * .12);
+      const targetY = options.status === 'idle' ? Math.max(460, packY - 35) : options.status === 'countdown' ? Math.max(220, packY - 35) : packY + ahead;
+      const minY = Math.max(220, area.h / (2 * targetZoom) - 30), maxY = Math.max(minY, map.height - area.h / (2 * targetZoom) + 150);
+      const omega = options.reducedMotion ? 4 : 5;
+      glide(this, 'x', targetX, dt, omega, 360 / Math.max(.01, this.zoom));
+      glide(this, 'zoom', targetZoom, dt, 3, .45);
+      glide(this, 'y', clamp(targetY, minY, maxY), dt, omega, 1400 / Math.max(.01, this.zoom));
+
+    }
+    zoomBy(factor) {
+      this.entrance = null; this.follow = false;
+      this.zoom = clamp(this.zoom * factor, .16, 2.8);
+      this.canvas.dispatchEvent(new CustomEvent('followchange', { detail: false }));
     }
     attach(canvas) {
       if (this.attached) return; this.attached = true;
       const position = e => { const rect = canvas.getBoundingClientRect(); return { x: e.clientX - rect.left, y: e.clientY - rect.top }; };
       const stopFollowing = () => { this.entrance = null; if (this.follow) { this.follow = false; canvas.dispatchEvent(new CustomEvent('followchange', { detail: false })); } };
       const scaleAt = (next, x, y) => { const before = this.screenToWorld(x, y); this.zoom = clamp(next, .16, 2.8); const after = this.screenToWorld(x, y); this.x += before.x - after.x; this.y += before.y - after.y; };
-      canvas.addEventListener('wheel', e => { e.preventDefault(); const p = position(e); stopFollowing(); scaleAt(this.zoom * Math.exp(-e.deltaY * .0013), p.x, p.y); }, { passive: false });
       canvas.addEventListener('pointerdown', e => {
         if (e.button !== undefined && e.button > 0) return; const p = position(e); this.pointer.set(e.pointerId, p); canvas.setPointerCapture(e.pointerId);
         if (this.pointer.size === 1) this.drag = { x: p.x, y: p.y, originalX: p.x, originalY: p.y };
@@ -119,7 +119,11 @@
       });
       const release = e => { this.pointer.delete(e.pointerId); this.pinch = null; if (!this.pointer.size) this.drag = null; else { const p = [...this.pointer.values()][0]; this.drag = { x: p.x, y: p.y, originalX: p.x, originalY: p.y }; } };
       canvas.addEventListener('pointerup', release); canvas.addEventListener('pointercancel', release);
-      document.addEventListener('keydown', e => { if (e.key.toLowerCase() !== 'f' || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.ctrlKey || e.metaKey || e.altKey) return; this.follow = !this.follow; if (this.follow) this.manualZoom = 1; canvas.dispatchEvent(new CustomEvent('followchange', { detail: this.follow })); });
+      const clear = () => { this.pointer.clear(); this.drag = null; this.pinch = null; };
+      canvas.addEventListener('lostpointercapture', release);
+      if (typeof window.addEventListener === 'function') {
+        window.addEventListener('blur', clear); window.addEventListener('resize', clear); window.addEventListener('orientationchange', clear);
+      }
     }
   }
   P.Camera = Camera;

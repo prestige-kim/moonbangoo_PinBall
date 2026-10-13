@@ -1,0 +1,3548 @@
+{
+  "baseline": "db85b75",
+  "hands": [
+    {
+      "map": "classic",
+      "count": 1,
+      "protocol": "B",
+      "seed": "restored-circle-v2-classic-1-B",
+      "time": 41.575,
+      "forces": 2,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 1,
+      "protocol": "C",
+      "seed": "restored-circle-v2-classic-1-C",
+      "time": 44.06666666666666,
+      "forces": 2,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 1,
+      "protocol": "D",
+      "seed": "restored-circle-v2-classic-1-D",
+      "time": 43.516666666666666,
+      "forces": 1,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 2,
+      "protocol": "B",
+      "seed": "restored-circle-v2-classic-2-B",
+      "time": 39.09166666666667,
+      "forces": 3,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 2,
+      "protocol": "C",
+      "seed": "restored-circle-v2-classic-2-C",
+      "time": 46.96666666666667,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 2,
+      "protocol": "D",
+      "seed": "restored-circle-v2-classic-2-D",
+      "time": 40.675,
+      "forces": 1,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 6,
+      "protocol": "B",
+      "seed": "restored-circle-v2-classic-6-B",
+      "time": 58.791666666666664,
+      "forces": 12,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 6,
+      "protocol": "C",
+      "seed": "restored-circle-v2-classic-6-C",
+      "time": 49.90833333333333,
+      "forces": 9,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 6,
+      "protocol": "D",
+      "seed": "restored-circle-v2-classic-6-D",
+      "time": 52.025,
+      "forces": 8,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 50,
+      "protocol": "B",
+      "seed": "restored-circle-v2-classic-50-B",
+      "time": 61.708333333333336,
+      "forces": 49,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 50,
+      "protocol": "C",
+      "seed": "restored-circle-v2-classic-50-C",
+      "time": 61.708333333333336,
+      "forces": 61,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 50,
+      "protocol": "D",
+      "seed": "restored-circle-v2-classic-50-D",
+      "time": 57.324999999999996,
+      "forces": 49,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 200,
+      "protocol": "B",
+      "seed": "restored-circle-v2-classic-200-B",
+      "time": 54.516666666666666,
+      "forces": 90,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 200,
+      "protocol": "C",
+      "seed": "restored-circle-v2-classic-200-C",
+      "time": 61.324999999999996,
+      "forces": 83,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 200,
+      "protocol": "D",
+      "seed": "restored-circle-v2-classic-200-D",
+      "time": 58.208333333333336,
+      "forces": 87,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 500,
+      "protocol": "B",
+      "seed": "restored-circle-v2-classic-500-B",
+      "time": 56.31666666666666,
+      "forces": 103,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 500,
+      "protocol": "C",
+      "seed": "restored-circle-v2-classic-500-C",
+      "time": 60.6,
+      "forces": 109,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "classic",
+      "count": 500,
+      "protocol": "D",
+      "seed": "restored-circle-v2-classic-500-D",
+      "time": 62.541666666666664,
+      "forces": 100,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 1,
+      "protocol": "B",
+      "seed": "restored-circle-v2-twinfold-1-B",
+      "time": 17.491666666666667,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 1,
+      "protocol": "C",
+      "seed": "restored-circle-v2-twinfold-1-C",
+      "time": 21.983333333333334,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 1,
+      "protocol": "D",
+      "seed": "restored-circle-v2-twinfold-1-D",
+      "time": 19.475,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 2,
+      "protocol": "B",
+      "seed": "restored-circle-v2-twinfold-2-B",
+      "time": 21.066666666666666,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 2,
+      "protocol": "C",
+      "seed": "restored-circle-v2-twinfold-2-C",
+      "time": 25.591666666666665,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 2,
+      "protocol": "D",
+      "seed": "restored-circle-v2-twinfold-2-D",
+      "time": 17.225,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "protocol": "B",
+      "seed": "restored-circle-v2-twinfold-6-B",
+      "time": 19.791666666666668,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "protocol": "C",
+      "seed": "restored-circle-v2-twinfold-6-C",
+      "time": 19.475,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "protocol": "D",
+      "seed": "restored-circle-v2-twinfold-6-D",
+      "time": 25.65833333333333,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "protocol": "B",
+      "seed": "restored-circle-v2-twinfold-50-B",
+      "time": 26.816666666666666,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "protocol": "C",
+      "seed": "restored-circle-v2-twinfold-50-C",
+      "time": 27.05,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "protocol": "D",
+      "seed": "restored-circle-v2-twinfold-50-D",
+      "time": 24.075,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 200,
+      "protocol": "B",
+      "seed": "restored-circle-v2-twinfold-200-B",
+      "time": 23.541666666666668,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 200,
+      "protocol": "C",
+      "seed": "restored-circle-v2-twinfold-200-C",
+      "time": 24.308333333333334,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 200,
+      "protocol": "D",
+      "seed": "restored-circle-v2-twinfold-200-D",
+      "time": 22.741666666666667,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 500,
+      "protocol": "B",
+      "seed": "restored-circle-v2-twinfold-500-B",
+      "time": 23.641666666666666,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 500,
+      "protocol": "C",
+      "seed": "restored-circle-v2-twinfold-500-C",
+      "time": 24.641666666666666,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 500,
+      "protocol": "D",
+      "seed": "restored-circle-v2-twinfold-500-D",
+      "time": 23.541666666666668,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 1,
+      "protocol": "B",
+      "seed": "restored-circle-v2-cascade-1-B",
+      "time": 20.191666666666666,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 1,
+      "protocol": "C",
+      "seed": "restored-circle-v2-cascade-1-C",
+      "time": 24.366666666666667,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 1,
+      "protocol": "D",
+      "seed": "restored-circle-v2-cascade-1-D",
+      "time": 23.55,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 2,
+      "protocol": "B",
+      "seed": "restored-circle-v2-cascade-2-B",
+      "time": 22.808333333333334,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 2,
+      "protocol": "C",
+      "seed": "restored-circle-v2-cascade-2-C",
+      "time": 25.683333333333334,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 2,
+      "protocol": "D",
+      "seed": "restored-circle-v2-cascade-2-D",
+      "time": 22.066666666666666,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 6,
+      "protocol": "B",
+      "seed": "restored-circle-v2-cascade-6-B",
+      "time": 26.558333333333334,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 6,
+      "protocol": "C",
+      "seed": "restored-circle-v2-cascade-6-C",
+      "time": 29.65,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 6,
+      "protocol": "D",
+      "seed": "restored-circle-v2-cascade-6-D",
+      "time": 27.808333333333334,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 50,
+      "protocol": "B",
+      "seed": "restored-circle-v2-cascade-50-B",
+      "time": 27.224999999999998,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 50,
+      "protocol": "C",
+      "seed": "restored-circle-v2-cascade-50-C",
+      "time": 28.4,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 50,
+      "protocol": "D",
+      "seed": "restored-circle-v2-cascade-50-D",
+      "time": 28.95,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 200,
+      "protocol": "B",
+      "seed": "restored-circle-v2-cascade-200-B",
+      "time": 26.775,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 200,
+      "protocol": "C",
+      "seed": "restored-circle-v2-cascade-200-C",
+      "time": 26.90833333333333,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 200,
+      "protocol": "D",
+      "seed": "restored-circle-v2-cascade-200-D",
+      "time": 28.65833333333333,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 500,
+      "protocol": "B",
+      "seed": "restored-circle-v2-cascade-500-B",
+      "time": 27.3,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 500,
+      "protocol": "C",
+      "seed": "restored-circle-v2-cascade-500-C",
+      "time": 33.583333333333336,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "cascade",
+      "count": 500,
+      "protocol": "D",
+      "seed": "restored-circle-v2-cascade-500-D",
+      "time": 28.083333333333332,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 1,
+      "protocol": "B",
+      "seed": "restored-circle-v2-rhythm-1-B",
+      "time": 22.983333333333334,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 1,
+      "protocol": "C",
+      "seed": "restored-circle-v2-rhythm-1-C",
+      "time": 20.05,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 1,
+      "protocol": "D",
+      "seed": "restored-circle-v2-rhythm-1-D",
+      "time": 20.03333333333333,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 2,
+      "protocol": "B",
+      "seed": "restored-circle-v2-rhythm-2-B",
+      "time": 24.216666666666665,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 2,
+      "protocol": "C",
+      "seed": "restored-circle-v2-rhythm-2-C",
+      "time": 20.133333333333333,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 2,
+      "protocol": "D",
+      "seed": "restored-circle-v2-rhythm-2-D",
+      "time": 20.633333333333333,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 6,
+      "protocol": "B",
+      "seed": "restored-circle-v2-rhythm-6-B",
+      "time": 24.6,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 6,
+      "protocol": "C",
+      "seed": "restored-circle-v2-rhythm-6-C",
+      "time": 25.866666666666667,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 6,
+      "protocol": "D",
+      "seed": "restored-circle-v2-rhythm-6-D",
+      "time": 26.916666666666668,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "protocol": "B",
+      "seed": "restored-circle-v2-rhythm-50-B",
+      "time": 27.433333333333334,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "protocol": "C",
+      "seed": "restored-circle-v2-rhythm-50-C",
+      "time": 23.78333333333333,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "protocol": "D",
+      "seed": "restored-circle-v2-rhythm-50-D",
+      "time": 27.224999999999998,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 200,
+      "protocol": "B",
+      "seed": "restored-circle-v2-rhythm-200-B",
+      "time": 23.275,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 200,
+      "protocol": "C",
+      "seed": "restored-circle-v2-rhythm-200-C",
+      "time": 24.325,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 200,
+      "protocol": "D",
+      "seed": "restored-circle-v2-rhythm-200-D",
+      "time": 24.291666666666668,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 500,
+      "protocol": "B",
+      "seed": "restored-circle-v2-rhythm-500-B",
+      "time": 21.933333333333334,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 500,
+      "protocol": "C",
+      "seed": "restored-circle-v2-rhythm-500-C",
+      "time": 24.566666666666666,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    },
+    {
+      "map": "rhythm",
+      "count": 500,
+      "protocol": "D",
+      "seed": "restored-circle-v2-rhythm-500-D",
+      "time": 24.2,
+      "forces": 0,
+      "replayEqual": true,
+      "startVersion": 2
+    }
+  ],
+  "fairness": [
+    {
+      "phase": "final",
+      "map": "twinfold",
+      "samplesPerProtocol": 300,
+      "sourceHashes": {
+        "js/maps/twinfold.js": "70a658f4243b3ffbe7fcba206806b9929c1c49c52bf01bf321e825f25c79a663",
+        "js/shuffle.js": "89c28332289c5de61a0a5ba602769f90ee856802f215055bdfaa9022ebcf7a09",
+        "js/hand-scene.js": "25bf0a15b52d06600e693ad24ca5296a76cc5573970e254386fe481044eca7fc",
+        "js/hand-start.js": "298e6c089a19a66cf048ddad27d4478977d5507475e03327d90c4232d6131d5a"
+      },
+      "cases": [
+        {
+          "protocol": "B",
+          "requested": 300,
+          "failures": 0,
+          "id": {
+            "counts": [
+              44,
+              55,
+              51,
+              51,
+              47,
+              52
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 1.52,
+            "df": 5,
+            "pValue": 0.9107503438271769,
+            "maxDeviationPercentagePoints": 2,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 44,
+                "rate": 0.14666666666666667,
+                "low": 0.11110518744033696,
+                "high": 0.19116251222500888
+              },
+              {
+                "count": 55,
+                "rate": 0.18333333333333332,
+                "low": 0.14364526409824455,
+                "high": 0.23102861767730118
+              },
+              {
+                "count": 51,
+                "rate": 0.17,
+                "low": 0.13173009843992434,
+                "high": 0.21661426256827604
+              },
+              {
+                "count": 51,
+                "rate": 0.17,
+                "low": 0.13173009843992434,
+                "high": 0.21661426256827604
+              },
+              {
+                "count": 47,
+                "rate": 0.15666666666666668,
+                "low": 0.11990681678878562,
+                "high": 0.2021080234520693
+              },
+              {
+                "count": 52,
+                "rate": 0.17333333333333334,
+                "low": 0.13470060049746765,
+                "high": 0.22022614070256905
+              }
+            ]
+          },
+          "group": {
+            "counts": [
+              99,
+              102,
+              99
+            ],
+            "n": 300,
+            "expected": [
+              100,
+              100,
+              100
+            ],
+            "statistic": 0.060000000000000005,
+            "df": 2,
+            "pValue": 0.9704455335485082,
+            "maxDeviationPercentagePoints": 0.6666666666666667,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 99,
+                "rate": 0.33,
+                "low": 0.2792344636154957,
+                "high": 0.3850641466008499
+              },
+              {
+                "count": 102,
+                "rate": 0.34,
+                "low": 0.2887202040964927,
+                "high": 0.395325546695362
+              },
+              {
+                "count": 99,
+                "rate": 0.33,
+                "low": 0.2792344636154957,
+                "high": 0.3850641466008499
+              }
+            ]
+          },
+          "slot": {
+            "counts": [
+              25,
+              37,
+              38,
+              57,
+              63,
+              80
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 41.12,
+            "df": 5,
+            "pValue": 8.873349308599743e-8,
+            "maxDeviationPercentagePoints": 10,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 25,
+                "rate": 0.08333333333333333,
+                "low": 0.057080874056394275,
+                "high": 0.12012160196406074
+              },
+              {
+                "count": 37,
+                "rate": 0.12333333333333334,
+                "low": 0.09081731429366795,
+                "high": 0.1653737240288234
+              },
+              {
+                "count": 38,
+                "rate": 0.12666666666666668,
+                "low": 0.09369224846506602,
+                "high": 0.16908117004926165
+              },
+              {
+                "count": 57,
+                "rate": 0.19,
+                "low": 0.14963485033440665,
+                "high": 0.23820379182481183
+              },
+              {
+                "count": 63,
+                "rate": 0.21,
+                "low": 0.1677218007333024,
+                "high": 0.25961112257693425
+              },
+              {
+                "count": 80,
+                "rate": 0.26666666666666666,
+                "low": 0.21980599244000376,
+                "high": 0.31942739413145094
+              }
+            ]
+          },
+          "screenPass": true,
+          "priorAuditDeviationPass": false
+        },
+        {
+          "protocol": "C",
+          "requested": 300,
+          "failures": 0,
+          "id": {
+            "counts": [
+              53,
+              58,
+              46,
+              42,
+              50,
+              51
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 3.08,
+            "df": 5,
+            "pValue": 0.6876535731630546,
+            "maxDeviationPercentagePoints": 2.666666666666667,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 53,
+                "rate": 0.17666666666666667,
+                "low": 0.13767670929949632,
+                "high": 0.22383241209237675
+              },
+              {
+                "count": 58,
+                "rate": 0.19333333333333333,
+                "low": 0.15263726685545376,
+                "high": 0.2417837554956011
+              },
+              {
+                "count": 46,
+                "rate": 0.15333333333333332,
+                "low": 0.11696640299091687,
+                "high": 0.19846605705810166
+              },
+              {
+                "count": 42,
+                "rate": 0.14,
+                "low": 0.10527132693072412,
+                "high": 0.18383161235094903
+              },
+              {
+                "count": 50,
+                "rate": 0.16666666666666666,
+                "low": 0.1287653312036807,
+                "high": 0.21299664961268325
+              },
+              {
+                "count": 51,
+                "rate": 0.17,
+                "low": 0.13173009843992434,
+                "high": 0.21661426256827604
+              }
+            ]
+          },
+          "group": {
+            "counts": [
+              111,
+              88,
+              101
+            ],
+            "n": 300,
+            "expected": [
+              100,
+              100,
+              100
+            ],
+            "statistic": 2.6599999999999997,
+            "df": 2,
+            "pValue": 0.26447726129982363,
+            "maxDeviationPercentagePoints": 4,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 111,
+                "rate": 0.37,
+                "low": 0.317331727809741,
+                "high": 0.42595544470864083
+              },
+              {
+                "count": 88,
+                "rate": 0.29333333333333333,
+                "low": 0.24468634082804494,
+                "high": 0.34720608727810065
+              },
+              {
+                "count": 101,
+                "rate": 0.33666666666666667,
+                "low": 0.2855553679085868,
+                "high": 0.39190800269143145
+              }
+            ]
+          },
+          "slot": {
+            "counts": [
+              38,
+              38,
+              37,
+              58,
+              52,
+              77
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 25.08,
+            "df": 5,
+            "pValue": 0.00013446427823590986,
+            "maxDeviationPercentagePoints": 9,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 38,
+                "rate": 0.12666666666666668,
+                "low": 0.09369224846506602,
+                "high": 0.16908117004926165
+              },
+              {
+                "count": 38,
+                "rate": 0.12666666666666668,
+                "low": 0.09369224846506602,
+                "high": 0.16908117004926165
+              },
+              {
+                "count": 37,
+                "rate": 0.12333333333333334,
+                "low": 0.09081731429366795,
+                "high": 0.1653737240288234
+              },
+              {
+                "count": 58,
+                "rate": 0.19333333333333333,
+                "low": 0.15263726685545376,
+                "high": 0.2417837554956011
+              },
+              {
+                "count": 52,
+                "rate": 0.17333333333333334,
+                "low": 0.13470060049746765,
+                "high": 0.22022614070256905
+              },
+              {
+                "count": 77,
+                "rate": 0.25666666666666665,
+                "low": 0.21053333722579365,
+                "high": 0.30895290877015197
+              }
+            ]
+          },
+          "screenPass": true,
+          "priorAuditDeviationPass": false
+        },
+        {
+          "protocol": "D",
+          "requested": 300,
+          "failures": 0,
+          "id": {
+            "counts": [
+              44,
+              59,
+              50,
+              51,
+              54,
+              42
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 3.96,
+            "df": 5,
+            "pValue": 0.5551892641571912,
+            "maxDeviationPercentagePoints": 3,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 44,
+                "rate": 0.14666666666666667,
+                "low": 0.11110518744033696,
+                "high": 0.19116251222500888
+              },
+              {
+                "count": 59,
+                "rate": 0.19666666666666666,
+                "low": 0.1556446341979055,
+                "high": 0.24535876834498568
+              },
+              {
+                "count": 50,
+                "rate": 0.16666666666666666,
+                "low": 0.1287653312036807,
+                "high": 0.21299664961268325
+              },
+              {
+                "count": 51,
+                "rate": 0.17,
+                "low": 0.13173009843992434,
+                "high": 0.21661426256827604
+              },
+              {
+                "count": 54,
+                "rate": 0.18,
+                "low": 0.1406583026966649,
+                "high": 0.2274331988870445
+              },
+              {
+                "count": 42,
+                "rate": 0.14,
+                "low": 0.10527132693072412,
+                "high": 0.18383161235094903
+              }
+            ]
+          },
+          "group": {
+            "counts": [
+              103,
+              101,
+              96
+            ],
+            "n": 300,
+            "expected": [
+              100,
+              100,
+              100
+            ],
+            "statistic": 0.26,
+            "df": 2,
+            "pValue": 0.8780954309205612,
+            "maxDeviationPercentagePoints": 1.3333333333333335,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 103,
+                "rate": 0.3433333333333333,
+                "low": 0.29188793516981404,
+                "high": 0.398740195813877
+              },
+              {
+                "count": 101,
+                "rate": 0.33666666666666667,
+                "low": 0.2855553679085868,
+                "high": 0.39190800269143145
+              },
+              {
+                "count": 96,
+                "rate": 0.32,
+                "low": 0.2697753585604896,
+                "high": 0.3747761110803469
+              }
+            ]
+          },
+          "slot": {
+            "counts": [
+              31,
+              36,
+              37,
+              58,
+              52,
+              86
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 41.8,
+            "df": 5,
+            "pValue": 6.465616353170813e-8,
+            "maxDeviationPercentagePoints": 12,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 31,
+                "rate": 0.10333333333333333,
+                "low": 0.07375658473854114,
+                "high": 0.142940172432932
+              },
+              {
+                "count": 36,
+                "rate": 0.12,
+                "low": 0.0879508443036389,
+                "high": 0.16165781382701605
+              },
+              {
+                "count": 37,
+                "rate": 0.12333333333333334,
+                "low": 0.09081731429366795,
+                "high": 0.1653737240288234
+              },
+              {
+                "count": 58,
+                "rate": 0.19333333333333333,
+                "low": 0.15263726685545376,
+                "high": 0.2417837554956011
+              },
+              {
+                "count": 52,
+                "rate": 0.17333333333333334,
+                "low": 0.13470060049746765,
+                "high": 0.22022614070256905
+              },
+              {
+                "count": 86,
+                "rate": 0.2866666666666667,
+                "low": 0.23844603884969776,
+                "high": 0.3402816288727752
+              }
+            ]
+          },
+          "screenPass": true,
+          "priorAuditDeviationPass": false
+        }
+      ],
+      "limitation": "Exploratory sample; not a certification of 1.5 percentage point equivalence. Start slot distribution is reported, not judged against uniformity."
+    },
+    {
+      "phase": "final",
+      "map": "cascade",
+      "samplesPerProtocol": 300,
+      "sourceHashes": {
+        "js/maps/cascade.js": "a93b926d56fd1b99a87599fbf7b52181e9b204d028693cabb447854fa85b9788",
+        "js/shuffle.js": "89c28332289c5de61a0a5ba602769f90ee856802f215055bdfaa9022ebcf7a09",
+        "js/hand-scene.js": "25bf0a15b52d06600e693ad24ca5296a76cc5573970e254386fe481044eca7fc",
+        "js/hand-start.js": "298e6c089a19a66cf048ddad27d4478977d5507475e03327d90c4232d6131d5a"
+      },
+      "cases": [
+        {
+          "protocol": "B",
+          "requested": 300,
+          "failures": 0,
+          "id": {
+            "counts": [
+              46,
+              53,
+              49,
+              45,
+              66,
+              41
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 7.760000000000001,
+            "df": 5,
+            "pValue": 0.16996794588828343,
+            "maxDeviationPercentagePoints": 5.333333333333334,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 46,
+                "rate": 0.15333333333333332,
+                "low": 0.11696640299091687,
+                "high": 0.19846605705810166
+              },
+              {
+                "count": 53,
+                "rate": 0.17666666666666667,
+                "low": 0.13767670929949632,
+                "high": 0.22383241209237675
+              },
+              {
+                "count": 49,
+                "rate": 0.16333333333333333,
+                "low": 0.1258064331944026,
+                "high": 0.20937316743012502
+              },
+              {
+                "count": 45,
+                "rate": 0.15,
+                "low": 0.11403246871185316,
+                "high": 0.194817611145329
+              },
+              {
+                "count": 66,
+                "rate": 0.22,
+                "low": 0.1768274459698328,
+                "high": 0.27025261791591293
+              },
+              {
+                "count": 41,
+                "rate": 0.13666666666666666,
+                "low": 0.10236514609208625,
+                "high": 0.1801554129977505
+              }
+            ]
+          },
+          "group": {
+            "counts": [
+              99,
+              94,
+              107
+            ],
+            "n": 300,
+            "expected": [
+              100,
+              100,
+              100
+            ],
+            "statistic": 0.86,
+            "df": 2,
+            "pValue": 0.6505090947233162,
+            "maxDeviationPercentagePoints": 2.3333333333333335,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 99,
+                "rate": 0.33,
+                "low": 0.2792344636154957,
+                "high": 0.3850641466008499
+              },
+              {
+                "count": 94,
+                "rate": 0.31333333333333335,
+                "low": 0.2634843975598553,
+                "high": 0.36790231169730847
+              },
+              {
+                "count": 107,
+                "rate": 0.3566666666666667,
+                "low": 0.30458741740255907,
+                "high": 0.41237023434847747
+              }
+            ]
+          },
+          "slot": {
+            "counts": [
+              40,
+              39,
+              41,
+              53,
+              65,
+              62
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 13.599999999999998,
+            "df": 5,
+            "pValue": 0.01836019640951935,
+            "maxDeviationPercentagePoints": 5,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 40,
+                "rate": 0.13333333333333333,
+                "low": 0.09946641683411198,
+                "high": 0.1764717620638884
+              },
+              {
+                "count": 39,
+                "rate": 0.13,
+                "low": 0.09657536941275233,
+                "high": 0.17278042929341172
+              },
+              {
+                "count": 41,
+                "rate": 0.13666666666666666,
+                "low": 0.10236514609208625,
+                "high": 0.1801554129977505
+              },
+              {
+                "count": 53,
+                "rate": 0.17666666666666667,
+                "low": 0.13767670929949632,
+                "high": 0.22383241209237675
+              },
+              {
+                "count": 65,
+                "rate": 0.21666666666666667,
+                "low": 0.1737878350698321,
+                "high": 0.2667098486240773
+              },
+              {
+                "count": 62,
+                "rate": 0.20666666666666667,
+                "low": 0.16469552636242532,
+                "high": 0.2560550167559749
+              }
+            ]
+          },
+          "screenPass": true,
+          "priorAuditDeviationPass": false
+        },
+        {
+          "protocol": "C",
+          "requested": 300,
+          "failures": 0,
+          "id": {
+            "counts": [
+              50,
+              48,
+              55,
+              48,
+              50,
+              49
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 0.6799999999999999,
+            "df": 5,
+            "pValue": 0.9840482638713964,
+            "maxDeviationPercentagePoints": 1.6666666666666667,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 50,
+                "rate": 0.16666666666666666,
+                "low": 0.1287653312036807,
+                "high": 0.21299664961268325
+              },
+              {
+                "count": 48,
+                "rate": 0.16,
+                "low": 0.1228535455840995,
+                "high": 0.20574367484859174
+              },
+              {
+                "count": 55,
+                "rate": 0.18333333333333332,
+                "low": 0.14364526409824455,
+                "high": 0.23102861767730118
+              },
+              {
+                "count": 48,
+                "rate": 0.16,
+                "low": 0.1228535455840995,
+                "high": 0.20574367484859174
+              },
+              {
+                "count": 50,
+                "rate": 0.16666666666666666,
+                "low": 0.1287653312036807,
+                "high": 0.21299664961268325
+              },
+              {
+                "count": 49,
+                "rate": 0.16333333333333333,
+                "low": 0.1258064331944026,
+                "high": 0.20937316743012502
+              }
+            ]
+          },
+          "group": {
+            "counts": [
+              98,
+              103,
+              99
+            ],
+            "n": 300,
+            "expected": [
+              100,
+              100,
+              100
+            ],
+            "statistic": 0.14,
+            "df": 2,
+            "pValue": 0.9323938199059482,
+            "maxDeviationPercentagePoints": 1,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 98,
+                "rate": 0.32666666666666666,
+                "low": 0.2760784389482685,
+                "high": 0.3816377910762407
+              },
+              {
+                "count": 103,
+                "rate": 0.3433333333333333,
+                "low": 0.29188793516981404,
+                "high": 0.398740195813877
+              },
+              {
+                "count": 99,
+                "rate": 0.33,
+                "low": 0.2792344636154957,
+                "high": 0.3850641466008499
+              }
+            ]
+          },
+          "slot": {
+            "counts": [
+              36,
+              36,
+              50,
+              58,
+              52,
+              68
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 15.68,
+            "df": 5,
+            "pValue": 0.0078196306325765,
+            "maxDeviationPercentagePoints": 6,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 36,
+                "rate": 0.12,
+                "low": 0.0879508443036389,
+                "high": 0.16165781382701605
+              },
+              {
+                "count": 36,
+                "rate": 0.12,
+                "low": 0.0879508443036389,
+                "high": 0.16165781382701605
+              },
+              {
+                "count": 50,
+                "rate": 0.16666666666666666,
+                "low": 0.1287653312036807,
+                "high": 0.21299664961268325
+              },
+              {
+                "count": 58,
+                "rate": 0.19333333333333333,
+                "low": 0.15263726685545376,
+                "high": 0.2417837554956011
+              },
+              {
+                "count": 52,
+                "rate": 0.17333333333333334,
+                "low": 0.13470060049746765,
+                "high": 0.22022614070256905
+              },
+              {
+                "count": 68,
+                "rate": 0.22666666666666666,
+                "low": 0.18291950380328575,
+                "high": 0.2773253204661327
+              }
+            ]
+          },
+          "screenPass": true,
+          "priorAuditDeviationPass": false
+        },
+        {
+          "protocol": "D",
+          "requested": 300,
+          "failures": 0,
+          "id": {
+            "counts": [
+              41,
+              61,
+              55,
+              49,
+              42,
+              52
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 5.92,
+            "df": 5,
+            "pValue": 0.3140812776344042,
+            "maxDeviationPercentagePoints": 3.6666666666666665,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 41,
+                "rate": 0.13666666666666666,
+                "low": 0.10236514609208625,
+                "high": 0.1801554129977505
+              },
+              {
+                "count": 61,
+                "rate": 0.20333333333333334,
+                "low": 0.16167385164165787,
+                "high": 0.25249431128490607
+              },
+              {
+                "count": 55,
+                "rate": 0.18333333333333332,
+                "low": 0.14364526409824455,
+                "high": 0.23102861767730118
+              },
+              {
+                "count": 49,
+                "rate": 0.16333333333333333,
+                "low": 0.1258064331944026,
+                "high": 0.20937316743012502
+              },
+              {
+                "count": 42,
+                "rate": 0.14,
+                "low": 0.10527132693072412,
+                "high": 0.18383161235094903
+              },
+              {
+                "count": 52,
+                "rate": 0.17333333333333334,
+                "low": 0.13470060049746765,
+                "high": 0.22022614070256905
+              }
+            ]
+          },
+          "group": {
+            "counts": [
+              102,
+              104,
+              94
+            ],
+            "n": 300,
+            "expected": [
+              100,
+              100,
+              100
+            ],
+            "statistic": 0.56,
+            "df": 2,
+            "pValue": 0.7557837414557252,
+            "maxDeviationPercentagePoints": 2,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 102,
+                "rate": 0.34,
+                "low": 0.2887202040964927,
+                "high": 0.395325546695362
+              },
+              {
+                "count": 104,
+                "rate": 0.3466666666666667,
+                "low": 0.2950585411049252,
+                "high": 0.40215197007060216
+              },
+              {
+                "count": 94,
+                "rate": 0.31333333333333335,
+                "low": 0.2634843975598553,
+                "high": 0.36790231169730847
+              }
+            ]
+          },
+          "slot": {
+            "counts": [
+              35,
+              52,
+              53,
+              38,
+              59,
+              63
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 12.64,
+            "df": 5,
+            "pValue": 0.02699634894294583,
+            "maxDeviationPercentagePoints": 5,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 35,
+                "rate": 0.11666666666666667,
+                "low": 0.08509313461466292,
+                "high": 0.15793314332415567
+              },
+              {
+                "count": 52,
+                "rate": 0.17333333333333334,
+                "low": 0.13470060049746765,
+                "high": 0.22022614070256905
+              },
+              {
+                "count": 53,
+                "rate": 0.17666666666666667,
+                "low": 0.13767670929949632,
+                "high": 0.22383241209237675
+              },
+              {
+                "count": 38,
+                "rate": 0.12666666666666668,
+                "low": 0.09369224846506602,
+                "high": 0.16908117004926165
+              },
+              {
+                "count": 59,
+                "rate": 0.19666666666666666,
+                "low": 0.1556446341979055,
+                "high": 0.24535876834498568
+              },
+              {
+                "count": 63,
+                "rate": 0.21,
+                "low": 0.1677218007333024,
+                "high": 0.25961112257693425
+              }
+            ]
+          },
+          "screenPass": true,
+          "priorAuditDeviationPass": false
+        }
+      ],
+      "limitation": "Exploratory sample; not a certification of 1.5 percentage point equivalence. Start slot distribution is reported, not judged against uniformity."
+    },
+    {
+      "phase": "final",
+      "map": "rhythm",
+      "samplesPerProtocol": 300,
+      "sourceHashes": {
+        "js/maps/rhythm.js": "f984fd1faa525fa162c9c0fd359e225bc04696c93622e5f9e16f3eeb954cc008",
+        "js/shuffle.js": "89c28332289c5de61a0a5ba602769f90ee856802f215055bdfaa9022ebcf7a09",
+        "js/hand-scene.js": "25bf0a15b52d06600e693ad24ca5296a76cc5573970e254386fe481044eca7fc",
+        "js/hand-start.js": "298e6c089a19a66cf048ddad27d4478977d5507475e03327d90c4232d6131d5a"
+      },
+      "cases": [
+        {
+          "protocol": "B",
+          "requested": 300,
+          "failures": 0,
+          "id": {
+            "counts": [
+              49,
+              67,
+              46,
+              55,
+              36,
+              47
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 10.719999999999999,
+            "df": 5,
+            "pValue": 0.057223042318849934,
+            "maxDeviationPercentagePoints": 5.666666666666666,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 49,
+                "rate": 0.16333333333333333,
+                "low": 0.1258064331944026,
+                "high": 0.20937316743012502
+              },
+              {
+                "count": 67,
+                "rate": 0.22333333333333333,
+                "low": 0.17987135808006235,
+                "high": 0.27379108599751967
+              },
+              {
+                "count": 46,
+                "rate": 0.15333333333333332,
+                "low": 0.11696640299091687,
+                "high": 0.19846605705810166
+              },
+              {
+                "count": 55,
+                "rate": 0.18333333333333332,
+                "low": 0.14364526409824455,
+                "high": 0.23102861767730118
+              },
+              {
+                "count": 36,
+                "rate": 0.12,
+                "low": 0.0879508443036389,
+                "high": 0.16165781382701605
+              },
+              {
+                "count": 47,
+                "rate": 0.15666666666666668,
+                "low": 0.11990681678878562,
+                "high": 0.2021080234520693
+              }
+            ]
+          },
+          "group": {
+            "counts": [
+              116,
+              101,
+              83
+            ],
+            "n": 300,
+            "expected": [
+              100,
+              100,
+              100
+            ],
+            "statistic": 5.46,
+            "df": 2,
+            "pValue": 0.06521928966812758,
+            "maxDeviationPercentagePoints": 5.666666666666666,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 116,
+                "rate": 0.38666666666666666,
+                "low": 0.3333235932848012,
+                "high": 0.44287548019276246
+              },
+              {
+                "count": 101,
+                "rate": 0.33666666666666667,
+                "low": 0.2855553679085868,
+                "high": 0.39190800269143145
+              },
+              {
+                "count": 83,
+                "rate": 0.27666666666666667,
+                "low": 0.22911058318108624,
+                "high": 0.32986994396587765
+              }
+            ]
+          },
+          "slot": {
+            "counts": [
+              25,
+              41,
+              42,
+              61,
+              62,
+              69
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 27.919999999999998,
+            "df": 5,
+            "pValue": 0.00003773311930989732,
+            "maxDeviationPercentagePoints": 8.333333333333332,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 25,
+                "rate": 0.08333333333333333,
+                "low": 0.057080874056394275,
+                "high": 0.12012160196406074
+              },
+              {
+                "count": 41,
+                "rate": 0.13666666666666666,
+                "low": 0.10236514609208625,
+                "high": 0.1801554129977505
+              },
+              {
+                "count": 42,
+                "rate": 0.14,
+                "low": 0.10527132693072412,
+                "high": 0.18383161235094903
+              },
+              {
+                "count": 61,
+                "rate": 0.20333333333333334,
+                "low": 0.16167385164165787,
+                "high": 0.25249431128490607
+              },
+              {
+                "count": 62,
+                "rate": 0.20666666666666667,
+                "low": 0.16469552636242532,
+                "high": 0.2560550167559749
+              },
+              {
+                "count": 69,
+                "rate": 0.23,
+                "low": 0.18597181807303015,
+                "high": 0.28085538638822466
+              }
+            ]
+          },
+          "screenPass": true,
+          "priorAuditDeviationPass": false
+        },
+        {
+          "protocol": "C",
+          "requested": 300,
+          "failures": 0,
+          "id": {
+            "counts": [
+              54,
+              56,
+              49,
+              41,
+              45,
+              55
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 3.68,
+            "df": 5,
+            "pValue": 0.5963430564400061,
+            "maxDeviationPercentagePoints": 3,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 54,
+                "rate": 0.18,
+                "low": 0.1406583026966649,
+                "high": 0.2274331988870445
+              },
+              {
+                "count": 56,
+                "rate": 0.18666666666666668,
+                "low": 0.1466374821326313,
+                "high": 0.23461877983475085
+              },
+              {
+                "count": 49,
+                "rate": 0.16333333333333333,
+                "low": 0.1258064331944026,
+                "high": 0.20937316743012502
+              },
+              {
+                "count": 41,
+                "rate": 0.13666666666666666,
+                "low": 0.10236514609208625,
+                "high": 0.1801554129977505
+              },
+              {
+                "count": 45,
+                "rate": 0.15,
+                "low": 0.11403246871185316,
+                "high": 0.194817611145329
+              },
+              {
+                "count": 55,
+                "rate": 0.18333333333333332,
+                "low": 0.14364526409824455,
+                "high": 0.23102861767730118
+              }
+            ]
+          },
+          "group": {
+            "counts": [
+              110,
+              90,
+              100
+            ],
+            "n": 300,
+            "expected": [
+              100,
+              100,
+              100
+            ],
+            "statistic": 2,
+            "df": 2,
+            "pValue": 0.36787944117144167,
+            "maxDeviationPercentagePoints": 3.3333333333333335,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 110,
+                "rate": 0.36666666666666664,
+                "low": 0.3141415065082282,
+                "high": 0.4225632858183173
+              },
+              {
+                "count": 90,
+                "rate": 0.3,
+                "low": 0.2509396637848768,
+                "high": 0.35411752470494157
+              },
+              {
+                "count": 100,
+                "rate": 0.3333333333333333,
+                "low": 0.2823934472922627,
+                "high": 0.38848754311591926
+              }
+            ]
+          },
+          "slot": {
+            "counts": [
+              33,
+              36,
+              39,
+              41,
+              83,
+              68
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 42,
+            "df": 5,
+            "pValue": 5.890407202157457e-8,
+            "maxDeviationPercentagePoints": 11,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 33,
+                "rate": 0.11,
+                "low": 0.07940528531126051,
+                "high": 0.15045623224388538
+              },
+              {
+                "count": 36,
+                "rate": 0.12,
+                "low": 0.0879508443036389,
+                "high": 0.16165781382701605
+              },
+              {
+                "count": 39,
+                "rate": 0.13,
+                "low": 0.09657536941275233,
+                "high": 0.17278042929341172
+              },
+              {
+                "count": 41,
+                "rate": 0.13666666666666666,
+                "low": 0.10236514609208625,
+                "high": 0.1801554129977505
+              },
+              {
+                "count": 83,
+                "rate": 0.27666666666666667,
+                "low": 0.22911058318108624,
+                "high": 0.32986994396587765
+              },
+              {
+                "count": 68,
+                "rate": 0.22666666666666666,
+                "low": 0.18291950380328575,
+                "high": 0.2773253204661327
+              }
+            ]
+          },
+          "screenPass": true,
+          "priorAuditDeviationPass": false
+        },
+        {
+          "protocol": "D",
+          "requested": 300,
+          "failures": 0,
+          "id": {
+            "counts": [
+              52,
+              50,
+              48,
+              52,
+              44,
+              54
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 1.28,
+            "df": 5,
+            "pValue": 0.9369761460075309,
+            "maxDeviationPercentagePoints": 2,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 52,
+                "rate": 0.17333333333333334,
+                "low": 0.13470060049746765,
+                "high": 0.22022614070256905
+              },
+              {
+                "count": 50,
+                "rate": 0.16666666666666666,
+                "low": 0.1287653312036807,
+                "high": 0.21299664961268325
+              },
+              {
+                "count": 48,
+                "rate": 0.16,
+                "low": 0.1228535455840995,
+                "high": 0.20574367484859174
+              },
+              {
+                "count": 52,
+                "rate": 0.17333333333333334,
+                "low": 0.13470060049746765,
+                "high": 0.22022614070256905
+              },
+              {
+                "count": 44,
+                "rate": 0.14666666666666667,
+                "low": 0.11110518744033696,
+                "high": 0.19116251222500888
+              },
+              {
+                "count": 54,
+                "rate": 0.18,
+                "low": 0.1406583026966649,
+                "high": 0.2274331988870445
+              }
+            ]
+          },
+          "group": {
+            "counts": [
+              102,
+              100,
+              98
+            ],
+            "n": 300,
+            "expected": [
+              100,
+              100,
+              100
+            ],
+            "statistic": 0.08,
+            "df": 2,
+            "pValue": 0.9607894391523232,
+            "maxDeviationPercentagePoints": 0.6666666666666667,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 102,
+                "rate": 0.34,
+                "low": 0.2887202040964927,
+                "high": 0.395325546695362
+              },
+              {
+                "count": 100,
+                "rate": 0.3333333333333333,
+                "low": 0.2823934472922627,
+                "high": 0.38848754311591926
+              },
+              {
+                "count": 98,
+                "rate": 0.32666666666666666,
+                "low": 0.2760784389482685,
+                "high": 0.3816377910762407
+              }
+            ]
+          },
+          "slot": {
+            "counts": [
+              33,
+              32,
+              51,
+              59,
+              61,
+              64
+            ],
+            "n": 300,
+            "expected": [
+              50,
+              50,
+              50,
+              50,
+              50,
+              50
+            ],
+            "statistic": 20.240000000000002,
+            "df": 5,
+            "pValue": 0.0011265267036980043,
+            "maxDeviationPercentagePoints": 6,
+            "validApproximation": true,
+            "intervals": [
+              {
+                "count": 33,
+                "rate": 0.11,
+                "low": 0.07940528531126051,
+                "high": 0.15045623224388538
+              },
+              {
+                "count": 32,
+                "rate": 0.10666666666666667,
+                "low": 0.07657584904594214,
+                "high": 0.14670328831736743
+              },
+              {
+                "count": 51,
+                "rate": 0.17,
+                "low": 0.13173009843992434,
+                "high": 0.21661426256827604
+              },
+              {
+                "count": 59,
+                "rate": 0.19666666666666666,
+                "low": 0.1556446341979055,
+                "high": 0.24535876834498568
+              },
+              {
+                "count": 61,
+                "rate": 0.20333333333333334,
+                "low": 0.16167385164165787,
+                "high": 0.25249431128490607
+              },
+              {
+                "count": 64,
+                "rate": 0.21333333333333335,
+                "low": 0.1707525956382275,
+                "high": 0.2631627078638455
+              }
+            ]
+          },
+          "screenPass": true,
+          "priorAuditDeviationPass": false
+        }
+      ],
+      "limitation": "Exploratory sample; not a certification of 1.5 percentage point equivalence. Start slot distribution is reported, not judged against uniformity."
+    }
+  ],
+  "browser": {
+    "browser": "155.0.8059.40",
+    "maps": [
+      {
+        "map": "classic",
+        "start": {
+          "settings": {
+            "names": "빨강*2,초록*2,파랑*2",
+            "rule": "first",
+            "rankN": 1,
+            "map": "classic",
+            "theme": "cosmic",
+            "radius": 12,
+            "gravity": 620,
+            "restitution": 0.72,
+            "speed": 3,
+            "sound": false,
+            "volume": 0.35,
+            "quality": "high",
+            "seed": "MB-16STPTZ-19ECZ7A-6VS0NQ-MVNU8F-1",
+            "skills": false,
+            "reducedMotion": false,
+            "classicSkills": false,
+            "replayStart": {
+              "version": 2,
+              "seed": "MB-16STPTZ-19ECZ7A-6VS0NQ-MVNU8F-1",
+              "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"classic\",\"name\":\"자개 핀 보드\",\"subtitle\":\"CLASSIC PEARL BOARD\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"pin\",\"id\":\"star-pin-0-0\",\"x\":80,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-1\",\"x\":185,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-2\",\"x\":290,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-3\",\"x\":395,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-4\",\"x\":500,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-5\",\"x\":605,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-6\",\"x\":710,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-7\",\"x\":815,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-8\",\"x\":920,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-1-0\",\"x\":128,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-1\",\"x\":233,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-2\",\"x\":338,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-3\",\"x\":443,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-4\",\"x\":548,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-5\",\"x\":653,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-6\",\"x\":758,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-7\",\"x\":863,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-0\",\"x\":80,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-1\",\"x\":185,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-2\",\"x\":290,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-3\",\"x\":395,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-4\",\"x\":500,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-5\",\"x\":605,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-6\",\"x\":710,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-7\",\"x\":815,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-8\",\"x\":920,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-3-0\",\"x\":128,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-1\",\"x\":233,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-2\",\"x\":338,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-3\",\"x\":443,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-4\",\"x\":548,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-5\",\"x\":653,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-6\",\"x\":758,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-7\",\"x\":863,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-4-0\",\"x\":80,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-1\",\"x\":185,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-2\",\"x\":290,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-3\",\"x\":395,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-4\",\"x\":500,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-5\",\"x\":605,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-6\",\"x\":710,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-7\",\"x\":815,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-8\",\"x\":920,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-0\",\"x\":128,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-1\",\"x\":233,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-2\",\"x\":338,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-3\",\"x\":443,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-4\",\"x\":548,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-5\",\"x\":653,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-6\",\"x\":758,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-7\",\"x\":863,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-6-0\",\"x\":80,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-1\",\"x\":185,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-2\",\"x\":290,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-3\",\"x\":395,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-4\",\"x\":500,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-5\",\"x\":605,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-6\",\"x\":710,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-7\",\"x\":815,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-8\",\"x\":920,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-7-0\",\"x\":128,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-1\",\"x\":233,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-2\",\"x\":338,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-3\",\"x\":443,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-4\",\"x\":548,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-5\",\"x\":653,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-6\",\"x\":758,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-7\",\"x\":863,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-0\",\"x\":80,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-1\",\"x\":185,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-2\",\"x\":290,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-3\",\"x\":395,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-4\",\"x\":500,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-5\",\"x\":605,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-6\",\"x\":710,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-7\",\"x\":815,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-8\",\"x\":920,\"y\":2534,\"r\":9},{\"type\":\"bumper\",\"id\":\"star-bumper-0\",\"x\":290,\"y\":1120,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-1\",\"x\":710,\"y\":1340,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-2\",\"x\":500,\"y\":1560,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-3\",\"x\":245,\"y\":1990,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-4\",\"x\":755,\"y\":2210,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-5\",\"x\":500,\"y\":2650,\"r\":38,\"power\":110},{\"type\":\"segment\",\"id\":\"star-ramp-l\",\"x1\":0,\"y1\":1790,\"x2\":150,\"y2\":1880,\"thickness\":7},{\"type\":\"segment\",\"id\":\"star-ramp-r\",\"x1\":1000,\"y1\":2410,\"x2\":850,\"y2\":2500,\"thickness\":7},{\"type\":\"pin\",\"id\":\"star-pin-2-0-section-3\",\"x\":80,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-1-section-3\",\"x\":185,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-2-section-3\",\"x\":290,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-3-section-3\",\"x\":395,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-4-section-3\",\"x\":500,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-5-section-3\",\"x\":605,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-6-section-3\",\"x\":710,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-7-section-3\",\"x\":815,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-8-section-3\",\"x\":920,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-3-0-section-3\",\"x\":128,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-1-section-3\",\"x\":233,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-2-section-3\",\"x\":338,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-3-section-3\",\"x\":443,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-4-section-3\",\"x\":548,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-5-section-3\",\"x\":653,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-6-section-3\",\"x\":758,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-7-section-3\",\"x\":863,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-4-0-section-3\",\"x\":80,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-1-section-3\",\"x\":185,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-2-section-3\",\"x\":290,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-3-section-3\",\"x\":395,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-4-section-3\",\"x\":500,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-5-section-3\",\"x\":605,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-6-section-3\",\"x\":710,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-7-section-3\",\"x\":815,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-8-section-3\",\"x\":920,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-0-section-3\",\"x\":128,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-1-section-3\",\"x\":233,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-2-section-3\",\"x\":338,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-3-section-3\",\"x\":443,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-4-section-3\",\"x\":548,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-5-section-3\",\"x\":653,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-6-section-3\",\"x\":758,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-7-section-3\",\"x\":863,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-6-0-section-3\",\"x\":80,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-1-section-3\",\"x\":185,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-2-section-3\",\"x\":290,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-3-section-3\",\"x\":395,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-4-section-3\",\"x\":500,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-5-section-3\",\"x\":605,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-6-section-3\",\"x\":710,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-7-section-3\",\"x\":815,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-8-section-3\",\"x\":920,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-7-0-section-3\",\"x\":128,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-1-section-3\",\"x\":233,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-2-section-3\",\"x\":338,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-3-section-3\",\"x\":443,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-4-section-3\",\"x\":548,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-5-section-3\",\"x\":653,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-6-section-3\",\"x\":758,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-7-section-3\",\"x\":863,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-0-section-3\",\"x\":80,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-1-section-3\",\"x\":185,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-2-section-3\",\"x\":290,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-3-section-3\",\"x\":395,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-4-section-3\",\"x\":500,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-5-section-3\",\"x\":605,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-6-section-3\",\"x\":710,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-7-section-3\",\"x\":815,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-8-section-3\",\"x\":920,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-9-0-section-3\",\"x\":128,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-1-section-3\",\"x\":233,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-2-section-3\",\"x\":338,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-3-section-3\",\"x\":443,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-4-section-3\",\"x\":548,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-5-section-3\",\"x\":653,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-6-section-3\",\"x\":758,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-7-section-3\",\"x\":863,\"y\":6752,\"r\":11},{\"type\":\"bumper\",\"id\":\"star-bumper-0-section-3\",\"x\":290,\"y\":5120,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-1-section-3\",\"x\":710,\"y\":5340,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-2-section-3\",\"x\":500,\"y\":5560,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-3-section-3\",\"x\":245,\"y\":5990,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-4-section-3\",\"x\":755,\"y\":6210,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-5-section-3\",\"x\":500,\"y\":6650,\"r\":38,\"power\":110},{\"type\":\"segment\",\"id\":\"star-ramp-l-section-3\",\"x1\":0,\"y1\":5790,\"x2\":150,\"y2\":5880,\"thickness\":7},{\"type\":\"segment\",\"id\":\"star-ramp-r-section-3\",\"x1\":1000,\"y1\":6410,\"x2\":850,\"y2\":6500,\"thickness\":7},{\"type\":\"polygon\",\"id\":\"channel-left\",\"channelWall\":true,\"points\":[{\"x\":36,\"y\":2700},{\"x\":360,\"y\":3000},{\"x\":205,\"y\":3400},{\"x\":470,\"y\":3800},{\"x\":190,\"y\":4200},{\"x\":380,\"y\":4600},{\"x\":36,\"y\":5000},{\"x\":36,\"y\":5000},{\"x\":36,\"y\":2700}]},{\"type\":\"polygon\",\"id\":\"channel-right\",\"channelWall\":true,\"points\":[{\"x\":964,\"y\":2700},{\"x\":840,\"y\":3000},{\"x\":555,\"y\":3400},{\"x\":790,\"y\":3800},{\"x\":550,\"y\":4200},{\"x\":800,\"y\":4600},{\"x\":964,\"y\":5000},{\"x\":964,\"y\":5000},{\"x\":964,\"y\":2700}]},{\"type\":\"rotor\",\"id\":\"race-rotor-0-0\",\"x\":260,\"y\":1850,\"length\":350,\"thickness\":9,\"angle\":0,\"speed\":1.3},{\"type\":\"rotor\",\"id\":\"race-rotor-0-1\",\"x\":740,\"y\":1980,\"length\":350,\"thickness\":9,\"angle\":0.75,\"speed\":-1.3},{\"type\":\"rotor\",\"id\":\"race-rotor-1-0\",\"x\":334.25,\"y\":3350,\"length\":110,\"thickness\":9,\"angle\":0.75,\"speed\":1.45},{\"type\":\"rotor\",\"id\":\"race-rotor-1-1\",\"x\":498.79999999999995,\"y\":3480,\"length\":110,\"thickness\":9,\"angle\":1.5,\"speed\":-1.45},{\"type\":\"rotor\",\"id\":\"race-rotor-2-0\",\"x\":386.25,\"y\":4850,\"length\":110,\"thickness\":9,\"angle\":1.5,\"speed\":1.6},{\"type\":\"rotor\",\"id\":\"race-rotor-2-1\",\"x\":685.02,\"y\":4980,\"length\":110,\"thickness\":9,\"angle\":2.25,\"speed\":-1.6},{\"type\":\"rotor\",\"id\":\"race-rotor-3-0\",\"x\":260,\"y\":6400,\"length\":350,\"thickness\":9,\"angle\":2.25,\"speed\":1.75},{\"type\":\"rotor\",\"id\":\"race-rotor-3-1\",\"x\":740,\"y\":6530,\"length\":350,\"thickness\":9,\"angle\":3,\"speed\":-1.75},{\"type\":\"pin\",\"id\":\"extension-pin-0-0\",\"x\":110,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-1\",\"x\":220,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-2\",\"x\":330,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-3\",\"x\":440,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-4\",\"x\":550,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-5\",\"x\":660,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-6\",\"x\":770,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-7\",\"x\":880,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-0\",\"x\":150,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-1\",\"x\":260,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-2\",\"x\":370,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-3\",\"x\":480,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-4\",\"x\":590,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-5\",\"x\":700,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-6\",\"x\":810,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-7\",\"x\":920,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-0\",\"x\":110,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-1\",\"x\":220,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-2\",\"x\":330,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-3\",\"x\":440,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-4\",\"x\":550,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-5\",\"x\":660,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-6\",\"x\":770,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-7\",\"x\":880,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-0\",\"x\":150,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-1\",\"x\":260,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-2\",\"x\":370,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-3\",\"x\":480,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-4\",\"x\":590,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-5\",\"x\":700,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-6\",\"x\":810,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-7\",\"x\":920,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-0\",\"x\":110,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-1\",\"x\":220,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-2\",\"x\":330,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-3\",\"x\":440,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-4\",\"x\":550,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-5\",\"x\":660,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-6\",\"x\":770,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-7\",\"x\":880,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-0\",\"x\":150,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-1\",\"x\":260,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-2\",\"x\":370,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-3\",\"x\":480,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-4\",\"x\":590,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-5\",\"x\":700,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-6\",\"x\":810,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-7\",\"x\":920,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-0\",\"x\":110,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-1\",\"x\":220,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-2\",\"x\":330,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-3\",\"x\":440,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-4\",\"x\":550,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-5\",\"x\":660,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-6\",\"x\":770,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-7\",\"x\":880,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-0\",\"x\":150,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-1\",\"x\":260,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-2\",\"x\":370,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-3\",\"x\":480,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-4\",\"x\":590,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-5\",\"x\":700,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-6\",\"x\":810,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-7\",\"x\":920,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-0\",\"x\":110,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-1\",\"x\":220,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-2\",\"x\":330,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-3\",\"x\":440,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-4\",\"x\":550,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-5\",\"x\":660,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-6\",\"x\":770,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-7\",\"x\":880,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-0\",\"x\":150,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-1\",\"x\":260,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-2\",\"x\":370,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-3\",\"x\":480,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-4\",\"x\":590,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-5\",\"x\":700,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-6\",\"x\":810,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-7\",\"x\":920,\"y\":10450,\"r\":10},{\"type\":\"moving\",\"id\":\"sweep-gate-0\",\"x\":320,\"y\":7600,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":0.3,\"speed\":0.85,\"phase\":0},{\"type\":\"bumper\",\"id\":\"extension-bumper-0\",\"x\":710,\"y\":7830,\"r\":32,\"power\":100},{\"type\":\"moving\",\"id\":\"sweep-gate-1\",\"x\":680,\"y\":8450,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":-0.3,\"speed\":0.97,\"phase\":1.7},{\"type\":\"bumper\",\"id\":\"extension-bumper-1\",\"x\":290,\"y\":8680,\"r\":32,\"power\":100},{\"type\":\"moving\",\"id\":\"sweep-gate-2\",\"x\":320,\"y\":9300,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":0.3,\"speed\":1.0899999999999999,\"phase\":3.4},{\"type\":\"bumper\",\"id\":\"extension-bumper-2\",\"x\":710,\"y\":9530,\"r\":32,\"power\":100},{\"type\":\"moving\",\"id\":\"sweep-gate-3\",\"x\":680,\"y\":10150,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":-0.3,\"speed\":1.21,\"phase\":5.1},{\"type\":\"bumper\",\"id\":\"extension-bumper-3\",\"x\":290,\"y\":10380,\"r\":32,\"power\":100},{\"type\":\"rotor\",\"id\":\"final-rotor-0-0\",\"x\":270,\"y\":8100,\"length\":320,\"thickness\":8,\"angle\":0,\"speed\":1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-0-1\",\"x\":730,\"y\":8230,\"length\":320,\"thickness\":8,\"angle\":0,\"speed\":-1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-1-0\",\"x\":270,\"y\":9750,\"length\":320,\"thickness\":8,\"angle\":0.6,\"speed\":1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-1-1\",\"x\":730,\"y\":9880,\"length\":320,\"thickness\":8,\"angle\":0.6,\"speed\":-1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-2-0\",\"x\":270,\"y\":10580,\"length\":320,\"thickness\":8,\"angle\":1.2,\"speed\":1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-2-1\",\"x\":730,\"y\":10710,\"length\":320,\"thickness\":8,\"angle\":1.2,\"speed\":-1.2},{\"type\":\"bumper\",\"id\":\"final-bumper\",\"x\":500,\"y\":10740,\"r\":30,\"power\":90},{\"type\":\"pin\",\"id\":\"final-pin-left\",\"x\":270,\"y\":10700,\"r\":12},{\"type\":\"pin\",\"id\":\"final-pin-right\",\"x\":730,\"y\":10700,\"r\":12}],\"channel\":[{\"y\":2700,\"center\":500,\"width\":928},{\"y\":3000,\"center\":600,\"width\":480},{\"y\":3400,\"center\":380,\"width\":350},{\"y\":3800,\"center\":630,\"width\":320},{\"y\":4200,\"center\":370,\"width\":360},{\"y\":4600,\"center\":590,\"width\":420},{\"y\":5000,\"center\":500,\"width\":928}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+              "source": [
+                {
+                  "id": "marble-1",
+                  "x": 0.5979473463982226,
+                  "y": -0.1572076335721006,
+                  "vx": 1.8308031270309548,
+                  "vy": -0.10881591129631153,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-2",
+                  "x": 0.6837361225508997,
+                  "y": -0.2437005323886853,
+                  "vx": 2.2047315455179692,
+                  "vy": -0.010635885906722783,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-3",
+                  "x": 0.7249922647970505,
+                  "y": -0.3634594068670928,
+                  "vx": 2.054100216520212,
+                  "vy": 0.07901701352345855,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-4",
+                  "x": 0.8094168944085105,
+                  "y": -0.3348186448300388,
+                  "vx": 1.3727961700959785,
+                  "vy": 1.417331424323776,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-5",
+                  "x": 0.637008457370084,
+                  "y": -0.30717309665566017,
+                  "vx": 1.754716337382648,
+                  "vy": -0.10434385255113408,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-6",
+                  "x": 0.576706890537123,
+                  "y": -0.26232790159046065,
+                  "vx": 1.9594825280162096,
+                  "vy": -0.34589622705780226,
+                  "r": 0.03333333333333334
+                }
+              ],
+              "starts": [
+                {
+                  "id": "marble-1",
+                  "x": 527.5388516186891,
+                  "y": 82.07820280059241,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-2",
+                  "x": 726.9247815665634,
+                  "y": 155.54893914656714,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-3",
+                  "x": 860.1298798916396,
+                  "y": 161.5163437698502,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-4",
+                  "x": 304.6238201001349,
+                  "y": 104.97011912683956,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-5",
+                  "x": 156.37049582825662,
+                  "y": 224.49281837441958,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-6",
+                  "x": 473.91368574222236,
+                  "y": 226.59114688518457,
+                  "vx": 0,
+                  "vy": 0
+                }
+              ],
+              "placement": "seeded-top-scatter-v2"
+            }
+          },
+          "record": {
+            "version": 2,
+            "seed": "MB-16STPTZ-19ECZ7A-6VS0NQ-MVNU8F-1",
+            "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"classic\",\"name\":\"자개 핀 보드\",\"subtitle\":\"CLASSIC PEARL BOARD\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"pin\",\"id\":\"star-pin-0-0\",\"x\":80,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-1\",\"x\":185,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-2\",\"x\":290,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-3\",\"x\":395,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-4\",\"x\":500,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-5\",\"x\":605,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-6\",\"x\":710,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-7\",\"x\":815,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-0-8\",\"x\":920,\"y\":790,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-1-0\",\"x\":128,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-1\",\"x\":233,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-2\",\"x\":338,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-3\",\"x\":443,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-4\",\"x\":548,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-5\",\"x\":653,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-6\",\"x\":758,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-1-7\",\"x\":863,\"y\":1008,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-0\",\"x\":80,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-1\",\"x\":185,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-2\",\"x\":290,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-3\",\"x\":395,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-4\",\"x\":500,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-5\",\"x\":605,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-6\",\"x\":710,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-7\",\"x\":815,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-8\",\"x\":920,\"y\":1226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-3-0\",\"x\":128,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-1\",\"x\":233,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-2\",\"x\":338,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-3\",\"x\":443,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-4\",\"x\":548,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-5\",\"x\":653,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-6\",\"x\":758,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-7\",\"x\":863,\"y\":1444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-4-0\",\"x\":80,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-1\",\"x\":185,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-2\",\"x\":290,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-3\",\"x\":395,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-4\",\"x\":500,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-5\",\"x\":605,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-6\",\"x\":710,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-7\",\"x\":815,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-8\",\"x\":920,\"y\":1662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-0\",\"x\":128,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-1\",\"x\":233,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-2\",\"x\":338,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-3\",\"x\":443,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-4\",\"x\":548,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-5\",\"x\":653,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-6\",\"x\":758,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-7\",\"x\":863,\"y\":1880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-6-0\",\"x\":80,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-1\",\"x\":185,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-2\",\"x\":290,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-3\",\"x\":395,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-4\",\"x\":500,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-5\",\"x\":605,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-6\",\"x\":710,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-7\",\"x\":815,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-8\",\"x\":920,\"y\":2098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-7-0\",\"x\":128,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-1\",\"x\":233,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-2\",\"x\":338,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-3\",\"x\":443,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-4\",\"x\":548,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-5\",\"x\":653,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-6\",\"x\":758,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-7\",\"x\":863,\"y\":2316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-0\",\"x\":80,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-1\",\"x\":185,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-2\",\"x\":290,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-3\",\"x\":395,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-4\",\"x\":500,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-5\",\"x\":605,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-6\",\"x\":710,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-7\",\"x\":815,\"y\":2534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-8\",\"x\":920,\"y\":2534,\"r\":9},{\"type\":\"bumper\",\"id\":\"star-bumper-0\",\"x\":290,\"y\":1120,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-1\",\"x\":710,\"y\":1340,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-2\",\"x\":500,\"y\":1560,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-3\",\"x\":245,\"y\":1990,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-4\",\"x\":755,\"y\":2210,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-5\",\"x\":500,\"y\":2650,\"r\":38,\"power\":110},{\"type\":\"segment\",\"id\":\"star-ramp-l\",\"x1\":0,\"y1\":1790,\"x2\":150,\"y2\":1880,\"thickness\":7},{\"type\":\"segment\",\"id\":\"star-ramp-r\",\"x1\":1000,\"y1\":2410,\"x2\":850,\"y2\":2500,\"thickness\":7},{\"type\":\"pin\",\"id\":\"star-pin-2-0-section-3\",\"x\":80,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-1-section-3\",\"x\":185,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-2-section-3\",\"x\":290,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-3-section-3\",\"x\":395,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-4-section-3\",\"x\":500,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-5-section-3\",\"x\":605,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-6-section-3\",\"x\":710,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-7-section-3\",\"x\":815,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-2-8-section-3\",\"x\":920,\"y\":5226,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-3-0-section-3\",\"x\":128,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-1-section-3\",\"x\":233,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-2-section-3\",\"x\":338,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-3-section-3\",\"x\":443,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-4-section-3\",\"x\":548,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-5-section-3\",\"x\":653,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-6-section-3\",\"x\":758,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-3-7-section-3\",\"x\":863,\"y\":5444,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-4-0-section-3\",\"x\":80,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-1-section-3\",\"x\":185,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-2-section-3\",\"x\":290,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-3-section-3\",\"x\":395,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-4-section-3\",\"x\":500,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-5-section-3\",\"x\":605,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-6-section-3\",\"x\":710,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-7-section-3\",\"x\":815,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-4-8-section-3\",\"x\":920,\"y\":5662,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-0-section-3\",\"x\":128,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-1-section-3\",\"x\":233,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-2-section-3\",\"x\":338,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-3-section-3\",\"x\":443,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-4-section-3\",\"x\":548,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-5-section-3\",\"x\":653,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-6-section-3\",\"x\":758,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-5-7-section-3\",\"x\":863,\"y\":5880,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-6-0-section-3\",\"x\":80,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-1-section-3\",\"x\":185,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-2-section-3\",\"x\":290,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-3-section-3\",\"x\":395,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-4-section-3\",\"x\":500,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-5-section-3\",\"x\":605,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-6-section-3\",\"x\":710,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-7-section-3\",\"x\":815,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-6-8-section-3\",\"x\":920,\"y\":6098,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-7-0-section-3\",\"x\":128,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-1-section-3\",\"x\":233,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-2-section-3\",\"x\":338,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-3-section-3\",\"x\":443,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-4-section-3\",\"x\":548,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-5-section-3\",\"x\":653,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-6-section-3\",\"x\":758,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-7-7-section-3\",\"x\":863,\"y\":6316,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-0-section-3\",\"x\":80,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-1-section-3\",\"x\":185,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-2-section-3\",\"x\":290,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-3-section-3\",\"x\":395,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-4-section-3\",\"x\":500,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-5-section-3\",\"x\":605,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-6-section-3\",\"x\":710,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-7-section-3\",\"x\":815,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-8-8-section-3\",\"x\":920,\"y\":6534,\"r\":9},{\"type\":\"pin\",\"id\":\"star-pin-9-0-section-3\",\"x\":128,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-1-section-3\",\"x\":233,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-2-section-3\",\"x\":338,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-3-section-3\",\"x\":443,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-4-section-3\",\"x\":548,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-5-section-3\",\"x\":653,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-6-section-3\",\"x\":758,\"y\":6752,\"r\":11},{\"type\":\"pin\",\"id\":\"star-pin-9-7-section-3\",\"x\":863,\"y\":6752,\"r\":11},{\"type\":\"bumper\",\"id\":\"star-bumper-0-section-3\",\"x\":290,\"y\":5120,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-1-section-3\",\"x\":710,\"y\":5340,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-2-section-3\",\"x\":500,\"y\":5560,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-3-section-3\",\"x\":245,\"y\":5990,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-4-section-3\",\"x\":755,\"y\":6210,\"r\":38,\"power\":110},{\"type\":\"bumper\",\"id\":\"star-bumper-5-section-3\",\"x\":500,\"y\":6650,\"r\":38,\"power\":110},{\"type\":\"segment\",\"id\":\"star-ramp-l-section-3\",\"x1\":0,\"y1\":5790,\"x2\":150,\"y2\":5880,\"thickness\":7},{\"type\":\"segment\",\"id\":\"star-ramp-r-section-3\",\"x1\":1000,\"y1\":6410,\"x2\":850,\"y2\":6500,\"thickness\":7},{\"type\":\"polygon\",\"id\":\"channel-left\",\"channelWall\":true,\"points\":[{\"x\":36,\"y\":2700},{\"x\":360,\"y\":3000},{\"x\":205,\"y\":3400},{\"x\":470,\"y\":3800},{\"x\":190,\"y\":4200},{\"x\":380,\"y\":4600},{\"x\":36,\"y\":5000},{\"x\":36,\"y\":5000},{\"x\":36,\"y\":2700}]},{\"type\":\"polygon\",\"id\":\"channel-right\",\"channelWall\":true,\"points\":[{\"x\":964,\"y\":2700},{\"x\":840,\"y\":3000},{\"x\":555,\"y\":3400},{\"x\":790,\"y\":3800},{\"x\":550,\"y\":4200},{\"x\":800,\"y\":4600},{\"x\":964,\"y\":5000},{\"x\":964,\"y\":5000},{\"x\":964,\"y\":2700}]},{\"type\":\"rotor\",\"id\":\"race-rotor-0-0\",\"x\":260,\"y\":1850,\"length\":350,\"thickness\":9,\"angle\":0,\"speed\":1.3},{\"type\":\"rotor\",\"id\":\"race-rotor-0-1\",\"x\":740,\"y\":1980,\"length\":350,\"thickness\":9,\"angle\":0.75,\"speed\":-1.3},{\"type\":\"rotor\",\"id\":\"race-rotor-1-0\",\"x\":334.25,\"y\":3350,\"length\":110,\"thickness\":9,\"angle\":0.75,\"speed\":1.45},{\"type\":\"rotor\",\"id\":\"race-rotor-1-1\",\"x\":498.79999999999995,\"y\":3480,\"length\":110,\"thickness\":9,\"angle\":1.5,\"speed\":-1.45},{\"type\":\"rotor\",\"id\":\"race-rotor-2-0\",\"x\":386.25,\"y\":4850,\"length\":110,\"thickness\":9,\"angle\":1.5,\"speed\":1.6},{\"type\":\"rotor\",\"id\":\"race-rotor-2-1\",\"x\":685.02,\"y\":4980,\"length\":110,\"thickness\":9,\"angle\":2.25,\"speed\":-1.6},{\"type\":\"rotor\",\"id\":\"race-rotor-3-0\",\"x\":260,\"y\":6400,\"length\":350,\"thickness\":9,\"angle\":2.25,\"speed\":1.75},{\"type\":\"rotor\",\"id\":\"race-rotor-3-1\",\"x\":740,\"y\":6530,\"length\":350,\"thickness\":9,\"angle\":3,\"speed\":-1.75},{\"type\":\"pin\",\"id\":\"extension-pin-0-0\",\"x\":110,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-1\",\"x\":220,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-2\",\"x\":330,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-3\",\"x\":440,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-4\",\"x\":550,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-5\",\"x\":660,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-6\",\"x\":770,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-0-7\",\"x\":880,\"y\":7300,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-0\",\"x\":150,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-1\",\"x\":260,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-2\",\"x\":370,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-3\",\"x\":480,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-4\",\"x\":590,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-5\",\"x\":700,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-6\",\"x\":810,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-1-7\",\"x\":920,\"y\":7650,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-0\",\"x\":110,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-1\",\"x\":220,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-2\",\"x\":330,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-3\",\"x\":440,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-4\",\"x\":550,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-5\",\"x\":660,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-6\",\"x\":770,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-2-7\",\"x\":880,\"y\":8000,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-0\",\"x\":150,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-1\",\"x\":260,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-2\",\"x\":370,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-3\",\"x\":480,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-4\",\"x\":590,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-5\",\"x\":700,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-6\",\"x\":810,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-3-7\",\"x\":920,\"y\":8350,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-0\",\"x\":110,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-1\",\"x\":220,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-2\",\"x\":330,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-3\",\"x\":440,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-4\",\"x\":550,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-5\",\"x\":660,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-6\",\"x\":770,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-4-7\",\"x\":880,\"y\":8700,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-0\",\"x\":150,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-1\",\"x\":260,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-2\",\"x\":370,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-3\",\"x\":480,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-4\",\"x\":590,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-5\",\"x\":700,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-6\",\"x\":810,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-5-7\",\"x\":920,\"y\":9050,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-0\",\"x\":110,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-1\",\"x\":220,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-2\",\"x\":330,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-3\",\"x\":440,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-4\",\"x\":550,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-5\",\"x\":660,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-6\",\"x\":770,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-6-7\",\"x\":880,\"y\":9400,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-0\",\"x\":150,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-1\",\"x\":260,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-2\",\"x\":370,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-3\",\"x\":480,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-4\",\"x\":590,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-5\",\"x\":700,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-6\",\"x\":810,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-7-7\",\"x\":920,\"y\":9750,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-0\",\"x\":110,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-1\",\"x\":220,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-2\",\"x\":330,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-3\",\"x\":440,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-4\",\"x\":550,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-5\",\"x\":660,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-6\",\"x\":770,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-8-7\",\"x\":880,\"y\":10100,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-0\",\"x\":150,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-1\",\"x\":260,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-2\",\"x\":370,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-3\",\"x\":480,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-4\",\"x\":590,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-5\",\"x\":700,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-6\",\"x\":810,\"y\":10450,\"r\":10},{\"type\":\"pin\",\"id\":\"extension-pin-9-7\",\"x\":920,\"y\":10450,\"r\":10},{\"type\":\"moving\",\"id\":\"sweep-gate-0\",\"x\":320,\"y\":7600,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":0.3,\"speed\":0.85,\"phase\":0},{\"type\":\"bumper\",\"id\":\"extension-bumper-0\",\"x\":710,\"y\":7830,\"r\":32,\"power\":100},{\"type\":\"moving\",\"id\":\"sweep-gate-1\",\"x\":680,\"y\":8450,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":-0.3,\"speed\":0.97,\"phase\":1.7},{\"type\":\"bumper\",\"id\":\"extension-bumper-1\",\"x\":290,\"y\":8680,\"r\":32,\"power\":100},{\"type\":\"moving\",\"id\":\"sweep-gate-2\",\"x\":320,\"y\":9300,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":0.3,\"speed\":1.0899999999999999,\"phase\":3.4},{\"type\":\"bumper\",\"id\":\"extension-bumper-2\",\"x\":710,\"y\":9530,\"r\":32,\"power\":100},{\"type\":\"moving\",\"id\":\"sweep-gate-3\",\"x\":680,\"y\":10150,\"axis\":\"x\",\"amplitude\":110,\"length\":310,\"thickness\":8,\"angle\":-0.3,\"speed\":1.21,\"phase\":5.1},{\"type\":\"bumper\",\"id\":\"extension-bumper-3\",\"x\":290,\"y\":10380,\"r\":32,\"power\":100},{\"type\":\"rotor\",\"id\":\"final-rotor-0-0\",\"x\":270,\"y\":8100,\"length\":320,\"thickness\":8,\"angle\":0,\"speed\":1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-0-1\",\"x\":730,\"y\":8230,\"length\":320,\"thickness\":8,\"angle\":0,\"speed\":-1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-1-0\",\"x\":270,\"y\":9750,\"length\":320,\"thickness\":8,\"angle\":0.6,\"speed\":1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-1-1\",\"x\":730,\"y\":9880,\"length\":320,\"thickness\":8,\"angle\":0.6,\"speed\":-1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-2-0\",\"x\":270,\"y\":10580,\"length\":320,\"thickness\":8,\"angle\":1.2,\"speed\":1.2},{\"type\":\"rotor\",\"id\":\"final-rotor-2-1\",\"x\":730,\"y\":10710,\"length\":320,\"thickness\":8,\"angle\":1.2,\"speed\":-1.2},{\"type\":\"bumper\",\"id\":\"final-bumper\",\"x\":500,\"y\":10740,\"r\":30,\"power\":90},{\"type\":\"pin\",\"id\":\"final-pin-left\",\"x\":270,\"y\":10700,\"r\":12},{\"type\":\"pin\",\"id\":\"final-pin-right\",\"x\":730,\"y\":10700,\"r\":12}],\"channel\":[{\"y\":2700,\"center\":500,\"width\":928},{\"y\":3000,\"center\":600,\"width\":480},{\"y\":3400,\"center\":380,\"width\":350},{\"y\":3800,\"center\":630,\"width\":320},{\"y\":4200,\"center\":370,\"width\":360},{\"y\":4600,\"center\":590,\"width\":420},{\"y\":5000,\"center\":500,\"width\":928}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+            "source": [
+              {
+                "id": "marble-1",
+                "x": 0.5979473463982226,
+                "y": -0.1572076335721006,
+                "vx": 1.8308031270309548,
+                "vy": -0.10881591129631153,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-2",
+                "x": 0.6837361225508997,
+                "y": -0.2437005323886853,
+                "vx": 2.2047315455179692,
+                "vy": -0.010635885906722783,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-3",
+                "x": 0.7249922647970505,
+                "y": -0.3634594068670928,
+                "vx": 2.054100216520212,
+                "vy": 0.07901701352345855,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-4",
+                "x": 0.8094168944085105,
+                "y": -0.3348186448300388,
+                "vx": 1.3727961700959785,
+                "vy": 1.417331424323776,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-5",
+                "x": 0.637008457370084,
+                "y": -0.30717309665566017,
+                "vx": 1.754716337382648,
+                "vy": -0.10434385255113408,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-6",
+                "x": 0.576706890537123,
+                "y": -0.26232790159046065,
+                "vx": 1.9594825280162096,
+                "vy": -0.34589622705780226,
+                "r": 0.03333333333333334
+              }
+            ],
+            "starts": [
+              {
+                "id": "marble-1",
+                "x": 527.5388516186891,
+                "y": 82.07820280059241,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-2",
+                "x": 726.9247815665634,
+                "y": 155.54893914656714,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-3",
+                "x": 860.1298798916396,
+                "y": 161.5163437698502,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-4",
+                "x": 304.6238201001349,
+                "y": 104.97011912683956,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-5",
+                "x": 156.37049582825662,
+                "y": 224.49281837441958,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-6",
+                "x": 473.91368574222236,
+                "y": 226.59114688518457,
+                "vx": 0,
+                "vy": 0
+              }
+            ],
+            "placement": "seeded-top-scatter-v2"
+          }
+        },
+        "first": {
+          "ranking": [
+            [
+              "marble-3",
+              35.21242197019796
+            ],
+            [
+              "marble-1",
+              40.12537260104795
+            ],
+            [
+              "marble-5",
+              40.59301271398909
+            ],
+            [
+              "marble-4",
+              45.5851541025256
+            ],
+            [
+              "marble-2",
+              45.75791359935849
+            ],
+            [
+              "marble-6",
+              48.66296155736318
+            ]
+          ],
+          "time": 48.666666666666664,
+          "map": "자개 핀 보드",
+          "events": {
+            "hit": 275,
+            "bumper": 27,
+            "rescue": 9,
+            "finish": 6
+          }
+        },
+        "exactReplay": true,
+        "persisted": true,
+        "restart": true
+      },
+      {
+        "map": "twinfold",
+        "start": {
+          "settings": {
+            "names": "빨강*2,초록*2,파랑*2",
+            "rule": "first",
+            "rankN": 1,
+            "map": "twinfold",
+            "theme": "cosmic",
+            "radius": 12,
+            "gravity": 620,
+            "restitution": 0.72,
+            "speed": 3,
+            "sound": false,
+            "volume": 0.35,
+            "quality": "high",
+            "seed": "MB-156I7VE-F3XAWX-19K04I3-101VHYQ-1",
+            "skills": false,
+            "reducedMotion": false,
+            "classicSkills": false,
+            "replayStart": {
+              "version": 2,
+              "seed": "MB-156I7VE-F3XAWX-19K04I3-101VHYQ-1",
+              "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"twinfold\",\"version\":3,\"name\":\"갈래 서가\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"polygon\",\"id\":\"twinfold-first-island\",\"points\":[{\"x\":500,\"y\":1500},{\"x\":610,\"y\":1750},{\"x\":610,\"y\":2100},{\"x\":450,\"y\":2700},{\"x\":590,\"y\":3300},{\"x\":570,\"y\":3850},{\"x\":500,\"y\":4150},{\"x\":390,\"y\":3850},{\"x\":390,\"y\":1750}]},{\"type\":\"polygon\",\"id\":\"twinfold-first-side-island\",\"points\":[{\"x\":1000,\"y\":1800},{\"x\":910,\"y\":2000},{\"x\":760,\"y\":2650},{\"x\":910,\"y\":3300},{\"x\":1000,\"y\":3500}]},{\"type\":\"polygon\",\"id\":\"twinfold-second-island\",\"points\":[{\"x\":500,\"y\":4900},{\"x\":390,\"y\":5150},{\"x\":390,\"y\":5500},{\"x\":550,\"y\":6100},{\"x\":410,\"y\":6700},{\"x\":430,\"y\":7250},{\"x\":500,\"y\":7550},{\"x\":610,\"y\":7250},{\"x\":610,\"y\":5150}]},{\"type\":\"polygon\",\"id\":\"twinfold-second-side-island\",\"points\":[{\"x\":0,\"y\":5200},{\"x\":90,\"y\":5400},{\"x\":240,\"y\":6050},{\"x\":90,\"y\":6700},{\"x\":0,\"y\":6900}]},{\"type\":\"segment\",\"id\":\"twinfold-entry-0-0\",\"x1\":150,\"y1\":875,\"x2\":290,\"y2\":965,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-0-1\",\"x1\":430,\"y1\":965,\"x2\":570,\"y2\":875,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-0-2\",\"x1\":710,\"y1\":875,\"x2\":850,\"y2\":965,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-1-0\",\"x1\":150,\"y1\":1265,\"x2\":290,\"y2\":1175,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-1-1\",\"x1\":430,\"y1\":1175,\"x2\":570,\"y2\":1265,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-1-2\",\"x1\":710,\"y1\":1265,\"x2\":850,\"y2\":1175,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-first-bend-a\",\"x1\":725,\"y1\":1800,\"x2\":820,\"y2\":1910,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-first-bend-b\",\"x1\":850,\"y1\":3550,\"x2\":740,\"y2\":3700,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-second-bend-a\",\"x1\":275,\"y1\":5200,\"x2\":180,\"y2\":5310,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-second-bend-b\",\"x1\":150,\"y1\":6950,\"x2\":260,\"y2\":7100,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-a-left\",\"x1\":150,\"y1\":4250,\"x2\":270,\"y2\":4460,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-a-right\",\"x1\":850,\"y1\":4250,\"x2\":730,\"y2\":4460,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-b-left\",\"x1\":150,\"y1\":7750,\"x2\":270,\"y2\":7960,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-b-right\",\"x1\":850,\"y1\":7750,\"x2\":730,\"y2\":7960,\"thickness\":8}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+              "source": [
+                {
+                  "id": "marble-1",
+                  "x": 0.5571402998872728,
+                  "y": -0.12755922273978337,
+                  "vx": 1.1235310481311913,
+                  "vy": -0.15617135952299713,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-2",
+                  "x": 0.7951977476668658,
+                  "y": -0.3628906382799342,
+                  "vx": 1.2258536477685622,
+                  "vy": 0.7516049743345038,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-3",
+                  "x": 0.7055855072881249,
+                  "y": -0.2509121765624757,
+                  "vx": 1.4214319665148962,
+                  "vy": -0.0856539976231192,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-4",
+                  "x": 0.6796623949639217,
+                  "y": -0.140363023468206,
+                  "vx": 0.9761865039232767,
+                  "vy": 0.21139150452623948,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-5",
+                  "x": 0.7132733046321246,
+                  "y": -0.0748997426375858,
+                  "vx": 1.3945037831318066,
+                  "vy": 0.21624482139957282,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-6",
+                  "x": 0.8481280578549082,
+                  "y": -0.31922829825201193,
+                  "vx": 0.5459788624029163,
+                  "vy": 1.3572613720406164,
+                  "r": 0.03333333333333334
+                }
+              ],
+              "starts": [
+                {
+                  "id": "marble-1",
+                  "x": 906.779985843071,
+                  "y": 87.4043702792842,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-2",
+                  "x": 708.0513342896787,
+                  "y": 178.7794705266133,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-3",
+                  "x": 466.72091959564324,
+                  "y": 117.12302905833349,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-4",
+                  "x": 548.7122919083728,
+                  "y": 165.43962839106098,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-5",
+                  "x": 274.5109490064594,
+                  "y": 88.14550500153564,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-6",
+                  "x": 80.87781201256439,
+                  "y": 163.07409900194034,
+                  "vx": 0,
+                  "vy": 0
+                }
+              ],
+              "placement": "seeded-top-scatter-v2"
+            }
+          },
+          "record": {
+            "version": 2,
+            "seed": "MB-156I7VE-F3XAWX-19K04I3-101VHYQ-1",
+            "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"twinfold\",\"version\":3,\"name\":\"갈래 서가\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"polygon\",\"id\":\"twinfold-first-island\",\"points\":[{\"x\":500,\"y\":1500},{\"x\":610,\"y\":1750},{\"x\":610,\"y\":2100},{\"x\":450,\"y\":2700},{\"x\":590,\"y\":3300},{\"x\":570,\"y\":3850},{\"x\":500,\"y\":4150},{\"x\":390,\"y\":3850},{\"x\":390,\"y\":1750}]},{\"type\":\"polygon\",\"id\":\"twinfold-first-side-island\",\"points\":[{\"x\":1000,\"y\":1800},{\"x\":910,\"y\":2000},{\"x\":760,\"y\":2650},{\"x\":910,\"y\":3300},{\"x\":1000,\"y\":3500}]},{\"type\":\"polygon\",\"id\":\"twinfold-second-island\",\"points\":[{\"x\":500,\"y\":4900},{\"x\":390,\"y\":5150},{\"x\":390,\"y\":5500},{\"x\":550,\"y\":6100},{\"x\":410,\"y\":6700},{\"x\":430,\"y\":7250},{\"x\":500,\"y\":7550},{\"x\":610,\"y\":7250},{\"x\":610,\"y\":5150}]},{\"type\":\"polygon\",\"id\":\"twinfold-second-side-island\",\"points\":[{\"x\":0,\"y\":5200},{\"x\":90,\"y\":5400},{\"x\":240,\"y\":6050},{\"x\":90,\"y\":6700},{\"x\":0,\"y\":6900}]},{\"type\":\"segment\",\"id\":\"twinfold-entry-0-0\",\"x1\":150,\"y1\":875,\"x2\":290,\"y2\":965,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-0-1\",\"x1\":430,\"y1\":965,\"x2\":570,\"y2\":875,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-0-2\",\"x1\":710,\"y1\":875,\"x2\":850,\"y2\":965,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-1-0\",\"x1\":150,\"y1\":1265,\"x2\":290,\"y2\":1175,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-1-1\",\"x1\":430,\"y1\":1175,\"x2\":570,\"y2\":1265,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-entry-1-2\",\"x1\":710,\"y1\":1265,\"x2\":850,\"y2\":1175,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-first-bend-a\",\"x1\":725,\"y1\":1800,\"x2\":820,\"y2\":1910,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-first-bend-b\",\"x1\":850,\"y1\":3550,\"x2\":740,\"y2\":3700,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-second-bend-a\",\"x1\":275,\"y1\":5200,\"x2\":180,\"y2\":5310,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-second-bend-b\",\"x1\":150,\"y1\":6950,\"x2\":260,\"y2\":7100,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-a-left\",\"x1\":150,\"y1\":4250,\"x2\":270,\"y2\":4460,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-a-right\",\"x1\":850,\"y1\":4250,\"x2\":730,\"y2\":4460,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-b-left\",\"x1\":150,\"y1\":7750,\"x2\":270,\"y2\":7960,\"thickness\":8},{\"type\":\"segment\",\"id\":\"twinfold-merge-b-right\",\"x1\":850,\"y1\":7750,\"x2\":730,\"y2\":7960,\"thickness\":8}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+            "source": [
+              {
+                "id": "marble-1",
+                "x": 0.5571402998872728,
+                "y": -0.12755922273978337,
+                "vx": 1.1235310481311913,
+                "vy": -0.15617135952299713,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-2",
+                "x": 0.7951977476668658,
+                "y": -0.3628906382799342,
+                "vx": 1.2258536477685622,
+                "vy": 0.7516049743345038,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-3",
+                "x": 0.7055855072881249,
+                "y": -0.2509121765624757,
+                "vx": 1.4214319665148962,
+                "vy": -0.0856539976231192,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-4",
+                "x": 0.6796623949639217,
+                "y": -0.140363023468206,
+                "vx": 0.9761865039232767,
+                "vy": 0.21139150452623948,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-5",
+                "x": 0.7132733046321246,
+                "y": -0.0748997426375858,
+                "vx": 1.3945037831318066,
+                "vy": 0.21624482139957282,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-6",
+                "x": 0.8481280578549082,
+                "y": -0.31922829825201193,
+                "vx": 0.5459788624029163,
+                "vy": 1.3572613720406164,
+                "r": 0.03333333333333334
+              }
+            ],
+            "starts": [
+              {
+                "id": "marble-1",
+                "x": 906.779985843071,
+                "y": 87.4043702792842,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-2",
+                "x": 708.0513342896787,
+                "y": 178.7794705266133,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-3",
+                "x": 466.72091959564324,
+                "y": 117.12302905833349,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-4",
+                "x": 548.7122919083728,
+                "y": 165.43962839106098,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-5",
+                "x": 274.5109490064594,
+                "y": 88.14550500153564,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-6",
+                "x": 80.87781201256439,
+                "y": 163.07409900194034,
+                "vx": 0,
+                "vy": 0
+              }
+            ],
+            "placement": "seeded-top-scatter-v2"
+          }
+        },
+        "first": {
+          "ranking": [
+            [
+              "marble-6",
+              17.510900866739256
+            ],
+            [
+              "marble-1",
+              17.79446259259012
+            ],
+            [
+              "marble-5",
+              18.756728639931236
+            ],
+            [
+              "marble-2",
+              19.121460018817448
+            ],
+            [
+              "marble-3",
+              20.68896174409384
+            ],
+            [
+              "marble-4",
+              22.278860812048876
+            ]
+          ],
+          "time": 22.28333333333333,
+          "map": "갈래 서가",
+          "events": {
+            "hit": 48,
+            "finish": 6
+          }
+        },
+        "exactReplay": true,
+        "persisted": true,
+        "restart": true
+      },
+      {
+        "map": "cascade",
+        "start": {
+          "settings": {
+            "names": "빨강*2,초록*2,파랑*2",
+            "rule": "first",
+            "rankN": 1,
+            "map": "cascade",
+            "theme": "cosmic",
+            "radius": 12,
+            "gravity": 620,
+            "restitution": 0.72,
+            "speed": 3,
+            "sound": false,
+            "volume": 0.35,
+            "quality": "high",
+            "seed": "MB-115JOCT-1GJDZ8D-16O0DLK-WDQY8E-1",
+            "skills": false,
+            "reducedMotion": false,
+            "classicSkills": false,
+            "replayStart": {
+              "version": 2,
+              "seed": "MB-115JOCT-1GJDZ8D-16O0DLK-WDQY8E-1",
+              "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"cascade\",\"version\":2,\"name\":\"빗살 낙하\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"segment\",\"id\":\"cascade-entry-left\",\"x1\":140,\"y1\":950,\"x2\":280,\"y2\":1060,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-entry-right\",\"x1\":860,\"y1\":950,\"x2\":720,\"y2\":1060,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-0-0\",\"x1\":142.05771365940052,\"y1\":1555,\"x2\":297.9422863405995,\"y2\":1645,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-0-1\",\"x1\":422.0577136594005,\"y1\":1555,\"x2\":577.9422863405995,\"y2\":1645,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-0-2\",\"x1\":702.0577136594005,\"y1\":1555,\"x2\":857.9422863405995,\"y2\":1645,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-0\",\"x1\":150,\"y1\":1920,\"x2\":225,\"y2\":2100,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-0\",\"points\":[{\"x\":352,\"y\":2110},{\"x\":398,\"y\":2170},{\"x\":384,\"y\":2200},{\"x\":324,\"y\":2190},{\"x\":318,\"y\":2160}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-1-0\",\"x1\":142.05771365940052,\"y1\":2745,\"x2\":297.9422863405995,\"y2\":2655,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-1-1\",\"x1\":422.0577136594005,\"y1\":2745,\"x2\":577.9422863405995,\"y2\":2655,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-1-2\",\"x1\":702.0577136594005,\"y1\":2745,\"x2\":857.9422863405995,\"y2\":2655,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-1\",\"x1\":850,\"y1\":3020,\"x2\":775,\"y2\":3200,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-1\",\"points\":[{\"x\":632,\"y\":3210},{\"x\":678,\"y\":3270},{\"x\":664,\"y\":3300},{\"x\":604,\"y\":3290},{\"x\":598,\"y\":3260}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-2-0\",\"x1\":142.05771365940052,\"y1\":3755,\"x2\":297.9422863405995,\"y2\":3845,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-2-1\",\"x1\":422.0577136594005,\"y1\":3755,\"x2\":577.9422863405995,\"y2\":3845,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-2-2\",\"x1\":702.0577136594005,\"y1\":3755,\"x2\":857.9422863405995,\"y2\":3845,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-2\",\"x1\":150,\"y1\":4120,\"x2\":225,\"y2\":4300,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-2\",\"points\":[{\"x\":352,\"y\":4310},{\"x\":398,\"y\":4370},{\"x\":384,\"y\":4400},{\"x\":324,\"y\":4390},{\"x\":318,\"y\":4360}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-3-0\",\"x1\":142.05771365940052,\"y1\":4945,\"x2\":297.9422863405995,\"y2\":4855,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-3-1\",\"x1\":422.0577136594005,\"y1\":4945,\"x2\":577.9422863405995,\"y2\":4855,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-3-2\",\"x1\":702.0577136594005,\"y1\":4945,\"x2\":857.9422863405995,\"y2\":4855,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-3\",\"x1\":850,\"y1\":5220,\"x2\":775,\"y2\":5400,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-3\",\"points\":[{\"x\":632,\"y\":5410},{\"x\":678,\"y\":5470},{\"x\":664,\"y\":5500},{\"x\":604,\"y\":5490},{\"x\":598,\"y\":5460}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-4-0\",\"x1\":142.05771365940052,\"y1\":5955,\"x2\":297.9422863405995,\"y2\":6045,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-4-1\",\"x1\":422.0577136594005,\"y1\":5955,\"x2\":577.9422863405995,\"y2\":6045,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-4-2\",\"x1\":702.0577136594005,\"y1\":5955,\"x2\":857.9422863405995,\"y2\":6045,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-4\",\"x1\":150,\"y1\":6320,\"x2\":225,\"y2\":6500,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-4\",\"points\":[{\"x\":352,\"y\":6510},{\"x\":398,\"y\":6570},{\"x\":384,\"y\":6600},{\"x\":324,\"y\":6590},{\"x\":318,\"y\":6560}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-5-0\",\"x1\":142.05771365940052,\"y1\":7145,\"x2\":297.9422863405995,\"y2\":7055,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-5-1\",\"x1\":422.0577136594005,\"y1\":7145,\"x2\":577.9422863405995,\"y2\":7055,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-5-2\",\"x1\":702.0577136594005,\"y1\":7145,\"x2\":857.9422863405995,\"y2\":7055,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-5\",\"x1\":850,\"y1\":7420,\"x2\":775,\"y2\":7600,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-5\",\"points\":[{\"x\":632,\"y\":7610},{\"x\":678,\"y\":7670},{\"x\":664,\"y\":7700},{\"x\":604,\"y\":7690},{\"x\":598,\"y\":7660}]},{\"type\":\"segment\",\"id\":\"cascade-exit-left-a\",\"x1\":140,\"y1\":8070,\"x2\":220,\"y2\":8250,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-exit-right-a\",\"x1\":860,\"y1\":8070,\"x2\":780,\"y2\":8250,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-exit-left-b\",\"x1\":300,\"y1\":8440,\"x2\":350,\"y2\":8610,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-exit-right-b\",\"x1\":700,\"y1\":8440,\"x2\":650,\"y2\":8610,\"thickness\":8,\"role\":\"guide\"}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+              "source": [
+                {
+                  "id": "marble-1",
+                  "x": 0.591329339824813,
+                  "y": -0.08084213407305695,
+                  "vx": 1.9161175868759193,
+                  "vy": 0.04673812448370289,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-2",
+                  "x": 0.5462981418031838,
+                  "y": -0.19712022566976306,
+                  "vx": 1.773286528046576,
+                  "vy": -0.004515645525768026,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-3",
+                  "x": 0.6482857338098627,
+                  "y": -0.170088266693017,
+                  "vx": 1.698228214982816,
+                  "vy": 0.36809776462125926,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-4",
+                  "x": 0.7780311062550276,
+                  "y": -0.2587995417990411,
+                  "vx": 1.908451985276481,
+                  "vy": 0.21914746114341965,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-5",
+                  "x": 0.6460512042272932,
+                  "y": -0.02542138442145657,
+                  "vx": 1.7714310572339975,
+                  "vy": 0.3537399452799223,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-6",
+                  "x": 0.6133379277849211,
+                  "y": -0.31220319663111623,
+                  "vx": 1.8129993505721773,
+                  "vy": -0.14267796136824992,
+                  "r": 0.03333333333333334
+                }
+              ],
+              "starts": [
+                {
+                  "id": "marble-1",
+                  "x": 915.7852110107584,
+                  "y": 124.22743538930081,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-2",
+                  "x": 324.1542140140664,
+                  "y": 129.709775805939,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-3",
+                  "x": 625.4032109333978,
+                  "y": 220.68666118569672,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-4",
+                  "x": 92.96671709620082,
+                  "y": 81.25963103608228,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-5",
+                  "x": 437.4407180572549,
+                  "y": 95.28936507855542,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-6",
+                  "x": 677.5494408919476,
+                  "y": 136.58043739455752,
+                  "vx": 0,
+                  "vy": 0
+                }
+              ],
+              "placement": "seeded-top-scatter-v2"
+            }
+          },
+          "record": {
+            "version": 2,
+            "seed": "MB-115JOCT-1GJDZ8D-16O0DLK-WDQY8E-1",
+            "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"cascade\",\"version\":2,\"name\":\"빗살 낙하\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"segment\",\"id\":\"cascade-entry-left\",\"x1\":140,\"y1\":950,\"x2\":280,\"y2\":1060,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-entry-right\",\"x1\":860,\"y1\":950,\"x2\":720,\"y2\":1060,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-0-0\",\"x1\":142.05771365940052,\"y1\":1555,\"x2\":297.9422863405995,\"y2\":1645,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-0-1\",\"x1\":422.0577136594005,\"y1\":1555,\"x2\":577.9422863405995,\"y2\":1645,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-0-2\",\"x1\":702.0577136594005,\"y1\":1555,\"x2\":857.9422863405995,\"y2\":1645,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-0\",\"x1\":150,\"y1\":1920,\"x2\":225,\"y2\":2100,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-0\",\"points\":[{\"x\":352,\"y\":2110},{\"x\":398,\"y\":2170},{\"x\":384,\"y\":2200},{\"x\":324,\"y\":2190},{\"x\":318,\"y\":2160}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-1-0\",\"x1\":142.05771365940052,\"y1\":2745,\"x2\":297.9422863405995,\"y2\":2655,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-1-1\",\"x1\":422.0577136594005,\"y1\":2745,\"x2\":577.9422863405995,\"y2\":2655,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-1-2\",\"x1\":702.0577136594005,\"y1\":2745,\"x2\":857.9422863405995,\"y2\":2655,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-1\",\"x1\":850,\"y1\":3020,\"x2\":775,\"y2\":3200,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-1\",\"points\":[{\"x\":632,\"y\":3210},{\"x\":678,\"y\":3270},{\"x\":664,\"y\":3300},{\"x\":604,\"y\":3290},{\"x\":598,\"y\":3260}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-2-0\",\"x1\":142.05771365940052,\"y1\":3755,\"x2\":297.9422863405995,\"y2\":3845,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-2-1\",\"x1\":422.0577136594005,\"y1\":3755,\"x2\":577.9422863405995,\"y2\":3845,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-2-2\",\"x1\":702.0577136594005,\"y1\":3755,\"x2\":857.9422863405995,\"y2\":3845,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-2\",\"x1\":150,\"y1\":4120,\"x2\":225,\"y2\":4300,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-2\",\"points\":[{\"x\":352,\"y\":4310},{\"x\":398,\"y\":4370},{\"x\":384,\"y\":4400},{\"x\":324,\"y\":4390},{\"x\":318,\"y\":4360}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-3-0\",\"x1\":142.05771365940052,\"y1\":4945,\"x2\":297.9422863405995,\"y2\":4855,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-3-1\",\"x1\":422.0577136594005,\"y1\":4945,\"x2\":577.9422863405995,\"y2\":4855,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-3-2\",\"x1\":702.0577136594005,\"y1\":4945,\"x2\":857.9422863405995,\"y2\":4855,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-3\",\"x1\":850,\"y1\":5220,\"x2\":775,\"y2\":5400,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-3\",\"points\":[{\"x\":632,\"y\":5410},{\"x\":678,\"y\":5470},{\"x\":664,\"y\":5500},{\"x\":604,\"y\":5490},{\"x\":598,\"y\":5460}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-4-0\",\"x1\":142.05771365940052,\"y1\":5955,\"x2\":297.9422863405995,\"y2\":6045,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-4-1\",\"x1\":422.0577136594005,\"y1\":5955,\"x2\":577.9422863405995,\"y2\":6045,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-4-2\",\"x1\":702.0577136594005,\"y1\":5955,\"x2\":857.9422863405995,\"y2\":6045,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-4\",\"x1\":150,\"y1\":6320,\"x2\":225,\"y2\":6500,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-4\",\"points\":[{\"x\":352,\"y\":6510},{\"x\":398,\"y\":6570},{\"x\":384,\"y\":6600},{\"x\":324,\"y\":6590},{\"x\":318,\"y\":6560}]},{\"type\":\"segment\",\"id\":\"cascade-shelf-5-0\",\"x1\":142.05771365940052,\"y1\":7145,\"x2\":297.9422863405995,\"y2\":7055,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-5-1\",\"x1\":422.0577136594005,\"y1\":7145,\"x2\":577.9422863405995,\"y2\":7055,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-shelf-5-2\",\"x1\":702.0577136594005,\"y1\":7145,\"x2\":857.9422863405995,\"y2\":7055,\"thickness\":8,\"role\":\"shelf\"},{\"type\":\"segment\",\"id\":\"cascade-return-5\",\"x1\":850,\"y1\":7420,\"x2\":775,\"y2\":7600,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"polygon\",\"id\":\"cascade-wedge-5\",\"points\":[{\"x\":632,\"y\":7610},{\"x\":678,\"y\":7670},{\"x\":664,\"y\":7700},{\"x\":604,\"y\":7690},{\"x\":598,\"y\":7660}]},{\"type\":\"segment\",\"id\":\"cascade-exit-left-a\",\"x1\":140,\"y1\":8070,\"x2\":220,\"y2\":8250,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-exit-right-a\",\"x1\":860,\"y1\":8070,\"x2\":780,\"y2\":8250,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-exit-left-b\",\"x1\":300,\"y1\":8440,\"x2\":350,\"y2\":8610,\"thickness\":8,\"role\":\"guide\"},{\"type\":\"segment\",\"id\":\"cascade-exit-right-b\",\"x1\":700,\"y1\":8440,\"x2\":650,\"y2\":8610,\"thickness\":8,\"role\":\"guide\"}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+            "source": [
+              {
+                "id": "marble-1",
+                "x": 0.591329339824813,
+                "y": -0.08084213407305695,
+                "vx": 1.9161175868759193,
+                "vy": 0.04673812448370289,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-2",
+                "x": 0.5462981418031838,
+                "y": -0.19712022566976306,
+                "vx": 1.773286528046576,
+                "vy": -0.004515645525768026,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-3",
+                "x": 0.6482857338098627,
+                "y": -0.170088266693017,
+                "vx": 1.698228214982816,
+                "vy": 0.36809776462125926,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-4",
+                "x": 0.7780311062550276,
+                "y": -0.2587995417990411,
+                "vx": 1.908451985276481,
+                "vy": 0.21914746114341965,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-5",
+                "x": 0.6460512042272932,
+                "y": -0.02542138442145657,
+                "vx": 1.7714310572339975,
+                "vy": 0.3537399452799223,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-6",
+                "x": 0.6133379277849211,
+                "y": -0.31220319663111623,
+                "vx": 1.8129993505721773,
+                "vy": -0.14267796136824992,
+                "r": 0.03333333333333334
+              }
+            ],
+            "starts": [
+              {
+                "id": "marble-1",
+                "x": 915.7852110107584,
+                "y": 124.22743538930081,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-2",
+                "x": 324.1542140140664,
+                "y": 129.709775805939,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-3",
+                "x": 625.4032109333978,
+                "y": 220.68666118569672,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-4",
+                "x": 92.96671709620082,
+                "y": 81.25963103608228,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-5",
+                "x": 437.4407180572549,
+                "y": 95.28936507855542,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-6",
+                "x": 677.5494408919476,
+                "y": 136.58043739455752,
+                "vx": 0,
+                "vy": 0
+              }
+            ],
+            "placement": "seeded-top-scatter-v2"
+          }
+        },
+        "first": {
+          "ranking": [
+            [
+              "marble-1",
+              17.052819054135906
+            ],
+            [
+              "marble-4",
+              17.11803707238011
+            ],
+            [
+              "marble-3",
+              19.18787719484353
+            ],
+            [
+              "marble-5",
+              19.39760699038759
+            ],
+            [
+              "marble-6",
+              22.72849084941874
+            ],
+            [
+              "marble-2",
+              23.978381583439035
+            ]
+          ],
+          "time": 23.983333333333334,
+          "map": "빗살 낙하",
+          "events": {
+            "hit": 35,
+            "finish": 6
+          }
+        },
+        "exactReplay": true,
+        "persisted": true,
+        "restart": true
+      },
+      {
+        "map": "rhythm",
+        "start": {
+          "settings": {
+            "names": "빨강*2,초록*2,파랑*2",
+            "rule": "first",
+            "rankN": 1,
+            "map": "rhythm",
+            "theme": "cosmic",
+            "radius": 12,
+            "gravity": 620,
+            "restitution": 0.72,
+            "speed": 3,
+            "sound": false,
+            "volume": 0.35,
+            "quality": "high",
+            "seed": "MB-1Y5NRUC-JTGUFI-1XONW7Y-1RJ6GTI-1",
+            "skills": false,
+            "reducedMotion": false,
+            "classicSkills": false,
+            "replayStart": {
+              "version": 2,
+              "seed": "MB-1Y5NRUC-JTGUFI-1XONW7Y-1RJ6GTI-1",
+              "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"rhythm\",\"version\":1,\"name\":\"박자 분배기\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"moving\",\"id\":\"rhythm-throat-0-0\",\"x\":330,\"y\":2400,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":0},{\"type\":\"moving\",\"id\":\"rhythm-throat-0-1\",\"x\":670,\"y\":2400,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":-0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":3.141592653589793},{\"type\":\"polygon\",\"id\":\"rhythm-entry-0\",\"points\":[{\"x\":492,\"y\":2050},{\"x\":540,\"y\":2120},{\"x\":530,\"y\":2150},{\"x\":470,\"y\":2150},{\"x\":460,\"y\":2110}]},{\"type\":\"segment\",\"id\":\"rhythm-inlet-left-0\",\"x1\":150,\"y1\":1890,\"x2\":240,\"y2\":2070,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-inlet-right-0\",\"x1\":850,\"y1\":1890,\"x2\":760,\"y2\":2070,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-left-0\",\"x1\":150,\"y1\":2700,\"x2\":310,\"y2\":2830,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-right-0\",\"x1\":850,\"y1\":2700,\"x2\":690,\"y2\":2830,\"thickness\":8},{\"type\":\"moving\",\"id\":\"rhythm-throat-1-0\",\"x\":330,\"y\":4800,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"rhythm-throat-1-1\",\"x\":670,\"y\":4800,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":-0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":5.235987755982988},{\"type\":\"polygon\",\"id\":\"rhythm-entry-1\",\"points\":[{\"x\":492,\"y\":4450},{\"x\":540,\"y\":4520},{\"x\":530,\"y\":4550},{\"x\":470,\"y\":4550},{\"x\":460,\"y\":4510}]},{\"type\":\"segment\",\"id\":\"rhythm-inlet-left-1\",\"x1\":150,\"y1\":4290,\"x2\":240,\"y2\":4470,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-inlet-right-1\",\"x1\":850,\"y1\":4290,\"x2\":760,\"y2\":4470,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-left-1\",\"x1\":150,\"y1\":5100,\"x2\":310,\"y2\":5230,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-right-1\",\"x1\":850,\"y1\":5100,\"x2\":690,\"y2\":5230,\"thickness\":8},{\"type\":\"moving\",\"id\":\"rhythm-throat-2-0\",\"x\":330,\"y\":7000,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"rhythm-throat-2-1\",\"x\":670,\"y\":7000,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":-0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":7.330382858376184},{\"type\":\"polygon\",\"id\":\"rhythm-entry-2\",\"points\":[{\"x\":492,\"y\":6650},{\"x\":540,\"y\":6720},{\"x\":530,\"y\":6750},{\"x\":470,\"y\":6750},{\"x\":460,\"y\":6710}]},{\"type\":\"segment\",\"id\":\"rhythm-inlet-left-2\",\"x1\":150,\"y1\":6490,\"x2\":240,\"y2\":6670,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-inlet-right-2\",\"x1\":850,\"y1\":6490,\"x2\":760,\"y2\":6670,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-left-2\",\"x1\":150,\"y1\":7300,\"x2\":310,\"y2\":7430,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-right-2\",\"x1\":850,\"y1\":7300,\"x2\":690,\"y2\":7430,\"thickness\":8}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+              "source": [
+                {
+                  "id": "marble-1",
+                  "x": 0.600065378773891,
+                  "y": -0.06442414565376157,
+                  "vx": 1.8386083109362965,
+                  "vy": -0.05914979080748279,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-2",
+                  "x": 0.632318535529354,
+                  "y": -0.22276264876938023,
+                  "vx": 1.8360688206703948,
+                  "vy": 0.06823992275098241,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-3",
+                  "x": 0.6557626952581892,
+                  "y": -0.3255400635467248,
+                  "vx": 1.7246456441335152,
+                  "vy": -0.08665929431405733,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-4",
+                  "x": 0.8518671291193992,
+                  "y": -0.02553508827140697,
+                  "vx": 0.511388118078195,
+                  "vy": -1.3903184752770785,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-5",
+                  "x": 0.8080116682695998,
+                  "y": -0.21982035501692992,
+                  "vx": 2.13377246594999,
+                  "vy": 0.04440727842951137,
+                  "r": 0.03333333333333334
+                },
+                {
+                  "id": "marble-6",
+                  "x": 0.5590067873659197,
+                  "y": -0.14776835525054144,
+                  "vx": 1.6004693620570616,
+                  "vy": 0.22944250064820232,
+                  "r": 0.03333333333333334
+                }
+              ],
+              "starts": [
+                {
+                  "id": "marble-1",
+                  "x": 265.5955146709457,
+                  "y": 96.95586584415287,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-2",
+                  "x": 602.2463173275657,
+                  "y": 173.92104004183784,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-3",
+                  "x": 898.254756816818,
+                  "y": 129.87737182155252,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-4",
+                  "x": 135.09299657408457,
+                  "y": 227.84717366728,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-5",
+                  "x": 784.237326013778,
+                  "y": 122.21230841334909,
+                  "vx": 0,
+                  "vy": 0
+                },
+                {
+                  "id": "marble-6",
+                  "x": 481.0565560255199,
+                  "y": 102.69762830343097,
+                  "vx": 0,
+                  "vy": 0
+                }
+              ],
+              "placement": "seeded-top-scatter-v2"
+            }
+          },
+          "record": {
+            "version": 2,
+            "seed": "MB-1Y5NRUC-JTGUFI-1XONW7Y-1RJ6GTI-1",
+            "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"rhythm\",\"version\":1,\"name\":\"박자 분배기\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"moving\",\"id\":\"rhythm-throat-0-0\",\"x\":330,\"y\":2400,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":0},{\"type\":\"moving\",\"id\":\"rhythm-throat-0-1\",\"x\":670,\"y\":2400,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":-0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":3.141592653589793},{\"type\":\"polygon\",\"id\":\"rhythm-entry-0\",\"points\":[{\"x\":492,\"y\":2050},{\"x\":540,\"y\":2120},{\"x\":530,\"y\":2150},{\"x\":470,\"y\":2150},{\"x\":460,\"y\":2110}]},{\"type\":\"segment\",\"id\":\"rhythm-inlet-left-0\",\"x1\":150,\"y1\":1890,\"x2\":240,\"y2\":2070,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-inlet-right-0\",\"x1\":850,\"y1\":1890,\"x2\":760,\"y2\":2070,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-left-0\",\"x1\":150,\"y1\":2700,\"x2\":310,\"y2\":2830,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-right-0\",\"x1\":850,\"y1\":2700,\"x2\":690,\"y2\":2830,\"thickness\":8},{\"type\":\"moving\",\"id\":\"rhythm-throat-1-0\",\"x\":330,\"y\":4800,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"rhythm-throat-1-1\",\"x\":670,\"y\":4800,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":-0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":5.235987755982988},{\"type\":\"polygon\",\"id\":\"rhythm-entry-1\",\"points\":[{\"x\":492,\"y\":4450},{\"x\":540,\"y\":4520},{\"x\":530,\"y\":4550},{\"x\":470,\"y\":4550},{\"x\":460,\"y\":4510}]},{\"type\":\"segment\",\"id\":\"rhythm-inlet-left-1\",\"x1\":150,\"y1\":4290,\"x2\":240,\"y2\":4470,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-inlet-right-1\",\"x1\":850,\"y1\":4290,\"x2\":760,\"y2\":4470,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-left-1\",\"x1\":150,\"y1\":5100,\"x2\":310,\"y2\":5230,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-right-1\",\"x1\":850,\"y1\":5100,\"x2\":690,\"y2\":5230,\"thickness\":8},{\"type\":\"moving\",\"id\":\"rhythm-throat-2-0\",\"x\":330,\"y\":7000,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"rhythm-throat-2-1\",\"x\":670,\"y\":7000,\"axis\":\"x\",\"length\":160,\"thickness\":8,\"angle\":-0.7853981633974483,\"amplitude\":55,\"speed\":0.8,\"phase\":7.330382858376184},{\"type\":\"polygon\",\"id\":\"rhythm-entry-2\",\"points\":[{\"x\":492,\"y\":6650},{\"x\":540,\"y\":6720},{\"x\":530,\"y\":6750},{\"x\":470,\"y\":6750},{\"x\":460,\"y\":6710}]},{\"type\":\"segment\",\"id\":\"rhythm-inlet-left-2\",\"x1\":150,\"y1\":6490,\"x2\":240,\"y2\":6670,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-inlet-right-2\",\"x1\":850,\"y1\":6490,\"x2\":760,\"y2\":6670,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-left-2\",\"x1\":150,\"y1\":7300,\"x2\":310,\"y2\":7430,\"thickness\":8},{\"type\":\"segment\",\"id\":\"rhythm-outlet-right-2\",\"x1\":850,\"y1\":7300,\"x2\":690,\"y2\":7430,\"thickness\":8}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+            "source": [
+              {
+                "id": "marble-1",
+                "x": 0.600065378773891,
+                "y": -0.06442414565376157,
+                "vx": 1.8386083109362965,
+                "vy": -0.05914979080748279,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-2",
+                "x": 0.632318535529354,
+                "y": -0.22276264876938023,
+                "vx": 1.8360688206703948,
+                "vy": 0.06823992275098241,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-3",
+                "x": 0.6557626952581892,
+                "y": -0.3255400635467248,
+                "vx": 1.7246456441335152,
+                "vy": -0.08665929431405733,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-4",
+                "x": 0.8518671291193992,
+                "y": -0.02553508827140697,
+                "vx": 0.511388118078195,
+                "vy": -1.3903184752770785,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-5",
+                "x": 0.8080116682695998,
+                "y": -0.21982035501692992,
+                "vx": 2.13377246594999,
+                "vy": 0.04440727842951137,
+                "r": 0.03333333333333334
+              },
+              {
+                "id": "marble-6",
+                "x": 0.5590067873659197,
+                "y": -0.14776835525054144,
+                "vx": 1.6004693620570616,
+                "vy": 0.22944250064820232,
+                "r": 0.03333333333333334
+              }
+            ],
+            "starts": [
+              {
+                "id": "marble-1",
+                "x": 265.5955146709457,
+                "y": 96.95586584415287,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-2",
+                "x": 602.2463173275657,
+                "y": 173.92104004183784,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-3",
+                "x": 898.254756816818,
+                "y": 129.87737182155252,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-4",
+                "x": 135.09299657408457,
+                "y": 227.84717366728,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-5",
+                "x": 784.237326013778,
+                "y": 122.21230841334909,
+                "vx": 0,
+                "vy": 0
+              },
+              {
+                "id": "marble-6",
+                "x": 481.0565560255199,
+                "y": 102.69762830343097,
+                "vx": 0,
+                "vy": 0
+              }
+            ],
+            "placement": "seeded-top-scatter-v2"
+          }
+        },
+        "first": {
+          "ranking": [
+            [
+              "marble-3",
+              17.044243385379644
+            ],
+            [
+              "marble-6",
+              17.316948644935383
+            ],
+            [
+              "marble-1",
+              18.538316481718617
+            ],
+            [
+              "marble-4",
+              20.239365487359663
+            ],
+            [
+              "marble-5",
+              22.03787938871651
+            ],
+            [
+              "marble-2",
+              22.724979884116454
+            ]
+          ],
+          "time": 22.725,
+          "map": "박자 분배기",
+          "events": {
+            "hit": 20,
+            "finish": 6
+          }
+        },
+        "exactReplay": true,
+        "persisted": true,
+        "restart": true
+      }
+    ],
+    "layouts": [
+      {
+        "width": 360,
+        "height": 640,
+        "input": "emulated touch",
+        "overflow": false,
+        "cards": [
+          {
+            "x": 37,
+            "y": 122.5,
+            "w": 139,
+            "h": 78
+          },
+          {
+            "x": 184,
+            "y": 122.5,
+            "w": 139,
+            "h": 78
+          },
+          {
+            "x": 37,
+            "y": 208.5,
+            "w": 139,
+            "h": 78
+          },
+          {
+            "x": 184,
+            "y": 208.5,
+            "w": 139,
+            "h": 78
+          }
+        ]
+      },
+      {
+        "width": 390,
+        "height": 844,
+        "input": "emulated touch",
+        "overflow": false,
+        "cards": [
+          {
+            "x": 37,
+            "y": 129.75,
+            "w": 154,
+            "h": 78
+          },
+          {
+            "x": 199,
+            "y": 129.75,
+            "w": 154,
+            "h": 78
+          },
+          {
+            "x": 37,
+            "y": 215.75,
+            "w": 154,
+            "h": 78
+          },
+          {
+            "x": 199,
+            "y": 215.75,
+            "w": 154,
+            "h": 78
+          }
+        ]
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "input": "emulated touch",
+        "overflow": false,
+        "cards": [
+          {
+            "x": 207,
+            "y": 129.75,
+            "w": 173,
+            "h": 78
+          },
+          {
+            "x": 388,
+            "y": 129.75,
+            "w": 173,
+            "h": 78
+          },
+          {
+            "x": 207,
+            "y": 215.75,
+            "w": 173,
+            "h": 78
+          },
+          {
+            "x": 388,
+            "y": 215.75,
+            "w": 173,
+            "h": 78
+          }
+        ]
+      },
+      {
+        "width": 1280,
+        "height": 720,
+        "input": "mouse",
+        "overflow": false,
+        "cards": [
+          {
+            "x": 468,
+            "y": 150.5,
+            "w": 168,
+            "h": 78
+          },
+          {
+            "x": 644,
+            "y": 150.5,
+            "w": 168,
+            "h": 78
+          },
+          {
+            "x": 468,
+            "y": 236.5,
+            "w": 168,
+            "h": 78
+          },
+          {
+            "x": 644,
+            "y": 236.5,
+            "w": 168,
+            "h": 78
+          }
+        ]
+      },
+      {
+        "width": 1920,
+        "height": 1080,
+        "input": "mouse",
+        "overflow": false,
+        "cards": [
+          {
+            "x": 788,
+            "y": 150.5,
+            "w": 168,
+            "h": 78
+          },
+          {
+            "x": 964,
+            "y": 150.5,
+            "w": 168,
+            "h": 78
+          },
+          {
+            "x": 788,
+            "y": 236.5,
+            "w": 168,
+            "h": 78
+          },
+          {
+            "x": 964,
+            "y": 236.5,
+            "w": 168,
+            "h": 78
+          }
+        ]
+      }
+    ],
+    "errors": [],
+    "limitations": [
+      "Chromium desktop and touch emulation; no physical handset tested",
+      "Screenshot and FPS checks use this local machine only"
+    ],
+    "performance": [
+      {
+        "map": "twinfold",
+        "count": 200,
+        "fps": 60,
+        "quality": "high",
+        "time": 6.008333333333333
+      },
+      {
+        "map": "twinfold",
+        "count": 500,
+        "fps": 60,
+        "quality": "high",
+        "time": 6.008333333333333
+      },
+      {
+        "map": "cascade",
+        "count": 200,
+        "fps": 60,
+        "quality": "high",
+        "time": 6.008333333333333
+      },
+      {
+        "map": "cascade",
+        "count": 500,
+        "fps": 60,
+        "quality": "high",
+        "time": 6.008333333333333
+      },
+      {
+        "map": "rhythm",
+        "count": 200,
+        "fps": 60,
+        "quality": "high",
+        "time": 6.008333333333333
+      },
+      {
+        "map": "rhythm",
+        "count": 500,
+        "fps": 60,
+        "quality": "high",
+        "time": 6.008333333333333
+      }
+    ]
+  }
+}

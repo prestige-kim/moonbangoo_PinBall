@@ -1,0 +1,71 @@
+✔ the leading marble remains inside the usable HUD-free view at all maps, speeds and orientations (7.169584ms)
+✔ real 3x races do not leave a sustained empty board after a leader finishes or teleports (962.458459ms)
+✔ drag and pinch remain available without game keyboard or wheel handlers (2.563417ms)
+rounded wall QA 6 1280 800 hits 1184 worst overlap 0
+rounded wall QA 6 390 844 hits 1754 worst overlap 0.00023791920630206182
+rounded wall QA 6 844 390 hits 1171 worst overlap 0
+rounded wall QA 50 1280 800 hits 25699 worst overlap 0.007493961667524536
+rounded wall QA 50 390 844 hits 15084 worst overlap 0.009650476953799338
+rounded wall QA 50 844 390 hits 21346 worst overlap 0.00816949177268971
+rounded wall QA 200 1280 800 hits 209454 worst overlap 0.010903432449397565
+rounded wall QA 200 390 844 hits 136945 worst overlap 0.012781686809601595
+rounded wall QA 200 844 390 hits 220431 worst overlap 0.010839788255672394
+rounded wall QA 500 1280 800 hits 797932 worst overlap 0.015052979981283151
+rounded wall QA 500 390 844 hits 594377 worst overlap 0.015820375353896104
+rounded wall QA 500 844 390 hits 818543 worst overlap 0.01182078403527358
+✔ tube extraction starts at the real projected tube coordinates for all counts and screen sizes (17476.828875ms)
+✖ fully extracted display circles match individual collision radii and preserve all IDs (23.98175ms)
+✔ wall-exit feedback shares the exact consumed direction and clears inside the wall (50106.717833ms)
+✔ inside or untouched empty-space movement never shows exit gold (827.8085ms)
+✔ motion changes preserve bodies, RNG, ready feedback and the hand influence field (64768.868417ms)
+✖ every current shuffle pose connects continuously to the first real flight frame (24.744208ms)
+✔ manual handoff uses actual geometry and commits once without consuming race RNG (21913.857792ms)
+✔ visible rounded walls contain every collision circle during vigorous near-wall shuffle (120037.90075ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 9
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 275294.328
+
+✖ failing tests:
+
+test at tests/hand-scene.test.cjs:83:1
+✖ fully extracted display circles match individual collision radii and preserve all IDs (23.98175ms)
+  AssertionError [ERR_ASSERTION]: extracted x: 627.8916929285703 vs 628.1286460190062
+      at close (/private/tmp/pinball-interaction/tests/hand-scene.test.cjs:19:71)
+      at TestContext.<anonymous> (/private/tmp/pinball-interaction/tests/hand-scene.test.cjs:92:7)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/hand-scene.test.cjs:150:1
+✖ every current shuffle pose connects continuously to the first real flight frame (24.744208ms)
+  AssertionError [ERR_ASSERTION]: flight origin x: 634.5856729712431 vs 634.2293010053237
+      at close (/private/tmp/pinball-interaction/tests/hand-scene.test.cjs:19:71)
+      at TestContext.<anonymous> (/private/tmp/pinball-interaction/tests/hand-scene.test.cjs:167:44)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

@@ -20,6 +20,7 @@
       this.sources = entries.map(entry => ({ ...c.chamber.pose(entry.index) }));
       this.entries = entries;
       this.shuffle = new P.HandShuffle(entries, physics.seed);
+      this.shuffle.circleGrabEnabled = true;
       this.shuffle.gravity = POUR.gravity / .84;
       this.shuffle.radius = c.chamber.radius * POUR.scale / .84;
       this.shuffle.bodies.forEach(body => { body.pouring = true; body.r = this.shuffle.radius; });
@@ -34,6 +35,10 @@
       this.elapsed = 0; this.simulationTicks = 0; this.accumulator = 0;
       this.angle = 0; this.angularVelocity = 0; this.targetAngle = 0; this.lidOpen = 0; this.withdraw = 0; this.tiltPointer = null;
       this.pivot = { x: 0, y: 0 }; this.lidLatched = false;
+      // Reused display buffers are isolated from both physical solvers.
+      this.previousDisplay = new Float64Array(entries.length * 3);
+      this.displayPoses = entries.map(entry => ({ id: entry.id, x: 0, y: 0, radius: 0, aspect: 1, orientation: 0, focus: 1 }));
+      this.previousRig = null; this.displayArea = null;
       this.launchDecision = null; this.edgeGlow = 0;
     }
     views(area) {
@@ -107,8 +112,8 @@
       if (body.y > limit) { body.y = limit; if (body.vy > 0) body.vy *= -.22; body.vx *= .997; }
       if (body.y < -limit) { body.y = -limit; if (body.vy < 0) body.vy *= -.22; }
     }
-    tubePose(i, time, area) {
-      const rig = this.rigAt(time, area), b = this.tubeByIndex[i];
+    tubePose(i, time, area, displayRig) {
+      const rig = displayRig || this.rigAt(time, area), b = this.tubeByIndex[i];
       if (!b) return this.pours[i].exit;
       return { x: rig.x + (Math.cos(rig.rotation) * b.x - Math.sin(rig.rotation) * b.y) * rig.scale,
         y: rig.y + (Math.sin(rig.rotation) * b.x + Math.cos(rig.rotation) * b.y) * rig.scale,
@@ -156,8 +161,8 @@
       }
       if (!this.remaining) this.withdraw = Math.min(1, this.withdraw + dt / .55);
     }
-    drawTube(area, glass = false) {
-      const c = this.cinema, ctx = c.ctx, rig = this.rigAt(this.elapsed, area);
+    drawTube(area, glass = false, displayRig) {
+      const c = this.cinema, ctx = c.ctx, rig = displayRig || this.rigAt(this.elapsed, area);
       if (rig.alpha <= .001) return;
       const views = this.views(area), frame = views.frame;
       const mouth = .49 * rig.length * area.s;
@@ -187,6 +192,21 @@
         }
       }
     }
+    captureDisplay(area) {
+      const rig = this.rigAt(this.elapsed, area);
+      if (!this.previousRig) this.previousRig = {};
+      Object.assign(this.previousRig, rig);
+      this.displayArea = area;
+      const zoom = this.viewScale;
+      const cosine = Math.cos(rig.rotation), sine = Math.sin(rig.rotation);
+      for (let i = 0; i < this.shuffle.bodies.length; i++) {
+        const body = this.shuffle.bodies[i], offset = i * 3;
+        const tube = body.pouring && this.tubeByIndex[i];
+        this.previousDisplay[offset] = tube ? rig.x + (cosine * tube.x - sine * tube.y) * rig.scale : body.x * zoom;
+        this.previousDisplay[offset + 1] = tube ? rig.y + (sine * tube.x + cosine * tube.y) * rig.scale : body.y * zoom;
+        this.previousDisplay[offset + 2] = tube ? tube.r * rig.scale : body.r * zoom;
+      }
+    }
     update(dt) {
       // Do not replay hidden-tab time as a burst of pouring or physics.
       dt = Math.max(0, Math.min(.05, Number(dt) || 0));
@@ -204,6 +224,7 @@
         opening: P.EDGE_GEOMETRY.opening(frame).span / zoom,
         outer: { left: -frame.halfWidth / zoom, right: frame.halfWidth / zoom, top: -frame.halfHeight / zoom, bottom: frame.halfHeight / zoom } };
       while (this.accumulator >= 1 / 120) {
+        if (this.accumulator < 2 / 120) this.captureDisplay(area);
         if (this.simulationTicks >= Math.ceil(POUR.lift * 120) && (this.angle || this.targetAngle || !this.remaining)) this.stepPour(1 / 120, area);
         if (this.remaining < this.entries.length) this.shuffle.step(1 / 120);
         this.simulationTicks++; this.accumulator -= 1 / 120;
@@ -251,28 +272,39 @@
         ctx.restore();
         c.canvas.dataset.throwReady = String(feedback.eligible);
       }
-      this.drawTube(area);
-      this.lastPoses = this.shuffle.bodies.map((body, i) => {
+      if (ready && this.shuffle.pointer) {
+        const pointer = this.shuffle.grab || this.shuffle.pointer, x = area.x + pointer.x * area.s * this.viewScale, y = area.y + pointer.y * area.s * this.viewScale;
+        const radius = this.shuffle.pointerRadius * area.s * this.viewScale;
+        ctx.save(); ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(55,43,32,.48)'; ctx.lineWidth = 1; ctx.stroke(); ctx.restore();
+      }
+      const currentRig = this.rigAt(this.elapsed, area);
+      const sameArea = this.displayArea && this.displayArea.w === area.w && this.displayArea.h === area.h;
+      // During a captured gesture use exact collision positions, including the outlet.
+      const alpha = this.previousRig && sameArea && !this.tiltPointer && !this.shuffle.pointer && !(this.gate && this.gate.active)
+        ? clamp(this.accumulator * 120) : 1;
+      const rig = { ...currentRig };
+      if (alpha < 1) for (const key of Object.keys(rig)) rig[key] = mix(this.previousRig[key], currentRig[key], alpha);
+      this.drawTube(area, false, rig);
+      this.lastPoses = this.displayPoses; this.lastPoseArea = area;
+      const draw = (body, i) => {
         const local = body.pouring ? this.tubePose(i, this.elapsed, area)
-          : { x: body.x * this.viewScale, y: body.y * this.viewScale, r: body.r * this.viewScale, aspect: 1, orientation: 0 };
-        const pose = { id: body.id, x: area.x + local.x * area.s, y: area.y + local.y * area.s,
-          radius: local.r * area.s, aspect: local.aspect, orientation: local.orientation, focus: 1 };
+          : { x: body.x * this.viewScale, y: body.y * this.viewScale, r: body.r * this.viewScale };
+        const offset = i * 3, pose = this.displayPoses[i];
+        pose.x = area.x + mix(this.previousDisplay[offset], local.x, alpha) * area.s;
+        pose.y = area.y + mix(this.previousDisplay[offset + 1], local.y, alpha) * area.s;
+        pose.radius = mix(this.previousDisplay[offset + 2], local.r, alpha) * area.s;
+        pose.orientation = body.pouring ? rig.rotation : 0;
         c.drawOrb(this.entries[i], pose, 0, state.physics.marbles[i], this.entries.length, state.reducedMotion);
         if (this.entries.length <= 16 && ready) c.drawLabel(this.entries[i], pose.x, pose.y, pose.radius, .68);
-        return pose;
-      });
-      this.drawTube(area, true);
-      if (ready && this.shuffle.pointer) {
-        const pointer = this.shuffle.pointer, x = area.x + pointer.x * area.s * this.viewScale, y = area.y + pointer.y * area.s * this.viewScale;
-        const radius = this.shuffle.pointerRadius * area.s * this.viewScale;
-        const field = ctx.createRadialGradient(x, y, 0, x, y, radius);
-        field.addColorStop(0, 'rgba(174,145,91,.09)'); field.addColorStop(1, 'rgba(174,145,91,0)');
-        ctx.save(); ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2);
-        ctx.fillStyle = field; ctx.fill(); ctx.strokeStyle = 'rgba(158,126,76,.18)'; ctx.lineWidth = 1; ctx.stroke(); ctx.restore();
-      }
-      if (ready || this.canTilt) {
+      };
+      // Inside marbles sit behind the glass; released marbles stay in front of it.
+      for (let i = 0; i < this.shuffle.bodies.length; i++) if (this.shuffle.bodies[i].pouring) draw(this.shuffle.bodies[i], i);
+      this.drawTube(area, true, rig);
+      for (let i = 0; i < this.shuffle.bodies.length; i++) if (!this.shuffle.bodies[i].pouring) draw(this.shuffle.bodies[i], i);
+      if (!ready && this.canTilt) {
         ctx.fillStyle = '#8a7760'; ctx.font = '12px "Pretendard Variable", sans-serif'; ctx.textAlign = 'center';
-        ctx.fillText(ready ? '우측 상단 출구로 공을 끌어 주세요' : '유리관 오른쪽을 아래로 끌어 충분히 기울여 주세요', area.x, area.y + .38 * area.s);
+        ctx.fillText('유리관 오른쪽을 아래로 끌어 충분히 기울여 주세요', area.x, area.y + .38 * area.s);
       }
       if (c.canvas.dataset) c.canvas.dataset.handPhase = !ready ? (this.elapsed < POUR.lift ? 'lifting' : this.remaining ? this.lidLatched ? 'pouring' : 'waiting-tilt' : 'settling-pour') : this.shuffle.pointer ? 'dragging' : 'settling';
       c.lastStage = 'mixing';
