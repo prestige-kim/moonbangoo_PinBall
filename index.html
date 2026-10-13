@@ -16,7 +16,7 @@
   <link rel="preload" as="image" href="./assets/cannon-barrel.png">
   <link rel="preload" as="image" href="./assets/cannon-wheel.png">
   <link rel="preload" as="image" href="./assets/cannon-bridge.png">
-  <link rel="stylesheet" href="./style.css?v=hand-47190ce29a4d">
+  <link rel="stylesheet" href="./style.css?v=fourmaps-local-1">
 </head>
 <body class="scene-intro" data-scene="intro" data-theme="cosmic">
   <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
@@ -71,6 +71,11 @@
       <div class="panel-heading"><div><span class="eyebrow">어른뭉방구</span><h1 id="setup-title">핀볼</h1></div><button class="icon-button panel-close" id="panel-close" type="button" aria-label="설정 패널 닫기"><svg class="icon"><use href="#i-close"/></svg></button></div>
       <form id="settings-form" novalidate>
         <div class="panel-scroll">
+          <section class="settings-section map-section" aria-labelledby="map-label">
+            <div class="section-label"><span id="map-label">놀이판 선택</span><span class="tiny-label">4가지 코스</span></div>
+            <div id="map-grid" class="map-grid" role="group" aria-labelledby="map-label"></div>
+            <p id="map-policy" class="map-policy"></p>
+          </section>
           <section class="settings-section participants-section">
             <div class="section-label"><span id="groups-label">색상 그룹 선택</span><span class="count-badge"><span id="participant-count">6</span> 핀볼</span></div>
             <input id="names" type="hidden" value="빨강*2,초록*2,파랑*2">
@@ -92,11 +97,6 @@
 
           <details class="advanced-settings" id="advanced-settings"><summary><span><svg class="icon"><use href="#i-settings"/></svg>세부 설정</span><svg class="icon disclosure-chevron"><use href="#i-chevron"/></svg></summary>
             <div class="advanced-content">
-          <section class="settings-section map-section" aria-labelledby="map-label">
-            <div class="section-label"><span id="map-label">놀이판 선택</span><span class="tiny-label">4가지 코스</span></div>
-            <div id="map-grid" class="map-grid" role="group" aria-labelledby="map-label"></div>
-            <p id="map-policy" class="map-policy"></p>
-          </section>
           <section class="settings-section" aria-labelledby="recovery-label">
             <div class="section-label"><span id="recovery-label">막힘 방지</span><span class="tiny-label">모든 핀볼에 자동 적용</span></div>
             <p class="recovery-note">약 3초 동안 앞으로 나아가지 못한 핀볼을 가볍게 밀어줍니다. 랜덤 스킬과 별도로 작동하며, 같은 시드에서는 동일하게 적용됩니다.</p>
@@ -159,6 +159,6 @@
     <a id="results-home-link" class="results-home-link" href="https://jeondowon.github.io/moonbangoo/"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v12h14V9M9 21v-8h6v8"/></svg>어른뭉방구 홈으로</a>
   </dialog>
 
-  <script src="./js/themes.js"></script><script src="./js/maps.js?v=soft-long-course-20261011"></script><script src="./js/map-registry.js"></script><script src="./js/physics.js?v=soft-long-course-20261011"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/race-standing.js?v=winding-channel-20261011"></script><script src="./js/renderer.js?v=soft-long-course-20261011"></script><script src="./js/cinematic.js?v=original-tube-alpha-local-20261011"></script><script src="./js/shuffle.js?v=interactive-tilt-local-20261011"></script><script src="./js/hand-start.js?v=release-93e4ed9bae2d"></script><script src="./js/shuffle-input.js?v=hand-20261007"></script><script src="./js/throw-gate.js?v=northeast-exit-20261011"></script><script src="./js/hand-scene.js?v=original-tube-alpha-local-20261011"></script><script src="./js/hand-flight.js?v=tube-pour-qa-20261011-final"></script><script src="./js/race-duration-data.js"></script><script src="./js/race-duration.js"></script><script src="./js/ui.js?v=release-573dc17be28e"></script><script src="./js/main.js?v=release-b1b6cc063174"></script>
+  <script src="./js/themes.js"></script><script src="./js/maps.js?v=soft-long-course-20261011"></script><script src="./js/map-registry.js"></script><script src="./js/maps/twinfold.js"></script><script src="./js/maps/twinfold-style.js"></script><script src="./js/physics.js?v=fourmaps-local-1"></script><script src="./js/camera.js"></script><script src="./js/effects.js"></script><script src="./js/audio.js"></script><script src="./js/race-standing.js?v=winding-channel-20261011"></script><script src="./js/renderer.js?v=fourmaps-local-1"></script><script src="./js/cinematic.js?v=original-tube-alpha-local-20261011"></script><script src="./js/shuffle.js?v=interactive-tilt-local-20261011"></script><script src="./js/hand-start.js?v=release-93e4ed9bae2d"></script><script src="./js/shuffle-input.js?v=hand-20261007"></script><script src="./js/throw-gate.js?v=northeast-exit-20261011"></script><script src="./js/hand-scene.js?v=original-tube-alpha-local-20261011"></script><script src="./js/hand-flight.js?v=tube-pour-qa-20261011-final"></script><script src="./js/race-duration-data.js"></script><script src="./js/race-duration.js"></script><script src="./js/ui.js?v=fourmaps-local-1"></script><script src="./js/main.js?v=fourmaps-local-1"></script>
 </body>
 </html>
