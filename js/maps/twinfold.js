@@ -1,6 +1,6 @@
 (function (P) {
   'use strict';
-  var map = { id: 'twinfold', version: 3, name: '갈래 서가', width: 1000, height: 11200,
+  var map = { id: 'twinfold', version: 4, name: '갈래 서가', width: 1000, height: 11200,
     spawn: { x: 36, y: 50, width: 928, height: 700 }, finish: { y: 11000 }, obstacles: [] };
   function polygon(id, points) { map.obstacles.push({ type: 'polygon', id: 'twinfold-'+id, points: points.map(function (p) { return { x:p[0], y:p[1] }; }) }); }
   function rail(id,x1,y1,x2,y2) { map.obstacles.push({type:'segment',id:'twinfold-'+id,x1:x1,y1:y1,x2:x2,y2:y2,thickness:8}); }
@@ -18,5 +18,7 @@
   // Open, descending merge guides end well before the quiet final 20%.
   rail('merge-a-left',150,4250,270,4460); rail('merge-a-right',850,4250,730,4460);
   rail('merge-b-left',150,7750,270,7960); rail('merge-b-right',850,7750,730,7960);
+  // Passive collision studs: no boost, identity logic or recovery force.
+  [[165,1540],[335,1540],[835,1540],[165,2100],[165,2380],[165,2660],[665,2940],[165,3500],[165,3780],[165,4060],[665,4060],[500,4340],[165,4620],[500,4620],[835,4620],[335,4900],[665,4900],[835,5180],[835,5740],[335,6300],[835,6300],[835,6860],[165,7420],[835,7420],[335,7700],[665,7700],[165,8260],[500,8260],[665,8260],[165,8540],[500,8540],[835,8540]].forEach(function(p,i){map.obstacles.push({type:'pin',id:'twinfold-detail-'+i,x:p[0],y:p[1],r:12});});
   P.registerMap(map,{name:map.name,description:'두 갈래가 만나고 다시 갈라져요',accent:'#3E716B'});
 })(window.CosmicPinball);

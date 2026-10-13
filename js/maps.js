@@ -126,4 +126,9 @@
   classic.push({type:'bumper',id:'final-bumper',x:500,y:10740,r:30,power:90},
     {type:'pin',id:'final-pin-left',x:270,y:10700,r:12},
     {type:'pin',id:'final-pin-right',x:730,y:10700,r:12});
+  // Two slow reed paddles add physical timing interactions to the pond approach.
+  [330,670].forEach(function(x,side){classic.push({type:'moving',id:'classic-detail-reed-'+side,x:x,y:8875,axis:'x',length:120,thickness:8,angle:(side?-1:1)*Math.PI/6,amplitude:40,speed:.8,phase:side*Math.PI});});
+  P.MAPS.classic.version=2;
+  // Passive collision studs: no boost, identity logic or recovery force.
+  [[165,1540],[835,1540],[165,2660],[835,2660],[835,4900],[165,5740],[835,5740],[165,6860],[835,6860],[165,7140],[835,7140],[165,7420],[835,7420],[165,8540],[835,8540]].forEach(function(p,i){classic.push({type:'pin',id:'classic-detail-'+i,x:p[0],y:p[1],r:12});});
 })(window);

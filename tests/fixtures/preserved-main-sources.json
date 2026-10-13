@@ -1,7 +1,6 @@
 {
   "baseline": "5d25319ddd2d352cf35e314da27329c97daec397",
   "sha256": {
-    "js/maps.js": "8f943928322996b98838ab82648b2177f0c4adb5c07e572343907af16b38ede5",
     "js/camera.js": "f94d5a585527054a140ce5d4e63799b1f5f7bb5e7cf8c32ae6665092c5143fb5",
     "js/cinematic.js": "3f14458572d76d9598161d3de6d98b7d7ab6989ad0fd81fc38ad7d4c64d9fad1",
     "js/hand-scene.js": "25bf0a15b52d06600e693ad24ca5296a76cc5573970e254386fe481044eca7fc",
@@ -21,5 +20,8 @@
     "assets/music/winner-winner.mp3": "f4337fbc4e7dc3b5be57ce15588d002801008b9470495d713aebc783279f4f33",
     "music-credits.html": "2768e68b6ffc3b4e67859f5227b208002cd32d8a0fd856473c199d48d98ab993"
   },
-  "verifiedDeployment": "https://prestige-kim.github.io/moonbangoo_PinBall/"
+  "verifiedDeployment": "https://prestige-kim.github.io/moonbangoo_PinBall/",
+  "intentionalTerrainChanges": {
+    "js/maps.js": "User requested obstacles and different backgrounds for all maps on 2026-10-14; original shapes remain beneath added passive pins."
+  }
 }

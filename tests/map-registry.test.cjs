@@ -2,9 +2,10 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),crypto=require('node:crypto');
 const {loadPhysics}=require('../qa/sim/adapter.cjs'),P=loadPhysics();
 const fixture=require('./fixtures/classic-preserved-main.json');
-test('classic signed geometry and captured preserved-main v2 starts preserve exact arrival results',()=>{
-  assert.equal(crypto.createHash('sha256').update(JSON.stringify(P.MAPS.classic)).digest('hex'),fixture.mapHash);
-  for(const c of fixture.cases){const p=new P.Physics({map:P.MAPS.classic,names:P.parseNames('빨강*2,초록*2,파랑*2'),seed:c.seed});P.restoreHandStart(p,c.start);while(!p.complete&&p.time<240){p.step();p.drainEvents();}assert.equal(p.complete,true);assert.deepEqual(p.finished.map(m=>[m.id,m.finishTime]),c.ranking);assert.equal(p.time,c.time);}
+test('original classic terrain and old recorded results remain auditable beneath versioned additions',()=>{
+  const oldMap=JSON.parse(JSON.stringify(P.MAPS.classic));oldMap.obstacles=oldMap.obstacles.filter(o=>!o.id.startsWith('classic-detail-'));delete oldMap.version;
+  assert.equal(crypto.createHash('sha256').update(JSON.stringify(oldMap)).digest('hex'),fixture.mapHash);
+  for(const c of fixture.cases){const p=new P.Physics({map:oldMap,names:P.parseNames('빨강*2,초록*2,파랑*2'),seed:c.seed});P.restoreHandStart(p,c.start);while(!p.complete&&p.time<240){p.step();p.drainEvents();}assert.equal(p.complete,true);assert.deepEqual(p.finished.map(m=>[m.id,m.finishTime]),c.ranking);assert.equal(p.time,c.time);const revised=new P.Physics({map:P.MAPS.classic,names:P.parseNames('빨강*2,초록*2,파랑*2'),seed:c.seed});assert.throws(()=>P.restoreHandStart(revised,c.start));}
 });
 test('unregistered and prototype map IDs fall back safely; new-map policy cannot be bypassed by saved skills',()=>{
   for(const id of ['missing','__proto__','constructor',null])assert.equal(P.resolveMapId(id),'classic');
