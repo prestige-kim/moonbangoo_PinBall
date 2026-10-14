@@ -1,0 +1,122 @@
+{
+  "at": "2026-10-14T11:27:19.425593+00:00",
+  "baseline": "5d25319ddd2d352cf35e314da27329c97daec397",
+  "startHEAD": "ed65d96aabeb5c531d1ca8e9f3a1ae6a099a20b9",
+  "candidate": "containing local commit; production hashes below",
+  "version": 4,
+  "production": {
+    "index.html": "d1e8df30e9e02225709eb1113cdb62db6f3b75c04e753dbcd34b36597aae40da",
+    "js/maps/rhythm.js": "5bebad77fb5c58158e5247af31b0fcde71e300ec82a88b9058069eca76bcd69b",
+    "js/maps/rhythm-style.js": "abafc5dacf2feeb4bea9e557d0c4da3ce29aa23177adf9194a3484c37fdfa96c",
+    "js/renderer.js": "fc5e0650aacf42ab493de67c9ec12272bd1584247fe9d8c0f31ef8510464d493",
+    "style.css": "9d4a531345c583bf1977d043475bd59edc06b0a48c7b3f7f464a744121540570"
+  },
+  "tests": {
+    "total": 277,
+    "pass": 277,
+    "fail": 0
+  },
+  "scenarios": {
+    "positions": {
+      "cases": 27480,
+      "failures": 0,
+      "sourceSHA256": "5bebad77fb5c58158e5247af31b0fcde71e300ec82a88b9058069eca76bcd69b",
+      "rawSHA256": "476278f20eddffda79f1d88e319b3c0988309450f63da24af21d9a0d239e5e71",
+      "maxTime": 1.9500000000000002,
+      "minimum_hits": 1,
+      "scope": "First physical contact only; full-course completion is tested separately."
+    },
+    "full": {
+      "cases": 240,
+      "failures": 0,
+      "sourceSHA256": "5bebad77fb5c58158e5247af31b0fcde71e300ec82a88b9058069eca76bcd69b",
+      "rawSHA256": "6275157441ad699a36c33b9f3466b9f26e01628030c413293daed7fba291131b",
+      "maxTime": 59.108333333333334,
+      "minimum_hits": 22
+    },
+    "groups": {
+      "cases": 36,
+      "failures": 0,
+      "sourceSHA256": "5bebad77fb5c58158e5247af31b0fcde71e300ec82a88b9058069eca76bcd69b",
+      "rawSHA256": "71fab9e7ef2ec0486d3e48797c954b164029a5ddf5119a14920d2ed456b94a85",
+      "maxTime": 62.583333333333336,
+      "minimum_minContacts": 18,
+      "minimum_winnerDynamic": 4,
+      "minimum_winnerDrumContacts": 3
+    },
+    "rotors": {
+      "cases": 9,
+      "failures": 0,
+      "sourceSHA256": "5bebad77fb5c58158e5247af31b0fcde71e300ec82a88b9058069eca76bcd69b",
+      "rawSHA256": "e2354d71cc1185fc9115817769ba9645f8ab01844d0fa04b91d7f355b7f45d93",
+      "maxTime": 152.8
+    }
+  },
+  "matrix": {
+    "cases": 108,
+    "failures": 0,
+    "maxTime": 159.625,
+    "exactReplays": 18,
+    "performance": [
+      {
+        "time": 53.75833333333333,
+        "physicsStepP95ms": 0.26445800001965836
+      },
+      {
+        "time": 65.68333333333334,
+        "physicsStepP95ms": 0.2592080000031274
+      },
+      {
+        "time": 58.041666666666664,
+        "physicsStepP95ms": 0.2495409999974072
+      },
+      {
+        "time": 53.50833333333333,
+        "physicsStepP95ms": 0.250791999977082
+      },
+      {
+        "time": 52.00833333333333,
+        "physicsStepP95ms": 0.22945899999467656
+      }
+    ],
+    "rawSHA256": "25f376bfd17d36ca717bf531fd221ef9343f92514d66922c4cd6e87575204f3f"
+  },
+  "browser": {
+    "balls": 50,
+    "groups": {
+      "red": 34,
+      "green": 2,
+      "cyan": 3,
+      "white": 3,
+      "black": 8
+    },
+    "observed": [
+      "setup",
+      "circular mixing",
+      "pour/launch",
+      "running",
+      "scene-finished celebration"
+    ],
+    "displayTime": "00:51",
+    "consoleWarningsErrors": [],
+    "limitation": "Results dialog and restart were not independently confirmed in this final browser run. Celebration snapshot retains pre-finish HUD 3/50; do not interpret as final ranking. All 50 completion separately passes physics QA.",
+    "restoredSettings": {
+      "red": 4,
+      "green": 2,
+      "cyan": 3,
+      "white": 3,
+      "speed": 1
+    }
+  },
+  "preservation": {
+    "operatingFilesUnchanged": 53,
+    "otherMapRenderComparisons": 30,
+    "liveBaselineFileMatches": 26
+  },
+  "remoteEnd": {
+    "default": "main",
+    "SHA": "5d25319ddd2d352cf35e314da27329c97daec397",
+    "at": "2026-10-14T11:27:19.484644+00:00"
+  },
+  "state": "local validation complete; no push, PR, main merge or deployment"
+}

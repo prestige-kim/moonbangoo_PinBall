@@ -151,13 +151,12 @@
         for(let y=40;y<h;y+=145){ctx.beginPath();ctx.moveTo(35,y+86);ctx.lineTo(w-35,y+86);ctx.stroke();for(let x=55;x<w-55;x+=58){const height=48+(Math.floor(x/58)%3)*12;ctx.strokeRect(x,y+85-height,35,height);ctx.beginPath();ctx.moveTo(x+7,y+89-height);ctx.lineTo(x+7,y+80);ctx.moveTo(x+14,y+64);ctx.lineTo(x+28,y+64);ctx.stroke();}}
       }else if(style.motif==='terraces'){
         for(let y=-100;y<h+120;y+=155){ctx.beginPath();ctx.moveTo(0,y+95);for(let x=0;x<=w;x+=100){const level=(Math.floor(x/100)%4)*18;ctx.lineTo(x,y+level);ctx.lineTo(x+50,y+level);}ctx.stroke();ctx.beginPath();ctx.moveTo(0,y+115);ctx.lineTo(w,y-65);ctx.stroke();}if(!board){ctx.globalAlpha=.12;ctx.beginPath();ctx.moveTo(0,h);ctx.lineTo(w*.4,h*.4);ctx.lineTo(w*.65,h*.75);ctx.lineTo(w,h*.48);ctx.lineTo(w,h);ctx.closePath();ctx.fill();}
-      }else if(style.motif==='sequencer'){
-        // Sequencer lanes, four-step blocks and signal traces are cached with
-        // the board/background. Only obstacle indicators animate at race time.
-        for(let y=35;y<h;y+=180){
-          for(let lane=0;lane<4;lane++){const x=w*(.14+lane*.24);ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+125);ctx.lineTo(x+22,y+145);ctx.stroke();
-            for(let step=0;step<4;step++){const yy=y+step*30;ctx.strokeRect(x-10,yy,20,15);if((lane+step)%4===0)ctx.fillRect(x-6,yy+4,12,7);}}
-          ctx.beginPath();ctx.moveTo(w*.08,y+160);ctx.lineTo(w*.92,y+160);ctx.stroke();
+      }else if(style.motif==='clockwork'){
+        for(let y=80;y<h;y+=260){const x=(Math.floor(y/260)%2?.72:.28)*w;
+          for(const radius of [36,56,82]){ctx.beginPath();ctx.arc(x,y,radius,-Math.PI*.75,Math.PI*.75);ctx.stroke();}
+          for(let k=0;k<12;k++){const a=k*TAU/12;ctx.beginPath();ctx.moveTo(x+Math.cos(a)*87,y+Math.sin(a)*87);ctx.lineTo(x+Math.cos(a)*94,y+Math.sin(a)*94);ctx.stroke();}
+          ctx.beginPath();ctx.moveTo(x,y+100);ctx.lineTo(x,y+145);ctx.lineTo(w-x,y+145);ctx.stroke();
+          for(let k=0;k<5;k++)ctx.strokeRect(w-x-40+k*20,y+164,8,16+(k%3)*8);
         }
       }else{
         for(let x=30;x<w;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}for(let y=30;y<h;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}ctx.globalAlpha=board?.24:.25;for(let y=90;y<h;y+=210){const x=(Math.floor(y/210)%2?.72:.28)*w;for(const r of [20,42,68]){ctx.beginPath();ctx.arc(x,y,r,0,TAU);ctx.stroke();}ctx.beginPath();ctx.moveTo(x-90,y);ctx.lineTo(x+90,y);ctx.moveTo(x,y-90);ctx.lineTo(x,y+90);ctx.stroke();}
@@ -285,41 +284,43 @@
       }
       ctx.restore();
     }
-    drawRhythmObstacle(o,physics) {
-      const ctx=this.ctx,pose=physics.getObstaclePose(o),rotor=o.type==='rotor',chain=o.role==='beat-chain';
-      const period=o.beat.period,clock=physics.time||0;
-      const beat=chain||rotor?Math.floor((((clock/period-.25)%1+1)%1)*4):(Math.sin(clock*o.speed+(o.phase||0))>=0?0:1);
-      const reach=rotor?0:clamp((1+(pose.x-o.x)*-o.side/o.amplitude)/2,0,1);
-      const color=rotor?'#527BA0':chain?'#487F84':'#405D82',light='#E9B957';
+    drawClockwork(o,physics) {
+      const ctx=this.ctx,pose=physics.getObstaclePose(o),gold='#D4A25E',dark='#171B35',mint='#7BC7BE';
       ctx.save();
-      if(!rotor){
-        // The motor housing sits outside the collision boundary. Moving metal
-        // is clipped at the same wall opening used by its physical segment.
-        ctx.fillStyle='#C4D4E1';ctx.strokeStyle='#587591';ctx.lineWidth=2;
-        pill(ctx,o.side===-1?19:963,o.y-94,18,188,8);ctx.fill();ctx.stroke();
-        ctx.beginPath();ctx.rect(36,o.y-180,928,360);ctx.clip();
+      if(o.role==='clock-drum'){
+        if(o.beat.step===0){
+          ctx.strokeStyle='rgba(212,162,94,.24)';ctx.lineWidth=2;
+          for(let k=0;k<24;k++){const a=k*TAU/24;ctx.beginPath();ctx.moveTo(o.x+Math.cos(a)*366,o.y+Math.sin(a)*366);ctx.lineTo(o.x+Math.cos(a)*(k%2?372:380),o.y+Math.sin(a)*(k%2?372:380));ctx.stroke();}
+          ctx.fillStyle='rgba(123,199,190,.05)';ctx.beginPath();ctx.arc(o.x,o.y,305,0,TAU);ctx.fill();
+          ctx.textAlign='center';ctx.font='600 23px Pretendard Variable,sans-serif';ctx.fillStyle='#F4DDB9';
+          ctx.fillText(['Ⅰ · 분배 드럼','Ⅱ · 엇박 드럼','Ⅲ · 합류 드럼','Ⅳ · 피날레 드럼'][o.beat.stage],o.x,o.y-270);
+          const beat=Math.floor((((pose.angle/TAU)%1+1)%1)*6);
+          for(let k=0;k<6;k++){ctx.beginPath();ctx.arc(o.x+(k-2.5)*24,o.y-245,4,0,TAU);ctx.fillStyle=k===beat?mint:'#665269';ctx.fill();}
+        }
+        // Six exposed spokes and their open pockets use the actual rotor pose.
+        ctx.lineCap='round';ctx.beginPath();ctx.moveTo(pose.x1,pose.y1);ctx.lineTo(pose.x2,pose.y2);
+        ctx.strokeStyle=gold;ctx.lineWidth=20;ctx.stroke();ctx.strokeStyle='#F5DFC0';ctx.lineWidth=3;ctx.stroke();
+        ctx.strokeStyle='rgba(123,199,190,.45)';ctx.lineWidth=2;ctx.beginPath();ctx.arc(o.x,o.y,105,pose.angle+.12,pose.angle+Math.PI/3-.12);ctx.stroke();
+        if(o.beat.step===2){ctx.fillStyle=dark;ctx.beginPath();ctx.arc(o.x,o.y,18,0,TAU);ctx.fill();ctx.strokeStyle=mint;ctx.lineWidth=3;ctx.stroke();}
+      }else if(o.role==='clock-pad'){
+        ctx.strokeStyle='rgba(123,199,190,.3)';ctx.lineWidth=2;ctx.setLineDash([3,7]);ctx.beginPath();ctx.moveTo(o.x,o.y-o.amplitude-28);ctx.lineTo(o.x,o.y+o.amplitude+28);ctx.stroke();ctx.setLineDash([]);
+        ctx.lineCap='round';ctx.beginPath();ctx.moveTo(pose.x1,pose.y1);ctx.lineTo(pose.x2,pose.y2);ctx.strokeStyle=mint;ctx.lineWidth=32;ctx.stroke();ctx.strokeStyle='#32666D';ctx.lineWidth=24;ctx.stroke();
+        ctx.strokeStyle='#C0E9DB';ctx.lineWidth=2;ctx.beginPath();for(const dx of [-20,0,20]){ctx.moveTo(o.x+dx,pose.y-9);ctx.lineTo(o.x+dx,pose.y+9);}ctx.stroke();
+        ctx.fillStyle=pose.vy<0?'#F4DDB9':'#7F9DAB';ctx.textAlign='center';ctx.font='600 18px Pretendard Variable,sans-serif';ctx.fillText(['둥','짝','팅'][o.beat.step],o.x,pose.y-32);
+      }else if(o.role==='clock-fork'){
+        ctx.lineCap='round';ctx.beginPath();ctx.moveTo(pose.x1,pose.y1);ctx.lineTo(pose.x2,pose.y2);ctx.strokeStyle='#BB8F64';ctx.lineWidth=16;ctx.stroke();ctx.strokeStyle='#F5DFC0';ctx.lineWidth=2;ctx.stroke();
+        ctx.fillStyle=mint;ctx.beginPath();ctx.arc(pose.x,pose.y,5,0,TAU);ctx.fill();
+        if(o.id.endsWith('-0')){ctx.textAlign='center';ctx.fillStyle='#BFA9C9';ctx.font='500 18px Pretendard Variable,sans-serif';for(const [xx,label]of [[170,'우회'],[500,'직통'],[830,'우회']])ctx.fillText(label,xx,o.y-180);}
+      }else if(o.role==='clock-jewel'){
+        ctx.lineCap='round';ctx.beginPath();ctx.moveTo(pose.x1,pose.y1);ctx.lineTo(pose.x2,pose.y2);ctx.lineWidth=48;ctx.strokeStyle='#B5824C';ctx.stroke();ctx.lineWidth=36;ctx.strokeStyle='#F4DDB9';ctx.stroke();
+        ctx.beginPath();ctx.arc(pose.x,pose.y,14,0,TAU);ctx.fillStyle=dark;ctx.fill();ctx.strokeStyle=gold;ctx.lineWidth=2;ctx.stroke();ctx.fillStyle=mint;ctx.beginPath();ctx.arc(pose.x,pose.y,5,0,TAU);ctx.fill();
       }else{
-        ctx.strokeStyle='rgba(64,93,130,.22)';ctx.lineWidth=1;ctx.setLineDash([4,8]);
-        ctx.beginPath();ctx.arc(o.x,o.y,o.length/2+25,0,TAU);ctx.stroke();ctx.setLineDash([]);
+        ctx.lineCap='round';ctx.beginPath();ctx.moveTo(pose.x1,pose.y1);ctx.lineTo(pose.x2,pose.y2);ctx.lineWidth=16;ctx.strokeStyle=o.role==='clock-ring'?'#AF7C56':'#78617F';ctx.stroke();ctx.lineWidth=2;ctx.strokeStyle='#E4BC83';ctx.stroke();
       }
-      ctx.lineCap='round';ctx.beginPath();ctx.moveTo(pose.x1,pose.y1);ctx.lineTo(pose.x2,pose.y2);
-      ctx.strokeStyle='#29445F';ctx.lineWidth=o.thickness*2;ctx.stroke();
-      ctx.strokeStyle=color;ctx.lineWidth=o.thickness*2-4;ctx.stroke();
-      ctx.strokeStyle='#DFEAF1';ctx.lineWidth=2;ctx.stroke();
-      for(let i=0;i<5;i++){const t=(i+.5)/5;ctx.fillStyle='#DFEAF1';ctx.beginPath();ctx.arc(pose.x1+(pose.x2-pose.x1)*t,pose.y1+(pose.y2-pose.y1)*t,2.5,0,TAU);ctx.fill();}
-      if(rotor){ctx.fillStyle=light;ctx.beginPath();ctx.arc(o.x,o.y,10,0,TAU);ctx.fill();
-        ctx.strokeStyle='#527BA0';ctx.lineWidth=2;ctx.beginPath();ctx.arc(o.x,o.y,145,pose.angle-.35,pose.angle+.35);ctx.stroke();}
-      ctx.restore();
-      ctx.save();const x=rotor?o.x:o.side===-1?174:826,y=o.y-(rotor?185:105),steps=o.beat.steps;
-      ctx.fillStyle='#E7EFF4';ctx.strokeStyle='#7894AC';ctx.lineWidth=1.5;pill(ctx,x-116,y-21,232,62,13);ctx.fill();ctx.stroke();
-      ctx.textAlign='center';ctx.font='600 18px Pretendard Variable,sans-serif';ctx.fillStyle='#29445F';
-      ctx.fillText(rotor?'엇박 패들':chain?'연쇄 게이트 '+(o.beat.step+1)+' / 4':'교대 셔터 '+(o.side===-1?'L':'R'),x,y-2);
-      for(let i=0;i<steps;i++){ctx.beginPath();ctx.arc(x+(i-(steps-1)/2)*25,y+20,5,0,TAU);ctx.fillStyle=i===beat?light:'#B9CCD9';ctx.fill();ctx.strokeStyle='#67839B';ctx.lineWidth=1;ctx.stroke();}
-      if(!rotor){ctx.textAlign=o.side===-1?'left':'right';ctx.font='500 16px Pretendard Variable,sans-serif';ctx.fillStyle='#405D62';ctx.fillText(reach<.22?'통과':reach>.72?'분할':'전환',o.side===-1?x+135:x-135,y+22);}
       ctx.restore();
     }
     drawObstacle(o,physics,effects,time,visible) {
-      if((o.role==='beat-shutter'||o.role==='beat-chain'||o.role==='beat-paddle')){if(o.y+230>=visible.top&&o.y-230<=visible.bottom)this.drawRhythmObstacle(o,physics);return;}
+      if(o.role&&o.role.indexOf('clock-')===0){const yy=o.points?o.points[1].y:o.y===undefined?(o.y1+o.y2)/2:o.y,span=o.role==='clock-drum'?400:250;if(yy+span>=visible.top&&yy-span<=visible.bottom)this.drawClockwork(o,physics);return;}
       if(o.assembly&&o.role&&o.role.indexOf('comb-')===0){if(o.y+360>=visible.top&&o.y-360<=visible.bottom)this.drawCombMember(o,physics);return;}
       if(o.type==='wind'){if(o.y+80>=visible.top&&o.y-o.height<=visible.bottom)this.drawWind(o,physics);return;}
       const ctx=this.ctx,t=this.theme,type=o.type,pose=physics.getObstaclePose?physics.getObstaclePose(o):o;

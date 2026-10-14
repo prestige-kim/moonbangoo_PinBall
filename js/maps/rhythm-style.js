@@ -1,1 +1,1 @@
-(function(P){'use strict';P.MAP_STYLES.rhythm={id:'rhythm',accent:'#405D82',motif:'sequencer',background:['#8EA9C2','#D3E0E9','#9AB5CC'],board:'#ECF3F9',ink:'#547798'};})(window.CosmicPinball);
+(function(P){'use strict';P.MAP_STYLES.rhythm={id:'rhythm',accent:'#D4A25E',motif:'clockwork',background:['#31283F','#5E4168','#1B273E'],board:'#171B35',ink:'#AD8CB3'};})(window.CosmicPinball);

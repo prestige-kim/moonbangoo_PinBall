@@ -181,3 +181,9 @@ body[data-theme=gold] .toast{background:#392819;color:#FFF0CE;border-color:#E2C5
 .map-policy{margin:9px 0 0;font-size:11px;line-height:1.65;color:var(--muted);word-break:keep-all}
 .hud-map-name{margin:0 0 7px;padding:0 2px;font-size:11px;color:var(--text);font-weight:650}
 @media(max-width:390px){.map-card{padding:6px;gap:4px}.map-card canvas{width:32px}.map-card strong{font-size:11px}.map-card small{font-size:9px}}
+
+/* Clockwork keeps its night palette at the viewport edges; other courses use the existing paper wash. */
+body:is(.scene-running,.scene-finished):has(.map-card[data-map="rhythm"][aria-pressed="true"]) .screen-vignette{background:linear-gradient(180deg,#171B35,transparent 20%,transparent 80%,#171B35);opacity:.55}
+body:is(.scene-running,.scene-finished):has(.map-card[data-map="rhythm"][aria-pressed="true"]) .ambient-wash{background:radial-gradient(ellipse at 80% 15%,rgba(212,162,94,.06),transparent 65%)}
+body:is(.scene-running,.scene-finished):has(.map-card[data-map="rhythm"][aria-pressed="true"]) .hud-map-name{color:#F4DDB9}
+body:is(.scene-running,.scene-finished):has(.map-card[data-map="rhythm"][aria-pressed="true"]) .masthead-actions :is(.fps-badge,.fps-badge b,.icon-button){color:#F4DDB9}
