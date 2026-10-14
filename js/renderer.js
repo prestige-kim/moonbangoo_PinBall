@@ -253,7 +253,32 @@
       ctx.fillStyle='#386F62';ctx.font='600 14px Pretendard Variable,sans-serif';ctx.textAlign='center';ctx.fillText(active?'상승 바람 ↑':'바람길',o.x,o.y+57);
       ctx.restore();
     }
+    drawCombMember(o, physics) {
+      const ctx=this.ctx,pose=physics.getObstaclePose(o),spine=o.role==='comb-spine';
+      ctx.save();
+      if(spine){
+        const trackX=o.side<0?20:966;
+        ctx.fillStyle='#AC7955';ctx.strokeStyle='#765338';ctx.lineWidth=1.5;
+        pill(ctx,trackX,o.y-140,14,280,6);ctx.fill();ctx.stroke();
+        ctx.strokeStyle='#E9C99A';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(trackX+5,o.y-126);ctx.lineTo(trackX+5,o.y+126);ctx.stroke();
+        for(const dy of [-126,126]){ctx.fillStyle='#765338';ctx.beginPath();ctx.arc(trackX+7,o.y+dy,2,0,TAU);ctx.fill();}
+      }
+      // The collider assembly continues behind the wall; only exposed teeth show.
+      ctx.beginPath();ctx.rect(36,o.y-360,928,720);ctx.clip();
+      ctx.beginPath();ctx.moveTo(pose.x1,pose.y1);ctx.lineTo(pose.x2,pose.y2);
+      ctx.lineCap='round';ctx.strokeStyle='#835136';ctx.lineWidth=o.thickness*2+2;ctx.stroke();
+      ctx.strokeStyle=spine?'#D39763':'#E1B780';ctx.lineWidth=o.thickness*2;ctx.stroke();
+      ctx.strokeStyle=spine?'#FFE2AA':'#FFF0CA';ctx.lineWidth=spine?3:1.5;ctx.stroke();
+      if(spine){
+        for(let i=0;i<5;i++){
+          const t=(i+.5)/5,x=pose.x1+(pose.x2-pose.x1)*t,y=pose.y1+(pose.y2-pose.y1)*t;
+          ctx.fillStyle='#9F6B43';ctx.beginPath();ctx.arc(x,y,3.5,0,TAU);ctx.fill();ctx.fillStyle='#F6D99E';ctx.beginPath();ctx.arc(x-.7,y-.7,1.2,0,TAU);ctx.fill();
+        }
+      }
+      ctx.restore();
+    }
     drawObstacle(o,physics,effects,time,visible) {
+      if(o.assembly&&o.role&&o.role.indexOf('comb-')===0){if(o.y+360>=visible.top&&o.y-360<=visible.bottom)this.drawCombMember(o,physics);return;}
       if(o.type==='wind'){if(o.y+80>=visible.top&&o.y-o.height<=visible.bottom)this.drawWind(o,physics);return;}
       const ctx=this.ctx,t=this.theme,type=o.type,pose=physics.getObstaclePose?physics.getObstaclePose(o):o;
       const y=type==='polygon'?(Math.min(...o.points.map(p=>p.y))+Math.max(...o.points.map(p=>p.y)))/2:pose.y===undefined?(pose.y1+pose.y2)/2:pose.y,span=type==='polygon'?(Math.max(...o.points.map(p=>p.y))-Math.min(...o.points.map(p=>p.y)))/2:(o.length||o.height||o.r||70);if(y+span<visible.top-80||y-span>visible.bottom+80)return;const hit=effects&&effects.hits&&effects.hits.get(o.id||o),power=hit?clamp(hit.life/.3,0,1):0;

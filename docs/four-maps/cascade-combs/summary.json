@@ -1,0 +1,142 @@
+{
+  "at": "2026-10-14T06:47:13.332Z",
+  "mapVersion": 4,
+  "sourceSHA256": "4226a427b8c667f416c4293c5d1761904aaa717ed9aade1cad9ae4c1aef17741",
+  "geometry": {
+    "obstacles": 202,
+    "spines": 6,
+    "teeth": 126,
+    "stages": 3,
+    "period": 6,
+    "catchPairs": 5,
+    "toothGap": 8,
+    "minBallDiameter": 16
+  },
+  "firstContact": {
+    "cases": 14460,
+    "defaultWidthStep": 1,
+    "defaultX": [
+      48,
+      952
+    ],
+    "phases": [
+      0,
+      0.5,
+      1,
+      1.5,
+      2,
+      2.5,
+      3,
+      3.5,
+      4,
+      4.5,
+      5,
+      5.5
+    ],
+    "guardEntryY": [
+      750,
+      2750,
+      4950,
+      7150,
+      9750
+    ],
+    "minContacts": 1,
+    "maxTimeToContact": 1.6416666666666666
+  },
+  "fullCourse": {
+    "cases": 240,
+    "minContacts": 18,
+    "maxTime": 61.266666666666666
+  },
+  "groupRaces": {
+    "cases": 36,
+    "ballsPerRace": 50,
+    "minUniqueContacts": 10,
+    "minWinnerUniqueContacts": 11,
+    "maxTime": 63.875
+  },
+  "matrix": {
+    "cases": 108,
+    "hands": 18,
+    "failures": 0,
+    "at": "2026-10-14T06:43:47.659Z"
+  },
+  "pilot": {
+    "failures": 2,
+    "matrix": [
+      {
+        "count": 25,
+        "seed": "fourmaps-dev-matrix-cascade-0-25-2",
+        "config": {
+          "radius": 8,
+          "gravity": 350,
+          "restitution": 0.92
+        },
+        "time": 141.1,
+        "errors": {
+          "finite": 0,
+          "bounds": 15,
+          "penetration": 1,
+          "forbidden": 0,
+          "timeout": 0,
+          "ranking": 0
+        },
+        "maxDepth": 16.33557258592923
+      },
+      {
+        "count": 50,
+        "seed": "fourmaps-dev-matrix-cascade-0-50-2",
+        "config": {
+          "radius": 8,
+          "gravity": 350,
+          "restitution": 0.92
+        },
+        "time": 130.425,
+        "errors": {
+          "finite": 0,
+          "bounds": 6,
+          "penetration": 0,
+          "forbidden": 0,
+          "timeout": 0,
+          "ranking": 0
+        },
+        "maxDepth": 0
+      }
+    ],
+    "note": "Initial 9-tooth geometry: 62-unit pitch, 7-unit radius. Small marbles could enter grooves during retraction; superseded before final verification."
+  },
+  "preserved": [
+    {
+      "path": "js/physics.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/maps.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/maps/twinfold.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/maps/rhythm.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/audio.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/shuffle.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/main.js",
+      "unchanged": true
+    },
+    {
+      "path": "js/camera.js",
+      "unchanged": true
+    }
+  ]
+}

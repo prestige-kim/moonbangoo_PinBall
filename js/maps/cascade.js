@@ -1,19 +1,36 @@
 (function(P){
   'use strict';
-  var map={id:'cascade',version:3,name:'빗살 낙하',width:1000,height:11200,spawn:{x:36,y:50,width:928,height:700},finish:{y:11000},obstacles:[]};
+  var map={id:'cascade',version:4,name:'빗살 낙하',width:1000,height:11200,spawn:{x:36,y:50,width:928,height:700},finish:{y:11000},obstacles:[]};
   function rail(id,x1,y1,x2,y2,role){map.obstacles.push({type:'segment',id:'cascade-'+id,x1:x1,y1:y1,x2:x2,y2:y2,thickness:8,role:role||'guide'});}
-  rail('entry-left',140,950,280,1060);rail('entry-right',860,950,720,1060);
-  for(var row=0;row<6;row++){
-    var y=1600+row*1100,angle=(row%2?-1:1)*Math.PI/6,dx=Math.cos(angle)*90,dy=Math.sin(angle)*90;
+  // Preserve the six original rows and continue the terraces down to the finish.
+  [1600,2700,3800,4900,6000,7100,8600,9400].forEach(function(y,row){
+    var angle=(row%2?-1:1)*Math.PI/6,dx=Math.cos(angle)*90,dy=Math.sin(angle)*90;
     [220,500,780].forEach(function(x,col){rail('shelf-'+row+'-'+col,x-dx,y-dy,x+dx,y+dy,'shelf');});
-    var left=row%2===0;
-    rail('return-'+row,left?150:850,y+320,left?225:775,y+500);
-    var x=row%2?640:360;
-    map.obstacles.push({type:'polygon',id:'cascade-wedge-'+row,points:[{x:x-8,y:y+510},{x:x+38,y:y+570},{x:x+24,y:y+600},{x:x-36,y:y+590},{x:x-42,y:y+560}]});
-  }
-  rail('exit-left-a',140,8070,220,8250);rail('exit-right-a',860,8070,780,8250);
-  rail('exit-left-b',300,8440,350,8610);rail('exit-right-b',700,8440,650,8610);
-  // Passive collision studs: no boost, identity logic or recovery force.
-  [[500,980],[335,1260],[665,1260],[335,1820],[665,1820],[500,2100],[835,2100],[335,2380],[665,2380],[335,2940],[665,2940],[335,3220],[335,3500],[665,3500],[335,4060],[665,4060],[665,4340],[165,4620],[665,4620],[165,5180],[500,5180],[165,5460],[165,5740],[500,5740],[835,5740],[500,6300],[835,6300],[165,6860],[500,6860],[835,6860],[335,7420],[665,7420],[335,7700],[500,7980],[500,8260],[835,8540]].forEach(function(p,i){map.obstacles.push({type:'pin',id:'cascade-detail-'+i,x:p[0],y:p[1],r:12});});
-  P.registerMap(map,{name:map.name,description:'경사진 선반을 한 단씩 내려가요',accent:'#A76546'});
+    [165,335,665,835].forEach(function(x,col){map.obstacles.push({type:'pin',id:'cascade-detail-'+row+'-'+col,x:x,y:y+200,r:14});});
+  });
+  // Each pair covers the full horizontal projection, even while every comb is
+  // retracted. A falling marble must change direction rather than use a shaft.
+  [880,3000,5200,7400,10000].forEach(function(y,row){
+    rail('catch-'+row+'-left',-40,y,620,y+210,'catch-shelf');
+    rail('catch-'+row+'-right',380,y+570,1040,y+360,'catch-shelf');
+  });
+  [500,165,835].forEach(function(x,i){map.obstacles.push({type:'pin',id:'cascade-detail-final-'+i,x:x,y:10800,r:14});});
+  map.obstacles.push({type:'pin',id:'cascade-detail-merge',x:500,y:8240,r:14});
+  // Each comb is a rigid assembly of existing moving colliders. Teeth face
+  // downstream: no upward-facing pockets. Both sides withdraw outside the board.
+  [2100,4300,6500].forEach(function(y,row){
+    [-1,1].forEach(function(side){
+      var angle=side===-1?.36:-.36,phase=row*Math.PI*2/3+(side===1?Math.PI:0);
+      var rootX=side===-1?-210:1210,rootY=y+(side===1?300:0),assembly='cascade-comb-'+row+'-'+side;
+      function member(part,x,yy,length,a,thickness,role){map.obstacles.push({type:'moving',id:assembly+'-'+part,assembly:assembly,stage:row,side:side,role:role,
+        x:x,y:yy,length:length,angle:a,thickness:thickness,axis:'x',amplitude:480,speed:Math.PI/3,phase:phase});}
+      member('spine',rootX,rootY,600,angle,10,'comb-spine');
+      for(var tooth=0;tooth<21;tooth++){
+        var along=-240+tooth*24,normal=22;
+        member('tooth-'+tooth,rootX+Math.cos(angle)*along-Math.sin(angle)*normal,
+          rootY+Math.sin(angle)*along+Math.cos(angle)*normal,44,angle+Math.PI/2,8,'comb-tooth');
+      }
+    });
+  });
+  P.registerMap(map,{name:map.name,description:'엇갈린 빗살이 열리고 닫히는 낙하 코스',accent:'#A76546'});
 })(window.CosmicPinball);
