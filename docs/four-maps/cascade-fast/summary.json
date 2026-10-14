@@ -1,0 +1,108 @@
+{
+  "at": "2026-10-14T07:14:20.907675+00:00",
+  "version": 5,
+  "sourceSHA256": "d9abb4cd6e63b7cd3315b80af3c294f884f17a379e7c0b8366d1c09daf8d74f9",
+  "startHEAD": "2e20e821034f1de26d3c0bdbcaf81160a48285ee",
+  "deployedAndRemoteSHA": "5d25319ddd2d352cf35e314da27329c97daec397",
+  "remoteRef": "main",
+  "remoteIncludes": true,
+  "deploymentFilesMatched": 26,
+  "preservedOperatingFiles": 56,
+  "geometry": {
+    "pairs": 6,
+    "spines": 12,
+    "teeth": 252,
+    "fixedCatchPairs": 7,
+    "pins": 15,
+    "total": 293,
+    "periodSeconds": 4,
+    "phaseSpacingSeconds": 0.6666666666666666
+  },
+  "first": {
+    "at": "2026-10-14T07:06:51.460Z",
+    "cases": 15180,
+    "failures": 0,
+    "maxTime": 2.733333333333334,
+    "minimumContacts": 1
+  },
+  "full": {
+    "at": "2026-10-14T07:06:51.459Z",
+    "cases": 240,
+    "failures": 0,
+    "maxTime": 75.325,
+    "minimumContacts": 17
+  },
+  "groups": {
+    "at": "2026-10-14T07:06:51.465Z",
+    "cases": 36,
+    "failures": 0,
+    "maxTime": 71.66666666666667,
+    "minimumContacts": 9,
+    "minimumWinnerDistinctObstacles": 10
+  },
+  "matrix": {
+    "at": "2026-10-14T07:13:01.613Z",
+    "cases": 108,
+    "failures": 0,
+    "errors": {
+      "finite": 0,
+      "bounds": 0,
+      "penetration": 0,
+      "forbidden": 0,
+      "timeout": 0,
+      "ranking": 0
+    },
+    "maximumTime": 186.18333333333334
+  },
+  "hands": {
+    "cases": 18,
+    "exactReplays": 18
+  },
+  "performance": [
+    {
+      "time": 59.71666666666667,
+      "stepP95Milliseconds": 0.28391599998576567
+    },
+    {
+      "time": 56.291666666666664,
+      "stepP95Milliseconds": 0.26283399999374524
+    },
+    {
+      "time": 53.641666666666666,
+      "stepP95Milliseconds": 0.28708400001050904
+    },
+    {
+      "time": 60.416666666666664,
+      "stepP95Milliseconds": 0.2711669999989681
+    },
+    {
+      "time": 58.84166666666667,
+      "stepP95Milliseconds": 0.283832999994047
+    }
+  ],
+  "unitTests": {
+    "tests": 272,
+    "passed": 272,
+    "failed": 0
+  },
+  "browser": {
+    "count": 50,
+    "completed": 50,
+    "speed": 3,
+    "finishTime": 54.51,
+    "winnerTime": 34.26,
+    "warningsAndErrors": 0,
+    "result": "result50.png"
+  },
+  "failedPilot": {
+    "first": {
+      "x": 956,
+      "y": 6100,
+      "radius": 8,
+      "phase": 0,
+      "problem": "no contact when lower fixed guards were removed",
+      "fixedBy": "seven full-width catch pairs"
+    },
+    "regression": "Restored 15 detail pins after personality count failed; threshold unchanged."
+  }
+}
