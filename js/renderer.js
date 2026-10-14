@@ -177,7 +177,35 @@
       if(top<170){ctx.save();ctx.textAlign='center';ctx.fillStyle=INK;ctx.font='600 10px Pretendard Variable,sans-serif';ctx.fillStyle='#8a7760';ctx.font='500 10px Pretendard Variable,sans-serif';if(this.logo){ctx.globalAlpha=.2;ctx.drawImage(this.logo,w/2-70,84,140,122);}ctx.restore();}
     }
     segment(pose,color,ghost,shadow=true){const ctx=this.ctx,thickness=Math.max(3,pose.thickness||9);ctx.save();ctx.lineCap='round';if(shadow){ctx.beginPath();ctx.moveTo(pose.x1,pose.y1+(ghost?0:3));ctx.lineTo(pose.x2,pose.y2+(ghost?0:3));ctx.strokeStyle='rgba(94,66,27,.13)';ctx.lineWidth=thickness*2+4;ctx.stroke();}ctx.beginPath();ctx.moveTo(pose.x1,pose.y1);ctx.lineTo(pose.x2,pose.y2);ctx.strokeStyle=ghost?rgba(color,.13):(this.mapStyle?rgba(this.mapStyle.accent,.8):this.foil(ctx,pose.x1,pose.y1-9,pose.x2,pose.y2+12));ctx.lineWidth=thickness*2;ctx.stroke();if(!ghost&&this.mapStyle){ctx.strokeStyle=PAPER_HI;ctx.lineWidth=Math.max(2,thickness*2-3);ctx.stroke();}if(!ghost){ctx.strokeStyle='rgba(255,250,231,.78)';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(pose.x1,pose.y1-thickness*.6);ctx.lineTo(pose.x2,pose.y2-thickness*.6);ctx.stroke();}ctx.restore();}
+    drawWind(o, physics) {
+      const ctx=this.ctx,clock=physics.time||0,pulse=P.windPulse(o,clock),active=pulse.active;
+      const left=o.x-o.width/2,top=o.y-o.height;
+      ctx.save();
+      const glow=ctx.createLinearGradient(0,top,0,o.y);
+      glow.addColorStop(0,'rgba(154,223,217,0)');
+      glow.addColorStop(1,active?'rgba(84,181,174,.32)':'rgba(84,181,174,.055)');
+      ctx.fillStyle=glow;ctx.fillRect(left,top,o.width,o.height);
+      ctx.strokeStyle=active?'rgba(45,141,139,.85)':'rgba(77,129,124,.25)';
+      ctx.lineWidth=active?3:1.5;
+      // Upward ribbons bend outward, matching the two physical exit directions.
+      for(let i=0;i<15;i++){
+        const lane=i/14,origin=left+30+lane*(o.width-60),sign=lane<.5?-1:1;
+        const travel=this.reducedMotion ? .55 : active ? ((clock*1.6+i*.173)%1) : .12+(i%3)*.12;
+        if(!active&&i%3)continue;
+        const y=o.y-25-travel*(o.height-40),x=origin+sign*travel*35;
+        ctx.beginPath();ctx.moveTo(x,y+30);ctx.bezierCurveTo(x-sign*22,y+5,x+sign*24,y-17,x,y-42);ctx.stroke();
+        ctx.beginPath();ctx.moveTo(x-5,y-32);ctx.lineTo(x,y-42);ctx.lineTo(x+6,y-33);ctx.stroke();
+      }
+      ctx.fillStyle='#EAF6EE';ctx.strokeStyle='#428D85';ctx.lineWidth=2;
+      ctx.beginPath();ctx.ellipse(o.x,o.y+5,o.width/2,11,0,0,TAU);ctx.fill();ctx.stroke();
+      for(let x=left+25;x<left+o.width-15;x+=24){ctx.beginPath();ctx.moveTo(x,o.y+1);ctx.lineTo(x+7,o.y+9);ctx.stroke();}
+      ctx.fillStyle='#397A73';ctx.font='600 14px Pretendard Variable,sans-serif';ctx.textAlign='center';ctx.fillText(active?'상승 바람 ↑':'바람길',o.x,o.y+36);
+      // A filling ring makes the pause between gusts legible without flashing.
+      ctx.beginPath();ctx.arc(o.x-55,o.y+31,7,-Math.PI/2,-Math.PI/2+((clock%o.period)/o.period)*TAU);ctx.stroke();
+      ctx.restore();
+    }
     drawObstacle(o,physics,effects,time,visible) {
+      if(o.type==='wind'){if(o.y+50>=visible.top&&o.y-o.height<=visible.bottom)this.drawWind(o,physics);return;}
       const ctx=this.ctx,t=this.theme,type=o.type,pose=physics.getObstaclePose?physics.getObstaclePose(o):o;
       const y=type==='polygon'?(Math.min(...o.points.map(p=>p.y))+Math.max(...o.points.map(p=>p.y)))/2:pose.y===undefined?(pose.y1+pose.y2)/2:pose.y,span=type==='polygon'?(Math.max(...o.points.map(p=>p.y))-Math.min(...o.points.map(p=>p.y)))/2:(o.length||o.height||o.r||70);if(y+span<visible.top-80||y-span>visible.bottom+80)return;const hit=effects&&effects.hits&&effects.hits.get(o.id||o),power=hit?clamp(hit.life/.3,0,1):0;
       if (o.channelWall) {
@@ -341,7 +369,7 @@
       ctx.setTransform(density,0,0,density,0,0);ctx.imageSmoothingQuality='high';
       ctx.clearRect(0, 0, w, h); ctx.fillStyle = PAPER_HI; pill(ctx, 0, 0, w, h, 12); ctx.fill(); ctx.save(); ctx.translate(pad, pad); ctx.scale(sx, sy);
       for (const route of this.portalPairs(map)) { ctx.strokeStyle='rgba(124,86,37,.6)';ctx.lineWidth=14;ctx.setLineDash([16,30]);ctx.beginPath();ctx.moveTo(route.x,route.y);ctx.lineTo(route.targetX,route.targetY);ctx.stroke();ctx.setLineDash([]); }
-      ctx.fillStyle = 'rgba(164,132,78,.4)'; for (const o of map.obstacles || []) { if (o.channelWall || o.type === 'polygon') { ctx.beginPath(); o.points.forEach((point,index) => index ? ctx.lineTo(point.x,point.y) : ctx.moveTo(point.x,point.y)); ctx.closePath(); ctx.fillStyle=this.mapStyle?rgba(this.mapStyle.accent,.35):'rgba(119,93,58,.28)'; ctx.fill(); } else if (o.type === 'pin' || o.type === 'bumper') { ctx.beginPath(); ctx.arc(o.x, o.y, Math.max(o.r || 10, 15), 0, TAU); ctx.fill(); } else if (o.type === 'segment' || o.type === 'rotor' || o.type === 'moving') { const p = physics.getObstaclePose(o); ctx.strokeStyle = this.mapStyle?rgba(this.mapStyle.accent,.75):'rgba(139,109,64,.45)'; ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(p.x1, p.y1); ctx.lineTo(p.x2, p.y2); ctx.stroke(); } }
+      ctx.fillStyle = 'rgba(164,132,78,.4)'; for (const o of map.obstacles || []) { if(o.type==='wind'){ctx.fillStyle='rgba(55,155,148,.4)';ctx.fillRect(o.x-o.width/2,o.y-o.height,o.width,o.height);} else if (o.channelWall || o.type === 'polygon') { ctx.beginPath(); o.points.forEach((point,index) => index ? ctx.lineTo(point.x,point.y) : ctx.moveTo(point.x,point.y)); ctx.closePath(); ctx.fillStyle=this.mapStyle?rgba(this.mapStyle.accent,.35):'rgba(119,93,58,.28)'; ctx.fill(); } else if (o.type === 'pin' || o.type === 'bumper') { ctx.beginPath(); ctx.arc(o.x, o.y, Math.max(o.r || 10, 15), 0, TAU); ctx.fill(); } else if (o.type === 'segment' || o.type === 'rotor' || o.type === 'moving') { const p = physics.getObstaclePose(o); ctx.strokeStyle = this.mapStyle?rgba(this.mapStyle.accent,.75):'rgba(139,109,64,.45)'; ctx.lineWidth = 10; ctx.beginPath(); ctx.moveTo(p.x1, p.y1); ctx.lineTo(p.x2, p.y2); ctx.stroke(); } }
       const active = (physics.marbles || []).filter(m => !m.finished), leader = P.raceStanding(active.slice().sort((a,b) => b.y - a.y)).leader;
       ctx.fillStyle = 'rgba(103,75,43,.48)'; for (const m of active) { ctx.beginPath(); ctx.arc(m.x, m.y, Math.max(m.r || 16, 22), 0, TAU); ctx.fill(); }
       if (leader) { ctx.fillStyle='#A65436';ctx.beginPath();ctx.arc(leader.x,leader.y,52,0,TAU);ctx.fill(); }

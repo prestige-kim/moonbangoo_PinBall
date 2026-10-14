@@ -7,6 +7,12 @@
   P.MAX_MARBLES = 50;
   P.PHYSICS_STEP = STEP;
   P.PHYSICS_TUNING = { gravity: 620, fallSoftThreshold: 540, fallDrag: 5, fallMax: 700, velocityMax: 1050, rescueDelay: 3, rescueProgress: 24 };
+  // Renderer and simulation share the same deterministic pulse clock.
+  P.windPulse = function (field, time) {
+    var cycle = Math.floor((time + (field.phase || 0)) / field.period);
+    var elapsed = time + (field.phase || 0) - cycle * field.period;
+    return { cycle: cycle, active: elapsed < field.duration - 1e-9, progress: elapsed / field.duration };
+  };
   P.seedRandom = function (seed) {
     var hash = 2166136261;
     var input = String(seed);
@@ -191,7 +197,7 @@
     (this.map.obstacles || []).forEach(function (obstacle, index) {
       if (!obstacle.id) obstacle.id = 'obstacle-' + index;
       if (obstacle.type === 'rotor' || obstacle.type === 'moving') { self._dynamic.push(obstacle); return; }
-      if (obstacle.type === 'boost' || obstacle.type === 'portal') {
+      if (obstacle.type === 'boost' || obstacle.type === 'portal' || obstacle.type === 'wind') {
         self._fields.push(obstacle);
         if (obstacle.type === 'boost') {
           var shape = P.boostShape(obstacle);
@@ -461,7 +467,20 @@
   Physics.prototype._fieldsStep = function (marble) {
     for (var i = 0; i < this._fields.length; i++) {
       var field = this._fields[i];
-      if (field.type === 'boost') {
+      if (field.type === 'wind') {
+        var pulse = P.windPulse(field, this.time);
+        if (!pulse.active || marble.vy <= 0 || Math.abs(marble.x - field.x) > field.width / 2 ||
+            marble.y < field.y - field.height || marble.y > field.y) continue;
+        var history = marble._windHistory || (marble._windHistory = Object.create(null));
+        var last = history[field.id];
+        // A scattered ball gets time to fall out before a later gust can catch it.
+        if (last && (last.cycle === pulse.cycle || this.time - last.time < field.cooldown)) continue;
+        var direction = marble.x < field.x ? -1 : marble.x > field.x ? 1 : marble.vx < 0 ? -1 : 1;
+        marble.vy = -Math.sqrt(2 * this.gravity * field.liftHeight);
+        marble.vx = direction * field.spread;
+        history[field.id] = { cycle: pulse.cycle, time: this.time };
+        this._event('wind', marble, field, 0.7);
+      } else if (field.type === 'boost') {
         var shape = this._boostShapes.get(field), dx = marble.x - field.x, dy = marble.y - field.y;
         var localX = Math.abs(dx * shape.cos + dy * shape.sin), localY = Math.abs(-dx * shape.sin + dy * shape.cos);
         if (localX > shape.width / 2 || localY > shape.height / 2) continue;

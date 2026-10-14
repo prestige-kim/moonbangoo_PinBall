@@ -1,0 +1,111 @@
+{
+  "at": "2026-10-14T04:16:02.108Z",
+  "mapVersion": 7,
+  "sourceSHA256": "109ebdf693c07dad7105dfc13192752d2e5c0c3d7c85a76b60c40859eb020a07",
+  "criteria": {
+    "medianRatio": [
+      0.8,
+      1.2
+    ],
+    "p90Ratio": [
+      0.7,
+      1.3
+    ],
+    "timeout": 240,
+    "counts": [
+      1,
+      6,
+      25,
+      50
+    ],
+    "protocols": [
+      "B",
+      "C",
+      "D"
+    ],
+    "seedsPerCell": 5
+  },
+  "summary": [
+    {
+      "count": 1,
+      "n": 15,
+      "classicMedian": 44.84166666666667,
+      "libraryMedian": 49.25,
+      "classicP90": 54.36666666666667,
+      "libraryP90": 58.05833333333333,
+      "classicFirstMedian": 44.8355757747904,
+      "libraryFirstMedian": 49.249511858786185,
+      "medianRatio": 1.0983088645233228,
+      "p90Ratio": 1.0679031269160024,
+      "pass": true
+    },
+    {
+      "count": 6,
+      "n": 15,
+      "classicMedian": 54.083333333333336,
+      "libraryMedian": 55.86666666666667,
+      "classicP90": 60.50833333333333,
+      "libraryP90": 61.775,
+      "classicFirstMedian": 34.967804367118,
+      "libraryFirstMedian": 42.75523286421358,
+      "medianRatio": 1.0329738058551619,
+      "p90Ratio": 1.0209337556810356,
+      "pass": true
+    },
+    {
+      "count": 25,
+      "n": 15,
+      "classicMedian": 58.291666666666664,
+      "libraryMedian": 57.983333333333334,
+      "classicP90": 61.916666666666664,
+      "libraryP90": 64.28333333333333,
+      "classicFirstMedian": 32.45742721502677,
+      "libraryFirstMedian": 37.451714734997026,
+      "medianRatio": 0.994710507505361,
+      "p90Ratio": 1.0382234185733512,
+      "pass": true
+    },
+    {
+      "count": 50,
+      "n": 15,
+      "classicMedian": 60.96666666666667,
+      "libraryMedian": 59.725,
+      "classicP90": 67.74166666666666,
+      "libraryP90": 61.75,
+      "classicFirstMedian": 29.965750174795662,
+      "libraryFirstMedian": 35.448533002924584,
+      "medianRatio": 0.9796336796063423,
+      "p90Ratio": 0.9115512363144299,
+      "pass": true
+    }
+  ],
+  "runtimeSHA256": {
+    "js/physics.js": "e6f5b66d1c5b81b9c63b043544d095cb2d73f8dde65ad02a7f3ac1560c9babf5",
+    "js/renderer.js": "e96ae261b9e69f9e6d90721d22a0f98da4bc5357c92c6d55ca5c3db05ef75a54"
+  },
+  "matrix": {
+    "cases": 108,
+    "hands": 18,
+    "failures": 0,
+    "at": "2026-10-14T04:16:37.541Z"
+  },
+  "preservedOtherMaps": {
+    "baseline": "2a14240f227124dc388f3dff7ee80fef5ffa5352",
+    "pairedRaces": 18,
+    "maps": [
+      "classic",
+      "cascade",
+      "rhythm"
+    ],
+    "counts": [
+      6,
+      50
+    ],
+    "protocols": [
+      "B",
+      "C",
+      "D"
+    ],
+    "exactRankingAndTimes": true
+  }
+}

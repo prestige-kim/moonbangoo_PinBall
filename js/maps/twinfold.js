@@ -1,6 +1,6 @@
 (function (P) {
   'use strict';
-  var map = { id: 'twinfold', version: 6, name: '갈래 서가', width: 1000, height: 11200,
+  var map = { id: 'twinfold', version: 7, name: '갈래 서가', width: 1000, height: 11200,
     spawn: { x: 36, y: 50, width: 928, height: 700 }, finish: { y: 11000 }, obstacles: [] };
   // Twenty reading bays alternate a central sliding shelf (two side aisles)
   // with paired book carts (one central aisle). No uninterrupted vertical bypass.
@@ -21,15 +21,12 @@
         role: 'bookend', x: x, y: y + 210, r: 12 });
     });
   }
-  // The last reading room stays active right up to the finish: rotating
-  // bookmarks, opposed book carts and a sliding return shelf. Every lane stays
-  // open throughout the cycle; no timer or invisible recovery force is used.
+  // Visible air vents release a short gust every two simulation seconds.
+  // They are fields, not solid barriers; lateral spread leaves the fall lanes open.
   [9020, 10760].forEach(function (y, row) {
-    [230, 500, 770].forEach(function (x, col) {
-      map.obstacles.push({ type: 'rotor', id: 'twinfold-finale-bookmark-' + row + '-' + col,
-        role: 'finale', x: x, y: y, length: 150, thickness: 8,
-        speed: (row + col) % 2 ? -1.6 : 1.6, angle: col * Math.PI / 3 });
-    });
+    map.obstacles.push({ type: 'wind', id: 'twinfold-finale-wind-' + row,
+      role: 'finale', x: 500, y: y, width: 600, height: 300,
+      period: 2, duration: 0.4, liftHeight: 180, spread: 300, cooldown: 3 });
   });
   [140, 860].forEach(function (x, col) {
     map.obstacles.push({ type: 'moving', id: 'twinfold-finale-cart-' + col,
