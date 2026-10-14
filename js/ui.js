@@ -518,7 +518,7 @@
   };
   UI.prototype.updateHUD = function (data) {
     var self = this;
-    if (data.map && $('hud-map-name')) $('hud-map-name').textContent = data.map.name;
+    if (data.map && $('hud-map-name')) $('hud-map-name').textContent = P.mapInfo(data.map.id).name;
     if (typeof data.total === 'number') this.totalCount = data.total;
     if (typeof data.remaining === 'number') {
       var target = data.remaining;

@@ -34,8 +34,8 @@
   },
   "intentionalVisualChanges": {
     "js/cinematic.js": {
-      "reason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged.",
-      "sha256": "91f41922806f28f4a7c809c173b845e0b6241ee1d02088fc80724954498a615f"
+      "reason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged. User requested new course names on 2026-10-14: title painting now resolves the presentation registry; map data and replay signature remain unchanged.",
+      "sha256": "72077d56c4d1563f953d82dea771401fe2af7d9e9b15b5c647e2b6800d57891c"
     },
     "js/hand-scene.js": {
       "reason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged.",

@@ -718,7 +718,7 @@
       ctx.textAlign = 'center'; ctx.font = '500 47px Pretendard Variable,sans-serif';
       ctx.fillStyle = '#fff8e5'; ctx.fillText('핀볼', 502, -222);
       ctx.fillStyle = '#b19459'; ctx.fillText('핀볼', 500, -224);
-      ctx.font = '400 24px Pretendard Variable,sans-serif'; ctx.fillStyle = '#a38855'; ctx.fillText(physics.map.name || '오늘의 놀이판', 500, -135);
+      ctx.font = '400 24px Pretendard Variable,sans-serif'; ctx.fillStyle = '#a38855'; ctx.fillText((P.mapInfo ? P.mapInfo(physics.map.id).name : physics.map.name) || '오늘의 놀이판', 500, -135);
       ctx.restore();
       if (this.boardCache.image) ctx.drawImage(this.boardCache.image, 0, 0, 1000, bottom);
       ctx.restore();
