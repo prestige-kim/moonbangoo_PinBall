@@ -179,33 +179,70 @@
     segment(pose,color,ghost,shadow=true){const ctx=this.ctx,thickness=Math.max(3,pose.thickness||9);ctx.save();ctx.lineCap='round';if(shadow){ctx.beginPath();ctx.moveTo(pose.x1,pose.y1+(ghost?0:3));ctx.lineTo(pose.x2,pose.y2+(ghost?0:3));ctx.strokeStyle='rgba(94,66,27,.13)';ctx.lineWidth=thickness*2+4;ctx.stroke();}ctx.beginPath();ctx.moveTo(pose.x1,pose.y1);ctx.lineTo(pose.x2,pose.y2);ctx.strokeStyle=ghost?rgba(color,.13):(this.mapStyle?rgba(this.mapStyle.accent,.8):this.foil(ctx,pose.x1,pose.y1-9,pose.x2,pose.y2+12));ctx.lineWidth=thickness*2;ctx.stroke();if(!ghost&&this.mapStyle){ctx.strokeStyle=PAPER_HI;ctx.lineWidth=Math.max(2,thickness*2-3);ctx.stroke();}if(!ghost){ctx.strokeStyle='rgba(255,250,231,.78)';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(pose.x1,pose.y1-thickness*.6);ctx.lineTo(pose.x2,pose.y2-thickness*.6);ctx.stroke();}ctx.restore();}
     drawWind(o, physics) {
       const ctx=this.ctx,clock=physics.time||0,pulse=P.windPulse(o,clock),active=pulse.active;
-      const left=o.x-o.width/2,top=o.y-o.height;
-      ctx.save();
-      const glow=ctx.createLinearGradient(0,top,0,o.y);
-      glow.addColorStop(0,'rgba(154,223,217,0)');
-      glow.addColorStop(1,active?'rgba(84,181,174,.32)':'rgba(84,181,174,.055)');
-      ctx.fillStyle=glow;ctx.fillRect(left,top,o.width,o.height);
-      ctx.strokeStyle=active?'rgba(45,141,139,.85)':'rgba(77,129,124,.25)';
-      ctx.lineWidth=active?3:1.5;
-      // Upward ribbons bend outward, matching the two physical exit directions.
-      for(let i=0;i<15;i++){
-        const lane=i/14,origin=left+30+lane*(o.width-60),sign=lane<.5?-1:1;
-        const travel=this.reducedMotion ? .55 : active ? ((clock*1.6+i*.173)%1) : .12+(i%3)*.12;
-        if(!active&&i%3)continue;
-        const y=o.y-25-travel*(o.height-40),x=origin+sign*travel*35;
-        ctx.beginPath();ctx.moveTo(x,y+30);ctx.bezierCurveTo(x-sign*22,y+5,x+sign*24,y-17,x,y-42);ctx.stroke();
-        ctx.beginPath();ctx.moveTo(x-5,y-32);ctx.lineTo(x,y-42);ctx.lineTo(x+6,y-33);ctx.stroke();
+      const left=o.x-o.width/2,top=o.y-o.height,elapsed=(clock+(o.phase||0))%o.period;
+      const charge=active?1:clamp((elapsed-o.duration)/(o.period-o.duration),0,1);
+      const breath=active ? .45+.55*Math.sin(Math.PI*clamp(pulse.progress,0,1)) : 0;
+      const brass=ctx.createLinearGradient(0,o.y-20,0,o.y+38);
+      brass.addColorStop(0,'#F3DEAA');brass.addColorStop(.28,'#C0A06B');brass.addColorStop(.65,'#84633E');brass.addColorStop(1,'#D2B67B');
+      ctx.save();ctx.lineCap='round';ctx.lineJoin='round';
+      // Soft volumes and fine cores read as air, rather than solid barriers.
+      const air=ctx.createLinearGradient(0,top,0,o.y);
+      air.addColorStop(0,'rgba(129,221,213,0)');air.addColorStop(.62,`rgba(121,218,204,${breath*.12})`);air.addColorStop(1,`rgba(61,178,164,${.025+breath*.27})`);
+      ctx.fillStyle=air;ctx.beginPath();ctx.moveTo(left+12,o.y);ctx.bezierCurveTo(left+25,o.y-110,left-15,top+80,left+65,top);ctx.lineTo(left+o.width-65,top);ctx.bezierCurveTo(left+o.width+15,top+80,left+o.width-25,o.y-110,left+o.width-12,o.y);ctx.closePath();ctx.fill();
+      if(active){
+        const lanes=this.quality==='low'?8:12;
+        for(let i=0;i<lanes;i++){
+          const u=(i+.5)/lanes,sign=u<.5?-1:1,origin=left+32+u*(o.width-64);
+          const travel=this.reducedMotion ? .52 : (clock*1.7+i*.137)%1;
+          const rise=45+travel*(o.height-72),x=origin+sign*travel*27,y=o.y-rise;
+          ctx.beginPath();ctx.moveTo(origin,o.y-7);ctx.bezierCurveTo(origin-sign*17,o.y-rise*.32,x+sign*28,y+35,x,y);
+          ctx.strokeStyle=`rgba(72,180,163,${.08+breath*.14})`;ctx.lineWidth=10-i%3;ctx.stroke();
+          ctx.strokeStyle=`rgba(41,143,131,${.28+breath*.42})`;ctx.lineWidth=1.8;ctx.stroke();
+          ctx.beginPath();ctx.moveTo(x,y+29);ctx.quadraticCurveTo(x+sign*13,y+11,x,y);ctx.strokeStyle='rgba(240,255,241,.9)';ctx.lineWidth=1;ctx.stroke();
+          ctx.beginPath();ctx.moveTo(x-4,y+9);ctx.lineTo(x,y);ctx.lineTo(x+5,y+9);ctx.strokeStyle=`rgba(42,139,124,${.4+breath*.5})`;ctx.lineWidth=1.7;ctx.stroke();
+        }
+        // Paper flecks and curled wisps belong to the library; purely decorative.
+        const flecks=this.quality==='low'?6:12;
+        for(let i=0;i<flecks;i++){
+          const t=this.reducedMotion ? .5 :(clock*.95+i*.241)%1,sign=i%2?-1:1;
+          const x=o.x+sign*(30+(i%5)*36+t*70),y=o.y-28-t*(o.height-48);
+          ctx.save();ctx.translate(x,y);ctx.rotate(this.reducedMotion?sign*.2:Math.sin(clock*4+i)*.65);
+          ctx.fillStyle=i%3?'rgba(255,251,224,.9)':'rgba(189,216,187,.85)';ctx.strokeStyle='rgba(143,132,91,.45)';ctx.lineWidth=.7;ctx.fillRect(-3,-5,6,10);ctx.strokeRect(-3,-5,6,10);ctx.beginPath();ctx.moveTo(-1,-3);ctx.lineTo(-1,3);ctx.stroke();ctx.restore();
+        }
+        for(const sign of [-1,1]){
+          const x=o.x+sign*(o.width*.34),y=o.y-o.height*.7;
+          ctx.beginPath();ctx.moveTo(x-sign*19,y+25);ctx.bezierCurveTo(x+sign*29,y+6,x+sign*28,y-25,x,y-17);ctx.bezierCurveTo(x-sign*15,y-10,x+sign*1,y+7,x+sign*10,y-2);ctx.strokeStyle=`rgba(60,156,140,${breath*.5})`;ctx.lineWidth=1.8;ctx.stroke();
+        }
       }
-      ctx.fillStyle='#EAF6EE';ctx.strokeStyle='#428D85';ctx.lineWidth=2;
-      ctx.beginPath();ctx.ellipse(o.x,o.y+5,o.width/2,11,0,0,TAU);ctx.fill();ctx.stroke();
-      for(let x=left+25;x<left+o.width-15;x+=24){ctx.beginPath();ctx.moveTo(x,o.y+1);ctx.lineTo(x+7,o.y+9);ctx.stroke();}
-      ctx.fillStyle='#397A73';ctx.font='600 14px Pretendard Variable,sans-serif';ctx.textAlign='center';ctx.fillText(active?'상승 바람 ↑':'바람길',o.x,o.y+36);
-      // A filling ring makes the pause between gusts legible without flashing.
-      ctx.beginPath();ctx.arc(o.x-55,o.y+31,7,-Math.PI/2,-Math.PI/2+((clock%o.period)/o.period)*TAU);ctx.stroke();
+      // A brass and celadon housing, recessed grille and inset book medallion.
+      ctx.fillStyle='rgba(77,59,33,.14)';pill(ctx,left-12,o.y+13,o.width+24,38,20);ctx.fill();
+      ctx.fillStyle=brass;ctx.strokeStyle='#957341';ctx.lineWidth=1.8;pill(ctx,left-12,o.y-7,o.width+24,42,21);ctx.fill();ctx.stroke();
+      ctx.fillStyle='#2F655F';ctx.beginPath();ctx.ellipse(o.x,o.y-3,o.width/2-7,16,0,0,TAU);ctx.fill();
+      ctx.strokeStyle='#E4D5A4';ctx.lineWidth=2;ctx.stroke();
+      const inset=ctx.createLinearGradient(0,o.y-15,0,o.y+12);inset.addColorStop(0,'#244F4B');inset.addColorStop(.55,'#5E9E8D');inset.addColorStop(1,'#244F4B');
+      for(let x=left+24;x<left+o.width-18;x+=22){if(Math.abs(x-o.x)<35)continue;ctx.fillStyle=inset;ctx.strokeStyle='rgba(202,222,184,.65)';ctx.lineWidth=.9;pill(ctx,x-4,o.y-13,9,19,4);ctx.fill();ctx.stroke();}
+      ctx.beginPath();ctx.ellipse(o.x,o.y-6,o.width/2-17,10,0,Math.PI,TAU);ctx.strokeStyle='rgba(255,248,215,.7)';ctx.lineWidth=1;ctx.stroke();
+      // Fluted end caps carry small pressure dials, lit as the next gust nears.
+      for(const x of [left-2,left+o.width+2]){
+        ctx.fillStyle=brass;ctx.strokeStyle='#947647';ctx.lineWidth=1.4;ctx.beginPath();ctx.ellipse(x,o.y+7,20,24,0,0,TAU);ctx.fill();ctx.stroke();
+        ctx.fillStyle='#294F49';ctx.beginPath();ctx.arc(x,o.y+5,11,0,TAU);ctx.fill();
+        for(let i=0;i<8;i++){const a=-Math.PI*.8+i*Math.PI*1.6/7;ctx.beginPath();ctx.moveTo(x+Math.cos(a)*14,o.y+5+Math.sin(a)*14);ctx.lineTo(x+Math.cos(a)*17,o.y+5+Math.sin(a)*17);ctx.strokeStyle='rgba(250,231,184,.7)';ctx.lineWidth=.8;ctx.stroke();}
+        const angle=-Math.PI*.8+charge*Math.PI*1.6;ctx.beginPath();ctx.moveTo(x,o.y+5);ctx.lineTo(x+Math.cos(angle)*8,o.y+5+Math.sin(angle)*8);ctx.strokeStyle=active?'#E2F9C6':'#D9C38B';ctx.lineWidth=1.7;ctx.stroke();
+      }
+      ctx.fillStyle='#E2CE96';ctx.strokeStyle='#8F7449';ctx.lineWidth=1.3;ctx.beginPath();ctx.arc(o.x,o.y+7,24,0,TAU);ctx.fill();ctx.stroke();
+      ctx.fillStyle='#365F51';ctx.beginPath();ctx.arc(o.x,o.y+7,19,0,TAU);ctx.fill();
+      ctx.strokeStyle='#E9DBAC';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(o.x,o.y+16);ctx.lineTo(o.x-12,o.y+11);ctx.lineTo(o.x-12,o.y);ctx.quadraticCurveTo(o.x-5,o.y-2,o.x,o.y+3);ctx.quadraticCurveTo(o.x+5,o.y-2,o.x+12,o.y);ctx.lineTo(o.x+12,o.y+11);ctx.closePath();ctx.moveTo(o.x,o.y+3);ctx.lineTo(o.x,o.y+16);ctx.stroke();
+      // Segmented rails fill inwards; the state stays legible at game zoom.
+      for(const sign of [-1,1])for(let i=0;i<8;i++){
+        const x=o.x+sign*(94+i*23)-8,lit=active||charge>(7-i)/8;
+        ctx.fillStyle=lit?(active?'#69A892':'#BCA471'):'rgba(120,113,84,.16)';pill(ctx,x,o.y+48,16,4,2);ctx.fill();
+      }
+      ctx.fillStyle='rgba(248,244,222,.94)';ctx.strokeStyle='rgba(124,150,116,.48)';ctx.lineWidth=1;pill(ctx,o.x-74,o.y+39,148,27,13);ctx.fill();ctx.stroke();
+      ctx.fillStyle='#386F62';ctx.font='600 14px Pretendard Variable,sans-serif';ctx.textAlign='center';ctx.fillText(active?'상승 바람 ↑':'바람길',o.x,o.y+57);
       ctx.restore();
     }
     drawObstacle(o,physics,effects,time,visible) {
-      if(o.type==='wind'){if(o.y+50>=visible.top&&o.y-o.height<=visible.bottom)this.drawWind(o,physics);return;}
+      if(o.type==='wind'){if(o.y+80>=visible.top&&o.y-o.height<=visible.bottom)this.drawWind(o,physics);return;}
       const ctx=this.ctx,t=this.theme,type=o.type,pose=physics.getObstaclePose?physics.getObstaclePose(o):o;
       const y=type==='polygon'?(Math.min(...o.points.map(p=>p.y))+Math.max(...o.points.map(p=>p.y)))/2:pose.y===undefined?(pose.y1+pose.y2)/2:pose.y,span=type==='polygon'?(Math.max(...o.points.map(p=>p.y))-Math.min(...o.points.map(p=>p.y)))/2:(o.length||o.height||o.r||70);if(y+span<visible.top-80||y-span>visible.bottom+80)return;const hit=effects&&effects.hits&&effects.hits.get(o.id||o),power=hit?clamp(hit.life/.3,0,1):0;
       if (o.channelWall) {
