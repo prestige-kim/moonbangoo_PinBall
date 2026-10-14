@@ -1,8 +1,8 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),{P,run,assertRun,assertGaps}=require('../qa/four-maps/helpers.cjs');
 const map=P.MAPS.rhythm;
-test('rhythm v4 replaces wall shutters and long diagonal shelves with four open six-spoke drums',()=>{
- assert.equal(map.version,4);assert(!map.obstacles.some(o=>['beat-shutter','beat-chain','beat-paddle','beat-guide'].includes(o.role)));
+test('rhythm v5 replaces wall shutters and long diagonal shelves with four open six-spoke drums',()=>{
+ assert.equal(map.version,5);assert(!map.obstacles.some(o=>['beat-shutter','beat-chain','beat-paddle','beat-guide'].includes(o.role)));
  const drums=map.obstacles.filter(o=>o.role==='clock-drum');assert.equal(drums.length,12);assert.equal(new Set(drums.map(o=>o.assembly)).size,4);
  for(let row=0;row<4;row++){const group=drums.filter(o=>o.beat.stage===row);assert.equal(group.length,3);for(let i=0;i<3;i++){assert.equal(group[i].length,420);assert.equal(group[i].x,500);assert.equal(group[i].y,[1700,4500,7300,10100][row]);assert.equal(group[i].speed,group[0].speed);if(i)assert(Math.abs(group[i].angle-group[i-1].angle-Math.PI/3)<1e-8);}
   const ring=map.obstacles.filter(o=>o.assembly==='rhythm-ring-'+row);assert.equal(ring.length,24);const physics=new P.Physics({map,names:P.parseNames('공')});for(const o of ring){assert.equal(o.type,'moving');assert.equal(o.amplitude,12);assert(Math.abs(physics.getObstaclePose(o).x1-500)>=158-1e-8,'top and bottom openings remain real');}
@@ -26,13 +26,13 @@ test('drum pockets and vertical pads change physical arrival timing across cycle
   assert(Math.max(...times)-Math.min(...times)>.5,'timing must result from real moving contacts');
  }
 });
-test('rhythm v4 completes 1..50 balls without force recovery and exactly replays grouping',()=>{
+test('rhythm v5 completes 1..50 balls without force recovery and exactly replays grouping',()=>{
  for(const n of [1,2,6,25,49,50])assertRun(run('rhythm',n,'fourmaps-dev-rhythm-v4-smoke-'+n));
  assert.deepEqual(run('rhythm',6,'repeat',{},null,[1]).ranking,run('rhythm',6,'repeat',{},null,[4,2,1]).ranking);
 });
 test('exact entrance-cap drops cannot balance forever on a drum opening',()=>{for(const [x,y] of [[640,742],[670,1320]]){const p=new P.Physics({map,names:P.parseNames('공'),radius:8});Object.assign(p.marbles[0],{x,y,vx:0,vy:0});while(!p.complete&&p.time<240){p.step();p.drainEvents();}assert(p.complete);}});
 test('tilted pads release the seed that bounced forever above a horizontal pad',()=>assertRun(run('rhythm',50,'clock-curved-feeders')));
-test('rhythm v4 keeps >=96 independent clearance throughout its complete 9.6 second cycle',()=>assertGaps('rhythm',9.6));
+test('rhythm v5 keeps >=96 independent clearance throughout its complete 9.6 second cycle',()=>assertGaps('rhythm',9.6));
 test('clockwork art follows actual poses, remains deterministic and does not change marbles',()=>{
  new Function('window',fs.readFileSync('js/renderer.js','utf8'))({CosmicPinball:P});const o=map.obstacles.find(o=>o.role==='clock-pad'),p=new P.Physics({map,names:P.parseNames('공')});p.time=.8;
  function trace(reduced){const calls=[];const ctx=new Proxy({},{get:(_,key)=>(...args)=>calls.push([key,...args]),set:()=>true});const r=Object.assign(Object.create(P.Renderer.prototype),{ctx,reducedMotion:reduced});r.drawClockwork(o,p);return calls;}
@@ -45,4 +45,17 @@ test('clockwork scenery draws no text on any of its obstacles',()=>{
  const r=Object.assign(Object.create(P.Renderer.prototype),{ctx}),p=new P.Physics({map,names:P.parseNames('공')});
  for(const time of [0,.8,2.4]){p.time=time;for(const o of map.obstacles.filter(o=>o.role?.startsWith('clock-')))r.drawClockwork(o,p);}
  assert.deepEqual(texts,[]);
+});
+
+test('three buffer stations add nine tilted physical elevators between the four drums',()=>{
+ const buffers=map.obstacles.filter(o=>o.role==='clock-buffer');assert.equal(buffers.length,9);
+ assert.deepEqual([...new Set(buffers.map(o=>o.y))],[3550,6350,9150]);
+ for(const o of buffers){assert.equal(o.type,'moving');assert.equal(o.axis,'y');assert.equal(o.length,140);assert.equal(o.amplitude,20);assert.equal(Math.abs(o.angle),.25);}
+});
+
+test('v4 records are refused after adding buffer geometry while v5 records restore exactly',()=>{
+ const old={...map,version:4,obstacles:map.obstacles.filter(o=>o.role!=='clock-buffer')},names=P.parseNames('공'),seed='buffer-replay';
+ function record(m){const p=new P.Physics({map:m,names,seed});P.commitHandStart(p,[{id:p.marbles[0].id,x:0,y:0,vx:0,vy:0,r:12}]);return p.handStart;}
+ assert.throws(()=>P.restoreHandStart(new P.Physics({map,names,seed}),record(old)),/호환/);
+ assert.doesNotThrow(()=>P.restoreHandStart(new P.Physics({map,names,seed}),record(map)));
 });

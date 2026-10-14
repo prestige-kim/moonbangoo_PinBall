@@ -1,6 +1,6 @@
 (function(P){
   'use strict';
-  var map={id:'rhythm',version:4,name:'박자 분배기',width:1000,height:11200,spawn:{x:36,y:50,width:928,height:700},finish:{y:11000},obstacles:[]};
+  var map={id:'rhythm',version:5,name:'박자 분배기',width:1000,height:11200,spawn:{x:36,y:50,width:928,height:700},finish:{y:11000},obstacles:[]};
   function rail(id,a,b,role,assembly){map.obstacles.push({type:'segment',id:'rhythm-'+id,x1:a.x,y1:a.y,x2:b.x,y2:b.y,thickness:8,role:role,assembly:assembly});}
   // Four open clock chambers, each with a rotating six-spoke distributor.
   // Side arcs have real top/bottom openings, not a closed decorative enclosure.
@@ -33,6 +33,15 @@
       phase:i*Math.PI*2/3+row*Math.PI/3,beat:{period:2.4,step:i,stage:row}});});
     [350,650].forEach(function(x,i){map.obstacles.push({type:'pin',id:'rhythm-detail-merge-'+row+'-'+i,x:x,y:y+1700,r:12});});
   });
+  // Three buffer stations meter the flow between drums with real tilted pads.
+  // These compact elevators fill the empty transfer bays without copying the
+  // canyon's full-board shelves; all timing still comes from physical contacts.
+  [3550,6350,9150].forEach(function(y,row){[225,500,775].forEach(function(x,i){
+    map.obstacles.push({type:'moving',id:'rhythm-buffer-'+row+'-'+i,role:'clock-buffer',
+      x:x,y:y,axis:'y',amplitude:20,length:140,thickness:12,angle:i===2?-.25:.25,
+      speed:Math.PI*2/2.4,phase:i*Math.PI*2/3+row*Math.PI/3,
+      beat:{period:2.4,step:i,stage:row}});
+  });});
   [200,500,800].forEach(function(x,i){map.obstacles.push({type:'moving',id:'rhythm-finale-'+i,role:'clock-pad',
     x:x,y:10720,axis:'y',amplitude:60,length:80,thickness:16,angle:i===0?.22:i===2?-.22:.18,speed:Math.PI*2/2.4,
     phase:i*Math.PI*2/3,beat:{period:2.4,step:i,stage:3}});});
