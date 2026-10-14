@@ -177,43 +177,55 @@
       if(top<170){ctx.save();ctx.textAlign='center';ctx.fillStyle=INK;ctx.font='600 10px Pretendard Variable,sans-serif';ctx.fillStyle='#8a7760';ctx.font='500 10px Pretendard Variable,sans-serif';if(this.logo){ctx.globalAlpha=.2;ctx.drawImage(this.logo,w/2-70,84,140,122);}ctx.restore();}
     }
     segment(pose,color,ghost,shadow=true){const ctx=this.ctx,thickness=Math.max(3,pose.thickness||9);ctx.save();ctx.lineCap='round';if(shadow){ctx.beginPath();ctx.moveTo(pose.x1,pose.y1+(ghost?0:3));ctx.lineTo(pose.x2,pose.y2+(ghost?0:3));ctx.strokeStyle='rgba(94,66,27,.13)';ctx.lineWidth=thickness*2+4;ctx.stroke();}ctx.beginPath();ctx.moveTo(pose.x1,pose.y1);ctx.lineTo(pose.x2,pose.y2);ctx.strokeStyle=ghost?rgba(color,.13):(this.mapStyle?rgba(this.mapStyle.accent,.8):this.foil(ctx,pose.x1,pose.y1-9,pose.x2,pose.y2+12));ctx.lineWidth=thickness*2;ctx.stroke();if(!ghost&&this.mapStyle){ctx.strokeStyle=PAPER_HI;ctx.lineWidth=Math.max(2,thickness*2-3);ctx.stroke();}if(!ghost){ctx.strokeStyle='rgba(255,250,231,.78)';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(pose.x1,pose.y1-thickness*.6);ctx.lineTo(pose.x2,pose.y2-thickness*.6);ctx.stroke();}ctx.restore();}
+    drawWindGust(o, elapsed) {
+      const ctx=this.ctx,lanes=this.quality==='low'?[0]:[0,1];
+      // Layered original ink-drawn packets: a narrow tail, expanding curled head,
+      // outward drift and dissipation. Shapes are rebuilt on every render frame.
+      lanes.forEach((lane,i)=>{
+        const delay=i*.07,age=elapsed-delay;
+        if(age<0||age>.68)return;
+        const t=this.reducedMotion ? .48 :age/.68,sign=i?1:-1;
+        const fade=Math.min(1,age/.055)*Math.pow(1-age/.68,.65);
+        const r=(42+55*Math.sin(Math.PI*t*.85))*(i?.5:1),x=o.x+(i?65+t*25:-12-t*12),y=o.y-35-t*(o.height-52);
+        // Long, fine tails taper towards the nozzle, like the reference sketch.
+        for(let strand=0;strand<3;strand++){
+          const start=o.x-45+(strand-1)*12,end=x+(-.6+strand*.32)*r;
+          ctx.beginPath();ctx.moveTo(start,o.y-9-strand*5);
+          ctx.bezierCurveTo(start+sign*r*.1,o.y-30,end-sign*r*.65,y+r*.9,end,y+r*.5);
+          ctx.strokeStyle=`rgba(69,86,76,${fade*(.66-strand*.14)})`;ctx.lineWidth=strand===0?1.8:1.1;ctx.stroke();
+        }
+        ctx.save();ctx.translate(x,y);ctx.scale(r*1.18,r);ctx.rotate(sign*(-.10+.13*t));
+        // Uneven open lobes and internal curls read as a rolling gust, not a balloon.
+        ctx.beginPath();ctx.moveTo(-.68,.64);
+        ctx.bezierCurveTo(-1.18,.72,-1.31,-.04,-.86,-.22);
+        ctx.bezierCurveTo(-1.11,-.72,-.57,-1.04,-.24,-.73);
+        ctx.bezierCurveTo(-.13,-1.22,.66,-1.15,.73,-.66);
+        ctx.bezierCurveTo(1.24,-.76,1.48,-.09,1.04,.16);
+        ctx.bezierCurveTo(1.43,.58,.78,1.06,.54,.72);
+        ctx.fillStyle=`rgba(255,254,244,${fade*.21})`;ctx.fill();
+        ctx.strokeStyle=`rgba(57,76,67,${fade*.86})`;ctx.lineWidth=1.7/r;ctx.stroke();
+        ctx.beginPath();ctx.moveTo(-.55,.33);ctx.bezierCurveTo(-.95,-.1,-.44,-.53,-.12,-.23);ctx.bezierCurveTo(.15,.05,-.02,.41,-.3,.27);
+        ctx.moveTo(.28,.55);ctx.bezierCurveTo(.81,.76,1.02,.2,.72,.04);ctx.bezierCurveTo(.45,-.11,.3,.12,.45,.27);
+        ctx.moveTo(.07,-.51);ctx.bezierCurveTo(.23,-.85,.69,-.65,.63,-.34);
+        ctx.strokeStyle=`rgba(64,84,73,${fade*.72})`;ctx.lineWidth=1.25/r;ctx.stroke();
+        // Short offset pencil accents emphasize the moving outer edges.
+        ctx.strokeStyle=`rgba(67,85,74,${fade*.48})`;ctx.lineWidth=.9/r;
+        for(let mark=0;mark<3;mark++){
+          const offset=mark*.075;ctx.beginPath();ctx.moveTo(-1.15-offset,-.1);ctx.quadraticCurveTo(-1.28-offset,-.3,-1.13-offset,-.48);ctx.stroke();
+          ctx.beginPath();ctx.moveTo(.4+offset,-1.07);ctx.quadraticCurveTo(.2+offset,-1.19,.02+offset,-1.08);ctx.stroke();
+        }
+        ctx.restore();
+      });
+    }
     drawWind(o, physics) {
       const ctx=this.ctx,clock=physics.time||0,pulse=P.windPulse(o,clock),active=pulse.active;
-      const left=o.x-o.width/2,top=o.y-o.height,elapsed=(clock+(o.phase||0))%o.period;
+      const left=o.x-o.width/2,elapsed=(clock+(o.phase||0))%o.period;
       const charge=active?1:clamp((elapsed-o.duration)/(o.period-o.duration),0,1);
-      const breath=active ? .45+.55*Math.sin(Math.PI*clamp(pulse.progress,0,1)) : 0;
       const brass=ctx.createLinearGradient(0,o.y-20,0,o.y+38);
       brass.addColorStop(0,'#F3DEAA');brass.addColorStop(.28,'#C0A06B');brass.addColorStop(.65,'#84633E');brass.addColorStop(1,'#D2B67B');
       ctx.save();ctx.lineCap='round';ctx.lineJoin='round';
-      // Soft volumes and fine cores read as air, rather than solid barriers.
-      const air=ctx.createLinearGradient(0,top,0,o.y);
-      air.addColorStop(0,'rgba(129,221,213,0)');air.addColorStop(.62,`rgba(121,218,204,${breath*.12})`);air.addColorStop(1,`rgba(61,178,164,${.025+breath*.27})`);
-      ctx.fillStyle=air;ctx.beginPath();ctx.moveTo(left+12,o.y);ctx.bezierCurveTo(left+25,o.y-110,left-15,top+80,left+65,top);ctx.lineTo(left+o.width-65,top);ctx.bezierCurveTo(left+o.width+15,top+80,left+o.width-25,o.y-110,left+o.width-12,o.y);ctx.closePath();ctx.fill();
-      if(active){
-        const lanes=this.quality==='low'?8:12;
-        for(let i=0;i<lanes;i++){
-          const u=(i+.5)/lanes,sign=u<.5?-1:1,origin=left+32+u*(o.width-64);
-          const travel=this.reducedMotion ? .52 : (clock*1.7+i*.137)%1;
-          const rise=45+travel*(o.height-72),x=origin+sign*travel*27,y=o.y-rise;
-          ctx.beginPath();ctx.moveTo(origin,o.y-7);ctx.bezierCurveTo(origin-sign*17,o.y-rise*.32,x+sign*28,y+35,x,y);
-          ctx.strokeStyle=`rgba(72,180,163,${.08+breath*.14})`;ctx.lineWidth=10-i%3;ctx.stroke();
-          ctx.strokeStyle=`rgba(41,143,131,${.28+breath*.42})`;ctx.lineWidth=1.8;ctx.stroke();
-          ctx.beginPath();ctx.moveTo(x,y+29);ctx.quadraticCurveTo(x+sign*13,y+11,x,y);ctx.strokeStyle='rgba(240,255,241,.9)';ctx.lineWidth=1;ctx.stroke();
-          ctx.beginPath();ctx.moveTo(x-4,y+9);ctx.lineTo(x,y);ctx.lineTo(x+5,y+9);ctx.strokeStyle=`rgba(42,139,124,${.4+breath*.5})`;ctx.lineWidth=1.7;ctx.stroke();
-        }
-        // Paper flecks and curled wisps belong to the library; purely decorative.
-        const flecks=this.quality==='low'?6:12;
-        for(let i=0;i<flecks;i++){
-          const t=this.reducedMotion ? .5 :(clock*.95+i*.241)%1,sign=i%2?-1:1;
-          const x=o.x+sign*(30+(i%5)*36+t*70),y=o.y-28-t*(o.height-48);
-          ctx.save();ctx.translate(x,y);ctx.rotate(this.reducedMotion?sign*.2:Math.sin(clock*4+i)*.65);
-          ctx.fillStyle=i%3?'rgba(255,251,224,.9)':'rgba(189,216,187,.85)';ctx.strokeStyle='rgba(143,132,91,.45)';ctx.lineWidth=.7;ctx.fillRect(-3,-5,6,10);ctx.strokeRect(-3,-5,6,10);ctx.beginPath();ctx.moveTo(-1,-3);ctx.lineTo(-1,3);ctx.stroke();ctx.restore();
-        }
-        for(const sign of [-1,1]){
-          const x=o.x+sign*(o.width*.34),y=o.y-o.height*.7;
-          ctx.beginPath();ctx.moveTo(x-sign*19,y+25);ctx.bezierCurveTo(x+sign*29,y+6,x+sign*28,y-25,x,y-17);ctx.bezierCurveTo(x-sign*15,y-10,x+sign*1,y+7,x+sign*10,y-2);ctx.strokeStyle=`rgba(60,156,140,${breath*.5})`;ctx.lineWidth=1.8;ctx.stroke();
-        }
-      }
+      // A brief drawn gust trails off naturally; the physical impulse stays 0.4s.
+      if(elapsed<.84)this.drawWindGust(o,elapsed);
       // A brass and celadon housing, recessed grille and inset book medallion.
       ctx.fillStyle='rgba(77,59,33,.14)';pill(ctx,left-12,o.y+13,o.width+24,38,20);ctx.fill();
       ctx.fillStyle=brass;ctx.strokeStyle='#957341';ctx.lineWidth=1.8;pill(ctx,left-12,o.y-7,o.width+24,42,21);ctx.fill();ctx.stroke();

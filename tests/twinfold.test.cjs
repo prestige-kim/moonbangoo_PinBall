@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),{P,run,assertRun,assertGaps}=require('../qa/four-maps/helpers.cjs');
 test('twinfold alternates moving split shelves and paired carts across 20 bays with an active finale',()=>{
- const m=P.MAPS.twinfold;assert.equal(m.version,7);assert.equal(m.finish.y,11000);
+ const m=P.MAPS.twinfold;assert.equal(m.version,8);assert.equal(m.finish.y,11000);
  assert.equal(m.obstacles.filter(o=>o.type==='moving'&&o.role!=='finale').length,30);
  assert.equal(m.obstacles.filter(o=>o.role==='bookend').length,30);
  for(let bay=0;bay<20;bay++){

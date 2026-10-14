@@ -1,0 +1,123 @@
+{
+  "at": "2026-10-14T06:21:29.770Z",
+  "mapVersion": 8,
+  "period": 3.5,
+  "duration": 0.4,
+  "visualDuration": 0.75,
+  "sourceSHA256": {
+    "js/maps/twinfold.js": "e42c7e2f316c8f29adc0f5e57843dc3bf430abd2ede15c4d4e7599f2a38c50ce",
+    "js/renderer.js": "841ccbef0f4444ca4e8d0c4b281fa48d23ac1f0a4b9ebc97b235a02435a5c6e6"
+  },
+  "criteria": {
+    "medianRatio": [
+      0.8,
+      1.2
+    ],
+    "p90Ratio": [
+      0.7,
+      1.3
+    ],
+    "timeout": 240,
+    "counts": [
+      1,
+      6,
+      25,
+      50
+    ],
+    "protocols": [
+      "B",
+      "C",
+      "D"
+    ],
+    "seedsPerCell": 5
+  },
+  "summary": [
+    {
+      "count": 1,
+      "n": 15,
+      "classicMedian": 43.36666666666667,
+      "libraryMedian": 44.15833333333333,
+      "classicP90": 54.141666666666666,
+      "libraryP90": 51.85,
+      "classicFirstMedian": 43.36152319649066,
+      "libraryFirstMedian": 44.15487809366153,
+      "medianRatio": 1.0182551883166795,
+      "p90Ratio": 0.9576727720486379,
+      "pass": true
+    },
+    {
+      "count": 6,
+      "n": 15,
+      "classicMedian": 51.983333333333334,
+      "libraryMedian": 52.199999999999996,
+      "classicP90": 61.074999999999996,
+      "libraryP90": 58.775,
+      "classicFirstMedian": 36.53096154979539,
+      "libraryFirstMedian": 40.655183977760636,
+      "medianRatio": 1.0041680025649244,
+      "p90Ratio": 0.962341383544822,
+      "pass": true
+    },
+    {
+      "count": 25,
+      "n": 15,
+      "classicMedian": 59.958333333333336,
+      "libraryMedian": 58.36666666666667,
+      "classicP90": 66.575,
+      "libraryP90": 61.525,
+      "classicFirstMedian": 31.293168771434193,
+      "libraryFirstMedian": 34.43022925084083,
+      "medianRatio": 0.973453787352328,
+      "p90Ratio": 0.9241457003379646,
+      "pass": true
+    },
+    {
+      "count": 50,
+      "n": 15,
+      "classicMedian": 59.875,
+      "libraryMedian": 58.025,
+      "classicP90": 69.73333333333333,
+      "libraryP90": 61.55833333333333,
+      "classicFirstMedian": 29.885413802271607,
+      "libraryFirstMedian": 34.84281273801472,
+      "medianRatio": 0.9691022964509395,
+      "p90Ratio": 0.8827676864244741,
+      "pass": true
+    }
+  ],
+  "matrix": {
+    "cases": 108,
+    "hands": 18,
+    "failures": 0
+  },
+  "preservedRuntime": [
+    {
+      "path": "js/physics.js",
+      "equal": true
+    },
+    {
+      "path": "js/audio.js",
+      "equal": true
+    },
+    {
+      "path": "js/shuffle.js",
+      "equal": true
+    },
+    {
+      "path": "js/main.js",
+      "equal": true
+    },
+    {
+      "path": "js/camera.js",
+      "equal": true
+    },
+    {
+      "path": "js/maps/cascade.js",
+      "equal": true
+    },
+    {
+      "path": "js/maps/rhythm.js",
+      "equal": true
+    }
+  ]
+}
