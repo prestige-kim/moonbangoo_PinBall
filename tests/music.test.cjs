@@ -21,40 +21,40 @@ test('music waits for a positive-volume user gesture and reaches the configured 
  f.a.configure({sound:true,volume:0});f.a.unlock();assert.equal(f.sounds.length,0);
  f.a.configure({sound:true,volume:.35});f.a.unlock();f.settle();assert.equal(f.sounds.length,1);assert.equal(f.a.music.paused,false);near(f.a.music.volume,.35*.55);assert.equal(f.timers.size,0);
 });
-test('equal-power crossfade overlaps playback, preserves power and stops the old track after the fade',()=>{
+function single(f){assert(f.sounds.filter(s=>!s.paused).length<=1,'only one background player may run');}
+test('outgoing track stops before incoming playback and same-track scenes retain position',()=>{
  const f=fixture();f.a.setMusicScene('setup');f.a.unlock();f.settle();const old=f.a.music;old.currentTime=9;
- f.a.setMusicScene('mixing');const incoming=f.a.music;assert.notEqual(incoming,old);assert.equal(old.paused,false);assert.equal(old.currentTime,9);assert.equal(incoming.paused,false);near(incoming.volume,0);
- f.advance(.8);near(old.volume,Math.SQRT1_2*.35*.55);near(incoming.volume,old.volume);
- near([...f.a.musicDecks.values()].reduce((s,d)=>s+d.level*d.level,0),1);
- f.settle();assert.equal(old.paused,true);assert.equal(old.currentTime,0);near(incoming.volume,.35*.55);assert.equal(f.timers.size,0);
+ f.a.setMusicScene('mixing');assert.equal(f.a.music,old);f.advance(.08);assert(old.volume>0&&old.volume<.35*.55);single(f);
+ f.advance(.12);assert(old.paused);const incoming=f.a.music;assert.notEqual(incoming,old);assert(!incoming.paused);assert.equal(old.currentTime,0);single(f);
+ f.settle();near(incoming.volume,.35*.55);assert.equal(f.timers.size,0);
  incoming.currentTime=7;f.a.setMusicScene('flight');assert.equal(f.a.music,incoming);assert.equal(incoming.currentTime,7);
 });
-test('rapid scene changes and reversing a fade keep levels continuous and reuse at most four decks',()=>{
- const f=fixture();f.a.setMusicScene('setup');f.a.unlock();f.settle();f.a.setMusicScene('mixing');f.advance(.5);
- const before=[...f.a.musicDecks.values()].map(d=>d.level);f.a.setMusicScene('setup');
- [...f.a.musicDecks.values()].forEach((d,i)=>near(d.level,before[i]));f.settle();assert.match(f.a.music.src,/chipper/);assert.equal(f.a.music.paused,false);
- for(const scene of ['mixing','running','result','setup','mixing']){f.a.setMusicScene(scene);f.advance(.2);}
- f.settle();assert.equal(f.sounds.length,4);assert.equal(f.sounds.filter(s=>!s.paused).length,1);assert.match(f.a.music.src,/electrodoodle/);
+test('rapid changes and reversals never mix tracks or resurrect a stale player',()=>{
+ const f=fixture();f.a.setMusicScene('setup');f.a.unlock();f.settle();
+ for(const scene of ['mixing','running','result','setup','mixing','setup','result','running']){f.a.setMusicScene(scene);for(let i=0;i<7;i++){f.advance(.02);single(f);}}
+ f.settle();single(f);assert.match(f.a.music.src,/bit-quest/);assert(f.sounds.length<=4);assert.equal(f.sounds.filter(s=>!s.paused).length,1);
 });
-test('buffering or blocked playback keeps the outgoing track audible until the incoming track is ready',()=>{
+test('buffering and denied playback leave silence rather than layering songs',()=>{
  const f=fixture();f.a.setMusicScene('setup');f.a.unlock();f.settle();const old=f.a.music;
  const next=f.a.musicDeck('electrodoodle');next.media.loading=true;f.a.setMusicScene('mixing');f.advance(3);
- assert.equal(old.paused,false);near(old.volume,.35*.55);near(next.media.volume,0);
- next.media.ready();f.advance(.8);assert(old.volume>0&&next.media.volume>0);f.settle();assert.equal(old.paused,true);
- const blocked=f.a.musicDeck('bit-quest');blocked.media.reject=true;f.a.setMusicScene('running');f.advance(3);assert.equal(next.media.paused,false);near(next.media.volume,.35*.55);
+ assert(old.paused);near(old.volume,0);near(next.media.volume,0);single(f);next.media.ready();f.settle();assert(!next.media.paused);single(f);
+ const blocked=f.a.musicDeck('bit-quest');blocked.media.reject=true;f.a.setMusicScene('running');f.advance(3);assert(f.sounds.every(s=>s.paused));blocked.media.reject=false;f.a.unlock();f.settle();assert(!blocked.media.paused);single(f);
 });
-test('mute and hiding the tab pause both decks and freeze an in-progress fade',()=>{
- const f=fixture();f.a.setMusicScene('setup');f.a.unlock();f.settle();f.a.setMusicScene('mixing');f.advance(.6);
- const levels=[...f.a.musicDecks.values()].map(d=>d.level);f.a.configure({sound:false,volume:.35});assert(f.sounds.every(s=>s.paused));assert.equal(f.timers.size,0);f.advance(5);
- f.a.configure({sound:true,volume:.35});[...f.a.musicDecks.values()].forEach((d,i)=>near(d.level,levels[i]));
- f.document.hidden=true;f.a.syncMusic();assert(f.sounds.every(s=>s.paused));f.advance(5);f.document.hidden=false;f.a.syncMusic();f.settle();assert.equal(f.a.music.paused,false);
+test('mute and hidden tabs freeze fades and resume only the current player',()=>{
+ const f=fixture();f.a.setMusicScene('setup');f.a.unlock();f.advance(.12);const level=f.a.activeDeck.level;
+ f.a.configure({sound:false,volume:.35});assert(f.sounds.every(s=>s.paused));assert.equal(f.timers.size,0);f.advance(5);
+ f.a.configure({sound:true,volume:.35});near(f.a.activeDeck.level,level);single(f);
+ f.document.hidden=true;f.a.syncMusic();assert(f.sounds.every(s=>s.paused));f.advance(5);f.document.hidden=false;f.a.syncMusic();f.settle();assert(!f.a.music.paused);single(f);
  f.a.configure({sound:true,volume:0});assert(f.sounds.every(s=>s.paused));assert.equal(f.timers.size,0);
 });
-test('race music continues until result reveal; unknown results fade to silence and result cue never restarts',()=>{
+test('scene changes while muted resume the latest song instead of the previous one',()=>{
+ const f=fixture();f.a.setMusicScene('setup');f.a.unlock();f.settle();f.a.configure({sound:false,volume:.35});f.a.setMusicScene('mixing');f.a.setMusicScene('running');f.a.configure({sound:true,volume:.35});f.settle();single(f);assert.match(f.a.music.src,/bit-quest/);
+});
+test('result music starts on reveal, plays once, and unknown results fade to silence',()=>{
  const f=fixture();f.a.setMusicScene('running');f.a.unlock();f.settle();const race=f.a.music;
- f.a.setMusicScene('resultPending');assert.equal(f.a.music,race);assert.equal(race.paused,false);
- f.a.setMusicScene('result');assert.equal(f.a.music.loop,false);f.settle();f.a.music.paused=true;f.a.music.events.ended();f.a.syncMusic();assert.equal(f.a.music.paused,true);
- f.a.setMusicScene('running');f.settle();f.a.setMusicScene('finished');assert.equal(f.a.music.paused,false);f.settle();assert(f.sounds.every(s=>s.paused));
+ f.a.setMusicScene('resultPending');assert.equal(f.a.music,race);f.a.setMusicScene('result');f.settle();assert(race.paused);assert.equal(f.a.music.loop,false);single(f);
+ f.a.music.paused=true;f.a.music.events.ended();f.a.syncMusic();assert(f.a.music.paused);
+ f.a.setMusicScene('running');f.settle();f.a.setMusicScene('finished');f.settle();assert(f.sounds.every(s=>s.paused));
 });
 test('Web Audio gain supports mobile volume and keeps a single media source per cached track',()=>{
  const f=fixture();let sources=0;
@@ -70,9 +70,12 @@ test('deployed music retains recorded hashes, source links and visible attributi
  assert(credits.includes('https://creativecommons.org/licenses/by/4.0/'));assert(fs.readFileSync('index.html','utf8').includes('href="./music-credits.html"'));
 });
 
-test('a slow incoming track is not canceled when an earlier fade finishes',()=>{
- const f=fixture();f.a.setMusicScene('setup');f.a.unlock();f.advance(.5);
- const next=f.a.musicDeck('electrodoodle');next.media.loading=true;f.a.setMusicScene('mixing');f.advance(3);
- assert.equal(next.media.paused,false);assert.equal(f.sounds[0].paused,false);
- next.media.ready();f.settle();assert.equal(f.a.music.paused,false);assert.equal(f.sounds[0].paused,true);
+test('a stale slow play promise cannot restore an old scene after a newer scene starts',()=>{
+ const f=fixture();f.a.setMusicScene('setup');f.a.unlock();f.settle();const slow=f.a.musicDeck('electrodoodle');slow.media.loading=true;f.a.setMusicScene('mixing');f.advance(.3);const stale=slow.media.ready;
+ f.a.setMusicScene('running');f.settle();stale();single(f);assert(slow.media.paused);assert.match(f.a.music.src,/bit-quest/);assert(!f.a.music.paused);
+});
+test('dense impacts share a cooldown, finish cue plays once, and extra melodies are suppressed',()=>{
+ const f=fixture(),a=f.a,calls=[];a.context={currentTime:0,state:'running'};a.tone=(...args)=>calls.push(args);a.setMusicScene('running');
+ for(let i=0;i<100;i++){a.context.currentTime=i/100;a.play(i%2?'hit':'bumper',1);}assert(calls.length<=4);assert(calls.every(c=>c[1]<=.10&&c[2]<=.04));
+ calls.length=0;for(let i=0;i<50;i++){a.play('finish',1);a.play('lead',1);a.play('win',1);}assert.equal(calls.length,1);a.setMusicScene('mixing');a.setMusicScene('running');a.play('finish');assert.equal(calls.length,2);
 });

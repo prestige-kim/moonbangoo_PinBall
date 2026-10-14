@@ -2,7 +2,7 @@
   'use strict';
   const P = window.CosmicPinball = window.CosmicPinball || {};
   P.SOUND_CONFIG = {
-    voices: 10, hitInterval: 0.085, master: 0.35,
+    voices: 4, hitInterval: 0.30, master: 0.35,
     themes: {
       cosmic: { wave: 'sine', root: 130.81, filter: 2600, overtone: 2, decay: 1.05 },
       candy: { wave: 'triangle', root: 174.61, filter: 3400, overtone: 2.5, decay: 1.15 },
@@ -30,7 +30,10 @@
       this.musicScene = 'intro';
       this.musicDecks = new Map();
       this.musicTransition = null;
-      this.musicFadeDuration = 1.6;
+      this.musicFadeDuration = .36;
+      this.activeDeck = null;
+      this.finishedCuePlayed = false;
+      this.lastNotice = -1;
     }
     unlock() {
       if (!this.enabled || !(this.volume > 0)) return;
@@ -42,7 +45,7 @@
           if (!AudioContext) return;
           this.context = new AudioContext();
           this.master = this.context.createGain();
-          this.master.gain.value = this.volume * 0.42;
+          this.master.gain.value = this.volume * 0.18;
           this.master.connect(this.context.destination);
         }
         if (this.context.state === 'suspended') this.context.resume().catch(function () {});
@@ -55,12 +58,13 @@
       this.theme = settings.theme || 'cosmic';
       this.syncMusic();
       if (this.master && this.context) {
-        this.master.gain.setTargetAtTime(this.enabled ? this.volume * 0.42 : 0, this.context.currentTime, 0.035);
+        this.master.gain.setTargetAtTime(this.enabled ? this.volume * 0.18 : 0, this.context.currentTime, 0.035);
       }
     }
     musicNow() { return window.performance ? window.performance.now() / 1000 : Date.now() / 1000; }
     musicAllowed() { return this.musicUnlocked && this.enabled && this.volume > 0 && !document.hidden; }
     setMusicScene(scene) {
+      if (scene === 'running' && this.musicScene !== scene) this.finishedCuePlayed = false;
       this.musicScene = scene;
       const tracks = { intro: 'chipper-doodle-v2', setup: 'chipper-doodle-v2',
         mixing: 'electrodoodle', flight: 'electrodoodle', running: 'bit-quest',
@@ -69,9 +73,8 @@
       if (track !== this.musicTrack) {
         this.musicTrack = track;
         this.musicFinished = false;
-        this.musicFadeDuration = scene === 'running' ? 1.25 : scene === 'result' ? 1.8 : 1.6;
-        // Keep the outgoing music until the next player's play promise confirms readiness.
-        if (!track) this.beginMusicFade(null);
+        this.musicFadeDuration = scene === 'result' ? .5 : .36;
+        if (!this.musicAllowed() && this.activeDeck) { this.cancelMusicFade(); this.stopMusicDeck(this.activeDeck); this.activeDeck = null; }
       }
       this.syncMusic();
     }
@@ -85,6 +88,8 @@
       media.addEventListener('ended', () => {
         if (!media.loop) {
           deck.ended = true; deck.level = 0;
+          if (this.activeDeck === deck) { this.cancelMusicFade(); this.activeDeck = null; }
+          this.musicLevel(deck);
           if (this.musicTrack === track) this.musicFinished = true;
         }
       });
@@ -106,85 +111,100 @@
       } else deck.media.volume = volume;
       if (deck.media === this.music) { this.musicGain = deck.gain; this.musicNode = deck.node; }
     }
-    beginMusicFade(track) {
-      if (this.musicTransition && this.musicTransition.target === track) return;
+    cancelMusicFade() {
       if (this.musicFade) window.clearInterval(this.musicFade);
-      this.musicFade = null;
-      const starts = new Map();
-      for (const deck of this.musicDecks.values()) starts.set(deck, deck.level);
-      this.musicTransition = { target: track, starts, duration: this.musicFadeDuration,
-        started: this.musicNow(), elapsed: 0 };
+      this.musicFade = null; this.musicTransition = null;
+    }
+    stopMusicDeck(deck) {
+      deck.request = (deck.request || 0) + 1; deck.pending = false;
+      deck.media.pause(); deck.media.currentTime = 0; deck.level = 0;
+      this.musicLevel(deck);
+    }
+    beginMusicFade(deck, target, duration) {
+      this.cancelMusicFade();
+      this.musicTransition = { deck, target, start: deck.level, elapsed: 0, duration };
       this.runMusicFade();
     }
     runMusicFade() {
       if (!this.musicAllowed() || !this.musicTransition || this.musicFade) return;
       const transition = this.musicTransition;
+      if (transition.deck.pending) return;
       transition.started = this.musicNow() - transition.elapsed;
       const tick = () => {
+        if (this.musicTransition !== transition) return;
         const t = Math.min(1, Math.max(0, (this.musicNow() - transition.started) / transition.duration));
         transition.elapsed = t * transition.duration;
-        // Smoothstep eases the endpoints. Equal-power curves avoid a dip in loudness.
-        const ease = t * t * (3 - 2 * t), angle = ease * Math.PI / 2;
-        for (const deck of this.musicDecks.values()) {
-          const start = transition.starts.get(deck) || 0, incoming = deck.track === transition.target;
-          deck.level = deck.ended ? 0 : t === 1 ? (incoming ? 1 : 0) :
-            Math.sqrt(start * start * Math.cos(angle) ** 2 + (incoming ? Math.sin(angle) ** 2 : 0));
-          this.musicLevel(deck);
-          if (t === 1 && !incoming && !(deck.pending && deck.track === this.musicTrack)) {
-            deck.media.pause(); deck.media.currentTime = 0;
+        const ease = t * t * (3 - 2 * t);
+        transition.deck.level = transition.start + (transition.target - transition.start) * ease;
+        this.musicLevel(transition.deck);
+        if (t === 1) {
+          this.cancelMusicFade();
+          if (transition.target === 0) {
+            this.stopMusicDeck(transition.deck);
+            if (this.activeDeck === transition.deck) this.activeDeck = null;
+            this.syncMusic();
           }
         }
-        if (t === 1) {
-          window.clearInterval(this.musicFade); this.musicFade = null; this.musicTransition = null;
-        }
       };
-      this.musicFade = window.setInterval(tick, 20);
-      tick();
+      this.musicFade = window.setInterval(tick, 20); tick();
+    }
+    playMusicDeck(deck) {
+      const request = deck.request = (deck.request || 0) + 1;
+      deck.pending = true;
+      const ready = () => {
+        if (deck.request !== request) return;
+        deck.pending = false;
+        if (!this.musicAllowed()) { deck.media.pause(); return; }
+        if (this.activeDeck !== deck || deck.track !== this.musicTrack || this.musicFinished) {
+          this.stopMusicDeck(deck); return;
+        }
+        if (!this.musicTransition) this.beginMusicFade(deck, 1, this.musicFadeDuration);
+        else this.runMusicFade();
+      };
+      const failed = () => {
+        if (deck.request !== request) return;
+        deck.pending = false; deck.media.pause(); deck.level = 0; this.musicLevel(deck);
+        if (this.activeDeck === deck) { this.activeDeck = null; this.cancelMusicFade(); }
+      };
+      try { const playing = deck.media.play(); if (playing && playing.then) playing.then(ready, failed); else ready(); }
+      catch (_) { failed(); }
     }
     syncMusic() {
       if (!window.Audio) return;
       if (!this.musicAllowed()) {
         if (this.musicFade) window.clearInterval(this.musicFade);
         this.musicFade = null;
-        for (const deck of this.musicDecks.values()) deck.media.pause();
+        for (const deck of this.musicDecks.values()) { if (deck.pending) { deck.request = (deck.request || 0) + 1; deck.pending = false; } deck.media.pause(); }
         return;
       }
-      let selected = null;
-      if (this.musicTrack && !this.musicFinished) {
-        selected = this.musicDeck(this.musicTrack);
-        if (this.music !== selected.media) {
-          if (this.music) this.music.id = '';
-          if (selected.level === 0 && selected.media.paused) selected.media.currentTime = 0;
-          selected.ended = false;
-          this.music = selected.media; this.music.id = 'background-music';
+      let active = this.activeDeck;
+      if (active && active.track !== this.musicTrack) {
+        // A buffering request has no audible tail to preserve. Invalidate it so
+        // its late play promise cannot revive music from a previous scene.
+        if (active.pending || active.media.paused || active.level === 0) {
+          this.cancelMusicFade(); this.stopMusicDeck(active); this.activeDeck = null;
+        } else if (!this.musicTransition || this.musicTransition.target !== 0) {
+          this.beginMusicFade(active, 0, .18);
         }
+        if (this.activeDeck) return;
       }
-      for (const deck of this.musicDecks.values()) {
-        this.musicLevel(deck);
-        if (deck.ended || (deck !== selected && deck.level === 0) || deck.pending) continue;
-        if (deck.media.paused) {
-          deck.pending = true;
-          const ready = () => {
-            deck.pending = false;
-            if (!this.musicAllowed()) { deck.media.pause(); return; }
-            if (deck.track === this.musicTrack && !this.musicFinished) {
-              const fadingTo = this.musicTransition && this.musicTransition.target;
-              if (fadingTo !== deck.track && deck.level !== 1) this.beginMusicFade(deck.track);
-              else this.runMusicFade();
-            } else if (deck.level === 0) deck.media.pause();
-          };
-          try {
-            const playing = deck.media.play();
-            if (playing && playing.then) playing.then(ready, error => {
-              deck.pending = false;
-              if (error && error.name === 'AbortError' && this.musicAllowed() && deck.track === this.musicTrack) this.syncMusic();
-            });
-            else ready();
-          } catch (_) { deck.pending = false; }
-        } else if (deck === selected && ((!this.musicTransition && deck.level !== 1) ||
-          (this.musicTransition && this.musicTransition.target !== deck.track))) this.beginMusicFade(deck.track);
+      if (!this.musicTrack || this.musicFinished) return;
+      active = this.activeDeck;
+      if (!active) {
+        active = this.musicDeck(this.musicTrack);
+        // Enforce one background player, even after interrupted transitions.
+        for (const deck of this.musicDecks.values()) if (deck !== active) this.stopMusicDeck(deck);
+        if (this.music) this.music.id = '';
+        active.ended = false; active.level = 0; active.media.currentTime = 0;
+        this.activeDeck = active; this.music = active.media; this.music.id = 'background-music';
+        this.musicLevel(active); this.playMusicDeck(active); return;
       }
-      this.runMusicFade();
+      this.musicLevel(active);
+      if (active.pending) return;
+      if (active.media.paused) { this.playMusicDeck(active); return; }
+      if (this.musicTransition && this.musicTransition.target === 0) this.beginMusicFade(active, 1, this.musicFadeDuration);
+      else if (!this.musicTransition && active.level < 1) this.beginMusicFade(active, 1, this.musicFadeDuration);
+      else this.runMusicFade();
     }
     tone(frequency, duration, strength, delay, glide) {
       const ctx = this.context;
@@ -272,6 +292,20 @@
     play(type, intensity, variant) {
       if (!this.enabled || !(this.volume > 0) || !this.context) return;
       const config = P.SOUND_CONFIG;
+      // Music carries the melody. Visual leader/finish notifications need no
+      // repeating fanfare, especially with fifty marbles and dense terrain.
+      if (type === 'lead' || type === 'win') return;
+      if (type === 'finish') {
+        if (this.finishedCuePlayed) return;
+        this.finishedCuePlayed = true;
+      }
+      if (type === 'hit' || type === 'bumper') {
+        if (this.context.currentTime - this.lastHit < config.hitInterval) return;
+        this.lastHit = this.context.currentTime;
+      } else if (!['launch','cannon','finish'].includes(type)) {
+        if (this.context.currentTime - this.lastNotice < .55) return;
+        this.lastNotice = this.context.currentTime;
+      }
       const theme = config.themes[this.theme] || config.themes.cosmic;
       const root = theme.root;
       const power = Math.max(0.1, Math.min(1, Number(intensity) || 0.5));
@@ -286,13 +320,9 @@
         this.air(0.36, 0.022, 0, 700, 1500, 350);
         this.tone(root * 3.2, 0.075, 0.035, 0.12, root * 1.2);
       } else if (type === 'hit') {
-        const now = this.context.currentTime;
-        if (now - this.lastHit < config.hitInterval) return;
-        this.lastHit = now;
-        this.tone(root * (1.8 + power * 2.8), 0.07 + power * 0.08, 0.025 + power * 0.075, 0, root * 1.2);
+        this.tone(root * 2, .055, .012 + power * .018, 0, root * 1.5);
       } else if (type === 'bumper') {
-        this.tone(root * 2, 0.2, 0.18, 0, root);
-        this.tone(root * theme.overtone, 0.14, 0.07, 0.015);
+        this.tone(root * 2, .10, .04, 0, root * 1.5);
       } else if (type === 'skill' && variant === 'pulse') {
         this.tone(root * 0.75, 0.3, 0.18, 0, root * 0.35);
         this.tone(root * 3, 0.12, 0.07, 0.03, root * 1.5);
@@ -310,14 +340,9 @@
         this.tone(root * 4, 0.15, 0.07, 0.03);
       } else if (type === 'go') {
         [1, 1.25, 1.5, 2].forEach((note, i) => this.tone(root * note * 2, 0.32, 0.17, i * 0.055));
-      } else if (type === 'lead') {
-        this.tone(root * 3, 0.16, 0.11, 0);
-        this.tone(root * 4, 0.22, 0.12, 0.08);
       } else if (type === 'finish') {
-        this.tone(root * 2, 0.24, 0.1, 0);
-        this.tone(root * 3, 0.27, 0.09, 0.06);
-      } else if (type === 'win') {
-        [1, 1.125, 1.25, 1.5, 2, 1.5, 2, 2.25].forEach((note, i) => this.tone(root * note, 0.55, 0.14, i * 0.17));
+        this.tone(root * 2, .10, .03, 0);
+
       }
     }
   }

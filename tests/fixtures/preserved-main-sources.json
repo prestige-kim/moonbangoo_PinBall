@@ -9,7 +9,6 @@
     "js/shuffle-input.js": "c53898379372660a8922e1412cf18cbaac8596e8265df31ec117db1c9c0396bf",
     "js/throw-gate.js": "2edf9c6af6ea90594963603822228c445026df95793ffa4ee7555be778e2f7da",
     "js/hand-start.js": "298e6c089a19a66cf048ddad27d4478977d5507475e03327d90c4232d6131d5a",
-    "js/audio.js": "cf25ff727976e5c6f9fce90081c40f0d4ce408f23466c284d827c1b49218ddd3",
     "js/effects.js": "fc19741e8634901304734ecc1f5896eb301024d5711ab9e4c6d642fdd386efc4",
     "js/race-standing.js": "cad6e28fe03ff61eec21b548d646c3dee8a6b07d604b1eab3a1ea7393585c718",
     "js/themes.js": "1719b27b8c269fcdef0908041883871adb833c65f465f20542df92fdbca2e05d",
@@ -17,11 +16,20 @@
     "assets/music/bit-quest.mp3": "80c72638898d8b9e8f7c602d26817be6fdd8c5fa04ec03973f2d25c415d4e8e0",
     "assets/music/chipper-doodle-v2.mp3": "1555641327651b1f2e3e2ad68d1c741034ffecccf46c0e5c762a765ad71bbaa7",
     "assets/music/electrodoodle.mp3": "550458d3e148af6d2c07b874ad3eb6a3be48b1dacd22a61aa77c92c68ea4582b",
-    "assets/music/winner-winner.mp3": "f4337fbc4e7dc3b5be57ce15588d002801008b9470495d713aebc783279f4f33",
-    "music-credits.html": "2768e68b6ffc3b4e67859f5227b208002cd32d8a0fd856473c199d48d98ab993"
+    "assets/music/winner-winner.mp3": "f4337fbc4e7dc3b5be57ce15588d002801008b9470495d713aebc783279f4f33"
   },
   "verifiedDeployment": "https://prestige-kim.github.io/moonbangoo_PinBall/",
   "intentionalTerrainChanges": {
     "js/maps.js": "User requested obstacles and different backgrounds for all maps on 2026-10-14; original shapes remain beneath added passive pins."
+  },
+  "intentionalAudioChanges": {
+    "js/audio.js": {
+      "reason": "User requested clean, non-overlapping music and restrained effects on 2026-10-14. Original MP3 assets remain unchanged.",
+      "previousDeploymentSHA256": "cf25ff727976e5c6f9fce90081c40f0d4ce408f23466c284d827c1b49218ddd3"
+    },
+    "music-credits.html": {
+      "reason": "Update runtime transition description only; retain all composer, source, ISRC and license attribution.",
+      "previousDeploymentSHA256": "2768e68b6ffc3b4e67859f5227b208002cd32d8a0fd856473c199d48d98ab993"
+    }
   }
 }

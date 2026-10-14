@@ -63,4 +63,5 @@ async function main(){
  }finally{fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));await browser.close();server.close();}
  console.log(JSON.stringify({maps:report.maps.map(r=>({map:r.map,time:r.first.time,exactReplay:r.exactReplay})),layouts:report.layouts.map(r=>({width:r.width,input:r.input})),performance:report.performance,errors:report.errors},null,2));
 }
-main().catch(e=>{console.error(e);process.exitCode=1;});
+if(require.main===module)main().catch(e=>{console.error(e);process.exitCode=1;});
+else module.exports={pour};

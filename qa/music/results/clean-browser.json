@@ -1,0 +1,106 @@
+{
+  "maps": [
+    {
+      "map": "classic",
+      "probe": {
+        "samples": 3018,
+        "maxPlayers": 1,
+        "maxVoices": 2,
+        "violations": 0
+      },
+      "ranked": 50,
+      "voices": 0,
+      "final": {
+        "samples": 3126,
+        "maxPlayers": 1,
+        "maxVoices": 2,
+        "violations": 0
+      },
+      "stages": [
+        "setup",
+        "mixing",
+        "running",
+        "result",
+        "restart"
+      ],
+      "muteResume": true
+    },
+    {
+      "map": "twinfold",
+      "probe": {
+        "samples": 2101,
+        "maxPlayers": 1,
+        "maxVoices": 2,
+        "violations": 0
+      },
+      "ranked": 50,
+      "voices": 0,
+      "final": {
+        "samples": 2209,
+        "maxPlayers": 1,
+        "maxVoices": 2,
+        "violations": 0
+      },
+      "stages": [
+        "setup",
+        "mixing",
+        "running",
+        "result",
+        "restart"
+      ],
+      "muteResume": true
+    },
+    {
+      "map": "cascade",
+      "probe": {
+        "samples": 2268,
+        "maxPlayers": 1,
+        "maxVoices": 2,
+        "violations": 0
+      },
+      "ranked": 50,
+      "voices": 0,
+      "final": {
+        "samples": 2375,
+        "maxPlayers": 1,
+        "maxVoices": 2,
+        "violations": 0
+      },
+      "stages": [
+        "setup",
+        "mixing",
+        "running",
+        "result",
+        "restart"
+      ],
+      "muteResume": true
+    },
+    {
+      "map": "rhythm",
+      "probe": {
+        "samples": 2223,
+        "maxPlayers": 1,
+        "maxVoices": 2,
+        "violations": 0
+      },
+      "ranked": 50,
+      "voices": 0,
+      "final": {
+        "samples": 2331,
+        "maxPlayers": 1,
+        "maxVoices": 2,
+        "violations": 0
+      },
+      "stages": [
+        "setup",
+        "mixing",
+        "running",
+        "result",
+        "restart"
+      ],
+      "muteResume": true
+    }
+  ],
+  "errors": [],
+  "limitation": "Decoded media playback and gain state tested; no physical speaker listening or handset validation."
+}

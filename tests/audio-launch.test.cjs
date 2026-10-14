@@ -60,7 +60,7 @@ test('cannon layers share the audio clock, have a sharp attack and bounded gain'
   assert(all.every(node => node.startTime >= context.currentTime && node.stopTime <= context.currentTime + 0.66));
   const peaks = context.nodes.filter(node => node.kind === 'gain' && node !== audio.master)
     .map(node => Math.max(...node.gain.events.map(event => event.value)));
-  assert(peaks.reduce((sum, gain) => sum + gain, 0) * 0.42 < 0.25, 'combined full-volume peaks leave headroom');
+  assert(peaks.reduce((sum, gain) => sum + gain, 0) * 0.18 < 0.25, 'combined full-volume peaks leave headroom');
   assert(context.buffers[0].getChannelData(0).every(value => Number.isFinite(value) && value >= -1 && value <= 1));
 });
 
@@ -80,7 +80,7 @@ test('sound settings and a suspended context prevent new cannon and charge voice
   assert.equal(sources(context).length, 0);
   assert.equal(audio.master.gain.events.at(-1).value, 0);
   audio.configure({ sound: true, volume: 0.25, theme: 'gold' });
-  assert.equal(audio.master.gain.events.at(-1).value, 0.25 * 0.42);
+  assert.equal(audio.master.gain.events.at(-1).value, 0.25 * 0.18);
   context.state = 'suspended';
   audio.play('cannon'); audio.play('charge');
   assert.equal(sources(context).length, 0);
@@ -115,10 +115,10 @@ test('quiet charging and repeated cannon shots reuse one noise buffer', () => {
   assert(sources(context).filter(node => node.kind === 'noise').every(node => node.buffer === originalBuffer));
 });
 
-test('iOS AudioContext fallback resumes and existing result melody remains available', () => {
+test('iOS AudioContext fallback resumes and a single restrained finish chime remains available', () => {
   const { audio, context } = fixture({ webkit: true, state: 'suspended' });
   assert.equal(context.resumes, 1);
   context.state = 'running'; audio.play('finish');
-  assert.equal(audio.voices, 2);
+  assert.equal(audio.voices, 1);
   assert(sources(context).every(node => node.kind === 'oscillator'));
 });
