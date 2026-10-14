@@ -1,0 +1,161 @@
+{
+  "at": "2026-10-14T07:55:42.470084+00:00",
+  "version": 3,
+  "startHEAD": "1f54780b4c56d9bce814d0b3ff877ce6ad56b703",
+  "deployedAndRemoteSHA": "5d25319ddd2d352cf35e314da27329c97daec397",
+  "remoteRef": "main",
+  "includesRemote": true,
+  "sourceSHA256": "89a39875df05473f9b5880959005c33a53f1688aa6e5b733bde171913003bbf5",
+  "operatingSources": {
+    "index.html": "1a90a3c76dea076ae7c19f887ff8b42f9ca4f795f355546b77c3d69823fcd608",
+    "js/maps/rhythm.js": "89a39875df05473f9b5880959005c33a53f1688aa6e5b733bde171913003bbf5",
+    "js/maps/rhythm-style.js": "5d85f3d632d7e50e2b3506315cef2583946ed9243034aee2f709e4ca7f1fd4b7",
+    "js/renderer.js": "34ab5286de9244bba3c93c9a20a8ab3a41cd6fe6bd758bed87b16da68df454e2"
+  },
+  "geometry": {
+    "shutters": 4,
+    "paddles": 6,
+    "chainGates": 4,
+    "fixedGuidePairs": 6,
+    "pins": 15,
+    "total": 41,
+    "shutterPeriod": 4.8,
+    "paddleAndChainPeriod": 3.2,
+    "chainSpacingSeconds": 0.8,
+    "fullCombinedCycleSeconds": 9.6,
+    "minimumIndependentGap": 119.4736823473956
+  },
+  "unitTests": {
+    "total": 275,
+    "passed": 275,
+    "failed": 0
+  },
+  "preservation": {
+    "operatingFiles": 54,
+    "otherMapRenderTraceCases": 30,
+    "liveDeployedFilesCompared": 26
+  },
+  "positions": {
+    "at": "2026-10-14T07:46:14.124Z",
+    "cases": 27480,
+    "failures": 0,
+    "maximumTime": 4.908333333333333,
+    "minimumContacts": 1
+  },
+  "full": {
+    "at": "2026-10-14T07:46:14.122Z",
+    "cases": 240,
+    "failures": 0,
+    "maximumTime": 62.69166666666666,
+    "minimumContacts": 19
+  },
+  "groups": {
+    "at": "2026-10-14T07:45:21.691Z",
+    "cases": 36,
+    "failures": 0,
+    "maximumTime": 63.041666666666664,
+    "minimumContacts": 9,
+    "minimumWinnerContacts": 12,
+    "minimumWinnerDynamicContacts": 2,
+    "roleContacts": {
+      "beat-shutter": 8894,
+      "beat-paddle": 2020,
+      "beat-chain": 2096
+    }
+  },
+  "rotors": {
+    "at": "2026-10-14T07:49:58.105Z",
+    "cases": 9,
+    "failures": 0,
+    "maximumTime": 162.50833333333333,
+    "maximumDepth": 0
+  },
+  "matrix": {
+    "at": "2026-10-14T07:51:07.456Z",
+    "cases": 108,
+    "failures": 0,
+    "errors": {
+      "finite": 0,
+      "bounds": 0,
+      "penetration": 0,
+      "forbidden": 0,
+      "timeout": 0,
+      "ranking": 0
+    },
+    "maximumTime": 174.73333333333332
+  },
+  "hands": {
+    "cases": 18,
+    "exactReplays": 18
+  },
+  "parallelQAPerformance": [
+    {
+      "time": 54.733333333333334,
+      "stepP95Milliseconds": 2.1612089999835007
+    },
+    {
+      "time": 50.483333333333334,
+      "stepP95Milliseconds": 2.694249999942258
+    },
+    {
+      "time": 59.15833333333333,
+      "stepP95Milliseconds": 1.6991249999846332
+    },
+    {
+      "time": 50.94166666666666,
+      "stepP95Milliseconds": 1.206958000024315
+    },
+    {
+      "time": 51.90833333333333,
+      "stepP95Milliseconds": 1.2765000000363216
+    }
+  ],
+  "browser": {
+    "count": 50,
+    "completed": 50,
+    "speed": 1,
+    "winnerTime": 34.12,
+    "finishTime": 51.59,
+    "warningsAndErrors": 0,
+    "result": "result50.png",
+    "settingRestored": "12 marbles; speed 1; rhythm selected"
+  },
+  "quietPerformance": [
+    {
+      "time": 54.975,
+      "stepP95": 0.5334170000000142,
+      "errors": {
+        "finite": 0,
+        "bounds": 0,
+        "penetration": 0,
+        "forbidden": 0,
+        "timeout": 0,
+        "ranking": 0
+      }
+    },
+    {
+      "time": 51.891666666666666,
+      "stepP95": 1.3912920000002487,
+      "errors": {
+        "finite": 0,
+        "bounds": 0,
+        "penetration": 0,
+        "forbidden": 0,
+        "timeout": 0,
+        "ranking": 0
+      }
+    },
+    {
+      "time": 58.775,
+      "stepP95": 1.0741669999997612,
+      "errors": {
+        "finite": 0,
+        "bounds": 0,
+        "penetration": 0,
+        "forbidden": 0,
+        "timeout": 0,
+        "ranking": 0
+      }
+    }
+  ]
+}

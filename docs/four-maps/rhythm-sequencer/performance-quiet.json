@@ -1,0 +1,43 @@
+{
+  "at": "2026-10-14T07:55:06.778Z",
+  "condition": "After parallel QA processes completed; physics step timing, not display FPS",
+  "sourceSHA256": "89a39875df05473f9b5880959005c33a53f1688aa6e5b733bde171913003bbf5",
+  "rows": [
+    {
+      "time": 54.975,
+      "stepP95": 0.5334170000000142,
+      "errors": {
+        "finite": 0,
+        "bounds": 0,
+        "penetration": 0,
+        "forbidden": 0,
+        "timeout": 0,
+        "ranking": 0
+      }
+    },
+    {
+      "time": 51.891666666666666,
+      "stepP95": 1.3912920000002487,
+      "errors": {
+        "finite": 0,
+        "bounds": 0,
+        "penetration": 0,
+        "forbidden": 0,
+        "timeout": 0,
+        "ranking": 0
+      }
+    },
+    {
+      "time": 58.775,
+      "stepP95": 1.0741669999997612,
+      "errors": {
+        "finite": 0,
+        "bounds": 0,
+        "penetration": 0,
+        "forbidden": 0,
+        "timeout": 0,
+        "ranking": 0
+      }
+    }
+  ]
+}
