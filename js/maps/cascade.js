@@ -1,12 +1,13 @@
 (function(P){
   'use strict';
-  var map={id:'cascade',version:5,name:'빗살 낙하',width:1000,height:11200,spawn:{x:36,y:50,width:928,height:700},finish:{y:11000},obstacles:[]};
+  var map={id:'cascade',version:6,name:'빗살 낙하',width:1000,height:11200,spawn:{x:36,y:50,width:928,height:700},finish:{y:11000},obstacles:[]};
   function rail(id,x1,y1,x2,y2,role){map.obstacles.push({type:'segment',id:'cascade-'+id,x1:x1,y1:y1,x2:x2,y2:y2,thickness:8,role:role||'guide'});}
   // Each pair covers the full horizontal projection, even while every comb is
   // retracted. A falling marble must change direction rather than use a shaft.
+  var catchDrop=660*Math.tan(.32); // Slightly steeper exits reduce small-group dwell time.
   [880,2320,3870,5420,6970,8520,10070].forEach(function(y,row){
-    rail('catch-'+row+'-left',-40,y,620,y+210,'catch-shelf');
-    rail('catch-'+row+'-right',380,y+570,1040,y+360,'catch-shelf');
+    rail('catch-'+row+'-left',-40,y,620,y+catchDrop,'catch-shelf');
+    rail('catch-'+row+'-right',380,y+360+catchDrop,1040,y+360,'catch-shelf');
   });
   [500,165,835].forEach(function(x,i){map.obstacles.push({type:'pin',id:'cascade-detail-final-'+i,x:x,y:10800,r:14});});
   [2680,4230,5780,7330,8880,10430].forEach(function(y,row){[420,580].forEach(function(x,col){map.obstacles.push({type:'pin',id:'cascade-detail-'+row+'-'+col,x:x,y:y,r:14});});});

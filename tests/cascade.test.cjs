@@ -2,7 +2,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),{P,run,assertRun,assertGaps}=require('../qa/four-maps/helpers.cjs');
 const map=P.MAPS.cascade;
 test('cascade has six faster rigid comb pairs with seven full-width zigzag guards',()=>{
- assert.equal(map.version,5);assert.equal(map.obstacles.filter(o=>o.role==='catch-shelf').length,14);
+ assert.equal(map.version,6);assert.equal(map.obstacles.filter(o=>o.role==='catch-shelf').length,14);
  const spines=map.obstacles.filter(o=>o.role==='comb-spine');assert.equal(spines.length,12);for(const spine of spines)assert.equal(2*Math.PI/spine.speed,4);assert.equal(map.obstacles.filter(o=>o.role==='comb-tooth').length,252);
  const p=new P.Physics({map,names:P.parseNames('공')});
  for(const spine of spines){const teeth=map.obstacles.filter(o=>o.assembly===spine.assembly&&o.role==='comb-tooth');for(let i=1;i<teeth.length;i++)assert(Math.hypot(teeth[i].x-teeth[i-1].x,teeth[i].y-teeth[i-1].y)-teeth[i].thickness-teeth[i-1].thickness<16,'grooves must be narrower than the smallest ball');}
@@ -26,4 +26,12 @@ test('independent cascade assemblies keep >=96 clearance over the full cycle; on
 
 test('small high-bounce marbles cannot be dragged into a comb groove at a wall slot',()=>{
  for(const n of [25,50])assertRun(run('cascade',n,'fourmaps-dev-matrix-cascade-0-'+n+'-2',{radius:8,gravity:350,restitution:.92}));
+});
+
+
+test('cascade v5 start records are refused after the v6 rail slope change',()=>{
+ const names=P.parseNames('공'),seed='canyon-slope-replay',old={...map,version:5,obstacles:map.obstacles.map(o=>o.role==='catch-shelf'?{...o,y1:o.x1<0?o.y1:o.y2+210,y2:o.x1<0?o.y1+210:o.y2}:o)};
+ function record(m){const p=new P.Physics({map:m,names,seed});P.commitHandStart(p,[{id:p.marbles[0].id,x:0,y:0,vx:0,vy:0,r:12}]);return p.handStart;}
+ assert.throws(()=>P.restoreHandStart(new P.Physics({map,names,seed}),record(old)),/호환/);
+ const start=record(map),p=new P.Physics({map,names,seed});P.restoreHandStart(p,start);assert.deepEqual(p.handStart,start);
 });
