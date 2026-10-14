@@ -1,0 +1,457 @@
+{
+  "at": "2026-10-14T03:56:09.794Z",
+  "mapVersion": 5,
+  "sourceSHA256": "1c1c24639dd6dbc5e9ca9d3d8cbe282b2975a8d0849b7b0044ed79d2038f2c85",
+  "criteria": {
+    "medianRatio": [
+      0.8,
+      1.2
+    ],
+    "p90Ratio": [
+      0.7,
+      1.3
+    ],
+    "timeout": 240,
+    "counts": [
+      1,
+      6,
+      25,
+      50
+    ],
+    "protocols": [
+      "B",
+      "C",
+      "D"
+    ],
+    "seedsPerCell": 5
+  },
+  "summary": [
+    {
+      "count": 1,
+      "n": 15,
+      "classicMedian": 45.125,
+      "libraryMedian": 42.84166666666667,
+      "classicP90": 55.266666666666666,
+      "libraryP90": 56.9,
+      "classicFirstMedian": 45.12323218562202,
+      "libraryFirstMedian": 42.83764702328481,
+      "medianRatio": 0.9493998153277932,
+      "p90Ratio": 1.0295536791314837,
+      "pass": true
+    },
+    {
+      "count": 6,
+      "n": 15,
+      "classicMedian": 52.6,
+      "libraryMedian": 52.46666666666667,
+      "classicP90": 58.96666666666667,
+      "libraryP90": 60.81666666666666,
+      "classicFirstMedian": 36.88962122496811,
+      "libraryFirstMedian": 40.64037036769618,
+      "medianRatio": 0.9974651457541192,
+      "p90Ratio": 1.0313736574335781,
+      "pass": true
+    },
+    {
+      "count": 25,
+      "n": 15,
+      "classicMedian": 58.475,
+      "libraryMedian": 54.30833333333333,
+      "classicP90": 61.833333333333336,
+      "libraryP90": 58.65,
+      "classicFirstMedian": 31.92483350291181,
+      "libraryFirstMedian": 34.10467686972984,
+      "medianRatio": 0.9287444776970214,
+      "p90Ratio": 0.9485175202156334,
+      "pass": true
+    },
+    {
+      "count": 50,
+      "n": 15,
+      "classicMedian": 60.108333333333334,
+      "libraryMedian": 56.96666666666667,
+      "classicP90": 63.71666666666667,
+      "libraryP90": 58.358333333333334,
+      "classicFirstMedian": 29.558045026268143,
+      "libraryFirstMedian": 33.484181306045535,
+      "medianRatio": 0.9477332593927631,
+      "p90Ratio": 0.9159037405179179,
+      "pass": true
+    }
+  ],
+  "seedPrefix": "library-pace-confirm-v5b-",
+  "pairedRaces": 60,
+  "allComplete": true,
+  "libraryDynamicHitRange": [
+    18,
+    1628
+  ],
+  "matrix": {
+    "cases": 108,
+    "handReplayCases": 18,
+    "failures": 0,
+    "at": "2026-10-14T03:56:43.181Z",
+    "extremeSettings": {
+      "radius": [
+        8,
+        16
+      ],
+      "gravity": [
+        350,
+        1500
+      ],
+      "restitution": [
+        0.35,
+        0.92
+      ]
+    },
+    "counts": [
+      1,
+      2,
+      6,
+      25,
+      49,
+      50
+    ]
+  },
+  "previousRevision": {
+    "sourceSHA256": "a2c74056073f15e1f0458218d4a9deaec38903b90ac375d8312382ba29f67a28",
+    "summary": [
+      {
+        "count": 1,
+        "n": 15,
+        "classicMedian": 40.625,
+        "libraryMedian": 51.61666666666667,
+        "classicP90": 49.90833333333333,
+        "libraryP90": 54.025,
+        "classicFirstMedian": 40.62101845766357,
+        "libraryFirstMedian": 51.61528809791357,
+        "medianRatio": 1.2705641025641026,
+        "p90Ratio": 1.0824845550175322,
+        "pass": false
+      },
+      {
+        "count": 6,
+        "n": 15,
+        "classicMedian": 53.11666666666667,
+        "libraryMedian": 56.608333333333334,
+        "classicP90": 61.958333333333336,
+        "libraryP90": 66.11666666666666,
+        "classicFirstMedian": 37.186628224735614,
+        "libraryFirstMedian": 44.12807156028578,
+        "medianRatio": 1.0657358016943834,
+        "p90Ratio": 1.067114996637525,
+        "pass": true
+      },
+      {
+        "count": 25,
+        "n": 15,
+        "classicMedian": 57.574999999999996,
+        "libraryMedian": 61.583333333333336,
+        "classicP90": 64.775,
+        "libraryP90": 65.68333333333334,
+        "classicFirstMedian": 33.505091551489244,
+        "libraryFirstMedian": 40.511761319408805,
+        "medianRatio": 1.0696193370965408,
+        "p90Ratio": 1.0140228997812941,
+        "pass": true
+      },
+      {
+        "count": 50,
+        "n": 15,
+        "classicMedian": 60.824999999999996,
+        "libraryMedian": 59.75,
+        "classicP90": 63.28333333333333,
+        "libraryP90": 63.175,
+        "classicFirstMedian": 30.447834300449028,
+        "libraryFirstMedian": 36.0968571129048,
+        "medianRatio": 0.9823263460748048,
+        "p90Ratio": 0.9982881222017382,
+        "pass": true
+      }
+    ],
+    "note": "Initial 20-bay angle .30 / pin offset200 geometry failed the single-marble median criterion. Preserved as a failed development result; not final evidence."
+  },
+  "beforeDevelopment": [
+    {
+      "map": "classic",
+      "count": 1,
+      "seed": "library-pace-1-0",
+      "time": 35.458333333333336,
+      "hitEvents": 42
+    },
+    {
+      "map": "twinfold",
+      "count": 1,
+      "seed": "library-pace-1-0",
+      "time": 20.191666666666666,
+      "hitEvents": 10
+    },
+    {
+      "map": "classic",
+      "count": 1,
+      "seed": "library-pace-1-1",
+      "time": 32.45,
+      "hitEvents": 45
+    },
+    {
+      "map": "twinfold",
+      "count": 1,
+      "seed": "library-pace-1-1",
+      "time": 21.3,
+      "hitEvents": 12
+    },
+    {
+      "map": "classic",
+      "count": 1,
+      "seed": "library-pace-1-2",
+      "time": 42.416666666666664,
+      "hitEvents": 65
+    },
+    {
+      "map": "twinfold",
+      "count": 1,
+      "seed": "library-pace-1-2",
+      "time": 18.066666666666666,
+      "hitEvents": 3
+    },
+    {
+      "map": "classic",
+      "count": 1,
+      "seed": "library-pace-1-3",
+      "time": 56.016666666666666,
+      "hitEvents": 91
+    },
+    {
+      "map": "twinfold",
+      "count": 1,
+      "seed": "library-pace-1-3",
+      "time": 25.3,
+      "hitEvents": 16
+    },
+    {
+      "map": "classic",
+      "count": 1,
+      "seed": "library-pace-1-4",
+      "time": 43.166666666666664,
+      "hitEvents": 55
+    },
+    {
+      "map": "twinfold",
+      "count": 1,
+      "seed": "library-pace-1-4",
+      "time": 23.266666666666666,
+      "hitEvents": 15
+    },
+    {
+      "map": "classic",
+      "count": 6,
+      "seed": "library-pace-6-0",
+      "time": 51.791666666666664,
+      "hitEvents": 317
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "seed": "library-pace-6-0",
+      "time": 27.816666666666666,
+      "hitEvents": 76
+    },
+    {
+      "map": "classic",
+      "count": 6,
+      "seed": "library-pace-6-1",
+      "time": 52.925,
+      "hitEvents": 348
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "seed": "library-pace-6-1",
+      "time": 27.641666666666666,
+      "hitEvents": 88
+    },
+    {
+      "map": "classic",
+      "count": 6,
+      "seed": "library-pace-6-2",
+      "time": 51.016666666666666,
+      "hitEvents": 311
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "seed": "library-pace-6-2",
+      "time": 23.866666666666667,
+      "hitEvents": 68
+    },
+    {
+      "map": "classic",
+      "count": 6,
+      "seed": "library-pace-6-3",
+      "time": 52.30833333333333,
+      "hitEvents": 343
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "seed": "library-pace-6-3",
+      "time": 25.75,
+      "hitEvents": 59
+    },
+    {
+      "map": "classic",
+      "count": 6,
+      "seed": "library-pace-6-4",
+      "time": 48.86666666666667,
+      "hitEvents": 299
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "seed": "library-pace-6-4",
+      "time": 27.974999999999998,
+      "hitEvents": 78
+    },
+    {
+      "map": "classic",
+      "count": 25,
+      "seed": "library-pace-25-0",
+      "time": 61.608333333333334,
+      "hitEvents": 1264
+    },
+    {
+      "map": "twinfold",
+      "count": 25,
+      "seed": "library-pace-25-0",
+      "time": 23.733333333333334,
+      "hitEvents": 243
+    },
+    {
+      "map": "classic",
+      "count": 25,
+      "seed": "library-pace-25-1",
+      "time": 60.31666666666666,
+      "hitEvents": 1320
+    },
+    {
+      "map": "twinfold",
+      "count": 25,
+      "seed": "library-pace-25-1",
+      "time": 27.008333333333333,
+      "hitEvents": 290
+    },
+    {
+      "map": "classic",
+      "count": 25,
+      "seed": "library-pace-25-2",
+      "time": 56.358333333333334,
+      "hitEvents": 1297
+    },
+    {
+      "map": "twinfold",
+      "count": 25,
+      "seed": "library-pace-25-2",
+      "time": 27.841666666666665,
+      "hitEvents": 280
+    },
+    {
+      "map": "classic",
+      "count": 25,
+      "seed": "library-pace-25-3",
+      "time": 54.86666666666667,
+      "hitEvents": 1299
+    },
+    {
+      "map": "twinfold",
+      "count": 25,
+      "seed": "library-pace-25-3",
+      "time": 25.691666666666666,
+      "hitEvents": 277
+    },
+    {
+      "map": "classic",
+      "count": 25,
+      "seed": "library-pace-25-4",
+      "time": 57.458333333333336,
+      "hitEvents": 1307
+    },
+    {
+      "map": "twinfold",
+      "count": 25,
+      "seed": "library-pace-25-4",
+      "time": 25.183333333333334,
+      "hitEvents": 268
+    },
+    {
+      "map": "classic",
+      "count": 50,
+      "seed": "library-pace-50-0",
+      "time": 54.86666666666667,
+      "hitEvents": 2532
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "seed": "library-pace-50-0",
+      "time": 29.516666666666666,
+      "hitEvents": 533
+    },
+    {
+      "map": "classic",
+      "count": 50,
+      "seed": "library-pace-50-1",
+      "time": 55.00833333333333,
+      "hitEvents": 2419
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "seed": "library-pace-50-1",
+      "time": 27.058333333333334,
+      "hitEvents": 518
+    },
+    {
+      "map": "classic",
+      "count": 50,
+      "seed": "library-pace-50-2",
+      "time": 63.8,
+      "hitEvents": 2440
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "seed": "library-pace-50-2",
+      "time": 24.983333333333334,
+      "hitEvents": 515
+    },
+    {
+      "map": "classic",
+      "count": 50,
+      "seed": "library-pace-50-3",
+      "time": 65.25833333333333,
+      "hitEvents": 2646
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "seed": "library-pace-50-3",
+      "time": 25.933333333333334,
+      "hitEvents": 485
+    },
+    {
+      "map": "classic",
+      "count": 50,
+      "seed": "library-pace-50-4",
+      "time": 60,
+      "hitEvents": 2559
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "seed": "library-pace-50-4",
+      "time": 24.983333333333334,
+      "hitEvents": 490
+    }
+  ]
+}
