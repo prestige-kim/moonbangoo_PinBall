@@ -1,6 +1,6 @@
 (function(P){
   'use strict';
-  var map={id:'cascade',version:6,name:'빗살 낙하',width:1000,height:11200,spawn:{x:36,y:50,width:928,height:700},finish:{y:11000},obstacles:[]};
+  var map={id:'cascade',version:7,name:'빗살 낙하',width:1000,height:11200,spawn:{x:36,y:50,width:928,height:700},finish:{y:11000},obstacles:[]};
   function rail(id,x1,y1,x2,y2,role){map.obstacles.push({type:'segment',id:'cascade-'+id,x1:x1,y1:y1,x2:x2,y2:y2,thickness:8,role:role||'guide'});}
   // Each pair covers the full horizontal projection, even while every comb is
   // retracted. A falling marble must change direction rather than use a shaft.
@@ -26,6 +26,15 @@
           rootY+Math.sin(angle)*along+Math.cos(angle)*normal,44,angle+Math.PI/2,8,'comb-tooth');
       }
     });
+  });
+  // Short rock ledges break up the open descent between combs. Alternate a
+  // free-standing outcrop with a ledge rooted through the left canyon wall.
+  // Gentle drift prevents a fixed balance point; existing shelf/comb gaps stay open.
+  [2200,3750,5300,6850,8400,9950].forEach(function(y,row){
+    map.obstacles.push({type:'moving',id:'cascade-rock-outcrop-'+row,role:'rock-ledge',
+      x:250,y:y,length:110,angle:-.3,thickness:12,axis:'x',amplitude:8,speed:.8,phase:row*1.7});
+    if(row<5)map.obstacles.push({type:'moving',id:'cascade-rock-wall-'+row,role:'rock-ledge',
+      x:120,y:y+770,length:320,angle:.22,thickness:12,axis:'x',amplitude:8,speed:.8,phase:row*1.7+1});
   });
   P.registerMap(map,{name:map.name,description:'엇갈린 빗살이 열리고 닫히는 낙하 코스',accent:'#A76546'});
 })(window.CosmicPinball);

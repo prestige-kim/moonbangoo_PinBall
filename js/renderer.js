@@ -316,6 +316,15 @@
       ctx.restore();
     }
     drawObstacle(o,physics,effects,time,visible) {
+      if(o.role==='rock-ledge'){
+        const pose=physics.getObstaclePose(o),ctx=this.ctx;
+        if(pose.y+80<visible.top||pose.y-80>visible.bottom)return;
+        ctx.save();ctx.lineCap='round';ctx.beginPath();ctx.moveTo(pose.x1,pose.y1);ctx.lineTo(pose.x2,pose.y2);
+        ctx.lineWidth=o.thickness*2;ctx.strokeStyle='#915D43';ctx.stroke();ctx.lineWidth=o.thickness;ctx.strokeStyle='#D8A17B';ctx.stroke();
+        ctx.translate(pose.x,pose.y);ctx.rotate(pose.angle);ctx.strokeStyle='#FFF0DD';ctx.lineWidth=2;
+        for(let x=-o.length/2+18;x<o.length/2-10;x+=32){ctx.beginPath();ctx.moveTo(x,-4);ctx.lineTo(x+6,4);ctx.stroke();}
+        ctx.restore();return;
+      }
       if(o.type==='moving'&&o.role==='bookend'){
         const pose=physics.getObstaclePose(o);
         this.drawObstacle({type:'pin',id:o.id,role:o.role,x:pose.x,y:pose.y,r:o.thickness},physics,effects,time,visible);
