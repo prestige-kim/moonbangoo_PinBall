@@ -1,0 +1,20 @@
+{
+  "url": "https://prestige-kim.github.io/moonbangoo_PinBall/",
+  "at": "2026-10-14T14:45:01.433Z",
+  "rows": [
+    {
+      "map": "twinfold",
+      "oldVersion": 8,
+      "liveVersion": 9,
+      "rejected": true,
+      "error": "직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요."
+    },
+    {
+      "map": "cascade",
+      "oldVersion": 5,
+      "liveVersion": 6,
+      "rejected": true,
+      "error": "직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요."
+    }
+  ]
+}

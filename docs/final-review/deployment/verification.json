@@ -1,0 +1,69 @@
+{
+  "at": "2026-10-14T14:49:50.851Z",
+  "localTime": "2026-10-14 23:49:50 KST",
+  "sourceSHA": "a41acdf21c98df49e746163e6a49c4f9abbff096",
+  "verifiedSHA": "28ae75b5c38af50172dbf07f95260795f333ed21",
+  "workflow": {
+    "conclusion": "success",
+    "created_at": "2026-10-14T14:42:48Z",
+    "head_sha": "a41acdf21c98df49e746163e6a49c4f9abbff096",
+    "html_url": "https://github.com/prestige-kim/moonbangoo_PinBall/actions/runs/38582962305",
+    "id": 38582962305,
+    "status": "completed",
+    "updated_at": "2026-10-14T14:44:01Z"
+  },
+  "sourceFiles": 53,
+  "sourceFailures": 0,
+  "flows": [
+    {
+      "map": "classic",
+      "count": 50,
+      "complete": true,
+      "exactReplay": true,
+      "restart": true,
+      "persisted": true
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "complete": true,
+      "exactReplay": true,
+      "restart": true,
+      "persisted": true
+    },
+    {
+      "map": "cascade",
+      "count": 50,
+      "complete": true,
+      "exactReplay": true,
+      "restart": true,
+      "persisted": true
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "complete": true,
+      "exactReplay": true,
+      "restart": true,
+      "persisted": true
+    }
+  ],
+  "consoleErrors": [],
+  "compatibility": [
+    {
+      "map": "twinfold",
+      "oldVersion": 8,
+      "liveVersion": 9,
+      "rejected": true,
+      "error": "직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요."
+    },
+    {
+      "map": "cascade",
+      "oldVersion": 5,
+      "liveVersion": 6,
+      "rejected": true,
+      "error": "직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요."
+    }
+  ],
+  "protectedFilesUnchanged": 5
+}
