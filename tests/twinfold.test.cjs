@@ -1,8 +1,8 @@
 'use strict';
-const test=require('node:test'),assert=require('node:assert/strict'),{P,run,assertRun,terminal,inside,assertGaps}=require('../qa/four-maps/helpers.cjs');
-test('twinfold alternates moving split shelves and paired carts across 20 bays with a quiet finish',()=>{
- terminal('twinfold');const m=P.MAPS.twinfold;assert.equal(m.version,5);
- assert.equal(m.obstacles.filter(o=>o.type==='moving').length,30);
+const test=require('node:test'),assert=require('node:assert/strict'),{P,run,assertRun,assertGaps}=require('../qa/four-maps/helpers.cjs');
+test('twinfold alternates moving split shelves and paired carts across 20 bays with an active finale',()=>{
+ const m=P.MAPS.twinfold;assert.equal(m.version,6);assert.equal(m.finish.y,11000);
+ assert.equal(m.obstacles.filter(o=>o.type==='moving'&&o.role!=='finale').length,30);
  assert.equal(m.obstacles.filter(o=>o.role==='bookend').length,30);
  for(let bay=0;bay<20;bay++){
   const bars=m.obstacles.filter(o=>o.bay===bay);assert.equal(bars.length,bay%2?1:2);
@@ -23,5 +23,19 @@ test('twinfold side-wall starts must contact moving shelves rather than bypassin
   Object.assign(p.marbles[0],{x,y:800,vx:0,vy:0});let contacts=0;
   while(!p.complete&&p.time<240){p.step();for(const e of p.drainEvents())if(e.type==='hit'&&e.obstacle?.type==='moving')contacts++;}
   assert(p.complete);assert(contacts>=5,'wall route must engage multiple moving shelves');
+ }
+});
+
+test('twinfold finale has four dynamic stages, open lanes and collision events near the finish',()=>{
+ const map=P.MAPS.twinfold,finale=map.obstacles.filter(o=>o.role==='finale');
+ assert.equal(finale.length,9);assert.equal(finale.filter(o=>o.type==='rotor').length,6);
+ assert.deepEqual([...new Set(finale.map(o=>o.y))].sort((a,b)=>a-b),[9020,9600,10160,10760]);
+ assert(finale.every(o=>o.y+o.length/2+(o.amplitude||0)+o.thickness<map.finish.y-96));
+ for(const count of [1,6,50]){
+  const p=new P.Physics({map,names:P.parseNames('공*'+count),seed:'library-finale-'+count});let hits=0,late=0;
+  while(!p.complete&&p.time<240){p.step();for(const e of p.drainEvents())if(e.type==='hit'&&e.obstacle?.role==='finale'){hits++;if(e.obstacle.y===10760)late++;}
+   if(p.ticks%12===0)for(const marble of p.marbles)if(!marble.finished)for(const o of finale){const c=p._contact(marble,o,p.getObstaclePose(o),0);if(c)assert(c.depth<=marble.r*.5,'no deep finale penetration');}
+  }
+  assert(p.complete);assert(hits>0);if(count===50)assert(late>0,'last rotating bookmarks must be contacted');
  }
 });

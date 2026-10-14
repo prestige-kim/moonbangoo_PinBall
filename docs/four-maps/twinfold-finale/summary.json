@@ -1,0 +1,149 @@
+{
+  "at": "2026-10-14T04:05:23.122Z",
+  "mapVersion": 6,
+  "sourceSHA256": "6d66c41a2f31319e1b3c3ad9942780387ac7c213b9a5fab26ae8e25aea7f0a48",
+  "criteria": {
+    "medianRatio": [
+      0.8,
+      1.2
+    ],
+    "p90Ratio": [
+      0.7,
+      1.3
+    ],
+    "timeout": 240,
+    "counts": [
+      1,
+      6,
+      25,
+      50
+    ],
+    "protocols": [
+      "B",
+      "C",
+      "D"
+    ],
+    "seedsPerCell": 5
+  },
+  "summary": [
+    {
+      "count": 1,
+      "n": 15,
+      "classicMedian": 43.108333333333334,
+      "libraryMedian": 49.608333333333334,
+      "classicP90": 54.94166666666666,
+      "libraryP90": 59.574999999999996,
+      "classicFirstMedian": 43.10261252654126,
+      "libraryFirstMedian": 49.60198036983825,
+      "medianRatio": 1.150782911270056,
+      "p90Ratio": 1.0843318671318065,
+      "pass": true
+    },
+    {
+      "count": 6,
+      "n": 15,
+      "classicMedian": 52.30833333333333,
+      "libraryMedian": 54.108333333333334,
+      "classicP90": 62.68333333333333,
+      "libraryP90": 59.975,
+      "classicFirstMedian": 37.96415299600016,
+      "libraryFirstMedian": 42.00582864313904,
+      "medianRatio": 1.0344113429982476,
+      "p90Ratio": 0.9567934060090402,
+      "pass": true
+    },
+    {
+      "count": 25,
+      "n": 15,
+      "classicMedian": 59.9,
+      "libraryMedian": 60.083333333333336,
+      "classicP90": 70.94166666666666,
+      "libraryP90": 62.24166666666667,
+      "classicFirstMedian": 31.00838627467492,
+      "libraryFirstMedian": 37.77804611428884,
+      "medianRatio": 1.0030606566499722,
+      "p90Ratio": 0.877364031481264,
+      "pass": true
+    },
+    {
+      "count": 50,
+      "n": 15,
+      "classicMedian": 60.6,
+      "libraryMedian": 58.208333333333336,
+      "classicP90": 65.68333333333334,
+      "libraryP90": 65.45,
+      "classicFirstMedian": 30.428715791229394,
+      "libraryFirstMedian": 34.202751780149164,
+      "medianRatio": 0.9605335533553355,
+      "p90Ratio": 0.9964476021314387,
+      "pass": true
+    }
+  ],
+  "seedPrefix": "library-pace-finale-v6b-",
+  "pairedRaces": 60,
+  "allComplete": true,
+  "matrix": {
+    "cases": 108,
+    "hands": 18,
+    "failures": 0,
+    "at": "2026-10-14T04:06:04.277Z"
+  },
+  "previousFailedRevision": {
+    "sourceSHA256": "670869d0ba5f9f53c8d786b4bc7e13543540f1a79fe4e3d22def270e5c46dc67",
+    "summary": [
+      {
+        "count": 1,
+        "n": 15,
+        "classicMedian": 42.00833333333333,
+        "libraryMedian": 52.25833333333333,
+        "classicP90": 54.291666666666664,
+        "libraryP90": 56.891666666666666,
+        "classicFirstMedian": 42.00438455816847,
+        "libraryFirstMedian": 52.25564594273545,
+        "medianRatio": 1.2439992065066454,
+        "p90Ratio": 1.0478894858019954,
+        "pass": false
+      },
+      {
+        "count": 6,
+        "n": 15,
+        "classicMedian": 52.96666666666667,
+        "libraryMedian": 56.3,
+        "classicP90": 65.575,
+        "libraryP90": 61.199999999999996,
+        "classicFirstMedian": 37.26472912301771,
+        "libraryFirstMedian": 43.02510019951825,
+        "medianRatio": 1.0629326620516046,
+        "p90Ratio": 0.933282500953107,
+        "pass": true
+      },
+      {
+        "count": 25,
+        "n": 15,
+        "classicMedian": 60.55833333333333,
+        "libraryMedian": 59.4,
+        "classicP90": 65.9,
+        "libraryP90": 62.99166666666667,
+        "classicFirstMedian": 32.42887019455773,
+        "libraryFirstMedian": 37.265814564946005,
+        "medianRatio": 0.9808724370441723,
+        "p90Ratio": 0.9558674759736975,
+        "pass": true
+      },
+      {
+        "count": 50,
+        "n": 15,
+        "classicMedian": 59.833333333333336,
+        "libraryMedian": 63.18333333333333,
+        "classicP90": 67.675,
+        "libraryP90": 70.375,
+        "classicFirstMedian": 29.62951751831778,
+        "libraryFirstMedian": 36.772734483128616,
+        "medianRatio": 1.0559888579387187,
+        "p90Ratio": 1.0398965644625047,
+        "pass": true
+      }
+    ],
+    "note": "First finale revision exceeded the single-ball median ratio limit. The return shelf and cart slopes were adjusted; independent v6b seeds used with unchanged limits."
+  }
+}
