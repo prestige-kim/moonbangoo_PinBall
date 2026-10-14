@@ -1,0 +1,4 @@
+'use strict';
+const fs=require('node:fs'),cp=require('node:child_process'),crypto=require('node:crypto'),assert=require('node:assert/strict'),{loadPhysics,loadRules}=require('../sim/adapter.cjs');
+const P=loadPhysics(),current=loadRules(P).toString(),source=cp.execFileSync('git',['show','5d25319ddd2d352cf35e314da27329c97daec397:js/main.js'],{encoding:'utf8'}),boundary=source.indexOf("  const canvas = document.getElementById('game-canvas');");assert(boundary>0);new Function('window','localStorage',source.slice(0,boundary)+'\n})();')({CosmicPinball:P},{getItem:()=>null});assert.equal(P.chooseWinners.toString(),current);
+const report={at:new Date().toISOString(),baseline:'5d25319ddd2d352cf35e314da27329c97daec397',rules:['first','last','nth','top'],functionEqual:true,functionSHA256:crypto.createHash('sha256').update(current).digest('hex')};fs.writeFileSync('docs/final-review/rules.json',JSON.stringify(report,null,2));console.log(report);

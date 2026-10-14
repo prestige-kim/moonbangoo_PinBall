@@ -1,0 +1,6 @@
+'use strict';
+const fs=require('node:fs'),cp=require('node:child_process'),crypto=require('node:crypto');
+const sha=process.argv[2],out=process.argv[3];if(!sha||!out)throw Error('SHA and output required');
+const paths=cp.execFileSync('git',['ls-tree','-r','--name-only',sha],{encoding:'utf8'}).trim().split('\n').filter(f=>/^(js\/.*\.js$|assets\/|index\.html$|style\.css$|music-credits\.html$)/.test(f)&&!f.endsWith('.md'));
+const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
+(async()=>{const rows=[];for(const path of paths){const r=await fetch('https://prestige-kim.github.io/moonbangoo_PinBall/'+path+'?review='+sha,{cache:'no-store',signal:AbortSignal.timeout(30000)});const body=Buffer.from(await r.arrayBuffer()),expected=cp.execFileSync('git',['show',sha+':'+path],{maxBuffer:32*1024*1024});rows.push({path,status:r.status,bytes:body.length,serviceHash:hash(body),repositoryHash:hash(expected),equal:r.ok&&hash(body)===hash(expected)});}const result={at:new Date().toISOString(),sha,files:rows,failures:rows.filter(r=>!r.equal)};fs.writeFileSync(out,JSON.stringify(result,null,2));console.log(JSON.stringify({sha,files:rows.length,failures:result.failures},null,2));if(result.failures.length)process.exitCode=1;})().catch(e=>{console.error(e);process.exitCode=1;});
