@@ -1,0 +1,2076 @@
+{
+  "sha": "28ae75b5c38af50172dbf07f95260795f333ed21",
+  "provenance": "Executed once using this candidate checkout, no source changes during run; operating hashes from candidate-source.json",
+  "browser": [
+    {
+      "map": "twinfold",
+      "report": "docs/final-review/candidate-browser-twinfold/report.json",
+      "sha": "28ae75b5c38af50172dbf07f95260795f333ed21",
+      "operatingFiles": [
+        {
+          "file": "assets/cannon-angle.png",
+          "gitHash": "9b035715b2cbda7a623821515066d8a9108a104aa7f4a970ea1309faa91d2e38",
+          "workingHash": "9b035715b2cbda7a623821515066d8a9108a104aa7f4a970ea1309faa91d2e38"
+        },
+        {
+          "file": "assets/cannon-barrel.png",
+          "gitHash": "f613b72e68e53ed26ad856e0eaf1ab631c0ff7c868ae78e262b480e485c0c627",
+          "workingHash": "f613b72e68e53ed26ad856e0eaf1ab631c0ff7c868ae78e262b480e485c0c627"
+        },
+        {
+          "file": "assets/cannon-bridge.png",
+          "gitHash": "ff2b48a5496787f2180ba3510b39588fecc2013f8f40e04dd80e7b0a2b11234e",
+          "workingHash": "ff2b48a5496787f2180ba3510b39588fecc2013f8f40e04dd80e7b0a2b11234e"
+        },
+        {
+          "file": "assets/cannon-front.png",
+          "gitHash": "0c1e6205733209f951cbd4134d52b0cdf047e42460b3ae25d8cda28a686474cd",
+          "workingHash": "0c1e6205733209f951cbd4134d52b0cdf047e42460b3ae25d8cda28a686474cd"
+        },
+        {
+          "file": "assets/cannon-wheel.png",
+          "gitHash": "a134bdd8877531079dda3821d63c3bcc38b043b0e8bc971f612020c1082f9664",
+          "workingHash": "a134bdd8877531079dda3821d63c3bcc38b043b0e8bc971f612020c1082f9664"
+        },
+        {
+          "file": "assets/fonts/OFL.txt",
+          "gitHash": "d31ddd9f2bed32fd7e302a205cf2380ba0de6529152d239ef99cfb6f261bfc04",
+          "workingHash": "d31ddd9f2bed32fd7e302a205cf2380ba0de6529152d239ef99cfb6f261bfc04"
+        },
+        {
+          "file": "assets/fonts/PretendardVariable.woff2",
+          "gitHash": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4",
+          "workingHash": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4"
+        },
+        {
+          "file": "assets/logo.png",
+          "gitHash": "1ce5880dcc31cc7b94b6a3d2c93970a33b5d37a0b078700d6daf0762bd8937e2",
+          "workingHash": "1ce5880dcc31cc7b94b6a3d2c93970a33b5d37a0b078700d6daf0762bd8937e2"
+        },
+        {
+          "file": "assets/logo.svg",
+          "gitHash": "c073caeb5776c6180c9318ca60b1e447b8fa22621356ae8e0aa59288965c6269",
+          "workingHash": "c073caeb5776c6180c9318ca60b1e447b8fa22621356ae8e0aa59288965c6269"
+        },
+        {
+          "file": "assets/music/bit-quest.mp3",
+          "gitHash": "80c72638898d8b9e8f7c602d26817be6fdd8c5fa04ec03973f2d25c415d4e8e0",
+          "workingHash": "80c72638898d8b9e8f7c602d26817be6fdd8c5fa04ec03973f2d25c415d4e8e0"
+        },
+        {
+          "file": "assets/music/chipper-doodle-v2.mp3",
+          "gitHash": "1555641327651b1f2e3e2ad68d1c741034ffecccf46c0e5c762a765ad71bbaa7",
+          "workingHash": "1555641327651b1f2e3e2ad68d1c741034ffecccf46c0e5c762a765ad71bbaa7"
+        },
+        {
+          "file": "assets/music/electrodoodle.mp3",
+          "gitHash": "550458d3e148af6d2c07b874ad3eb6a3be48b1dacd22a61aa77c92c68ea4582b",
+          "workingHash": "550458d3e148af6d2c07b874ad3eb6a3be48b1dacd22a61aa77c92c68ea4582b"
+        },
+        {
+          "file": "assets/music/licenses/CC-BY-4.0.html",
+          "gitHash": "58230517b7895aa219ff46a6ed63e67057a1582fb9ea054b16728a8c13525650",
+          "workingHash": "58230517b7895aa219ff46a6ed63e67057a1582fb9ea054b16728a8c13525650"
+        },
+        {
+          "file": "assets/music/licenses/bit-quest-source.html",
+          "gitHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+          "workingHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+        },
+        {
+          "file": "assets/music/licenses/chipper-doodle-v2-source.html",
+          "gitHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+          "workingHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+        },
+        {
+          "file": "assets/music/licenses/composer-faq.html",
+          "gitHash": "f5fb799a8c719568be80dab1edb201dbe6e91309c786b2d100e9cce3fe171ba6",
+          "workingHash": "f5fb799a8c719568be80dab1edb201dbe6e91309c786b2d100e9cce3fe171ba6"
+        },
+        {
+          "file": "assets/music/licenses/electrodoodle-source.html",
+          "gitHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+          "workingHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+        },
+        {
+          "file": "assets/music/licenses/manifest.json",
+          "gitHash": "334f8c7ef3a0dca7891796ed806677dc943156dc2398279199ba6a409b9d1ac8",
+          "workingHash": "334f8c7ef3a0dca7891796ed806677dc943156dc2398279199ba6a409b9d1ac8"
+        },
+        {
+          "file": "assets/music/licenses/winner-winner-source.html",
+          "gitHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+          "workingHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+        },
+        {
+          "file": "assets/music/winner-winner.mp3",
+          "gitHash": "f4337fbc4e7dc3b5be57ce15588d002801008b9470495d713aebc783279f4f33",
+          "workingHash": "f4337fbc4e7dc3b5be57ce15588d002801008b9470495d713aebc783279f4f33"
+        },
+        {
+          "file": "assets/pinball-chrome-photo.png",
+          "gitHash": "10a20acaa005fd2fca897105b1143e063c5de63bad0a407921b6ece23da81a11",
+          "workingHash": "10a20acaa005fd2fca897105b1143e063c5de63bad0a407921b6ece23da81a11"
+        },
+        {
+          "file": "assets/pinball-metal-soft.png",
+          "gitHash": "4df879a4517b1c14c9940faa9626141cde07ca62174a2ab8149f954876bf199c",
+          "workingHash": "4df879a4517b1c14c9940faa9626141cde07ca62174a2ab8149f954876bf199c"
+        },
+        {
+          "file": "index.html",
+          "gitHash": "71eb1c63611fc3fa6e0f8679bfde319c9be35e825bdfca571e77d50e8ff2fbac",
+          "workingHash": "71eb1c63611fc3fa6e0f8679bfde319c9be35e825bdfca571e77d50e8ff2fbac"
+        },
+        {
+          "file": "js/audio.js",
+          "gitHash": "72940855f7b6846f6f0a17213f651130cb33fc35d6a2d243e63e79f7e102782b",
+          "workingHash": "72940855f7b6846f6f0a17213f651130cb33fc35d6a2d243e63e79f7e102782b"
+        },
+        {
+          "file": "js/camera.js",
+          "gitHash": "f94d5a585527054a140ce5d4e63799b1f5f7bb5e7cf8c32ae6665092c5143fb5",
+          "workingHash": "f94d5a585527054a140ce5d4e63799b1f5f7bb5e7cf8c32ae6665092c5143fb5"
+        },
+        {
+          "file": "js/cinematic.js",
+          "gitHash": "72077d56c4d1563f953d82dea771401fe2af7d9e9b15b5c647e2b6800d57891c",
+          "workingHash": "72077d56c4d1563f953d82dea771401fe2af7d9e9b15b5c647e2b6800d57891c"
+        },
+        {
+          "file": "js/display-budget.js",
+          "gitHash": "d918720b9ecfbb1420367f041287872bbc8cb51f4d32c3248de3a1350df8eff1",
+          "workingHash": "d918720b9ecfbb1420367f041287872bbc8cb51f4d32c3248de3a1350df8eff1"
+        },
+        {
+          "file": "js/effects.js",
+          "gitHash": "fc19741e8634901304734ecc1f5896eb301024d5711ab9e4c6d642fdd386efc4",
+          "workingHash": "fc19741e8634901304734ecc1f5896eb301024d5711ab9e4c6d642fdd386efc4"
+        },
+        {
+          "file": "js/hand-flight.js",
+          "gitHash": "85f1e855b96bde0e9d0bf3a1ba9f2a3f47017afeec13c532fa57da3793f49fce",
+          "workingHash": "85f1e855b96bde0e9d0bf3a1ba9f2a3f47017afeec13c532fa57da3793f49fce"
+        },
+        {
+          "file": "js/hand-scene.js",
+          "gitHash": "78df17ce199232518097764d56b48218b869f727c836e1835c8f4026b8c10600",
+          "workingHash": "78df17ce199232518097764d56b48218b869f727c836e1835c8f4026b8c10600"
+        },
+        {
+          "file": "js/hand-start.js",
+          "gitHash": "298e6c089a19a66cf048ddad27d4478977d5507475e03327d90c4232d6131d5a",
+          "workingHash": "298e6c089a19a66cf048ddad27d4478977d5507475e03327d90c4232d6131d5a"
+        },
+        {
+          "file": "js/main.js",
+          "gitHash": "5ab537dbff8fb6230804ca76fee8e8ead8907bd173194659555cd32899ea9341",
+          "workingHash": "5ab537dbff8fb6230804ca76fee8e8ead8907bd173194659555cd32899ea9341"
+        },
+        {
+          "file": "js/map-registry.js",
+          "gitHash": "d7ef71bdcb702319f8b31d3271b4fa5dafa2480587a460a329b6c1ad32c2ba2d",
+          "workingHash": "d7ef71bdcb702319f8b31d3271b4fa5dafa2480587a460a329b6c1ad32c2ba2d"
+        },
+        {
+          "file": "js/maps-duration-data.js",
+          "gitHash": "cfa59cb748127f8ca5bf37c11c8e578bcde7894184d56d3ab0ec139d6e9dc999",
+          "workingHash": "cfa59cb748127f8ca5bf37c11c8e578bcde7894184d56d3ab0ec139d6e9dc999"
+        },
+        {
+          "file": "js/maps.js",
+          "gitHash": "79a9fa7c0003c9a9ba3748151b5dfccac6269b4565e3a5f47a0c52cecc2d89d3",
+          "workingHash": "79a9fa7c0003c9a9ba3748151b5dfccac6269b4565e3a5f47a0c52cecc2d89d3"
+        },
+        {
+          "file": "js/maps/cascade-style.js",
+          "gitHash": "be74db4b6b5729da8428902690e8438610077494781abf16c21b29a2bd5ce830",
+          "workingHash": "be74db4b6b5729da8428902690e8438610077494781abf16c21b29a2bd5ce830"
+        },
+        {
+          "file": "js/maps/cascade.js",
+          "gitHash": "ffc122c220a9cf666e1d1393e43b42c38eac1e87eda242f450e4837c2114e819",
+          "workingHash": "ffc122c220a9cf666e1d1393e43b42c38eac1e87eda242f450e4837c2114e819"
+        },
+        {
+          "file": "js/maps/rhythm-style.js",
+          "gitHash": "abafc5dacf2feeb4bea9e557d0c4da3ce29aa23177adf9194a3484c37fdfa96c",
+          "workingHash": "abafc5dacf2feeb4bea9e557d0c4da3ce29aa23177adf9194a3484c37fdfa96c"
+        },
+        {
+          "file": "js/maps/rhythm.js",
+          "gitHash": "d7ed7608f032ef54d10b3b6a4e031803382f7bafc14a2f2a0cf5c9f44081c949",
+          "workingHash": "d7ed7608f032ef54d10b3b6a4e031803382f7bafc14a2f2a0cf5c9f44081c949"
+        },
+        {
+          "file": "js/maps/twinfold-style.js",
+          "gitHash": "a9811ed9571b2e05e3603c2813bb1404b89c0878a770320e5a726d2adb943458",
+          "workingHash": "a9811ed9571b2e05e3603c2813bb1404b89c0878a770320e5a726d2adb943458"
+        },
+        {
+          "file": "js/maps/twinfold.js",
+          "gitHash": "689df43e4601e927ff590f2d39dad884140ac3aabb269c6fbba1f326e1ef04e4",
+          "workingHash": "689df43e4601e927ff590f2d39dad884140ac3aabb269c6fbba1f326e1ef04e4"
+        },
+        {
+          "file": "js/physics.js",
+          "gitHash": "e6f5b66d1c5b81b9c63b043544d095cb2d73f8dde65ad02a7f3ac1560c9babf5",
+          "workingHash": "e6f5b66d1c5b81b9c63b043544d095cb2d73f8dde65ad02a7f3ac1560c9babf5"
+        },
+        {
+          "file": "js/race-duration-data.js",
+          "gitHash": "96651f0797bb7124c903e436764b0f243173cbec956c8058a185c03391be3393",
+          "workingHash": "96651f0797bb7124c903e436764b0f243173cbec956c8058a185c03391be3393"
+        },
+        {
+          "file": "js/race-duration.js",
+          "gitHash": "7740c90c5de401653824731424dd94b741d8259c17525d1d2d74f890d0edd8f4",
+          "workingHash": "7740c90c5de401653824731424dd94b741d8259c17525d1d2d74f890d0edd8f4"
+        },
+        {
+          "file": "js/race-standing.js",
+          "gitHash": "cad6e28fe03ff61eec21b548d646c3dee8a6b07d604b1eab3a1ea7393585c718",
+          "workingHash": "cad6e28fe03ff61eec21b548d646c3dee8a6b07d604b1eab3a1ea7393585c718"
+        },
+        {
+          "file": "js/renderer.js",
+          "gitHash": "d439211fa92ebb3b3c39d5f5ca6a13d6f722793f9472474287ebd7d317c4a8a6",
+          "workingHash": "d439211fa92ebb3b3c39d5f5ca6a13d6f722793f9472474287ebd7d317c4a8a6"
+        },
+        {
+          "file": "js/shuffle-input.js",
+          "gitHash": "c53898379372660a8922e1412cf18cbaac8596e8265df31ec117db1c9c0396bf",
+          "workingHash": "c53898379372660a8922e1412cf18cbaac8596e8265df31ec117db1c9c0396bf"
+        },
+        {
+          "file": "js/shuffle.js",
+          "gitHash": "89c28332289c5de61a0a5ba602769f90ee856802f215055bdfaa9022ebcf7a09",
+          "workingHash": "89c28332289c5de61a0a5ba602769f90ee856802f215055bdfaa9022ebcf7a09"
+        },
+        {
+          "file": "js/themes.js",
+          "gitHash": "1719b27b8c269fcdef0908041883871adb833c65f465f20542df92fdbca2e05d",
+          "workingHash": "1719b27b8c269fcdef0908041883871adb833c65f465f20542df92fdbca2e05d"
+        },
+        {
+          "file": "js/throw-gate.js",
+          "gitHash": "2edf9c6af6ea90594963603822228c445026df95793ffa4ee7555be778e2f7da",
+          "workingHash": "2edf9c6af6ea90594963603822228c445026df95793ffa4ee7555be778e2f7da"
+        },
+        {
+          "file": "js/ui.js",
+          "gitHash": "9bccbc9c0f7896b8ad4271cf92fb02761ab9b0f260de8405538d9f8397cbdd26",
+          "workingHash": "9bccbc9c0f7896b8ad4271cf92fb02761ab9b0f260de8405538d9f8397cbdd26"
+        },
+        {
+          "file": "music-credits.html",
+          "gitHash": "3a103f0590af12b4b4daca5fbab657354e751a23eabe6bf375f26816a0cbd806",
+          "workingHash": "3a103f0590af12b4b4daca5fbab657354e751a23eabe6bf375f26816a0cbd806"
+        },
+        {
+          "file": "style.css",
+          "gitHash": "9d4a531345c583bf1977d043475bd59edc06b0a48c7b3f7f464a744121540570",
+          "workingHash": "9d4a531345c583bf1977d043475bd59edc06b0a48c7b3f7f464a744121540570"
+        }
+      ],
+      "recordVersions": [
+        {
+          "version": 2,
+          "seed": "MB-TPFLMA-1E285IU-AP0CT4-40Y8Z-1",
+          "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"twinfold\",\"version\":9,\"name\":\"갈래 서가\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"moving\",\"id\":\"twinfold-shelf-0-0\",\"role\":\"book-cart\",\"bay\":0,\"x\":140,\"y\":1050,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":0},{\"type\":\"moving\",\"id\":\"twinfold-shelf-0-1\",\"role\":\"book-cart\",\"bay\":0,\"x\":860,\"y\":1050,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"twinfold-detail-0-500\",\"role\":\"bookend\",\"x\":500,\"y\":1260,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":0},{\"type\":\"moving\",\"id\":\"twinfold-shelf-1-0\",\"role\":\"split-shelf\",\"bay\":1,\"x\":500,\"y\":1439.4736842105262,\"axis\":\"x\",\"length\":560,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":1.7},{\"type\":\"moving\",\"id\":\"twinfold-detail-1-170\",\"role\":\"bookend\",\"x\":170,\"y\":1649.4736842105262,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":1.7},{\"type\":\"moving\",\"id\":\"twinfold-detail-1-830\",\"role\":\"bookend\",\"x\":830,\"y\":1649.4736842105262,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":3.4},{\"type\":\"moving\",\"id\":\"twinfold-shelf-2-0\",\"role\":\"book-cart\",\"bay\":2,\"x\":140,\"y\":1828.9473684210525,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":3.4},{\"type\":\"moving\",\"id\":\"twinfold-shelf-2-1\",\"role\":\"book-cart\",\"bay\":2,\"x\":860,\"y\":1828.9473684210525,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":6.5415926535897935},{\"type\":\"moving\",\"id\":\"twinfold-detail-2-500\",\"role\":\"bookend\",\"x\":500,\"y\":2038.9473684210525,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":5.1},{\"type\":\"moving\",\"id\":\"twinfold-shelf-3-0\",\"role\":\"split-shelf\",\"bay\":3,\"x\":500,\"y\":2218.421052631579,\"axis\":\"x\",\"length\":560,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":5.1},{\"type\":\"moving\",\"id\":\"twinfold-detail-3-170\",\"role\":\"bookend\",\"x\":170,\"y\":2428.421052631579,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":6.8},{\"type\":\"moving\",\"id\":\"twinfold-detail-3-830\",\"role\":\"bookend\",\"x\":830,\"y\":2428.421052631579,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":8.5},{\"type\":\"moving\",\"id\":\"twinfold-shelf-4-0\",\"role\":\"book-cart\",\"bay\":4,\"x\":140,\"y\":2607.894736842105,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":6.8},{\"type\":\"moving\",\"id\":\"twinfold-shelf-4-1\",\"role\":\"book-cart\",\"bay\":4,\"x\":860,\"y\":2607.894736842105,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":9.941592653589794},{\"type\":\"moving\",\"id\":\"twinfold-detail-4-500\",\"role\":\"bookend\",\"x\":500,\"y\":2817.894736842105,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":10.2},{\"type\":\"moving\",\"id\":\"twinfold-shelf-5-0\",\"role\":\"split-shelf\",\"bay\":5,\"x\":500,\"y\":2997.3684210526317,\"axis\":\"x\",\"length\":560,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":8.5},{\"type\":\"moving\",\"id\":\"twinfold-detail-5-170\",\"role\":\"bookend\",\"x\":170,\"y\":3207.3684210526317,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":11.9},{\"type\":\"moving\",\"id\":\"twinfold-detail-5-830\",\"role\":\"bookend\",\"x\":830,\"y\":3207.3684210526317,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":13.6},{\"type\":\"moving\",\"id\":\"twinfold-shelf-6-0\",\"role\":\"book-cart\",\"bay\":6,\"x\":140,\"y\":3386.842105263158,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":10.2},{\"type\":\"moving\",\"id\":\"twinfold-shelf-6-1\",\"role\":\"book-cart\",\"bay\":6,\"x\":860,\"y\":3386.842105263158,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":13.341592653589792},{\"type\":\"moving\",\"id\":\"twinfold-detail-6-500\",\"role\":\"bookend\",\"x\":500,\"y\":3596.842105263158,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":15.299999999999999},{\"type\":\"moving\",\"id\":\"twinfold-shelf-7-0\",\"role\":\"split-shelf\",\"bay\":7,\"x\":500,\"y\":3776.315789473684,\"axis\":\"x\",\"length\":560,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":11.9},{\"type\":\"moving\",\"id\":\"twinfold-detail-7-170\",\"role\":\"bookend\",\"x\":170,\"y\":3986.315789473684,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":17},{\"type\":\"moving\",\"id\":\"twinfold-detail-7-830\",\"role\":\"bookend\",\"x\":830,\"y\":3986.315789473684,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":18.7},{\"type\":\"moving\",\"id\":\"twinfold-shelf-8-0\",\"role\":\"book-cart\",\"bay\":8,\"x\":140,\"y\":4165.78947368421,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":13.6},{\"type\":\"moving\",\"id\":\"twinfold-shelf-8-1\",\"role\":\"book-cart\",\"bay\":8,\"x\":860,\"y\":4165.78947368421,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":16.74159265358979},{\"type\":\"moving\",\"id\":\"twinfold-detail-8-500\",\"role\":\"bookend\",\"x\":500,\"y\":4375.78947368421,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":20.4},{\"type\":\"moving\",\"id\":\"twinfold-shelf-9-0\",\"role\":\"split-shelf\",\"bay\":9,\"x\":500,\"y\":4555.263157894737,\"axis\":\"x\",\"length\":560,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":15.299999999999999},{\"type\":\"moving\",\"id\":\"twinfold-detail-9-170\",\"role\":\"bookend\",\"x\":170,\"y\":4765.263157894737,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":22.099999999999998},{\"type\":\"moving\",\"id\":\"twinfold-detail-9-830\",\"role\":\"bookend\",\"x\":830,\"y\":4765.263157894737,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":23.8},{\"type\":\"moving\",\"id\":\"twinfold-shelf-10-0\",\"role\":\"book-cart\",\"bay\":10,\"x\":140,\"y\":4944.736842105263,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":17},{\"type\":\"moving\",\"id\":\"twinfold-shelf-10-1\",\"role\":\"book-cart\",\"bay\":10,\"x\":860,\"y\":4944.736842105263,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":20.141592653589793},{\"type\":\"moving\",\"id\":\"twinfold-detail-10-500\",\"role\":\"bookend\",\"x\":500,\"y\":5154.736842105263,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":25.5},{\"type\":\"moving\",\"id\":\"twinfold-shelf-11-0\",\"role\":\"split-shelf\",\"bay\":11,\"x\":500,\"y\":5334.210526315789,\"axis\":\"x\",\"length\":560,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":18.7},{\"type\":\"moving\",\"id\":\"twinfold-detail-11-170\",\"role\":\"bookend\",\"x\":170,\"y\":5544.210526315789,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":27.2},{\"type\":\"moving\",\"id\":\"twinfold-detail-11-830\",\"role\":\"bookend\",\"x\":830,\"y\":5544.210526315789,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":28.9},{\"type\":\"moving\",\"id\":\"twinfold-shelf-12-0\",\"role\":\"book-cart\",\"bay\":12,\"x\":140,\"y\":5723.684210526316,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":20.4},{\"type\":\"moving\",\"id\":\"twinfold-shelf-12-1\",\"role\":\"book-cart\",\"bay\":12,\"x\":860,\"y\":5723.684210526316,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":23.54159265358979},{\"type\":\"moving\",\"id\":\"twinfold-detail-12-500\",\"role\":\"bookend\",\"x\":500,\"y\":5933.684210526316,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":30.599999999999998},{\"type\":\"moving\",\"id\":\"twinfold-shelf-13-0\",\"role\":\"split-shelf\",\"bay\":13,\"x\":500,\"y\":6113.157894736842,\"axis\":\"x\",\"length\":560,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":22.099999999999998},{\"type\":\"moving\",\"id\":\"twinfold-detail-13-170\",\"role\":\"bookend\",\"x\":170,\"y\":6323.157894736842,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":32.3},{\"type\":\"moving\",\"id\":\"twinfold-detail-13-830\",\"role\":\"bookend\",\"x\":830,\"y\":6323.157894736842,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":34},{\"type\":\"moving\",\"id\":\"twinfold-shelf-14-0\",\"role\":\"book-cart\",\"bay\":14,\"x\":140,\"y\":6502.631578947368,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":23.8},{\"type\":\"moving\",\"id\":\"twinfold-shelf-14-1\",\"role\":\"book-cart\",\"bay\":14,\"x\":860,\"y\":6502.631578947368,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":26.941592653589794},{\"type\":\"moving\",\"id\":\"twinfold-detail-14-500\",\"role\":\"bookend\",\"x\":500,\"y\":6712.631578947368,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":35.699999999999996},{\"type\":\"moving\",\"id\":\"twinfold-shelf-15-0\",\"role\":\"split-shelf\",\"bay\":15,\"x\":500,\"y\":6892.105263157894,\"axis\":\"x\",\"length\":560,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":25.5},{\"type\":\"moving\",\"id\":\"twinfold-detail-15-170\",\"role\":\"bookend\",\"x\":170,\"y\":7102.105263157894,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":37.4},{\"type\":\"moving\",\"id\":\"twinfold-detail-15-830\",\"role\":\"bookend\",\"x\":830,\"y\":7102.105263157894,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":39.1},{\"type\":\"moving\",\"id\":\"twinfold-shelf-16-0\",\"role\":\"book-cart\",\"bay\":16,\"x\":140,\"y\":7281.578947368421,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":27.2},{\"type\":\"moving\",\"id\":\"twinfold-shelf-16-1\",\"role\":\"book-cart\",\"bay\":16,\"x\":860,\"y\":7281.578947368421,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":30.341592653589792},{\"type\":\"moving\",\"id\":\"twinfold-detail-16-500\",\"role\":\"bookend\",\"x\":500,\"y\":7491.578947368421,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":40.8},{\"type\":\"moving\",\"id\":\"twinfold-shelf-17-0\",\"role\":\"split-shelf\",\"bay\":17,\"x\":500,\"y\":7671.0526315789475,\"axis\":\"x\",\"length\":560,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":28.9},{\"type\":\"moving\",\"id\":\"twinfold-detail-17-170\",\"role\":\"bookend\",\"x\":170,\"y\":7881.0526315789475,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":42.5},{\"type\":\"moving\",\"id\":\"twinfold-detail-17-830\",\"role\":\"bookend\",\"x\":830,\"y\":7881.0526315789475,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":44.199999999999996},{\"type\":\"moving\",\"id\":\"twinfold-shelf-18-0\",\"role\":\"book-cart\",\"bay\":18,\"x\":140,\"y\":8060.526315789473,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":30.599999999999998},{\"type\":\"moving\",\"id\":\"twinfold-shelf-18-1\",\"role\":\"book-cart\",\"bay\":18,\"x\":860,\"y\":8060.526315789473,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":33.74159265358979},{\"type\":\"moving\",\"id\":\"twinfold-detail-18-500\",\"role\":\"bookend\",\"x\":500,\"y\":8270.526315789473,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":45.9},{\"type\":\"moving\",\"id\":\"twinfold-shelf-19-0\",\"role\":\"split-shelf\",\"bay\":19,\"x\":500,\"y\":8450,\"axis\":\"x\",\"length\":560,\"thickness\":8,\"angle\":-0.34,\"amplitude\":28,\"speed\":0.8,\"phase\":32.3},{\"type\":\"moving\",\"id\":\"twinfold-detail-19-170\",\"role\":\"bookend\",\"x\":170,\"y\":8660,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":47.6},{\"type\":\"moving\",\"id\":\"twinfold-detail-19-830\",\"role\":\"bookend\",\"x\":830,\"y\":8660,\"axis\":\"x\",\"length\":0.001,\"thickness\":12,\"angle\":0.34,\"amplitude\":4,\"speed\":0.8,\"phase\":49.3},{\"type\":\"wind\",\"id\":\"twinfold-finale-wind-0\",\"role\":\"finale\",\"x\":500,\"y\":9020,\"width\":600,\"height\":300,\"period\":3.5,\"duration\":0.4,\"liftHeight\":180,\"spread\":300,\"cooldown\":3},{\"type\":\"wind\",\"id\":\"twinfold-finale-wind-1\",\"role\":\"finale\",\"x\":500,\"y\":10760,\"width\":600,\"height\":300,\"period\":3.5,\"duration\":0.4,\"liftHeight\":180,\"spread\":300,\"cooldown\":3},{\"type\":\"moving\",\"id\":\"twinfold-finale-cart-0\",\"role\":\"finale\",\"x\":140,\"y\":9600,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":0.5,\"amplitude\":28,\"speed\":1.6,\"phase\":0},{\"type\":\"moving\",\"id\":\"twinfold-finale-cart-1\",\"role\":\"finale\",\"x\":860,\"y\":9600,\"axis\":\"x\",\"length\":400,\"thickness\":8,\"angle\":-0.5,\"amplitude\":28,\"speed\":1.6,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"twinfold-finale-return\",\"role\":\"finale\",\"x\":500,\"y\":10160,\"axis\":\"x\",\"length\":360,\"thickness\":8,\"angle\":-0.55,\"amplitude\":60,\"speed\":1.6,\"phase\":1.5707963267948966}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+          "source": [
+            {
+              "id": "marble-1",
+              "x": 0.604171388215806,
+              "y": -0.1629483024350421,
+              "vx": 0.9540978790160597,
+              "vy": -0.4958674606391254,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-2",
+              "x": 0.7402645507343041,
+              "y": -0.1833235039853595,
+              "vx": 1.2320559717990236,
+              "vy": -0.48485472677517555,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-3",
+              "x": 0.5534606876899671,
+              "y": -0.28223843131325704,
+              "vx": 1.0900700146369553,
+              "vy": -0.3818380339832097,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-4",
+              "x": 0.7421237068490039,
+              "y": -0.22053701047552665,
+              "vx": 1.29638960424139,
+              "vy": -0.30325033942668356,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-5",
+              "x": 0.5656969181788742,
+              "y": -0.22303272145333405,
+              "vx": 0.9583182144692862,
+              "vy": -0.3876838725556569,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-6",
+              "x": 0.7498199556431996,
+              "y": -0.15284218126561172,
+              "vx": 1.2657549194145266,
+              "vy": -0.4137487708727942,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-7",
+              "x": 0.8426062614683958,
+              "y": -0.06028427654593775,
+              "vx": 1.1109352534671688,
+              "vy": -0.506964515907462,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-8",
+              "x": 0.7892656686525245,
+              "y": -0.11956351054573089,
+              "vx": 1.1298287805530745,
+              "vy": -0.5836120488548083,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-9",
+              "x": 0.6245674161769361,
+              "y": -0.19424803824717277,
+              "vx": 1.0961460660021822,
+              "vy": -0.5292078217103097,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-10",
+              "x": 0.7762180110999121,
+              "y": -0.057094615599708166,
+              "vx": 1.0870893746741765,
+              "vy": -0.5582799887198228,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-11",
+              "x": 0.7111462666919247,
+              "y": -0.35212022237289775,
+              "vx": 1.6112631193729336,
+              "vy": 0.0705023203906268,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-12",
+              "x": 0.8076723096163733,
+              "y": -0.04565792750847909,
+              "vx": 1.0854789425443345,
+              "vy": -0.47187990718507333,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-13",
+              "x": 0.7083378594450003,
+              "y": -0.09626446352265848,
+              "vx": 1.1370739800033396,
+              "vy": -0.4669152162653805,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-14",
+              "x": 0.6087922771480102,
+              "y": -0.29542669718935244,
+              "vx": 1.1978742670398186,
+              "vy": -0.4050216915998256,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-15",
+              "x": 0.5787323585114529,
+              "y": -0.2544233399699883,
+              "vx": 1.1377541780183995,
+              "vy": -0.37459108378426836,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-16",
+              "x": 0.5246891557013293,
+              "y": -0.22416730869914,
+              "vx": 0.8443722940042941,
+              "vy": -0.5270219445281283,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-17",
+              "x": 0.6170159674956875,
+              "y": -0.26275079175079796,
+              "vx": 1.1697793322786576,
+              "vy": -0.377764264195592,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-18",
+              "x": 0.630330075490759,
+              "y": -0.10765421508462718,
+              "vx": 1.1375130595017648,
+              "vy": -0.4999757310185552,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-19",
+              "x": 0.8071998690045656,
+              "y": -0.0847253141427132,
+              "vx": 1.1418786053002865,
+              "vy": -0.5078634255826263,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-20",
+              "x": 0.6199496869102913,
+              "y": -0.3586838884347739,
+              "vx": 1.3323735504935714,
+              "vy": -0.34647482602286633,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-21",
+              "x": 0.6394084502192293,
+              "y": -0.39153479948473696,
+              "vx": 1.3015647262498533,
+              "vy": -0.4573439973127135,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-22",
+              "x": 0.8364097904750332,
+              "y": -0.127030868958712,
+              "vx": 1.1810806731858356,
+              "vy": -0.5857052935029937,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-23",
+              "x": 0.6613847207397701,
+              "y": -0.24260904018457163,
+              "vx": 1.1565530165623805,
+              "vy": -0.4904464731413666,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-24",
+              "x": 0.6269147929691118,
+              "y": -0.2301101648135208,
+              "vx": 1.162209630033959,
+              "vy": -0.34513750925524794,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-25",
+              "x": 0.569123765558354,
+              "y": -0.14639285797859444,
+              "vx": 0.8867738734575092,
+              "vy": -0.3832892637625408,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-26",
+              "x": 0.6745291783304137,
+              "y": -0.08419552202534583,
+              "vx": 1.0384172532307507,
+              "vy": -0.5949489496628435,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-27",
+              "x": 0.6049601657348079,
+              "y": -0.12910249918931666,
+              "vx": 1.0286440396591592,
+              "vy": -0.5131248842422883,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-28",
+              "x": 0.596267366863943,
+              "y": -0.21081768027590428,
+              "vx": 0.9972531310108531,
+              "vy": -0.42034354810671093,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-29",
+              "x": 0.8730350199625065,
+              "y": -0.08776549758606564,
+              "vx": 1.2334539647165934,
+              "vy": -0.4322375615859413,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-30",
+              "x": 0.6764347724657856,
+              "y": -0.15311449369542884,
+              "vx": 1.0698592459817065,
+              "vy": -0.4759179721184828,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-31",
+              "x": 0.670098353278351,
+              "y": -0.1195825477541779,
+              "vx": 1.1032288883137449,
+              "vy": -0.6359509350194578,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-32",
+              "x": 0.651057837088927,
+              "y": -0.17513579228982934,
+              "vx": 1.1330242035930531,
+              "vy": -0.5631723516325673,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-33",
+              "x": 0.7382897226804743,
+              "y": -0.08273245956329466,
+              "vx": 1.1081152928133573,
+              "vy": -0.5012370765379874,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-34",
+              "x": 0.7834912788477393,
+              "y": -0.1902395724865849,
+              "vx": 1.2056084349525094,
+              "vy": -0.2232161949363662,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-35",
+              "x": 0.5340807473413005,
+              "y": -0.16127093481060806,
+              "vx": 0.922431731064952,
+              "vy": -0.527785851466376,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-36",
+              "x": 0.7039996238514571,
+              "y": -0.06427154362958941,
+              "vx": 1.0314275920642872,
+              "vy": -0.42266858364146126,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-37",
+              "x": 0.7170400465886982,
+              "y": -0.15911677797218504,
+              "vx": 1.1159263260058514,
+              "vy": -0.36432967954701323,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-38",
+              "x": 0.5676759601593137,
+              "y": -0.18103075781495764,
+              "vx": 1.0664795798980962,
+              "vy": -0.38206867306942077,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-39",
+              "x": 0.6468466421508452,
+              "y": -0.28110799851747903,
+              "vx": 1.2194970147873017,
+              "vy": -0.37983991132291534,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-40",
+              "x": 0.7023865062012202,
+              "y": -0.1278676775656226,
+              "vx": 1.0809077198510328,
+              "vy": -0.46324236242660305,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-41",
+              "x": 0.7446090316879308,
+              "y": -0.050535878558405786,
+              "vx": 1.105329970844662,
+              "vy": -0.4881001108817769,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-42",
+              "x": 0.582608736711849,
+              "y": -0.31835175501837404,
+              "vx": 1.2005509795607483,
+              "vy": -0.4549148130359224,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-43",
+              "x": 0.7127191436288433,
+              "y": -0.20584334243202557,
+              "vx": 1.10045120887806,
+              "vy": -0.32351573544218076,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-44",
+              "x": 0.6457098444174403,
+              "y": -0.3166048420093451,
+              "vx": 1.5073801914211142,
+              "vy": -0.2815306898305047,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-45",
+              "x": 0.5435857937670364,
+              "y": -0.12633392221250705,
+              "vx": 0.8893593679919986,
+              "vy": -0.48665164028521,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-46",
+              "x": 0.6859642754691203,
+              "y": -0.18729224366639766,
+              "vx": 1.2241361764439427,
+              "vy": -0.5070307921527587,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-47",
+              "x": 0.6355101482620938,
+              "y": -0.1431521457216372,
+              "vx": 1.071924546030172,
+              "vy": -0.5399969298466547,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-48",
+              "x": 0.7337523866470271,
+              "y": -0.11573674012845335,
+              "vx": 1.118376938571757,
+              "vy": -0.5340456428903388,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-49",
+              "x": 0.6568450308687529,
+              "y": -0.21098939877096595,
+              "vx": 1.1436744770874347,
+              "vy": -0.4767116310275681,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-50",
+              "x": 0.7729566512935436,
+              "y": -0.08948950806537867,
+              "vx": 1.1056341512634573,
+              "vy": -0.561779583568481,
+              "r": 0.0159719141249985
+            }
+          ],
+          "starts": [
+            {
+              "id": "marble-1",
+              "x": 88.90520916732423,
+              "y": 81.35402932041325,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-2",
+              "x": 89.0889106717765,
+              "y": 206.93374780612066,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-3",
+              "x": 636.8007241390632,
+              "y": 186.05561073170975,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-4",
+              "x": 828.8833498983207,
+              "y": 190.22863225312904,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-5",
+              "x": 472.7218362907103,
+              "y": 187.49314651009627,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-6",
+              "x": 774.1180979874988,
+              "y": 83.56115628173575,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-7",
+              "x": 582.0365947365945,
+              "y": 116.95959067624062,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-8",
+              "x": 226.04003623240826,
+              "y": 189.7146260368172,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-9",
+              "x": 664.5347586618313,
+              "y": 224.3494969769381,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-10",
+              "x": 171.14442383546637,
+              "y": 221.6289091971703,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-11",
+              "x": 691.5643568607965,
+              "y": 173.98995759827085,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-12",
+              "x": 527.4485301145804,
+              "y": 94.53771494445391,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-13",
+              "x": 883.5669542586953,
+              "y": 208.53866741014645,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-14",
+              "x": 719.1386724907101,
+              "y": 214.20657327654772,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-15",
+              "x": 198.5637646339354,
+              "y": 89.16435924731195,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-16",
+              "x": 664.4351582008654,
+              "y": 87.17990650609136,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-17",
+              "x": 554.6725584222145,
+              "y": 186.37052800995298,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-18",
+              "x": 226.09577714651823,
+              "y": 101.34806463052519,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-19",
+              "x": 280.77401465200114,
+              "y": 79.66998428222723,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-20",
+              "x": 116.38401171662422,
+              "y": 87.7338209960144,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-21",
+              "x": 554.7703325678029,
+              "y": 105.15700734779239,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-22",
+              "x": 801.5220066812736,
+              "y": 179.25606732210144,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-23",
+              "x": 856.0998664545177,
+              "y": 207.73775235936046,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-24",
+              "x": 144.05776642356773,
+              "y": 228.38197836303152,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-25",
+              "x": 499.9212063874654,
+              "y": 208.2628144044429,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-26",
+              "x": 390.3235425561822,
+              "y": 177.33397522801533,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-27",
+              "x": 308.1017523305702,
+              "y": 115.80980776273645,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-28",
+              "x": 472.7722548833964,
+              "y": 85.15800707181916,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-29",
+              "x": 746.3923794435563,
+              "y": 201.7359108000528,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-30",
+              "x": 773.7433486320573,
+              "y": 213.95636557321995,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-31",
+              "x": 445.38807448431515,
+              "y": 111.41817159904167,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-32",
+              "x": 801.3554947199865,
+              "y": 125.07504216488451,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-33",
+              "x": 335.55845926783866,
+              "y": 177.82304943352938,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-34",
+              "x": 253.52428480489604,
+              "y": 125.82024061819538,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-35",
+              "x": 938.4272252201372,
+              "y": 213.00313803972676,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-36",
+              "x": 636.9471064522849,
+              "y": 75.70673037553206,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-37",
+              "x": 171.4526038495965,
+              "y": 127.99794923048466,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-38",
+              "x": 362.93511788522346,
+              "y": 173.61015692539513,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-39",
+              "x": 500.08907440055697,
+              "y": 97.1687145459,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-40",
+              "x": 746.3847597511697,
+              "y": 110.79444528743625,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-41",
+              "x": 280.95498601312636,
+              "y": 177.8930906385649,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-42",
+              "x": 581.9863949393304,
+              "y": 195.44498871592805,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-43",
+              "x": 61.72302532653945,
+              "y": 113.68486288096756,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-44",
+              "x": 417.96762807418196,
+              "y": 88.23195830825716,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-45",
+              "x": 910.908930435304,
+              "y": 103.87476437818259,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-46",
+              "x": 308.1229504434124,
+              "y": 198.98711783019826,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-47",
+              "x": 61.82511115961031,
+              "y": 212.49477769318037,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-48",
+              "x": 335.83237777363905,
+              "y": 107.12848096340895,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-49",
+              "x": 253.64910732359965,
+              "y": 209.6694416194223,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-50",
+              "x": 445.20121192757864,
+              "y": 197.7795904225204,
+              "vx": 0,
+              "vy": 0
+            }
+          ],
+          "placement": "seeded-top-scatter-v2"
+        }
+      ],
+      "errors": []
+    },
+    {
+      "map": "cascade",
+      "report": "docs/final-review/candidate-browser-cascade/report.json",
+      "sha": "28ae75b5c38af50172dbf07f95260795f333ed21",
+      "operatingFiles": [
+        {
+          "file": "assets/cannon-angle.png",
+          "gitHash": "9b035715b2cbda7a623821515066d8a9108a104aa7f4a970ea1309faa91d2e38",
+          "workingHash": "9b035715b2cbda7a623821515066d8a9108a104aa7f4a970ea1309faa91d2e38"
+        },
+        {
+          "file": "assets/cannon-barrel.png",
+          "gitHash": "f613b72e68e53ed26ad856e0eaf1ab631c0ff7c868ae78e262b480e485c0c627",
+          "workingHash": "f613b72e68e53ed26ad856e0eaf1ab631c0ff7c868ae78e262b480e485c0c627"
+        },
+        {
+          "file": "assets/cannon-bridge.png",
+          "gitHash": "ff2b48a5496787f2180ba3510b39588fecc2013f8f40e04dd80e7b0a2b11234e",
+          "workingHash": "ff2b48a5496787f2180ba3510b39588fecc2013f8f40e04dd80e7b0a2b11234e"
+        },
+        {
+          "file": "assets/cannon-front.png",
+          "gitHash": "0c1e6205733209f951cbd4134d52b0cdf047e42460b3ae25d8cda28a686474cd",
+          "workingHash": "0c1e6205733209f951cbd4134d52b0cdf047e42460b3ae25d8cda28a686474cd"
+        },
+        {
+          "file": "assets/cannon-wheel.png",
+          "gitHash": "a134bdd8877531079dda3821d63c3bcc38b043b0e8bc971f612020c1082f9664",
+          "workingHash": "a134bdd8877531079dda3821d63c3bcc38b043b0e8bc971f612020c1082f9664"
+        },
+        {
+          "file": "assets/fonts/OFL.txt",
+          "gitHash": "d31ddd9f2bed32fd7e302a205cf2380ba0de6529152d239ef99cfb6f261bfc04",
+          "workingHash": "d31ddd9f2bed32fd7e302a205cf2380ba0de6529152d239ef99cfb6f261bfc04"
+        },
+        {
+          "file": "assets/fonts/PretendardVariable.woff2",
+          "gitHash": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4",
+          "workingHash": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4"
+        },
+        {
+          "file": "assets/logo.png",
+          "gitHash": "1ce5880dcc31cc7b94b6a3d2c93970a33b5d37a0b078700d6daf0762bd8937e2",
+          "workingHash": "1ce5880dcc31cc7b94b6a3d2c93970a33b5d37a0b078700d6daf0762bd8937e2"
+        },
+        {
+          "file": "assets/logo.svg",
+          "gitHash": "c073caeb5776c6180c9318ca60b1e447b8fa22621356ae8e0aa59288965c6269",
+          "workingHash": "c073caeb5776c6180c9318ca60b1e447b8fa22621356ae8e0aa59288965c6269"
+        },
+        {
+          "file": "assets/music/bit-quest.mp3",
+          "gitHash": "80c72638898d8b9e8f7c602d26817be6fdd8c5fa04ec03973f2d25c415d4e8e0",
+          "workingHash": "80c72638898d8b9e8f7c602d26817be6fdd8c5fa04ec03973f2d25c415d4e8e0"
+        },
+        {
+          "file": "assets/music/chipper-doodle-v2.mp3",
+          "gitHash": "1555641327651b1f2e3e2ad68d1c741034ffecccf46c0e5c762a765ad71bbaa7",
+          "workingHash": "1555641327651b1f2e3e2ad68d1c741034ffecccf46c0e5c762a765ad71bbaa7"
+        },
+        {
+          "file": "assets/music/electrodoodle.mp3",
+          "gitHash": "550458d3e148af6d2c07b874ad3eb6a3be48b1dacd22a61aa77c92c68ea4582b",
+          "workingHash": "550458d3e148af6d2c07b874ad3eb6a3be48b1dacd22a61aa77c92c68ea4582b"
+        },
+        {
+          "file": "assets/music/licenses/CC-BY-4.0.html",
+          "gitHash": "58230517b7895aa219ff46a6ed63e67057a1582fb9ea054b16728a8c13525650",
+          "workingHash": "58230517b7895aa219ff46a6ed63e67057a1582fb9ea054b16728a8c13525650"
+        },
+        {
+          "file": "assets/music/licenses/bit-quest-source.html",
+          "gitHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+          "workingHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+        },
+        {
+          "file": "assets/music/licenses/chipper-doodle-v2-source.html",
+          "gitHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+          "workingHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+        },
+        {
+          "file": "assets/music/licenses/composer-faq.html",
+          "gitHash": "f5fb799a8c719568be80dab1edb201dbe6e91309c786b2d100e9cce3fe171ba6",
+          "workingHash": "f5fb799a8c719568be80dab1edb201dbe6e91309c786b2d100e9cce3fe171ba6"
+        },
+        {
+          "file": "assets/music/licenses/electrodoodle-source.html",
+          "gitHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+          "workingHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+        },
+        {
+          "file": "assets/music/licenses/manifest.json",
+          "gitHash": "334f8c7ef3a0dca7891796ed806677dc943156dc2398279199ba6a409b9d1ac8",
+          "workingHash": "334f8c7ef3a0dca7891796ed806677dc943156dc2398279199ba6a409b9d1ac8"
+        },
+        {
+          "file": "assets/music/licenses/winner-winner-source.html",
+          "gitHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+          "workingHash": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+        },
+        {
+          "file": "assets/music/winner-winner.mp3",
+          "gitHash": "f4337fbc4e7dc3b5be57ce15588d002801008b9470495d713aebc783279f4f33",
+          "workingHash": "f4337fbc4e7dc3b5be57ce15588d002801008b9470495d713aebc783279f4f33"
+        },
+        {
+          "file": "assets/pinball-chrome-photo.png",
+          "gitHash": "10a20acaa005fd2fca897105b1143e063c5de63bad0a407921b6ece23da81a11",
+          "workingHash": "10a20acaa005fd2fca897105b1143e063c5de63bad0a407921b6ece23da81a11"
+        },
+        {
+          "file": "assets/pinball-metal-soft.png",
+          "gitHash": "4df879a4517b1c14c9940faa9626141cde07ca62174a2ab8149f954876bf199c",
+          "workingHash": "4df879a4517b1c14c9940faa9626141cde07ca62174a2ab8149f954876bf199c"
+        },
+        {
+          "file": "index.html",
+          "gitHash": "71eb1c63611fc3fa6e0f8679bfde319c9be35e825bdfca571e77d50e8ff2fbac",
+          "workingHash": "71eb1c63611fc3fa6e0f8679bfde319c9be35e825bdfca571e77d50e8ff2fbac"
+        },
+        {
+          "file": "js/audio.js",
+          "gitHash": "72940855f7b6846f6f0a17213f651130cb33fc35d6a2d243e63e79f7e102782b",
+          "workingHash": "72940855f7b6846f6f0a17213f651130cb33fc35d6a2d243e63e79f7e102782b"
+        },
+        {
+          "file": "js/camera.js",
+          "gitHash": "f94d5a585527054a140ce5d4e63799b1f5f7bb5e7cf8c32ae6665092c5143fb5",
+          "workingHash": "f94d5a585527054a140ce5d4e63799b1f5f7bb5e7cf8c32ae6665092c5143fb5"
+        },
+        {
+          "file": "js/cinematic.js",
+          "gitHash": "72077d56c4d1563f953d82dea771401fe2af7d9e9b15b5c647e2b6800d57891c",
+          "workingHash": "72077d56c4d1563f953d82dea771401fe2af7d9e9b15b5c647e2b6800d57891c"
+        },
+        {
+          "file": "js/display-budget.js",
+          "gitHash": "d918720b9ecfbb1420367f041287872bbc8cb51f4d32c3248de3a1350df8eff1",
+          "workingHash": "d918720b9ecfbb1420367f041287872bbc8cb51f4d32c3248de3a1350df8eff1"
+        },
+        {
+          "file": "js/effects.js",
+          "gitHash": "fc19741e8634901304734ecc1f5896eb301024d5711ab9e4c6d642fdd386efc4",
+          "workingHash": "fc19741e8634901304734ecc1f5896eb301024d5711ab9e4c6d642fdd386efc4"
+        },
+        {
+          "file": "js/hand-flight.js",
+          "gitHash": "85f1e855b96bde0e9d0bf3a1ba9f2a3f47017afeec13c532fa57da3793f49fce",
+          "workingHash": "85f1e855b96bde0e9d0bf3a1ba9f2a3f47017afeec13c532fa57da3793f49fce"
+        },
+        {
+          "file": "js/hand-scene.js",
+          "gitHash": "78df17ce199232518097764d56b48218b869f727c836e1835c8f4026b8c10600",
+          "workingHash": "78df17ce199232518097764d56b48218b869f727c836e1835c8f4026b8c10600"
+        },
+        {
+          "file": "js/hand-start.js",
+          "gitHash": "298e6c089a19a66cf048ddad27d4478977d5507475e03327d90c4232d6131d5a",
+          "workingHash": "298e6c089a19a66cf048ddad27d4478977d5507475e03327d90c4232d6131d5a"
+        },
+        {
+          "file": "js/main.js",
+          "gitHash": "5ab537dbff8fb6230804ca76fee8e8ead8907bd173194659555cd32899ea9341",
+          "workingHash": "5ab537dbff8fb6230804ca76fee8e8ead8907bd173194659555cd32899ea9341"
+        },
+        {
+          "file": "js/map-registry.js",
+          "gitHash": "d7ef71bdcb702319f8b31d3271b4fa5dafa2480587a460a329b6c1ad32c2ba2d",
+          "workingHash": "d7ef71bdcb702319f8b31d3271b4fa5dafa2480587a460a329b6c1ad32c2ba2d"
+        },
+        {
+          "file": "js/maps-duration-data.js",
+          "gitHash": "cfa59cb748127f8ca5bf37c11c8e578bcde7894184d56d3ab0ec139d6e9dc999",
+          "workingHash": "cfa59cb748127f8ca5bf37c11c8e578bcde7894184d56d3ab0ec139d6e9dc999"
+        },
+        {
+          "file": "js/maps.js",
+          "gitHash": "79a9fa7c0003c9a9ba3748151b5dfccac6269b4565e3a5f47a0c52cecc2d89d3",
+          "workingHash": "79a9fa7c0003c9a9ba3748151b5dfccac6269b4565e3a5f47a0c52cecc2d89d3"
+        },
+        {
+          "file": "js/maps/cascade-style.js",
+          "gitHash": "be74db4b6b5729da8428902690e8438610077494781abf16c21b29a2bd5ce830",
+          "workingHash": "be74db4b6b5729da8428902690e8438610077494781abf16c21b29a2bd5ce830"
+        },
+        {
+          "file": "js/maps/cascade.js",
+          "gitHash": "ffc122c220a9cf666e1d1393e43b42c38eac1e87eda242f450e4837c2114e819",
+          "workingHash": "ffc122c220a9cf666e1d1393e43b42c38eac1e87eda242f450e4837c2114e819"
+        },
+        {
+          "file": "js/maps/rhythm-style.js",
+          "gitHash": "abafc5dacf2feeb4bea9e557d0c4da3ce29aa23177adf9194a3484c37fdfa96c",
+          "workingHash": "abafc5dacf2feeb4bea9e557d0c4da3ce29aa23177adf9194a3484c37fdfa96c"
+        },
+        {
+          "file": "js/maps/rhythm.js",
+          "gitHash": "d7ed7608f032ef54d10b3b6a4e031803382f7bafc14a2f2a0cf5c9f44081c949",
+          "workingHash": "d7ed7608f032ef54d10b3b6a4e031803382f7bafc14a2f2a0cf5c9f44081c949"
+        },
+        {
+          "file": "js/maps/twinfold-style.js",
+          "gitHash": "a9811ed9571b2e05e3603c2813bb1404b89c0878a770320e5a726d2adb943458",
+          "workingHash": "a9811ed9571b2e05e3603c2813bb1404b89c0878a770320e5a726d2adb943458"
+        },
+        {
+          "file": "js/maps/twinfold.js",
+          "gitHash": "689df43e4601e927ff590f2d39dad884140ac3aabb269c6fbba1f326e1ef04e4",
+          "workingHash": "689df43e4601e927ff590f2d39dad884140ac3aabb269c6fbba1f326e1ef04e4"
+        },
+        {
+          "file": "js/physics.js",
+          "gitHash": "e6f5b66d1c5b81b9c63b043544d095cb2d73f8dde65ad02a7f3ac1560c9babf5",
+          "workingHash": "e6f5b66d1c5b81b9c63b043544d095cb2d73f8dde65ad02a7f3ac1560c9babf5"
+        },
+        {
+          "file": "js/race-duration-data.js",
+          "gitHash": "96651f0797bb7124c903e436764b0f243173cbec956c8058a185c03391be3393",
+          "workingHash": "96651f0797bb7124c903e436764b0f243173cbec956c8058a185c03391be3393"
+        },
+        {
+          "file": "js/race-duration.js",
+          "gitHash": "7740c90c5de401653824731424dd94b741d8259c17525d1d2d74f890d0edd8f4",
+          "workingHash": "7740c90c5de401653824731424dd94b741d8259c17525d1d2d74f890d0edd8f4"
+        },
+        {
+          "file": "js/race-standing.js",
+          "gitHash": "cad6e28fe03ff61eec21b548d646c3dee8a6b07d604b1eab3a1ea7393585c718",
+          "workingHash": "cad6e28fe03ff61eec21b548d646c3dee8a6b07d604b1eab3a1ea7393585c718"
+        },
+        {
+          "file": "js/renderer.js",
+          "gitHash": "d439211fa92ebb3b3c39d5f5ca6a13d6f722793f9472474287ebd7d317c4a8a6",
+          "workingHash": "d439211fa92ebb3b3c39d5f5ca6a13d6f722793f9472474287ebd7d317c4a8a6"
+        },
+        {
+          "file": "js/shuffle-input.js",
+          "gitHash": "c53898379372660a8922e1412cf18cbaac8596e8265df31ec117db1c9c0396bf",
+          "workingHash": "c53898379372660a8922e1412cf18cbaac8596e8265df31ec117db1c9c0396bf"
+        },
+        {
+          "file": "js/shuffle.js",
+          "gitHash": "89c28332289c5de61a0a5ba602769f90ee856802f215055bdfaa9022ebcf7a09",
+          "workingHash": "89c28332289c5de61a0a5ba602769f90ee856802f215055bdfaa9022ebcf7a09"
+        },
+        {
+          "file": "js/themes.js",
+          "gitHash": "1719b27b8c269fcdef0908041883871adb833c65f465f20542df92fdbca2e05d",
+          "workingHash": "1719b27b8c269fcdef0908041883871adb833c65f465f20542df92fdbca2e05d"
+        },
+        {
+          "file": "js/throw-gate.js",
+          "gitHash": "2edf9c6af6ea90594963603822228c445026df95793ffa4ee7555be778e2f7da",
+          "workingHash": "2edf9c6af6ea90594963603822228c445026df95793ffa4ee7555be778e2f7da"
+        },
+        {
+          "file": "js/ui.js",
+          "gitHash": "9bccbc9c0f7896b8ad4271cf92fb02761ab9b0f260de8405538d9f8397cbdd26",
+          "workingHash": "9bccbc9c0f7896b8ad4271cf92fb02761ab9b0f260de8405538d9f8397cbdd26"
+        },
+        {
+          "file": "music-credits.html",
+          "gitHash": "3a103f0590af12b4b4daca5fbab657354e751a23eabe6bf375f26816a0cbd806",
+          "workingHash": "3a103f0590af12b4b4daca5fbab657354e751a23eabe6bf375f26816a0cbd806"
+        },
+        {
+          "file": "style.css",
+          "gitHash": "9d4a531345c583bf1977d043475bd59edc06b0a48c7b3f7f464a744121540570",
+          "workingHash": "9d4a531345c583bf1977d043475bd59edc06b0a48c7b3f7f464a744121540570"
+        }
+      ],
+      "recordVersions": [
+        {
+          "version": 2,
+          "seed": "MB-149NXTQ-HFW457-1U2CVJ6-1E7ATUH-1",
+          "signature": "[\"release-replay-v2-top-scatter\",{\"id\":\"cascade\",\"version\":6,\"name\":\"빗살 낙하\",\"width\":1000,\"height\":11200,\"spawn\":{\"x\":36,\"y\":50,\"width\":928,\"height\":700},\"finish\":{\"y\":11000},\"obstacles\":[{\"type\":\"segment\",\"id\":\"cascade-catch-0-left\",\"x1\":-40,\"y1\":880,\"x2\":620,\"y2\":1098.7170074479948,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-0-right\",\"x1\":380,\"y1\":1458.7170074479948,\"x2\":1040,\"y2\":1240,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-1-left\",\"x1\":-40,\"y1\":2320,\"x2\":620,\"y2\":2538.717007447995,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-1-right\",\"x1\":380,\"y1\":2898.717007447995,\"x2\":1040,\"y2\":2680,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-2-left\",\"x1\":-40,\"y1\":3870,\"x2\":620,\"y2\":4088.717007447995,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-2-right\",\"x1\":380,\"y1\":4448.717007447995,\"x2\":1040,\"y2\":4230,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-3-left\",\"x1\":-40,\"y1\":5420,\"x2\":620,\"y2\":5638.717007447995,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-3-right\",\"x1\":380,\"y1\":5998.717007447995,\"x2\":1040,\"y2\":5780,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-4-left\",\"x1\":-40,\"y1\":6970,\"x2\":620,\"y2\":7188.717007447995,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-4-right\",\"x1\":380,\"y1\":7548.717007447995,\"x2\":1040,\"y2\":7330,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-5-left\",\"x1\":-40,\"y1\":8520,\"x2\":620,\"y2\":8738.717007447995,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-5-right\",\"x1\":380,\"y1\":9098.717007447995,\"x2\":1040,\"y2\":8880,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-6-left\",\"x1\":-40,\"y1\":10070,\"x2\":620,\"y2\":10288.717007447995,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"segment\",\"id\":\"cascade-catch-6-right\",\"x1\":380,\"y1\":10648.717007447995,\"x2\":1040,\"y2\":10430,\"thickness\":8,\"role\":\"catch-shelf\"},{\"type\":\"pin\",\"id\":\"cascade-detail-final-0\",\"x\":500,\"y\":10800,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-final-1\",\"x\":165,\"y\":10800,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-final-2\",\"x\":835,\"y\":10800,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-0-0\",\"x\":420,\"y\":2680,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-0-1\",\"x\":580,\"y\":2680,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-1-0\",\"x\":420,\"y\":4230,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-1-1\",\"x\":580,\"y\":4230,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-2-0\",\"x\":420,\"y\":5780,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-2-1\",\"x\":580,\"y\":5780,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-3-0\",\"x\":420,\"y\":7330,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-3-1\",\"x\":580,\"y\":7330,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-4-0\",\"x\":420,\"y\":8880,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-4-1\",\"x\":580,\"y\":8880,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-5-0\",\"x\":420,\"y\":10430,\"r\":14},{\"type\":\"pin\",\"id\":\"cascade-detail-5-1\",\"x\":580,\"y\":10430,\"r\":14},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-spine\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-spine\",\"x\":-210,\"y\":1700,\"length\":600,\"angle\":0.36,\"thickness\":10,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-0\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-442.3652708147563,\"y\":1636.043914134893,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-1\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-419.9037470464859,\"y\":1644.498495733495,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-2\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-397.44222327821547,\"y\":1652.9530773320973,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-3\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-374.980699509945,\"y\":1661.4076589306994,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-4\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-352.51917574167453,\"y\":1669.8622405293015,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-5\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-330.0576519734041,\"y\":1678.3168221279036,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-6\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-307.5961282051337,\"y\":1686.771403726506,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-7\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-285.13460443686324,\"y\":1695.225985325108,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-8\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-262.67308066859283,\"y\":1703.68056692371,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-9\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-240.21155690032242,\"y\":1712.1351485223124,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-10\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-217.75003313205198,\"y\":1720.5897301209145,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-11\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-195.28850936378154,\"y\":1729.0443117195166,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-12\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-172.8269855955111,\"y\":1737.498893318119,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-13\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-150.3654618272407,\"y\":1745.953474916721,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-14\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-127.90393805897024,\"y\":1754.408056515323,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-15\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-105.4424142906998,\"y\":1762.8626381139254,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-16\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-82.98089052242938,\"y\":1771.3172197125275,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-17\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-60.51936675415894,\"y\":1779.7718013111296,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-18\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-38.0578429858885,\"y\":1788.2263829097317,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-19\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-15.596319217618056,\"y\":1796.680964508334,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0--1-tooth-20\",\"assembly\":\"cascade-comb-0--1\",\"stage\":0,\"side\":-1,\"role\":\"comb-tooth\",\"x\":6.865204550652383,\"y\":1805.135546106936,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":0},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-spine\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-spine\",\"x\":1210,\"y\":2000,\"length\":600,\"angle\":-0.36,\"thickness\":10,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-0\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":993.1347954493476,\"y\":2105.1355461069365,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-1\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1015.5963192176181,\"y\":2096.680964508334,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-2\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1038.0578429858886,\"y\":2088.226382909732,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-3\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1060.519366754159,\"y\":2079.77180131113,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-4\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1082.9808905224295,\"y\":2071.3172197125277,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-5\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1105.4424142906998,\"y\":2062.8626381139256,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-6\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1127.9039380589704,\"y\":2054.408056515323,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-7\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1150.3654618272408,\"y\":2045.953474916721,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-8\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1172.8269855955111,\"y\":2037.498893318119,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-9\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1195.2885093637817,\"y\":2029.0443117195166,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-10\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1217.750033132052,\"y\":2020.5897301209145,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-11\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1240.2115569003224,\"y\":2012.1351485223124,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-12\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1262.673080668593,\"y\":2003.68056692371,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-13\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1285.1346044368634,\"y\":1995.225985325108,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-14\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1307.5961282051337,\"y\":1986.771403726506,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-15\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1330.0576519734043,\"y\":1978.3168221279036,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-16\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1352.5191757416746,\"y\":1969.8622405293015,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-17\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1374.9806995099452,\"y\":1961.4076589306994,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-18\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1397.4422232782156,\"y\":1952.9530773320973,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-19\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1419.903747046486,\"y\":1944.498495733495,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-0-1-tooth-20\",\"assembly\":\"cascade-comb-0-1\",\"stage\":0,\"side\":1,\"role\":\"comb-tooth\",\"x\":1442.3652708147565,\"y\":1936.043914134893,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-spine\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-spine\",\"x\":-210,\"y\":3250,\"length\":600,\"angle\":0.36,\"thickness\":10,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-0\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-442.3652708147563,\"y\":3186.043914134893,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-1\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-419.9037470464859,\"y\":3194.4984957334955,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-2\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-397.44222327821547,\"y\":3202.9530773320976,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-3\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-374.980699509945,\"y\":3211.4076589306997,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-4\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-352.51917574167453,\"y\":3219.8622405293017,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-5\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-330.0576519734041,\"y\":3228.316822127904,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-6\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-307.5961282051337,\"y\":3236.771403726506,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-7\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-285.13460443686324,\"y\":3245.2259853251085,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-8\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-262.67308066859283,\"y\":3253.6805669237106,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-9\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-240.21155690032242,\"y\":3262.1351485223126,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-10\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-217.75003313205198,\"y\":3270.5897301209147,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-11\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-195.28850936378154,\"y\":3279.044311719517,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-12\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-172.8269855955111,\"y\":3287.498893318119,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-13\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-150.3654618272407,\"y\":3295.953474916721,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-14\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-127.90393805897024,\"y\":3304.4080565153236,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-15\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-105.4424142906998,\"y\":3312.8626381139256,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-16\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-82.98089052242938,\"y\":3321.3172197125277,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-17\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-60.51936675415894,\"y\":3329.77180131113,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-18\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-38.0578429858885,\"y\":3338.226382909732,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-19\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-15.596319217618056,\"y\":3346.680964508334,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1--1-tooth-20\",\"assembly\":\"cascade-comb-1--1\",\"stage\":1,\"side\":-1,\"role\":\"comb-tooth\",\"x\":6.865204550652383,\"y\":3355.1355461069365,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":1.0471975511965976},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-spine\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-spine\",\"x\":1210,\"y\":3550,\"length\":600,\"angle\":-0.36,\"thickness\":10,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-0\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":993.1347954493476,\"y\":3655.1355461069365,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-1\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1015.5963192176181,\"y\":3646.680964508334,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-2\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1038.0578429858886,\"y\":3638.226382909732,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-3\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1060.519366754159,\"y\":3629.77180131113,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-4\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1082.9808905224295,\"y\":3621.3172197125277,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-5\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1105.4424142906998,\"y\":3612.8626381139256,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-6\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1127.9039380589704,\"y\":3604.4080565153236,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-7\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1150.3654618272408,\"y\":3595.953474916721,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-8\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1172.8269855955111,\"y\":3587.498893318119,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-9\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1195.2885093637817,\"y\":3579.044311719517,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-10\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1217.750033132052,\"y\":3570.5897301209147,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-11\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1240.2115569003224,\"y\":3562.1351485223126,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-12\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1262.673080668593,\"y\":3553.6805669237106,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-13\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1285.1346044368634,\"y\":3545.2259853251085,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-14\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1307.5961282051337,\"y\":3536.771403726506,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-15\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1330.0576519734043,\"y\":3528.316822127904,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-16\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1352.5191757416746,\"y\":3519.8622405293017,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-17\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1374.9806995099452,\"y\":3511.4076589306997,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-18\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1397.4422232782156,\"y\":3502.9530773320976,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-19\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1419.903747046486,\"y\":3494.4984957334955,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-1-1-tooth-20\",\"assembly\":\"cascade-comb-1-1\",\"stage\":1,\"side\":1,\"role\":\"comb-tooth\",\"x\":1442.3652708147565,\"y\":3486.043914134893,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-spine\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-spine\",\"x\":-210,\"y\":4800,\"length\":600,\"angle\":0.36,\"thickness\":10,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-0\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-442.3652708147563,\"y\":4736.0439141348925,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-1\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-419.9037470464859,\"y\":4744.498495733495,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-2\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-397.44222327821547,\"y\":4752.953077332097,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-3\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-374.980699509945,\"y\":4761.407658930699,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-4\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-352.51917574167453,\"y\":4769.862240529302,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-5\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-330.0576519734041,\"y\":4778.316822127904,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-6\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-307.5961282051337,\"y\":4786.771403726506,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-7\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-285.13460443686324,\"y\":4795.225985325108,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-8\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-262.67308066859283,\"y\":4803.68056692371,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-9\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-240.21155690032242,\"y\":4812.135148522312,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-10\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-217.75003313205198,\"y\":4820.589730120914,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-11\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-195.28850936378154,\"y\":4829.044311719516,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-12\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-172.8269855955111,\"y\":4837.4988933181185,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-13\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-150.3654618272407,\"y\":4845.953474916721,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-14\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-127.90393805897024,\"y\":4854.408056515323,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-15\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-105.4424142906998,\"y\":4862.862638113925,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-16\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-82.98089052242938,\"y\":4871.317219712527,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-17\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-60.51936675415894,\"y\":4879.77180131113,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-18\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-38.0578429858885,\"y\":4888.226382909732,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-19\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-15.596319217618056,\"y\":4896.680964508334,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2--1-tooth-20\",\"assembly\":\"cascade-comb-2--1\",\"stage\":2,\"side\":-1,\"role\":\"comb-tooth\",\"x\":6.865204550652383,\"y\":4905.135546106936,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":2.0943951023931953},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-spine\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-spine\",\"x\":1210,\"y\":5100,\"length\":600,\"angle\":-0.36,\"thickness\":10,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-0\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":993.1347954493476,\"y\":5205.135546106936,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-1\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1015.5963192176181,\"y\":5196.680964508334,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-2\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1038.0578429858886,\"y\":5188.226382909732,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-3\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1060.519366754159,\"y\":5179.77180131113,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-4\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1082.9808905224295,\"y\":5171.317219712527,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-5\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1105.4424142906998,\"y\":5162.862638113925,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-6\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1127.9039380589704,\"y\":5154.408056515323,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-7\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1150.3654618272408,\"y\":5145.953474916721,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-8\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1172.8269855955111,\"y\":5137.4988933181185,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-9\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1195.2885093637817,\"y\":5129.044311719516,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-10\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1217.750033132052,\"y\":5120.589730120914,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-11\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1240.2115569003224,\"y\":5112.135148522312,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-12\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1262.673080668593,\"y\":5103.68056692371,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-13\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1285.1346044368634,\"y\":5095.225985325108,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-14\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1307.5961282051337,\"y\":5086.771403726506,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-15\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1330.0576519734043,\"y\":5078.316822127904,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-16\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1352.5191757416746,\"y\":5069.862240529302,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-17\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1374.9806995099452,\"y\":5061.407658930699,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-18\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1397.4422232782156,\"y\":5052.953077332097,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-19\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1419.903747046486,\"y\":5044.498495733495,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-2-1-tooth-20\",\"assembly\":\"cascade-comb-2-1\",\"stage\":2,\"side\":1,\"role\":\"comb-tooth\",\"x\":1442.3652708147565,\"y\":5036.0439141348925,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982988},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-spine\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-spine\",\"x\":-210,\"y\":6350,\"length\":600,\"angle\":0.36,\"thickness\":10,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-0\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-442.3652708147563,\"y\":6286.0439141348925,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-1\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-419.9037470464859,\"y\":6294.498495733495,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-2\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-397.44222327821547,\"y\":6302.953077332097,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-3\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-374.980699509945,\"y\":6311.407658930699,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-4\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-352.51917574167453,\"y\":6319.862240529302,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-5\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-330.0576519734041,\"y\":6328.316822127904,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-6\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-307.5961282051337,\"y\":6336.771403726506,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-7\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-285.13460443686324,\"y\":6345.225985325108,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-8\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-262.67308066859283,\"y\":6353.68056692371,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-9\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-240.21155690032242,\"y\":6362.135148522312,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-10\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-217.75003313205198,\"y\":6370.589730120914,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-11\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-195.28850936378154,\"y\":6379.044311719516,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-12\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-172.8269855955111,\"y\":6387.4988933181185,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-13\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-150.3654618272407,\"y\":6395.953474916721,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-14\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-127.90393805897024,\"y\":6404.408056515323,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-15\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-105.4424142906998,\"y\":6412.862638113925,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-16\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-82.98089052242938,\"y\":6421.317219712527,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-17\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-60.51936675415894,\"y\":6429.77180131113,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-18\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-38.0578429858885,\"y\":6438.226382909732,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-19\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-15.596319217618056,\"y\":6446.680964508334,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3--1-tooth-20\",\"assembly\":\"cascade-comb-3--1\",\"stage\":3,\"side\":-1,\"role\":\"comb-tooth\",\"x\":6.865204550652383,\"y\":6455.135546106936,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":3.141592653589793},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-spine\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-spine\",\"x\":1210,\"y\":6650,\"length\":600,\"angle\":-0.36,\"thickness\":10,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-0\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":993.1347954493476,\"y\":6755.135546106936,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-1\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1015.5963192176181,\"y\":6746.680964508334,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-2\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1038.0578429858886,\"y\":6738.226382909732,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-3\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1060.519366754159,\"y\":6729.77180131113,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-4\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1082.9808905224295,\"y\":6721.317219712527,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-5\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1105.4424142906998,\"y\":6712.862638113925,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-6\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1127.9039380589704,\"y\":6704.408056515323,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-7\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1150.3654618272408,\"y\":6695.953474916721,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-8\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1172.8269855955111,\"y\":6687.4988933181185,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-9\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1195.2885093637817,\"y\":6679.044311719516,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-10\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1217.750033132052,\"y\":6670.589730120914,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-11\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1240.2115569003224,\"y\":6662.135148522312,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-12\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1262.673080668593,\"y\":6653.68056692371,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-13\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1285.1346044368634,\"y\":6645.225985325108,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-14\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1307.5961282051337,\"y\":6636.771403726506,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-15\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1330.0576519734043,\"y\":6628.316822127904,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-16\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1352.5191757416746,\"y\":6619.862240529302,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-17\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1374.9806995099452,\"y\":6611.407658930699,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-18\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1397.4422232782156,\"y\":6602.953077332097,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-19\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1419.903747046486,\"y\":6594.498495733495,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-3-1-tooth-20\",\"assembly\":\"cascade-comb-3-1\",\"stage\":3,\"side\":1,\"role\":\"comb-tooth\",\"x\":1442.3652708147565,\"y\":6586.0439141348925,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":6.283185307179586},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-spine\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-spine\",\"x\":-210,\"y\":7900,\"length\":600,\"angle\":0.36,\"thickness\":10,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-0\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-442.3652708147563,\"y\":7836.0439141348925,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-1\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-419.9037470464859,\"y\":7844.498495733495,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-2\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-397.44222327821547,\"y\":7852.953077332097,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-3\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-374.980699509945,\"y\":7861.407658930699,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-4\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-352.51917574167453,\"y\":7869.862240529302,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-5\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-330.0576519734041,\"y\":7878.316822127904,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-6\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-307.5961282051337,\"y\":7886.771403726506,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-7\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-285.13460443686324,\"y\":7895.225985325108,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-8\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-262.67308066859283,\"y\":7903.68056692371,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-9\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-240.21155690032242,\"y\":7912.135148522312,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-10\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-217.75003313205198,\"y\":7920.589730120914,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-11\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-195.28850936378154,\"y\":7929.044311719516,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-12\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-172.8269855955111,\"y\":7937.4988933181185,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-13\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-150.3654618272407,\"y\":7945.953474916721,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-14\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-127.90393805897024,\"y\":7954.408056515323,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-15\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-105.4424142906998,\"y\":7962.862638113925,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-16\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-82.98089052242938,\"y\":7971.317219712527,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-17\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-60.51936675415894,\"y\":7979.77180131113,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-18\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-38.0578429858885,\"y\":7988.226382909732,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-19\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-15.596319217618056,\"y\":7996.680964508334,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4--1-tooth-20\",\"assembly\":\"cascade-comb-4--1\",\"stage\":4,\"side\":-1,\"role\":\"comb-tooth\",\"x\":6.865204550652383,\"y\":8005.135546106936,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":4.1887902047863905},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-spine\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-spine\",\"x\":1210,\"y\":8200,\"length\":600,\"angle\":-0.36,\"thickness\":10,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-0\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":993.1347954493476,\"y\":8305.135546106936,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-1\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1015.5963192176181,\"y\":8296.680964508334,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-2\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1038.0578429858886,\"y\":8288.226382909732,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-3\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1060.519366754159,\"y\":8279.77180131113,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-4\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1082.9808905224295,\"y\":8271.317219712528,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-5\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1105.4424142906998,\"y\":8262.862638113926,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-6\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1127.9039380589704,\"y\":8254.408056515324,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-7\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1150.3654618272408,\"y\":8245.953474916721,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-8\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1172.8269855955111,\"y\":8237.49889331812,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-9\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1195.2885093637817,\"y\":8229.044311719517,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-10\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1217.750033132052,\"y\":8220.589730120915,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-11\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1240.2115569003224,\"y\":8212.135148522313,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-12\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1262.673080668593,\"y\":8203.680566923711,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-13\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1285.1346044368634,\"y\":8195.225985325109,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-14\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1307.5961282051337,\"y\":8186.771403726506,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-15\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1330.0576519734043,\"y\":8178.316822127904,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-16\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1352.5191757416746,\"y\":8169.862240529302,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-17\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1374.9806995099452,\"y\":8161.407658930699,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-18\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1397.4422232782156,\"y\":8152.953077332097,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-19\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1419.903747046486,\"y\":8144.498495733495,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-4-1-tooth-20\",\"assembly\":\"cascade-comb-4-1\",\"stage\":4,\"side\":1,\"role\":\"comb-tooth\",\"x\":1442.3652708147565,\"y\":8136.0439141348925,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":7.330382858376184},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-spine\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-spine\",\"x\":-210,\"y\":9450,\"length\":600,\"angle\":0.36,\"thickness\":10,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-0\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-442.3652708147563,\"y\":9386.043914134894,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-1\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-419.9037470464859,\"y\":9394.498495733496,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-2\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-397.44222327821547,\"y\":9402.953077332098,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-3\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-374.980699509945,\"y\":9411.4076589307,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-4\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-352.51917574167453,\"y\":9419.862240529303,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-5\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-330.0576519734041,\"y\":9428.316822127905,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-6\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-307.5961282051337,\"y\":9436.771403726507,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-7\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-285.13460443686324,\"y\":9445.225985325109,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-8\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-262.67308066859283,\"y\":9453.680566923711,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-9\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-240.21155690032242,\"y\":9462.135148522313,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-10\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-217.75003313205198,\"y\":9470.589730120915,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-11\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-195.28850936378154,\"y\":9479.044311719517,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-12\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-172.8269855955111,\"y\":9487.49889331812,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-13\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-150.3654618272407,\"y\":9495.953474916721,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-14\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-127.90393805897024,\"y\":9504.408056515324,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-15\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-105.4424142906998,\"y\":9512.862638113926,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-16\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-82.98089052242938,\"y\":9521.317219712528,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-17\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-60.51936675415894,\"y\":9529.77180131113,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-18\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-38.0578429858885,\"y\":9538.226382909732,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-19\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":-15.596319217618056,\"y\":9546.680964508334,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5--1-tooth-20\",\"assembly\":\"cascade-comb-5--1\",\"stage\":5,\"side\":-1,\"role\":\"comb-tooth\",\"x\":6.865204550652383,\"y\":9555.135546106936,\"length\":44,\"angle\":1.9307963267948964,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":5.235987755982989},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-spine\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-spine\",\"x\":1210,\"y\":9750,\"length\":600,\"angle\":-0.36,\"thickness\":10,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-0\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":993.1347954493476,\"y\":9855.135546106936,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-1\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1015.5963192176181,\"y\":9846.680964508334,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-2\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1038.0578429858886,\"y\":9838.226382909732,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-3\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1060.519366754159,\"y\":9829.77180131113,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-4\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1082.9808905224295,\"y\":9821.317219712528,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-5\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1105.4424142906998,\"y\":9812.862638113926,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-6\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1127.9039380589704,\"y\":9804.408056515324,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-7\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1150.3654618272408,\"y\":9795.953474916721,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-8\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1172.8269855955111,\"y\":9787.49889331812,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-9\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1195.2885093637817,\"y\":9779.044311719517,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-10\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1217.750033132052,\"y\":9770.589730120915,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-11\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1240.2115569003224,\"y\":9762.135148522313,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-12\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1262.673080668593,\"y\":9753.680566923711,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-13\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1285.1346044368634,\"y\":9745.225985325109,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-14\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1307.5961282051337,\"y\":9736.771403726507,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-15\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1330.0576519734043,\"y\":9728.316822127905,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-16\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1352.5191757416746,\"y\":9719.862240529303,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-17\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1374.9806995099452,\"y\":9711.4076589307,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-18\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1397.4422232782156,\"y\":9702.953077332098,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-19\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1419.903747046486,\"y\":9694.498495733496,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783},{\"type\":\"moving\",\"id\":\"cascade-comb-5-1-tooth-20\",\"assembly\":\"cascade-comb-5-1\",\"stage\":5,\"side\":1,\"role\":\"comb-tooth\",\"x\":1442.3652708147565,\"y\":9686.043914134894,\"length\":44,\"angle\":1.2107963267948967,\"thickness\":8,\"axis\":\"x\",\"amplitude\":480,\"speed\":1.5707963267948966,\"phase\":8.377580409572783}]},{\"gravity\":620,\"fallSoftThreshold\":540,\"fallDrag\":5,\"fallMax\":700,\"velocityMax\":1050,\"rescueDelay\":3,\"rescueProgress\":24},12,620,0.72,false]",
+          "source": [
+            {
+              "id": "marble-1",
+              "x": 0.759869481564579,
+              "y": -0.24589257646995777,
+              "vx": 1.0803230583941514,
+              "vy": 0.006369755798395473,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-2",
+              "x": 0.721138665276905,
+              "y": -0.3971575841894125,
+              "vx": 1.6003951473924516,
+              "vy": -0.27179936056465687,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-3",
+              "x": 0.7135478458380057,
+              "y": -0.05900399170343594,
+              "vx": 1.1361711435611588,
+              "vy": -0.26028962242466486,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-4",
+              "x": 0.6075641318569476,
+              "y": -0.3020159890181412,
+              "vx": 1.329915015768014,
+              "vy": -0.3176457381353735,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-5",
+              "x": 0.636264802791875,
+              "y": -0.17001999764212836,
+              "vx": 1.1155894083258082,
+              "vy": -0.31357791906192456,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-6",
+              "x": 0.6635457810601026,
+              "y": -0.34364940443837416,
+              "vx": 1.493112700712373,
+              "vy": -0.22931546227691013,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-7",
+              "x": 0.7800295454373177,
+              "y": -0.20902945397689832,
+              "vx": 1.3696098456964472,
+              "vy": 0.06662774090858005,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-8",
+              "x": 0.6260835802916053,
+              "y": -0.34770800717634226,
+              "vx": 1.3836607912954562,
+              "vy": -0.32382156898111186,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-9",
+              "x": 0.6253462052429812,
+              "y": -0.22321208809776236,
+              "vx": 1.217518974324529,
+              "vy": -0.2507148568788156,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-10",
+              "x": 0.6678140558038792,
+              "y": -0.30059817849467857,
+              "vx": 1.2453858789982377,
+              "vy": -0.2245595841547888,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-11",
+              "x": 0.6836394726640826,
+              "y": -0.12016179082238496,
+              "vx": 1.00682195712919,
+              "vy": -0.27988519544948187,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-12",
+              "x": 0.7960473213530794,
+              "y": -0.09571062403153721,
+              "vx": 1.095064783387763,
+              "vy": 0.17531901073260808,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-13",
+              "x": 0.7679992541689685,
+              "y": -0.15503397090687276,
+              "vx": 1.3592812168446666,
+              "vy": -0.04359878298771043,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-14",
+              "x": 0.5384862883681188,
+              "y": -0.1604437247791622,
+              "vx": 1.0223904071517549,
+              "vy": -0.3146063604744837,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-15",
+              "x": 0.5737650268837062,
+              "y": -0.19637267520075025,
+              "vx": 1.0968315005949933,
+              "vy": -0.2541953442517747,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-16",
+              "x": 0.5401018719668282,
+              "y": -0.19937481843747465,
+              "vx": 1.0787660514661148,
+              "vy": -0.32633109720095166,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-17",
+              "x": 0.6193202055003825,
+              "y": -0.25470961854011337,
+              "vx": 1.246967849276815,
+              "vy": -0.279291220971755,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-18",
+              "x": 0.7734246482293566,
+              "y": -0.05836830725996696,
+              "vx": 1.1761717563354317,
+              "vy": -0.22957200451304077,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-19",
+              "x": 0.6867131791350941,
+              "y": -0.2543948675215358,
+              "vx": 1.3267363182263046,
+              "vy": -0.2713034984269719,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-20",
+              "x": 0.5741943356701873,
+              "y": -0.3057394491348725,
+              "vx": 1.2940276868798335,
+              "vy": -0.399519630821121,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-21",
+              "x": 0.5374070650870435,
+              "y": -0.2314758783626733,
+              "vx": 1.114456399792341,
+              "vy": -0.3779447280311206,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-22",
+              "x": 0.6912044857122875,
+              "y": -0.3238502441912236,
+              "vx": 1.4019454197357053,
+              "vy": -0.20237786851848608,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-23",
+              "x": 0.6386162647564629,
+              "y": -0.13592592332652176,
+              "vx": 1.0265907604755498,
+              "vy": -0.24453799870516457,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-24",
+              "x": 0.5791704653829033,
+              "y": -0.23617436088060795,
+              "vx": 1.2480162796236973,
+              "vy": -0.2911858936836064,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-25",
+              "x": 0.8184202705203806,
+              "y": -0.314448573416194,
+              "vx": 1.167461356047106,
+              "vy": -0.045089363855117776,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-26",
+              "x": 0.844016794280152,
+              "y": -0.0933662946266374,
+              "vx": 1.3412121862977444,
+              "vy": -0.3975128778689514,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-27",
+              "x": 0.6858692670760088,
+              "y": -0.18980959625860339,
+              "vx": 1.3027620939809406,
+              "vy": -0.403820208515982,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-28",
+              "x": 0.6096557527861064,
+              "y": -0.19281899091518556,
+              "vx": 1.1867229757883613,
+              "vy": -0.29167218561976194,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-29",
+              "x": 0.6979291441955073,
+              "y": -0.36075841782617357,
+              "vx": 1.588632169328501,
+              "vy": -0.20475288822749724,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-30",
+              "x": 0.5829998063114428,
+              "y": -0.121750050522254,
+              "vx": 1.0959879078973693,
+              "vy": -0.3091728030999934,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-31",
+              "x": 0.8546497791616893,
+              "y": -0.022466273614866458,
+              "vx": 0.3694859451417392,
+              "vy": -0.6339156313101487,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-32",
+              "x": 0.7218028079469682,
+              "y": -0.17860399833977966,
+              "vx": 1.2243314373994632,
+              "vy": -0.12477248560936595,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-33",
+              "x": 0.6546693659974023,
+              "y": -0.25895674771368754,
+              "vx": 1.293245689026423,
+              "vy": -0.27936497897839024,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-34",
+              "x": 0.5881709810714999,
+              "y": -0.27361879953777696,
+              "vx": 1.25284303172665,
+              "vy": -0.3148937274202911,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-35",
+              "x": 0.7462470623156111,
+              "y": -0.0186244685109302,
+              "vx": 1.1784653846585686,
+              "vy": -0.20568424565197518,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-36",
+              "x": 0.7549745179303541,
+              "y": -0.10666844867096698,
+              "vx": 1.3002791339837878,
+              "vy": -0.302951776857106,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-37",
+              "x": 0.7191960496401806,
+              "y": -0.22282107268697973,
+              "vx": 1.2166990708693717,
+              "vy": -0.0303703884549102,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-38",
+              "x": 0.6509570258732302,
+              "y": -0.20004711182880922,
+              "vx": 1.1990266716961824,
+              "vy": -0.2999275023742849,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-39",
+              "x": 0.6346932194081283,
+              "y": -0.2843132829025194,
+              "vx": 1.3020470533255846,
+              "vy": -0.2933973444554315,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-40",
+              "x": 0.5560896063169306,
+              "y": -0.2603799243979579,
+              "vx": 1.2240422931773223,
+              "vy": -0.3082659085740454,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-41",
+              "x": 0.6773866160457256,
+              "y": -0.3882936363193545,
+              "vx": 1.5009941097617905,
+              "vy": -0.19366062817216612,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-42",
+              "x": 0.6999230373912901,
+              "y": -0.29116894216952754,
+              "vx": 1.3430239869830791,
+              "vy": -0.14079416528067418,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-43",
+              "x": 0.7737470813551548,
+              "y": 0.054321249776673595,
+              "vx": 0.6796456865988268,
+              "vy": -0.43972668909930007,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-44",
+              "x": 0.6455015858275654,
+              "y": -0.3736527981624139,
+              "vx": 1.495001641771701,
+              "vy": -0.28514611158195524,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-45",
+              "x": 0.667348724114473,
+              "y": -0.22888538914169257,
+              "vx": 1.320388602738455,
+              "vy": -0.23878605722428167,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-46",
+              "x": 0.7182231540322788,
+              "y": -0.13835291742152211,
+              "vx": 1.3685051168068847,
+              "vy": -0.16081700363375118,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-47",
+              "x": 0.7289924370629394,
+              "y": -0.3393619786109484,
+              "vx": 1.4814471331028516,
+              "vy": -0.2865978787689099,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-48",
+              "x": 0.5953736118608549,
+              "y": -0.3317451649988632,
+              "vx": 1.3711944176645046,
+              "vy": -0.34143620757558185,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-49",
+              "x": 0.6719548363961205,
+              "y": -0.1504336224757886,
+              "vx": 1.1134174641899763,
+              "vy": -0.34628810622106004,
+              "r": 0.0159719141249985
+            },
+            {
+              "id": "marble-50",
+              "x": 0.6388683985314403,
+              "y": -0.3167008415386626,
+              "vx": 1.3233421844074682,
+              "vy": -0.247218859193574,
+              "r": 0.0159719141249985
+            }
+          ],
+          "starts": [
+            {
+              "id": "marble-1",
+              "x": 198.663246760293,
+              "y": 190.56026867055334,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-2",
+              "x": 746.4581667714272,
+              "y": 107.74914166727103,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-3",
+              "x": 88.92620911897923,
+              "y": 86.75816317950375,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-4",
+              "x": 308.0724504643374,
+              "y": 78.4745348659344,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-5",
+              "x": 691.7259218846518,
+              "y": 101.17244485998526,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-6",
+              "x": 363.11918617563435,
+              "y": 207.3755112476647,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-7",
+              "x": 335.73488885912843,
+              "y": 90.18446213472635,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-8",
+              "x": 773.7706276984801,
+              "y": 99.09204639261588,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-9",
+              "x": 637.1303677072636,
+              "y": 109.50455092056654,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-10",
+              "x": 500.02103457226644,
+              "y": 207.80530999600887,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-11",
+              "x": 746.6859805739738,
+              "y": 190.62594937696122,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-12",
+              "x": 445.33567824917424,
+              "y": 176.8126365186181,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-13",
+              "x": 116.45227178384437,
+              "y": 121.67925134231336,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-14",
+              "x": 445.403905069766,
+              "y": 135.3172919228673,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-15",
+              "x": 554.9418473808433,
+              "y": 117.02097772760317,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-16",
+              "x": 801.4811220168644,
+              "y": 179.35361427254975,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-17",
+              "x": 335.61031605083156,
+              "y": 205.7798625419382,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-18",
+              "x": 719.2458880793755,
+              "y": 88.35964558296837,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-19",
+              "x": 636.8623702287406,
+              "y": 192.07582290819846,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-20",
+              "x": 911.038322143426,
+              "y": 103.68502394855022,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-21",
+              "x": 828.6494451391751,
+              "y": 178.7340441737324,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-22",
+              "x": 828.7919363581759,
+              "y": 109.97736444557086,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-23",
+              "x": 280.8110755798266,
+              "y": 226.72569089615718,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-24",
+              "x": 417.8626584569486,
+              "y": 181.52362563437782,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-25",
+              "x": 801.1783703288742,
+              "y": 108.19525624904782,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-26",
+              "x": 390.263061836249,
+              "y": 103.35800783522427,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-27",
+              "x": 116.52334422158839,
+              "y": 179.5368373868987,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-28",
+              "x": 938.1293693078809,
+              "y": 216.62668699375354,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-29",
+              "x": 390.3673135883556,
+              "y": 181.05757224420086,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-30",
+              "x": 527.2845502135796,
+              "y": 209.167556328699,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-31",
+              "x": 226.06160720736918,
+              "y": 125.18638501758687,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-32",
+              "x": 664.2440807156858,
+              "y": 227.3504826419521,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-33",
+              "x": 417.9723207053347,
+              "y": 122.8981652322691,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-34",
+              "x": 856.1011452368376,
+              "y": 198.57072549592704,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-35",
+              "x": 499.89173124271275,
+              "y": 123.69914398761466,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-36",
+              "x": 253.50840481677602,
+              "y": 105.8085315246135,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-37",
+              "x": 61.78813055173183,
+              "y": 225.2131602121517,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-38",
+              "x": 554.6510036521817,
+              "y": 183.35023059300147,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-39",
+              "x": 582.1277274879006,
+              "y": 191.56082785571925,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-40",
+              "x": 472.6711107061922,
+              "y": 177.75165749527514,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-41",
+              "x": 89.11244942118752,
+              "y": 215.73468709620647,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-42",
+              "x": 226.06895935792957,
+              "y": 175.80048432108015,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-43",
+              "x": 61.63571079139541,
+              "y": 88.74955206084996,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-44",
+              "x": 143.9293629637369,
+              "y": 196.24974772008136,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-45",
+              "x": 773.787969568575,
+              "y": 223.0856153687928,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-46",
+              "x": 609.495438534075,
+              "y": 81.55256464635022,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-47",
+              "x": 938.1397426669542,
+              "y": 118.78634061664343,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-48",
+              "x": 363.10410494025035,
+              "y": 89.00612768251449,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-49",
+              "x": 472.70519935828634,
+              "y": 122.02804640610702,
+              "vx": 0,
+              "vy": 0
+            },
+            {
+              "id": "marble-50",
+              "x": 883.5776377849874,
+              "y": 185.9663573433645,
+              "vx": 0,
+              "vy": 0
+            }
+          ],
+          "placement": "seeded-top-scatter-v2"
+        }
+      ],
+      "errors": []
+    }
+  ]
+}

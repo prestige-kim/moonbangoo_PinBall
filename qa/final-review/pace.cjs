@@ -1,0 +1,16 @@
+'use strict';
+const fs=require('node:fs'),crypto=require('node:crypto'),{capture,P}=require('../fairness/model.cjs');
+const mode=process.argv[2]||'default',rows=[],summary=[],maps=['classic','twinfold','cascade','rhythm'];
+const configs=mode==='default'?[{}]:[{radius:8,gravity:350,restitution:.35},{radius:8,gravity:350,restitution:.92},{radius:8,gravity:1500,restitution:.35},{radius:8,gravity:1500,restitution:.92},{radius:16,gravity:350,restitution:.35},{radius:16,gravity:350,restitution:.92},{radius:16,gravity:1500,restitution:.35},{radius:16,gravity:1500,restitution:.92}];
+const counts=mode==='default'?[1,2,6,25,49,50]:[1,6,50],n=mode==='default'?10:3;
+for(let ci=0;ci<configs.length;ci++)for(const count of counts)for(const protocol of ['B','C','D'])for(let i=0;i<n;i++){
+ const seed='final-review-v1-'+ci+'-'+count+'-'+protocol+'-'+i,groups=count<3?[count]:[Math.floor(count/3),Math.floor(count/3),count-2*Math.floor(count/3)];let starts;
+ for(const map of maps){const {p,start}=capture({map,groups,skills:false,...configs[ci]},seed,protocol);if(starts&&JSON.stringify(starts)!==JSON.stringify(start.starts))throw Error('Different starts');starts=start.starts;const hits=new Map(),roles={},errors={finite:0,bounds:0,forbidden:0};
+ while(!p.complete&&p.time<240){p.step();for(const e of p.drainEvents()){if(e.obstacle&&['hit','bumper'].includes(e.type)){hits.set(e.id,(hits.get(e.id)||0)+1);const role=e.obstacle.role||e.obstacle.type;roles[role]=(roles[role]||0)+1;}if(map!=='classic'&&['rescue','skill','portal','boost'].includes(e.type))errors.forbidden++;}if(p.ticks%120===0)for(const m of p.marbles){if(![m.x,m.y,m.vx,m.vy].every(Number.isFinite))errors.finite++;if(m.x-m.r<36-1e-4||m.x+m.r>964+1e-4)errors.bounds++;}}
+ rows.push({map,ci,count,protocol,seed,time:p.time,first:p.finished[0]?.finishTime,complete:p.complete,minHits:Math.min(...p.marbles.map(m=>hits.get(m.id)||0)),roles,errors,remaining:p.marbles.filter(m=>!m.finished).map(m=>({id:m.id,x:m.x,y:m.y}))});
+ }
+ console.log(JSON.stringify({ci,count,protocol,i,times:rows.slice(-4).map(r=>r.time)}));
+}
+const quantile=(a,q)=>a.slice().sort((a,b)=>a-b)[Math.ceil(a.length*q)-1];
+for(let ci=0;ci<configs.length;ci++)for(const count of counts){const a=rows.filter(r=>r.map==='classic'&&r.ci===ci&&r.count===count);for(const map of maps.slice(1)){const b=rows.filter(r=>r.map===map&&r.ci===ci&&r.count===count),median=quantile(b.map(r=>r.time),.5)/quantile(a.map(r=>r.time),.5),p95=quantile(b.map(r=>r.time),.95)/quantile(a.map(r=>r.time),.95);summary.push({map,ci,count,n:b.length,classicMedian:quantile(a.map(r=>r.time),.5),median:quantile(b.map(r=>r.time),.5),medianRatio:median,p95Ratio:p95,pass:median>=.9&&median<=1.1&&p95>=.9&&p95<=1.1});}}
+const report={at:new Date().toISOString(),mode,criteria:{median:[.9,1.1],p95:[.9,1.1]},configs,hashes:Object.fromEntries(['js/maps.js','js/physics.js',...maps.slice(1).map(m=>'js/maps/'+m+'.js')].map(f=>[f,crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex')])),summary,rows};fs.writeFileSync('docs/final-review/pace-'+mode+'.json',JSON.stringify(report,null,2));console.log(JSON.stringify({cases:rows.length,failedCells:summary.filter(s=>!s.pass),failedRuns:rows.filter(r=>!r.complete||r.minHits<1||Object.values(r.errors).some(Boolean))},null,2));

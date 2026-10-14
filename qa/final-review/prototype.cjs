@@ -1,0 +1,19 @@
+'use strict';
+const fs=require('node:fs'),{Worker,isMainThread,parentPort,workerData}=require('node:worker_threads');
+if(!isMainThread){const {P}=require('../four-maps/helpers.cjs'),c=workerData.c;
+ for(const id of ['twinfold','cascade','rhythm']){
+  const m=P.MAPS[id];if(!c.noExit){m.height=13200;m.finish.y=13000;}
+  if(id==='twinfold'&&c.bookends)for(const [i,o]of m.obstacles.filter(o=>o.role==='bookend').entries()){Object.assign(o,{type:'moving',length:.001,thickness:o.r,angle:.34,axis:'x',amplitude:4,speed:.8,phase:i*1.7});delete o.r;}
+  if(id==='twinfold'&&c.twinAngle)for(const o of m.obstacles.filter(o=>o.bay!==undefined))o.angle=Math.sign(o.angle)*c.twinAngle;
+  if(id==='cascade'&&c.cascadeAngle)for(const o of m.obstacles.filter(o=>o.role==='catch-shelf')){const dy=Math.abs(o.x2-o.x1)*Math.tan(c.cascadeAngle);if(o.x1<0)o.y2=o.y1+dy;else o.y1=o.y2+dy;}
+  if(id==='rhythm'&&c.bufferAngle)for(const o of m.obstacles.filter(o=>o.role==='clock-buffer'))o.angle=Math.sign(o.angle)*c.bufferAngle;
+  if(!c.noExit){[-1,1].forEach(side=>{const pts=c.fastFeed?[[-40,11200],[340,11730],[340,11800]]:[[-40,11300],[260,11550],[340,11680],[340,11800]],assembly=id+'-exit-feed-'+side;
+   for(let j=1;j<pts.length;j++){const [a,b]=[pts[j-1],pts[j]],n=Math.ceil(Math.hypot(b[0]-a[0],b[1]-a[1])/120);for(let k=0;k<n;k++){const x1=a[0]+(b[0]-a[0])*k/n,y1=a[1]+(b[1]-a[1])*k/n,x2=a[0]+(b[0]-a[0])*(k+1)/n,y2=a[1]+(b[1]-a[1])*(k+1)/n;m.obstacles.push({type:'segment',id:assembly+'-'+j+'-'+k,assembly,role:'exit-feed',x1:side<0?x1:1000-x1,y1,x2:side<0?x2:1000-x2,y2,thickness:8});}}
+  });
+  m.obstacles.push({type:'rotor',id:id+'-exit-sorter',role:'exit-sorter',x:500,y:12250,length:c.armLength||700,thickness:8,angle:.25,speed:2*Math.PI/(id==='rhythm'?c.clockPeriod||4.8:c.period||4.8)});}
+ }
+ parentPort.on('message',task=>{const rows=[];for(const old of task.rows){const p=new P.Physics({map:P.MAPS[old.map],names:P.parseNames('공*'+old.count),seed:old.seed});P.commitHandStart(p,p.marbles.map(m=>({id:m.id,x:0,y:0,vx:0,vy:0,r:m.r})));while(!p.complete&&p.time<240){p.step();p.drainEvents();}rows.push({...old,time:p.time,complete:p.complete});}parentPort.postMessage({count:task.count,rows});});
+}else{
+ const c=JSON.parse(process.argv[2]),onlyMaps=(process.env.PROTO_MAPS||'twinfold,cascade,rhythm').split(','),before=require('../../docs/final-review/audit-pace.json'),counts=(process.env.PROTO_COUNTS||'1,2,6,16,23,27,28,40,42,44,50').split(',').map(Number),jobs=counts.map(count=>({count,rows:before.rows.filter(r=>r.count===count&&onlyMaps.includes(r.map))})),rows=[],total=jobs.length;let done=0;const q=(a,p)=>a.slice().sort((a,b)=>a-b)[Math.ceil(a.length*p)-1];
+ for(let i=0;i<6&&jobs.length;i++){const w=new Worker(__filename,{workerData:{c}});w.on('error',e=>{console.error(e);process.exit(1);});w.on('message',r=>{rows.push(...r.rows);done++;console.log('Done',done,total,r.count);const a=before.rows.filter(x=>x.map==='classic'&&x.count===r.count);console.log(JSON.stringify(onlyMaps.map(map=>{const b=r.rows.filter(x=>x.map===map);return {map,count:r.count,median:q(b.map(x=>x.time),.5)/q(a.map(x=>x.time),.5),p95:q(b.map(x=>x.time),.95)/q(a.map(x=>x.time),.95)};})));if(jobs.length)w.postMessage(jobs.shift());else w.terminate();if(done===total){const summary=[];for(const count of counts){const a=before.rows.filter(r=>r.map==='classic'&&r.count===count);for(const map of onlyMaps){const b=rows.filter(r=>r.map===map&&r.count===count),median=q(b.map(r=>r.time),.5)/q(a.map(r=>r.time),.5),p95=q(b.map(r=>r.time),.95)/q(a.map(r=>r.time),.95);summary.push({map,count,median,p95,pass:median>=.9&&median<=1.1&&p95>=.9&&p95<=1.1});}}fs.writeFileSync('/private/tmp/pinball-prototype-'+c.tag+'.json',JSON.stringify({c,summary,rows},null,2));console.log(JSON.stringify({summary,failures:rows.filter(r=>!r.complete)},null,2));}});w.postMessage(jobs.shift());}
+}

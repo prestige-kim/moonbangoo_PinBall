@@ -1,0 +1,16 @@
+{
+  "sha": "28ae75b5c38af50172dbf07f95260795f333ed21",
+  "comparison": "1df5c5600c4c0686055d257f09056a4b14293f2c",
+  "twinfold": {
+    "changedBookends": 30,
+    "unchangedObstacles": 35,
+    "allOtherMapMetadataEqual": true,
+    "change": "pin radius 12 -> existing moving capsule length .001, thickness 12, horizontal amplitude 4, speed .8, phase i*1.7; no added recovery mechanics"
+  },
+  "cascade": {
+    "changedRails": 14,
+    "unchangedObstacles": 279,
+    "allOtherMapMetadataEqual": true,
+    "change": "dy 210 -> 660*tan(.32); seven full-width pairs unchanged in x, six comb pairs/periods/teeth preserved"
+  }
+}

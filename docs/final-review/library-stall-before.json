@@ -1,0 +1,26 @@
+{
+  "sha": "1df5c5600c4c0686055d257f09056a4b14293f2c",
+  "mapVersion": 8,
+  "mapHash": "e42c7e2f316c8f29adc0f5e57843dc3bf430abd2ede15c4d4e7599f2a38c50ce",
+  "start": {
+    "x": 500,
+    "y": 738,
+    "vx": 0,
+    "vy": 0
+  },
+  "settings": {
+    "radius": 12,
+    "gravity": 620,
+    "restitution": 0.72,
+    "skills": false
+  },
+  "time": 240,
+  "complete": false,
+  "end": {
+    "x": 500,
+    "y": 1235.985,
+    "vx": 0,
+    "vy": -2.162790697674419
+  },
+  "rescues": 0
+}

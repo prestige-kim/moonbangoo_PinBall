@@ -1,0 +1,181 @@
+{
+  "baseline": "0d03f31f59ce41543529e1894f05499cc76d899e",
+  "cases": 30,
+  "failures": 0,
+  "rows": [
+    {
+      "id": "classic",
+      "time": 0,
+      "reduced": false,
+      "equal": true
+    },
+    {
+      "id": "classic",
+      "time": 0,
+      "reduced": true,
+      "equal": true
+    },
+    {
+      "id": "classic",
+      "time": 0.2,
+      "reduced": false,
+      "equal": true
+    },
+    {
+      "id": "classic",
+      "time": 0.2,
+      "reduced": true,
+      "equal": true
+    },
+    {
+      "id": "classic",
+      "time": 1.2,
+      "reduced": false,
+      "equal": true
+    },
+    {
+      "id": "classic",
+      "time": 1.2,
+      "reduced": true,
+      "equal": true
+    },
+    {
+      "id": "classic",
+      "time": 3.6,
+      "reduced": false,
+      "equal": true
+    },
+    {
+      "id": "classic",
+      "time": 3.6,
+      "reduced": true,
+      "equal": true
+    },
+    {
+      "id": "classic",
+      "board": false,
+      "equal": true
+    },
+    {
+      "id": "classic",
+      "board": true,
+      "equal": true
+    },
+    {
+      "id": "twinfold",
+      "time": 0,
+      "reduced": false,
+      "equal": true
+    },
+    {
+      "id": "twinfold",
+      "time": 0,
+      "reduced": true,
+      "equal": true
+    },
+    {
+      "id": "twinfold",
+      "time": 0.2,
+      "reduced": false,
+      "equal": true
+    },
+    {
+      "id": "twinfold",
+      "time": 0.2,
+      "reduced": true,
+      "equal": true
+    },
+    {
+      "id": "twinfold",
+      "time": 1.2,
+      "reduced": false,
+      "equal": true
+    },
+    {
+      "id": "twinfold",
+      "time": 1.2,
+      "reduced": true,
+      "equal": true
+    },
+    {
+      "id": "twinfold",
+      "time": 3.6,
+      "reduced": false,
+      "equal": true
+    },
+    {
+      "id": "twinfold",
+      "time": 3.6,
+      "reduced": true,
+      "equal": true
+    },
+    {
+      "id": "twinfold",
+      "board": false,
+      "equal": true
+    },
+    {
+      "id": "twinfold",
+      "board": true,
+      "equal": true
+    },
+    {
+      "id": "cascade",
+      "time": 0,
+      "reduced": false,
+      "equal": true
+    },
+    {
+      "id": "cascade",
+      "time": 0,
+      "reduced": true,
+      "equal": true
+    },
+    {
+      "id": "cascade",
+      "time": 0.2,
+      "reduced": false,
+      "equal": true
+    },
+    {
+      "id": "cascade",
+      "time": 0.2,
+      "reduced": true,
+      "equal": true
+    },
+    {
+      "id": "cascade",
+      "time": 1.2,
+      "reduced": false,
+      "equal": true
+    },
+    {
+      "id": "cascade",
+      "time": 1.2,
+      "reduced": true,
+      "equal": true
+    },
+    {
+      "id": "cascade",
+      "time": 3.6,
+      "reduced": false,
+      "equal": true
+    },
+    {
+      "id": "cascade",
+      "time": 3.6,
+      "reduced": true,
+      "equal": true
+    },
+    {
+      "id": "cascade",
+      "board": false,
+      "equal": true
+    },
+    {
+      "id": "cascade",
+      "board": true,
+      "equal": true
+    }
+  ]
+}

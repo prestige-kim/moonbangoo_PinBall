@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-14T14:25:57.484Z",
+  "baseline": "5d25319ddd2d352cf35e314da27329c97daec397",
+  "rules": [
+    "first",
+    "last",
+    "nth",
+    "top"
+  ],
+  "functionEqual": true,
+  "functionSHA256": "ddb409ee04ccb4c6a3c338d89158b3a962f0694251ee25e37b532c983433e37f"
+}

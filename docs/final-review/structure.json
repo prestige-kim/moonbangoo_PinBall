@@ -1,0 +1,114 @@
+{
+  "at": "2026-10-14T14:25:57.550Z",
+  "hashes": {
+    "js/physics.js": "e6f5b66d1c5b81b9c63b043544d095cb2d73f8dde65ad02a7f3ac1560c9babf5",
+    "js/maps/twinfold.js": "689df43e4601e927ff590f2d39dad884140ac3aabb269c6fbba1f326e1ef04e4",
+    "js/maps/cascade.js": "ffc122c220a9cf666e1d1393e43b42c38eac1e87eda242f450e4837c2114e819",
+    "js/maps/rhythm.js": "d7ed7608f032ef54d10b3b6a4e031803382f7bafc14a2f2a0cf5c9f44081c949"
+  },
+  "scope": "Continuous horizontal position and obstacle phase for a straight vertical zero-vx drop; not a proof for multi-ball deflections, all seeds, or all completion times.",
+  "twinfold": {
+    "gap": [
+      300.55093310566923,
+      699.4490668943308
+    ],
+    "alwaysCovered": [
+      264.02869365206305,
+      735.9713063479369
+    ],
+    "pass": true
+  },
+  "cascade": {
+    "catches": [
+      [
+        [
+          -40,
+          620
+        ],
+        [
+          380,
+          1040
+        ]
+      ],
+      [
+        [
+          -40,
+          620
+        ],
+        [
+          380,
+          1040
+        ]
+      ],
+      [
+        [
+          -40,
+          620
+        ],
+        [
+          380,
+          1040
+        ]
+      ],
+      [
+        [
+          -40,
+          620
+        ],
+        [
+          380,
+          1040
+        ]
+      ],
+      [
+        [
+          -40,
+          620
+        ],
+        [
+          380,
+          1040
+        ]
+      ],
+      [
+        [
+          -40,
+          620
+        ],
+        [
+          380,
+          1040
+        ]
+      ],
+      [
+        [
+          -40,
+          620
+        ],
+        [
+          380,
+          1040
+        ]
+      ]
+    ],
+    "pass": true
+  },
+  "rhythm": {
+    "halfThroat": 56,
+    "safeRadius": 200,
+    "minFallSpeed": 540,
+    "maxTraversalSeconds": 0.7407407407407407,
+    "polarSweep": 2.5740044351731375,
+    "rotationSweep": 0.969627362219072,
+    "relativeSweep": 1.6043770729540654,
+    "spokeGap": 1.0471975511965976,
+    "assumptions": [
+      "No prior solid contact => horizontal velocity remains zero (no wind above first drum).",
+      "Joined static feeder pieces intercept every outer vertical line.",
+      "Gravity >=350; no-contact fall reaches speed 540 before the first drum.",
+      "The first rotor has six equally spaced spokes. Relative polar sweep exceeds one spoke gap during traversal.",
+      "Geometric continuous-path certificate; discrete engine coverage is separately checked by routes.cjs."
+    ],
+    "pass": true
+  }
+}

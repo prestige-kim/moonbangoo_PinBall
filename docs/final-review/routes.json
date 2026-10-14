@@ -1,0 +1,2894 @@
+{
+  "at": "2026-10-14T13:28:50.497Z",
+  "hashes": {
+    "js/maps.js": "79a9fa7c0003c9a9ba3748151b5dfccac6269b4565e3a5f47a0c52cecc2d89d3",
+    "js/maps/twinfold.js": "e42c7e2f316c8f29adc0f5e57843dc3bf430abd2ede15c4d4e7599f2a38c50ce",
+    "js/maps/cascade.js": "d9abb4cd6e63b7cd3315b80af3c294f884f17a379e7c0b8366d1c09daf8d74f9",
+    "js/maps/rhythm.js": "d7ed7608f032ef54d10b3b6a4e031803382f7bafc14a2f2a0cf5c9f44081c949"
+  },
+  "scope": "first solid contact, integer horizontal coordinates, spawn bottom, 24 phase samples, zero velocity; not full-course or continuous proof",
+  "cases": 260640,
+  "failures": [],
+  "rows": [
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 0.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 3.1083333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 0,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 4.533333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 0.8,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 1.2000000000000002,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 2.4000000000000004,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 4.533333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 1.6,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 2.8000000000000003,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 3.108333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 3.2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 3.6,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 4.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 4.800000000000001,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 4.533333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 5.2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 3.1083333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 5.6000000000000005,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 6,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 6.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 6.800000000000001,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333332,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 7.2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 4.533333333333332,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 7.6000000000000005,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 3.1083333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 8,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 8.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 8.8,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333332,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 8,
+      "phase": 9.200000000000001,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 5.058333333333332,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 0,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 4.525,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 0.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 3.1083333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 0.8,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.05,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 1.2000000000000002,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.05,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 1.6,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.049999999999999,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.05,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 2.4000000000000004,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 4.5249999999999995,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 2.8000000000000003,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 3.108333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 3.2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.05,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 3.6,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.050000000000001,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.050000000000001,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 4.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.049999999999999,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 4.800000000000001,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 4.524999999999999,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 5.2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 3.1083333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 5.6000000000000005,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.05,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 6,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.050000000000001,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 6.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.049999999999999,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 6.800000000000001,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.049999999999999,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 7.2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 4.5249999999999995,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 7.6000000000000005,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 3.1083333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 8,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.049999999999999,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 8.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.049999999999999,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 8.8,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.049999999999999,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 0,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 12,
+      "phase": 9.200000000000001,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 5.049999999999999,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 0.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 3.1,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 0.8,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 3.966666666666667,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 1.2000000000000002,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 1.6,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 2.4000000000000004,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 2.8000000000000003,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 3.1,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 3.2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 3.966666666666667,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 3.6,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 4.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 4.800000000000001,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 5.2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 3.1000000000000005,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 5.6000000000000005,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 3.0999999999999988,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 6,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 6.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 6.800000000000001,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 7.2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333334,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 7.6000000000000005,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 3.0999999999999988,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 8,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 3.0999999999999996,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 8.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 8.8,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "classic",
+      "radius": 16,
+      "phase": 9.200000000000001,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 4.508333333333333,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 0,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6583333333333332,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 0.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.65,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 0.8,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666664,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 1.2000000000000002,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666666,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 1.6,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666666,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666666,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 2.4000000000000004,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666666,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 2.8000000000000003,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.65,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 3.2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6583333333333332,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 3.6,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6666666666666665,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6749999999999998,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 4.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6833333333333327,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 4.800000000000001,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6916666666666655,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 5.2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6916666666666664,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 6,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6916666666666664,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 5.6000000000000005,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6916666666666664,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 6.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6833333333333336,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 6.800000000000001,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.674999999999999,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 7.2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.666666666666667,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 7.6000000000000005,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6583333333333323,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 8,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6500000000000004,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 8.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666657,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 8.8,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666657,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 8,
+      "phase": 9.200000000000001,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666657,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 0,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.65,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 0.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666666,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 0.8,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666664,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 1.2000000000000002,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6333333333333333,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 1.6,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6333333333333333,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666666,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 2.4000000000000004,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666666,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 2.8000000000000003,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.65,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 3.2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6583333333333332,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 3.6,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6666666666666665,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6749999999999998,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 4.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6833333333333327,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 4.800000000000001,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6833333333333327,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 5.2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6916666666666664,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 5.6000000000000005,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6916666666666664,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 6,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6833333333333336,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 6.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6833333333333336,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 6.800000000000001,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.674999999999999,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 7.2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.666666666666667,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 7.6000000000000005,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6583333333333323,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 8,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6500000000000004,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 8.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666657,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 8.8,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666657,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 12,
+      "phase": 9.200000000000001,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.6333333333333329,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 0.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666666,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 0,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.65,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 0.8,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.633333333333333,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 1.2000000000000002,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6333333333333333,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 1.6,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6333333333333333,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6333333333333333,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 2.4000000000000004,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666666,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 2.8000000000000003,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.65,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 3.2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6583333333333332,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 3.6,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6666666666666665,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6749999999999998,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 4.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6749999999999998,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 4.800000000000001,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6833333333333327,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 5.2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6833333333333327,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 5.6000000000000005,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6833333333333327,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 6,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6833333333333336,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 6.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.674999999999999,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 6.800000000000001,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.674999999999999,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 7.2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.666666666666667,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 8,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6500000000000004,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 7.6000000000000005,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6583333333333323,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 8.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6416666666666657,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 8.8,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6333333333333329,
+      "failures": []
+    },
+    {
+      "map": "twinfold",
+      "radius": 16,
+      "phase": 9.200000000000001,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.6333333333333329,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 0.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.475,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 0,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.475,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 0.8,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999999,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 1.2000000000000002,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 1.6,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.475,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.475,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 2.4000000000000004,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 2.8000000000000003,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.475,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 3.2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 3.6,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.475,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 4.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 4.800000000000001,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 5.2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 5.6000000000000005,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 6,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 6.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 6.800000000000001,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 7.2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4750000000000005,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 7.6000000000000005,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999988,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 8,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 8.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 8.8,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 8,
+      "phase": 9.200000000000001,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 0,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.475,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 0.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.475,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 0.8,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999999,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 1.2000000000000002,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 1.6,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.475,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.475,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 2.4000000000000004,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 2.8000000000000003,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.475,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 3.2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 3.6,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.475,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 4.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 4.800000000000001,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 5.2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 6,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 5.6000000000000005,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 6.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 6.800000000000001,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 7.2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4750000000000005,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 7.6000000000000005,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999988,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 8,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 8.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 8.8,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 12,
+      "phase": 9.200000000000001,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.4749999999999996,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 0,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666666,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 0.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666668,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 0.8,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666666,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 1.2000000000000002,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666663,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 1.6,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666663,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666668,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 2.4000000000000004,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666663,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 2.8000000000000003,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666663,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 3.2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666668,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 3.6,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666663,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666668,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 4.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.466666666666666,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 4.800000000000001,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.466666666666666,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 5.2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666668,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 5.6000000000000005,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.466666666666666,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 6,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666668,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 6.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.466666666666666,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 6.800000000000001,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.466666666666665,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 7.2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.466666666666666,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 7.6000000000000005,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.466666666666666,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 8,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666668,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 8.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.4666666666666668,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 8.8,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.466666666666665,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 0,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9583333333333333,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 0.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9500000000000002,
+      "failures": []
+    },
+    {
+      "map": "cascade",
+      "radius": 16,
+      "phase": 9.200000000000001,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.466666666666665,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 0.8,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9583333333333333,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 1.2000000000000002,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999997,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 1.6,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.958333333333333,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999997,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 2.4000000000000004,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.958333333333333,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 2.8000000000000003,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999997,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 3.2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.958333333333333,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 3.6,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999997,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.958333333333333,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 4.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999993,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 4.800000000000001,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9583333333333321,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 5.2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999993,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 5.6000000000000005,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.958333333333333,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 6,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9500000000000002,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 6.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9583333333333321,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 7.2,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.958333333333333,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 6.800000000000001,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999993,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 7.6000000000000005,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9500000000000002,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 8,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.958333333333334,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 8.4,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999993,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 8.8,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9583333333333321,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 8,
+      "phase": 9.200000000000001,
+      "y": 742,
+      "cases": 913,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999993,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 0,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.95,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 0.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666669,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 0.8,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.95,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 1.2000000000000002,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 1.6,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999997,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 2.8000000000000003,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.941666666666666,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 2.4000000000000004,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999993,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 3.2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9500000000000002,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 3.6,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666669,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9500000000000002,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 4.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 4.800000000000001,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999993,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 5.2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 5.6000000000000005,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999993,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 6.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999993,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 6,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 6.800000000000001,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 7.2,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9500000000000002,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 7.6000000000000005,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666655,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 8,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999993,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 8.4,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 8.8,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9499999999999993,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 12,
+      "phase": 9.200000000000001,
+      "y": 738,
+      "cases": 905,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666647,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 0,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666667,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 0.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9333333333333336,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 0.8,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666667,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 1.2000000000000002,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9333333333333331,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 1.6,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9333333333333331,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 2.4000000000000004,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 2.8000000000000003,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9333333333333331,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 3.2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 3.6,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9333333333333331,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 4.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9333333333333327,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 4.800000000000001,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666655,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 5.2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9333333333333327,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 5.6000000000000005,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 6,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9333333333333336,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 6.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 6.800000000000001,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9333333333333318,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 7.2,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666655,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 7.6000000000000005,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9333333333333327,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 8,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 8.4,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9333333333333336,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 8.8,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9416666666666664,
+      "failures": []
+    },
+    {
+      "map": "rhythm",
+      "radius": 16,
+      "phase": 9.200000000000001,
+      "y": 734,
+      "cases": 897,
+      "minHits": 1,
+      "maxFirst": 1.9333333333333318,
+      "failures": []
+    }
+  ]
+}
