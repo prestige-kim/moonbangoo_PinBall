@@ -316,6 +316,11 @@
       ctx.restore();
     }
     drawObstacle(o,physics,effects,time,visible) {
+      if(o.type==='moving'&&o.role==='bookend'){
+        const pose=physics.getObstaclePose(o);
+        this.drawObstacle({type:'pin',id:o.id,role:o.role,x:pose.x,y:pose.y,r:o.thickness},physics,effects,time,visible);
+        return;
+      }
       if(o.role&&o.role.indexOf('clock-')===0){const yy=o.points?o.points[1].y:o.y===undefined?(o.y1+o.y2)/2:o.y,span=o.role==='clock-drum'?400:250;if(yy+span>=visible.top&&yy-span<=visible.bottom)this.drawClockwork(o,physics);return;}
       if(o.assembly&&o.role&&o.role.indexOf('comb-')===0){if(o.y+360>=visible.top&&o.y-360<=visible.bottom)this.drawCombMember(o,physics);return;}
       if(o.type==='wind'){if(o.y+80>=visible.top&&o.y-o.height<=visible.bottom)this.drawWind(o,physics);return;}

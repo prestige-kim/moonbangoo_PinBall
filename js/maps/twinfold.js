@@ -1,6 +1,6 @@
 (function (P) {
   'use strict';
-  var map = { id: 'twinfold', version: 8, name: '갈래 서가', width: 1000, height: 11200,
+  var map = { id: 'twinfold', version: 9, name: '갈래 서가', width: 1000, height: 11200,
     spawn: { x: 36, y: 50, width: 928, height: 700 }, finish: { y: 11000 }, obstacles: [] };
   // Twenty reading bays alternate a central sliding shelf (two side aisles)
   // with paired book carts (one central aisle). No uninterrupted vertical bypass.
@@ -15,10 +15,13 @@
         angle: (row + col) % 2 ? -0.34 : 0.34,
         amplitude: 28, speed: 0.8, phase: row * 1.7 + col * Math.PI });
     });
-    // Bookend studs interrupt the open aisle between successive shelves.
+    // Sliding bookends keep their circular outline but remove a fixed apex
+    // where a perfectly centered marble could otherwise balance indefinitely.
     (paired ? [500] : [170, 830]).forEach(function (x) {
-      map.obstacles.push({ type: 'pin', id: 'twinfold-detail-' + row + '-' + x,
-        role: 'bookend', x: x, y: y + 210, r: 12 });
+      var phase = map.obstacles.filter(function (o) { return o.role === 'bookend'; }).length * 1.7;
+      map.obstacles.push({ type: 'moving', id: 'twinfold-detail-' + row + '-' + x,
+        role: 'bookend', x: x, y: y + 210, axis: 'x', length: 0.001,
+        thickness: 12, angle: 0.34, amplitude: 4, speed: 0.8, phase: phase });
     });
   }
   // Visible air vents release a short gust every 3.5 simulation seconds.

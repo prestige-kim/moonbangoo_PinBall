@@ -1,8 +1,8 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),{P,run,assertRun,assertGaps}=require('../qa/four-maps/helpers.cjs');
 test('twinfold alternates moving split shelves and paired carts across 20 bays with an active finale',()=>{
- const m=P.MAPS.twinfold;assert.equal(m.version,8);assert.equal(m.finish.y,11000);
- assert.equal(m.obstacles.filter(o=>o.type==='moving'&&o.role!=='finale').length,30);
+ const m=P.MAPS.twinfold;assert.equal(m.version,9);assert.equal(m.finish.y,11000);
+ assert.equal(m.obstacles.filter(o=>o.bay!==undefined).length,30);
  assert.equal(m.obstacles.filter(o=>o.role==='bookend').length,30);
  for(let bay=0;bay<20;bay++){
   const bars=m.obstacles.filter(o=>o.bay===bay);assert.equal(bars.length,bay%2?1:2);
@@ -38,4 +38,23 @@ test('twinfold finale has four dynamic stages, open lanes and collision events n
   }
   assert(p.complete);assert(hits>0);if(count===50)assert(late>0,'last wind vent must lift marbles');
  }
+});
+
+
+test('sliding bookends complete the exact fixed-apex regression and adjacent starts',()=>{
+ for(const x of [499.5,500,500.5])for(const y of [737,738,739]){
+  const p=new P.Physics({map:P.MAPS.twinfold,names:P.parseNames('공'),seed:'library-center-stall',radius:12,gravity:620,restitution:.72,skills:false});
+  Object.assign(p.marbles[0],{x,y,vx:0,vy:0});let hits=0;
+  while(!p.complete&&p.time<240){p.step();for(const e of p.drainEvents())if(e.type==='hit')hits++;}
+  assert(p.complete,'stalled at '+x+','+y);assert(hits>0);assert.equal(p.marbles[0]._rescues,0);
+ }
+});
+
+test('library v8 records are refused and v9 records replay exactly after bookend motion',()=>{
+ const map=P.MAPS.twinfold,old={...map,version:8,obstacles:map.obstacles.map(o=>o.role==='bookend'?{type:'pin',id:o.id,role:o.role,x:o.x,y:o.y,r:12}:o)},names=P.parseNames('공'),seed='library-bookend-replay';
+ function record(m){const p=new P.Physics({map:m,names,seed});P.commitHandStart(p,[{id:p.marbles[0].id,x:0,y:0,vx:0,vy:0,r:12}]);return p.handStart;}
+ assert.throws(()=>P.restoreHandStart(new P.Physics({map,names,seed}),record(old)),/호환/);
+ const start=record(map),p=new P.Physics({map,names,seed});P.restoreHandStart(p,start);assert.deepEqual(p.handStart,start);
+ const play=()=>{const q=new P.Physics({map,names,seed});P.restoreHandStart(q,start);while(!q.complete&&q.time<240){q.step();q.drainEvents();}assert(q.complete);return q.finished.map(m=>[m.id,m.finishTime]);};
+ assert.deepEqual(play(),play());
 });
