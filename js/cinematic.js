@@ -723,6 +723,17 @@
       if (this.boardCache.image) ctx.drawImage(this.boardCache.image, 0, 0, 1000, bottom);
       ctx.restore();
     }
+    drawSceneBackground(blend = 0) {
+      const ctx = this.ctx, w = this.width, h = this.height;
+      const bg = ctx.createLinearGradient(0, 0, w, h);
+      bg.addColorStop(0, '#faf6eb'); bg.addColorStop(.57, '#f2e9d6'); bg.addColorStop(1, '#e9dec7');
+      ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h);
+      const amount = clamp(blend, 0, 1);
+      if (amount > 0 && this.renderer && this.renderer.background) {
+        ctx.save(); ctx.globalAlpha = amount;
+        ctx.drawImage(this.renderer.background, 0, 0, w, h); ctx.restore();
+      }
+    }
     render(state) {
       state = state || {}; this.resize(); const ctx = this.ctx, w = this.width, h = this.height;
       const stage = state.stage || 'intro', p = clamp(Number(state.progress) || 0, 0, 1), time = Number(state.time) || 0, reduced = !!state.reducedMotion;
@@ -766,9 +777,7 @@
       const blast = blastPose(flight, reduced), wheel = assemblyPose(aiming, angle, resting.angle, reduced);
       const barrelShift = stage === 'flight' ? barrelOffset(p, views.frame, w, reduced) : { x: 0, y: 0 };
       const movingFrame = Object.assign({}, views.frame, { x: views.frame.x + barrelShift.x, y: views.frame.y + barrelShift.y });
-      const bg = ctx.createLinearGradient(0, 0, w, h); bg.addColorStop(0, '#faf6eb'); bg.addColorStop(.57, '#f2e9d6'); bg.addColorStop(1, '#e9dec7');
-      ctx.fillStyle = bg; ctx.fillRect(0, 0, w, h);
-      if (stage === 'flight' && this.renderer && this.renderer.background) ctx.drawImage(this.renderer.background, 0, 0, w, h);
+      this.drawSceneBackground(stage === 'flight' ? 1 : 0);
       ctx.save();
       if (stage === 'flight') {
         if (blast.shake > .001) { const strength = Math.min(8, w * .005) * blast.shake; ctx.translate(Math.sin(blast.after * 183) * strength, Math.cos(blast.after * 141) * strength * .68); }

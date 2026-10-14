@@ -233,9 +233,10 @@
     render(state) {
       const c = this.cinema, ctx = c.ctx, area = this.area(), ready = this.ready;
       ctx.clearRect(0, 0, area.w, area.h);
-      const bg = ctx.createLinearGradient(0, 0, area.w, area.h);
-      bg.addColorStop(0, '#faf6eb'); bg.addColorStop(.57, '#f2e9d6'); bg.addColorStop(1, '#e9dec7');
-      ctx.fillStyle = bg; ctx.fillRect(0, 0, area.w, area.h);
+      // Use visual elapsed time only: no shuffle state, seed or release timing changes.
+      const fade = clamp(this.elapsed / (state.reducedMotion ? .12 : 1.6));
+      const blend = fade * fade * (3 - 2 * fade);
+      P.Cinematic.prototype.drawSceneBackground.call(c, blend);
       if (this.gate) {
         const thresholds = P.THROW_THRESHOLDS, band = thresholds.edgeBand * area.s, radius = thresholds.corner * area.s;
         const feedback = this.gate.evaluate(performance.now());
@@ -303,7 +304,7 @@
       this.drawTube(area, true, rig);
       for (let i = 0; i < this.shuffle.bodies.length; i++) if (!this.shuffle.bodies[i].pouring) draw(this.shuffle.bodies[i], i);
       if (!ready && this.canTilt) {
-        ctx.fillStyle = '#8a7760'; ctx.font = '12px "Pretendard Variable", sans-serif'; ctx.textAlign = 'center';
+        ctx.fillStyle = c.renderer && c.renderer.mapStyle && c.renderer.mapStyle.id === 'rhythm' ? '#F4DDB9' : '#69583F'; ctx.font = '12px "Pretendard Variable", sans-serif'; ctx.textAlign = 'center';
         ctx.fillText('유리관 오른쪽을 아래로 끌어 충분히 기울여 주세요', area.x, area.y + .38 * area.s);
       }
       if (c.canvas.dataset) c.canvas.dataset.handPhase = !ready ? (this.elapsed < POUR.lift ? 'lifting' : this.remaining ? this.lidLatched ? 'pouring' : 'waiting-tilt' : 'settling-pour') : this.shuffle.pointer ? 'dragging' : 'settling';

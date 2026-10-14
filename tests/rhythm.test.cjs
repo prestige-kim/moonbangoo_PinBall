@@ -38,3 +38,11 @@ test('clockwork art follows actual poses, remains deterministic and does not cha
  function trace(reduced){const calls=[];const ctx=new Proxy({},{get:(_,key)=>(...args)=>calls.push([key,...args]),set:()=>true});const r=Object.assign(Object.create(P.Renderer.prototype),{ctx,reducedMotion:reduced});r.drawClockwork(o,p);return calls;}
  const before=JSON.stringify(p.marbles),pose=p.getObstaclePose(o),a=trace(false);assert(a.some(c=>c[0]==='moveTo'&&c[1]===pose.x1&&c[2]===pose.y1));assert(a.some(c=>c[0]==='lineTo'&&c[1]===pose.x2&&c[2]===pose.y2));assert.deepEqual(a,trace(true));assert.deepEqual(a,trace(false));assert.equal(JSON.stringify(p.marbles),before);p.time=1.6;assert.notDeepEqual(trace(false),a);
 });
+
+test('clockwork scenery draws no text on any of its obstacles',()=>{
+ new Function('window',fs.readFileSync('js/renderer.js','utf8'))({CosmicPinball:P});const texts=[];
+ const ctx=new Proxy({fillText:(...args)=>texts.push(args),strokeText:(...args)=>texts.push(args)},{get:(t,k)=>t[k]||(()=>{}),set:(t,k,v)=>(t[k]=v,true)});
+ const r=Object.assign(Object.create(P.Renderer.prototype),{ctx}),p=new P.Physics({map,names:P.parseNames('공')});
+ for(const time of [0,.8,2.4]){p.time=time;for(const o of map.obstacles.filter(o=>o.role?.startsWith('clock-')))r.drawClockwork(o,p);}
+ assert.deepEqual(texts,[]);
+});

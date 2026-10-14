@@ -170,9 +170,7 @@
         });
         return { reveal: 1, cameraAmount: 1 };
       }
-      const background = ctx.createLinearGradient(0, 0, w, h);
-      background.addColorStop(0, '#faf6eb'); background.addColorStop(.57, '#f2e9d6'); background.addColorStop(1, '#e9dec7');
-      ctx.fillStyle = background; ctx.fillRect(0, 0, w, h);
+      P.Cinematic.prototype.drawSceneBackground.call(c, 1);
       ctx.save(); ctx.transform(view.a, 0, 0, view.d, view.e, view.f);
       c.targetBoard(view, physics, 1, 'flight');
       this.lastPoses = this.items.map((item, index) => {

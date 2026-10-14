@@ -243,3 +243,12 @@ test('a widely scattered release starts without a camera snap before pulling bac
   s.flight.render({progress:0,physics:s.physics,camera:s.camera});
   s.flight.lastPoses.forEach((p,i)=>{const b=s.hand.shuffle.bodies[i];near(p.x,s.area.x+b.x*s.area.s);near(p.y,s.area.y+b.y*s.area.s);});
 });
+
+test('flight keeps the same course background until its transparent exact landing endpoint', () => {
+  const s = scene(), background = {}, draws = [];
+  s.cinema.renderer = { background };
+  s.cinema.ctx.drawImage = (image, ...rect) => draws.push({ image, rect, alpha: s.cinema.ctx.globalAlpha });
+  for (const progress of [0, .5, .999]) s.flight.render({ progress, physics: s.physics, camera: s.camera });
+  assert.equal(draws.length, 3); for (const draw of draws) { assert.equal(draw.image, background); assert.equal(draw.alpha, 1); assert.deepEqual(draw.rect, [0, 0, 1280, 720]); }
+  s.flight.render({ progress: 1, physics: s.physics, camera: s.camera }); assert.equal(draws.length, 3);
+});

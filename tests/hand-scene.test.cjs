@@ -195,3 +195,21 @@ test('visible rounded walls contain every collision circle during vigorous near-
   console.log('rounded wall QA',count,width,height,'hits',c.wallHits,'worst overlap',worst);
  }
 });
+
+test('shuffle fades the selected course background from paper without changing bodies or randomness', () => {
+  for (const count of [1, 50]) for (const reducedMotion of [false, true]) {
+    const s = setup(count, 1280, 800), background = {}, draws = [];
+    s.cinema.renderer = { background };
+    s.cinema.ctx.drawImage = (image, ...rect) => draws.push({ image, rect, alpha: s.cinema.ctx.globalAlpha });
+    const before = positions(s.physics), bodies = JSON.stringify(s.scene.shuffle.bodies), random = s.randomDraws();
+    const duration = reducedMotion ? .12 : 1.6;
+    for (const time of [0, duration / 4, duration / 2, duration, duration * 2]) {
+      s.scene.elapsed = time; s.scene.render({ physics: s.physics, reducedMotion });
+    }
+    assert.equal(draws.length, 4); assert(draws[0].alpha > 0 && draws[0].alpha < .5);
+    assert.equal(draws[1].alpha, .5); assert.equal(draws[2].alpha, 1); assert.equal(draws[3].alpha, 1);
+    for (const draw of draws) { assert.equal(draw.image, background); assert.deepEqual(draw.rect, [0, 0, 1280, 800]); }
+    assert.equal(positions(s.physics), before); assert.equal(JSON.stringify(s.scene.shuffle.bodies), bodies); assert.equal(s.randomDraws(), random);
+    s.scene.begin(s.physics, reducedMotion); assert.equal(s.scene.elapsed, 0, 'each fresh start resets the fade');
+  }
+});

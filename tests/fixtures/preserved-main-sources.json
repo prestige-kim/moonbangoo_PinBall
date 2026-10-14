@@ -31,5 +31,19 @@
       "reason": "Update runtime transition description only; retain all composer, source, ISRC and license attribution.",
       "previousDeploymentSHA256": "2768e68b6ffc3b4e67859f5227b208002cd32d8a0fd856473c199d48d98ab993"
     }
+  },
+  "intentionalVisualChanges": {
+    "js/cinematic.js": {
+      "reason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged.",
+      "sha256": "91f41922806f28f4a7c809c173b845e0b6241ee1d02088fc80724954498a615f"
+    },
+    "js/hand-scene.js": {
+      "reason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged.",
+      "sha256": "78df17ce199232518097764d56b48218b869f727c836e1835c8f4026b8c10600"
+    },
+    "js/hand-flight.js": {
+      "reason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged.",
+      "sha256": "85f1e855b96bde0e9d0bf3a1ba9f2a3f47017afeec13c532fa57da3793f49fce"
+    }
   }
 }
