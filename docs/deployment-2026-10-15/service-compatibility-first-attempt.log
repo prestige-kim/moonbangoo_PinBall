@@ -1,0 +1,10 @@
+page.goto: Timeout 30000ms exceeded.
+Call log:
+[2m  - navigating to "https://prestige-kim.github.io/moonbangoo_PinBall/", waiting until "load"[22m
+
+    at /Users/proudchris/Desktop/moonbangoo_PinBall/qa/deploy-service-compatibility.cjs:3:108 {
+  log: [
+    '  - navigating to "https://prestige-kim.github.io/moonbangoo_PinBall/", waiting until "load"'
+  ],
+  name: 'TimeoutError'
+}

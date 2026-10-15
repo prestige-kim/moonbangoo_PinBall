@@ -1,0 +1,30 @@
+[
+  {
+    map: 'twinfold',
+    oldVersion: 8,
+    currentVersion: 10,
+    rejected: true,
+    error: '직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요.'
+  },
+  {
+    map: 'twinfold',
+    oldVersion: 9,
+    currentVersion: 10,
+    rejected: true,
+    error: '직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요.'
+  },
+  {
+    map: 'cascade',
+    oldVersion: 5,
+    currentVersion: 7,
+    rejected: true,
+    error: '직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요.'
+  },
+  {
+    map: 'cascade',
+    oldVersion: 6,
+    currentVersion: 7,
+    rejected: true,
+    error: '직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요.'
+  }
+]

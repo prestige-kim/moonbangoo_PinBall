@@ -1,0 +1,158 @@
+{
+  "at": "2026-10-15T04:05:02.402586+00:00",
+  "releaseSHA": "12a2f071ddafbb59a775131291d8e2fd91fb9a76",
+  "deployedSourceSHA": "12a2f071ddafbb59a775131291d8e2fd91fb9a76",
+  "pagesRun": {
+    "conclusion": "success",
+    "headSha": "12a2f071ddafbb59a775131291d8e2fd91fb9a76",
+    "status": "completed",
+    "updatedAt": "2026-10-15T03:58:07Z",
+    "url": "https://github.com/prestige-kim/moonbangoo_PinBall/actions/runs/38678909865"
+  },
+  "productionFilesMatchCommit": true,
+  "serviceOperatingFiles": 68,
+  "serviceFileFailures": 0,
+  "unitTests": {
+    "pass": 301,
+    "fail": 0
+  },
+  "browserMaps": [
+    {
+      "map": "classic",
+      "count": 50,
+      "exactReplay": true,
+      "restart": true,
+      "maxMusicPlayers": 1
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "exactReplay": true,
+      "restart": true,
+      "maxMusicPlayers": 1
+    },
+    {
+      "map": "cascade",
+      "count": 50,
+      "exactReplay": true,
+      "restart": true,
+      "maxMusicPlayers": 1
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "exactReplay": true,
+      "restart": true,
+      "maxMusicPlayers": 1
+    }
+  ],
+  "browserErrors": [],
+  "layoutCases": [
+    {
+      "map": "twinfold",
+      "count": 6,
+      "width": 390,
+      "height": 844,
+      "reduced": false,
+      "version": 10,
+      "finished": 6,
+      "prototypeLoaded": false,
+      "flight": {
+        "endpoint": {
+          "error": 5.684341886080802e-14,
+          "cameraFixed": true,
+          "slots": 6
+        },
+        "frames": 160
+      }
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "width": 844,
+      "height": 390,
+      "reduced": false,
+      "version": 5,
+      "finished": 50,
+      "prototypeLoaded": false,
+      "flight": {
+        "endpoint": {
+          "error": 1.1457157353758233e-13,
+          "cameraFixed": true,
+          "slots": 50
+        },
+        "frames": 164
+      }
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "width": 1280,
+      "height": 800,
+      "reduced": true,
+      "version": 10,
+      "finished": 6,
+      "prototypeLoaded": false,
+      "flight": {
+        "endpoint": {
+          "error": 1.2710574864626038e-13,
+          "cameraFixed": true,
+          "slots": 6
+        },
+        "frames": 73
+      }
+    }
+  ],
+  "compatibility": [
+    {
+      "map": "twinfold",
+      "oldVersion": 8,
+      "currentVersion": 10,
+      "rejected": true,
+      "error": "직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요."
+    },
+    {
+      "map": "twinfold",
+      "oldVersion": 9,
+      "currentVersion": 10,
+      "rejected": true,
+      "error": "직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요."
+    },
+    {
+      "map": "cascade",
+      "oldVersion": 5,
+      "currentVersion": 7,
+      "rejected": true,
+      "error": "직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요."
+    },
+    {
+      "map": "cascade",
+      "oldVersion": 6,
+      "currentVersion": 7,
+      "rejected": true,
+      "error": "직전 경기의 출발 기록이 없거나 현재 버전·설정과 호환되지 않습니다. 새로 섞어 주세요."
+    }
+  ],
+  "reviewPages": {
+    "verifiedFiles": 26,
+    "libraryComparisonVersions": [
+      10,
+      9
+    ],
+    "flightLabReady": true,
+    "errors": []
+  },
+  "versions": {
+    "classic": 2,
+    "twinfold": 10,
+    "cascade": 7,
+    "rhythm": 5
+  },
+  "limits": [
+    "Canyon v7 duration gates still fail; no further redesign or large simulation performed.",
+    "Library v10 pilot improvement is small; late arbitrary-placement no-contact flags retained.",
+    "Finite browser and physics samples; not all seeds, coordinates or devices."
+  ],
+  "previousDeploymentSHA": "a41acdf21c98df49e746163e6a49c4f9abbff096",
+  "rollbackPerformed": false
+}

@@ -1,0 +1,60 @@
+{
+  "url": "https://prestige-kim.github.io/moonbangoo_PinBall/",
+  "errors": [],
+  "cases": [
+    {
+      "map": "twinfold",
+      "count": 6,
+      "width": 390,
+      "height": 844,
+      "reduced": false,
+      "version": 10,
+      "finished": 6,
+      "prototypeLoaded": false,
+      "flight": {
+        "endpoint": {
+          "error": 5.684341886080802e-14,
+          "cameraFixed": true,
+          "slots": 6
+        },
+        "frames": 160
+      }
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "width": 844,
+      "height": 390,
+      "reduced": false,
+      "version": 5,
+      "finished": 50,
+      "prototypeLoaded": false,
+      "flight": {
+        "endpoint": {
+          "error": 1.1457157353758233e-13,
+          "cameraFixed": true,
+          "slots": 50
+        },
+        "frames": 164
+      }
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "width": 1280,
+      "height": 800,
+      "reduced": true,
+      "version": 10,
+      "finished": 6,
+      "prototypeLoaded": false,
+      "flight": {
+        "endpoint": {
+          "error": 1.2710574864626038e-13,
+          "cameraFixed": true,
+          "slots": 6
+        },
+        "frames": 73
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "maps": [
+    {
+      "map": "classic",
+      "time": 56.6,
+      "exactReplay": true
+    },
+    {
+      "map": "twinfold",
+      "time": 55.00833333333333,
+      "exactReplay": true
+    },
+    {
+      "map": "cascade",
+      "time": 72.01666666666667,
+      "exactReplay": true
+    },
+    {
+      "map": "rhythm",
+      "time": 53.983333333333334,
+      "exactReplay": true
+    }
+  ],
+  "layouts": [],
+  "errors": []
+}
