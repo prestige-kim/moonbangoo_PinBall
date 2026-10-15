@@ -1,0 +1,54 @@
+✔ separate proposal preserves release continuity, exact own slots, physics and RNG for all four maps and supported counts (540.332458ms)
+✔ proposal keeps the board fixed and carries viewport corrections continuously to the exact new landing (13.647042ms)
+✔ proposal can restore original flight methods and is absent from the production entrypoint (6.289667ms)
+✔ release starts at every actual position and velocity, with C1 propulsion onset (8.456833ms)
+✔ front pinballs receive propulsion first and delays depend on actual throw direction (4.347708ms)
+✔ gesture direction changes the visible path while endpoints retain their own seeded slots (2.543583ms)
+✔ all IDs reach exact map sprites on desktop, portrait and landscape for every count (73.251542ms)
+✔ camera starts with identity and zero velocity, follows the flight, and ends at the final map transform (1.955042ms)
+✔ reduced motion keeps the same release state and own IDs with no camera sweep or trails (2.849083ms)
+✔ snapshot positions stay fixed when the old shuffle continues or source arrays reorder (0.888209ms)
+✔ midflight resizing preserves current positions and radii while smoothly reaching the new camera (2.748125ms)
+✔ changing reduced motion midflight suppresses trails without resetting the captured path (1.1845ms)
+✔ a stopped release has a short directional impulse without input-speed amplification or slot changes (6.440667ms)
+✖ flight keeps the board camera fixed, frames the group and draws no tails across viewport sizes (7.508333ms)
+✔ a widely scattered release starts without a camera snap before pulling back (0.504125ms)
+✔ flight dissolves the same course paper onto the real board before its transparent endpoint (1.582ms)
+✔ library split-finale review preserves every unrelated shape and production map object (2.526333ms)
+✔ two bookmark routes have permanent wall clearance and no fixed balance point (0.125125ms)
+✔ old library starts are rejected on the changed review geometry, while new starts replay exactly (968.257125ms)
+✔ twinfold alternates moving split shelves and paired carts across 20 bays with an active finale (2.430666ms)
+✔ twinfold completes 1..50 balls with declared wind fields and replays frame groupings (4170.20675ms)
+✔ twinfold keeps physical gaps >=96 including the walls and full motion cycle (518.706416ms)
+✔ twinfold side-wall starts must contact moving shelves rather than bypassing the course (504.559541ms)
+✔ twinfold finale has five dynamic stages, open lanes and collision events near the finish (1158.932917ms)
+✔ sliding bookends complete the exact fixed-apex regression and adjacent starts (2467.780208ms)
+✔ library v8 records are refused and v9 records replay exactly after bookend motion (573.610667ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 25
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9523.712833
+
+✖ failing tests:
+
+test at tests/hand-flight.test.cjs:222:1
+✖ flight keeps the board camera fixed, frames the group and draws no tails across viewport sizes (7.508333ms)
+  AssertionError [ERR_ASSERTION]: whole group visible vertically
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-flight.test.cjs:230:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

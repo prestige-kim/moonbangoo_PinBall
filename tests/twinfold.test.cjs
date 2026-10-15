@@ -1,7 +1,7 @@
 'use strict';
 const test=require('node:test'),assert=require('node:assert/strict'),{P,run,assertRun,assertGaps}=require('../qa/four-maps/helpers.cjs');
 test('twinfold alternates moving split shelves and paired carts across 20 bays with an active finale',()=>{
- const m=P.MAPS.twinfold;assert.equal(m.version,9);assert.equal(m.finish.y,11000);
+ const m=P.MAPS.twinfold;assert.equal(m.version,10);assert.equal(m.finish.y,11000);
  assert.equal(m.obstacles.filter(o=>o.bay!==undefined).length,30);
  assert.equal(m.obstacles.filter(o=>o.role==='bookend').length,30);
  for(let bay=0;bay<20;bay++){
@@ -26,10 +26,10 @@ test('twinfold side-wall starts must contact moving shelves rather than bypassin
  }
 });
 
-test('twinfold finale has four dynamic stages, open lanes and collision events near the finish',()=>{
- const map=P.MAPS.twinfold,finale=map.obstacles.filter(o=>o.role==='finale');
- assert.equal(finale.length,5);assert.equal(finale.filter(o=>o.type==='wind').length,2);
- assert.deepEqual([...new Set(finale.map(o=>o.y))].sort((a,b)=>a-b),[9020,9600,10160,10760]);
+test('twinfold finale has five dynamic stages, open lanes and collision events near the finish',()=>{
+ const map=P.MAPS.twinfold,finale=map.obstacles.filter(o=>o.role==='finale'||o.role==='review-bookmark');
+ assert.equal(finale.length,6);assert.equal(finale.filter(o=>o.type==='wind').length,2);
+ assert.deepEqual([...new Set(finale.map(o=>o.y))].sort((a,b)=>a-b),[9020,9600,10080,10320,10760]);
  assert(finale.every(o=>o.type==='wind'?o.y<map.finish.y-96:o.y+o.length/2+(o.amplitude||0)+o.thickness<map.finish.y-96));
  for(const count of [1,6,50]){
   const p=new P.Physics({map,names:P.parseNames('공*'+count),seed:'library-finale-'+count});let hits=0,late=0;

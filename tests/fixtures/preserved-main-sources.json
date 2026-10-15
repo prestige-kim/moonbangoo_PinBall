@@ -46,8 +46,10 @@
       "sha256": "c0a0cadeeb0560815ee3cd059f8dd4271c2fa01ccc7631955df53ede6d3e3d9a"
     },
     "js/hand-flight.js": {
-      "reason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged.",
-      "sha256": "85f1e855b96bde0e9d0bf3a1ba9f2a3f47017afeec13c532fa57da3793f49fce"
+      "reason": "User approved integration of the inspected fixed-camera paper-to-board transition. Display paths change; physics, committed slots and replay RNG remain unchanged.",
+      "sha256": "6b56b6033e5cbb9bab9f22317dd90e74ba8fd870de917e14489b51e0eff641da",
+      "previousPaintSHA256": "85f1e855b96bde0e9d0bf3a1ba9f2a3f47017afeec13c532fa57da3793f49fce",
+      "previousPaintReason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged."
     }
   }
 }

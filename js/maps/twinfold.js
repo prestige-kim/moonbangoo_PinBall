@@ -1,6 +1,6 @@
 (function (P) {
   'use strict';
-  var map = { id: 'twinfold', version: 9, name: '갈래 서가', width: 1000, height: 11200,
+  var map = { id: 'twinfold', version: 10, name: '갈래 서가', width: 1000, height: 11200,
     spawn: { x: 36, y: 50, width: 928, height: 700 }, finish: { y: 11000 }, obstacles: [] };
   // Twenty reading bays alternate a central sliding shelf (two side aisles)
   // with paired book carts (one central aisle). No uninterrupted vertical bypass.
@@ -36,8 +36,10 @@
       role: 'finale', x: x, y: 9600, axis: 'x', length: 400, thickness: 8,
       angle: col ? -0.50 : 0.50, amplitude: 28, speed: 1.6, phase: col * Math.PI });
   });
-  map.obstacles.push({ type: 'moving', id: 'twinfold-finale-return', role: 'finale',
-    x: 500, y: 10160, axis: 'x', length: 360, thickness: 8,
-    angle: -0.55, amplitude: 60, speed: 1.6, phase: Math.PI / 2 });
+  // Two staggered book rests retain open side routes and separate arrival timing.
+  map.obstacles.push({type:'moving',id:'twinfold-review-bookmark-left',role:'review-bookmark',x:350,y:10080,axis:'x',length:250,thickness:8,angle:.38,amplitude:55,speed:1.25,phase:0});
+  map.obstacles.push({type:'moving',id:'twinfold-review-bookmark-right',role:'review-bookmark',x:650,y:10320,axis:'x',length:250,thickness:8,angle:-.38,amplitude:55,speed:.9,phase:Math.PI/2});
+  // Preserve the exact geometry signature of the inspected v10 candidate.
+  map.reviewVariant='two-bookmark-finale-a';
   P.registerMap(map, { name: map.name, description: '움직이는 서가 사이로 갈라지고 다시 만나요', accent: '#3E716B' });
 })(window.CosmicPinball);

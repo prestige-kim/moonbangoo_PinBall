@@ -1,0 +1,44 @@
+✔ release starts at every actual position and velocity, with C1 propulsion onset (6.222167ms)
+✖ front pinballs receive propulsion first and delays depend on actual throw direction (7.180084ms)
+✔ gesture direction changes the visible path while endpoints retain their own seeded slots (1.60475ms)
+✔ all IDs reach exact map sprites on desktop, portrait and landscape for every count (41.478833ms)
+✔ camera starts with identity and zero velocity, follows the flight, and ends at the final map transform (1.570709ms)
+✔ reduced motion keeps the same release state and own IDs with no camera sweep or trails (1.725042ms)
+✔ snapshot positions stay fixed when the old shuffle continues or source arrays reorder (0.723083ms)
+✔ midflight resizing preserves current positions and radii while smoothly reaching the new camera (2.48ms)
+✔ changing reduced motion midflight suppresses trails without resetting the captured path (1.175625ms)
+✔ a stopped release has a short directional impulse without input-speed amplification or slot changes (4.900875ms)
+✔ flight keeps the board camera fixed, frames the group and draws no tails across viewport sizes (7.645625ms)
+✔ a widely scattered release starts without a camera snap before pulling back (0.421584ms)
+✔ flight dissolves the same course paper onto the real board before its transparent endpoint (1.22ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 151.8655
+
+✖ failing tests:
+
+test at tests/hand-flight.test.cjs:55:1
+✖ front pinballs receive propulsion first and delays depend on actual throw direction (7.180084ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(Math.hypot(propelled.x - leading.x - leading.vx * t, propelled.y - leading.y - leading.vy * t) > .01)
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-flight.test.cjs:65:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

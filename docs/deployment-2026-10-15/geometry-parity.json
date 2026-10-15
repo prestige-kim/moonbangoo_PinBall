@@ -1,0 +1,10 @@
+{
+  "productionVersion": 10,
+  "exactMapDataMatchesInspectedPrototype": true,
+  "basis": "docs/race-tension/pilot.json",
+  "mapsUnchanged": [
+    "classic v2",
+    "cascade v7",
+    "rhythm v5"
+  ]
+}

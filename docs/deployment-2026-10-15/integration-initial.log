@@ -1,0 +1,133 @@
+✔ separate proposal preserves release continuity, exact own slots, physics and RNG for all four maps and supported counts (315.570667ms)
+✔ proposal keeps the board fixed and carries viewport corrections continuously to the exact new landing (2.904417ms)
+✔ proposal can restore original flight methods and is absent from the production entrypoint (3.149417ms)
+✔ release starts at every actual position and velocity, with C1 propulsion onset (6.050959ms)
+✖ front pinballs receive propulsion first and delays depend on actual throw direction (3.12775ms)
+✔ gesture direction changes the visible path while endpoints retain their own seeded slots (2.03775ms)
+✔ all IDs reach exact map sprites on desktop, portrait and landscape for every count (51.012041ms)
+✔ camera starts with identity and zero velocity, follows the flight, and ends at the final map transform (1.455083ms)
+✔ reduced motion keeps the same release state and own IDs with no camera sweep or trails (2.709625ms)
+✔ snapshot positions stay fixed when the old shuffle continues or source arrays reorder (1.125833ms)
+✔ midflight resizing preserves current positions and radii while smoothly reaching the new camera (2.719833ms)
+✔ changing reduced motion midflight suppresses trails without resetting the captured path (1.208167ms)
+✖ a stopped edge release still propels, while fast input changes flight without changing slots (0.919333ms)
+✖ flight zooms out to frame the full group and draws no tails across viewport sizes (0.454625ms)
+✔ a widely scattered release starts without a camera snap before pulling back (0.453625ms)
+✖ flight keeps the same course background until its transparent exact landing endpoint (0.690333ms)
+✔ library split-finale review preserves every unrelated shape and production map object (1.626708ms)
+✔ two bookmark routes have permanent wall clearance and no fixed balance point (0.199792ms)
+✔ old library starts are rejected on the changed review geometry, while new starts replay exactly (737.861875ms)
+✔ twinfold alternates moving split shelves and paired carts across 20 bays with an active finale (2.012792ms)
+✔ twinfold completes 1..50 balls with declared wind fields and replays frame groupings (3789.434333ms)
+✔ twinfold keeps physical gaps >=96 including the walls and full motion cycle (521.061375ms)
+✔ twinfold side-wall starts must contact moving shelves rather than bypassing the course (507.219ms)
+✖ twinfold finale has four dynamic stages, open lanes and collision events near the finish (2.721166ms)
+✔ sliding bookends complete the exact fixed-apex regression and adjacent starts (2543.266208ms)
+✔ library v8 records are refused and v9 records replay exactly after bookend motion (544.871458ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 21
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7979.982458
+
+✖ failing tests:
+
+test at tests/hand-flight.test.cjs:55:1
+✖ front pinballs receive propulsion first and delays depend on actual throw direction (3.12775ms)
+  AssertionError [ERR_ASSERTION]: 0.039999999999999994 != 0.12
+      at near (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-flight.test.cjs:12:49)
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-flight.test.cjs:60:27)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/hand-flight.test.cjs:204:1
+✖ a stopped edge release still propels, while fast input changes flight without changing slots (0.919333ms)
+  AssertionError [ERR_ASSERTION]: zero-speed release gets visible propulsion
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-flight.test.cjs:214:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/hand-flight.test.cjs:221:1
+✖ flight zooms out to frame the full group and draws no tails across viewport sizes (0.454625ms)
+  AssertionError [ERR_ASSERTION]: early flight pulls back
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-flight.test.cjs:224:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/hand-flight.test.cjs:247:1
+✖ flight keeps the same course background until its transparent exact landing endpoint (0.690333ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 3
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/hand-flight.test.cjs:252:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/twinfold.test.cjs:29:1
+✖ twinfold finale has four dynamic stages, open lanes and collision events near the finish (2.721166ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  4 !== 5
+  
+      at TestContext.<anonymous> (/Users/proudchris/Desktop/moonbangoo_PinBall/tests/twinfold.test.cjs:31:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 5,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

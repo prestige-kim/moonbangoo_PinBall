@@ -16,7 +16,7 @@ function simulate(P,p,meta){
  const winner=p.finished[0]?.id,first=p.finished[0]?.finishTime;
  return {...meta,complete:p.complete,time:p.time,first,winner,minHits:Math.min(...p.marbles.map(m=>hits.get(m.id)||0)),errors,checkpoints,changes,trace,ranking:p.finished.map(m=>[m.id,m.finishTime]),remaining:p.marbles.filter(m=>!m.finished).map(m=>({id:m.id,x:m.x,y:m.y}))};
 }
-if(!isMainThread){const {P,capture}=require('../fairness/model.cjs');if(workerData.plugin)require(path.resolve(workerData.plugin))(P);
+if(!isMainThread){const {P,capture}=require('../fairness/model.cjs');new Function('window',fs.readFileSync('qa/race-tension/baseline-twinfold.js','utf8'))({CosmicPinball:P});if(workerData.plugin)require(path.resolve(workerData.plugin))(P);
  parentPort.on('message',t=>{const groups=[Math.floor(t.count/3),Math.floor(t.count/3),t.count-2*Math.floor(t.count/3)],seed='final-holdout-v2-0-'+t.count+'-'+t.protocol+'-'+t.index,{p:base,start}=capture({map:'classic',groups,skills:false},seed,t.protocol),rows=[];
  for(const id of workerData.maps){const p=new P.Physics({map:P.MAPS[id],names:base.marbles.map(m=>({id:m.id,name:m.name})),seed,radius:12,gravity:620,restitution:.72,skills:false});P.commitHandStart(p,start.source);assert.deepEqual(p.handStart.starts,start.starts);const before=Date.now(),r=simulate(P,p,{map:id,count:t.count,seed,protocol:t.protocol,index:t.index,version:p.map.version,start:p.handStart});r.cpuMs=Date.now()-before;rows.push(r);}parentPort.postMessage(rows);});
 }else{

@@ -2,7 +2,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('fs'),vm=require('vm');
 function setup(map,count,w,h,reduced=false){
  const scope={window:{},document:{},Math};vm.createContext(scope);
- for(const name of ['maps','map-registry','maps/twinfold','maps/cascade','maps/rhythm','physics','cinematic','hand-flight'])vm.runInContext(fs.readFileSync('js/'+name+'.js','utf8'),scope);
+ for(const name of ['maps','map-registry','maps/twinfold','maps/cascade','maps/rhythm','physics','cinematic','hand-flight'])vm.runInContext(fs.readFileSync(name==='hand-flight'?'qa/flight-transition/baseline-hand-flight.js':'js/'+name+'.js','utf8'),scope);
  const P=scope.window.CosmicPinball,original=P.HandFlight.prototype.begin;
  vm.runInContext(fs.readFileSync('qa/flight-transition/prototype.js','utf8'),scope);scope.window.FlightPrototype.set(true);
  const options={names:P.parseNames('참가자*'+count),map:P.MAPS[map],seed:'flight-prototype-test',radius:12,gravity:620,restitution:.72},physics=new P.Physics(options),twin=new P.Physics(options);

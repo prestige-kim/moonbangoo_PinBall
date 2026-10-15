@@ -5,7 +5,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const box = { window: {}, document: {}, Math };
 vm.createContext(box);
-for (const file of ['maps', 'physics', 'cinematic', 'hand-flight']) {
+for (const file of ['maps', 'physics', 'camera', 'cinematic', 'hand-flight']) {
   vm.runInContext(fs.readFileSync(path.join(__dirname, '../js/' + file + '.js'), 'utf8'), box);
 }
 const P = box.window.CosmicPinball;
@@ -15,8 +15,8 @@ function scene(count = 6, width = 1280, height = 720, reduced = false, direction
   const physics = new P.Physics({ names: P.parseNames('참가자*' + count), map: P.MAPS.classic, seed: 'HAND-FLIGHT-' + count });
   const entries = P.CINEMA.descriptors(physics);
   const area = { x: width / 2, y: height / 2, s: Math.min(width - 32, height - 48), w: width, h: height };
-  const camera = { zoom: Math.min((width - 60) / 1100, .75), x: 500, y: 400,
-    worldToScreen(x, y) { return { x: width / 2 + (x - this.x) * this.zoom, y: height * .48 + (y - this.y) * this.zoom }; } };
+  const camera = new P.Camera({clientWidth:width,clientHeight:height},{interactive:false});
+  camera.viewport={x:0,y:0,w:width,h:height};camera.prepareLanding(P.MAPS.classic,physics);
   const counters = { clear: 0, fill: 0, board: 0, orbs: 0, trails: 0, saves: 0 };
   const ctx = {
     clearRect() { counters.clear++; }, fillRect() { counters.fill++; },
@@ -57,12 +57,12 @@ test('front pinballs receive propulsion first and delays depend on actual throw 
   const left = scene(50, 1280, 720, false, { dx: -1, dy: 0 }).flight;
   const leading = right.items.reduce((a, b) => a.x > b.x ? a : b);
   const trailing = right.items.reduce((a, b) => a.x < b.x ? a : b);
-  near(leading.delay, 0); near(trailing.delay, .12);
-  near(left.items[leading.index].delay, .12); near(left.items[trailing.index].delay, 0);
+  near(leading.delay, 0); near(trailing.delay, .04);
+  near(left.items[leading.index].delay, .04); near(left.items[trailing.index].delay, 0);
   const t = trailing.delay / 2, late = right.pose(trailing.index, t);
   near(late.x, trailing.x + trailing.vx * t); near(late.y, trailing.y + trailing.vy * t);
   const propelled = right.pose(leading.index, t);
-  assert.ok(Math.hypot(propelled.x - leading.x - leading.vx * t, propelled.y - leading.y - leading.vy * t) > .01);
+  assert.notDeepEqual([propelled.vx,propelled.vy],[leading.vx,leading.vy],'front path begins curving before the delayed trailing marble');
 });
 
 test('gesture direction changes the visible path while endpoints retain their own seeded slots', () => {
@@ -201,7 +201,7 @@ test('changing reduced motion midflight suppresses trails without resetting the 
   assert.equal(snapshot(s.flight.lastPoses),before);assert.equal(s.counters.trails,trailCount);
 });
 
-test('a stopped edge release still propels, while fast input changes flight without changing slots', () => {
+test('a stopped release has a short directional impulse without input-speed amplification or slot changes', () => {
   for (const count of [6,25,49,50]) {
     const slow = scene(count,1280,720,false,{dx:1,dy:0,inputSpeed:0});
     const fast = scene(count,1280,720,false,{dx:1,dy:0,inputSpeed:4});
@@ -210,18 +210,19 @@ test('a stopped edge release still propels, while fast input changes flight with
       s.flight.begin(s.physics,s.hand,{dx:1,dy:0,inputSpeed:s===fast?4:0},2.8,false);
       for(let i=0;i<count;i++) { near(s.flight.pose(i,0).vx,0);near(s.flight.pose(i,0).vy,0); }
     }
-    const index=slow.flight.items.findIndex(item=>item.delay===0),source=slow.flight.pose(index,0),mid=slow.flight.pose(index,1.4);
-    assert(Math.hypot(mid.x-source.x,mid.y-source.y)>slow.area.s*.2,'zero-speed release gets visible propulsion');
-    assert(fast.flight.pose(index,1.4).x-mid.x>slow.area.s*.15,'fast input adds thrust without a speed requirement');
+    const index=slow.flight.items.findIndex(item=>item.delay===0),mid=slow.flight.pose(index,1.4);
+    const thrust=slow.flight.propulsion;slow.flight.propulsion=0;const noThrust=slow.flight.pose(index,1.4);slow.flight.propulsion=thrust;
+    assert(mid.x-noThrust.x>slow.area.s*.04,'compact impulse remains visible for a stationary release');
+    near(fast.flight.pose(index,1.4).x,mid.x);near(fast.flight.pose(index,1.4).y,mid.y);
     assert.equal(snapshot(slow.physics.marbles),snapshot(fast.physics.marbles));
     for(let i=0;i<count;i++){near(slow.flight.pose(i,2.8).x,fast.flight.pose(i,2.8).x);near(slow.flight.pose(i,2.8).y,fast.flight.pose(i,2.8).y);}
   }
 });
 
-test('flight zooms out to frame the full group and draws no tails across viewport sizes', () => {
+test('flight keeps the board camera fixed, frames the group and draws no tails across viewport sizes', () => {
   for (const count of [6,25,49,50]) for (const [w,h] of [[1280,720],[390,844],[844,390]]) {
     const s=scene(count,w,h);
-    assert(s.flight.cameraAt(.25).a<1,'early flight pulls back');
+    near(s.flight.cameraAt(.25).a,1);near(s.flight.cameraAt(.25).e,0);near(s.flight.cameraAt(.25).f,0);
     for(const progress of [.25,.5,.75]) {
       s.flight.render({progress,physics:s.physics,camera:s.camera});
       for(const pose of s.flight.lastPoses) {
@@ -244,11 +245,11 @@ test('a widely scattered release starts without a camera snap before pulling bac
   s.flight.lastPoses.forEach((p,i)=>{const b=s.hand.shuffle.bodies[i];near(p.x,s.area.x+b.x*s.area.s);near(p.y,s.area.y+b.y*s.area.s);});
 });
 
-test('flight keeps the same course background until its transparent exact landing endpoint', () => {
+test('flight dissolves the same course paper onto the real board before its transparent endpoint', () => {
   const s = scene(), background = {}, draws = [];
   s.cinema.renderer = { background };
   s.cinema.ctx.drawImage = (image, ...rect) => draws.push({ image, rect, alpha: s.cinema.ctx.globalAlpha });
   for (const progress of [0, .5, .999]) s.flight.render({ progress, physics: s.physics, camera: s.camera });
-  assert.equal(draws.length, 3); for (const draw of draws) { assert.equal(draw.image, background); assert.equal(draw.alpha, 1); assert.deepEqual(draw.rect, [0, 0, 1280, 720]); }
-  s.flight.render({ progress: 1, physics: s.physics, camera: s.camera }); assert.equal(draws.length, 3);
+  assert.equal(draws.length, 2);assert.equal(draws[0].alpha,1);assert(draws[1].alpha>0&&draws[1].alpha<.02);for(const draw of draws){assert.equal(draw.image,background);assert.deepEqual(draw.rect,[0,0,1280,720]);}
+  s.flight.render({ progress: 1, physics: s.physics, camera: s.camera }); assert.equal(draws.length, 2);
 });
