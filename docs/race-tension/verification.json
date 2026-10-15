@@ -1,0 +1,64 @@
+{
+  "at": "2026-10-15T03:16:36.409912+00:00",
+  "candidate": "9570670a2ff485370f0bbfce5e8ab232eb1f8777",
+  "initialImplementation": "c4d1cc6",
+  "startingHEAD": "070676aea36f87dafee24df5f53f2904148067c3",
+  "remoteMain": "a41acdf21c98df49e746163e6a49c4f9abbff096",
+  "deployedSource": "a41acdf21c98df49e746163e6a49c4f9abbff096",
+  "productionFilesUnchanged": 75,
+  "otherWorkFilesUnchanged": 5,
+  "testedFiles": [
+    {
+      "file": "qa/race-tension/measure.cjs",
+      "sha256": "5b4bbef6afb2056104de1db8d0903c0376a6f218c9b03754448c326462ad59c4"
+    },
+    {
+      "file": "qa/race-tension/browser.cjs",
+      "sha256": "d92a712a4c5aa46871be2d3ea67d9361d6c394843001344acfe280b8e4fa5955"
+    },
+    {
+      "file": "qa/race-tension/summary.cjs",
+      "sha256": "f89950efb57a1425044242fdf0c0704f4602aab3f9faca6b0455207d3ae81a0b"
+    },
+    {
+      "file": "qa/race-tension/prototype.js",
+      "sha256": "3a4f1af849fe0364e7dcbb235af771828446c170370cfe5cc21822a3b98ae7f0"
+    },
+    {
+      "file": "qa/race-tension/analyze.cjs",
+      "sha256": "d2842dcbad6d586a32c2ae472b5305644d61139e43c5ec6df9034af93cc801c9"
+    },
+    {
+      "file": "qa/race-tension/safety.cjs",
+      "sha256": "f19fd12032cc700f97f2e37914c631ed48e81edfb8815abb1f79b328f41aec58"
+    },
+    {
+      "file": "tests/race-tension-prototype.test.cjs",
+      "sha256": "2c1a25e792e3ecf5e10a54b24a005c21195131c9cc885564a8a36c4abf37fec8"
+    },
+    {
+      "file": "docs/race-tension/index.html",
+      "sha256": "a983a180e9bdf9c68dc5423d17a8ba2452a0398f5f3a6cfb8feec57240a2003c"
+    }
+  ],
+  "measurementHashesStillMatch": true,
+  "tests": {
+    "pass": 301,
+    "fail": 0,
+    "note": "New prototype, geometry, replay tests plus full regression; later review-page paint fix independently browser checked."
+  },
+  "baselineCases": 216,
+  "pilotCases": 54,
+  "safety": {
+    "fullStartExtremeCases": 24,
+    "allCompleteWithContact": true,
+    "lateCoordinateCases": 18,
+    "allComplete": true,
+    "lateCoordinateNoContactFlags": 12,
+    "rawFailuresPreserved": true
+  },
+  "decision": "Do not adopt or expand: small descriptive effect; default 6-ball late change count unchanged. No all-cases guarantee.",
+  "rootChanged": false,
+  "pushed": false,
+  "deployed": false
+}

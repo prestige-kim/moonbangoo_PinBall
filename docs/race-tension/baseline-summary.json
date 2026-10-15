@@ -1,0 +1,1746 @@
+[
+  {
+    "map": "classic",
+    "n": 54,
+    "earlyWin": {
+      "0.25": {
+        "n": 54,
+        "wins": 10,
+        "rate": 0.18518518518518517
+      },
+      "0.5": {
+        "n": 54,
+        "wins": 14,
+        "rate": 0.25925925925925924
+      },
+      "0.75": {
+        "n": 54,
+        "wins": 23,
+        "rate": 0.42592592592592593
+      }
+    },
+    "medianChanges": 7,
+    "medianMiddleChanges": 3,
+    "noMiddleChange": 8,
+    "binChanges": [
+      66,
+      77,
+      115,
+      123
+    ],
+    "medianTime": 57.45,
+    "p95": 66.18333333333334,
+    "top3Changed": 48,
+    "failures": [
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-B-0",
+        "complete": true,
+        "minHits": 41,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 11
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-B-1",
+        "complete": true,
+        "minHits": 40,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 8
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-B-2",
+        "complete": true,
+        "minHits": 51,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 15
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-B-3",
+        "complete": true,
+        "minHits": 31,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 5
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-B-4",
+        "complete": true,
+        "minHits": 50,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 8
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-B-5",
+        "complete": true,
+        "minHits": 30,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 5
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-C-0",
+        "complete": true,
+        "minHits": 49,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 6
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-C-1",
+        "complete": true,
+        "minHits": 38,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 6
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-C-2",
+        "complete": true,
+        "minHits": 41,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 7
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-C-3",
+        "complete": true,
+        "minHits": 38,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 5
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-C-4",
+        "complete": true,
+        "minHits": 52,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 14
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-C-5",
+        "complete": true,
+        "minHits": 40,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 8
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-D-0",
+        "complete": true,
+        "minHits": 41,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 12
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-D-1",
+        "complete": true,
+        "minHits": 47,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 6
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-D-2",
+        "complete": true,
+        "minHits": 42,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 4
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-D-3",
+        "complete": true,
+        "minHits": 49,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 10
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-D-4",
+        "complete": true,
+        "minHits": 40,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 8
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-6-D-5",
+        "complete": true,
+        "minHits": 32,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 5
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-B-0",
+        "complete": true,
+        "minHits": 22,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 33
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-B-1",
+        "complete": true,
+        "minHits": 35,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 31
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-B-2",
+        "complete": true,
+        "minHits": 31,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 38
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-B-3",
+        "complete": true,
+        "minHits": 26,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 30
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-B-4",
+        "complete": true,
+        "minHits": 31,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 23
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-B-5",
+        "complete": true,
+        "minHits": 32,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 23
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-C-0",
+        "complete": true,
+        "minHits": 30,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 27
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-C-1",
+        "complete": true,
+        "minHits": 16,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 29
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-C-2",
+        "complete": true,
+        "minHits": 27,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 28
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-C-3",
+        "complete": true,
+        "minHits": 23,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 24
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-C-4",
+        "complete": true,
+        "minHits": 36,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 31
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-C-5",
+        "complete": true,
+        "minHits": 36,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 19
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-D-0",
+        "complete": true,
+        "minHits": 33,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 24
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-D-1",
+        "complete": true,
+        "minHits": 34,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 32
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-D-2",
+        "complete": true,
+        "minHits": 36,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 22
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-D-3",
+        "complete": true,
+        "minHits": 37,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 32
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-D-4",
+        "complete": true,
+        "minHits": 30,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 29
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-25-D-5",
+        "complete": true,
+        "minHits": 34,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 41
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-B-0",
+        "complete": true,
+        "minHits": 32,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 51
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-B-1",
+        "complete": true,
+        "minHits": 24,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 54
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-B-2",
+        "complete": true,
+        "minHits": 30,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 47
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-B-3",
+        "complete": true,
+        "minHits": 28,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 50
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-B-4",
+        "complete": true,
+        "minHits": 32,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 40
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-B-5",
+        "complete": true,
+        "minHits": 28,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 48
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-C-0",
+        "complete": true,
+        "minHits": 23,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 43
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-C-1",
+        "complete": true,
+        "minHits": 35,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 62
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-C-2",
+        "complete": true,
+        "minHits": 29,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 58
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-C-3",
+        "complete": true,
+        "minHits": 32,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 42
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-C-4",
+        "complete": true,
+        "minHits": 24,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 49
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-C-5",
+        "complete": true,
+        "minHits": 30,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 64
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-D-0",
+        "complete": true,
+        "minHits": 27,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 48
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-D-1",
+        "complete": true,
+        "minHits": 29,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 45
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-D-2",
+        "complete": true,
+        "minHits": 27,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 32
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-D-3",
+        "complete": true,
+        "minHits": 32,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 45
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-D-4",
+        "complete": true,
+        "minHits": 29,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 53
+        }
+      },
+      {
+        "map": "classic",
+        "seed": "final-holdout-v2-0-50-D-5",
+        "complete": true,
+        "minHits": 27,
+        "errors": {
+          "finite": 0,
+          "bounds": 0,
+          "forbidden": 56
+        }
+      }
+    ],
+    "counts": [
+      {
+        "count": 6,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 4,
+            "rate": 0.2222222222222222
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 8,
+            "rate": 0.4444444444444444
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 9,
+            "rate": 0.5
+          }
+        },
+        "medianChanges": 6,
+        "medianMiddleChanges": 2,
+        "noMiddleChange": 4,
+        "binChanges": [
+          27,
+          22,
+          23,
+          28
+        ],
+        "medianTime": 53.57083333333333,
+        "p95": 60.65,
+        "top3Changed": 12,
+        "failures": [
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-B-0",
+            "complete": true,
+            "minHits": 41,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 11
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-B-1",
+            "complete": true,
+            "minHits": 40,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 8
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-B-2",
+            "complete": true,
+            "minHits": 51,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 15
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-B-3",
+            "complete": true,
+            "minHits": 31,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 5
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-B-4",
+            "complete": true,
+            "minHits": 50,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 8
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-B-5",
+            "complete": true,
+            "minHits": 30,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 5
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-C-0",
+            "complete": true,
+            "minHits": 49,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 6
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-C-1",
+            "complete": true,
+            "minHits": 38,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 6
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-C-2",
+            "complete": true,
+            "minHits": 41,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 7
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-C-3",
+            "complete": true,
+            "minHits": 38,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 5
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-C-4",
+            "complete": true,
+            "minHits": 52,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 14
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-C-5",
+            "complete": true,
+            "minHits": 40,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 8
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-D-0",
+            "complete": true,
+            "minHits": 41,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 12
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-D-1",
+            "complete": true,
+            "minHits": 47,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 6
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-D-2",
+            "complete": true,
+            "minHits": 42,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 4
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-D-3",
+            "complete": true,
+            "minHits": 49,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 10
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-D-4",
+            "complete": true,
+            "minHits": 40,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 8
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-6-D-5",
+            "complete": true,
+            "minHits": 32,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 5
+            }
+          }
+        ]
+      },
+      {
+        "count": 25,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 3,
+            "rate": 0.16666666666666666
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 4,
+            "rate": 0.2222222222222222
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 8,
+            "rate": 0.4444444444444444
+          }
+        },
+        "medianChanges": 6,
+        "medianMiddleChanges": 2.5,
+        "noMiddleChange": 4,
+        "binChanges": [
+          21,
+          20,
+          34,
+          43
+        ],
+        "medianTime": 58.22916666666667,
+        "p95": 70.55,
+        "top3Changed": 18,
+        "failures": [
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-B-0",
+            "complete": true,
+            "minHits": 22,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 33
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-B-1",
+            "complete": true,
+            "minHits": 35,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 31
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-B-2",
+            "complete": true,
+            "minHits": 31,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 38
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-B-3",
+            "complete": true,
+            "minHits": 26,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 30
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-B-4",
+            "complete": true,
+            "minHits": 31,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 23
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-B-5",
+            "complete": true,
+            "minHits": 32,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 23
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-C-0",
+            "complete": true,
+            "minHits": 30,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 27
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-C-1",
+            "complete": true,
+            "minHits": 16,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 29
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-C-2",
+            "complete": true,
+            "minHits": 27,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 28
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-C-3",
+            "complete": true,
+            "minHits": 23,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 24
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-C-4",
+            "complete": true,
+            "minHits": 36,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 31
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-C-5",
+            "complete": true,
+            "minHits": 36,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 19
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-D-0",
+            "complete": true,
+            "minHits": 33,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 24
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-D-1",
+            "complete": true,
+            "minHits": 34,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 32
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-D-2",
+            "complete": true,
+            "minHits": 36,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 22
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-D-3",
+            "complete": true,
+            "minHits": 37,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 32
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-D-4",
+            "complete": true,
+            "minHits": 30,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 29
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-25-D-5",
+            "complete": true,
+            "minHits": 34,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 41
+            }
+          }
+        ]
+      },
+      {
+        "count": 50,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 3,
+            "rate": 0.16666666666666666
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 2,
+            "rate": 0.1111111111111111
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 6,
+            "rate": 0.3333333333333333
+          }
+        },
+        "medianChanges": 9,
+        "medianMiddleChanges": 5.5,
+        "noMiddleChange": 0,
+        "binChanges": [
+          18,
+          35,
+          58,
+          52
+        ],
+        "medianTime": 59.08333333333333,
+        "p95": 66.49166666666666,
+        "top3Changed": 18,
+        "failures": [
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-B-0",
+            "complete": true,
+            "minHits": 32,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 51
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-B-1",
+            "complete": true,
+            "minHits": 24,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 54
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-B-2",
+            "complete": true,
+            "minHits": 30,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 47
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-B-3",
+            "complete": true,
+            "minHits": 28,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 50
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-B-4",
+            "complete": true,
+            "minHits": 32,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 40
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-B-5",
+            "complete": true,
+            "minHits": 28,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 48
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-C-0",
+            "complete": true,
+            "minHits": 23,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 43
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-C-1",
+            "complete": true,
+            "minHits": 35,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 62
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-C-2",
+            "complete": true,
+            "minHits": 29,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 58
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-C-3",
+            "complete": true,
+            "minHits": 32,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 42
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-C-4",
+            "complete": true,
+            "minHits": 24,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 49
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-C-5",
+            "complete": true,
+            "minHits": 30,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 64
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-D-0",
+            "complete": true,
+            "minHits": 27,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 48
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-D-1",
+            "complete": true,
+            "minHits": 29,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 45
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-D-2",
+            "complete": true,
+            "minHits": 27,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 32
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-D-3",
+            "complete": true,
+            "minHits": 32,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 45
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-D-4",
+            "complete": true,
+            "minHits": 29,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 53
+            }
+          },
+          {
+            "map": "classic",
+            "seed": "final-holdout-v2-0-50-D-5",
+            "complete": true,
+            "minHits": 27,
+            "errors": {
+              "finite": 0,
+              "bounds": 0,
+              "forbidden": 56
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "map": "twinfold",
+    "n": 54,
+    "earlyWin": {
+      "0.25": {
+        "n": 54,
+        "wins": 13,
+        "rate": 0.24074074074074073
+      },
+      "0.5": {
+        "n": 54,
+        "wins": 16,
+        "rate": 0.2962962962962963
+      },
+      "0.75": {
+        "n": 54,
+        "wins": 36,
+        "rate": 0.6666666666666666
+      }
+    },
+    "medianChanges": 9,
+    "medianMiddleChanges": 5.5,
+    "noMiddleChange": 4,
+    "binChanges": [
+      103,
+      172,
+      140,
+      54
+    ],
+    "medianTime": 57.28333333333333,
+    "p95": 61.983333333333334,
+    "top3Changed": 53,
+    "failures": [],
+    "counts": [
+      {
+        "count": 6,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 7,
+            "rate": 0.3888888888888889
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 5,
+            "rate": 0.2777777777777778
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 12,
+            "rate": 0.6666666666666666
+          }
+        },
+        "medianChanges": 9,
+        "medianMiddleChanges": 7.5,
+        "noMiddleChange": 2,
+        "binChanges": [
+          46,
+          66,
+          52,
+          13
+        ],
+        "medianTime": 55.1625,
+        "p95": 62.44166666666666,
+        "top3Changed": 17,
+        "failures": []
+      },
+      {
+        "count": 25,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 4,
+            "rate": 0.2222222222222222
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 8,
+            "rate": 0.4444444444444444
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 13,
+            "rate": 0.7222222222222222
+          }
+        },
+        "medianChanges": 6,
+        "medianMiddleChanges": 3,
+        "noMiddleChange": 2,
+        "binChanges": [
+          31,
+          48,
+          32,
+          14
+        ],
+        "medianTime": 59.25,
+        "p95": 63.09166666666667,
+        "top3Changed": 18,
+        "failures": []
+      },
+      {
+        "count": 50,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 2,
+            "rate": 0.1111111111111111
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 3,
+            "rate": 0.16666666666666666
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 11,
+            "rate": 0.6111111111111112
+          }
+        },
+        "medianChanges": 9,
+        "medianMiddleChanges": 6,
+        "noMiddleChange": 0,
+        "binChanges": [
+          26,
+          58,
+          56,
+          27
+        ],
+        "medianTime": 57.579166666666666,
+        "p95": 61.625,
+        "top3Changed": 18,
+        "failures": []
+      }
+    ]
+  },
+  {
+    "map": "cascade",
+    "n": 54,
+    "earlyWin": {
+      "0.25": {
+        "n": 54,
+        "wins": 6,
+        "rate": 0.1111111111111111
+      },
+      "0.5": {
+        "n": 54,
+        "wins": 14,
+        "rate": 0.25925925925925924
+      },
+      "0.75": {
+        "n": 54,
+        "wins": 31,
+        "rate": 0.5740740740740741
+      }
+    },
+    "medianChanges": 10.5,
+    "medianMiddleChanges": 7,
+    "noMiddleChange": 1,
+    "binChanges": [
+      93,
+      221,
+      152,
+      121
+    ],
+    "medianTime": 69.77916666666667,
+    "p95": 78.74166666666666,
+    "top3Changed": 52,
+    "failures": [],
+    "counts": [
+      {
+        "count": 6,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 2,
+            "rate": 0.1111111111111111
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 4,
+            "rate": 0.2222222222222222
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 13,
+            "rate": 0.7222222222222222
+          }
+        },
+        "medianChanges": 11,
+        "medianMiddleChanges": 6,
+        "noMiddleChange": 0,
+        "binChanges": [
+          53,
+          60,
+          45,
+          31
+        ],
+        "medianTime": 67.81666666666666,
+        "p95": 78.74166666666666,
+        "top3Changed": 16,
+        "failures": []
+      },
+      {
+        "count": 25,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 2,
+            "rate": 0.1111111111111111
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 5,
+            "rate": 0.2777777777777778
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 8,
+            "rate": 0.4444444444444444
+          }
+        },
+        "medianChanges": 12.5,
+        "medianMiddleChanges": 7,
+        "noMiddleChange": 0,
+        "binChanges": [
+          21,
+          91,
+          57,
+          58
+        ],
+        "medianTime": 68.69166666666666,
+        "p95": 73.69166666666666,
+        "top3Changed": 18,
+        "failures": []
+      },
+      {
+        "count": 50,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 2,
+            "rate": 0.1111111111111111
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 5,
+            "rate": 0.2777777777777778
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 10,
+            "rate": 0.5555555555555556
+          }
+        },
+        "medianChanges": 8.5,
+        "medianMiddleChanges": 6.5,
+        "noMiddleChange": 1,
+        "binChanges": [
+          19,
+          70,
+          50,
+          32
+        ],
+        "medianTime": 72.90833333333333,
+        "p95": 80.09166666666667,
+        "top3Changed": 18,
+        "failures": []
+      }
+    ]
+  },
+  {
+    "map": "rhythm",
+    "n": 54,
+    "earlyWin": {
+      "0.25": {
+        "n": 54,
+        "wins": 10,
+        "rate": 0.18518518518518517
+      },
+      "0.5": {
+        "n": 54,
+        "wins": 22,
+        "rate": 0.4074074074074074
+      },
+      "0.75": {
+        "n": 54,
+        "wins": 23,
+        "rate": 0.42592592592592593
+      }
+    },
+    "medianChanges": 9,
+    "medianMiddleChanges": 6,
+    "noMiddleChange": 0,
+    "binChanges": [
+      72,
+      144,
+      145,
+      137
+    ],
+    "medianTime": 57.020833333333336,
+    "p95": 67.46666666666667,
+    "top3Changed": 51,
+    "failures": [],
+    "counts": [
+      {
+        "count": 6,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 6,
+            "rate": 0.3333333333333333
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 9,
+            "rate": 0.5
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 11,
+            "rate": 0.6111111111111112
+          }
+        },
+        "medianChanges": 8,
+        "medianMiddleChanges": 5,
+        "noMiddleChange": 0,
+        "binChanges": [
+          18,
+          42,
+          41,
+          35
+        ],
+        "medianTime": 53.88333333333333,
+        "p95": 64.04166666666667,
+        "top3Changed": 15,
+        "failures": []
+      },
+      {
+        "count": 25,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 4,
+            "rate": 0.2222222222222222
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 7,
+            "rate": 0.3888888888888889
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 7,
+            "rate": 0.3888888888888889
+          }
+        },
+        "medianChanges": 9.5,
+        "medianMiddleChanges": 5.5,
+        "noMiddleChange": 0,
+        "binChanges": [
+          28,
+          51,
+          49,
+          42
+        ],
+        "medianTime": 58.416666666666664,
+        "p95": 74.25,
+        "top3Changed": 18,
+        "failures": []
+      },
+      {
+        "count": 50,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 0,
+            "rate": 0
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 6,
+            "rate": 0.3333333333333333
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 5,
+            "rate": 0.2777777777777778
+          }
+        },
+        "medianChanges": 11,
+        "medianMiddleChanges": 7,
+        "noMiddleChange": 0,
+        "binChanges": [
+          26,
+          51,
+          55,
+          60
+        ],
+        "medianTime": 57.13333333333333,
+        "p95": 67.46666666666667,
+        "top3Changed": 18,
+        "failures": []
+      }
+    ]
+  }
+]

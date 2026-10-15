@@ -1,0 +1,22 @@
+{
+  "errors": [],
+  "cases": [
+    {
+      "variant": "baseline",
+      "version": 9,
+      "exactRanking": true,
+      "count": 6
+    },
+    {
+      "variant": "pilot",
+      "version": 10,
+      "exactRanking": true,
+      "count": 6
+    }
+  ],
+  "mobile": {
+    "width": 390,
+    "overflow": false
+  },
+  "rootVersion": 9
+}

@@ -1,0 +1,140 @@
+[
+  {
+    "map": "twinfold",
+    "n": 54,
+    "earlyWin": {
+      "0.25": {
+        "n": 54,
+        "wins": 9,
+        "rate": 0.16666666666666666
+      },
+      "0.5": {
+        "n": 54,
+        "wins": 15,
+        "rate": 0.2777777777777778
+      },
+      "0.75": {
+        "n": 54,
+        "wins": 33,
+        "rate": 0.6111111111111112
+      }
+    },
+    "medianChanges": 9,
+    "medianMiddleChanges": 5.5,
+    "noMiddleChange": 4,
+    "binChanges": [
+      103,
+      172,
+      140,
+      59
+    ],
+    "medianTime": 58.45833333333333,
+    "p95": 64.48333333333333,
+    "top3Changed": 53,
+    "failures": [],
+    "counts": [
+      {
+        "count": 6,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 6,
+            "rate": 0.3333333333333333
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 5,
+            "rate": 0.2777777777777778
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 11,
+            "rate": 0.6111111111111112
+          }
+        },
+        "medianChanges": 9,
+        "medianMiddleChanges": 7.5,
+        "noMiddleChange": 2,
+        "binChanges": [
+          46,
+          66,
+          52,
+          13
+        ],
+        "medianTime": 56.50416666666666,
+        "p95": 65.19166666666666,
+        "top3Changed": 17,
+        "failures": []
+      },
+      {
+        "count": 25,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 3,
+            "rate": 0.16666666666666666
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 8,
+            "rate": 0.4444444444444444
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 12,
+            "rate": 0.6666666666666666
+          }
+        },
+        "medianChanges": 6,
+        "medianMiddleChanges": 3,
+        "noMiddleChange": 2,
+        "binChanges": [
+          31,
+          48,
+          32,
+          16
+        ],
+        "medianTime": 59.608333333333334,
+        "p95": 67.11666666666666,
+        "top3Changed": 18,
+        "failures": []
+      },
+      {
+        "count": 50,
+        "n": 18,
+        "earlyWin": {
+          "0.25": {
+            "n": 18,
+            "wins": 0,
+            "rate": 0
+          },
+          "0.5": {
+            "n": 18,
+            "wins": 2,
+            "rate": 0.1111111111111111
+          },
+          "0.75": {
+            "n": 18,
+            "wins": 10,
+            "rate": 0.5555555555555556
+          }
+        },
+        "medianChanges": 9,
+        "medianMiddleChanges": 6,
+        "noMiddleChange": 0,
+        "binChanges": [
+          26,
+          58,
+          56,
+          30
+        ],
+        "medianTime": 58.599999999999994,
+        "p95": 61.56666666666666,
+        "top3Changed": 18,
+        "failures": []
+      }
+    ]
+  }
+]

@@ -1,0 +1,382 @@
+{
+  "baseline": "070676aea36f87dafee24df5f53f2904148067c3",
+  "unchanged": 75,
+  "rows": [
+    {
+      "file": "assets/CINEMATIC_ASSETS.md",
+      "before": "383ef5186e0e54ed2a9e3a46f9715fb94665daf1e839dbb2187bf7fc6f2bee39",
+      "after": "383ef5186e0e54ed2a9e3a46f9715fb94665daf1e839dbb2187bf7fc6f2bee39"
+    },
+    {
+      "file": "assets/backgrounds/README.md",
+      "before": "67834cf8ca4bf877291e626acba3b596196ce6094ed5c9b2b82446ee3c93c7ca",
+      "after": "67834cf8ca4bf877291e626acba3b596196ce6094ed5c9b2b82446ee3c93c7ca"
+    },
+    {
+      "file": "assets/backgrounds/cascade-background-v1.png",
+      "before": "d04784eb05932145fa2707e9ca03b8fa93bb6d05a04e17906e008b9256c4a0ef",
+      "after": "d04784eb05932145fa2707e9ca03b8fa93bb6d05a04e17906e008b9256c4a0ef"
+    },
+    {
+      "file": "assets/backgrounds/cascade-background-v2.png",
+      "before": "1229c92d23648e4b440b4c02c79f0ec50d8bd581f0da70b63aef4d7de6d0d3bf",
+      "after": "1229c92d23648e4b440b4c02c79f0ec50d8bd581f0da70b63aef4d7de6d0d3bf"
+    },
+    {
+      "file": "assets/backgrounds/classic-background-v1.png",
+      "before": "8a5c5cb2b2fa5423035dadd5e4e61e2d2b9bc01745ecfc2ed9b7875463818347",
+      "after": "8a5c5cb2b2fa5423035dadd5e4e61e2d2b9bc01745ecfc2ed9b7875463818347"
+    },
+    {
+      "file": "assets/backgrounds/classic-background-v2.png",
+      "before": "f1538f0fa2cdd787a3a75b0d0a49ab2831c4ad33c38db814a5d7b2773f659c55",
+      "after": "f1538f0fa2cdd787a3a75b0d0a49ab2831c4ad33c38db814a5d7b2773f659c55"
+    },
+    {
+      "file": "assets/backgrounds/manifest.json",
+      "before": "a43933802f9f345d3f14d6ff3a0de57d0753381351387b3d102779b94ce01837",
+      "after": "a43933802f9f345d3f14d6ff3a0de57d0753381351387b3d102779b94ce01837"
+    },
+    {
+      "file": "assets/backgrounds/rhythm-background-v1.png",
+      "before": "75f0c8f7bceb5969478eef52b291e6ce4200186dc0179e3586ee57f8e0267b53",
+      "after": "75f0c8f7bceb5969478eef52b291e6ce4200186dc0179e3586ee57f8e0267b53"
+    },
+    {
+      "file": "assets/backgrounds/rhythm-background-v2.png",
+      "before": "187bbf78564ae42ee7bd3bae9fb1f81f3725fc58a7fc1b5224ce4607061a2fa8",
+      "after": "187bbf78564ae42ee7bd3bae9fb1f81f3725fc58a7fc1b5224ce4607061a2fa8"
+    },
+    {
+      "file": "assets/backgrounds/twinfold-background-v1.png",
+      "before": "8e9bf29d717367931290e7c78f52b3610657fb14dbac5941818faa1896e9cdaf",
+      "after": "8e9bf29d717367931290e7c78f52b3610657fb14dbac5941818faa1896e9cdaf"
+    },
+    {
+      "file": "assets/backgrounds/twinfold-background-v2.png",
+      "before": "4b11a99aa43668980105195a0212e0af165d34af5d69611d04d7d1c3b89fe68c",
+      "after": "4b11a99aa43668980105195a0212e0af165d34af5d69611d04d7d1c3b89fe68c"
+    },
+    {
+      "file": "assets/cannon-angle.png",
+      "before": "9b035715b2cbda7a623821515066d8a9108a104aa7f4a970ea1309faa91d2e38",
+      "after": "9b035715b2cbda7a623821515066d8a9108a104aa7f4a970ea1309faa91d2e38"
+    },
+    {
+      "file": "assets/cannon-barrel.png",
+      "before": "f613b72e68e53ed26ad856e0eaf1ab631c0ff7c868ae78e262b480e485c0c627",
+      "after": "f613b72e68e53ed26ad856e0eaf1ab631c0ff7c868ae78e262b480e485c0c627"
+    },
+    {
+      "file": "assets/cannon-bridge.png",
+      "before": "ff2b48a5496787f2180ba3510b39588fecc2013f8f40e04dd80e7b0a2b11234e",
+      "after": "ff2b48a5496787f2180ba3510b39588fecc2013f8f40e04dd80e7b0a2b11234e"
+    },
+    {
+      "file": "assets/cannon-front.png",
+      "before": "0c1e6205733209f951cbd4134d52b0cdf047e42460b3ae25d8cda28a686474cd",
+      "after": "0c1e6205733209f951cbd4134d52b0cdf047e42460b3ae25d8cda28a686474cd"
+    },
+    {
+      "file": "assets/cannon-wheel.png",
+      "before": "a134bdd8877531079dda3821d63c3bcc38b043b0e8bc971f612020c1082f9664",
+      "after": "a134bdd8877531079dda3821d63c3bcc38b043b0e8bc971f612020c1082f9664"
+    },
+    {
+      "file": "assets/fonts/OFL.txt",
+      "before": "d31ddd9f2bed32fd7e302a205cf2380ba0de6529152d239ef99cfb6f261bfc04",
+      "after": "d31ddd9f2bed32fd7e302a205cf2380ba0de6529152d239ef99cfb6f261bfc04"
+    },
+    {
+      "file": "assets/fonts/PretendardVariable.woff2",
+      "before": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4",
+      "after": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4"
+    },
+    {
+      "file": "assets/fonts/README.md",
+      "before": "349fc24070f571b5a4b9c7aad779075f676cac73599de4e11389139d6f6a9c3a",
+      "after": "349fc24070f571b5a4b9c7aad779075f676cac73599de4e11389139d6f6a9c3a"
+    },
+    {
+      "file": "assets/logo.png",
+      "before": "1ce5880dcc31cc7b94b6a3d2c93970a33b5d37a0b078700d6daf0762bd8937e2",
+      "after": "1ce5880dcc31cc7b94b6a3d2c93970a33b5d37a0b078700d6daf0762bd8937e2"
+    },
+    {
+      "file": "assets/logo.svg",
+      "before": "c073caeb5776c6180c9318ca60b1e447b8fa22621356ae8e0aa59288965c6269",
+      "after": "c073caeb5776c6180c9318ca60b1e447b8fa22621356ae8e0aa59288965c6269"
+    },
+    {
+      "file": "assets/music/README.md",
+      "before": "d793ebf117bca383afe3f159902a540ce1bdb62f7a01ad7554dab94a174dee35",
+      "after": "d793ebf117bca383afe3f159902a540ce1bdb62f7a01ad7554dab94a174dee35"
+    },
+    {
+      "file": "assets/music/bit-quest.mp3",
+      "before": "80c72638898d8b9e8f7c602d26817be6fdd8c5fa04ec03973f2d25c415d4e8e0",
+      "after": "80c72638898d8b9e8f7c602d26817be6fdd8c5fa04ec03973f2d25c415d4e8e0"
+    },
+    {
+      "file": "assets/music/chipper-doodle-v2.mp3",
+      "before": "1555641327651b1f2e3e2ad68d1c741034ffecccf46c0e5c762a765ad71bbaa7",
+      "after": "1555641327651b1f2e3e2ad68d1c741034ffecccf46c0e5c762a765ad71bbaa7"
+    },
+    {
+      "file": "assets/music/electrodoodle.mp3",
+      "before": "550458d3e148af6d2c07b874ad3eb6a3be48b1dacd22a61aa77c92c68ea4582b",
+      "after": "550458d3e148af6d2c07b874ad3eb6a3be48b1dacd22a61aa77c92c68ea4582b"
+    },
+    {
+      "file": "assets/music/licenses/CC-BY-4.0.html",
+      "before": "58230517b7895aa219ff46a6ed63e67057a1582fb9ea054b16728a8c13525650",
+      "after": "58230517b7895aa219ff46a6ed63e67057a1582fb9ea054b16728a8c13525650"
+    },
+    {
+      "file": "assets/music/licenses/bit-quest-source.html",
+      "before": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+      "after": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+    },
+    {
+      "file": "assets/music/licenses/chipper-doodle-v2-source.html",
+      "before": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+      "after": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+    },
+    {
+      "file": "assets/music/licenses/composer-faq.html",
+      "before": "f5fb799a8c719568be80dab1edb201dbe6e91309c786b2d100e9cce3fe171ba6",
+      "after": "f5fb799a8c719568be80dab1edb201dbe6e91309c786b2d100e9cce3fe171ba6"
+    },
+    {
+      "file": "assets/music/licenses/electrodoodle-source.html",
+      "before": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+      "after": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+    },
+    {
+      "file": "assets/music/licenses/manifest.json",
+      "before": "334f8c7ef3a0dca7891796ed806677dc943156dc2398279199ba6a409b9d1ac8",
+      "after": "334f8c7ef3a0dca7891796ed806677dc943156dc2398279199ba6a409b9d1ac8"
+    },
+    {
+      "file": "assets/music/licenses/winner-winner-source.html",
+      "before": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+      "after": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94"
+    },
+    {
+      "file": "assets/music/winner-winner.mp3",
+      "before": "f4337fbc4e7dc3b5be57ce15588d002801008b9470495d713aebc783279f4f33",
+      "after": "f4337fbc4e7dc3b5be57ce15588d002801008b9470495d713aebc783279f4f33"
+    },
+    {
+      "file": "assets/obstacles/README.md",
+      "before": "bca1118871fdfab4484c63ce07278f2b4ffb2cc87ea5c034aea4273660dbefe9",
+      "after": "bca1118871fdfab4484c63ce07278f2b4ffb2cc87ea5c034aea4273660dbefe9"
+    },
+    {
+      "file": "assets/obstacles/cascade-surface-v1.png",
+      "before": "8e825c85e60f5ec95d44df5c29d1eda61a51e67f8abdfad5966d889647f7a34b",
+      "after": "8e825c85e60f5ec95d44df5c29d1eda61a51e67f8abdfad5966d889647f7a34b"
+    },
+    {
+      "file": "assets/obstacles/classic-surface-v1.png",
+      "before": "7515fa57a297943ce5e30c5e81af6c2a3de231a4bd6b4f487175f31b63ee0dc0",
+      "after": "7515fa57a297943ce5e30c5e81af6c2a3de231a4bd6b4f487175f31b63ee0dc0"
+    },
+    {
+      "file": "assets/obstacles/manifest.json",
+      "before": "e8b1791721c956e98359ea45bd1691487b205c8b035f5f8c8aa102a656620e3a",
+      "after": "e8b1791721c956e98359ea45bd1691487b205c8b035f5f8c8aa102a656620e3a"
+    },
+    {
+      "file": "assets/obstacles/rhythm-surface-v2.png",
+      "before": "d0ed22666bd44250ed06ea0cdc511931369b229c39e659b2aa705984c0d7c82b",
+      "after": "d0ed22666bd44250ed06ea0cdc511931369b229c39e659b2aa705984c0d7c82b"
+    },
+    {
+      "file": "assets/obstacles/rhythm-v2-edit-prompt.txt",
+      "before": "edf13933b029072804429d87a9eedb484635a91d744fcc9af10af404edb5c369",
+      "after": "edf13933b029072804429d87a9eedb484635a91d744fcc9af10af404edb5c369"
+    },
+    {
+      "file": "assets/obstacles/twinfold-surface-v1.png",
+      "before": "f494fade8a5a98e4ee4df26607d2f43f2f6674c216701ce2da091aa4355abe70",
+      "after": "f494fade8a5a98e4ee4df26607d2f43f2f6674c216701ce2da091aa4355abe70"
+    },
+    {
+      "file": "assets/pinball-chrome-photo.LICENSE.md",
+      "before": "aa6b9c1fea0fc9ef8ae01ced8c1327b4784bce772acab072e4a953cbe295dd3d",
+      "after": "aa6b9c1fea0fc9ef8ae01ced8c1327b4784bce772acab072e4a953cbe295dd3d"
+    },
+    {
+      "file": "assets/pinball-chrome-photo.png",
+      "before": "10a20acaa005fd2fca897105b1143e063c5de63bad0a407921b6ece23da81a11",
+      "after": "10a20acaa005fd2fca897105b1143e063c5de63bad0a407921b6ece23da81a11"
+    },
+    {
+      "file": "assets/pinball-metal-soft.README.md",
+      "before": "4aabb15bc6a5aafe1d32e6d3918d31ad5ad8271898890ecb0d1fb646c5d758d4",
+      "after": "4aabb15bc6a5aafe1d32e6d3918d31ad5ad8271898890ecb0d1fb646c5d758d4"
+    },
+    {
+      "file": "assets/pinball-metal-soft.png",
+      "before": "4df879a4517b1c14c9940faa9626141cde07ca62174a2ab8149f954876bf199c",
+      "after": "4df879a4517b1c14c9940faa9626141cde07ca62174a2ab8149f954876bf199c"
+    },
+    {
+      "file": "index.html",
+      "before": "7d083e7ff38959c065ebefd09d388f562f78322fe9a217010789502f90135bd0",
+      "after": "7d083e7ff38959c065ebefd09d388f562f78322fe9a217010789502f90135bd0"
+    },
+    {
+      "file": "js/audio.js",
+      "before": "72940855f7b6846f6f0a17213f651130cb33fc35d6a2d243e63e79f7e102782b",
+      "after": "72940855f7b6846f6f0a17213f651130cb33fc35d6a2d243e63e79f7e102782b"
+    },
+    {
+      "file": "js/camera.js",
+      "before": "f94d5a585527054a140ce5d4e63799b1f5f7bb5e7cf8c32ae6665092c5143fb5",
+      "after": "f94d5a585527054a140ce5d4e63799b1f5f7bb5e7cf8c32ae6665092c5143fb5"
+    },
+    {
+      "file": "js/cinematic.js",
+      "before": "3c3eaf6323c3280e422624c394bf36daac7217d3abf2171cdbb5c5dab43eda37",
+      "after": "3c3eaf6323c3280e422624c394bf36daac7217d3abf2171cdbb5c5dab43eda37"
+    },
+    {
+      "file": "js/display-budget.js",
+      "before": "d918720b9ecfbb1420367f041287872bbc8cb51f4d32c3248de3a1350df8eff1",
+      "after": "d918720b9ecfbb1420367f041287872bbc8cb51f4d32c3248de3a1350df8eff1"
+    },
+    {
+      "file": "js/effects.js",
+      "before": "fc19741e8634901304734ecc1f5896eb301024d5711ab9e4c6d642fdd386efc4",
+      "after": "fc19741e8634901304734ecc1f5896eb301024d5711ab9e4c6d642fdd386efc4"
+    },
+    {
+      "file": "js/hand-flight.js",
+      "before": "85f1e855b96bde0e9d0bf3a1ba9f2a3f47017afeec13c532fa57da3793f49fce",
+      "after": "85f1e855b96bde0e9d0bf3a1ba9f2a3f47017afeec13c532fa57da3793f49fce"
+    },
+    {
+      "file": "js/hand-scene.js",
+      "before": "c0a0cadeeb0560815ee3cd059f8dd4271c2fa01ccc7631955df53ede6d3e3d9a",
+      "after": "c0a0cadeeb0560815ee3cd059f8dd4271c2fa01ccc7631955df53ede6d3e3d9a"
+    },
+    {
+      "file": "js/hand-start.js",
+      "before": "298e6c089a19a66cf048ddad27d4478977d5507475e03327d90c4232d6131d5a",
+      "after": "298e6c089a19a66cf048ddad27d4478977d5507475e03327d90c4232d6131d5a"
+    },
+    {
+      "file": "js/main.js",
+      "before": "5ab537dbff8fb6230804ca76fee8e8ead8907bd173194659555cd32899ea9341",
+      "after": "5ab537dbff8fb6230804ca76fee8e8ead8907bd173194659555cd32899ea9341"
+    },
+    {
+      "file": "js/map-registry.js",
+      "before": "d7ef71bdcb702319f8b31d3271b4fa5dafa2480587a460a329b6c1ad32c2ba2d",
+      "after": "d7ef71bdcb702319f8b31d3271b4fa5dafa2480587a460a329b6c1ad32c2ba2d"
+    },
+    {
+      "file": "js/maps-duration-data.js",
+      "before": "cfa59cb748127f8ca5bf37c11c8e578bcde7894184d56d3ab0ec139d6e9dc999",
+      "after": "cfa59cb748127f8ca5bf37c11c8e578bcde7894184d56d3ab0ec139d6e9dc999"
+    },
+    {
+      "file": "js/maps.js",
+      "before": "79a9fa7c0003c9a9ba3748151b5dfccac6269b4565e3a5f47a0c52cecc2d89d3",
+      "after": "79a9fa7c0003c9a9ba3748151b5dfccac6269b4565e3a5f47a0c52cecc2d89d3"
+    },
+    {
+      "file": "js/maps/cascade-style.js",
+      "before": "be74db4b6b5729da8428902690e8438610077494781abf16c21b29a2bd5ce830",
+      "after": "be74db4b6b5729da8428902690e8438610077494781abf16c21b29a2bd5ce830"
+    },
+    {
+      "file": "js/maps/cascade.js",
+      "before": "4e168b0350ddbf2a4591f999164357a1fb01cd9d1933a0e90c6c00ac12038883",
+      "after": "4e168b0350ddbf2a4591f999164357a1fb01cd9d1933a0e90c6c00ac12038883"
+    },
+    {
+      "file": "js/maps/rhythm-style.js",
+      "before": "abafc5dacf2feeb4bea9e557d0c4da3ce29aa23177adf9194a3484c37fdfa96c",
+      "after": "abafc5dacf2feeb4bea9e557d0c4da3ce29aa23177adf9194a3484c37fdfa96c"
+    },
+    {
+      "file": "js/maps/rhythm.js",
+      "before": "d7ed7608f032ef54d10b3b6a4e031803382f7bafc14a2f2a0cf5c9f44081c949",
+      "after": "d7ed7608f032ef54d10b3b6a4e031803382f7bafc14a2f2a0cf5c9f44081c949"
+    },
+    {
+      "file": "js/maps/twinfold-style.js",
+      "before": "a9811ed9571b2e05e3603c2813bb1404b89c0878a770320e5a726d2adb943458",
+      "after": "a9811ed9571b2e05e3603c2813bb1404b89c0878a770320e5a726d2adb943458"
+    },
+    {
+      "file": "js/maps/twinfold.js",
+      "before": "689df43e4601e927ff590f2d39dad884140ac3aabb269c6fbba1f326e1ef04e4",
+      "after": "689df43e4601e927ff590f2d39dad884140ac3aabb269c6fbba1f326e1ef04e4"
+    },
+    {
+      "file": "js/physics.js",
+      "before": "e6f5b66d1c5b81b9c63b043544d095cb2d73f8dde65ad02a7f3ac1560c9babf5",
+      "after": "e6f5b66d1c5b81b9c63b043544d095cb2d73f8dde65ad02a7f3ac1560c9babf5"
+    },
+    {
+      "file": "js/race-duration-data.js",
+      "before": "96651f0797bb7124c903e436764b0f243173cbec956c8058a185c03391be3393",
+      "after": "96651f0797bb7124c903e436764b0f243173cbec956c8058a185c03391be3393"
+    },
+    {
+      "file": "js/race-duration.js",
+      "before": "7740c90c5de401653824731424dd94b741d8259c17525d1d2d74f890d0edd8f4",
+      "after": "7740c90c5de401653824731424dd94b741d8259c17525d1d2d74f890d0edd8f4"
+    },
+    {
+      "file": "js/race-standing.js",
+      "before": "cad6e28fe03ff61eec21b548d646c3dee8a6b07d604b1eab3a1ea7393585c718",
+      "after": "cad6e28fe03ff61eec21b548d646c3dee8a6b07d604b1eab3a1ea7393585c718"
+    },
+    {
+      "file": "js/renderer.js",
+      "before": "2b4e650e6a41756f65efc7c2524dd180f6aa6cb620b2a7f5fcb25e3b1179bcbb",
+      "after": "2b4e650e6a41756f65efc7c2524dd180f6aa6cb620b2a7f5fcb25e3b1179bcbb"
+    },
+    {
+      "file": "js/shuffle-input.js",
+      "before": "c53898379372660a8922e1412cf18cbaac8596e8265df31ec117db1c9c0396bf",
+      "after": "c53898379372660a8922e1412cf18cbaac8596e8265df31ec117db1c9c0396bf"
+    },
+    {
+      "file": "js/shuffle.js",
+      "before": "89c28332289c5de61a0a5ba602769f90ee856802f215055bdfaa9022ebcf7a09",
+      "after": "89c28332289c5de61a0a5ba602769f90ee856802f215055bdfaa9022ebcf7a09"
+    },
+    {
+      "file": "js/themes.js",
+      "before": "1719b27b8c269fcdef0908041883871adb833c65f465f20542df92fdbca2e05d",
+      "after": "1719b27b8c269fcdef0908041883871adb833c65f465f20542df92fdbca2e05d"
+    },
+    {
+      "file": "js/throw-gate.js",
+      "before": "2edf9c6af6ea90594963603822228c445026df95793ffa4ee7555be778e2f7da",
+      "after": "2edf9c6af6ea90594963603822228c445026df95793ffa4ee7555be778e2f7da"
+    },
+    {
+      "file": "js/ui.js",
+      "before": "0b91a138e9a25b849499b70e8d77bd55bbc677670f26cf50dbd10f7bdbe47315",
+      "after": "0b91a138e9a25b849499b70e8d77bd55bbc677670f26cf50dbd10f7bdbe47315"
+    },
+    {
+      "file": "music-credits.html",
+      "before": "3a103f0590af12b4b4daca5fbab657354e751a23eabe6bf375f26816a0cbd806",
+      "after": "3a103f0590af12b4b4daca5fbab657354e751a23eabe6bf375f26816a0cbd806"
+    },
+    {
+      "file": "style.css",
+      "before": "9d4a531345c583bf1977d043475bd59edc06b0a48c7b3f7f464a744121540570",
+      "after": "9d4a531345c583bf1977d043475bd59edc06b0a48c7b3f7f464a744121540570"
+    }
+  ],
+  "protectedFilesUnchanged": 5
+}
