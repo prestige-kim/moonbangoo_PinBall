@@ -1,0 +1,64 @@
+PASS classic
+PASS twinfold
+PASS cascade
+PASS rhythm
+{
+  "lateLoad": {
+    "beforeRevision": 4,
+    "afterRevision": 8,
+    "redrawn": true
+  },
+  "maps": [
+    {
+      "map": "classic",
+      "count": 50,
+      "complete": true,
+      "image": "http://127.0.0.1:50656/assets/backgrounds/classic-background-v2.png",
+      "cacheKey": "classic:MB-Q7LBL5-1SS17D2-1AB1WAU-1ALMQS6-1:cosmic:1700:9",
+      "flightKey": "classic:MB-Q7LBL5-1SS17D2-1AB1WAU-1ALMQS6-1:cosmic:1700:9"
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "complete": true,
+      "image": "http://127.0.0.1:50656/assets/backgrounds/twinfold-background-v2.png",
+      "cacheKey": "twinfold:background-common-seed:cosmic:1700:10",
+      "flightKey": "twinfold:background-common-seed:cosmic:1700:10"
+    },
+    {
+      "map": "cascade",
+      "count": 50,
+      "complete": true,
+      "image": "http://127.0.0.1:50656/assets/backgrounds/cascade-background-v2.png",
+      "cacheKey": "cascade:background-common-seed:cosmic:1700:11",
+      "flightKey": "cascade:background-common-seed:cosmic:1700:11"
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "complete": true,
+      "image": "http://127.0.0.1:50656/assets/backgrounds/rhythm-background-v2.png",
+      "cacheKey": "rhythm:background-common-seed:cosmic:1700:12",
+      "flightKey": "rhythm:background-common-seed:cosmic:1700:12"
+    }
+  ],
+  "mobile": [
+    {
+      "map": "classic",
+      "overflow": false
+    },
+    {
+      "map": "twinfold",
+      "overflow": false
+    },
+    {
+      "map": "cascade",
+      "overflow": false
+    },
+    {
+      "map": "rhythm",
+      "overflow": false
+    }
+  ],
+  "errors": []
+}
