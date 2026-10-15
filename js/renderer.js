@@ -25,7 +25,7 @@
       entry.image.onload=()=>{entry.ready=true;for(const notify of entry.listeners)notify();entry.listeners.clear();};
       entry.image.onerror=()=>entry.listeners.clear();
       if(onReady)entry.listeners.add(onReady);
-      entry.image.src=backgroundArtBase+id+'-background-v1.png';
+      entry.image.src=backgroundArtBase+id+'-background-v2.png';
     }else if(!entry.ready&&onReady)entry.listeners.add(onReady);
     return entry.ready&&entry.image.naturalWidth>0?entry.image:null;
   };

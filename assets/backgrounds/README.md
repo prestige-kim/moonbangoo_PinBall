@@ -10,3 +10,7 @@ Four opaque portrait PNGs generated with the built-in image_gen tool. Exact prom
 These are decorative backgrounds with no collision geometry. The central play lane is kept quiet by a board-colored veil. Ambient backgrounds use aspect-preserving cover; the world board uses vertically mirrored tiles with opaque backing and one-pixel overlap to avoid seams. Cached board raster density is capped at 2.
 
 The map selector, setup, shuffle, launch transition, race and results use the same selected-map image. The welcome scene retains the shared studio artwork. Image readiness rebuilds the board background and invalidates cinematic caches using map id and background revision. Failed/pending image loads retain the procedural fallback.
+
+## Brand review — v2
+
+Current runtime assets are `classic/twinfold/cascade/rhythm-background-v2.png`. v1 is retained as historical artwork. All four v2 images use the actual existing logo as a paper/ink/gold style reference; they do not generate or replace the logo. The subjects remain pond, library, canyon and clockwork; the visual language is now warm paper with printed illustrations instead of elaborate fantasy scenery. Exact v2 edit prompts and references are in the manifest's `brandRevision` section. No geometry or replay version changes.
