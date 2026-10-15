@@ -1,0 +1,271 @@
+{
+  "at": "2026-10-15T09:48:08.929Z",
+  "browser": "155.0.8059.40",
+  "errors": [],
+  "rounds": [],
+  "parity": [
+    {
+      "map": "classic",
+      "samples": [
+        {
+          "scale": 1,
+          "progress": 0,
+          "changedChannels": 85,
+          "aaChanged": 0,
+          "maxDifference": 11,
+          "bounds": [
+            618,
+            215,
+            2995,
+            499
+          ],
+          "game": [
+            3840,
+            2160
+          ],
+          "cinema": [
+            3840,
+            2160
+          ]
+        },
+        {
+          "scale": 1,
+          "progress": 0.1,
+          "changedChannels": 95,
+          "aaChanged": 0,
+          "maxDifference": 11,
+          "bounds": [
+            618,
+            215,
+            2995,
+            499
+          ],
+          "game": [
+            3840,
+            2160
+          ],
+          "cinema": [
+            3840,
+            2160
+          ]
+        },
+        {
+          "scale": 1,
+          "progress": 0.5,
+          "changedChannels": 170,
+          "aaChanged": 0,
+          "maxDifference": 11,
+          "bounds": [
+            618,
+            215,
+            2995,
+            499
+          ],
+          "game": [
+            3840,
+            2160
+          ],
+          "cinema": [
+            3840,
+            2160
+          ]
+        },
+        {
+          "scale": 1,
+          "progress": 0.99,
+          "changedChannels": 169,
+          "aaChanged": 0,
+          "maxDifference": 11,
+          "bounds": [
+            618,
+            215,
+            2995,
+            499
+          ],
+          "game": [
+            3840,
+            2160
+          ],
+          "cinema": [
+            3840,
+            2160
+          ]
+        },
+        {
+          "scale": 1,
+          "progress": 1,
+          "changedChannels": 85,
+          "aaChanged": 0,
+          "maxDifference": 11,
+          "bounds": [
+            618,
+            215,
+            2995,
+            499
+          ],
+          "game": [
+            3840,
+            2160
+          ],
+          "cinema": [
+            3840,
+            2160
+          ]
+        },
+        {
+          "scale": 0.65,
+          "progress": 0,
+          "changedChannels": 0,
+          "aaChanged": 0,
+          "maxDifference": 0,
+          "bounds": [
+            null,
+            null,
+            0,
+            0
+          ],
+          "game": [
+            2496,
+            1404
+          ],
+          "cinema": [
+            2496,
+            1404
+          ]
+        },
+        {
+          "scale": 0.65,
+          "progress": 0.1,
+          "changedChannels": 0,
+          "aaChanged": 0,
+          "maxDifference": 0,
+          "bounds": [
+            null,
+            null,
+            0,
+            0
+          ],
+          "game": [
+            2496,
+            1404
+          ],
+          "cinema": [
+            2496,
+            1404
+          ]
+        },
+        {
+          "scale": 0.65,
+          "progress": 0.5,
+          "changedChannels": 0,
+          "aaChanged": 0,
+          "maxDifference": 0,
+          "bounds": [
+            null,
+            null,
+            0,
+            0
+          ],
+          "game": [
+            2496,
+            1404
+          ],
+          "cinema": [
+            2496,
+            1404
+          ]
+        },
+        {
+          "scale": 0.65,
+          "progress": 0.99,
+          "changedChannels": 0,
+          "aaChanged": 0,
+          "maxDifference": 0,
+          "bounds": [
+            null,
+            null,
+            0,
+            0
+          ],
+          "game": [
+            2496,
+            1404
+          ],
+          "cinema": [
+            2496,
+            1404
+          ]
+        },
+        {
+          "scale": 0.65,
+          "progress": 1,
+          "changedChannels": 0,
+          "aaChanged": 0,
+          "maxDifference": 0,
+          "bounds": [
+            null,
+            null,
+            0,
+            0
+          ],
+          "game": [
+            2496,
+            1404
+          ],
+          "cinema": [
+            2496,
+            1404
+          ]
+        }
+      ],
+      "physicsUnchanged": true
+    }
+  ],
+  "input": [
+    {
+      "kind": "pointercancel",
+      "active": null,
+      "contacts": 0,
+      "blocked": false,
+      "grab": false,
+      "status": "mixing"
+    },
+    {
+      "kind": "blur",
+      "active": null,
+      "contacts": 0,
+      "blocked": false,
+      "grab": false,
+      "status": "mixing"
+    },
+    {
+      "kind": "orientationchange",
+      "active": null,
+      "contacts": 0,
+      "blocked": false,
+      "grab": false,
+      "status": "mixing"
+    },
+    {
+      "kind": "resize",
+      "active": null,
+      "contacts": 0,
+      "blocked": false,
+      "grab": false,
+      "status": "mixing"
+    },
+    {
+      "kind": "multitouch",
+      "active": null,
+      "contacts": 0,
+      "blocked": false,
+      "grab": false,
+      "status": "mixing"
+    }
+  ],
+  "limitations": [
+    "Local headless Chrome; synthetic touch only",
+    "Blur/orientation dispatch verifies event handlers, not native OS focus or device rotation",
+    "Soak is bounded, not all-day validation"
+  ]
+}

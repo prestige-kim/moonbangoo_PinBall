@@ -279,7 +279,7 @@
     if (stage === 'flight') {
       const progress = Math.min(1, launchElapsed / flightDuration);
       camera.viewport = ui.getViewport(); camera.prepareLanding(map, physics);
-      renderer.render({ physics, map, camera, effects, time: elapsedVisual, dt, status: stage, hideMarbles: true });
+      // HandFlight paints the board with its exact interpolated camera once.
       ui.setSceneProgress(handFlight.render({ stage, progress, time: elapsedVisual, physics, camera, reducedMotion: settings.reducedMotion }));
       // Draw every exact endpoint before the following frame advances race time.
       if (progress === 1) flightLanded = true;

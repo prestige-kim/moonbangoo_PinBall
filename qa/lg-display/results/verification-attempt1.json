@@ -1,0 +1,54 @@
+{
+  "at": "2026-10-15T09:46:07.629Z",
+  "browser": "155.0.8059.40",
+  "errors": [],
+  "rounds": [],
+  "parity": [],
+  "input": [
+    {
+      "kind": "pointercancel",
+      "active": null,
+      "contacts": 0,
+      "blocked": false,
+      "grab": false,
+      "status": "mixing"
+    },
+    {
+      "kind": "blur",
+      "active": null,
+      "contacts": 0,
+      "blocked": false,
+      "grab": false,
+      "status": "mixing"
+    },
+    {
+      "kind": "orientationchange",
+      "active": null,
+      "contacts": 0,
+      "blocked": false,
+      "grab": false,
+      "status": "mixing"
+    },
+    {
+      "kind": "resize",
+      "active": null,
+      "contacts": 0,
+      "blocked": false,
+      "grab": false,
+      "status": "mixing"
+    },
+    {
+      "kind": "multitouch",
+      "active": null,
+      "contacts": 0,
+      "blocked": false,
+      "grab": false,
+      "status": "mixing"
+    }
+  ],
+  "limitations": [
+    "Local headless Chrome; synthetic touch only",
+    "Blur/orientation dispatch verifies event handlers, not native OS focus or device rotation",
+    "Soak is bounded, not all-day validation"
+  ]
+}

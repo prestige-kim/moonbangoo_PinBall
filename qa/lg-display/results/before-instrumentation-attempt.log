@@ -1,0 +1,9 @@
+page.evaluate: TypeError: Cannot read properties of null (reading 'step')
+    at wrap (eval at evaluate (:370:30), <anonymous>:4:35)
+    at eval (eval at evaluate (:370:30), <anonymous>:5:422)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at instrument (/Users/proudchris/Desktop/moonbangoo_PinBall/qa/lg-display/measure.cjs:10:44)
+    at run (/Users/proudchris/Desktop/moonbangoo_PinBall/qa/lg-display/measure.cjs:24:557) {
+  log: []
+}

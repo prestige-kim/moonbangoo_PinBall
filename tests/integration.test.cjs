@@ -45,7 +45,7 @@ function boot(storage, options = {}) {
     update() {} attach() {}
   }
   class Cinematic {
-    constructor() { this.endpoints = 0; }
+    constructor(canvas, renderer) { this.renderer = renderer; this.endpoints = 0; }
     setQuality(value) { this.quality = value; }
     commitHandSlots(physics,bodies) { this.commits = (this.commits || 0) + 1; this.commitTime = physics.time; P.commitHandStart(physics,bodies); }
     render(scene) {
@@ -88,6 +88,7 @@ function boot(storage, options = {}) {
       this.ids = Array.from(physics.marbles, m => m.id);
     }
     render(scene) {
+      this.cinema.renderer.render({ ...scene, hideMarbles: true });
       this.scene = scene;
       if (scene.progress === 1) {
         this.endpoints++; this.landingTime = scene.physics.time;
@@ -565,4 +566,31 @@ test('early stop with no confirmed winner leaves result music silent', () => {
   const p=b.P.app.physics; while(!p.finished.length && p.time<200) p.step();
   b.callbacks.stop(); b.advance(.1);
   assert.equal(b.P.app.audio.musicScene, 'finished');
+});
+
+
+test('flight delegates one board paint per frame including the exact landing frame', () => {
+  const { P, callbacks, advance, gesture } = boot();
+  const app = P.app;
+  let boards = 0, flights = 0, endpoints = 0;
+  app.renderer.render = () => { boards++; };
+  const renderFlight = app.handFlight.render.bind(app.handFlight);
+  app.handFlight.render = state => {
+    flights++;
+    if (state.progress === 1) endpoints++;
+    return renderFlight(state);
+  };
+  callbacks.start(); advance(3.3); gesture();
+  for (let i = 0; i < 170 && !endpoints; i++) {
+    const oldBoards = boards, oldFlights = flights;
+    advance(1 / 60);
+    assert.equal(boards - oldBoards, 1);
+    assert.equal(flights - oldFlights, 1);
+    assert.equal(app.physics.time, 0, 'flight does not advance race time');
+  }
+  assert.equal(endpoints, 1);
+  assert.equal(boards, flights);
+  advance(1 / 60);
+  assert.equal(app.status, 'running');
+  assert.ok(app.physics.time > 0);
 });

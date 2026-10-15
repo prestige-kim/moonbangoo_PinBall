@@ -1,0 +1,10 @@
+✔ start waits for a valid manual throw and connects exact flight landing to the race once (13.660333ms)
+✔ flight delegates one board paint per frame including the exact landing frame (3.917917ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48.484

@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-15T09:58:03.601Z",
+  "head": "f8a3631333d7592136555d81f09b92aebeddd357",
+  "candidateFingerprint": "1ad0d255d3738c094ae2148cd624284937b5d11ed40e04b01f6ff0f2b9077f3f",
+  "unit": {
+    "tests": 302,
+    "pass": 302,
+    "fail": 0
+  },
+  "fourMapBrowser": {
+    "maps": 4,
+    "errors": 0
+  },
+  "soak": {
+    "elapsedSeconds": 315.912,
+    "normalCompletions": 450,
+    "exactReplays": 9,
+    "errors": []
+  },
+  "layouts": {
+    "cases": 3,
+    "errors": 0
+  },
+  "strictPixelComparison": "FAILED: native classic small differences; no tolerance relaxed",
+  "physicalLGTested": false,
+  "committed": false,
+  "pushed": false,
+  "deployed": false,
+  "analysisDocumentPreserved": true
+}

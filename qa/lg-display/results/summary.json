@@ -1,0 +1,3810 @@
+{
+  "at": "2026-10-15T09:53:42.361Z",
+  "cases": [
+    {
+      "i": 0,
+      "map": "classic",
+      "count": 50,
+      "viewport": [
+        3840,
+        2160
+      ],
+      "dpr": 1,
+      "seed": "MB-1FY9KMC-1L2S2XD-1DDOCG9-M02C-1",
+      "phases": {
+        "intro": {
+          "before": {
+            "frames": {
+              "n": 171,
+              "mean": 17.737426900584794,
+              "p50": 16.699999999999818,
+              "p95": 16.799999999999727,
+              "p99": 33.20000000000027
+            },
+            "calls": {
+              "cinema": 172,
+              "viewport": 6,
+              "clearRect": 1,
+              "drawImage": 14,
+              "ranking": 1,
+              "hud": 1
+            },
+            "longTasks": [
+              168
+            ],
+            "cdp": {
+              "TaskDuration": 30.001999999999974,
+              "ScriptDuration": 12.168999999999999,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 99.70000004768372,
+              "p50": 190.20000004768372,
+              "p95": 190.20000004768372,
+              "p99": 190.20000004768372
+            },
+            "heap": 2644248
+          },
+          "after": {
+            "frames": {
+              "n": 172,
+              "mean": 17.634302325581395,
+              "p50": 16.699999999999818,
+              "p95": 16.799999999999955,
+              "p99": 33.40000000000009
+            },
+            "calls": {
+              "cinema": 173,
+              "viewport": 6,
+              "clearRect": 2,
+              "drawImage": 66,
+              "ranking": 1,
+              "hud": 1
+            },
+            "longTasks": [
+              145
+            ],
+            "cdp": {
+              "TaskDuration": 37.20000000000004,
+              "ScriptDuration": 14.58600000000001,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 88.25,
+              "p50": 167.70000004768372,
+              "p95": 167.70000004768372,
+              "p99": 167.70000004768372
+            },
+            "heap": 2636776
+          }
+        },
+        "setup": {
+          "before": {
+            "frames": {
+              "n": 162,
+              "mean": 16.66604938271605,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 52,
+              "drawImage": 2756,
+              "cinema": 112,
+              "viewport": 4
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 48.80600000000002,
+              "ScriptDuration": 21.567000000000004,
+              "LayoutDuration": 1.745,
+              "RecalcStyleDuration": 0.9359999999999993
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 16.5,
+              "p50": 16.5,
+              "p95": 16.5,
+              "p99": 16.5
+            },
+            "heap": 4629784
+          },
+          "after": {
+            "frames": {
+              "n": 159,
+              "mean": 16.771069182389933,
+              "p50": 16.699999999999818,
+              "p95": 16.800000000000182,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 110,
+              "viewport": 4,
+              "clearRect": 50,
+              "drawImage": 2651
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 47.30699999999999,
+              "ScriptDuration": 14.632000000000007,
+              "LayoutDuration": 1.8409999999999953,
+              "RecalcStyleDuration": 1.1350000000000007
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 23,
+              "p50": 23,
+              "p95": 23,
+              "p99": 23
+            },
+            "heap": 4413032
+          }
+        },
+        "pour": {
+          "before": {
+            "frames": {
+              "n": 207,
+              "mean": 16.66618357487923,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 208,
+              "drawImage": 11018,
+              "shuffle": 260
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 291.203,
+              "ScriptDuration": 191.31299999999996,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.21699999999999497
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 0.7150000095367431,
+              "p50": 0.5999999046325684,
+              "p95": 2.200000047683716,
+              "p99": 2.200000047683716
+            },
+            "heap": 4908344
+          },
+          "after": {
+            "frames": {
+              "n": 207,
+              "mean": 16.666666666666668,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "clearRect": 208,
+              "drawImage": 11018,
+              "shuffle": 260
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 301.8500000000001,
+              "ScriptDuration": 189.754,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.3990000000000035
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 1.2600000023841857,
+              "p50": 1.2000000476837158,
+              "p95": 4.5,
+              "p99": 4.5
+            },
+            "heap": 5006368
+          }
+        },
+        "shuffle": {
+          "before": {
+            "frames": {
+              "n": 111,
+              "mean": 16.66576576576578,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "shuffle": 224,
+              "clearRect": 112,
+              "drawImage": 5712
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 123.81400000000009,
+              "ScriptDuration": 66.22000000000006,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.19600000000000173
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 0.6339285586561475,
+              "p50": 0.5999999046325684,
+              "p95": 1.1000001430511475,
+              "p99": 1.2999999523162842
+            },
+            "heap": 5829176
+          },
+          "after": {
+            "frames": {
+              "n": 145,
+              "mean": 16.66551724137931,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "shuffle": 292,
+              "clearRect": 146,
+              "drawImage": 7446
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 236.89099999999996,
+              "ScriptDuration": 115.97000000000007,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.3229999999999969
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 0.9517857219491687,
+              "p50": 1,
+              "p95": 1.2000000476837158,
+              "p99": 2.3999998569488525
+            },
+            "heap": 6763440
+          }
+        },
+        "flight": {
+          "before": {
+            "frames": {
+              "n": 70,
+              "mean": 47.14142857142859,
+              "p50": 49.899999999999636,
+              "p95": 50.100000000000364,
+              "p99": 500
+            },
+            "calls": {
+              "shuffle": 8,
+              "clearRect": 71,
+              "drawImage": 6019,
+              "viewport": 71,
+              "render": 133,
+              "flight": 66,
+              "ranking": 3,
+              "physics": 3,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 121.35699999999994,
+              "ScriptDuration": 66.28599999999996,
+              "LayoutDuration": 1.2640000000000011,
+              "RecalcStyleDuration": 32.150999999999996
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 6.150000095367432,
+              "p50": 11.700000047683716,
+              "p95": 11.700000047683716,
+              "p99": 11.700000047683716
+            },
+            "heap": 5203564
+          },
+          "after": {
+            "frames": {
+              "n": 133,
+              "mean": 21.92932330827068,
+              "p50": 16.700000000000728,
+              "p95": 33.399999999999636,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "shuffle": 8,
+              "clearRect": 133,
+              "drawImage": 9244,
+              "viewport": 134,
+              "render": 130,
+              "flight": 128,
+              "ranking": 6,
+              "physics": 6,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 327.088,
+              "ScriptDuration": 132.89999999999992,
+              "LayoutDuration": 1.3210000000000028,
+              "RecalcStyleDuration": 130.554
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 5.350000023841858,
+              "p50": 10.200000047683716,
+              "p95": 10.200000047683716,
+              "p99": 10.200000047683716
+            },
+            "heap": 6317232
+          }
+        },
+        "race": {
+          "before": {
+            "frames": {
+              "n": 174,
+              "mean": 20.114367816091942,
+              "p50": 16.69999999999709,
+              "p95": 33.399999999999636,
+              "p99": 116.70000000000073
+            },
+            "calls": {
+              "ranking": 525,
+              "physics": 413,
+              "viewport": 58,
+              "drawImage": 18840,
+              "render": 175,
+              "hud": 31,
+              "clearRect": 31
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 366.4890000000001,
+              "ScriptDuration": 242.55099999999996,
+              "LayoutDuration": 7.032999999999998,
+              "RecalcStyleDuration": 8.108000000000004
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 17990392
+          },
+          "after": {
+            "frames": {
+              "n": 187,
+              "mean": 18.626737967914433,
+              "p50": 16.700000000000728,
+              "p95": 33.30000000000109,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 564,
+              "physics": 423,
+              "viewport": 67,
+              "drawImage": 20273,
+              "render": 188,
+              "hud": 34,
+              "clearRect": 34
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 383.9330000000001,
+              "ScriptDuration": 240.50199999999998,
+              "LayoutDuration": 8.548,
+              "RecalcStyleDuration": 10.81499999999999
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 11150352
+          }
+        },
+        "camera": {
+          "before": {
+            "frames": {
+              "n": 73,
+              "mean": 27.16849315068492,
+              "p50": 33.29999999999927,
+              "p95": 33.400000000001455,
+              "p99": 50
+            },
+            "calls": {
+              "ranking": 222,
+              "physics": 240,
+              "drawImage": 8572,
+              "render": 74,
+              "viewport": 18,
+              "hud": 18,
+              "clearRect": 18
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 227.96099999999987,
+              "ScriptDuration": 168.67599999999993,
+              "LayoutDuration": 4.054000000000002,
+              "RecalcStyleDuration": 4.106999999999999
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 4.521428568022592,
+              "p50": 3.299999952316284,
+              "p95": 15.100000143051147,
+              "p99": 15.100000143051147
+            },
+            "heap": 10902608
+          },
+          "after": {
+            "frames": {
+              "n": 105,
+              "mean": 16.665714285714298,
+              "p50": 16.700000000000728,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "ranking": 318,
+              "physics": 212,
+              "drawImage": 12736,
+              "render": 106,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 219.58300000000008,
+              "ScriptDuration": 161.23100000000014,
+              "LayoutDuration": 4.2500000000000036,
+              "RecalcStyleDuration": 3.7530000000000063
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.4428571462631226,
+              "p50": 1.5999999046325684,
+              "p95": 14.700000047683716,
+              "p99": 14.700000047683716
+            },
+            "heap": 14201340
+          }
+        },
+        "result": {
+          "before": {
+            "frames": {
+              "n": 60,
+              "mean": 30,
+              "p50": 33.29999999999927,
+              "p95": 33.400000000001455,
+              "p99": 66.70000000000073
+            },
+            "calls": {
+              "ranking": 61,
+              "drawImage": 4392,
+              "render": 61,
+              "viewport": 16,
+              "hud": 16,
+              "clearRect": 16
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 124.39899999999993,
+              "ScriptDuration": 75.60599999999984,
+              "LayoutDuration": 4.852999999999996,
+              "RecalcStyleDuration": 7.212999999999997
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 12708352
+          },
+          "after": {
+            "frames": {
+              "n": 96,
+              "mean": 18.576041666666697,
+              "p50": 16.700000000000728,
+              "p95": 33.39999999999782,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 97,
+              "drawImage": 6984,
+              "render": 97,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 166.6479999999999,
+              "ScriptDuration": 82.12000000000019,
+              "LayoutDuration": 6.082000000000004,
+              "RecalcStyleDuration": 8.377999999999997
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 14430792
+          }
+        }
+      },
+      "loadWallMs": [
+        916.7004160000001,
+        791.2343329999999
+      ],
+      "renderScaleAtEnd": [
+        0.85,
+        0.7224999999999999
+      ]
+    },
+    {
+      "i": 1,
+      "map": "classic",
+      "count": 50,
+      "viewport": [
+        3840,
+        2160
+      ],
+      "dpr": 1,
+      "seed": "MB-C16HHS-12QT8ME-1BPGAO-1CWQLW8-1",
+      "phases": {
+        "intro": {
+          "before": {
+            "frames": {
+              "n": 171,
+              "mean": 16.76374269005848,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000273,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 172,
+              "viewport": 6,
+              "clearRect": 1,
+              "drawImage": 14,
+              "ranking": 1,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 36.19900000000001,
+              "ScriptDuration": 15.101000000000003,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 25.399999976158142,
+              "p50": 43.799999952316284,
+              "p95": 43.799999952316284,
+              "p99": 43.799999952316284
+            },
+            "heap": 2641560
+          },
+          "after": {
+            "frames": {
+              "n": 172,
+              "mean": 16.666279069767445,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000273,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 173,
+              "viewport": 6,
+              "clearRect": 2,
+              "drawImage": 66,
+              "ranking": 1,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 29.838000000000005,
+              "ScriptDuration": 12.291999999999998,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 26.75000011920929,
+              "p50": 43.10000014305115,
+              "p95": 43.10000014305115,
+              "p99": 43.10000014305115
+            },
+            "heap": 2639904
+          }
+        },
+        "setup": {
+          "before": {
+            "frames": {
+              "n": 162,
+              "mean": 16.666049382716047,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 53,
+              "drawImage": 2809,
+              "cinema": 111,
+              "viewport": 4
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 59.06999999999996,
+              "ScriptDuration": 27.46900000000001,
+              "LayoutDuration": 2.2010000000000085,
+              "RecalcStyleDuration": 1.1000000000000003
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 20.59999990463257,
+              "p50": 20.59999990463257,
+              "p95": 20.59999990463257,
+              "p99": 20.59999990463257
+            },
+            "heap": 3986836
+          },
+          "after": {
+            "frames": {
+              "n": 161,
+              "mean": 16.666459627329193,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 110,
+              "viewport": 4,
+              "clearRect": 52,
+              "drawImage": 2757
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 50.477,
+              "ScriptDuration": 15.074000000000003,
+              "LayoutDuration": 1.918000000000003,
+              "RecalcStyleDuration": 1.0089999999999995
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 15.600000143051147,
+              "p50": 15.600000143051147,
+              "p95": 15.600000143051147,
+              "p99": 15.600000143051147
+            },
+            "heap": 4027220
+          }
+        },
+        "pour": {
+          "before": {
+            "frames": {
+              "n": 208,
+              "mean": 16.665865384615383,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "clearRect": 209,
+              "drawImage": 11071,
+              "shuffle": 261
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 275.89,
+              "ScriptDuration": 181.50499999999997,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.28399999999999953
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 0.9299999833106994,
+              "p50": 0.7000000476837158,
+              "p95": 3.0999999046325684,
+              "p99": 3.0999999046325684
+            },
+            "heap": 4437728
+          },
+          "after": {
+            "frames": {
+              "n": 207,
+              "mean": 16.666183574879224,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "clearRect": 208,
+              "drawImage": 11018,
+              "shuffle": 260
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 387.324,
+              "ScriptDuration": 259.467,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.3079999999999993
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 1.5949999928474425,
+              "p50": 1.5,
+              "p95": 3.3999998569488525,
+              "p99": 3.3999998569488525
+            },
+            "heap": 5381792
+          }
+        },
+        "shuffle": {
+          "before": {
+            "frames": {
+              "n": 123,
+              "mean": 16.665853658536584,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "shuffle": 248,
+              "clearRect": 124,
+              "drawImage": 6324
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 178.33299999999997,
+              "ScriptDuration": 88.87500000000004,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.2170000000000019
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 0.755357163293021,
+              "p50": 0.7999999523162842,
+              "p95": 1.2999999523162842,
+              "p99": 1.7999999523162842
+            },
+            "heap": 5971120
+          },
+          "after": {
+            "frames": {
+              "n": 153,
+              "mean": 16.66535947712419,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "shuffle": 308,
+              "clearRect": 154,
+              "drawImage": 7854
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 357.14,
+              "ScriptDuration": 195.14000000000004,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.3170000000000013
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 1.4928571454116277,
+              "p50": 1.5999999046325684,
+              "p95": 1.7999999523162842,
+              "p99": 3.299999952316284
+            },
+            "heap": 5199536
+          }
+        },
+        "flight": {
+          "before": {
+            "frames": {
+              "n": 74,
+              "mean": 40.31486486486485,
+              "p50": 49.899999999999636,
+              "p95": 50.100000000000364,
+              "p99": 66.60000000000036
+            },
+            "calls": {
+              "shuffle": 8,
+              "clearRect": 74,
+              "drawImage": 6361,
+              "viewport": 75,
+              "render": 140,
+              "flight": 69,
+              "ranking": 6,
+              "physics": 12,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 294.51300000000003,
+              "ScriptDuration": 156.644,
+              "LayoutDuration": 2.6469999999999967,
+              "RecalcStyleDuration": 94.44500000000001
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 10.850000023841858,
+              "p50": 19.799999952316284,
+              "p95": 19.799999952316284,
+              "p99": 19.799999952316284
+            },
+            "heap": 6734368
+          },
+          "after": {
+            "frames": {
+              "n": 134,
+              "mean": 21.889552238805976,
+              "p50": 16.700000000000728,
+              "p95": 33.399999999999636,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "shuffle": 8,
+              "clearRect": 134,
+              "drawImage": 9307,
+              "viewport": 135,
+              "render": 131,
+              "flight": 129,
+              "ranking": 6,
+              "physics": 6,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 472.785,
+              "ScriptDuration": 209.97,
+              "LayoutDuration": 2.4169999999999887,
+              "RecalcStyleDuration": 180.738
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 9.850000023841858,
+              "p50": 18.5,
+              "p95": 18.5,
+              "p99": 18.5
+            },
+            "heap": 5958468
+          }
+        },
+        "race": {
+          "before": {
+            "frames": {
+              "n": 168,
+              "mean": 20.634523809523824,
+              "p50": 16.700000000000728,
+              "p95": 33.400000000001455,
+              "p99": 50
+            },
+            "calls": {
+              "ranking": 507,
+              "physics": 421,
+              "viewport": 62,
+              "drawImage": 18702,
+              "render": 169,
+              "hud": 34,
+              "clearRect": 34
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 385.837,
+              "ScriptDuration": 237.78,
+              "LayoutDuration": 10.369000000000003,
+              "RecalcStyleDuration": 9.405999999999997
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 17244484
+          },
+          "after": {
+            "frames": {
+              "n": 172,
+              "mean": 20.347674418604647,
+              "p50": 16.700000000000728,
+              "p95": 33.399999999999636,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 519,
+              "physics": 425,
+              "viewport": 66,
+              "drawImage": 18932,
+              "render": 173,
+              "hud": 33,
+              "clearRect": 33
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 506.16100000000006,
+              "ScriptDuration": 343.059,
+              "LayoutDuration": 10.59800000000001,
+              "RecalcStyleDuration": 11.155999999999999
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 21942760
+          }
+        },
+        "camera": {
+          "before": {
+            "frames": {
+              "n": 104,
+              "mean": 16.66634615384618,
+              "p50": 16.700000000000728,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "ranking": 315,
+              "physics": 210,
+              "drawImage": 12455,
+              "render": 105,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 231.7030000000002,
+              "ScriptDuration": 166.15900000000005,
+              "LayoutDuration": 4.670999999999995,
+              "RecalcStyleDuration": 4.054000000000002
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.4928571666990007,
+              "p50": 1.6000001430511475,
+              "p95": 15.5,
+              "p99": 15.5
+            },
+            "heap": 14803032
+          },
+          "after": {
+            "frames": {
+              "n": 104,
+              "mean": 16.66538461538462,
+              "p50": 16.700000000000728,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "ranking": 315,
+              "physics": 210,
+              "drawImage": 13185,
+              "render": 105,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 227.04799999999992,
+              "ScriptDuration": 168.16000000000008,
+              "LayoutDuration": 4.252999999999993,
+              "RecalcStyleDuration": 4.068999999999989
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.7785713842936923,
+              "p50": 1.9000000953674316,
+              "p95": 15.200000047683716,
+              "p99": 15.200000047683716
+            },
+            "heap": 15056960
+          }
+        },
+        "result": {
+          "before": {
+            "frames": {
+              "n": 97,
+              "mean": 18.727835051546414,
+              "p50": 16.69999999999709,
+              "p95": 33.30000000000291,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 98,
+              "drawImage": 7056,
+              "render": 98,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 173.67899999999992,
+              "ScriptDuration": 85.46399999999998,
+              "LayoutDuration": 5.732999999999988,
+              "RecalcStyleDuration": 8.03100000000001
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 14612480
+          },
+          "after": {
+            "frames": {
+              "n": 96,
+              "mean": 18.75,
+              "p50": 16.700000000000728,
+              "p95": 33.400000000001455,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 97,
+              "drawImage": 7566,
+              "render": 97,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 234.01499999999987,
+              "ScriptDuration": 118.85999999999997,
+              "LayoutDuration": 7.432999999999995,
+              "RecalcStyleDuration": 10.503000000000013
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 14858928
+          }
+        }
+      },
+      "loadWallMs": [
+        741.9694999999992,
+        711.2920840000006
+      ],
+      "renderScaleAtEnd": [
+        0.7224999999999999,
+        0.7224999999999999
+      ]
+    },
+    {
+      "i": 2,
+      "map": "twinfold",
+      "count": 50,
+      "viewport": [
+        3840,
+        2160
+      ],
+      "dpr": 1,
+      "seed": "MB-KJJZAL-1CN66RN-314T3B-OR9SEE-1",
+      "phases": {
+        "intro": {
+          "before": {
+            "frames": {
+              "n": 170,
+              "mean": 16.764117647058825,
+              "p50": 16.699999999999818,
+              "p95": 16.799999999999727,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 171,
+              "viewport": 9,
+              "clearRect": 2,
+              "drawImage": 30,
+              "ranking": 2,
+              "hud": 2
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 28.346999999999984,
+              "ScriptDuration": 11.790000000000003,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 34.5,
+              "p50": 47.5,
+              "p95": 47.5,
+              "p99": 47.5
+            },
+            "heap": 2681432
+          },
+          "after": {
+            "frames": {
+              "n": 173,
+              "mean": 16.762427745664745,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000273,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 174,
+              "viewport": 9,
+              "clearRect": 3,
+              "drawImage": 82,
+              "ranking": 2,
+              "hud": 2
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 38.14499999999998,
+              "ScriptDuration": 15.426000000000002,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 40.84999990463257,
+              "p50": 49,
+              "p95": 49,
+              "p99": 49
+            },
+            "heap": 2679684
+          }
+        },
+        "setup": {
+          "before": {
+            "frames": {
+              "n": 161,
+              "mean": 16.769565217391303,
+              "p50": 16.699999999999818,
+              "p95": 16.799999999999727,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 52,
+              "drawImage": 2756,
+              "cinema": 111,
+              "viewport": 5
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 58.751,
+              "ScriptDuration": 28.324,
+              "LayoutDuration": 1.7820000000000058,
+              "RecalcStyleDuration": 1.02
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 15.400000095367432,
+              "p50": 15.400000095367432,
+              "p95": 15.400000095367432,
+              "p99": 15.400000095367432
+            },
+            "heap": 3764680
+          },
+          "after": {
+            "frames": {
+              "n": 161,
+              "mean": 16.66645962732919,
+              "p50": 16.699999999999818,
+              "p95": 16.799999999999272,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 111,
+              "viewport": 5,
+              "clearRect": 51,
+              "drawImage": 2704
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 52.83200000000004,
+              "ScriptDuration": 17.04800000000001,
+              "LayoutDuration": 1.124,
+              "RecalcStyleDuration": 0.732
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 21.100000143051147,
+              "p50": 21.100000143051147,
+              "p95": 21.100000143051147,
+              "p99": 21.100000143051147
+            },
+            "heap": 4913564
+          }
+        },
+        "pour": {
+          "before": {
+            "frames": {
+              "n": 208,
+              "mean": 16.666346153846153,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "clearRect": 209,
+              "drawImage": 11071,
+              "shuffle": 261
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 274.63199999999995,
+              "ScriptDuration": 179.50500000000002,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.4030000000000006
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 1.109999990463257,
+              "p50": 0.7000000476837158,
+              "p95": 4.099999904632568,
+              "p99": 4.099999904632568
+            },
+            "heap": 5692792
+          },
+          "after": {
+            "frames": {
+              "n": 207,
+              "mean": 16.665700483091793,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 208,
+              "drawImage": 11018,
+              "shuffle": 260
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 386.01099999999997,
+              "ScriptDuration": 261.513,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.28900000000000453
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 0.8449999928474426,
+              "p50": 0.5,
+              "p95": 4.299999952316284,
+              "p99": 4.299999952316284
+            },
+            "heap": 4282212
+          }
+        },
+        "shuffle": {
+          "before": {
+            "frames": {
+              "n": 130,
+              "mean": 16.666923076923084,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "shuffle": 262,
+              "clearRect": 131,
+              "drawImage": 6681
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 211.08499999999998,
+              "ScriptDuration": 112.43599999999998,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.23200000000000304
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 0.9071428648063115,
+              "p50": 0.8000001907348633,
+              "p95": 1.6000001430511475,
+              "p99": 1.9000000953674316
+            },
+            "heap": 5369868
+          },
+          "after": {
+            "frames": {
+              "n": 150,
+              "mean": 16.665999999999997,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "shuffle": 302,
+              "clearRect": 151,
+              "drawImage": 7701
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 345.473,
+              "ScriptDuration": 186.88000000000005,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.3069999999999948
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 1.4267857074737549,
+              "p50": 1.5,
+              "p95": 1.7000000476837158,
+              "p99": 2.8999998569488525
+            },
+            "heap": 4742556
+          }
+        },
+        "flight": {
+          "before": {
+            "frames": {
+              "n": 73,
+              "mean": 40.86575342465754,
+              "p50": 49.899999999999636,
+              "p95": 50.100000000000364,
+              "p99": 66.70000000000073
+            },
+            "calls": {
+              "shuffle": 8,
+              "clearRect": 73,
+              "drawImage": 5470,
+              "viewport": 74,
+              "render": 138,
+              "flight": 68,
+              "ranking": 6,
+              "physics": 14,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 248.664,
+              "ScriptDuration": 114.09199999999997,
+              "LayoutDuration": 2.9090000000000087,
+              "RecalcStyleDuration": 88.73100000000001
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 10.899999976158142,
+              "p50": 20.799999952316284,
+              "p95": 20.799999952316284,
+              "p99": 20.799999952316284
+            },
+            "heap": 8440332
+          },
+          "after": {
+            "frames": {
+              "n": 134,
+              "mean": 21.765671641791048,
+              "p50": 16.700000000000728,
+              "p95": 33.400000000001455,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "shuffle": 8,
+              "clearRect": 134,
+              "drawImage": 8533,
+              "viewport": 135,
+              "render": 131,
+              "flight": 129,
+              "ranking": 6,
+              "physics": 6,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 462.6990000000002,
+              "ScriptDuration": 204.78099999999998,
+              "LayoutDuration": 2.0770000000000093,
+              "RecalcStyleDuration": 173.11399999999998
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 10.649999976158142,
+              "p50": 19.59999990463257,
+              "p95": 19.59999990463257,
+              "p99": 19.59999990463257
+            },
+            "heap": 5883884
+          }
+        },
+        "race": {
+          "before": {
+            "frames": {
+              "n": 188,
+              "mean": 18.43882978723404,
+              "p50": 16.69999999999891,
+              "p95": 33.29999999999927,
+              "p99": 50
+            },
+            "calls": {
+              "ranking": 567,
+              "physics": 421,
+              "viewport": 65,
+              "drawImage": 14155,
+              "render": 189,
+              "hud": 33,
+              "clearRect": 33
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 429.78499999999985,
+              "ScriptDuration": 280.435,
+              "LayoutDuration": 8.611999999999995,
+              "RecalcStyleDuration": 9.203000000000017
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 32676796
+          },
+          "after": {
+            "frames": {
+              "n": 192,
+              "mean": 18.31458333333332,
+              "p50": 16.700000000000728,
+              "p95": 33.30000000000109,
+              "p99": 33.399999999999636
+            },
+            "calls": {
+              "ranking": 579,
+              "physics": 423,
+              "viewport": 71,
+              "drawImage": 14472,
+              "render": 193,
+              "hud": 34,
+              "clearRect": 34
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 513.6070000000002,
+              "ScriptDuration": 340.756,
+              "LayoutDuration": 11.882000000000003,
+              "RecalcStyleDuration": 12.454999999999995
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 31422120
+          }
+        },
+        "camera": {
+          "before": {
+            "frames": {
+              "n": 105,
+              "mean": 16.665714285714266,
+              "p50": 16.700000000000728,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "ranking": 318,
+              "physics": 212,
+              "drawImage": 8278,
+              "render": 106,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 225.101,
+              "ScriptDuration": 142.82600000000002,
+              "LayoutDuration": 5.136000000000002,
+              "RecalcStyleDuration": 3.7750000000000004
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.114285741533552,
+              "p50": 1.1999998092651367,
+              "p95": 16.09999990463257,
+              "p99": 16.09999990463257
+            },
+            "heap": 32130752
+          },
+          "after": {
+            "frames": {
+              "n": 104,
+              "mean": 16.666346153846145,
+              "p50": 16.69999999999709,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "ranking": 315,
+              "physics": 210,
+              "drawImage": 7923,
+              "render": 105,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 288.8999999999999,
+              "ScriptDuration": 193.651,
+              "LayoutDuration": 5.012999999999989,
+              "RecalcStyleDuration": 4.997000000000002
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.635714292526245,
+              "p50": 1.9000000953674316,
+              "p95": 15.599999904632568,
+              "p99": 15.599999904632568
+            },
+            "heap": 16091140
+          }
+        },
+        "result": {
+          "before": {
+            "frames": {
+              "n": 100,
+              "mean": 17.999000000000013,
+              "p50": 16.700000000000728,
+              "p95": 33.29999999999927,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 101,
+              "drawImage": 2222,
+              "render": 101,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 147.06299999999973,
+              "ScriptDuration": 65.90000000000006,
+              "LayoutDuration": 6.107999999999988,
+              "RecalcStyleDuration": 8.662000000000003
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 13246184
+          },
+          "after": {
+            "frames": {
+              "n": 102,
+              "mean": 17.48431372549021,
+              "p50": 16.700000000000728,
+              "p95": 16.80000000000291,
+              "p99": 33.29999999999927
+            },
+            "calls": {
+              "ranking": 103,
+              "drawImage": 2163,
+              "render": 103,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 194.85999999999981,
+              "ScriptDuration": 86.70400000000012,
+              "LayoutDuration": 7.882,
+              "RecalcStyleDuration": 11.640999999999984
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 13226444
+          }
+        }
+      },
+      "loadWallMs": [
+        714.1035419999971,
+        708.9412909999955
+      ],
+      "renderScaleAtEnd": [
+        0.7224999999999999,
+        0.7224999999999999
+      ]
+    },
+    {
+      "i": 3,
+      "map": "cascade",
+      "count": 50,
+      "viewport": [
+        3840,
+        2160
+      ],
+      "dpr": 1,
+      "seed": "MB-841ONN-16HGG3G-1OI3TIS-74KROP-1",
+      "phases": {
+        "intro": {
+          "before": {
+            "frames": {
+              "n": 171,
+              "mean": 16.66608187134503,
+              "p50": 16.699999999999818,
+              "p95": 16.799999999999727,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 172,
+              "viewport": 9,
+              "clearRect": 2,
+              "drawImage": 30,
+              "ranking": 2,
+              "hud": 2
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 32.892,
+              "ScriptDuration": 13.306999999999999,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 33.35000002384186,
+              "p50": 44.200000047683716,
+              "p95": 44.200000047683716,
+              "p99": 44.200000047683716
+            },
+            "heap": 2535428
+          },
+          "after": {
+            "frames": {
+              "n": 173,
+              "mean": 16.76300578034682,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000273,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 174,
+              "viewport": 9,
+              "clearRect": 3,
+              "drawImage": 82,
+              "ranking": 2,
+              "hud": 2
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 29.790999999999983,
+              "ScriptDuration": 11.635,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 41.450000047683716,
+              "p50": 49.30000019073486,
+              "p95": 49.30000019073486,
+              "p99": 49.30000019073486
+            },
+            "heap": 2688708
+          }
+        },
+        "setup": {
+          "before": {
+            "frames": {
+              "n": 162,
+              "mean": 16.66543209876543,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 53,
+              "drawImage": 2809,
+              "cinema": 111,
+              "viewport": 5
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 61.65799999999999,
+              "ScriptDuration": 29.74199999999999,
+              "LayoutDuration": 2.827999999999997,
+              "RecalcStyleDuration": 0.8709999999999968
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 18.800000190734863,
+              "p50": 18.800000190734863,
+              "p95": 18.800000190734863,
+              "p99": 18.800000190734863
+            },
+            "heap": 5023432
+          },
+          "after": {
+            "frames": {
+              "n": 160,
+              "mean": 16.666249999999998,
+              "p50": 16.699999999999818,
+              "p95": 16.799999999999727,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 110,
+              "viewport": 5,
+              "clearRect": 51,
+              "drawImage": 2704
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 48.01,
+              "ScriptDuration": 15.512999999999998,
+              "LayoutDuration": 1.2670000000000043,
+              "RecalcStyleDuration": 0.796999999999999
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 22,
+              "p50": 22,
+              "p95": 22,
+              "p99": 22
+            },
+            "heap": 5329484
+          }
+        },
+        "pour": {
+          "before": {
+            "frames": {
+              "n": 208,
+              "mean": 16.666346153846156,
+              "p50": 16.699999999999818,
+              "p95": 16.799999999999272,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 209,
+              "drawImage": 11071,
+              "shuffle": 261
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 352.56699999999995,
+              "ScriptDuration": 229.94699999999997,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.3579999999999972
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 1.359999990463257,
+              "p50": 1.2999999523162842,
+              "p95": 3.799999952316284,
+              "p99": 3.799999952316284
+            },
+            "heap": 4579028
+          },
+          "after": {
+            "frames": {
+              "n": 208,
+              "mean": 16.66586538461538,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 209,
+              "drawImage": 11071,
+              "shuffle": 261
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 355.56,
+              "ScriptDuration": 227.35599999999997,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.4640000000000061
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 1.434999978542328,
+              "p50": 1.2000000476837158,
+              "p95": 4.299999952316284,
+              "p99": 4.299999952316284
+            },
+            "heap": 4394320
+          }
+        },
+        "shuffle": {
+          "before": {
+            "frames": {
+              "n": 146,
+              "mean": 16.665753424657527,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "shuffle": 294,
+              "clearRect": 147,
+              "drawImage": 7497
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 280.58000000000004,
+              "ScriptDuration": 145.405,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.37700000000000233
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 1.2053571684019906,
+              "p50": 1.1000001430511475,
+              "p95": 1.7999999523162842,
+              "p99": 3.3000001907348633
+            },
+            "heap": 5173728
+          },
+          "after": {
+            "frames": {
+              "n": 152,
+              "mean": 16.66513157894737,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "shuffle": 306,
+              "clearRect": 153,
+              "drawImage": 7803
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 274.8219999999999,
+              "ScriptDuration": 131.47900000000007,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.3089999999999968
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 1.028571435383388,
+              "p50": 1,
+              "p95": 1.2999999523162842,
+              "p99": 2.799999952316284
+            },
+            "heap": 5178652
+          }
+        },
+        "flight": {
+          "before": {
+            "frames": {
+              "n": 70,
+              "mean": 42.378571428571426,
+              "p50": 50,
+              "p95": 50.100000000000364,
+              "p99": 66.70000000000073
+            },
+            "calls": {
+              "shuffle": 8,
+              "clearRect": 70,
+              "drawImage": 4988,
+              "viewport": 71,
+              "render": 132,
+              "flight": 65,
+              "ranking": 6,
+              "physics": 11,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 246.05799999999988,
+              "ScriptDuration": 126.03399999999998,
+              "LayoutDuration": 2.341999999999997,
+              "RecalcStyleDuration": 77.602
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 9.850000143051147,
+              "p50": 18.800000190734863,
+              "p95": 18.800000190734863,
+              "p99": 18.800000190734863
+            },
+            "heap": 5884912
+          },
+          "after": {
+            "frames": {
+              "n": 134,
+              "mean": 21.76492537313433,
+              "p50": 16.700000000000728,
+              "p95": 33.399999999999636,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "shuffle": 8,
+              "clearRect": 134,
+              "drawImage": 8274,
+              "viewport": 135,
+              "render": 131,
+              "flight": 129,
+              "ranking": 6,
+              "physics": 6,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 295.71999999999997,
+              "ScriptDuration": 118.47299999999994,
+              "LayoutDuration": 2.259999999999998,
+              "RecalcStyleDuration": 116.74399999999999
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 11.300000071525574,
+              "p50": 21.700000047683716,
+              "p95": 21.700000047683716,
+              "p99": 21.700000047683716
+            },
+            "heap": 7414128
+          }
+        },
+        "race": {
+          "before": {
+            "frames": {
+              "n": 186,
+              "mean": 18.637096774193548,
+              "p50": 16.700000000000728,
+              "p95": 33.30000000000109,
+              "p99": 50
+            },
+            "calls": {
+              "ranking": 561,
+              "physics": 422,
+              "viewport": 64,
+              "drawImage": 16341,
+              "render": 187,
+              "hud": 34,
+              "clearRect": 34
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 444.68299999999994,
+              "ScriptDuration": 297.9769999999999,
+              "LayoutDuration": 8.296999999999999,
+              "RecalcStyleDuration": 9.126000000000008
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 28352296
+          },
+          "after": {
+            "frames": {
+              "n": 192,
+              "mean": 18.315104166666675,
+              "p50": 16.700000000000728,
+              "p95": 33.29999999999927,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 579,
+              "physics": 425,
+              "viewport": 70,
+              "drawImage": 16625,
+              "render": 193,
+              "hud": 33,
+              "clearRect": 33
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 501.49999999999983,
+              "ScriptDuration": 345.90999999999997,
+              "LayoutDuration": 9.992,
+              "RecalcStyleDuration": 10.188000000000002
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 26301028
+          }
+        },
+        "camera": {
+          "before": {
+            "frames": {
+              "n": 106,
+              "mean": 16.666037735849077,
+              "p50": 16.700000000000728,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000291
+            },
+            "calls": {
+              "ranking": 321,
+              "physics": 214,
+              "drawImage": 12066,
+              "render": 107,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 274.55399999999975,
+              "ScriptDuration": 195.76799999999994,
+              "LayoutDuration": 4.091999999999999,
+              "RecalcStyleDuration": 3.9309999999999903
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.42857141154153,
+              "p50": 1.7999999523162842,
+              "p95": 15.600000143051147,
+              "p99": 15.600000143051147
+            },
+            "heap": 24530780
+          },
+          "after": {
+            "frames": {
+              "n": 104,
+              "mean": 16.666346153846145,
+              "p50": 16.700000000000728,
+              "p95": 16.700000000000728,
+              "p99": 16.700000000000728
+            },
+            "calls": {
+              "ranking": 315,
+              "physics": 210,
+              "drawImage": 11872,
+              "render": 105,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 244.65899999999996,
+              "ScriptDuration": 176.8240000000001,
+              "LayoutDuration": 4.132999999999997,
+              "RecalcStyleDuration": 4.060000000000008
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.807142836706979,
+              "p50": 2,
+              "p95": 15.700000047683716,
+              "p99": 15.700000047683716
+            },
+            "heap": 25332776
+          }
+        },
+        "result": {
+          "before": {
+            "frames": {
+              "n": 101,
+              "mean": 17.820792079207898,
+              "p50": 16.700000000000728,
+              "p95": 33.29999999999927,
+              "p99": 33.39999999999782
+            },
+            "calls": {
+              "ranking": 102,
+              "viewport": 18,
+              "drawImage": 5916,
+              "render": 102,
+              "hud": 18,
+              "clearRect": 18
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 176.63200000000012,
+              "ScriptDuration": 92.16000000000003,
+              "LayoutDuration": 5.376999999999993,
+              "RecalcStyleDuration": 7.826
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 20463100
+          },
+          "after": {
+            "frames": {
+              "n": 105,
+              "mean": 17.300952380952367,
+              "p50": 16.700000000000728,
+              "p95": 16.80000000000291,
+              "p99": 33.29999999999927
+            },
+            "calls": {
+              "ranking": 106,
+              "drawImage": 6148,
+              "render": 106,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 224.23800000000017,
+              "ScriptDuration": 123.77800000000016,
+              "LayoutDuration": 6.835999999999995,
+              "RecalcStyleDuration": 9.97999999999999
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 20588412
+          }
+        }
+      },
+      "loadWallMs": [
+        713.4816250000003,
+        704.179833000002
+      ],
+      "renderScaleAtEnd": [
+        0.7224999999999999,
+        0.7224999999999999
+      ]
+    },
+    {
+      "i": 4,
+      "map": "rhythm",
+      "count": 50,
+      "viewport": [
+        3840,
+        2160
+      ],
+      "dpr": 1,
+      "seed": "MB-1E07QW8-RRXGYY-1I2VT3-1UNNMK5-1",
+      "phases": {
+        "intro": {
+          "before": {
+            "frames": {
+              "n": 170,
+              "mean": 16.76411764705882,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000273,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 171,
+              "viewport": 9,
+              "clearRect": 2,
+              "drawImage": 30,
+              "ranking": 2,
+              "hud": 2
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 26.213000000000015,
+              "ScriptDuration": 11.009000000000006,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 31.84999990463257,
+              "p50": 39.59999990463257,
+              "p95": 39.59999990463257,
+              "p99": 39.59999990463257
+            },
+            "heap": 2690340
+          },
+          "after": {
+            "frames": {
+              "n": 171,
+              "mean": 16.76374269005848,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000273,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 172,
+              "viewport": 9,
+              "clearRect": 2,
+              "drawImage": 30,
+              "ranking": 2,
+              "hud": 2
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 38.32100000000002,
+              "ScriptDuration": 15.690000000000003,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 40.25,
+              "p50": 44.200000047683716,
+              "p95": 44.200000047683716,
+              "p99": 44.200000047683716
+            },
+            "heap": 2690056
+          }
+        },
+        "setup": {
+          "before": {
+            "frames": {
+              "n": 161,
+              "mean": 16.66645962732919,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 52,
+              "drawImage": 2756,
+              "cinema": 111,
+              "viewport": 5
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 58.42900000000001,
+              "ScriptDuration": 29.958000000000006,
+              "LayoutDuration": 1.806000000000002,
+              "RecalcStyleDuration": 0.798
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 23,
+              "p50": 23,
+              "p95": 23,
+              "p99": 23
+            },
+            "heap": 5132348
+          },
+          "after": {
+            "frames": {
+              "n": 161,
+              "mean": 16.770186335403725,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 53,
+              "drawImage": 2809,
+              "cinema": 110,
+              "viewport": 5
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 68.00999999999996,
+              "ScriptDuration": 30.184,
+              "LayoutDuration": 1.4569999999999999,
+              "RecalcStyleDuration": 0.8520000000000021
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 20.90000009536743,
+              "p50": 20.90000009536743,
+              "p95": 20.90000009536743,
+              "p99": 20.90000009536743
+            },
+            "heap": 5108972
+          }
+        },
+        "pour": {
+          "before": {
+            "frames": {
+              "n": 209,
+              "mean": 16.66602870813397,
+              "p50": 16.699999999999818,
+              "p95": 16.799999999999272,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 210,
+              "drawImage": 11124,
+              "shuffle": 260
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 321.90599999999995,
+              "ScriptDuration": 211.58800000000002,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.5649999999999961
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 1.474999988079071,
+              "p50": 1.2999999523162842,
+              "p95": 4.1000001430511475,
+              "p99": 4.1000001430511475
+            },
+            "heap": 5125000
+          },
+          "after": {
+            "frames": {
+              "n": 207,
+              "mean": 16.666183574879224,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "clearRect": 208,
+              "drawImage": 11018,
+              "shuffle": 260
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 384.674,
+              "ScriptDuration": 258.455,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.3249999999999989
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 1.2050000071525573,
+              "p50": 1.1000001430511475,
+              "p95": 5.199999809265137,
+              "p99": 5.199999809265137
+            },
+            "heap": 4383044
+          }
+        },
+        "shuffle": {
+          "before": {
+            "frames": {
+              "n": 133,
+              "mean": 16.666165413533825,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "shuffle": 268,
+              "clearRect": 134,
+              "drawImage": 6834
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 267.87000000000006,
+              "ScriptDuration": 144.53199999999998,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.2380000000000021
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 1.1160714370863778,
+              "p50": 1.1000001430511475,
+              "p95": 1.8000001907348633,
+              "p99": 2.3999998569488525
+            },
+            "heap": 5849116
+          },
+          "after": {
+            "frames": {
+              "n": 190,
+              "mean": 16.66578947368421,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "shuffle": 382,
+              "clearRect": 191,
+              "drawImage": 9741
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 259.9470000000002,
+              "ScriptDuration": 141.34599999999998,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.5570000000000019
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 0.6714285697255816,
+              "p50": 0.5999999046325684,
+              "p95": 1.3000001907348633,
+              "p99": 2.5999999046325684
+            },
+            "heap": 5901964
+          }
+        },
+        "flight": {
+          "before": {
+            "frames": {
+              "n": 74,
+              "mean": 40.31351351351352,
+              "p50": 49.899999999999636,
+              "p95": 50.100000000000364,
+              "p99": 66.60000000000036
+            },
+            "calls": {
+              "shuffle": 14,
+              "clearRect": 75,
+              "drawImage": 6396,
+              "viewport": 72,
+              "render": 135,
+              "flight": 67,
+              "ranking": 3,
+              "physics": 6,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 224.19699999999997,
+              "ScriptDuration": 126.36999999999998,
+              "LayoutDuration": 1.8789999999999918,
+              "RecalcStyleDuration": 58.11300000000001
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 11.75,
+              "p50": 22,
+              "p95": 22,
+              "p99": 22
+            },
+            "heap": 8515100
+          },
+          "after": {
+            "frames": {
+              "n": 125,
+              "mean": 23.86559999999999,
+              "p50": 16.700000000000728,
+              "p95": 33.399999999999636,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "shuffle": 14,
+              "clearRect": 125,
+              "drawImage": 8748,
+              "viewport": 123,
+              "render": 119,
+              "flight": 117,
+              "ranking": 6,
+              "physics": 6,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 307.3490000000001,
+              "ScriptDuration": 137.31700000000004,
+              "LayoutDuration": 2.9780000000000086,
+              "RecalcStyleDuration": 107.057
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 8,
+              "p50": 15.599999904632568,
+              "p95": 15.599999904632568,
+              "p99": 15.599999904632568
+            },
+            "heap": 7776784
+          }
+        },
+        "race": {
+          "before": {
+            "frames": {
+              "n": 188,
+              "mean": 18.616489361702126,
+              "p50": 16.700000000000728,
+              "p95": 33.30000000000109,
+              "p99": 50
+            },
+            "calls": {
+              "ranking": 567,
+              "physics": 425,
+              "viewport": 68,
+              "drawImage": 18363,
+              "render": 189,
+              "hud": 34,
+              "clearRect": 34
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 455.88300000000004,
+              "ScriptDuration": 285.07800000000003,
+              "LayoutDuration": 8.374000000000006,
+              "RecalcStyleDuration": 10.129
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 21936356
+          },
+          "after": {
+            "frames": {
+              "n": 186,
+              "mean": 19.354301075268804,
+              "p50": 16.700000000000728,
+              "p95": 33.399999999999636,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 561,
+              "physics": 435,
+              "viewport": 64,
+              "drawImage": 18210,
+              "render": 187,
+              "hud": 34,
+              "clearRect": 34
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 591.288,
+              "ScriptDuration": 359.363,
+              "LayoutDuration": 11.926999999999992,
+              "RecalcStyleDuration": 14.455999999999996
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 26389868
+          }
+        },
+        "camera": {
+          "before": {
+            "frames": {
+              "n": 104,
+              "mean": 16.667307692307705,
+              "p50": 16.69999999999709,
+              "p95": 16.799999999999272,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "ranking": 315,
+              "physics": 210,
+              "drawImage": 11423,
+              "render": 105,
+              "viewport": 16,
+              "hud": 16,
+              "clearRect": 16
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 234.33799999999994,
+              "ScriptDuration": 161.2420000000001,
+              "LayoutDuration": 4.167000000000004,
+              "RecalcStyleDuration": 4.060000000000008
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.5928571224212646,
+              "p50": 2,
+              "p95": 15.700000047683716,
+              "p99": 15.700000047683716
+            },
+            "heap": 34674756
+          },
+          "after": {
+            "frames": {
+              "n": 107,
+              "mean": 16.978504672897202,
+              "p50": 16.700000000000728,
+              "p95": 16.799999999999272,
+              "p99": 33.29999999999927
+            },
+            "calls": {
+              "ranking": 324,
+              "physics": 220,
+              "drawImage": 11402,
+              "render": 108,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 247.563,
+              "ScriptDuration": 148.14700000000002,
+              "LayoutDuration": 4.285999999999998,
+              "RecalcStyleDuration": 3.475999999999979
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.378571459225246,
+              "p50": 2,
+              "p95": 14.400000095367432,
+              "p99": 14.400000095367432
+            },
+            "heap": 15101928
+          }
+        },
+        "result": {
+          "before": {
+            "frames": {
+              "n": 98,
+              "mean": 18.367346938775512,
+              "p50": 16.700000000000728,
+              "p95": 33.30000000000291,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 99,
+              "drawImage": 5544,
+              "render": 99,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 153.28700000000018,
+              "ScriptDuration": 73.70499999999991,
+              "LayoutDuration": 5.496999999999988,
+              "RecalcStyleDuration": 8.075
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 17207092
+          },
+          "after": {
+            "frames": {
+              "n": 93,
+              "mean": 19.35376344086023,
+              "p50": 16.700000000000728,
+              "p95": 33.30000000000291,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 94,
+              "drawImage": 5264,
+              "render": 94,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 177.51199999999966,
+              "ScriptDuration": 86.95399999999998,
+              "LayoutDuration": 5.9849999999999905,
+              "RecalcStyleDuration": 9.770000000000001
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 16906600
+          }
+        }
+      },
+      "loadWallMs": [
+        719.0179579999967,
+        704.0785409999953
+      ],
+      "renderScaleAtEnd": [
+        0.7224999999999999,
+        0.7224999999999999
+      ]
+    },
+    {
+      "i": 5,
+      "map": "classic",
+      "count": 6,
+      "viewport": [
+        1920,
+        1080
+      ],
+      "dpr": 1,
+      "seed": "MB-IXNDH-BEZBZG-G09YU1-ON1OTD-1",
+      "phases": {
+        "intro": {
+          "before": {
+            "frames": {
+              "n": 168,
+              "mean": 16.764880952380953,
+              "p50": 16.699999999999818,
+              "p95": 16.799999999999955,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 169,
+              "viewport": 6,
+              "clearRect": 2,
+              "drawImage": 28,
+              "ranking": 1,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 36.276,
+              "ScriptDuration": 14.509999999999998,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 32.65000009536743,
+              "p50": 50.200000047683716,
+              "p95": 50.200000047683716,
+              "p99": 50.200000047683716
+            },
+            "heap": 2967888
+          },
+          "after": {
+            "frames": {
+              "n": 168,
+              "mean": 16.666071428571428,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000273,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 169,
+              "viewport": 6,
+              "clearRect": 2,
+              "drawImage": 28,
+              "ranking": 1,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 18.36399999999999,
+              "ScriptDuration": 7.846000000000005,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 26.149999976158142,
+              "p50": 39.69999980926514,
+              "p95": 39.69999980926514,
+              "p99": 39.69999980926514
+            },
+            "heap": 2668516
+          }
+        },
+        "setup": {
+          "before": {
+            "frames": {
+              "n": 161,
+              "mean": 16.666459627329193,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 111,
+              "viewport": 4,
+              "clearRect": 51,
+              "drawImage": 460
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 53.52299999999999,
+              "ScriptDuration": 14.146999999999993,
+              "LayoutDuration": 0.1789999999999986,
+              "RecalcStyleDuration": 1.7070000000000003
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 16.299999952316284,
+              "p50": 16.299999952316284,
+              "p95": 16.299999952316284,
+              "p99": 16.299999952316284
+            },
+            "heap": 4522616
+          },
+          "after": {
+            "frames": {
+              "n": 162,
+              "mean": 16.665432098765432,
+              "p50": 16.699999999999818,
+              "p95": 16.799999999999272,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 111,
+              "viewport": 4,
+              "clearRect": 52,
+              "drawImage": 469
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 43.27599999999998,
+              "ScriptDuration": 10.071999999999997,
+              "LayoutDuration": 0.14899999999999636,
+              "RecalcStyleDuration": 0.9200000000000007
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 15.299999952316284,
+              "p50": 15.299999952316284,
+              "p95": 15.299999952316284,
+              "p99": 15.299999952316284
+            },
+            "heap": 3535324
+          }
+        },
+        "pour": {
+          "before": {
+            "frames": {
+              "n": 216,
+              "mean": 16.66574074074074,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 217,
+              "drawImage": 1953,
+              "shuffle": 221
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 225.76199999999997,
+              "ScriptDuration": 121.397,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.3909999999999955
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 0.6350000143051148,
+              "p50": 0.5999999046325684,
+              "p95": 2.4000000953674316,
+              "p99": 2.4000000953674316
+            },
+            "heap": 5350068
+          },
+          "after": {
+            "frames": {
+              "n": 216,
+              "mean": 16.6662037037037,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "clearRect": 217,
+              "drawImage": 1953,
+              "shuffle": 220
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 172.78000000000006,
+              "ScriptDuration": 94.617,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.28700000000000253
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 0.575000011920929,
+              "p50": 0.5,
+              "p95": 1.4000000953674316,
+              "p99": 1.4000000953674316
+            },
+            "heap": 5411084
+          }
+        },
+        "shuffle": {
+          "before": {
+            "frames": {
+              "n": 139,
+              "mean": 16.666906474820134,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "shuffle": 280,
+              "clearRect": 140,
+              "drawImage": 1820
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 163.9020000000001,
+              "ScriptDuration": 67.49299999999997,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.2030000000000018
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 0.5571428537368774,
+              "p50": 0.5,
+              "p95": 1,
+              "p99": 1.2999999523162842
+            },
+            "heap": 4420280
+          },
+          "after": {
+            "frames": {
+              "n": 110,
+              "mean": 16.66636363636363,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "shuffle": 222,
+              "clearRect": 111,
+              "drawImage": 1443
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 90.52199999999999,
+              "ScriptDuration": 37.662,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.1470000000000013
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 0.32857141750199453,
+              "p50": 0.2999999523162842,
+              "p95": 0.6999998092651367,
+              "p99": 1.9000000953674316
+            },
+            "heap": 4402532
+          }
+        },
+        "flight": {
+          "before": {
+            "frames": {
+              "n": 174,
+              "mean": 16.666091954022985,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "shuffle": 8,
+              "clearRect": 174,
+              "drawImage": 7430,
+              "viewport": 175,
+              "render": 340,
+              "flight": 169,
+              "ranking": 6,
+              "physics": 4,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 371.87800000000004,
+              "ScriptDuration": 170.99999999999997,
+              "LayoutDuration": 1.6039999999999943,
+              "RecalcStyleDuration": 126.943
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 8.600000143051147,
+              "p50": 16.600000143051147,
+              "p95": 16.600000143051147,
+              "p99": 16.600000143051147
+            },
+            "heap": 4987924
+          },
+          "after": {
+            "frames": {
+              "n": 174,
+              "mean": 16.666091954022985,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "shuffle": 8,
+              "clearRect": 174,
+              "drawImage": 4406,
+              "viewport": 175,
+              "render": 171,
+              "flight": 169,
+              "ranking": 6,
+              "physics": 3,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 367.23700000000014,
+              "ScriptDuration": 120.71500000000002,
+              "LayoutDuration": 1.0640000000000094,
+              "RecalcStyleDuration": 183.869
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 6.100000023841858,
+              "p50": 11.800000190734863,
+              "p95": 11.800000190734863,
+              "p99": 11.800000190734863
+            },
+            "heap": 4834736
+          }
+        },
+        "race": {
+          "before": {
+            "frames": {
+              "n": 211,
+              "mean": 16.666350710900467,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000109
+            },
+            "calls": {
+              "ranking": 636,
+              "physics": 423,
+              "viewport": 90,
+              "drawImage": 13559,
+              "render": 212,
+              "hud": 34,
+              "clearRect": 34
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 399.632,
+              "ScriptDuration": 252.419,
+              "LayoutDuration": 10.487999999999998,
+              "RecalcStyleDuration": 11.383000000000004
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 12162572
+          },
+          "after": {
+            "frames": {
+              "n": 210,
+              "mean": 16.666666666666675,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "ranking": 633,
+              "physics": 422,
+              "viewport": 91,
+              "drawImage": 13655,
+              "render": 211,
+              "hud": 34,
+              "clearRect": 34
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 510.69399999999996,
+              "ScriptDuration": 335.948,
+              "LayoutDuration": 12.304999999999996,
+              "RecalcStyleDuration": 14.286000000000021
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 5505408
+          }
+        },
+        "camera": {
+          "before": {
+            "frames": {
+              "n": 104,
+              "mean": 16.666346153846145,
+              "p50": 16.700000000000728,
+              "p95": 16.799999999999272,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "ranking": 315,
+              "physics": 210,
+              "drawImage": 7114,
+              "render": 105,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 178.728,
+              "ScriptDuration": 105.63,
+              "LayoutDuration": 7.265999999999995,
+              "RecalcStyleDuration": 4.945000000000005
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.4214285952704295,
+              "p50": 1.8999998569488525,
+              "p95": 15.799999952316284,
+              "p99": 15.799999952316284
+            },
+            "heap": 15170408
+          },
+          "after": {
+            "frames": {
+              "n": 104,
+              "mean": 16.666346153846145,
+              "p50": 16.700000000000728,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "ranking": 315,
+              "physics": 210,
+              "drawImage": 8167,
+              "render": 105,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 273.93,
+              "ScriptDuration": 185.69400000000002,
+              "LayoutDuration": 5.830000000000002,
+              "RecalcStyleDuration": 5.691000000000002
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.992857132639204,
+              "p50": 2.4000000953674316,
+              "p95": 15.700000047683716,
+              "p99": 15.700000047683716
+            },
+            "heap": 7386568
+          }
+        },
+        "result": {
+          "before": {
+            "frames": {
+              "n": 108,
+              "mean": 16.666666666666668,
+              "p50": 16.69999999999709,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "ranking": 109,
+              "viewport": 18,
+              "drawImage": 6649,
+              "render": 109,
+              "hud": 18,
+              "clearRect": 18
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 199.9439999999999,
+              "ScriptDuration": 101.1629999999999,
+              "LayoutDuration": 10.249999999999982,
+              "RecalcStyleDuration": 11.03499999999999
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 13551552
+          },
+          "after": {
+            "frames": {
+              "n": 108,
+              "mean": 16.665740740740755,
+              "p50": 16.700000000000728,
+              "p95": 16.799999999999272,
+              "p99": 16.80000000000291
+            },
+            "calls": {
+              "ranking": 109,
+              "drawImage": 7303,
+              "render": 109,
+              "viewport": 18,
+              "hud": 18,
+              "clearRect": 18
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 235.21599999999987,
+              "ScriptDuration": 134.14000000000004,
+              "LayoutDuration": 9.077999999999989,
+              "RecalcStyleDuration": 11.33099999999998
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 34044964
+          }
+        }
+      },
+      "loadWallMs": [
+        712.5555000000022,
+        738.0193339999969
+      ],
+      "renderScaleAtEnd": [
+        1,
+        1
+      ]
+    },
+    {
+      "i": 6,
+      "map": "classic",
+      "count": 6,
+      "viewport": [
+        1280,
+        720
+      ],
+      "dpr": 3,
+      "seed": "MB-NEASQ-13N3FKY-1FVDYJU-5E6EF3-1",
+      "phases": {
+        "intro": {
+          "before": {
+            "frames": {
+              "n": 168,
+              "mean": 16.76547619047619,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000273,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 169,
+              "viewport": 6,
+              "clearRect": 2,
+              "drawImage": 28,
+              "ranking": 1,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 40.465,
+              "ScriptDuration": 17.171000000000006,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 30.700000047683716,
+              "p50": 46.90000009536743,
+              "p95": 46.90000009536743,
+              "p99": 46.90000009536743
+            },
+            "heap": 2663212
+          },
+          "after": {
+            "frames": {
+              "n": 113,
+              "mean": 16.66637168141593,
+              "p50": 16.699999999999818,
+              "p95": 16.799999999999955,
+              "p99": 16.800000000000068
+            },
+            "calls": {
+              "cinema": 114,
+              "viewport": 5,
+              "clearRect": 2,
+              "drawImage": 28,
+              "ranking": 1,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 20.108999999999988,
+              "ScriptDuration": 7.591999999999994,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 22.799999952316284,
+              "p50": 38.59999990463257,
+              "p95": 38.59999990463257,
+              "p99": 38.59999990463257
+            },
+            "heap": 2498052
+          }
+        },
+        "setup": {
+          "before": {
+            "frames": {
+              "n": 161,
+              "mean": 16.666459627329193,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 111,
+              "viewport": 4,
+              "clearRect": 51,
+              "drawImage": 460
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 53.52600000000002,
+              "ScriptDuration": 14.004000000000003,
+              "LayoutDuration": 1.5349999999999948,
+              "RecalcStyleDuration": 1.5510000000000004
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 19.09999990463257,
+              "p50": 19.09999990463257,
+              "p95": 19.09999990463257,
+              "p99": 19.09999990463257
+            },
+            "heap": 4275344
+          },
+          "after": {
+            "frames": {
+              "n": 160,
+              "mean": 16.666249999999998,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "cinema": 110,
+              "viewport": 5,
+              "clearRect": 51,
+              "drawImage": 460
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 52.53400000000003,
+              "ScriptDuration": 7.474999999999995,
+              "LayoutDuration": 5.650000000000002,
+              "RecalcStyleDuration": 3.817000000000001
+            },
+            "inputNextRaf": {
+              "n": 1,
+              "mean": 16.399999856948853,
+              "p50": 16.399999856948853,
+              "p95": 16.399999856948853,
+              "p99": 16.399999856948853
+            },
+            "heap": 4546404
+          }
+        },
+        "pour": {
+          "before": {
+            "frames": {
+              "n": 216,
+              "mean": 16.66574074074074,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 217,
+              "drawImage": 1953,
+              "shuffle": 221
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 253.92400000000004,
+              "ScriptDuration": 157.20000000000002,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.4010000000000055
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 0.950000011920929,
+              "p50": 0.9000000953674316,
+              "p95": 2.299999952316284,
+              "p99": 2.299999952316284
+            },
+            "heap": 5078228
+          },
+          "after": {
+            "frames": {
+              "n": 216,
+              "mean": 16.66574074074074,
+              "p50": 16.699999999999818,
+              "p95": 16.700000000000728,
+              "p99": 16.800000000000182
+            },
+            "calls": {
+              "clearRect": 217,
+              "drawImage": 1953,
+              "shuffle": 221
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 144.88899999999992,
+              "ScriptDuration": 87.664,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.2349999999999991
+            },
+            "inputNextRaf": {
+              "n": 20,
+              "mean": 0.5350000023841858,
+              "p50": 0.5,
+              "p95": 1.5,
+              "p99": 1.5
+            },
+            "heap": 5270868
+          }
+        },
+        "shuffle": {
+          "before": {
+            "frames": {
+              "n": 139,
+              "mean": 16.665467625899282,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "shuffle": 280,
+              "clearRect": 140,
+              "drawImage": 1820
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 198.94099999999992,
+              "ScriptDuration": 93.16599999999997,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.336999999999997
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 0.8321428256375449,
+              "p50": 0.8999998569488525,
+              "p95": 1.1999998092651367,
+              "p99": 1.2999999523162842
+            },
+            "heap": 5022956
+          },
+          "after": {
+            "frames": {
+              "n": 102,
+              "mean": 16.6656862745098,
+              "p50": 16.69999999999891,
+              "p95": 16.700000000000728,
+              "p99": 16.700000000000728
+            },
+            "calls": {
+              "shuffle": 206,
+              "clearRect": 103,
+              "drawImage": 1339
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 85.97900000000003,
+              "ScriptDuration": 37.303000000000004,
+              "LayoutDuration": 0,
+              "RecalcStyleDuration": 0.22199999999999998
+            },
+            "inputNextRaf": {
+              "n": 56,
+              "mean": 0.4321428622518267,
+              "p50": 0.40000009536743164,
+              "p95": 0.5,
+              "p99": 1.1000001430511475
+            },
+            "heap": 5625452
+          }
+        },
+        "flight": {
+          "before": {
+            "frames": {
+              "n": 83,
+              "mean": 35.339759036144585,
+              "p50": 33.30000000000109,
+              "p95": 50,
+              "p99": 50.100000000000364
+            },
+            "calls": {
+              "shuffle": 8,
+              "clearRect": 83,
+              "drawImage": 3469,
+              "viewport": 84,
+              "render": 158,
+              "flight": 78,
+              "ranking": 6,
+              "physics": 8,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 277.73100000000005,
+              "ScriptDuration": 122.749,
+              "LayoutDuration": 2.5690000000000017,
+              "RecalcStyleDuration": 111.67600000000002
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 9.649999976158142,
+              "p50": 18.399999856948853,
+              "p95": 18.399999856948853,
+              "p99": 18.399999856948853
+            },
+            "heap": 5583820
+          },
+          "after": {
+            "frames": {
+              "n": 148,
+              "mean": 19.593918918918927,
+              "p50": 16.69999999999891,
+              "p95": 33.399999999999636,
+              "p99": 33.399999999999636
+            },
+            "calls": {
+              "shuffle": 8,
+              "clearRect": 148,
+              "drawImage": 3738,
+              "viewport": 149,
+              "render": 145,
+              "flight": 143,
+              "ranking": 6,
+              "physics": 4,
+              "hud": 1
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 359.38800000000003,
+              "ScriptDuration": 113.36400000000002,
+              "LayoutDuration": 1.4490000000000058,
+              "RecalcStyleDuration": 183.31300000000002
+            },
+            "inputNextRaf": {
+              "n": 2,
+              "mean": 5.649999976158142,
+              "p50": 10.900000095367432,
+              "p95": 10.900000095367432,
+              "p99": 10.900000095367432
+            },
+            "heap": 5175940
+          }
+        },
+        "race": {
+          "before": {
+            "frames": {
+              "n": 209,
+              "mean": 16.825358851674633,
+              "p50": 16.69999999999891,
+              "p95": 16.799999999999272,
+              "p99": 16.799999999999272
+            },
+            "calls": {
+              "ranking": 630,
+              "physics": 425,
+              "viewport": 86,
+              "drawImage": 12437,
+              "render": 210,
+              "hud": 34,
+              "clearRect": 34
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 382.5900000000002,
+              "ScriptDuration": 218.83500000000006,
+              "LayoutDuration": 9.730000000000002,
+              "RecalcStyleDuration": 12.102000000000002
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 13564272
+          },
+          "after": {
+            "frames": {
+              "n": 194,
+              "mean": 18.040721649484542,
+              "p50": 16.69999999999891,
+              "p95": 33.29999999999927,
+              "p99": 33.399999999999636
+            },
+            "calls": {
+              "ranking": 585,
+              "physics": 421,
+              "viewport": 91,
+              "drawImage": 10682,
+              "render": 195,
+              "hud": 34,
+              "clearRect": 34
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 428.91100000000006,
+              "ScriptDuration": 265.1,
+              "LayoutDuration": 9.658,
+              "RecalcStyleDuration": 10.155999999999999
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 8043384
+          }
+        },
+        "camera": {
+          "before": {
+            "frames": {
+              "n": 98,
+              "mean": 17.856122448979608,
+              "p50": 16.700000000000728,
+              "p95": 33.29999999999927,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 297,
+              "physics": 212,
+              "drawImage": 7013,
+              "render": 99,
+              "viewport": 18,
+              "hud": 18,
+              "clearRect": 18
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 222.09999999999997,
+              "ScriptDuration": 156.98999999999995,
+              "LayoutDuration": 5.418999999999993,
+              "RecalcStyleDuration": 5.163000000000001
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.585714272090367,
+              "p50": 2.0999999046325684,
+              "p95": 15.399999856948853,
+              "p99": 15.399999856948853
+            },
+            "heap": 14617160
+          },
+          "after": {
+            "frames": {
+              "n": 99,
+              "mean": 18.348484848484848,
+              "p50": 16.700000000000728,
+              "p95": 33.29999999999927,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 300,
+              "physics": 220,
+              "drawImage": 6647,
+              "render": 100,
+              "viewport": 17,
+              "hud": 17,
+              "clearRect": 17
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 217.91899999999998,
+              "ScriptDuration": 140.83900000000006,
+              "LayoutDuration": 4.729999999999998,
+              "RecalcStyleDuration": 4.3620000000000045
+            },
+            "inputNextRaf": {
+              "n": 14,
+              "mean": 3.6928571122033254,
+              "p50": 1.4000000953674316,
+              "p95": 17.700000047683716,
+              "p99": 17.700000047683716
+            },
+            "heap": 15366336
+          }
+        },
+        "result": {
+          "before": {
+            "frames": {
+              "n": 94,
+              "mean": 19.148936170212767,
+              "p50": 16.700000000000728,
+              "p95": 33.30000000000291,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 95,
+              "drawImage": 6270,
+              "render": 95,
+              "viewport": 16,
+              "hud": 16,
+              "clearRect": 16
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 163.7080000000002,
+              "ScriptDuration": 99.58300000000008,
+              "LayoutDuration": 5.987000000000006,
+              "RecalcStyleDuration": 8.273000000000003
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 13191044
+          },
+          "after": {
+            "frames": {
+              "n": 96,
+              "mean": 18.74895833333335,
+              "p50": 16.700000000000728,
+              "p95": 33.400000000001455,
+              "p99": 33.400000000001455
+            },
+            "calls": {
+              "ranking": 97,
+              "drawImage": 5723,
+              "render": 97,
+              "viewport": 18,
+              "hud": 18,
+              "clearRect": 18
+            },
+            "longTasks": [],
+            "cdp": {
+              "TaskDuration": 209.35799999999995,
+              "ScriptDuration": 106.47899999999998,
+              "LayoutDuration": 7.4069999999999965,
+              "RecalcStyleDuration": 10.049000000000003
+            },
+            "inputNextRaf": {
+              "n": 0,
+              "mean": null,
+              "p50": null,
+              "p95": null,
+              "p99": null
+            },
+            "heap": 13543908
+          }
+        }
+      },
+      "loadWallMs": [
+        698.1338749999995,
+        706.7718339999847
+      ],
+      "renderScaleAtEnd": [
+        0.7224999999999999,
+        0.7224999999999999
+      ]
+    }
+  ]
+}

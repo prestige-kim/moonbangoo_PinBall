@@ -1,0 +1,9 @@
+AssertionError [ERR_ASSERTION]: pixel parity classic [{"scale":1,"progress":0,"changedChannels":85,"aaChanged":0,"maxDifference":11,"bounds":[618,215,2995,499],"game":[3840,2160],"cinema":[3840,2160]},{"scale":1,"progress":0.1,"changedChannels":95,"aaChanged":0,"maxDifference":11,"bounds":[618,215,2995,499],"game":[3840,2160],"cinema":[3840,2160]},{"scale":1,"progress":0.5,"changedChannels":170,"aaChanged":0,"maxDifference":11,"bounds":[618,215,2995,499],"game":[3840,2160],"cinema":[3840,2160]},{"scale":1,"progress":0.99,"changedChannels":169,"aaChanged":0,"maxDifference":11,"bounds":[618,215,2995,499],"game":[3840,2160],"cinema":[3840,2160]},{"scale":1,"progress":1,"changedChannels":85,"aaChanged":0,"maxDifference":11,"bounds":[618,215,2995,499],"game":[3840,2160],"cinema":[3840,2160]}]
+    at main (/Users/proudchris/Desktop/moonbangoo_PinBall/qa/lg-display/verify.cjs:20:98) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

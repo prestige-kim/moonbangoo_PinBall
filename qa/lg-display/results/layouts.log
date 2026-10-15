@@ -1,0 +1,60 @@
+{
+  "url": "http://127.0.0.1:61616/",
+  "errors": [],
+  "cases": [
+    {
+      "map": "twinfold",
+      "count": 6,
+      "width": 390,
+      "height": 844,
+      "reduced": false,
+      "version": 10,
+      "finished": 6,
+      "prototypeLoaded": false,
+      "flight": {
+        "endpoint": {
+          "error": 8.038873388460929e-14,
+          "cameraFixed": true,
+          "slots": 6
+        },
+        "frames": 167
+      }
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "width": 844,
+      "height": 390,
+      "reduced": false,
+      "version": 5,
+      "finished": 50,
+      "prototypeLoaded": false,
+      "flight": {
+        "endpoint": {
+          "error": 1.1718571004216928e-13,
+          "cameraFixed": true,
+          "slots": 50
+        },
+        "frames": 169
+      }
+    },
+    {
+      "map": "twinfold",
+      "count": 6,
+      "width": 1280,
+      "height": 800,
+      "reduced": true,
+      "version": 10,
+      "finished": 6,
+      "prototypeLoaded": false,
+      "flight": {
+        "endpoint": {
+          "error": 1.1368683772161603e-13,
+          "cameraFixed": true,
+          "slots": 6
+        },
+        "frames": 72
+      }
+    }
+  ]
+}
