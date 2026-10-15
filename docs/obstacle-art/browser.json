@@ -1,0 +1,51 @@
+{
+  "errors": [],
+  "assets": [
+    {
+      "url": "http://127.0.0.1:49163/assets/obstacles/classic-surface-v1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:49163/assets/obstacles/twinfold-surface-v1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:49163/assets/obstacles/cascade-surface-v1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:49163/assets/obstacles/rhythm-surface-v1.png",
+      "status": 200
+    }
+  ],
+  "maps": [
+    {
+      "map": "classic",
+      "count": 50,
+      "complete": true,
+      "version": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "complete": true,
+      "version": 9
+    },
+    {
+      "map": "cascade",
+      "count": 50,
+      "complete": true,
+      "version": 7
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "complete": true,
+      "version": 5
+    }
+  ],
+  "screenshots": [
+    "comparison.png",
+    "comparison-mobile.png"
+  ]
+}

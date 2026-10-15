@@ -1,0 +1,104 @@
+{
+  "initialMaps": [
+    {
+      "map": "classic",
+      "count": 50,
+      "complete": true,
+      "version": 2
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "complete": true,
+      "version": 9
+    },
+    {
+      "map": "cascade",
+      "count": 50,
+      "complete": true,
+      "version": 7
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "complete": true,
+      "version": 5
+    }
+  ],
+  "finalRhythm": [
+    {
+      "map": "rhythm",
+      "count": 50,
+      "complete": true,
+      "version": 5
+    }
+  ],
+  "consoleErrors": 0,
+  "physicsAndMapsUnchanged": true,
+  "versions": {
+    "classic": 2,
+    "twinfold": 9,
+    "cascade": 7,
+    "rhythm": 5
+  },
+  "wholeSuite": {
+    "tests": 291,
+    "pass": 291,
+    "log": "tests.log",
+    "stage": "before final brass color asset replacement"
+  },
+  "finalAffectedTests": {
+    "tests": 14,
+    "pass": 14,
+    "log": "final-art-tests.log",
+    "scope": "art loading/crop/cache and clockwork regression tests after final v2 asset"
+  },
+  "changedExistingOperatingFiles": [
+    "js/renderer.js",
+    "index.html"
+  ],
+  "assets": [
+    {
+      "file": "classic-surface-v1.png",
+      "sha256": "7515fa57a297943ce5e30c5e81af6c2a3de231a4bd6b4f487175f31b63ee0dc0",
+      "sourceRect": [
+        20,
+        238,
+        2132,
+        242
+      ]
+    },
+    {
+      "file": "twinfold-surface-v1.png",
+      "sha256": "f494fade8a5a98e4ee4df26607d2f43f2f6674c216701ce2da091aa4355abe70",
+      "sourceRect": [
+        11,
+        232,
+        2150,
+        243
+      ]
+    },
+    {
+      "file": "cascade-surface-v1.png",
+      "sha256": "8e825c85e60f5ec95d44df5c29d1eda61a51e67f8abdfad5966d889647f7a34b",
+      "sourceRect": [
+        11,
+        209,
+        2152,
+        298
+      ]
+    },
+    {
+      "file": "rhythm-surface-v2.png",
+      "sha256": "d0ed22666bd44250ed06ea0cdc511931369b229c39e659b2aa705984c0d7c82b",
+      "sourceRect": [
+        7,
+        213,
+        2158,
+        269
+      ]
+    }
+  ],
+  "deployment": "not performed",
+  "implementationSHA": "0663e73af5d33ee2d0f8ffd952e863a8df6880a1"
+}

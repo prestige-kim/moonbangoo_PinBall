@@ -1,0 +1,332 @@
+{
+  "baseline": "5fe13bcfd95ac1b193ec6c15342d0237209dda5c",
+  "rows": [
+    {
+      "file": "assets/cannon-angle.png",
+      "before": "9b035715b2cbda7a623821515066d8a9108a104aa7f4a970ea1309faa91d2e38",
+      "after": "9b035715b2cbda7a623821515066d8a9108a104aa7f4a970ea1309faa91d2e38",
+      "equal": true
+    },
+    {
+      "file": "assets/cannon-barrel.png",
+      "before": "f613b72e68e53ed26ad856e0eaf1ab631c0ff7c868ae78e262b480e485c0c627",
+      "after": "f613b72e68e53ed26ad856e0eaf1ab631c0ff7c868ae78e262b480e485c0c627",
+      "equal": true
+    },
+    {
+      "file": "assets/cannon-bridge.png",
+      "before": "ff2b48a5496787f2180ba3510b39588fecc2013f8f40e04dd80e7b0a2b11234e",
+      "after": "ff2b48a5496787f2180ba3510b39588fecc2013f8f40e04dd80e7b0a2b11234e",
+      "equal": true
+    },
+    {
+      "file": "assets/cannon-front.png",
+      "before": "0c1e6205733209f951cbd4134d52b0cdf047e42460b3ae25d8cda28a686474cd",
+      "after": "0c1e6205733209f951cbd4134d52b0cdf047e42460b3ae25d8cda28a686474cd",
+      "equal": true
+    },
+    {
+      "file": "assets/cannon-wheel.png",
+      "before": "a134bdd8877531079dda3821d63c3bcc38b043b0e8bc971f612020c1082f9664",
+      "after": "a134bdd8877531079dda3821d63c3bcc38b043b0e8bc971f612020c1082f9664",
+      "equal": true
+    },
+    {
+      "file": "assets/fonts/OFL.txt",
+      "before": "d31ddd9f2bed32fd7e302a205cf2380ba0de6529152d239ef99cfb6f261bfc04",
+      "after": "d31ddd9f2bed32fd7e302a205cf2380ba0de6529152d239ef99cfb6f261bfc04",
+      "equal": true
+    },
+    {
+      "file": "assets/fonts/PretendardVariable.woff2",
+      "before": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4",
+      "after": "9599f12fd42fc0bce1cd50b47a0c022e108d7aa64dd0d1bb0ed44f3282d900b4",
+      "equal": true
+    },
+    {
+      "file": "assets/logo.png",
+      "before": "1ce5880dcc31cc7b94b6a3d2c93970a33b5d37a0b078700d6daf0762bd8937e2",
+      "after": "1ce5880dcc31cc7b94b6a3d2c93970a33b5d37a0b078700d6daf0762bd8937e2",
+      "equal": true
+    },
+    {
+      "file": "assets/logo.svg",
+      "before": "c073caeb5776c6180c9318ca60b1e447b8fa22621356ae8e0aa59288965c6269",
+      "after": "c073caeb5776c6180c9318ca60b1e447b8fa22621356ae8e0aa59288965c6269",
+      "equal": true
+    },
+    {
+      "file": "assets/music/bit-quest.mp3",
+      "before": "80c72638898d8b9e8f7c602d26817be6fdd8c5fa04ec03973f2d25c415d4e8e0",
+      "after": "80c72638898d8b9e8f7c602d26817be6fdd8c5fa04ec03973f2d25c415d4e8e0",
+      "equal": true
+    },
+    {
+      "file": "assets/music/chipper-doodle-v2.mp3",
+      "before": "1555641327651b1f2e3e2ad68d1c741034ffecccf46c0e5c762a765ad71bbaa7",
+      "after": "1555641327651b1f2e3e2ad68d1c741034ffecccf46c0e5c762a765ad71bbaa7",
+      "equal": true
+    },
+    {
+      "file": "assets/music/electrodoodle.mp3",
+      "before": "550458d3e148af6d2c07b874ad3eb6a3be48b1dacd22a61aa77c92c68ea4582b",
+      "after": "550458d3e148af6d2c07b874ad3eb6a3be48b1dacd22a61aa77c92c68ea4582b",
+      "equal": true
+    },
+    {
+      "file": "assets/music/licenses/CC-BY-4.0.html",
+      "before": "58230517b7895aa219ff46a6ed63e67057a1582fb9ea054b16728a8c13525650",
+      "after": "58230517b7895aa219ff46a6ed63e67057a1582fb9ea054b16728a8c13525650",
+      "equal": true
+    },
+    {
+      "file": "assets/music/licenses/bit-quest-source.html",
+      "before": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+      "after": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+      "equal": true
+    },
+    {
+      "file": "assets/music/licenses/chipper-doodle-v2-source.html",
+      "before": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+      "after": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+      "equal": true
+    },
+    {
+      "file": "assets/music/licenses/composer-faq.html",
+      "before": "f5fb799a8c719568be80dab1edb201dbe6e91309c786b2d100e9cce3fe171ba6",
+      "after": "f5fb799a8c719568be80dab1edb201dbe6e91309c786b2d100e9cce3fe171ba6",
+      "equal": true
+    },
+    {
+      "file": "assets/music/licenses/electrodoodle-source.html",
+      "before": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+      "after": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+      "equal": true
+    },
+    {
+      "file": "assets/music/licenses/manifest.json",
+      "before": "334f8c7ef3a0dca7891796ed806677dc943156dc2398279199ba6a409b9d1ac8",
+      "after": "334f8c7ef3a0dca7891796ed806677dc943156dc2398279199ba6a409b9d1ac8",
+      "equal": true
+    },
+    {
+      "file": "assets/music/licenses/winner-winner-source.html",
+      "before": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+      "after": "0aaccc3d496fc4ae189e27e3fe2d4f5216266e3bcccf2e0ba77fb1b57a28fa94",
+      "equal": true
+    },
+    {
+      "file": "assets/music/winner-winner.mp3",
+      "before": "f4337fbc4e7dc3b5be57ce15588d002801008b9470495d713aebc783279f4f33",
+      "after": "f4337fbc4e7dc3b5be57ce15588d002801008b9470495d713aebc783279f4f33",
+      "equal": true
+    },
+    {
+      "file": "assets/pinball-chrome-photo.png",
+      "before": "10a20acaa005fd2fca897105b1143e063c5de63bad0a407921b6ece23da81a11",
+      "after": "10a20acaa005fd2fca897105b1143e063c5de63bad0a407921b6ece23da81a11",
+      "equal": true
+    },
+    {
+      "file": "assets/pinball-metal-soft.png",
+      "before": "4df879a4517b1c14c9940faa9626141cde07ca62174a2ab8149f954876bf199c",
+      "after": "4df879a4517b1c14c9940faa9626141cde07ca62174a2ab8149f954876bf199c",
+      "equal": true
+    },
+    {
+      "file": "index.html",
+      "before": "eb48e4ca917aef18bc3d01ec03b60b10d4c08821ef45565a89cb77d7959582fa",
+      "after": "4f81e90af76bb6df9cec5577fdc9e2c06c950687df5df650588f05d6632cdc9c",
+      "equal": false
+    },
+    {
+      "file": "js/audio.js",
+      "before": "72940855f7b6846f6f0a17213f651130cb33fc35d6a2d243e63e79f7e102782b",
+      "after": "72940855f7b6846f6f0a17213f651130cb33fc35d6a2d243e63e79f7e102782b",
+      "equal": true
+    },
+    {
+      "file": "js/camera.js",
+      "before": "f94d5a585527054a140ce5d4e63799b1f5f7bb5e7cf8c32ae6665092c5143fb5",
+      "after": "f94d5a585527054a140ce5d4e63799b1f5f7bb5e7cf8c32ae6665092c5143fb5",
+      "equal": true
+    },
+    {
+      "file": "js/cinematic.js",
+      "before": "72077d56c4d1563f953d82dea771401fe2af7d9e9b15b5c647e2b6800d57891c",
+      "after": "72077d56c4d1563f953d82dea771401fe2af7d9e9b15b5c647e2b6800d57891c",
+      "equal": true
+    },
+    {
+      "file": "js/display-budget.js",
+      "before": "d918720b9ecfbb1420367f041287872bbc8cb51f4d32c3248de3a1350df8eff1",
+      "after": "d918720b9ecfbb1420367f041287872bbc8cb51f4d32c3248de3a1350df8eff1",
+      "equal": true
+    },
+    {
+      "file": "js/effects.js",
+      "before": "fc19741e8634901304734ecc1f5896eb301024d5711ab9e4c6d642fdd386efc4",
+      "after": "fc19741e8634901304734ecc1f5896eb301024d5711ab9e4c6d642fdd386efc4",
+      "equal": true
+    },
+    {
+      "file": "js/hand-flight.js",
+      "before": "85f1e855b96bde0e9d0bf3a1ba9f2a3f47017afeec13c532fa57da3793f49fce",
+      "after": "85f1e855b96bde0e9d0bf3a1ba9f2a3f47017afeec13c532fa57da3793f49fce",
+      "equal": true
+    },
+    {
+      "file": "js/hand-scene.js",
+      "before": "78df17ce199232518097764d56b48218b869f727c836e1835c8f4026b8c10600",
+      "after": "78df17ce199232518097764d56b48218b869f727c836e1835c8f4026b8c10600",
+      "equal": true
+    },
+    {
+      "file": "js/hand-start.js",
+      "before": "298e6c089a19a66cf048ddad27d4478977d5507475e03327d90c4232d6131d5a",
+      "after": "298e6c089a19a66cf048ddad27d4478977d5507475e03327d90c4232d6131d5a",
+      "equal": true
+    },
+    {
+      "file": "js/main.js",
+      "before": "5ab537dbff8fb6230804ca76fee8e8ead8907bd173194659555cd32899ea9341",
+      "after": "5ab537dbff8fb6230804ca76fee8e8ead8907bd173194659555cd32899ea9341",
+      "equal": true
+    },
+    {
+      "file": "js/map-registry.js",
+      "before": "d7ef71bdcb702319f8b31d3271b4fa5dafa2480587a460a329b6c1ad32c2ba2d",
+      "after": "d7ef71bdcb702319f8b31d3271b4fa5dafa2480587a460a329b6c1ad32c2ba2d",
+      "equal": true
+    },
+    {
+      "file": "js/maps-duration-data.js",
+      "before": "cfa59cb748127f8ca5bf37c11c8e578bcde7894184d56d3ab0ec139d6e9dc999",
+      "after": "cfa59cb748127f8ca5bf37c11c8e578bcde7894184d56d3ab0ec139d6e9dc999",
+      "equal": true
+    },
+    {
+      "file": "js/maps.js",
+      "before": "79a9fa7c0003c9a9ba3748151b5dfccac6269b4565e3a5f47a0c52cecc2d89d3",
+      "after": "79a9fa7c0003c9a9ba3748151b5dfccac6269b4565e3a5f47a0c52cecc2d89d3",
+      "equal": true
+    },
+    {
+      "file": "js/maps/cascade-style.js",
+      "before": "be74db4b6b5729da8428902690e8438610077494781abf16c21b29a2bd5ce830",
+      "after": "be74db4b6b5729da8428902690e8438610077494781abf16c21b29a2bd5ce830",
+      "equal": true
+    },
+    {
+      "file": "js/maps/cascade.js",
+      "before": "4e168b0350ddbf2a4591f999164357a1fb01cd9d1933a0e90c6c00ac12038883",
+      "after": "4e168b0350ddbf2a4591f999164357a1fb01cd9d1933a0e90c6c00ac12038883",
+      "equal": true
+    },
+    {
+      "file": "js/maps/rhythm-style.js",
+      "before": "abafc5dacf2feeb4bea9e557d0c4da3ce29aa23177adf9194a3484c37fdfa96c",
+      "after": "abafc5dacf2feeb4bea9e557d0c4da3ce29aa23177adf9194a3484c37fdfa96c",
+      "equal": true
+    },
+    {
+      "file": "js/maps/rhythm.js",
+      "before": "d7ed7608f032ef54d10b3b6a4e031803382f7bafc14a2f2a0cf5c9f44081c949",
+      "after": "d7ed7608f032ef54d10b3b6a4e031803382f7bafc14a2f2a0cf5c9f44081c949",
+      "equal": true
+    },
+    {
+      "file": "js/maps/twinfold-style.js",
+      "before": "a9811ed9571b2e05e3603c2813bb1404b89c0878a770320e5a726d2adb943458",
+      "after": "a9811ed9571b2e05e3603c2813bb1404b89c0878a770320e5a726d2adb943458",
+      "equal": true
+    },
+    {
+      "file": "js/maps/twinfold.js",
+      "before": "689df43e4601e927ff590f2d39dad884140ac3aabb269c6fbba1f326e1ef04e4",
+      "after": "689df43e4601e927ff590f2d39dad884140ac3aabb269c6fbba1f326e1ef04e4",
+      "equal": true
+    },
+    {
+      "file": "js/physics.js",
+      "before": "e6f5b66d1c5b81b9c63b043544d095cb2d73f8dde65ad02a7f3ac1560c9babf5",
+      "after": "e6f5b66d1c5b81b9c63b043544d095cb2d73f8dde65ad02a7f3ac1560c9babf5",
+      "equal": true
+    },
+    {
+      "file": "js/race-duration-data.js",
+      "before": "96651f0797bb7124c903e436764b0f243173cbec956c8058a185c03391be3393",
+      "after": "96651f0797bb7124c903e436764b0f243173cbec956c8058a185c03391be3393",
+      "equal": true
+    },
+    {
+      "file": "js/race-duration.js",
+      "before": "7740c90c5de401653824731424dd94b741d8259c17525d1d2d74f890d0edd8f4",
+      "after": "7740c90c5de401653824731424dd94b741d8259c17525d1d2d74f890d0edd8f4",
+      "equal": true
+    },
+    {
+      "file": "js/race-standing.js",
+      "before": "cad6e28fe03ff61eec21b548d646c3dee8a6b07d604b1eab3a1ea7393585c718",
+      "after": "cad6e28fe03ff61eec21b548d646c3dee8a6b07d604b1eab3a1ea7393585c718",
+      "equal": true
+    },
+    {
+      "file": "js/renderer.js",
+      "before": "5f55c0d8dd41b29d9f892fa6ba92d7de6cc9d77bf15cd6fca0699618cfd3bd65",
+      "after": "ee3f0e45c3563296a4495779e57328ae0ad7143539993b9bae9c7253bff6f5b6",
+      "equal": false
+    },
+    {
+      "file": "js/shuffle-input.js",
+      "before": "c53898379372660a8922e1412cf18cbaac8596e8265df31ec117db1c9c0396bf",
+      "after": "c53898379372660a8922e1412cf18cbaac8596e8265df31ec117db1c9c0396bf",
+      "equal": true
+    },
+    {
+      "file": "js/shuffle.js",
+      "before": "89c28332289c5de61a0a5ba602769f90ee856802f215055bdfaa9022ebcf7a09",
+      "after": "89c28332289c5de61a0a5ba602769f90ee856802f215055bdfaa9022ebcf7a09",
+      "equal": true
+    },
+    {
+      "file": "js/themes.js",
+      "before": "1719b27b8c269fcdef0908041883871adb833c65f465f20542df92fdbca2e05d",
+      "after": "1719b27b8c269fcdef0908041883871adb833c65f465f20542df92fdbca2e05d",
+      "equal": true
+    },
+    {
+      "file": "js/throw-gate.js",
+      "before": "2edf9c6af6ea90594963603822228c445026df95793ffa4ee7555be778e2f7da",
+      "after": "2edf9c6af6ea90594963603822228c445026df95793ffa4ee7555be778e2f7da",
+      "equal": true
+    },
+    {
+      "file": "js/ui.js",
+      "before": "9bccbc9c0f7896b8ad4271cf92fb02761ab9b0f260de8405538d9f8397cbdd26",
+      "after": "9bccbc9c0f7896b8ad4271cf92fb02761ab9b0f260de8405538d9f8397cbdd26",
+      "equal": true
+    },
+    {
+      "file": "music-credits.html",
+      "before": "3a103f0590af12b4b4daca5fbab657354e751a23eabe6bf375f26816a0cbd806",
+      "after": "3a103f0590af12b4b4daca5fbab657354e751a23eabe6bf375f26816a0cbd806",
+      "equal": true
+    },
+    {
+      "file": "style.css",
+      "before": "9d4a531345c583bf1977d043475bd59edc06b0a48c7b3f7f464a744121540570",
+      "after": "9d4a531345c583bf1977d043475bd59edc06b0a48c7b3f7f464a744121540570",
+      "equal": true
+    }
+  ],
+  "unchanged": 51,
+  "versions": {
+    "classic": 2,
+    "twinfold": 9,
+    "cascade": 7,
+    "rhythm": 5
+  },
+  "note": "Only renderer and its index cache key change among existing operating files. Physics and geometry remain byte-identical; added PNGs and manifest are new art assets.",
+  "protectedFilesUnchanged": 5
+}

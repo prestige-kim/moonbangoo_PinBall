@@ -1,0 +1,22 @@
+✔ generated material sprites are clipped to each real moving collider and use tight alpha bounds (2.53975ms)
+✔ art loading keeps Pages subdirectory URLs and caches one image per map (0.3455ms)
+✔ pending image loads preserve the existing drawn obstacle fallback (0.25425ms)
+✔ rhythm v5 replaces wall shutters and long diagonal shelves with four open six-spoke drums (1.498291ms)
+✔ the middle route is shorter while swaying forks send outside arrivals into detours (43.805375ms)
+✔ drum pockets and vertical pads change physical arrival timing across cycle phases (49.453083ms)
+✔ rhythm v5 completes 1..50 balls without force recovery and exactly replays grouping (3837.625625ms)
+✔ exact entrance-cap drops cannot balance forever on a drum opening (541.157458ms)
+✔ tilted pads release the seed that bounced forever above a horizontal pad (979.77025ms)
+✔ rhythm v5 keeps >=96 independent clearance throughout its complete 9.6 second cycle (7579.063291ms)
+✔ clockwork art follows actual poses, remains deterministic and does not change marbles (2.110792ms)
+✔ clockwork scenery draws no text on any of its obstacles (1.591667ms)
+✔ three buffer stations add nine tilted physical elevators between the four drums (0.14175ms)
+✔ v4 records are refused after adding buffer geometry while v5 records restore exactly (1.668875ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13102.6295
