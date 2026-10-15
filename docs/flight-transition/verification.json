@@ -1,0 +1,61 @@
+{
+  "at": "2026-10-15T02:30:00.579841+00:00",
+  "candidate": "782b4def04691d02e4d483e2668548273761c05b",
+  "startingHEAD": "dc628edcb758a816df9a98de49de4800d0f2795d",
+  "testedFileHashes": [
+    {
+      "file": "qa/flight-transition/prototype.js",
+      "sha256": "3a160d6318e400a75f8d73379678d0fcfe0336cca6c8b38a81954ccf1ee0f493"
+    },
+    {
+      "file": "qa/flight-transition/review.js",
+      "sha256": "4a3f075a7236f91db90a1ed8a45c08542938b99c9ea118ad41e20f01c06afb47"
+    },
+    {
+      "file": "qa/flight-transition/browser.cjs",
+      "sha256": "6274af531962cf8a28f2cd8e451c4ed6554e2b267c048fe5fc816e2434e2fe31"
+    },
+    {
+      "file": "qa/flight-transition/gallery.cjs",
+      "sha256": "d28a94a4370720172feeb13d03084f1d3aaa29930dbbbc54288f69bd102fe5ac"
+    },
+    {
+      "file": "tests/flight-prototype.test.cjs",
+      "sha256": "64e7c1bb04c37040bfd5fc04f9eb5b56610a67b27d3d5f63ebf7aeb1135c9935"
+    },
+    {
+      "file": "docs/flight-transition/lab.html",
+      "sha256": "14cd9efb89ad94a4fc352296d95fe3aa673b908645442db25b759ac13a70834d"
+    },
+    {
+      "file": "docs/flight-transition/index.html",
+      "sha256": "138eb89dafdba67d17cf1e517a874ec23e086d5df1775a148681ab7577778a7d"
+    }
+  ],
+  "provenance": "Browser source field records starting Git HEAD. Prototype/test/gallery files were then uncommitted; tested file contents were committed unchanged as candidate. This manifest verifies those working files match that commit. Production files all remain identical to starting HEAD; see preservation.json.",
+  "maps": {
+    "classic": 2,
+    "twinfold": 9,
+    "cascade": 7,
+    "rhythm": 5
+  },
+  "tests": {
+    "pass": 298,
+    "fail": 0,
+    "newPrototypeInvariantConfigurations": 96
+  },
+  "browserCases": 12,
+  "variantsPerCase": 2,
+  "samplesPerVariant": 601,
+  "midflightVisibilityRange": [
+    0.2,
+    0.9
+  ],
+  "visibilityTolerancePixels": 0.5,
+  "completedBalls": 248,
+  "remoteMainAtEnd": "a41acdf21c98df49e746163e6a49c4f9abbff096",
+  "deployedSource": "a41acdf21c98df49e746163e6a49c4f9abbff096",
+  "rootProductionChanged": false,
+  "pushed": false,
+  "deployed": false
+}

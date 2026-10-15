@@ -1,0 +1,14 @@
+{
+  "videos": 16,
+  "lab": {
+    "map": "classic",
+    "count": 50,
+    "time": 0,
+    "ticks": 0,
+    "realRendererHandoffMeanDifference": 0.11698591820987608,
+    "realRendererHandoffChangedPercent": 0.2173996913580247,
+    "variant": "proposal",
+    "physicsUnchanged": true
+  },
+  "errors": []
+}

@@ -1,0 +1,13 @@
+PASS classic desktop
+PASS twinfold desktop
+PASS cascade desktop
+PASS rhythm desktop
+PASS classic mobile
+PASS twinfold mobile
+PASS cascade mobile
+PASS rhythm mobile
+PASS classic reduced
+PASS twinfold reduced
+PASS cascade reduced
+PASS rhythm reduced
+DONE 12

@@ -1,0 +1,11 @@
+✔ separate proposal preserves release continuity, exact own slots, physics and RNG for all four maps and supported counts (336.454583ms)
+✔ proposal keeps the board fixed and carries viewport corrections continuously to the exact new landing (3.081334ms)
+✔ proposal can restore original flight methods and is absent from the production entrypoint (3.596167ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 398.954708

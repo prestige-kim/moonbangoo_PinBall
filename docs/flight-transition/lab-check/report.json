@@ -1,0 +1,160 @@
+{
+  "errors": [],
+  "videos": [
+    {
+      "map": "classic",
+      "mode": "desktop",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/classic-desktop-baseline.mp4",
+          "duration": 2.846667,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/classic-desktop-proposal.mp4",
+          "duration": 2.846667,
+          "width": 1280,
+          "height": 800
+        }
+      ]
+    },
+    {
+      "map": "classic",
+      "mode": "mobile",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/classic-mobile-baseline.mp4",
+          "duration": 2.846667,
+          "width": 390,
+          "height": 844
+        },
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/classic-mobile-proposal.mp4",
+          "duration": 2.846667,
+          "width": 390,
+          "height": 844
+        }
+      ]
+    },
+    {
+      "map": "twinfold",
+      "mode": "desktop",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/twinfold-desktop-baseline.mp4",
+          "duration": 2.846667,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/twinfold-desktop-proposal.mp4",
+          "duration": 2.846667,
+          "width": 1280,
+          "height": 800
+        }
+      ]
+    },
+    {
+      "map": "twinfold",
+      "mode": "mobile",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/twinfold-mobile-baseline.mp4",
+          "duration": 2.846667,
+          "width": 390,
+          "height": 844
+        },
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/twinfold-mobile-proposal.mp4",
+          "duration": 2.846667,
+          "width": 390,
+          "height": 844
+        }
+      ]
+    },
+    {
+      "map": "cascade",
+      "mode": "desktop",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/cascade-desktop-baseline.mp4",
+          "duration": 2.846667,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/cascade-desktop-proposal.mp4",
+          "duration": 2.846667,
+          "width": 1280,
+          "height": 800
+        }
+      ]
+    },
+    {
+      "map": "cascade",
+      "mode": "mobile",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/cascade-mobile-baseline.mp4",
+          "duration": 2.846667,
+          "width": 390,
+          "height": 844
+        },
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/cascade-mobile-proposal.mp4",
+          "duration": 2.846667,
+          "width": 390,
+          "height": 844
+        }
+      ]
+    },
+    {
+      "map": "rhythm",
+      "mode": "desktop",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/rhythm-desktop-baseline.mp4",
+          "duration": 2.846667,
+          "width": 1280,
+          "height": 800
+        },
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/rhythm-desktop-proposal.mp4",
+          "duration": 2.846667,
+          "width": 1280,
+          "height": 800
+        }
+      ]
+    },
+    {
+      "map": "rhythm",
+      "mode": "mobile",
+      "videos": [
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/rhythm-mobile-baseline.mp4",
+          "duration": 2.846667,
+          "width": 390,
+          "height": 844
+        },
+        {
+          "src": "http://127.0.0.1:8810/docs/flight-transition/rhythm-mobile-proposal.mp4",
+          "duration": 2.846667,
+          "width": 390,
+          "height": 844
+        }
+      ]
+    }
+  ],
+  "lab": {
+    "map": "classic",
+    "count": 50,
+    "time": 0,
+    "ticks": 0,
+    "realRendererHandoffMeanDifference": 0.11698591820987608,
+    "realRendererHandoffChangedPercent": 0.2173996913580247,
+    "variant": "proposal",
+    "physicsUnchanged": true
+  },
+  "productionHasPrototype": false
+}
