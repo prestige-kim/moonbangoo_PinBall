@@ -1,0 +1,62 @@
+{
+  "at": "2026-10-15T10:16:14.339Z",
+  "kst": "2026-10-15 19:16:14 KST",
+  "sourceSHA": "e5157cc99a800fe3a94058fc3fefbf29b40ee3f7",
+  "previousDeployment": "12a2f071ddafbb59a775131291d8e2fd91fb9a76",
+  "url": "https://prestige-kim.github.io/moonbangoo_PinBall/",
+  "pagesRun": {
+    "conclusion": "success",
+    "headSha": "e5157cc99a800fe3a94058fc3fefbf29b40ee3f7",
+    "status": "completed",
+    "url": "https://github.com/prestige-kim/moonbangoo_PinBall/actions/runs/38718334735"
+  },
+  "remote": "e5157cc99a800fe3a94058fc3fefbf29b40ee3f7\trefs/heads/main",
+  "pages": {
+    "commit": "e5157cc99a800fe3a94058fc3fefbf29b40ee3f7",
+    "status": "built",
+    "updated_at": "2026-10-15T10:11:14Z"
+  },
+  "operatingFiles": 68,
+  "hashFailures": 0,
+  "maps": [
+    {
+      "map": "classic",
+      "exactReplay": true,
+      "restart": true,
+      "persisted": true,
+      "maxMusicPlayers": 1,
+      "finished": 50
+    },
+    {
+      "map": "twinfold",
+      "exactReplay": true,
+      "restart": true,
+      "persisted": true,
+      "maxMusicPlayers": 1,
+      "finished": 50
+    },
+    {
+      "map": "cascade",
+      "exactReplay": true,
+      "restart": true,
+      "persisted": true,
+      "maxMusicPlayers": 1,
+      "finished": 50
+    },
+    {
+      "map": "rhythm",
+      "exactReplay": true,
+      "restart": true,
+      "persisted": true,
+      "maxMusicPlayers": 1,
+      "finished": 50
+    }
+  ],
+  "layoutCases": 3,
+  "errors": [],
+  "preservedUnrelatedFiles": true,
+  "runtimeFingerprint": "1ad0d255d3738c094ae2148cd624284937b5d11ed40e04b01f6ff0f2b9077f3f",
+  "physicalLGTested": false,
+  "strictPixelEquality": "known unresolved small differences; unchanged from approved candidate",
+  "auditStorage": "Follow-up evidence commit on codex/four-maps-local; do not push documentation-only evidence to main."
+}
