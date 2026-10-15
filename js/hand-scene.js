@@ -235,7 +235,7 @@
       ctx.clearRect(0, 0, area.w, area.h);
       // Use visual elapsed time only: no shuffle state, seed or release timing changes.
       const fade = clamp(this.elapsed / (state.reducedMotion ? .12 : 1.6));
-      const blend = fade * fade * (3 - 2 * fade);
+      const blend = .35 + .65 * fade * fade * (3 - 2 * fade);
       P.Cinematic.prototype.drawSceneBackground.call(c, blend);
       if (this.gate) {
         const thresholds = P.THROW_THRESHOLDS, band = thresholds.edgeBand * area.s, radius = thresholds.corner * area.s;

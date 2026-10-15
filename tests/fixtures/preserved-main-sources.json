@@ -34,12 +34,16 @@
   },
   "intentionalVisualChanges": {
     "js/cinematic.js": {
-      "reason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged. User requested new course names on 2026-10-14: title painting now resolves the presentation registry; map data and replay signature remain unchanged.",
-      "sha256": "72077d56c4d1563f953d82dea771401fe2af7d9e9b15b5c647e2b6800d57891c"
+      "previousPaintSHA256": "72077d56c4d1563f953d82dea771401fe2af7d9e9b15b5c647e2b6800d57891c",
+      "previousPaintReason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged. User requested new course names on 2026-10-14: title painting now resolves the presentation registry; map data and replay signature remain unchanged.",
+      "reason": "2026-10-15 user requested detailed generated backgrounds throughout scene transitions. Setup/shuffle background now blends continuously from 35 percent; cinematic caches include map identity and background load revision. Changes concern painting/cache only; chamber/shuffle physics, timing, RNG and flight geometry remain unchanged.",
+      "sha256": "3c3eaf6323c3280e422624c394bf36daac7217d3abf2171cdbb5c5dab43eda37"
     },
     "js/hand-scene.js": {
-      "reason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged.",
-      "sha256": "78df17ce199232518097764d56b48218b869f727c836e1835c8f4026b8c10600"
+      "previousPaintSHA256": "78df17ce199232518097764d56b48218b869f727c836e1835c8f4026b8c10600",
+      "previousPaintReason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged.",
+      "reason": "2026-10-15 user requested detailed generated backgrounds throughout scene transitions. Setup/shuffle background now blends continuously from 35 percent; cinematic caches include map identity and background load revision. Changes concern painting/cache only; chamber/shuffle physics, timing, RNG and flight geometry remain unchanged.",
+      "sha256": "c0a0cadeeb0560815ee3cd059f8dd4271c2fa01ccc7631955df53ede6d3e3d9a"
     },
     "js/hand-flight.js": {
       "reason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged.",

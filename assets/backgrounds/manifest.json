@@ -1,0 +1,50 @@
+{
+  "generator": "built-in image_gen",
+  "transparentBackground": false,
+  "assets": [
+    {
+      "id": "classic",
+      "name": "연못 정원",
+      "file": "classic-background-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: detailed vertical 2D pinball game BACKGROUND illustration for \"연못 정원\". Primary request: a jade-green Korean pond garden seen directly from above: detailed lotus leaves and pale blossoms, fine reeds, smooth river pebbles, weathered stone stepping stones and tiny koi near the SIDE MARGINS, delicate water ripples and floating petals. Pale sage, celadon, warm cream and muted gold. Hand-painted engraved storybook game art matching tactile illustrated brass/wood/stone obstacle sprites. Portrait 2:3 canvas. Orthographic overhead, no perspective vanishing point or horizon. Fill the whole frame, opaque background. Keep the central 60 percent broad, quiet, softly textured and low contrast so small colored marbles and physical obstacles remain clearly readable on top. Place the richest environmental details in the outer 20 percent on each side, with subtle smaller details rather than large focal objects. Top and bottom edges should have neutral matching tones and no clipped focal objects, suitable for vertically mirrored repetition during a long scrolling game. Background scenery only: no pinball, no marbles, no UI, no text, no logo, no numbers, no collision-looking barriers across the center, no game obstacles, no frame border, no strong cast shadows. Cohesive refined palette and abundant tiny crafted details, not an empty gradient.",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "twinfold",
+      "name": "바람 도서관",
+      "file": "twinfold-background-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: detailed vertical 2D pinball game BACKGROUND illustration for \"바람 도서관\". Primary request: an antique breezy library seen directly from above as a flat decorative game backdrop: walnut bookcases full of tiny varied leather books along the side margins, brass reading lamps, a narrow rolling library ladder, loosely curled parchment, soft window light, little fern pots and subtle air-current ribbons at the edges. Warm vellum center, forest green, walnut and aged brass accents. Hand-painted engraved storybook game art matching tactile illustrated brass/wood/stone obstacle sprites. Portrait 2:3 canvas. Orthographic overhead, no perspective vanishing point or horizon. Fill the whole frame, opaque background. Keep the central 60 percent broad, quiet, softly textured and low contrast so small colored marbles and physical obstacles remain clearly readable on top. Place the richest environmental details in the outer 20 percent on each side, with subtle smaller details rather than large focal objects. Top and bottom edges should have neutral matching tones and no clipped focal objects, suitable for vertically mirrored repetition during a long scrolling game. Background scenery only: no pinball, no marbles, no UI, no text, no logo, no numbers, no collision-looking barriers across the center, no game obstacles, no frame border, no strong cast shadows. Cohesive refined palette and abundant tiny crafted details, not an empty gradient.",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "cascade",
+      "name": "빗살 협곡",
+      "file": "cascade-background-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: detailed vertical 2D pinball game BACKGROUND illustration for \"빗살 협곡\". Primary request: a terracotta sandstone canyon seen directly from above as a flat decorative game backdrop: intricate rock strata, fine copper mineral veins, weathered fossils, small dry grasses and sparse desert succulents along the side margins, distant pale sandy mist. Peach, ochre, copper and warm cream. Do not draw foreground crossing rock ledges or bridge obstacles. Hand-painted engraved storybook game art matching tactile illustrated brass/wood/stone obstacle sprites. Portrait 2:3 canvas. Orthographic overhead, no perspective vanishing point or horizon. Fill the whole frame, opaque background. Keep the central 60 percent broad, quiet, softly textured and low contrast so small colored marbles and physical obstacles remain clearly readable on top. Place the richest environmental details in the outer 20 percent on each side, with subtle smaller details rather than large focal objects. Top and bottom edges should have neutral matching tones and no clipped focal objects, suitable for vertically mirrored repetition during a long scrolling game. Background scenery only: no pinball, no marbles, no UI, no text, no logo, no numbers, no collision-looking barriers across the center, no game obstacles, no frame border, no strong cast shadows. Cohesive refined palette and abundant tiny crafted details, not an empty gradient.",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGB"
+    },
+    {
+      "id": "rhythm",
+      "name": "태엽 공장",
+      "file": "rhythm-background-v1.png",
+      "prompt": "Use case: stylized-concept. Asset type: detailed vertical 2D pinball game BACKGROUND illustration for \"태엽 공장\". Primary request: an elegant antique clockwork factory seen directly from above as a flat decorative game backdrop: layered brass cogs, copper pipes, small pressure gauges, chain drives, narrow turquoise enamel conduits and metal wall panels ALONG THE SIDE MARGINS, on deep indigo and muted violet. Wide central dark indigo breathing room; no central giant gear or machinery crossing the play area. Brass highlights only near the borders. Hand-painted engraved storybook game art matching tactile illustrated brass/wood/stone obstacle sprites. Portrait 2:3 canvas. Orthographic overhead, no perspective vanishing point or horizon. Fill the whole frame, opaque background. Keep the central 60 percent broad, quiet, softly textured and low contrast so small colored marbles and physical obstacles remain clearly readable on top. Place the richest environmental details in the outer 20 percent on each side, with subtle smaller details rather than large focal objects. Top and bottom edges should have neutral matching tones and no clipped focal objects, suitable for vertically mirrored repetition during a long scrolling game. Background scenery only: no pinball, no marbles, no UI, no text, no logo, no numbers, no collision-looking barriers across the center, no game obstacles, no frame border, no strong cast shadows. Cohesive refined palette and abundant tiny crafted details, not an empty gradient.",
+      "size": [
+        1024,
+        1536
+      ],
+      "mode": "RGB"
+    }
+  ]
+}

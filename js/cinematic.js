@@ -690,7 +690,7 @@
     targetBoard(view, physics, aiming, stage) {
       if (!physics || !this.renderer || aiming <= .38) return;
       const ctx = this.ctx, m = view.initial, bottom = view.bottom;
-      const key = physics.seed + ':' + this.renderer.theme.id + ':' + Math.ceil(bottom);
+      const key = physics.map.id + ':' + physics.seed + ':' + this.renderer.theme.id + ':' + Math.ceil(bottom) + ':' + (this.renderer.backgroundRevision || 0);
       if (!this.boardCache || this.boardCache.key !== key) {
         this.boardCache = { key, image: this.renderer.cinemaBoard ? this.renderer.cinemaBoard(physics, bottom) : null };
       }
@@ -740,7 +740,7 @@
       const entries = this.entries(state.physics), count = entries.length, marbles = state.physics && state.physics.marbles || [];
       const active = ['mixing', 'aiming', 'flight'].includes(stage);
       const still = stage === 'intro' || stage === 'setup';
-      const stillKey = [stage, w, h, this.dpr, this.quality, reduced, Object.keys(this.plates).length, P.Pinball && P.Pinball.revision || 0].join('|');
+      const stillKey = [stage, w, h, this.dpr, this.quality, reduced, Object.keys(this.plates).length, P.Pinball && P.Pinball.revision || 0, state.physics && state.physics.map && state.physics.map.id, this.renderer && this.renderer.backgroundRevision || 0].join('|');
       if (still && this.stillCache && this.stillCache.physics === state.physics && this.stillCache.key === stillKey) {
         this.lastStage = stage; this.lastTime = time;
         return { reveal: 0 };
@@ -777,7 +777,7 @@
       const blast = blastPose(flight, reduced), wheel = assemblyPose(aiming, angle, resting.angle, reduced);
       const barrelShift = stage === 'flight' ? barrelOffset(p, views.frame, w, reduced) : { x: 0, y: 0 };
       const movingFrame = Object.assign({}, views.frame, { x: views.frame.x + barrelShift.x, y: views.frame.y + barrelShift.y });
-      this.drawSceneBackground(stage === 'flight' ? 1 : 0);
+      this.drawSceneBackground(stage === 'intro' ? 0 : stage === 'setup' ? .35 : 1);
       ctx.save();
       if (stage === 'flight') {
         if (blast.shake > .001) { const strength = Math.min(8, w * .005) * blast.shake; ctx.translate(Math.sin(blast.after * 183) * strength, Math.cos(blast.after * 141) * strength * .68); }

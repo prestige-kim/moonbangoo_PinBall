@@ -64,12 +64,18 @@
       button.style.setProperty('--map-accent', info.accent);
       var picture = document.createElement('canvas'); picture.width = 76; picture.height = 64; picture.setAttribute('aria-hidden', 'true');
       var ctx = picture.getContext('2d'), map = P.MAPS[id], sx = 68 / map.width, sy = 56 / map.height;
-      ctx.translate(4, 4); ctx.fillStyle = info.accent; ctx.strokeStyle = info.accent;
+      function drawMapPicture() {
+        ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,76,64);
+        var image=P.mapBackgroundImage?P.mapBackgroundImage(id,drawMapPicture):null;
+        if(image){ctx.globalAlpha=.65;ctx.drawImage(image,0,0,76,64);ctx.globalAlpha=1;}
+        ctx.translate(4, 4); ctx.fillStyle = info.accent; ctx.strokeStyle = info.accent;
       map.obstacles.forEach(function (o) {
         if (o.type === 'polygon') { ctx.beginPath(); o.points.forEach(function (p, i) { if (i) ctx.lineTo(p.x*sx,p.y*sy); else ctx.moveTo(p.x*sx,p.y*sy); }); ctx.closePath(); ctx.globalAlpha=.3; ctx.fill(); ctx.globalAlpha=1; }
         else if (o.type === 'segment' || o.type === 'moving' || o.type === 'rotor') { var a=o.angle||0, x=o.x1 == null?o.x-Math.cos(a)*o.length/2:o.x1, y=o.y1 == null?o.y-Math.sin(a)*o.length/2:o.y1, xx=o.x2 == null?o.x+Math.cos(a)*o.length/2:o.x2, yy=o.y2 == null?o.y+Math.sin(a)*o.length/2:o.y2; ctx.lineWidth=1.3; ctx.beginPath(); ctx.moveTo(x*sx,y*sy); ctx.lineTo(xx*sx,yy*sy); ctx.stroke(); }
         else if (o.type === 'pin') { ctx.fillRect(o.x*sx,o.y*sy,1,1); }
       });
+      }
+      drawMapPicture();
       var copy = document.createElement('span'), name = document.createElement('strong'), detail = document.createElement('small');
       name.textContent = info.name; detail.textContent = info.description; copy.append(name, detail); button.append(picture, copy); $('map-grid').append(button);
     });
