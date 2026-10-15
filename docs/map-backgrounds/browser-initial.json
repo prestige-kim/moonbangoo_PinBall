@@ -1,0 +1,276 @@
+{
+  "errors": [],
+  "assets": [
+    {
+      "url": "http://127.0.0.1:49950/assets/backgrounds/classic-background-v1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:49950/assets/backgrounds/twinfold-background-v1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:49950/assets/backgrounds/rhythm-background-v1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:49950/assets/backgrounds/cascade-background-v1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:49950/assets/backgrounds/rhythm-background-v1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:49950/assets/backgrounds/classic-background-v1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:49950/assets/backgrounds/twinfold-background-v1.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:49950/assets/backgrounds/cascade-background-v1.png",
+      "status": 200
+    }
+  ],
+  "lateLoad": {
+    "beforeRevision": 3,
+    "afterRevision": 7,
+    "redrawn": true
+  },
+  "maps": [
+    {
+      "map": "classic",
+      "count": 50,
+      "complete": true,
+      "image": "http://127.0.0.1:49950/assets/backgrounds/classic-background-v1.png",
+      "cacheKey": "classic:MB-ST5TXR-ZXZICO-BE0ZKE-KOENPB-1:cosmic:1700:8",
+      "flightKey": "classic:MB-ST5TXR-ZXZICO-BE0ZKE-KOENPB-1:cosmic:1700:8"
+    },
+    {
+      "map": "twinfold",
+      "count": 50,
+      "complete": true,
+      "image": "http://127.0.0.1:49950/assets/backgrounds/twinfold-background-v1.png",
+      "cacheKey": "twinfold:background-common-seed:cosmic:1700:9",
+      "flightKey": "twinfold:background-common-seed:cosmic:1700:9"
+    },
+    {
+      "map": "cascade",
+      "count": 50,
+      "complete": true,
+      "image": "http://127.0.0.1:49950/assets/backgrounds/cascade-background-v1.png",
+      "cacheKey": "cascade:background-common-seed:cosmic:1700:10",
+      "flightKey": "cascade:background-common-seed:cosmic:1700:10"
+    },
+    {
+      "map": "rhythm",
+      "count": 50,
+      "complete": true,
+      "image": "http://127.0.0.1:49950/assets/backgrounds/rhythm-background-v1.png",
+      "cacheKey": "rhythm:background-common-seed:cosmic:1700:11",
+      "flightKey": "rhythm:background-common-seed:cosmic:1700:11"
+    }
+  ],
+  "mobile": [
+    {
+      "map": "classic",
+      "overflow": false
+    },
+    {
+      "map": "twinfold",
+      "overflow": false
+    },
+    {
+      "map": "cascade",
+      "overflow": false
+    },
+    {
+      "map": "rhythm",
+      "overflow": false
+    }
+  ],
+  "sceneChecks": {
+    "classic|setup": {
+      "map": "classic",
+      "stage": "setup",
+      "rendererMap": "classic",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/classic-background-v1.png",
+      "count": 2,
+      "minBlend": 0.35,
+      "maxBlend": 0.35
+    },
+    "classic|mixing": {
+      "map": "classic",
+      "stage": "mixing",
+      "rendererMap": "classic",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/classic-background-v1.png",
+      "count": 358,
+      "minBlend": 0.3502109575434814,
+      "maxBlend": 1
+    },
+    "classic|flight": {
+      "map": "classic",
+      "stage": "flight",
+      "rendererMap": "classic",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/classic-background-v1.png",
+      "count": 337,
+      "minBlend": 1,
+      "maxBlend": 1
+    },
+    "classic|running": {
+      "map": "classic",
+      "stage": "running",
+      "rendererMap": "classic",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/classic-background-v1.png",
+      "count": 1275,
+      "minBlend": 1,
+      "maxBlend": 1
+    },
+    "classic|finished": {
+      "map": "classic",
+      "stage": "finished",
+      "rendererMap": "classic",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/classic-background-v1.png",
+      "count": 139,
+      "minBlend": 1,
+      "maxBlend": 1
+    },
+    "twinfold|setup": {
+      "map": "twinfold",
+      "stage": "setup",
+      "rendererMap": "twinfold",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/twinfold-background-v1.png",
+      "count": 3,
+      "minBlend": 0.35,
+      "maxBlend": 0.35
+    },
+    "twinfold|mixing": {
+      "map": "twinfold",
+      "stage": "mixing",
+      "rendererMap": "twinfold",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/twinfold-background-v1.png",
+      "count": 362,
+      "minBlend": 0.3502109575434815,
+      "maxBlend": 1
+    },
+    "twinfold|flight": {
+      "map": "twinfold",
+      "stage": "flight",
+      "rendererMap": "twinfold",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/twinfold-background-v1.png",
+      "count": 337,
+      "minBlend": 1,
+      "maxBlend": 1
+    },
+    "twinfold|running": {
+      "map": "twinfold",
+      "stage": "running",
+      "rendererMap": "twinfold",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/twinfold-background-v1.png",
+      "count": 1232,
+      "minBlend": 1,
+      "maxBlend": 1
+    },
+    "twinfold|finished": {
+      "map": "twinfold",
+      "stage": "finished",
+      "rendererMap": "twinfold",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/twinfold-background-v1.png",
+      "count": 139,
+      "minBlend": 1,
+      "maxBlend": 1
+    },
+    "cascade|setup": {
+      "map": "cascade",
+      "stage": "setup",
+      "rendererMap": "cascade",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/cascade-background-v1.png",
+      "count": 3,
+      "minBlend": 0.35,
+      "maxBlend": 0.35
+    },
+    "cascade|mixing": {
+      "map": "cascade",
+      "stage": "mixing",
+      "rendererMap": "cascade",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/cascade-background-v1.png",
+      "count": 348,
+      "minBlend": 0.3502084474158204,
+      "maxBlend": 1
+    },
+    "cascade|flight": {
+      "map": "cascade",
+      "stage": "flight",
+      "rendererMap": "cascade",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/cascade-background-v1.png",
+      "count": 337,
+      "minBlend": 1,
+      "maxBlend": 1
+    },
+    "cascade|running": {
+      "map": "cascade",
+      "stage": "running",
+      "rendererMap": "cascade",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/cascade-background-v1.png",
+      "count": 1289,
+      "minBlend": 1,
+      "maxBlend": 1
+    },
+    "cascade|finished": {
+      "map": "cascade",
+      "stage": "finished",
+      "rendererMap": "cascade",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/cascade-background-v1.png",
+      "count": 139,
+      "minBlend": 1,
+      "maxBlend": 1
+    },
+    "rhythm|setup": {
+      "map": "rhythm",
+      "stage": "setup",
+      "rendererMap": "rhythm",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/rhythm-background-v1.png",
+      "count": 3,
+      "minBlend": 0.35,
+      "maxBlend": 0.35
+    },
+    "rhythm|mixing": {
+      "map": "rhythm",
+      "stage": "mixing",
+      "rendererMap": "rhythm",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/rhythm-background-v1.png",
+      "count": 353,
+      "minBlend": 0.35021095754348136,
+      "maxBlend": 1
+    },
+    "rhythm|flight": {
+      "map": "rhythm",
+      "stage": "flight",
+      "rendererMap": "rhythm",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/rhythm-background-v1.png",
+      "count": 337,
+      "minBlend": 1,
+      "maxBlend": 1
+    },
+    "rhythm|running": {
+      "map": "rhythm",
+      "stage": "running",
+      "rendererMap": "rhythm",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/rhythm-background-v1.png",
+      "count": 1083,
+      "minBlend": 1,
+      "maxBlend": 1
+    },
+    "rhythm|finished": {
+      "map": "rhythm",
+      "stage": "finished",
+      "rendererMap": "rhythm",
+      "image": "http://127.0.0.1:49950/assets/backgrounds/rhythm-background-v1.png",
+      "count": 138,
+      "minBlend": 1,
+      "maxBlend": 1
+    }
+  }
+}

@@ -1,0 +1,20 @@
+PASS cinematic: 24 matched orbit frames, 24 stable wheel assemblies, 50 continuous discharges, 240 rendering frames, 252 exact sprite handoffs; physical state and RNG unchanged.
+PASS welcome: still positions, frozen chamber clock and frozen race; intermediate photo axes match desktop and mobile.
+✔ tests/cinematic.test.cjs (1768.779125ms)
+✔ background loading caches each map, deduplicates readiness callbacks and preserves Pages base paths (1.95925ms)
+✔ a completed background replaces the fallback board cache at bounded density (0.963375ms)
+✔ ambient background cover preserves aspect ratio and only paints the supplied context (1.114334ms)
+✔ the flight board cache invalidates for map switches and late image readiness with the same seed (1.986417ms)
+✔ each course has a distinct full background motif and palette (1.689875ms)
+✔ added collision events come from the actual terrain in all courses (4121.17925ms)
+✔ generated material sprites are clipped to each real moving collider and use tight alpha bounds (2.382667ms)
+✔ art loading keeps Pages subdirectory URLs and caches one image per map (0.400833ms)
+✔ pending image loads preserve the existing drawn obstacle fallback (0.278875ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4173.224958
