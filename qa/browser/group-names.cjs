@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),http=require('node:http'),crypto=require('node:crypto');
 const {chromium}=require('playwright');
-const root=path.resolve(__dirname,'../..'),out=path.join(root,'docs/group-names/browser');
+const root=path.resolve(__dirname,'../..'),out=path.resolve(root,process.env.OUT||'docs/group-names/browser');
 fs.mkdirSync(out,{recursive:true});
 const hash=b=>crypto.createHash('sha256').update(b).digest('hex');
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -20,7 +20,7 @@ async function finishFast(page){await page.evaluate(()=>{const p=CosmicPinball.a
 
 const assert=require('node:assert/strict');
 async function main(){
- const server=await startServer(),base='http://127.0.0.1:'+server.address().port+'/',browser=await chromium.launch({channel:'chrome',headless:true});
+ const server=await startServer(),base=process.env.SITE_URL||'http://127.0.0.1:'+server.address().port+'/',browser=await chromium.launch({channel:'chrome',headless:true});
  const report={at:new Date().toISOString(),checks:[],errors:[],limitations:['Chromium desktop and touch emulation; physical OS keyboards and touch displays untested']};
  try{
   for(const viewport of [{width:1280,height:800},{width:390,height:844},{width:844,height:390}]){

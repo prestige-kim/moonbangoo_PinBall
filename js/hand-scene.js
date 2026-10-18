@@ -212,7 +212,7 @@
       dt = Math.max(0, Math.min(.05, Number(dt) || 0));
       this.elapsed += dt;
       const feedback = this.gate && this.gate.evaluate(performance.now());
-      const target = feedback ? (feedback.eligible ? 1 : feedback.approach * .65) : 0;
+      const target = feedback ? (feedback.eligible || feedback.releaseReady ? 1 : feedback.approach * .65) : 0;
       this.edgeGlow += (target - this.edgeGlow) * Math.min(1, dt * 9);
       this.accumulator = Math.min(.05, this.accumulator + dt);
       const area = this.area(), zoom = this.viewScale;
@@ -255,12 +255,21 @@
         wallPath(); ctx.strokeStyle = '#c6b38f'; ctx.lineWidth = Math.max(7, Math.min(13, .022 * area.s));
         ctx.shadowColor = 'rgba(89,68,35,.18)'; ctx.shadowBlur = state.reducedMotion ? 0 : 7; ctx.stroke();
         ctx.shadowBlur = 0; wallPath(); ctx.strokeStyle = '#eee3cd'; ctx.lineWidth = Math.max(3, Math.min(7, .012 * area.s)); ctx.stroke();
+        if (ready) {
+          const zone = P.EDGE_GEOMETRY.releaseZone(mouth);
+          ctx.beginPath(); zone.forEach((point, i) => {
+            const px = area.x + point.x * area.s, py = area.y + point.y * area.s;
+            if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py);
+          }); ctx.closePath();
+          ctx.fillStyle = feedback.releaseReady ? 'rgba(210,164,62,.34)' : 'rgba(210,164,62,.12)'; ctx.fill();
+          ctx.strokeStyle = feedback.releaseReady ? '#a16f18' : '#bfa36d'; ctx.lineWidth = feedback.releaseReady ? 3 : 1.5; ctx.stroke();
+        }
         const qualified = this.gate.active && feedback.interacted && this.gate.insideSeen;
         const alpha = qualified ? Math.max(this.edgeGlow, feedback.approach * .65) : 0;
         const x = area.x + mouth.x * area.s, y = area.y + mouth.y * area.s;
         const dx = Math.SQRT1_2, dy = -Math.SQRT1_2;
-        ctx.strokeStyle = feedback.eligible ? '#c9a24f' : '#ad8a45'; ctx.lineWidth = 2 + alpha;
-        if (!state.reducedMotion && alpha > .01) { ctx.shadowColor = '#e7c77b'; ctx.shadowBlur = feedback.eligible ? 8 : 3; }
+        ctx.strokeStyle = feedback.eligible || feedback.releaseReady ? '#c9a24f' : '#ad8a45'; ctx.lineWidth = 2 + alpha;
+        if (!state.reducedMotion && alpha > .01) { ctx.shadowColor = '#e7c77b'; ctx.shadowBlur = feedback.eligible || feedback.releaseReady ? 8 : 3; }
         ctx.beginPath();
         ctx.moveTo(right-span-.024*area.s,top); ctx.lineTo(right-span,top);
         ctx.moveTo(right,top+span); ctx.lineTo(right,top+span+.024*area.s); ctx.stroke();
@@ -271,7 +280,8 @@
         ctx.lineTo(ax+dx*length,ay+dy*length);
         ctx.lineTo(ax+dx*length-dx*head-dy*head,ay+dy*length-dy*head+dx*head); ctx.stroke();
         ctx.restore();
-        c.canvas.dataset.throwReady = String(feedback.eligible);
+        c.canvas.dataset.throwReady = String(feedback.eligible || feedback.releaseReady);
+        c.canvas.dataset.releaseReady = String(ready && feedback.releaseReady);
       }
       if (ready && this.shuffle.pointer) {
         const pointer = this.shuffle.grab || this.shuffle.pointer, x = area.x + pointer.x * area.s * this.viewScale, y = area.y + pointer.y * area.s * this.viewScale;
@@ -306,6 +316,18 @@
       if (!ready && this.canTilt) {
         ctx.fillStyle = c.renderer && c.renderer.mapStyle && c.renderer.mapStyle.id === 'rhythm' ? '#F4DDB9' : '#69583F'; ctx.font = '12px "Pretendard Variable", sans-serif'; ctx.textAlign = 'center';
         ctx.fillText('유리관 오른쪽을 아래로 끌어 충분히 기울여 주세요', area.x, area.y + .38 * area.s);
+      }
+      if (ready && this.gate) {
+        const feedback = this.gate.evaluate(performance.now()), mouth = P.EDGE_GEOMETRY.opening(P.EDGE_GEOMETRY.bounds(area));
+        const text = feedback.releaseReady ? '놓으면 발사!' : '출구 쪽으로 끌어 놓으세요';
+        const x = Math.max(94, Math.min(area.w - 94, area.x + mouth.x * area.s - .10 * area.s));
+        const y = Math.max(32, Math.min(area.h - 28, area.y + mouth.y * area.s + .13 * area.s));
+        ctx.save(); ctx.fillStyle = feedback.releaseReady ? '#f4dfaa' : 'rgba(251,247,239,.94)'; ctx.fillRect(x - 90, y - 16, 180, 32);
+        ctx.fillStyle = '#684a20'; ctx.font = '600 13px "Pretendard Variable", sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, x, y); ctx.restore();
+        if (c.canvas.dataset.throwHint !== text) {
+          c.canvas.dataset.throwHint = text;
+          if (c.canvas.setAttribute) c.canvas.setAttribute('aria-label', text);
+        }
       }
       if (c.canvas.dataset) c.canvas.dataset.handPhase = !ready ? (this.elapsed < POUR.lift ? 'lifting' : this.remaining ? this.lidLatched ? 'pouring' : 'waiting-tilt' : 'settling-pour') : this.shuffle.pointer ? 'dragging' : 'settling';
       c.lastStage = 'mixing';

@@ -213,3 +213,13 @@ test('shuffle continues the selected setup background from 35 percent without ch
     s.scene.begin(s.physics, reducedMotion); assert.equal(s.scene.elapsed, 0, 'each fresh start resets the fade');
   }
 });
+
+test('release-ready funnel and hint render without consuming release or changing a saved launch',()=>{
+ for(const [width,height]of sizes){
+  const s=setup(6,width,height);settle(s.scene);const a=s.scene.area(),g=s.scene.gate;g.begin(0,0,0,a);
+  const m=P.EDGE_GEOMETRY.opening(g.bounds),x=m.x-.05*Math.SQRT1_2,y=m.y+.05*Math.SQRT1_2;
+  g.move(x,y,1000,true);const before=JSON.stringify(s.scene.shuffle.snapshot()),slots=positions(s.physics);now=1000;
+  for(const reducedMotion of [false,true,false]){s.scene.render({physics:s.physics,reducedMotion});assert.equal(s.cinema.canvas.dataset.releaseReady,'true');assert.equal(s.cinema.canvas.dataset.throwHint,'놓으면 발사!');assert(g.active);assert.equal(JSON.stringify(s.scene.shuffle.snapshot()),before);}
+  assert.equal(positions(s.physics),slots);assert.equal(s.randomDraws(),0);assert(g.release(x,y,1100,true).fired);
+ }
+});

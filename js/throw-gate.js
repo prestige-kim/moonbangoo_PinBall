@@ -1,7 +1,7 @@
 (function (P) {
   'use strict';
   // Distances use the usable screen's short side S. Crossing the northeast outlet consumes a gesture immediately. Speed only affects flight.
-  const THRESHOLDS = Object.freeze({ edgeBand: .14, corner: .10, opening: .18, approach: .12, windowMs: 160 });
+  const THRESHOLDS = Object.freeze({ edgeBand: .14, corner: .10, opening: .24, approach: .12, releaseDepth: .10, releaseFlare: .04, releaseProgress: .025, windowMs: 160 });
   const clamp = (value, low, high) => Math.max(low, Math.min(high, value));
   const valid = (x, y, time) => Number.isFinite(x) && Number.isFinite(y) && Number.isFinite(time) && time >= 0;
   function bounds(area) {
@@ -24,6 +24,17 @@
   }
   function openingDistance(x, y, mouth) { return ((x - mouth.x) - (y - mouth.y)) * Math.SQRT1_2; }
   function openingAlong(x, y, mouth) { return ((x - mouth.x) + (y - mouth.y)) * Math.SQRT1_2; }
+  // The same inward funnel is drawn on screen and used for release assistance.
+  function releaseZone(mouth) {
+    const half = mouth.span * Math.SQRT1_2, depth = THRESHOLDS.releaseDepth;
+    return [[0, -half], [0, half], [-depth, half + THRESHOLDS.releaseFlare], [-depth, -half - THRESHOLDS.releaseFlare]]
+      .map(([outward, along]) => ({ x: mouth.x + (outward + along) * Math.SQRT1_2, y: mouth.y + (along - outward) * Math.SQRT1_2 }));
+  }
+  function inReleaseZone(x, y, mouth) {
+    const depth = openingDistance(x, y, mouth);
+    return depth >= -THRESHOLDS.releaseDepth && depth <= 1e-9 &&
+      Math.abs(openingAlong(x, y, mouth)) <= mouth.span * Math.SQRT1_2 - depth / THRESHOLDS.releaseDepth * THRESHOLDS.releaseFlare;
+  }
   class ThrowGate {
     constructor() { this.cancel(); }
     begin(x, y, timeMs, area) {
@@ -44,6 +55,9 @@
         const along = openingAlong(last.x + (x - last.x) * t, last.y + (y - last.y) * t, mouth);
         this.exitCrossed ||= Math.abs(along) < mouth.span * Math.SQRT1_2 - 1e-9;
       }
+      // A segment entering from outside a closed wall cannot arm the release.
+      // Stationary pointerup preserves the last real movement's qualification.
+      if (x !== last.x || y !== last.y) this.releasePathInside = signed(last.x, last.y, this.bounds, THRESHOLDS.edgeBand) <= 1e-9 && signed(x, y, this.bounds, THRESHOLDS.edgeBand) <= 1e-9;
       const next = { x, y, time: timeMs };
       if (timeMs === last.time) this.samples[this.samples.length - 1] = next;
       else this.samples.push(next);
@@ -73,7 +87,9 @@
       const qualified = this.active && this.interacted && this.insideSeen;
       const edge = opening(this.bounds), proximity = openingDistance(last.x, last.y, edge);
       const nearOpening = Math.abs(openingAlong(last.x, last.y, edge)) < edge.span * Math.SQRT1_2 + THRESHOLDS.approach;
-      return { eligible: !!(qualified && this.exitCrossed && proximity > 1e-9), distance: this.distance, radius, interacted: this.interacted,
+      const releaseReady = !!(qualified && this.releasePathInside && inReleaseZone(last.x, last.y, edge) &&
+        proximity - openingDistance(this.start.x, this.start.y, edge) >= THRESHOLDS.releaseProgress);
+      return { releaseReady, eligible: !!(qualified && this.exitCrossed && proximity > 1e-9), distance: this.distance, radius, interacted: this.interacted,
         approach: qualified && nearOpening ? clamp(1 + proximity / THRESHOLDS.approach, 0, 1) : 0,
         dx, dy, edgeX: edge.x, edgeY: edge.y, inputSpeed };
     }
@@ -85,15 +101,19 @@
     release(x, y, timeMs, interacted = false) {
       if (!this.active) return Object.assign(this.evaluate(timeMs), { fired: false });
       if (!this.move(x, y, timeMs, interacted)) { this.cancel(); return Object.assign(this.evaluate(timeMs), { fired: false }); }
-      const result = this.takeExit(timeMs); this.active = false;
+      const result = this.takeExit(timeMs);
+      if (!result.fired && result.releaseReady) {
+        result.fired = true; result.eligible = true; result.method = 'release-zone'; this.fired = true;
+      } else if (result.fired) result.method = 'crossing';
+      this.active = false;
       return result;
     }
     cancel() {
-      this.active = false; this.fired = false; this.insideSeen = false; this.exitCrossed = false; this.interacted = false;
+      this.active = false; this.fired = false; this.insideSeen = false; this.exitCrossed = false; this.releasePathInside = false; this.interacted = false;
       this.distance = 0; this.start = null; this.samples = []; this.bounds = bounds();
     }
   }
   P.THROW_THRESHOLDS = THRESHOLDS;
-  P.EDGE_GEOMETRY = Object.freeze({ bounds, signed, opening, openingDistance, openingAlong });
+  P.EDGE_GEOMETRY = Object.freeze({ bounds, signed, opening, openingDistance, openingAlong, releaseZone, inReleaseZone });
   P.ThrowGate = ThrowGate;
 })(window.CosmicPinball = window.CosmicPinball || {});

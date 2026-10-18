@@ -51,5 +51,26 @@
       "previousPaintSHA256": "85f1e855b96bde0e9d0bf3a1ba9f2a3f47017afeec13c532fa57da3793f49fce",
       "previousPaintReason": "User requested map-specific shuffle-to-race background transitions on 2026-10-14. Only background painting changes; shuffle, pour and flight geometry remain unchanged."
     }
+  },
+  "intentionalRuntimeChanges": {
+    "js/hand-scene.js": {
+      "reason": "2026-10-18 user approved a 33% wider northeast outlet, a visible inward release funnel and release-ready feedback. The same opening geometry now drives wall ends and gate; this intentionally changes pre-race outlet width. Pour integration, random streams, physical race and v2 committed start restoration stay unchanged.",
+      "baseline": "e5157cc99a800fe3a94058fc3fefbf29b40ee3f7",
+      "sha256": "568c5affa1bdf45d07754281111cc244cee51fc9062c38b7e7eb1955fe9bc347",
+      "tests": [
+        "tests/hand-scene.test.cjs",
+        "tests/throw-gate.test.cjs",
+        "tests/deployed-replay-compatibility.test.cjs"
+      ]
+    },
+    "js/throw-gate.js": {
+      "reason": "2026-10-18 user approved widening opening .18 to .24 and release inside a .10-deep inward funnel after .025 outward progress. Immediate line crossing remains speed independent; release assistance requires qualified inside movement. Wider opening intentionally advances the tested central crossing from tick 13 to tick 12.",
+      "baseline": "e5157cc99a800fe3a94058fc3fefbf29b40ee3f7",
+      "sha256": "0b84c89e6eb6d952b3bf4132e95755330966a86ad708020202b5e712af4bd60c",
+      "tests": [
+        "tests/throw-gate.test.cjs",
+        "tests/deployed-replay-compatibility.test.cjs"
+      ]
+    }
   }
 }

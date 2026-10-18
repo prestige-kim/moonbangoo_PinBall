@@ -1,11 +1,40 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const box={window:{},Math};vm.createContext(box);for(const name of ['shuffle','throw-gate'])vm.runInContext(fs.readFileSync(__dirname+'/../js/'+name+'.js','utf8'),box);const P=box.window.CosmicPinball,{ThrowGate,HandShuffle,THROW_THRESHOLDS:T}=P;const make=()=>new ThrowGate();
-test('northeast opening uses shared immutable geometry without speed or travel gates',()=>{assert(Object.isFrozen(T));assert.equal(T.opening,.18);assert.equal(T.edgeBand,.14);assert.equal(T.corner,.10);assert.equal(T.travel,undefined);});
+test('northeast opening uses shared immutable geometry without speed or travel gates',()=>{assert(Object.isFrozen(T));assert.equal(T.opening,.24);assert.equal(T.edgeBand,.14);assert.equal(T.corner,.10);assert.equal(T.travel,undefined);});
 test('an inside-to-outlet drag is consumed immediately once at any speed',()=>{for(const time of [40,1600,9000]){const g=make();g.begin(0,0,0);g.move(.4,-.4,time,true);const d=g.takeExit(time);assert(d.fired);assert.equal(d.dx,Math.SQRT1_2);assert.equal(d.dy,-Math.SQRT1_2);assert.equal(g.takeExit(time+1).fired,false);assert.equal(g.release(.45,-.45,time+100,true).fired,false);}});
-test('touching the diagonal mouth does not exit but a short outward crossing does',()=>{const g=make();g.begin(.26,-.26,0);g.move(.27,-.27,100,true);assert.equal(g.takeExit(100).fired,false);g.move(.275,-.275,200,true);assert(g.takeExit(200).fired);});
+test('touching the diagonal mouth does not exit but a short outward crossing does',()=>{const g=make(),m=P.EDGE_GEOMETRY.opening(P.EDGE_GEOMETRY.bounds());g.begin(m.x-.01,m.y+.01,0);g.move(m.x,m.y,100,true);assert.equal(g.takeExit(100).fired,false);g.move(m.x+.005,m.y-.005,200,true);assert(g.takeExit(200).fired);});
 test('outside clicks and untouched motion cannot exit; entering the group then using the outlet works',()=>{for(const points of [[[.4,-.4,0],[.45,-.45,100,true]],[[0,0,0],[.4,-.4,100,false]]]){const g=make();g.begin(...points[0]);g.move(...points[1]);assert.equal(g.takeExit(100).fired,false);}const g=make();g.begin(.4,-.4,0);g.move(0,0,1000,true);g.move(.4,-.4,2000,true);assert(g.takeExit(2000).fired);});
 test('inside circles and all closed-edge jitter never launch',()=>{const g=make();g.begin(0,0,0);for(let i=1;i<=60;i++){g.move(.22*Math.cos(i),.22*Math.sin(i),i*20,true);assert.equal(g.takeExit(i*20).fired,false);}for(let i=61;i<=100;i++){g.move(-.36+.014*Math.sin(i),0,i*20,true);assert.equal(g.takeExit(i*20).fired,false);}g.cancel();assert.equal(g.release(.4,-.4,2500,true).fired,false);});
 test('render evaluations do not alter the opening crossing or consume its event',()=>{const outputs=[];for(const frames of [[],[5,100,900],Array.from({length:200},(_,i)=>i*20)]){const g=make();g.begin(0,0,0);g.move(.4,-.4,1000,true);for(const t of frames)g.evaluate(t);outputs.push(JSON.stringify(g.takeExit(1000)));}assert.equal(new Set(outputs).size,1);});
 test('cancel, backward and duplicate timestamp samples cannot manufacture outlet crossings',()=>{const g=make();g.begin(0,0,100);assert.equal(g.move(.4,-.4,100,true),false);assert.equal(g.takeExit(100).fired,false);g.move(.4,-.4,200,true);assert.equal(g.release(.4,-.4,150,true).fired,false);g.begin(0,0,300);g.move(.4,-.4,400,true);g.cancel();assert.equal(g.takeExit(500).fired,false);for(const a of [[NaN,0,0],[0,Infinity,0],[0,0,-1]])assert.equal(g.begin(...a),false);});
 test('all screen shapes share the mouth, and outside travel around a closed wall cannot fake entry',()=>{for(const [w,h] of [[1280,720],[390,844],[844,390]]){const area={w,h,s:Math.min(w-32,h-48)},g=make();g.begin(0,0,0,area);const m=P.EDGE_GEOMETRY.opening(g.bounds);g.move(m.x+.05,m.y-.05,2000,true);assert(g.takeExit(2000).fired);const around=make();around.begin(0,0,0,area);around.move(-g.bounds.halfWidth,0,1000,true);assert.equal(around.takeExit(1000).fired,false);around.move(m.x+.05,m.y-.05,2000,true);assert.equal(around.takeExit(2000).fired,false);}});
-test('actual per-body contact yields the same exit across counts and physics frame groupings',()=>{for(const n of [6,25,49,50])for(const grouping of [0,1,4]){const c=new HandShuffle(Array.from({length:n},(_,i)=>({id:'ball-'+i})),'NE-INPUT-'+n),g=make();c.begin(0,0,0);g.begin(0,0,0);let exitTick;for(let i=1;i<=20;i++){const x=.42*i/20,contact=c.move(x,-x,i*50);g.move(x,-x,i*50,contact);for(let j=0;j<grouping;j++)c.step();if(g.takeExit(i*50).fired){exitTick=i;break;}}assert.equal(exitTick,13,n+' grouping '+grouping);}});
+test('actual per-body contact yields the same exit across counts and physics frame groupings',()=>{for(const n of [6,25,49,50])for(const grouping of [0,1,4]){const c=new HandShuffle(Array.from({length:n},(_,i)=>({id:'ball-'+i})),'NE-INPUT-'+n),g=make();c.begin(0,0,0);g.begin(0,0,0);let exitTick;for(let i=1;i<=20;i++){const x=.42*i/20,contact=c.move(x,-x,i*50);g.move(x,-x,i*50,contact);for(let j=0;j<grouping;j++)c.step();if(g.takeExit(i*50).fired){exitTick=i;break;}}assert.equal(exitTick,12,n+' grouping '+grouping);}});
+
+function releaseTarget(g, depth=-.05, along=0) {
+ const m=P.EDGE_GEOMETRY.opening(g.bounds);
+ return {x:m.x+(depth+along)*Math.SQRT1_2,y:m.y+(along-depth)*Math.SQRT1_2};
+}
+test('inward release funnel arms without firing until pointerup at slow or fast speeds',()=>{
+ for(const [w,h]of [[1280,720],[390,844],[844,390],[3840,2160]])for(const ms of [40,1000,9000]){
+  const g=make(),area={w,h,s:Math.min(w-32,h-48)};g.begin(0,0,0,area);const p=releaseTarget(g);
+  g.move(p.x,p.y,ms,true);assert.equal(g.evaluate(ms).releaseReady,true);assert.equal(g.takeExit(ms).fired,false);
+  const result=g.release(p.x,p.y,ms+1,true);assert(result.fired);assert.equal(result.method,'release-zone');assert.equal(g.release(p.x,p.y,ms+2,true).fired,false);
+ }
+});
+test('funnel tap, jitter, untouched movement and release elsewhere never launch',()=>{
+ const probe=make();probe.begin(0,0,0);const p=releaseTarget(probe);
+ for(const delta of [0,.001,.005]){const g=make();g.begin(p.x,p.y,0);assert.equal(g.release(p.x+delta,p.y-delta,100,true).fired,false);}
+ for(const [x,y,touch]of [[0,0,true],[-.3,0,true],[0,.3,true],[p.x,p.y,false]]){const g=make();g.begin(0,0,0);assert.equal(g.release(x,y,100,touch).fired,false);}
+});
+test('leaving the funnel, cancellation and a path entering through a closed wall disarm assisted release',()=>{
+ for(const cancel of [false,true]){const g=make();g.begin(0,0,0);const p=releaseTarget(g);g.move(p.x,p.y,100,true);assert(g.evaluate(100).releaseReady);if(cancel){g.cancel();assert.equal(g.release(p.x,p.y,200,true).fired,false);}else{g.move(0,0,200,true);assert.equal(g.release(0,0,300,true).fired,false);}}
+ const g=make();g.begin(0,0,0);const p=releaseTarget(g);g.move(-.5,0,100,true);g.move(p.x,p.y,200,true);assert.equal(g.release(p.x,p.y,300,true).fired,false);
+});
+test('funnel feedback is independent of render frequency and recognizes the displayed boundary',()=>{
+ const values=[];
+ for(const renders of [0,1,200]){const g=make();g.begin(0,0,0);const p=releaseTarget(g);g.move(p.x,p.y,100,true);for(let i=0;i<renders;i++)g.evaluate(i*15);values.push(g.release(p.x,p.y,200,true).method);}
+ assert.deepEqual(values,['release-zone','release-zone','release-zone']);
+ const g=make(),m=P.EDGE_GEOMETRY.opening(g.bounds),zone=P.EDGE_GEOMETRY.releaseZone(m);assert.equal(zone.length,4);
+ assert(P.EDGE_GEOMETRY.inReleaseZone(...Object.values(releaseTarget(g,-.08,.16)),m));
+ assert.equal(P.EDGE_GEOMETRY.inReleaseZone(...Object.values(releaseTarget(g,-.12)),m),false);
+});
