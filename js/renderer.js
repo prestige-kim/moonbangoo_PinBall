@@ -63,7 +63,7 @@
         const name = String(marble.name || '');
         if (this.groups.has(name)) continue;
         const index = this.groups.size;
-        const fixed = P.COLOR_GROUPS && P.COLOR_GROUPS.find(group => group.name === name);
+        const fixed = P.COLOR_GROUPS && P.COLOR_GROUPS.find(group => marble.groupColor ? group.id === marble.groupColor : group.name === name);
         this.groups.set(name, {color: fixed ? fixed.color : palette[index] || `hsl(${Math.round(index*137.508%360)},65%,42%)`, segments: (fixed ? P.COLOR_GROUPS.indexOf(fixed) : index)%4+1});
       }
     },

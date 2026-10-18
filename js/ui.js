@@ -41,6 +41,7 @@
     this.lastMobile = global.innerWidth <= 850;
     this.boundResize = this.onResize.bind(this);
     this.groupCounts = {};
+    this.groups = P.COLOR_GROUPS.map(function (group) { return { id: group.id, name: group.name, color: group.id }; });
     this.lastRound = null;
     try {
       var previous = JSON.parse(localStorage.getItem('mungbanggu-pinball-last-round') || 'null');
@@ -55,6 +56,18 @@
     this.updatePanel();
     this.setScene(document.body.dataset.scene || 'intro');
     global.addEventListener('resize', this.boundResize);
+    if (global.visualViewport) {
+      var syncKeyboardViewport = function () {
+        var viewport = global.visualViewport;
+        $('setup-panel').classList.toggle('compact-input', viewport.height < 480);
+        document.documentElement.style.setProperty('--setup-visible-height', viewport.height + 'px');
+        document.documentElement.style.setProperty('--setup-visible-center', (viewport.offsetTop + viewport.height / 2) + 'px');
+        var active = document.activeElement;
+        if (active && active.matches('[data-group-name]')) active.scrollIntoView({ block: 'nearest' });
+      };
+      global.visualViewport.addEventListener('resize', syncKeyboardViewport);
+      syncKeyboardViewport();
+    }
   }
   UI.prototype.buildMapCards = function () {
     if (!P.MAP_INFO || !$('map-grid')) return;
@@ -126,18 +139,60 @@
       else if (self.groupTotal() < P.MAX_MARBLES) self.groupCounts[id] = 1;
       self.commitGroups();
     });
+    $('add-group').addEventListener('click', function () {
+      if (self.locked || self.groupTotal() >= P.MAX_MARBLES) return;
+      var n = 1, id, name;
+      do { id = 'custom-' + n; name = '그룹 ' + n++; } while (self.groups.some(function (group) { return group.id === id || group.name === name; }));
+      self.groups.push({ id: id, name: name, color: P.COLOR_GROUPS[(self.groups.length) % P.COLOR_GROUPS.length].id });
+      self.groupCounts[id] = 1; self.commitGroups();
+      var input = $('name-' + id); input.focus(); input.select();
+    });
+    $('group-quantities').addEventListener('keydown', function (event) {
+      if (!event.target.matches('[data-group-name]')) return;
+      if (event.isComposing || event.keyCode === 229) return;
+      if (event.key === 'Enter') { event.preventDefault(); event.target.blur(); }
+    });
     $('group-quantities').addEventListener('click', function (event) {
-      var button = event.target.closest('[data-quantity]');
+      var button = event.target.closest('button');
       if (!button || self.locked) return;
-      var id = button.dataset.group, value = self.groupCounts[id] + Number(button.dataset.quantity);
-      if (value >= 1 && self.groupTotal() + Number(button.dataset.quantity) <= P.MAX_MARBLES) self.groupCounts[id] = value;
+      var id = button.dataset.group;
+      if (button.hasAttribute('data-remove-group')) {
+        delete self.groupCounts[id];
+        if (!P.COLOR_GROUPS.some(function (group) { return group.id === id; })) self.groups = self.groups.filter(function (group) { return group.id !== id; });
+      }
+      else if (button.hasAttribute('data-quantity')) {
+        var value = self.groupCounts[id] + Number(button.dataset.quantity);
+        if (value >= 1 && self.groupTotal() + Number(button.dataset.quantity) <= P.MAX_MARBLES) self.groupCounts[id] = value;
+      } else return;
       self.commitGroups();
     });
+    function editName(event) {
+      if (self.locked || !event.target.matches('[data-group-name]')) return;
+      self.groups.find(function (group) { return group.id === event.target.dataset.group; }).name = event.target.value;
+      // Keep the live input node and selection intact, including throughout IME composition.
+      var button = $('group-' + event.target.dataset.group);
+      if (button) { button.lastChild.textContent = event.target.value; button.title = event.target.value; }
+      var row = event.target.closest('.group-quantity'), name = event.target.value;
+      row.querySelector('[data-group-color]').setAttribute('aria-label', name + ' 색상');
+      row.querySelector('.quantity-control select').setAttribute('aria-label', name + ' 공 개수');
+      row.querySelector('[data-quantity="-1"]').setAttribute('aria-label', name + ' 수량 줄이기');
+      row.querySelector('[data-quantity="1"]').setAttribute('aria-label', name + ' 수량 늘리기');
+      row.querySelector('[data-remove-group]').setAttribute('aria-label', name + ' 그룹 삭제');
+      self.commitGroups(false, event.isComposing || event.type === 'compositionstart');
+    }
+    $('group-quantities').addEventListener('input', editName);
+    $('group-quantities').addEventListener('compositionstart', function () { self.composingName = true; });
+    $('group-quantities').addEventListener('compositionend', function (event) { self.composingName = false; editName(event); });
     $('group-quantities').addEventListener('change', function (event) {
       if (self.locked || !event.target.dataset.group) return;
-      var value = Number(event.target.value), old = self.groupCounts[event.target.dataset.group] || 0;
-      if (!Number.isInteger(value) || value < 1 || self.groupTotal() - old + value > P.MAX_MARBLES) { self.renderGroups(); return; }
-      self.groupCounts[event.target.dataset.group] = value;
+      if (event.target.matches('[data-group-name]')) { editName(event); return; }
+      var id = event.target.dataset.group;
+      if (event.target.hasAttribute('data-group-color')) self.groups.find(function (group) { return group.id === id; }).color = event.target.value;
+      else {
+        var value = Number(event.target.value), old = self.groupCounts[id] || 0;
+        if (!Number.isInteger(value) || value < 1 || self.groupTotal() - old + value > P.MAX_MARBLES) { self.renderGroups(); return; }
+        self.groupCounts[id] = value;
+      }
       self.commitGroups();
     });
     ['rank-minus', 'rank-plus'].forEach(function (id) {
@@ -155,7 +210,7 @@
       if (self.locked || !self.lastRound) return;
       self.load(self.lastRound); self.emit('change', self.readSettings());
     });
-    $('settings-form').addEventListener('submit', function (event) { event.preventDefault(); if (!self.locked && (self.scene === 'setup' || self.isGameScene())) self.emit('start'); });
+    $('settings-form').addEventListener('submit', function (event) { event.preventDefault(); if (self.composingName || (document.activeElement && document.activeElement.matches && document.activeElement.matches('[data-group-name]'))) return; if (!self.locked && (self.scene === 'setup' || self.isGameScene())) self.emit('start'); });
     ['reset', 'restart', 'replay'].forEach(function (action) {
       if (!$(action + '-button')) return;
       $(action + '-button').addEventListener('click', function () {
@@ -172,6 +227,7 @@
     });
 
     $('settings-form').addEventListener('input', function (event) {
+      if (event.target.closest('[data-group]')) return;
       $('seed').value = ''; self.syncSeed();
       self.updateOutputs();
       if (event.target.id === 'names') { self.updateParticipants(); self.clearError(); }
@@ -232,9 +288,18 @@
     this.classicSkills = typeof settings.classicSkills === 'boolean' ? settings.classicSkills : (this.map === 'classic' ? !!settings.skills : this.classicSkills);
     this.participantReset = !!settings.participantReset;
     try { P.parseNames(settings.names); } catch (_) { if (settings.names) this.participantReset = true; }
-    this.groupCounts = P.colorSelection(settings.names);
-    if (this.participantReset) { $('seed').value = ''; }
-    $('names').value = P.colorNames(this.groupCounts);
+    var savedGroups;
+    try { savedGroups = P.readGroups(settings.names); }
+    catch (_) { savedGroups = P.readGroups('빨강*2,초록*2,파랑*2'); this.participantReset = true; }
+    this.groups = savedGroups.slice();
+    P.COLOR_GROUPS.forEach(function (fixed) {
+      if (!savedGroups.some(function (group) { return group.id === fixed.id; })) savedGroups.push({ id: fixed.id, name: fixed.name, color: fixed.id, count: 0 });
+    });
+    this.groups = savedGroups;
+    this.groupCounts = Object.fromEntries(savedGroups.filter(function (group) { return group.count > 0; }).map(function (group) { return [group.id, group.count]; }));
+    if (this.participantReset) $('seed').value = '';
+    // Preserve legacy strings exactly when loading an old replay.
+    $('names').value = settings.names && !this.participantReset ? settings.names : this.serializeGroups();
     this.renderGroups(); this.updateParticipants();
     if (!this.lastRound) $('seed').value = '';
     this.syncSeed();
@@ -283,16 +348,19 @@
   UI.prototype.renderGroups = function () {
     var self = this, focus = document.activeElement && document.activeElement.id;
     $('color-groups').replaceChildren(); $('group-quantities').replaceChildren();
-    P.COLOR_GROUPS.forEach(function (group) {
+    this.groups.forEach(function (group) {
       var count = self.groupCounts[group.id] || 0;
       var button = document.createElement('button'); button.type = 'button'; button.id = 'group-' + group.id;
-      button.dataset.colorGroup = group.id; button.className = 'color-group';
+      button.dataset.colorGroup = group.id; button.title = group.name; button.className = 'color-group';
       button.setAttribute('aria-pressed', String(count > 0)); button.disabled = self.locked || (!count && self.groupTotal() >= P.MAX_MARBLES);
-      var swatch = document.createElement('span'); swatch.className = 'color-swatch'; swatch.style.backgroundColor = group.color; swatch.setAttribute('aria-hidden', 'true');
+      var swatch = document.createElement('span'); swatch.className = 'color-swatch'; swatch.style.backgroundColor = P.COLOR_GROUPS.find(function (item) { return item.id === group.color; }).color; swatch.setAttribute('aria-hidden', 'true');
       button.append(swatch, document.createTextNode(group.name)); $('color-groups').append(button);
       if (!count) return;
       var row = document.createElement('div'); row.className = 'group-quantity';
-      var label = document.createElement('label'); label.htmlFor = 'quantity-' + group.id; label.textContent = group.name;
+      var label = document.createElement('label'); label.htmlFor = 'name-' + group.id; label.textContent = '그룹 이름';
+      var input = document.createElement('input'); input.type = 'text'; input.id = 'name-' + group.id; input.dataset.group = group.id; input.dataset.groupName = ''; input.value = group.name; input.maxLength = 40; input.inputMode = 'text'; input.enterKeyHint = 'done'; input.autocomplete = 'off'; input.setAttribute('aria-describedby', 'names-help input-error'); input.disabled = self.locked;
+      var color = document.createElement('select'); color.dataset.group = group.id; color.dataset.groupColor = ''; color.setAttribute('aria-label', group.name + ' 색상'); color.disabled = self.locked;
+      P.COLOR_GROUPS.forEach(function (item) { var option = document.createElement('option'); option.value = item.id; option.textContent = item.name; color.append(option); }); color.value = group.color;
       var control = document.createElement('div'); control.className = 'quantity-control';
       [-1, 1].forEach(function (delta) {
         var step = document.createElement('button'); step.type = 'button'; step.id = 'quantity-' + group.id + (delta < 0 ? '-minus' : '-plus');
@@ -301,20 +369,34 @@
         step.disabled = self.locked || (delta < 0 ? count === 1 : self.groupTotal() >= P.MAX_MARBLES);
         if (delta < 0) control.append(step);
         else {
-          var select = document.createElement('select'); select.id = 'quantity-' + group.id; select.dataset.group = group.id; select.disabled = self.locked;
+          var select = document.createElement('select'); select.id = 'quantity-' + group.id; select.dataset.group = group.id; select.setAttribute('aria-label', group.name + ' 공 개수'); select.disabled = self.locked;
           for (var n = 1; n <= P.MAX_MARBLES - self.groupTotal() + count; n++) { var option = document.createElement('option'); option.value = n; option.textContent = n + '개'; select.append(option); }
           select.value = count; control.append(select, step);
         }
       });
-      row.append(label, control); $('group-quantities').append(row);
+      var remove = document.createElement('button'); remove.type = 'button'; remove.id = 'remove-group-' + group.id; remove.dataset.group = group.id; remove.dataset.removeGroup = ''; remove.textContent = '삭제'; remove.disabled = self.locked; remove.setAttribute('aria-label', group.name + ' 그룹 삭제');
+      row.append(label, input, color, control, remove); $('group-quantities').append(row);
     });
+    $('add-group').disabled = this.locked || this.groupTotal() >= P.MAX_MARBLES;
     if (focus && $(focus) && !$(focus).disabled) $(focus).focus({ preventScroll: true });
+    else if (focus && focus.startsWith('remove-group-')) $('add-group').focus({ preventScroll: true });
   };
-  UI.prototype.commitGroups = function () {
+  UI.prototype.serializeGroups = function () {
+    var self = this;
+    return P.writeGroups(this.groups.filter(function (group) { return self.groupCounts[group.id] > 0; }).map(function (group) { return { id: group.id, name: group.name, color: group.color, count: self.groupCounts[group.id] }; }));
+  };
+  UI.prototype.commitGroups = function (render, composing) {
     this.participantReset = false;
-    $('names').value = P.colorNames(this.groupCounts);
+    $('names').value = this.serializeGroups();
     $('seed').value = ''; this.syncSeed();
-    this.renderGroups(); this.clearError(); this.updateParticipants(); this.emit('change', this.readSettings());
+    if (render !== false) this.renderGroups();
+    this.clearError(); this.updateParticipants();
+    if (composing) return;
+    try { P.parseNames($('names').value); } catch (error) {
+      $('input-error').textContent = error.message; $('input-error').hidden = false;
+      return;
+    }
+    this.emit('change', this.readSettings());
   };
   UI.prototype.syncSeed = function () {
     var replay = !!$('seed').value;
@@ -401,6 +483,8 @@
   UI.prototype.bindSceneKeys = function () {
     var self = this;
     document.addEventListener('keydown', function (event) {
+      if (event.isComposing || event.keyCode === 229) return;
+      if (event.target && event.target.matches && event.target.matches('[data-group-name]') && event.key === 'Escape') { event.preventDefault(); event.stopImmediatePropagation(); event.target.blur(); return; }
       if (self.isGameScene()) return;
       if (event.key === 'Escape' && self.scene === 'setup') {
         event.preventDefault(); event.stopImmediatePropagation(); self.emit('setupcancel'); return;
@@ -457,7 +541,7 @@
     if (stage === 'setup' && previous !== stage && this.liveLeader) this.liveLeader = new P.LiveLeader();
     if (stage === 'intro' && previous !== stage) $('intro-start-button').focus({ preventScroll: true });
     else if (stage === 'setup' && previous !== stage) {
-      requestAnimationFrame(function () { if (self.scene !== 'setup') return; var next = $('group-red'); if (next) next.focus({ preventScroll: true }); });
+      requestAnimationFrame(function () { if (self.scene !== 'setup') return; var active = document.activeElement; if (active && active.closest && active.closest('#setup-panel')) return; var next = $('group-red'); if (next) next.focus({ preventScroll: true }); });
     } else if (['mixing','aiming','flight'].indexOf(stage) >= 0 && previous !== stage) $(stage === 'mixing' ? 'cinema-canvas' : 'game-canvas').focus({ preventScroll: true });
     else if (stage === 'running' && previous !== 'running') $('game-canvas').focus({ preventScroll: true });
   };

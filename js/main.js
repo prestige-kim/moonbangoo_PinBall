@@ -53,6 +53,8 @@
   }
   let memorySettings = readSaved();
   function save(settings) {
+    // Incomplete name edits remain a draft; keep the last valid saved settings.
+    try { P.parseNames(settings.names); } catch (_) { return; }
     memorySettings = Object.assign({}, settings, { seedMode: settings.seed ? 'manual' : 'auto' });
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(memorySettings)); } catch (_) {}
   }

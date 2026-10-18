@@ -63,7 +63,47 @@
       .map(function (group) { return group.name + '*' + counts[group.id]; }).join(',');
   };
 
+  // Versioned JSON avoids treating punctuation in directly typed names as syntax.
+  P.readGroups = function (text) {
+    if (String(text).startsWith('{"groupVersion":')) {
+      var data = JSON.parse(text);
+      if (data.groupVersion !== 1 || !Array.isArray(data.groups) || data.groups.length > P.MAX_MARBLES) throw new Error('그룹 설정 형식이 올바르지 않아요.');
+      var ids = new Set(), names = new Set(), total = 0;
+      return data.groups.map(function (group) {
+        if (!group || typeof group.id !== 'string' || !/^[a-z][a-z0-9-]{0,39}$/.test(group.id) || ids.has(group.id)) throw new Error('그룹 식별자가 올바르지 않아요.');
+        var name = typeof group.name === 'string' ? group.name.trim().normalize('NFC') : '';
+        if (!name || name.length > 40 || /[\u0000-\u001f\u007f<>]/.test(name)) throw new Error('그룹 이름은 빈칸 없이 1~40자로 입력하고, 제어 문자와 꺾쇠 괄호는 빼 주세요.');
+        if (names.has(name)) throw new Error('“' + name + '” 그룹 이름이 중복돼요.');
+        if (!P.COLOR_GROUPS.some(function (item) { return item.id === group.color; })) throw new Error('그룹 색상이 올바르지 않아요.');
+        total += group.count;
+        if (!Number.isInteger(group.count) || group.count < 1 || total > P.MAX_MARBLES) throw new Error('핀볼은 총 1~50개로 설정해 주세요.');
+        ids.add(group.id); names.add(name);
+        return { id: group.id, name: name, color: group.color, count: group.count };
+      });
+    }
+    var groups = [], seen = new Map();
+    if (text === '') return groups;
+    P.parseNames(text).forEach(function (entry) {
+      if (seen.has(entry.name)) { seen.get(entry.name).count++; return; }
+      var fixed = P.COLOR_GROUPS.find(function (item) { return item.name === entry.name; });
+      var group = { id: fixed ? fixed.id : 'custom-' + groups.length, name: entry.name, color: fixed ? fixed.id : P.COLOR_GROUPS[groups.length % P.COLOR_GROUPS.length].id, count: 1 };
+      seen.set(entry.name, group); groups.push(group);
+    });
+    return groups;
+  };
+  P.writeGroups = function (groups) {
+    return JSON.stringify({ groupVersion: 1, groups: groups });
+  };
+
   P.parseNames = function (text) {
+    if (String(text).startsWith('{"groupVersion":')) {
+      var entries = [];
+      P.readGroups(text).forEach(function (group) {
+        for (var copy = 1; copy <= group.count; copy++) entries.push({ id: 'marble-' + (entries.length + 1), name: group.name, copy: copy, copies: group.count, groupId: group.id, groupColor: group.color });
+      });
+      if (!entries.length) throw new Error('그룹을 하나 이상 추가해 주세요.');
+      return entries;
+    }
     var input = String(text == null ? '' : text).replace(/\r\n?/g, '\n').trim();
     if (!input) throw new Error('참가자 이름을 한 명 이상 입력해 주세요.');
     var tokens = input.split(/[,\n]/);
@@ -166,7 +206,7 @@
       var entry = options.names[n];
       var position = positions[n];
       this.marbles.push({
-        id: entry.id, name: entry.name, copy: entry.copy || 1, copies: entry.copies || 1,
+        id: entry.id, name: entry.name, groupId: entry.groupId, groupColor: entry.groupColor, copy: entry.copy || 1, copies: entry.copies || 1,
         x: position.x + offsetX + (spawnRandom() * 2 - 1) * jitter, y: position.y + offsetY,
         vx: (this.random() - 0.5) * 60, vy: 0, r: this.radius, baseRadius: this.radius,
         angle: this.random() * Math.PI * 2, finished: false, finishTime: null,

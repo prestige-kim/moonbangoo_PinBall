@@ -107,7 +107,7 @@ body[data-theme=gold] .toast{background:#392819;color:#FFF0CE;border-color:#E2C5
 .scene-mixing #cinema-canvas{pointer-events:auto;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab}
 .scene-mixing #cinema-canvas:active{cursor:grabbing}
 
-/* Touch-only setup uses the same controls on mobile and desktop. */
+/* Shared group selection controls for touch and physical keyboards. */
 .color-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .color-group{display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;border:1px solid var(--border);border-radius:7px;background:var(--field);color:var(--text);font:inherit;font-size:12px;cursor:pointer}
 .color-group[aria-pressed=true]{border-color:var(--accent);background:rgba(var(--accent-rgb),.12);font-weight:700}
@@ -187,3 +187,25 @@ body:is(.scene-running,.scene-finished):has(.map-card[data-map="rhythm"][aria-pr
 body:is(.scene-running,.scene-finished):has(.map-card[data-map="rhythm"][aria-pressed="true"]) .ambient-wash{background:radial-gradient(ellipse at 80% 15%,rgba(212,162,94,.06),transparent 65%)}
 body:is(.scene-running,.scene-finished):has(.map-card[data-map="rhythm"][aria-pressed="true"]) .hud-map-name{color:#F4DDB9}
 body:is(.scene-running,.scene-finished):has(.map-card[data-map="rhythm"][aria-pressed="true"]) .masthead-actions :is(.fps-badge,.fps-badge b,.icon-button){color:#F4DDB9}
+
+/* Native text fields retain the OS keyboard, IME and physical-keyboard editing. */
+.group-quantity{display:grid;grid-template-columns:minmax(0,1fr) 100px;gap:8px;padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--field)}
+.group-quantity>label{grid-column:1/-1;font-size:11px;color:var(--muted)}
+.group-quantity>input{min-width:0;width:100%;height:44px;font-size:16px;padding:8px;scroll-margin-block:90px}
+.group-quantity>select{min-width:0;width:100%;height:44px;padding:4px;font-size:14px}
+.group-quantity>.quantity-control{min-width:0}.group-quantity>.quantity-control select{min-width:55px}
+.group-quantity>button,.add-group{min-height:44px;border:1px solid var(--border);border-radius:7px;background:var(--field);color:var(--text);cursor:pointer}
+.add-group{width:100%;margin-top:12px}.add-group:disabled{opacity:.4;cursor:default}
+.group-quantity input:focus-visible,.group-quantity select:focus-visible,.group-quantity>button:focus-visible,.add-group:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.scene-setup .setup-panel{top:var(--setup-visible-center,50%);max-height:calc(var(--setup-visible-height,100dvh) - 28px)}
+
+.group-quantity>input{border:1px solid var(--border);border-radius:7px;background:var(--panel);color:var(--text)}
+.color-group{min-width:0;overflow-wrap:anywhere;padding:8px}
+
+/* Leave editing room when the on-screen keyboard reduces the visible height. */
+.scene-setup .setup-panel.compact-input .panel-heading{padding:10px 20px}
+.scene-setup .setup-panel.compact-input .panel-heading .eyebrow,.scene-setup .setup-panel.compact-input .panel-bottom{display:none}
+.scene-setup .setup-panel.compact-input .panel-heading h1{font-size:20px}
+.scene-setup .setup-panel.compact-input .panel-footer{padding:8px 20px}
+.scene-setup .setup-panel.compact-input .start-button{height:44px}
