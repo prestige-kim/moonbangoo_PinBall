@@ -1,0 +1,86 @@
+{
+  "at": "2026-10-18T04:17:31.340Z",
+  "url": "http://127.0.0.1:63623/",
+  "browser": "155.0.8059.84",
+  "cases": [
+    {
+      "map": "classic",
+      "n": 6,
+      "w": 1280,
+      "h": 800,
+      "touch": false,
+      "reduced": false,
+      "releaseMethod": "release-zone",
+      "armedInside": true,
+      "tapRejected": true,
+      "centerReleaseRejected": true,
+      "customNameAndColor": true,
+      "exactReplay": true,
+      "persisted": true
+    },
+    {
+      "map": "twinfold",
+      "n": 50,
+      "w": 390,
+      "h": 844,
+      "touch": true,
+      "reduced": false,
+      "releaseMethod": "release-zone",
+      "armedInside": true,
+      "tapRejected": true,
+      "centerReleaseRejected": true,
+      "customNameAndColor": true,
+      "exactReplay": true,
+      "persisted": true
+    },
+    {
+      "map": "cascade",
+      "n": 1,
+      "w": 844,
+      "h": 390,
+      "touch": true,
+      "reduced": false,
+      "releaseMethod": "release-zone",
+      "armedInside": true,
+      "tapRejected": true,
+      "centerReleaseRejected": true,
+      "customNameAndColor": true,
+      "exactReplay": true,
+      "persisted": true
+    },
+    {
+      "map": "rhythm",
+      "n": 25,
+      "w": 1280,
+      "h": 800,
+      "touch": false,
+      "reduced": true,
+      "releaseMethod": "release-zone",
+      "armedInside": true,
+      "tapRejected": true,
+      "centerReleaseRejected": true,
+      "customNameAndColor": true,
+      "exactReplay": true,
+      "persisted": true
+    },
+    {
+      "map": "classic",
+      "n": 49,
+      "w": 1920,
+      "h": 1080,
+      "touch": false,
+      "reduced": false,
+      "releaseMethod": "release-zone",
+      "armedInside": true,
+      "tapRejected": true,
+      "centerReleaseRejected": true,
+      "customNameAndColor": true,
+      "exactReplay": true,
+      "persisted": true
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Desktop Chrome and CDP touch emulation; physical touch and OS keyboard untested"
+  ]
+}
