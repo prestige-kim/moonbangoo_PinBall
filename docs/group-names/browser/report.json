@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-18T04:07:53.319Z",
+  "checks": [
+    "Custom labels and colors survive real pour/shuffle/launch, results and exact replay",
+    "Typing, IME, Enter, validation, colors, add/remove, save/reload, 50-ball cap and layout 1280x800",
+    "Reduced 300px viewport leaves focused name and start button visible",
+    "Typing, IME, Enter, validation, colors, add/remove, save/reload, 50-ball cap and layout 390x844",
+    "Typing, IME, Enter, validation, colors, add/remove, save/reload, 50-ball cap and layout 844x390",
+    "legacy names load, validation and preservation",
+    "50 named groups load, validation and preservation",
+    "corrupt saved group load, validation and preservation"
+  ],
+  "errors": [],
+  "limitations": [
+    "Chromium desktop and touch emulation; physical OS keyboards and touch displays untested"
+  ]
+}
